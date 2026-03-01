@@ -553,7 +553,7 @@ function clearRow(btn) {
         addRow();
     
     // Load external Rapaport data (overrides embedded)
-    fetch("rapaport-calculator/data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;console.log("External Rapaport loaded")}).catch(e=>console.log("Using embedded"));
+    fetch("data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;console.log("External Rapaport loaded")}).catch(e=>console.log("Using embedded"));
         calcTotals();
     }
     
@@ -886,7 +886,7 @@ function clearRow(btn) {
             addRow();
     
     // Load external Rapaport data (overrides embedded)
-    fetch("rapaport-calculator/data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;console.log("External Rapaport loaded")}).catch(e=>console.log("Using embedded"));
+    fetch("data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;console.log("External Rapaport loaded")}).catch(e=>console.log("Using embedded"));
             var n = startN + i;
             document.getElementById("parcel"+n).value = item.parcel;
             document.getElementById("shape"+n).value = item.shape;
@@ -933,7 +933,7 @@ function clearRow(btn) {
             addRow();
     
     // Load external Rapaport data (overrides embedded)
-    fetch("rapaport-calculator/data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;console.log("External Rapaport loaded")}).catch(e=>console.log("Using embedded"));
+    fetch("data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;console.log("External Rapaport loaded")}).catch(e=>console.log("Using embedded"));
             var n = startN + i;
             document.getElementById("parcel"+n).value = item.parcel;
             document.getElementById("shape"+n).value = item.shape;
@@ -1058,7 +1058,7 @@ function clearRow(btn) {
     document.getElementById("rapaportDate").textContent = "Rapaport Data: " + RAPAPORT.date;
     
     // Load external Rapaport data (overrides embedded)
-    fetch("rapaport-calculator/data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;document.getElementById("rapaportDate").textContent="Rapaport Data: "+RAPAPORT.date}).catch(e=>console.log("Using embedded"));
+    fetch("data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;document.getElementById("rapaportDate").textContent="Rapaport Data: "+RAPAPORT.date}).catch(e=>console.log("Using embedded"));
     </script>
 </body>
 </html>
