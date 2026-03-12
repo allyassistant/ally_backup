@@ -235,8 +235,8 @@
             </div>
             
             <div class="result-row">
-                <span class="result-label">Base Price</span>
-                <span class="result-value" id="resBase"></span>
+                <span class="result-label">Price per Carat</span>
+                <span class="result-value" id="resPricePerCarat"></span>
             </div>
             
             <div class="result-row">
@@ -335,10 +335,12 @@
             const discountDecimal = Math.abs(discount) / 100;
             const multiplier = discount >= 0 ? (1 + discountDecimal) : (1 - discountDecimal);
             const totalPrice = Math.round(basePrice * multiplier);
+            const pricePerCarat = totalPrice / carat;
             
             return {
                 tableValue,
                 basePrice: Math.round(basePrice),
+                pricePerCarat: Math.round(pricePerCarat),
                 discount,
                 totalPrice,
                 totalPriceFormatted: new Intl.NumberFormat('en-US', {
@@ -381,7 +383,7 @@
                 document.getElementById('resCarat').textContent = carat + ' ct';
                 document.getElementById('resSpec').textContent = color + ' ' + clarity;
                 document.getElementById('resTable').textContent = calcResult.tableValue;
-                document.getElementById('resBase').textContent = 'USD ' + calcResult.basePrice.toLocaleString();
+                document.getElementById('resPricePerCarat').textContent = 'USD ' + calcResult.pricePerCarat.toLocaleString();
                 document.getElementById('resDiscount').textContent = discount + '%';
                 document.getElementById('resTotal').textContent = calcResult.totalPriceFormatted;
                 
