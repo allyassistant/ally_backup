@@ -7917,3 +7917,8 @@
 {"ts":"2026-06-14T03:10:23.990Z","event":"provider_recovery","provider":"minimax-portal"}
 {"ts":"2026-06-14T03:10:35.004Z","event":"provider_recovery","provider":"minimax-portal"}
 {"ts":"2026-06-14T03:10:35.007Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1165,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"df2251e8-ad2f-4168-a999-f89342d620c3"}
+{"ts":"2026-06-14T03:16:37.476Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"先試b，用DeepSeek V4  Pro做","channel":""}
+{"ts":"2026-06-14T03:16:37.697Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-06-14T03:16:37.696Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-06-14T03:16:37.697Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":221,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8b9b2294-cce8-40ff-91a9-dea9ba7a3cc3"}
+{"ts":"2026-06-14T03:16:37.697Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":165,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"dd9a1e57-20ae-4acf-a6f9-34ebbe449c90"}
