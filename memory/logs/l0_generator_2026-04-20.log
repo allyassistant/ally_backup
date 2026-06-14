@@ -1,0 +1,16 @@
+[2026-04-19T16:05:06.677Z] [INFO] Starting L0 Abstract Generator for 2026-04-19
+[2026-04-19T16:05:06.684Z] [INFO] Found 14 L2 files
+[2026-04-19T16:05:06.691Z] [INFO] Ollama input pre-filtered: 141 → 82 lines
+[2026-04-19T16:05:06.691Z] [INFO] Using last 8077 chars of L2 (window: 12000)
+[2026-04-19T16:05:06.709Z] [INFO] Ollama pre-check passed
+[2026-04-19T16:05:06.709Z] [INFO] Calling Ollama qwen2.5:3b...
+[2026-04-19T16:05:21.986Z] [INFO] Applied OpenCC s2hk conversion (352 → 352 chars)
+[2026-04-19T16:05:21.989Z] [SUCCESS] ✅ SUCCESS: L0 Abstract written (445 chars)
+[2026-04-19T22:04:30.966Z] [INFO] Starting L0 Abstract Generator for 2026-04-20
+[2026-04-19T22:04:30.974Z] [INFO] Found 6 L2 files
+[2026-04-19T22:04:30.975Z] [INFO] Ollama input pre-filtered: 170 → 97 lines
+[2026-04-19T22:04:30.975Z] [INFO] Using last 8257 chars of L2 (window: 12000)
+[2026-04-19T22:04:30.986Z] [INFO] Ollama pre-check passed
+[2026-04-19T22:04:30.986Z] [INFO] Calling Ollama qwen2.5:3b...
+[2026-04-19T22:04:48.169Z] [INFO] Applied OpenCC s2hk conversion (449 → 449 chars)
+[2026-04-19T22:04:48.171Z] [SUCCESS] ✅ SUCCESS: L0 Abstract written (541 chars)

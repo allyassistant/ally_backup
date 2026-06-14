@@ -1,0 +1,44 @@
+---
+id: 018
+title: HK Show Memo 處理 (2026-02-25)
+status: archive
+priority: P2
+created: 2026-02-25
+due: 2026-02-25
+updated: 2026-02-25
+progress: 1/1
+---
+
+## Description
+從 memo_HK_show_022526.xlsx 處理 HK Show 既 stock list
+
+## 工作內容
+- 從 memo file 提取 items
+- 與 diamond_stock.json 匹配
+- 生成格式化 Excel
+
+## 完成資料
+- **Input:** memo_HK_show_022526.xlsx (125 items)
+- **Matched:** 121 items 匹配到 database
+- **Output:** HK_Show_Matched_Formatted.xlsx
+
+## Format 設定
+- 排列順序：Shape → Carat (大至細)
+- 每個 Shape 後隔一行
+- Carat：小數點後兩個位
+- Fluor 轉換：None→N, Faint→F, Medium Blue→MB
+- 使用 database 資料（如有）
+
+## Output 欄位
+Parcel Name, Shape, Crt, Color, Clarity, Cut, Pol, Symm, Measurement, Depth, Table, Fluor, Lab, Cert No, Memo In Price, Price per Carat, Price, Total Price
+
+## Shape 順序 (Carat 大至細)
+- RBC: 8.02 → 5.21
+- RAD: 22.67 → 1.06
+- PS: 16.06 → 1.17
+- OV: 15.70 → 1.43
+- EM: 22.01 → 5.02
+- MQ: 8.46 → 5.52
+- HS: 7.03 → 1.36
+- CU: 35.11 → 4.29
+- SEM: 15.03 → 5.02

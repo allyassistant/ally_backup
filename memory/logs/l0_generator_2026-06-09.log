@@ -1,0 +1,13 @@
+[2026-06-08T16:07:05.952Z] [INFO] [CRON] Starting L0 Abstract Generator for 2026-06-08
+[2026-06-08T16:07:05.956Z] [INFO] [CRON] Found 13 L2 files
+[2026-06-08T16:07:05.958Z] [INFO] [CRON] MiniMax input pre-filtered + dedup: 11 → 7 lines (unique)
+[2026-06-08T16:07:05.958Z] [INFO] [CRON] Using last 1450 chars of L2 (window: 12000)
+[2026-06-08T16:07:05.961Z] [INFO] [CRON] OpenClaw CLI available
+[2026-06-08T16:07:05.961Z] [INFO] [CRON] Calling minimax-portal/MiniMax-M2.7 via OpenClaw CLI...
+[2026-06-08T16:07:15.884Z] [SUCCESS] [CRON] OpenClaw CLI responded in 9.9s
+[2026-06-08T16:07:15.884Z] [INFO] [CRON] Applied OpenCC s2hk conversion (217 → 217 chars)
+[2026-06-08T16:07:15.885Z] [SUCCESS] [CRON] ✅ SUCCESS: L0 Abstract written (310 chars)
+[2026-06-08T16:07:44.428Z] [INFO] [CRON] Starting L0 Abstract Generator for 2026-06-08
+[2026-06-08T16:07:44.429Z] [SKIP] [CRON] L0 Abstract already exists: /Users/ally/.openclaw/workspace/memory/l0-abstract/2026-06-08.md
+[2026-06-08T16:08:11.966Z] [INFO] [CRON] Starting L0 Abstract Generator for 2026-06-08
+[2026-06-08T16:08:11.966Z] [SKIP] [CRON] L0 Abstract already exists: /Users/ally/.openclaw/workspace/memory/l0-abstract/2026-06-08.md

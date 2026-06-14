@@ -1,0 +1,30 @@
+[2026-04-24T16:05:08.243Z] [INFO] Starting L0 Abstract Generator for 2026-04-24
+[2026-04-24T16:05:08.251Z] [INFO] Found 16 L2 files
+[2026-04-24T16:05:08.256Z] [INFO] Ollama input pre-filtered: 128 → 84 lines
+[2026-04-24T16:05:08.256Z] [INFO] Using last 8298 chars of L2 (window: 12000)
+[2026-04-24T16:05:08.270Z] [INFO] Ollama pre-check passed
+[2026-04-24T16:05:08.270Z] [INFO] Calling Ollama qwen2.5:3b...
+[2026-04-24T16:05:28.663Z] [INFO] Applied OpenCC s2hk conversion (771 → 771 chars)
+[2026-04-24T16:05:28.665Z] [SUCCESS] ✅ SUCCESS: L0 Abstract written (864 chars)
+[2026-04-25T06:43:28.831Z] [INFO] Starting L0 Abstract Generator for 2026-04-25
+[2026-04-25T06:43:28.833Z] [INFO] Found 10 L2 files
+[2026-04-25T06:43:28.834Z] [INFO] Ollama input pre-filtered: 158 → 107 lines
+[2026-04-25T06:43:28.834Z] [INFO] Using last 6854 chars of L2 (window: 12000)
+[2026-04-25T06:43:28.845Z] [INFO] Ollama pre-check passed
+[2026-04-25T06:43:28.845Z] [INFO] Calling Ollama qwen2.5:3b...
+[2026-04-25T06:43:44.665Z] [INFO] Applied OpenCC s2hk conversion (427 → 427 chars)
+[2026-04-25T06:43:44.666Z] [SUCCESS] ✅ SUCCESS: L0 Abstract written (520 chars)
+[2026-04-25T07:26:57.039Z] [INFO] [MANUAL] Starting L0 Abstract Generator for 2026-04-24
+[2026-04-25T07:26:57.040Z] [SKIP] [MANUAL] L0 Abstract already exists: /Users/ally/.openclaw/workspace/memory/l0-abstract/2026-04-24.md
+[2026-04-25T07:31:18.837Z] [INFO] [MANUAL] Starting L0 Abstract Generator for 2026-04-24
+[2026-04-25T07:31:18.837Z] [SKIP] [MANUAL] L0 Abstract already exists: /Users/ally/.openclaw/workspace/memory/l0-abstract/2026-04-24.md
+[2026-04-25T07:31:33.661Z] [INFO] [MANUAL] Starting L0 Abstract Generator for 2026-04-24
+[2026-04-25T07:31:33.661Z] [SKIP] [MANUAL] L0 Abstract already exists: /Users/ally/.openclaw/workspace/memory/l0-abstract/2026-04-24.md
+[2026-04-25T07:31:36.130Z] [INFO] [MANUAL] Starting L0 Abstract Generator for 2026-04-24
+[2026-04-25T07:31:36.131Z] [INFO] [MANUAL] Found 18 L2 files
+[2026-04-25T07:31:36.134Z] [INFO] [MANUAL] Ollama input pre-filtered: 802 → 247 lines
+[2026-04-25T07:31:36.134Z] [INFO] [MANUAL] Using last 9717 chars of L2 (window: 12000)
+[2026-04-25T07:31:36.145Z] [INFO] [MANUAL] Ollama pre-check passed
+[2026-04-25T07:31:36.145Z] [INFO] [MANUAL] Calling Ollama qwen2.5:3b...
+[2026-04-25T07:31:54.685Z] [INFO] [MANUAL] Applied OpenCC s2hk conversion (748 → 748 chars)
+[2026-04-25T07:31:54.687Z] [SUCCESS] [MANUAL] ✅ SUCCESS: L0 Abstract written (841 chars)

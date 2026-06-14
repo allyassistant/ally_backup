@@ -1,0 +1,1308 @@
+{
+  "timestamp": "2026-05-06T17:45:32.660Z",
+  "total": 75,
+  "processed": 60,
+  "errors": 5,
+  "timeoutErrors": [
+    {
+      "cn": "1216850404",
+      "reason": "timeout"
+    },
+    {
+      "cn": "6512928723",
+      "reason": "timeout"
+    },
+    {
+      "cn": "5234047114",
+      "reason": "timeout"
+    },
+    {
+      "cn": "1232576292",
+      "reason": "timeout"
+    },
+    {
+      "cn": "2454851318",
+      "reason": "timeout"
+    }
+  ],
+  "skippedYellow": [],
+  "verdicts": {
+    "STRONG BUY": 16,
+    "BUY": 11,
+    "CAUTION": 24,
+    "CONDITIONAL": 2,
+    "REJECT": 7
+  },
+  "results": [
+    {
+      "certNumber": "2213934868",
+      "carat": "1.71",
+      "color": "FANCY VIVID PINK",
+      "clarity": "VS1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Cushion Modified Brilliant",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Severe Graining Detected"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Severe Graining Detected",
+        "Severe Graining Risk",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "1206091556",
+      "carat": "58.14",
+      "color": "F",
+      "clarity": "VS1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Round Brilliant",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk",
+        "Crown-Pavilion: Deep Pavilion (Nailhead Risk)"
+      ]
+    },
+    {
+      "certNumber": "5234389814",
+      "carat": "23.70",
+      "color": "FANCY YELLOW",
+      "clarity": "VVS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Oval Modified Brilliant",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Measurement-Carat Mismatch"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "6234289441",
+      "carat": "7.50",
+      "color": "D",
+      "clarity": "FL",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Square Emerald Cut",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Emerald Crown Height Too Shallow",
+        "Measurement-Carat Mismatch"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Emerald Crown Height Too Shallow",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "2231756427",
+      "carat": "16.30",
+      "color": "E",
+      "clarity": "VVS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Square Emerald Cut",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk",
+        "Emerald Crown Height Too Shallow",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "2235838929",
+      "carat": "5.21",
+      "color": "E",
+      "clarity": "VS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Heart Brilliant",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone"
+      ]
+    },
+    {
+      "certNumber": "1236047100",
+      "carat": "5.24",
+      "color": "F",
+      "clarity": "VS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "5231587368",
+      "carat": "3.29",
+      "color": "F",
+      "clarity": "VVS2",
+      "cut": "Poor",
+      "shape": "Round Brilliant",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk"
+      ]
+    },
+    {
+      "certNumber": "2235815380",
+      "carat": "7.01",
+      "color": "D",
+      "clarity": "VVS1",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "Oval Brilliant",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "6462156306",
+      "carat": "10.04",
+      "color": "H",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Oval Brilliant",
+      "score": 96,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "First Inclusion: Feather (STRUCTURAL Risk)",
+        "Severe Graining Risk"
+      ]
+    },
+    {
+      "certNumber": "5232529816",
+      "carat": "1.30",
+      "color": "FANCY INTENSE PINK",
+      "clarity": "VVS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "",
+      "score": 94,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "5231096959",
+      "carat": "1.70",
+      "color": "I",
+      "clarity": "VVS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Round Brilliant",
+      "score": 93,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone"
+      ]
+    },
+    {
+      "certNumber": "6227871813",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 93,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1543136295",
+      "carat": "6.50",
+      "color": "",
+      "clarity": "VVS1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Pear Brilliant",
+      "score": 93,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)",
+        "Significant Bow-Tie Risk"
+      ]
+    },
+    {
+      "certNumber": "2235028246",
+      "carat": "5.21",
+      "color": "E",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Emerald Cut",
+      "score": 85,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Clarity Base Penalty",
+        "Additional Clouds Not Shown (borderline clarity)",
+        "Emerald Crown Height Too Shallow"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Additional Clouds Not Shown (borderline clarity)",
+        "Emerald Crown Height Too Shallow",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "2231477950",
+      "carat": "8.05",
+      "color": "G",
+      "clarity": "VS1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Cushion Modified Brilliant",
+      "score": 85,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "2231839208",
+      "carat": "2.09",
+      "color": "D",
+      "clarity": "VVS1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "",
+      "score": 84,
+      "verdict": "BUY B",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Severe Graining Detected"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Severe Graining Detected",
+        "Fish-Eye Effect Risk",
+        "Severe Graining Risk",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "2235048895",
+      "carat": "1.03",
+      "color": "FANCY VIVID YELLOW",
+      "clarity": "SI1",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "Modified Triangular Brilliant",
+      "score": 84,
+      "verdict": "BUY B",
+      "flags": [
+        "WARNING: Fancy Vivid Yellow — Verify Natural Origin"
+      ],
+      "rawFlags": [
+        "WARNING: Fancy Vivid Yellow — Verify Natural Origin"
+      ]
+    },
+    {
+      "certNumber": "6173042814",
+      "carat": "5.01",
+      "color": "D",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Pear Brilliant",
+      "score": 78,
+      "verdict": "BUY B",
+      "flags": [
+        "Clarity Base Penalty",
+        "Depth Critical Cap (Premium Grade)"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Depth Critical Cap (Premium Grade)"
+      ]
+    },
+    {
+      "certNumber": "2497242927",
+      "carat": "3.30",
+      "color": "E",
+      "clarity": "VS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Square Modified Brilliant",
+      "score": 78,
+      "verdict": "BUY B",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Too Deep"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Too Deep",
+        "Table > 70%",
+        "Fish-Eye Effect Risk",
+        "Measurement-Carat Mismatch",
+        "Depth Critical Cap (Premium Grade)"
+      ]
+    },
+    {
+      "certNumber": "1232839795",
+      "carat": "2.05",
+      "color": "H",
+      "clarity": "VVS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Square Modified Brilliant",
+      "score": 78,
+      "verdict": "BUY B",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Too Deep"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Too Deep",
+        "Fish-Eye Effect Risk",
+        "First Inclusion: Feather (STRUCTURAL Risk)",
+        "Measurement-Carat Mismatch",
+        "Depth Critical Cap (Premium Grade)"
+      ]
+    },
+    {
+      "certNumber": "2215594329",
+      "carat": "8.08",
+      "color": "FAINT PINK",
+      "clarity": "VVS1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Heart Brilliant",
+      "score": 75,
+      "verdict": "BUY B",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)",
+        "Significant Bow-Tie Risk"
+      ]
+    },
+    {
+      "certNumber": "2235474565",
+      "carat": "15.92",
+      "color": "FANCY BROWNISH YELLOW",
+      "clarity": "VS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Pear Modified Brilliant",
+      "score": 75,
+      "verdict": "BUY B",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Measurement-Carat Mismatch"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Measurement-Carat Mismatch",
+        "Fancy Yellow w/ Brownish Hue"
+      ]
+    },
+    {
+      "certNumber": "6237543868",
+      "carat": "7.02",
+      "color": "H",
+      "clarity": "IF",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Pear Brilliant",
+      "score": 72,
+      "verdict": "BUY B",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)"
+      ]
+    },
+    {
+      "certNumber": "6207556511",
+      "carat": "8.33",
+      "color": "G",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "",
+      "score": 72,
+      "verdict": "BUY B",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Measurement-Carat Mismatch"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "16148135",
+      "carat": "3.54",
+      "color": "I",
+      "clarity": "VS2",
+      "cut": "Good\n  Symmetry",
+      "shape": "Briolette",
+      "score": 71,
+      "verdict": "BUY B",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Measurement-Carat Mismatch"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "6234175633",
+      "carat": "2.45",
+      "color": "FANCY LIGHT PINK",
+      "clarity": "VS1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "",
+      "score": 70,
+      "verdict": "BUY B",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "First Inclusion: Feather (STRUCTURAL Risk)",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "1508164661",
+      "carat": "10.88",
+      "color": "D",
+      "clarity": "VVS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Square Emerald Cut",
+      "score": 69,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk",
+        "First Inclusion: Cloud (MILKY Risk)",
+        "Emerald Crown Height Too Shallow",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "1548402190",
+      "carat": "8.68",
+      "color": "D",
+      "clarity": "VVS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Emerald Cut",
+      "score": 69,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk",
+        "Additional Clouds Not Shown (borderline clarity)",
+        "First Inclusion: Cloud (MILKY Risk)",
+        "Emerald Crown Height Too Shallow",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "2547261015",
+      "carat": "4.03",
+      "color": "F",
+      "clarity": "SI2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Marquise Brilliant",
+      "score": 68,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "SI2 + Cloud = Likely Eye-Visible"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "SI2 + Cloud = Likely Eye-Visible"
+      ]
+    },
+    {
+      "certNumber": "5221657767",
+      "carat": "10.04",
+      "color": "D",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Pear Brilliant",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected",
+        "Significant Bow-Tie Risk",
+        "Depth Critical Cap (Investment Grade)"
+      ]
+    },
+    {
+      "certNumber": "5222767185",
+      "carat": "8.46",
+      "color": "D",
+      "clarity": "FL",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Marquise Brilliant",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "CRITICAL: Too Deep",
+        "Investment Grade Defect Multiplier"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "CRITICAL: Too Deep",
+        "Investment Grade Defect Multiplier",
+        "Fish-Eye Effect Risk",
+        "Depth Critical Cap (Investment Grade)"
+      ]
+    },
+    {
+      "certNumber": "2235046535",
+      "carat": "12.02",
+      "color": "F",
+      "clarity": "SI2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Table > 70%",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Table > 70%",
+        "Fish-Eye Effect Risk",
+        "SI2 = Eye-Visible Likely",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "6227862493",
+      "carat": "22.01",
+      "color": "J",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Emerald Cut",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Low Color J-M",
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Low Color J-M",
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Emerald Crown Height Too Shallow",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "1513039628",
+      "carat": "9.02",
+      "color": "H",
+      "clarity": "VS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Emerald Cut",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Fish-Eye Effect Risk",
+        "First Inclusion: Cloud (MILKY Risk)",
+        "Cloud+Crystal Pattern (scatter+dark spot)",
+        "Severe Graining Risk",
+        "Emerald Crown Height Too Shallow",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "6415242848",
+      "carat": "10.02",
+      "color": "I",
+      "clarity": "SI2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Round Brilliant",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected",
+        "SI2 + Cloud = Likely Eye-Visible",
+        "SI2 + Multiple Inclusions = Luster Penalty",
+        "First Inclusion: Feather (STRUCTURAL Risk)",
+        "Depth-Table Imbalance (Crown Too Thin)"
+      ]
+    },
+    {
+      "certNumber": "2225343116",
+      "carat": "10.21",
+      "color": "K",
+      "clarity": "SI1",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Low Color J-M",
+        "Clarity Base Penalty",
+        "Measurement-Carat Mismatch"
+      ],
+      "rawFlags": [
+        "Low Color J-M",
+        "Clarity Base Penalty",
+        "Measurement-Carat Mismatch",
+        "Inscription Mismatch or Missing",
+        "Depth Critical Cap (Investment Grade)"
+      ]
+    },
+    {
+      "certNumber": "6233815892",
+      "carat": "6.28",
+      "color": "G",
+      "clarity": "VS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Marquise Brilliant",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Too Deep"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Too Deep",
+        "Investment Grade Defect Multiplier",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected",
+        "Depth Critical Cap (Investment Grade)"
+      ]
+    },
+    {
+      "certNumber": "17465731",
+      "carat": "3.96",
+      "color": "K",
+      "clarity": "IF",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "Briolette",
+      "score": 62,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Low Color J-M",
+        "Measurement-Carat Mismatch"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Low Color J-M",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "5221447582",
+      "carat": "6.01",
+      "color": "J",
+      "clarity": "VS2",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "Cushion Modified Brilliant",
+      "score": 57,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Low Color J-M"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "Low Color J-M",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected",
+        "First Inclusion: Cloud (MILKY Risk)",
+        "Cloud+Crystal Pattern (scatter+dark spot)",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "2225867090",
+      "carat": "3.12",
+      "color": "F",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Modified Triangular Brilliant",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Measurement-Carat Mismatch"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "2235047260",
+      "carat": "8.08",
+      "color": "K",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Square Modified Brilliant",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Low Color J-M",
+        "Clarity Base Penalty",
+        "Table > 70%"
+      ],
+      "rawFlags": [
+        "Low Color J-M",
+        "Clarity Base Penalty",
+        "Table > 70%",
+        "Fish-Eye Effect Risk",
+        "Additional Clouds Not Shown (borderline clarity)",
+        "First Inclusion: Cloud (MILKY Risk)",
+        "Cloud+Crystal Pattern (scatter+dark spot)",
+        "Measurement-Carat Mismatch",
+        "Depth Critical Cap (Premium Grade)"
+      ]
+    },
+    {
+      "certNumber": "6234129129",
+      "carat": "7.03",
+      "color": "H",
+      "clarity": "SI2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Oval Brilliant",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "SI2 = Eye-Visible Likely",
+        "Measurement-Carat Mismatch"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "SI2 = Eye-Visible Likely",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "2524520170",
+      "carat": "3.47",
+      "color": "I",
+      "clarity": "SI2",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Table > 70%",
+        "SI2 + Cloud = Likely Eye-Visible"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Table > 70%",
+        "SI2 + Cloud = Likely Eye-Visible",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "1493072496",
+      "carat": "3.01",
+      "color": "I",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Yellow Fluor + Mid Color",
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Yellow Fluor + Mid Color",
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Measurement-Carat Mismatch"
+      ]
+    },
+    {
+      "certNumber": "6234158920",
+      "carat": "5.03",
+      "color": "E",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Pear Brilliant",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Additional Clouds Not Shown (borderline clarity)"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Additional Clouds Not Shown (borderline clarity)",
+        "Significant Bow-Tie Risk",
+        "Depth Critical Cap (Premium Grade)"
+      ]
+    },
+    {
+      "certNumber": "6224571791",
+      "carat": "9.04",
+      "color": "D",
+      "clarity": "SI2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Heart Brilliant",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "SI2 = Eye-Visible Likely"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "SI2 = Eye-Visible Likely"
+      ]
+    },
+    {
+      "certNumber": "6425007646",
+      "carat": "3.01",
+      "color": "I",
+      "clarity": "SI2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Heart Brilliant",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Structural Risk Detected",
+        "SI2 + Cloud = Likely Eye-Visible"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Structural Risk Detected",
+        "SI2 + Cloud = Likely Eye-Visible",
+        "SI2 + Multiple Inclusions = Luster Penalty"
+      ]
+    },
+    {
+      "certNumber": "2517547075",
+      "carat": "3.06",
+      "color": "G",
+      "clarity": "SI1",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Table > 70%",
+        "Additional Clouds Not Shown (borderline clarity)"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Table > 70%",
+        "Additional Clouds Not Shown (borderline clarity)",
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ]
+    },
+    {
+      "certNumber": "6237791422",
+      "carat": "3.03",
+      "color": "H",
+      "clarity": "SI2",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "Modified Kite Step Cut",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "SI2 + Cloud = Likely Eye-Visible"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "SI2 + Cloud = Likely Eye-Visible",
+        "SI2 + Multiple Inclusions = Luster Penalty",
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ]
+    },
+    {
+      "certNumber": "6224169013",
+      "carat": "3.00",
+      "color": "G",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Heart Brilliant",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Significant Bow-Tie Risk"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Significant Bow-Tie Risk",
+        "Moderate Windowing"
+      ]
+    },
+    {
+      "certNumber": "1236123142",
+      "carat": "2.03",
+      "color": "E",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Oval Brilliant",
+      "score": 42,
+      "verdict": "CONDITIONAL",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Additional Clouds Not Shown (borderline clarity)"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Additional Clouds Not Shown (borderline clarity)",
+        "First Inclusion: Cloud (MILKY Risk)",
+        "Cloud+Crystal Pattern (scatter+dark spot)",
+        "Depth Critical Cap (Commercial Grade)"
+      ]
+    },
+    {
+      "certNumber": "6451678836",
+      "carat": "3.01",
+      "color": "F",
+      "clarity": "SI1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Modified Triangular Brilliant",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "Clarity Base Penalty",
+        "Table > 70%",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Table > 70%",
+        "Fish-Eye Effect Risk",
+        "Depth Critical Cap (Premium Grade)"
+      ]
+    },
+    {
+      "certNumber": "2231640454",
+      "carat": "25.28",
+      "color": "FANCY YELLOW",
+      "clarity": "VVS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Cushion Modified Brilliant",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Measurement-Carat Mismatch (>35%)"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Measurement-Carat Mismatch (>35%)",
+        "FRAUD LOCK: Score capped due to extreme measurement-carat mismatch",
+        "First Inclusion: Cloud (MILKY Risk)",
+        "Non-GIA Lab: IGI (Stricter Scoring)"
+      ]
+    },
+    {
+      "certNumber": "6237208621",
+      "carat": "1.06",
+      "color": "FANCY INTENSE PINK",
+      "clarity": "SI1",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ],
+      "rawFlags": [
+        "First Inclusion: Feather (STRUCTURAL Risk)"
+      ]
+    },
+    {
+      "certNumber": "2225839631",
+      "carat": "30.03",
+      "color": "FANCY VIVID YELLOW",
+      "clarity": "VVS2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Measurement-Carat Mismatch (>35%)"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Measurement-Carat Mismatch (>35%)",
+        "FRAUD LOCK: Score capped due to extreme measurement-carat mismatch",
+        "WARNING: Fancy Vivid Yellow — Verify Natural Origin"
+      ]
+    },
+    {
+      "certNumber": "2235608555",
+      "carat": "25.52",
+      "color": "FANCY INTENSE YELLOW",
+      "clarity": "VS1",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Cushion Modified Brilliant",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Measurement-Carat Mismatch (>35%)"
+      ],
+      "rawFlags": [
+        "Optical performance inferred from proportions (no ASET/IdealScope data)",
+        "Inclusion visibility cannot be determined from cert plot alone",
+        "CRITICAL: Measurement-Carat Mismatch (>35%)",
+        "FRAUD LOCK: Score capped due to extreme measurement-carat mismatch",
+        "Additional Clouds Not Shown (borderline clarity)"
+      ]
+    },
+    {
+      "certNumber": "5231560125",
+      "carat": "3.29",
+      "color": "F",
+      "clarity": "SI1",
+      "cut": "Very Good\n  Symmetry",
+      "shape": "",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected",
+        "First Inclusion: Cloud (MILKY Risk)",
+        "Cloud+Crystal Pattern (scatter+dark spot)"
+      ]
+    },
+    {
+      "certNumber": "6522986461",
+      "carat": "2.00",
+      "color": "J",
+      "clarity": "SI2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Pear Brilliant",
+      "score": 32,
+      "verdict": "CONDITIONAL",
+      "flags": [
+        "Low Color J-M",
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk"
+      ],
+      "rawFlags": [
+        "Low Color J-M",
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected",
+        "SI2 = Eye-Visible Likely"
+      ]
+    },
+    {
+      "certNumber": "6227715442",
+      "carat": "2.04",
+      "color": "E",
+      "clarity": "SI2",
+      "cut": "Excellent\n  Symmetry",
+      "shape": "Pear Brilliant",
+      "score": 20,
+      "verdict": "REJECT R",
+      "flags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected"
+      ],
+      "rawFlags": [
+        "Clarity Base Penalty",
+        "Fish-Eye Effect Risk",
+        "Structural Risk Detected",
+        "SI2 = Eye-Visible Likely",
+        "Depth Critical Cap (Commercial Grade)"
+      ]
+    }
+  ]
+}

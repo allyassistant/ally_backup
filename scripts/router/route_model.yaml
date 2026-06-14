@@ -1,0 +1,84 @@
+# ============================================================================
+# OpenClaw Router Model Configuration
+# ============================================================================
+# Purpose:    Define provider registry and routing rules for the AI task router
+#             Maps each route (fdq/direct_answer/sop/spawn/code/browser/none)
+#             to a primary provider + fallback chain with health checks.
+# Security:   All API keys use ${ENV_VAR} placeholders — never commit real keys.
+# Runtime:    Keys are injected by dotenv at startup.
+# Version:    1.0
+# ============================================================================
+
+version: "1.1"
+schema_version: "1.0"
+
+# 3-step resolution order (只保留實際已配置嘅 provider)
+resolution_order: [minimax-portal, deepseek, none]
+
+# Provider 定義 (DRY central registry)
+# 只保留已配置且可用的 provider
+providers:
+  minimax-portal:   { type: portal, base_url: "${MINIMAX_PORTAL_URL}",    api_key: "${MINIMAX_PORTAL_KEY}",    timeout: 60 }
+  deepseek:         { type: openai_compatible, base_url: "${DEEPSEEK_API_URL}", api_key: "${DEEPSEEK_API_KEY}", timeout: 30 }
+  none:             { type: noop }   # 永遠 return healthy
+
+# 7 routes 配置
+routes:
+  fdq:
+    primary: { provider: deepseek, model: deepseek-v4-flash, extra_body: { reasoning: high } }
+    fallback_chain: [minimax-portal, none]
+    cooldown_seconds: 60
+    health_check_interval: 60
+    cost_weight: 0.2
+
+  direct_answer:
+    primary: { provider: deepseek, model: deepseek-v4-flash }
+    fallback_chain: [minimax-portal, none]
+    cooldown_seconds: 60
+    cost_weight: 0.1
+
+  sop:
+    primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M2.7, extra_body: { reasoning: high } }
+    fallback_chain: [deepseek, none]
+    cooldown_seconds: 60
+
+  spawn:
+    primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M2.7, extra_body: { reasoning: high } }
+    fallback_chain: [deepseek, none]
+    cooldown_seconds: 60
+    cost_weight: 0.5
+
+  spawn_quality:
+    primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M3, extra_body: { reasoning: high } }
+    fallback_chain: [deepseek, none]
+    cooldown_seconds: 60
+    cost_weight: 0.5
+
+  code:
+    primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M2.7, extra_body: { reasoning: high } }
+    fallback_chain: [deepseek, none]
+    cooldown_seconds: 60
+
+  browser:
+    primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M2.7, extra_body: { reasoning: high }, timeout: 90 }
+    fallback_chain: [deepseek, none]
+    cooldown_seconds: 60
+
+  none:
+    primary: { provider: deepseek, model: deepseek-v4-flash }
+    fallback_chain: [minimax-portal, none]
+    cooldown_seconds: 60
+    cost_weight: 0.1
+
+# Health check 全局設定
+health_check:
+  interval_seconds: 60
+  failure_threshold: 3
+  recovery_probe_interval: 30
+  probe_method: list_models
+  max_concurrent_probes: 3
+
+# Logging 設定
+logging:
+  decision_log_path: scripts/router/decision_log.jsonl
+  log_fields: [ts, route, suggestedModel, suggestedProvider, actualProvider, fallbackDepth, latencyMs, success, costEstimate, schemaVersion]

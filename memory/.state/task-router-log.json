@@ -1,0 +1,30 @@
+[
+  {
+    "input": "分析市場趨勢並建議策略",
+    "timestamp": "2026-02-11T03:43:03.683Z",
+    "matches": [],
+    "complexity": "medium",
+    "dataSensitivity": "low",
+    "recommendedModel": "kimi",
+    "confidence": 0.8,
+    "reasoning": [
+      "No specific local capability match",
+      "Answer source: Kimi (Direct)"
+    ],
+    "answerSource": "Kimi (Direct)",
+    "kimiReviewed": false,
+    "qualityLevel": "Premium"
+  },
+  {
+    "timestamp": "2026-03-24T05:06:42.108Z",
+    "message": "你好",
+    "complexity": "low",
+    "decision": "self"
+  },
+  {
+    "timestamp": "2026-03-24T05:06:54.137Z",
+    "message": "幫我寫一個 Node.js script 處理 Excel 檔案並生成報告",
+    "complexity": "medium",
+    "decision": "spawn"
+  }
+]

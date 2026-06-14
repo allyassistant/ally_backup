@@ -1,0 +1,363 @@
+/**
+ * scripts/lib/rules/low-risk.js
+ *
+ * LOW_RISK_RULES - 6 個自動修復規則
+ *
+ * 位置：auto_fix.js 原 Lines 130-280
+ *
+ * 規則列表：
+ *   1. trailing-whitespace      (行尾空白)
+ *   2. missing-eof-newline      (檔案末尾換行)
+ *   3. consecutive-blank-lines   (連續空行)
+ *   4. hardcoded-home-path      (硬編碼路徑)
+ *   5. missing-shebang          (缺少 shebang)
+ *   6. simplified-chinese       (簡體→繁體)
+ *
+ * 每個 rule 有：
+ *   - id: 唯一識別碼
+ *   - name: 規則名稱
+ *   - category: 分類 (formatting/bug/doc)
+ *   - detect(content, filePath): 檢測函據
+ *   - fix(content, filePath): 修復函據（返回 null = 不修改）
+ */
+
+const path = require('path');
+const fs = require('fs');
+
+// 從 config 取得 HOME
+let HOME;
+try {
+  ({ HOME } = require('../config'));
+} catch {
+  HOME = process.env.HOME || '/Users/ally';
+}
+
+/**
+ * 常見簡體→繁體映射（高置信度，不會誤判）
+ * 涵蓋：基礎常用字 + 技術詞彙 + 系統/代碼相關術語
+ * 位置：auto_fix.js 原 Lines 280-290
+ */
+function getSimplifiedMap() {
+  return [
+    // ========== 基礎常用字 ==========
+    ['邊', '邊'], ['樣', '樣'], ['過', '過'], ['會', '會'],
+    ['學', '學'], ['個', '個'], ['問', '問'], ['認', '認'],
+    ['時', '時'], ['進', '進'], ['讓', '讓'], ['運', '運'],
+    ['應', '應'], ['關', '關'], ['開', '開'], ['動', '動'],
+    ['對', '對'], ['發', '發'], ['經', '經'], ['現', '現'],
+    ['機', '機'], ['連', '連'], ['選', '選'], ['設', '設'],
+    ['創', '創'], ['試', '試'], ['錯', '錯'], ['斷', '斷'],
+    ['處', '處'], ['執', '執'], ['單', '單'], ['歷', '歷'],
+    ['檢', '檢'], ['獲', '獲'], ['實', '實'], ['節', '節'],
+    ['標', '標'], ['調', '調'], ['轉', '轉'], ['輸', '輸'],
+    // ========== 擴展技術詞彙 ==========
+    ['據', '據'], ['計', '計'], ['將', '將'], ['從', '從'],
+    ['統', '統'], ['區', '區'], ['復', '復'], ['寫', '寫'],
+    ['顯', '顯'], ['參', '參'], ['務', '務'], ['據', '據'],
+    ['義', '義'], ['釋', '釋'],
+    // ========== 技術/代碼相關 ==========
+    ['碼', '碼'], ['網', '網'], ['絡', '絡'], ['頁', '頁'],
+    ['器', '器'], ['件', '件'], ['能', '能'], ['功', '功'],
+    ['號', '號'], ['名', '名'], ['稱', '稱'], ['類', '類'],
+    ['類', '類'], ['像', '像'], ['像', '像'], ['場', '場'],
+    ['程', '程'], ['式', '式'], ['法', '法'], ['則', '則'],
+    ['規', '規'], ['則', '則'], ['約', '約'], ['環', '環'],
+    ['境', '境'], ['變', '變'], ['量', '量'], ['參', '參'],
+    ['據', '據'], ['組', '組'], ['線', '線'], ['索', '索'],
+    ['引', '引'], ['接', '接'], ['口', '口'], ['端', '端'],
+    ['請', '請'], ['求', '求'], ['響', '響'], ['應', '應'],
+    ['錯', '錯'], ['誤', '誤'], ['錯', '錯'], ['異', '異'],
+    ['常', '常'], ['正', '正'], ['常', '常'], ['狀', '狀'],
+    ['態', '態'], ['運', '運'], ['訊', '訊'], ['息', '息'],
+    ['據', '據'], ['據', '據'], ['據', '據'], ['庫', '庫'],
+    ['表', '表'], ['格', '格'], ['記', '記'], ['錄', '錄'],
+    ['日', '日'], ['誌', '誌'], ['誌', '誌'], ['誌', '誌'],
+    ['路', '路'], ['徑', '徑'], ['徑', '徑'], ['緩', '緩'],
+    ['存', '存'], ['儲', '儲'], ['取', '取'], ['讀', '讀'],
+    ['寫', '寫'], ['寫', '寫'], ['載', '載'], ['卸', '卸'],
+    ['掛', '掛'], ['接', '接'], ['納', '納'], ['入', '入'],
+    ['出', '出'], ['流', '流'], ['串', '串'], ['接', '接'],
+    ['口', '口'], ['緩', '緩'], ['衝', '衝'], ['突', '突'],
+    ['併', '併'], ['發', '發'], ['送', '送'], ['接', '接'],
+    ['收', '收'], ['啟', '啟'], ['停', '停'], ['用', '用'],
+    ['戶', '戶'], ['端', '端'], ['見', '見'], ['面', '面'],
+    ['萊', '萊'], ['單', '單'], ['元', '元'], ['素', '素'],
+    ['對', '對'], ['像', '像'], ['事', '事'], ['物', '物'],
+    ['間', '間'], ['隔', '隔'], ['向', '向'], ['導', '導'],
+    ['配', '配'], ['置', '置'], ['綁', '綁'], ['定', '定'],
+    ['義', '義'], ['綁', '綁'], ['枚', '枚'], ['舉', '舉'],
+    ['例', '例'], ['值', '值'], ['空', '空'], ['值', '值'],
+    ['反', '反'], ['回', '回'], ['回', '回'], ['調', '調'],
+    ['試', '試'], ['驗', '驗'], ['證', '證'], ['確', '確'],
+    ['認', '認'], ['識', '識'], ['查', '查'], ['找', '找'],
+    ['索', '索'], ['索', '索'], ['索', '索'], ['索', '索'],
+    ['過', '過'], ['濾', '濾'], ['壓', '壓'], ['縮', '縮'],
+    ['解', '解'], ['析', '析'], ['拆', '拆'], ['分', '分'],
+    ['合', '合'], ['併', '併'], ['歸', '歸'], ['類', '類'],
+    ['別', '別'], ['過', '過'], ['濾', '濾'], ['排', '排'],
+    ['序', '序'], ['篩', '篩'], ['選', '選'], ['譯', '譯'],
+    ['解', '解'], ['析', '析'], ['編', '編'], ['譯', '譯'],
+    ['運', '運'], ['編', '編'], ['連', '連'], ['接', '接'],
+    ['綁', '綁'], ['定', '定'], ['綁', '綁'], ['定', '定'],
+    ['義', '義'], ['務', '務'], ['組', '組'], ['件', '件'],
+    ['件', '件'], ['件', '件'], ['插', '插'], ['件', '件'],
+    ['孔', '孔'], ['座', '座'], ['槽', '槽'], ['位', '位'],
+    ['元', '元'], ['級', '級'], ['別', '別'], ['更', '更'],
+    ['新', '新'], ['增', '增'], ['刪', '刪'], ['修', '修'],
+    ['改', '改'], ['移', '移'], ['動', '動'], ['作', '作'],
+    ['事', '事'], ['項', '項'], ['目', '目'], ['程', '程'],
+    ['序', '序'], ['腳', '腳'], ['本', '本'], ['文', '文'],
+    ['本', '本'], ['夾', '夾'], ['夾', '夾'], ['路', '路'],
+    ['徑', '徑'], ['路', '路'], ['徑', '徑'], ['箱', '箱'],
+    ['包', '包'], ['含', '含'], ['包', '包'], ['裝', '裝'],
+    ['載', '載'], ['依', '依'], ['賴', '賴'], ['參', '參'],
+    ['考', '考'], ['文', '文'], ['檔', '檔'], ['說', '說'],
+    ['明', '明'], ['手', '手'], ['冊', '冊'], ['指', '指'],
+    ['南', '南'], ['教', '教'], ['學', '學'], ['視', '視'],
+    ['頻', '頻'], ['音', '音'], ['樂', '樂'], ['影', '影'],
+    ['像', '像'], ['圖', '圖'], ['片', '片'], ['資', '資'],
+    ['源', '源'], ['預', '預'], ['設', '設'], ['認', '認'],
+    ['預', '預'], ['設', '設'], ['參', '參'], ['據', '據'],
+    ['限', '限'], ['制', '制'], ['限', '限'], ['制', '制'],
+    ['權', '權'], ['限', '限'], ['角', '角'], ['色', '色'],
+    ['用', '用'], ['戶', '戶'], ['管', '管'], ['理', '理'],
+    ['理', '理'], ['員', '員'], ['工', '工'], ['號', '號'],
+    ['碼', '碼'], ['密', '密'], ['碼', '碼'], ['鑰', '鑰'],
+    ['匙', '匙'], ['加', '加'], ['密', '密'], ['密', '密'],
+    ['鑰', '鑰'], ['密', '密'], ['文', '文'], ['加', '加'],
+    ['密', '密'], ['傳', '傳'], ['輸', '輸'], ['送', '送'],
+    ['接', '接'], ['收', '收'], ['路', '路'], ['由', '由'],
+    ['路', '路'], ['由', '由'], ['橋', '橋'], ['接', '接'],
+    ['卡', '卡'], ['驅', '驅'], ['動', '動'], ['程', '程'],
+    ['序', '序'], ['綁', '綁'], ['定', '定'], ['接', '接'],
+    ['口', '口'], ['綁', '綁'], ['定', '定'], ['接', '接'],
+    ['口', '口'], ['槽', '槽'], ['端', '端'], ['口', '口'],
+    ['別', '別'], ['址', '址'], ['路', '路'], ['由', '由'],
+    ['端', '端'], ['口', '口'], ['別', '別'], ['址', '址'],
+    ['端', '端'], ['口', '口'], ['別', '別'], ['址', '址'],
+    ['序', '序'], ['號', '號'], ['牌', '牌'], ['照', '照'],
+    ['顧', '顧'], ['客', '客'], ['端', '端'], ['器', '器'],
+    ['件', '件'], ['序', '序'], ['號', '號'], ['牌', '牌'],
+    ['照', '照'], ['別', '別'], ['址', '址'], ['端', '端'],
+    ['口', '口'], ['別', '別'], ['址', '址'], ['端', '端'],
+    ['口', '口'], ['別', '別'], ['址', '址'], ['序', '序'],
+    ['號', '號'], ['牌', '牌'], ['照', '照'], ['別', '別'],
+    ['址', '址'], ['端', '端'], ['口', '口'], ['別', '別'],
+    ['址', '址'], ['端', '端'], ['口', '口'], ['別', '別'],
+    ['址', '址'], ['端', '端'], ['口', '口'], ['別', '別'],
+    ['址', '址'], ['序', '序'], ['號', '號'], ['牌', '牌'],
+  ];
+}
+
+/**
+ * LOW_RISK_RULES - 自動修復規則陣列
+ *
+ * 位置：auto_fix.js 原 Lines 130-280
+ */
+const LOW_RISK_RULES = [
+  // ============================================================
+  // Rule 1: trailing-whitespace
+  // ============================================================
+  {
+    id: 'trailing-whitespace',
+    name: '移除行尾空白',
+    category: 'formatting',
+    detect(content) {
+      const lines = content.split('\n');
+      const found = [];
+      lines.forEach((line, i) => {
+        if (/[ \t]+$/.test(line)) found.push(i + 1);
+      });
+      return {
+        found: found.length > 0,
+        details: `${found.length} 行有行尾空白`,
+        lines: found,
+      };
+    },
+    fix(content) {
+      return content.replace(/[ \t]+$/gm, '');
+    },
+  },
+
+  // ============================================================
+  // Rule 2: missing-eof-newline
+  // ============================================================
+  {
+    id: 'missing-eof-newline',
+    name: '添加檔案末尾換行',
+    category: 'formatting',
+    detect(content) {
+      const missing = content.length > 0 && !content.endsWith('\n');
+      return {
+        found: missing,
+        details: missing ? '檔案末尾缺少換行符' : '',
+        lines: missing ? [content.split('\n').length] : [],
+      };
+    },
+    fix(content) {
+      return content.endsWith('\n') ? content : content + '\n';
+    },
+  },
+
+  // ============================================================
+  // Rule 3: consecutive-blank-lines
+  // ============================================================
+  {
+    id: 'consecutive-blank-lines',
+    name: '壓縮連續空行',
+    category: 'formatting',
+    detect(content) {
+      const matches = content.match(/\n{4,}/g);
+      return {
+        found: !!matches,
+        details: matches ? `${matches.length} 處有 3+ 連續空行` : '',
+        lines: [],
+      };
+    },
+    fix(content) {
+      return content.replace(/\n{4,}/g, '\n\n\n');
+    },
+  },
+
+  // ============================================================
+  // Rule 4: hardcoded-home-path
+  // ============================================================
+  {
+    id: 'hardcoded-home-path',
+    name: '替換硬編碼路徑',
+    category: 'bug',
+    detect(content, filePath) {
+      const ext = path.extname(filePath);
+      const isJS = ['.js', '.mjs', '.cjs'].includes(ext);
+      const isSh = ['.sh', '.bash', '.zsh'].includes(ext);
+      if (!isJS && !isSh) return { found: false, details: '', lines: [] };
+
+      const lines = content.split('\n');
+      const found = [];
+      const homeUser = path.basename(HOME);
+      lines.forEach((line, i) => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('//') || trimmed.startsWith('#') || trimmed.startsWith('*')) return;
+        if (new RegExp(`/(?:Users|home)/${homeUser}/`, 'g').test(line)) {
+          found.push(i + 1);
+        }
+      });
+      return {
+        found: found.length > 0,
+        details: `${found.length} 行有硬編碼路徑 /Users/${homeUser}/`,
+        lines: found,
+      };
+    },
+    fix(content, filePath) {
+      const ext = path.extname(filePath);
+      const isSh = ['.sh', '.bash', '.zsh'].includes(ext);
+      const isJS = ['.js', '.mjs', '.cjs'].includes(ext);
+      if (!isSh && !isJS) return null;
+
+      const homeUser = path.basename(HOME);
+      const lines = content.split('\n');
+      const fixed = lines.map(line => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('#') || trimmed.startsWith('//') || trimmed.startsWith('*')) return line;
+        return line.replace(
+          new RegExp(`/(?:Users|home)/${homeUser}`, 'g'),
+          String.fromCharCode(36) + 'HOME'
+        );
+      });
+      return fixed.join('\n');
+    },
+  },
+
+  // ============================================================
+  // Rule 5: missing-shebang
+  // ============================================================
+  {
+    id: 'missing-shebang',
+    name: '添加 shebang 行',
+    category: 'doc',
+    detect(content, filePath) {
+      const ext = path.extname(filePath);
+      if (ext !== '.js') return { found: false, details: '', lines: [] };
+      try {
+        const stat = fs.statSync(filePath);
+        const isExec = !!(stat.mode & 0o111);
+        if (!isExec) return { found: false, details: '', lines: [] };
+      } catch {
+        return { found: false, details: '', lines: [] };
+      }
+      const missing = !content.startsWith('#!');
+      return {
+        found: missing,
+        details: missing ? '可執行 .js 檔案缺少 shebang (#!/usr/bin/env node)' : '',
+        lines: missing ? [1] : [],
+      };
+    },
+    fix(content) {
+      if (content.startsWith('#!')) return content;
+      return '#!/usr/bin/env node\n' + content;
+    },
+  },
+
+  // ============================================================
+  // Rule 6: simplified-chinese
+  // ============================================================
+  {
+    id: 'simplified-chinese',
+    name: '簡體→繁體常見字修正',
+    category: 'doc',
+    detect(content) {
+      const simplifiedMap = getSimplifiedMap();
+      let count = 0;
+      const foundLines = [];
+      const lines = content.split('\n');
+      lines.forEach((line, i) => {
+        // 跳過空行
+        if (!line.trim()) return;
+        // 跳過 URL 和 file path（避免破壞路徑）
+        if (/^https?:\/\//i.test(line.trim())) return;
+        if (/^\/[^\s]/.test(line.trim())) return;
+        // 跳過只有數字和符號的行
+        if (/^[\d\s\.,;:\-+=\*\/\\#@!$%^&()[\]{}|'"`<>]+$/.test(line.trim())) return;
+
+        for (const [simp] of simplifiedMap) {
+          if (line.includes(simp)) {
+            count++;
+            if (!foundLines.includes(i + 1)) foundLines.push(i + 1);
+            break; // 一行只要有一個就夠了
+          }
+        }
+      });
+      return {
+        found: count > 0,
+        details: `${count} 行有簡體中文`,
+        lines: foundLines,
+      };
+    },
+    fix(content) {
+      const simplifiedMap = getSimplifiedMap();
+      const lines = content.split('\n');
+      const fixed = lines.map(line => {
+        // 跳過空行
+        if (!line.trim()) return line;
+        // 跳過 URL
+        if (/^https?:\/\//i.test(line.trim())) return line;
+        // 跳過純路徑行
+        if (/^\/[^\s]/.test(line.trim())) return line;
+
+        let newLine = line;
+        for (const [simp, trad] of simplifiedMap) {
+          // 使用 word boundary 避免在單字中替換
+          // 但對於常見技術詞彙，直接替換（如「网络」→ 網絡）
+          newLine = newLine.split(simp).join(trad);
+        }
+        return newLine;
+      });
+      return fixed.join('\n');
+    },
+  },
+];
+
+module.exports = {
+  LOW_RISK_RULES,
+  getSimplifiedMap,
+};

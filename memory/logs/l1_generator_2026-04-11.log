@@ -1,0 +1,10 @@
+[2026-04-10T16:00:27.548Z] [INFO] Starting L1 Overview Generator for 2026-04-11
+[2026-04-10T16:00:27.553Z] [INFO] Found 1 L2 files
+[2026-04-10T16:00:27.553Z] [INFO] Using first 601 chars of L2 (head)
+[2026-04-10T16:00:27.568Z] [INFO] Ollama pre-check passed
+[2026-04-10T16:00:27.569Z] [INFO] Calling Ollama gemma4:e2b...
+[2026-04-10T16:01:00.209Z] [ERROR] Error: Error: Ollama returned invalid response: null
+    at main (/Users/ally/.openclaw/workspace/scripts/memory_generator.js:549:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[2026-04-10T16:01:00.210Z] [WARN] Trying enhanced extraction fallback...
+[2026-04-10T16:01:00.211Z] [SUCCESS] ✅ SUCCESS: L1 Overview written (fallback, 446 chars)

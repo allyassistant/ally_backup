@@ -1,0 +1,368 @@
+{
+  "initializedAt": "2026-02-16T10:22:47.996Z",
+  "heartbeatCount": 932,
+  "currentSession": {
+    "topics": [],
+    "sessionTopics": [
+      "memory",
+      "error",
+      "cron",
+      "session",
+      "MiniMax",
+      "Kimi",
+      "model",
+      "token",
+      "script",
+      "Rapaport",
+      "diamond",
+      "backup",
+      "Apple",
+      "Notes",
+      "stock"
+    ],
+    "repeatedTopics": [
+      "memory",
+      "error",
+      "cron",
+      "session",
+      "MiniMax",
+      "Kimi",
+      "model",
+      "token",
+      "script",
+      "Rapaport",
+      "diamond",
+      "backup",
+      "Apple",
+      "Notes",
+      "stock"
+    ],
+    "lastSummary": "暫無新內容",
+    "lastUpdate": "2026-04-20T20:00:15.177Z"
+  },
+  "todayHighlights": [],
+  "weeklyTopics": [
+    "️ **Failover 通知** Bliss 已離線超過3分鐘。 最後 Heartbeat：2026-04-11 23:18 我已經準備好接手，有需要既話喺任何 channel @我就得！",
+    "\udfe2 Online | 📝 **Logged 內容摘要：** - 2 條標準日誌 - 2 條加密 key 處理記錄 - 1 條 syntax warning (非錯誤) 一切正常運行，無需跟進。",
+    "\udffb‍💻編程 channel id:1473384999003619500\", \"sender\": \"𝕛𝕆𝕤ℍ𝕦𝔸\", \"timestamp\": \"Sat 2026-04-11 13:17 GMT+8\", \"group_spac",
+    "️ **Failover 通知** Bliss 已離線超過3分鐘。 最後 Heartbeat：2026-04-13 22:14 我已經準備好接手，有需要既話喺任何 channel @我就得！",
+    "\udcca 數據：1 萬次觀看、223 個書籤、130 個喜歡 --- ## ① 起源：Karpathy 的 autoresearch Karpathy 嗰個 7 萬 star 嘅項目做嘅係： > **讓 AI 自己跑實驗、自己評估結果、只保留有改進的修",
+    "\udf93學習 channel id:1473382857949970515\", \"sender\": \"𝕛𝕆𝕤ℍ𝕦𝔸\", \"timestamp\": \"Tue 2026-04-14 04:11 GMT+8\", \"group_space\": \"",
+    "\udcc1 Key Files Modified Today: scripts/smart_memory_router.js - 質量修復; scripts/task_router.js - 質量修復; scripts/report_templates.js - 質量修復; scripts/translator.js - 質量修復 [confidence=0.58 evidence=memory/2026-04-07.md:38-41]; 📁 Key Files Modified Today: SOUL.md",
+    "\udffb‍💻編程 channel id:1473384999003619500\", \"sender\": \"𝕛𝕆𝕤ℍ𝕦𝔸\", \"timestamp\": \"Wed 2026-04-15 13:10 GMT+8\", \"group_spac",
+    "系統 channel。 佢收集以下數據： - 📋 **Issues** - 進行中嘅任務 - 🔍 **Code Quality** - 代碼質量問題（Critical/High/Medium/Low） - 🔧 **Auto-Fix Status** - 自動修復狀態 - 📜 **Scripts** - 關鍵腳本是否存在 - ⏰ **Cron Jobs** - 定時任務執行狀態 - 📁 **Memory He",
+    "\udffb‍💻編程 channel id:1473384999003619500\", \"sender\": \"𝕛𝕆𝕤ℍ𝕦𝔸\", \"timestamp\": \"Wed 2026-04-15 13:13 GMT+8\", \"group_spac",
+    "\udcc1 Key Files Modified Today - SOUL.md - 新增 FDQ System 章節 - scripts/lib/rules/high-risk.js - 分類標準調整 - scripts/lib/rules/low-risk.js - 簡體→繁體映射修復 - scripts/lib/simp_trad_map.json - 新增外部映射文件 - sc",
+    "️ **Failover 通知** Bliss 已離線超過3分鐘。 最後 Heartbeat：2026-04-15 07:40 我已經準備好接手，有需要既話喺任何 channel @我就得！",
+    "️ **Failover 通知** Bliss 已離線超過3分鐘。 最後 Heartbeat：2026-04-15 07:59 我已經準備好接手，有需要既話喺任何 channel @我就得！",
+    "️ **Failover 通知** Bliss 已離線超過3分鐘。 最後 Heartbeat：2026-04-15 08:01 我已經準備好接手，有需要既話喺任何 channel @我就得！",
+    "Reflections",
+    "Possible Lasting Truths",
+    "\udffb‍💻編程 channel id:1473384999003619500\", \"sender\": \"𝕛𝕆𝕤ℍ𝕦𝔸\", \"timestamp\": \"Sat 2026-04-18 23:59 GMT+8\", \"group_spac",
+    "\udffb‍💻編程 channel id:1473384999003619500\", \"sender\": \"𝕛𝕆𝕤ℍ𝕦𝔸\", \"timestamp\": \"Sun 2026-04-19 00:06 GMT+8\", \"group_spac",
+    "️ Bliss (後勤機) 已離線約 13.5 小時，我已經接管咗後台任務 **今日幫你搞咗咩：** - L0/L1 記憶摘要應該已經生成曬 - 有需要我可以幫你檢查股票數據 有咩可以幫到你？",
+    "\udffb‍💻編程 channel id:1473384999003619500\", \"sender\": \"𝕛𝕆𝕤ℍ𝕦𝔸\", \"timestamp\": \"Sun 2026-04-19 00:21 GMT+8\", \"group_spac"
+  ],
+  "recallHistory": [
+    {
+      "timestamp": "2026-04-07T23:39:20.526Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-08T00:09:18.912Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-08T03:39:21.994Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-08T05:39:19.203Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-08T07:42:05.148Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-08T11:47:06.344Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-08T14:17:03.788Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-08T15:17:08.203Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-08T16:00:02.962Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-08T23:30:16.055Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-09T00:00:16.510Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-09T04:30:09.271Z",
+      "level": 6,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-09T06:30:14.557Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-09T10:15:59.234Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-09T13:45:58.905Z",
+      "level": 3,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-09T16:05:38.396Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-09T23:30:12.219Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-10T00:00:14.858Z",
+      "level": 6,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-10T02:30:15.748Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-10T05:00:14.851Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-10T06:30:27.579Z",
+      "level": 3,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-10T08:30:30.144Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-10T10:00:15.490Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-10T12:00:28.844Z",
+      "level": 6,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-10T14:30:32.076Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-11T00:00:14.564Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-11T04:30:30.623Z",
+      "level": 3,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-11T08:30:31.230Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-11T11:00:32.666Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-11T12:00:35.030Z",
+      "level": 6,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-11T14:30:32.119Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-12T00:00:34.318Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-12T04:30:30.660Z",
+      "level": 3,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-12T08:00:33.620Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-12T11:00:34.761Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-12T14:34:39.443Z",
+      "level": 6,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-13T00:00:52.146Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-13T04:30:51.356Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-13T23:30:12.841Z",
+      "level": 3,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-14T12:37:44.339Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-15T04:47:23.334Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-15T20:00:22.462Z",
+      "level": 6,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-16T00:47:18.569Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-16T20:00:19.176Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-17T12:47:21.325Z",
+      "level": 3,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-17T20:00:16.202Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-18T00:47:12.263Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-18T20:00:17.831Z",
+      "level": 6,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-19T20:00:28.872Z",
+      "level": 1,
+      "summary": "Light Sleep、REM Sleep、Reflections",
+      "topicsCount": 8
+    },
+    {
+      "timestamp": "2026-04-20T20:00:15.182Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    }
+  ]
+}

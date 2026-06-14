@@ -1,0 +1,9 @@
+[2026-04-05T16:05:44.802Z] [INFO] Starting L0 Abstract Generator for 2026-04-05
+[2026-04-05T16:05:44.806Z] [INFO] Found 13 L2 files
+[2026-04-05T16:05:44.809Z] [INFO] Using last 3933 chars of L2
+[2026-04-05T16:05:44.827Z] [INFO] Ollama pre-check passed
+[2026-04-05T16:05:44.827Z] [INFO] Calling Ollama gemma4:e2b...
+[2026-04-05T16:06:01.909Z] [ERROR] Error: Error: Ollama returned invalid response: null
+    at main (/Users/ally/.openclaw/workspace/scripts/memory_generator.js:527:13)
+[2026-04-05T16:06:01.909Z] [WARN] Trying enhanced extraction fallback...
+[2026-04-05T16:06:01.914Z] [SUCCESS] ✅ SUCCESS: L0 Abstract written (fallback, 666 chars)

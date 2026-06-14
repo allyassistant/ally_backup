@@ -1,0 +1,9 @@
+{
+  "ally_ip": "[TAILSCALE_ALLY_IP]",
+  "bliss_ip": "[TAILSCALE_BLISS_IP]",
+  "ally_ssh_user": "ally",
+  "bliss_ssh_user": "bliss",
+  "heartbeat_interval_sec": 60,
+  "failover_threshold_sec": 180,
+  "notes": "呢個係 HA 配置模板。複製為 ha_config.json 並填入實際值。IP 地址係 Tailscale 內網 IP。"
+}

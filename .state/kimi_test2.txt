@@ -1,0 +1,64 @@
+Print 'Hello'
+TurnBegin(user_input="Print 'Hello'")
+StepBegin(n=1)
+ThinkPart(
+    type='think',
+    think='The user wants me to print "Hello". This is a simple task that I can 
+accomplish using the Shell tool to echo the text.',
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_sC9BmCESQkNAvvNALM7XPR0n',
+    function=FunctionBody(
+        name='Shell',
+        arguments='{"command": "echo \'Hello\'"}'
+    ),
+    extras=None
+)
+StatusUpdate(
+    context_usage=0.037570953369140625,
+    context_tokens=9849,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=1657,
+        output=48,
+        input_cache_read=8192,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-0ZBS3bBLkL9iKlhxDiAxO7aQ',
+    plan_mode=False,
+    mcp_status=None
+)
+ToolResult(
+    tool_call_id='tool_sC9BmCESQkNAvvNALM7XPR0n',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='Hello\n',
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+StepBegin(n=2)
+ThinkPart(
+    type='think',
+    think='The command executed successfully and printed "Hello" as requested.',
+    encrypted=None
+)
+TextPart(type='text', text='Hello')
+StatusUpdate(
+    context_usage=0.037860870361328125,
+    context_tokens=9925,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=197,
+        output=16,
+        input_cache_read=9728,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-th4A68Q6TKu5xwJWBS9zO74a',
+    plan_mode=False,
+    mcp_status=None
+)
+TurnEnd()

@@ -1,0 +1,2370 @@
+{
+  "files": {
+    "check_fix.js": {
+      "mtime": 1778480429979,
+      "hash": "af2440d764bd8f13",
+      "size": 797,
+      "scannedAt": "2026-05-11T06:26:17.772Z"
+    },
+    "public/server.js": {
+      "mtime": 1775535933235,
+      "hash": "27ad77d2c57151a8",
+      "size": 1326,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "public/sw.js": {
+      "mtime": 1773211825598,
+      "hash": "26ae14fd88192412",
+      "size": 3191,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/.analysis/context_helpers.js": {
+      "mtime": 1775535933239,
+      "hash": "55a2b46888df6e97",
+      "size": 9441,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/.analysis/whitelist_patterns.js": {
+      "mtime": 1775535933243,
+      "hash": "66e63a008ba6349f",
+      "size": 9166,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/__tests__/auto_fix/rules.test.js": {
+      "mtime": 1775535933246,
+      "hash": "f99dff4bfb1c3847",
+      "size": 5607,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/__tests__/auto_fix/test_runner.js": {
+      "mtime": 1775535933249,
+      "hash": "ea1f53774d0ac2d0",
+      "size": 7165,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/adaptive_timeout.js": {
+      "mtime": 1775981282923,
+      "hash": "67825f27876571cc",
+      "size": 4679,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/advanced_color_cleaning.py": {
+      "mtime": 1773211825744,
+      "hash": "25c74915d5f0bbbc",
+      "size": 8902,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/ai_image_generator.js": {
+      "mtime": 1774843312300,
+      "hash": "971a3bc5a561e9f7",
+      "size": 2485,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/analyze_components_deep.py": {
+      "mtime": 1773211825756,
+      "hash": "0b793a3674fb688c",
+      "size": 7935,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/analyze_magic_numbers.js": {
+      "mtime": 1775535933254,
+      "hash": "2129f73de70ec63b",
+      "size": 7915,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/analyze_simp_chinese_verification.js": {
+      "mtime": 1775981102801,
+      "hash": "6acf8ba9fad38b0d",
+      "size": 13917,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/apple_notes.js": {
+      "mtime": 1775538622877,
+      "hash": "76fd061a15808c6c",
+      "size": 6339,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/apple_reminders_calendar.js": {
+      "mtime": 1776420859350,
+      "hash": "68dd14e727f1ed27",
+      "size": 7123,
+      "scannedAt": "2026-04-17T14:03:28.364Z"
+    },
+    "scripts/archive_smart.js": {
+      "mtime": 1775535933260,
+      "hash": "343fe9ceb079d427",
+      "size": 1992,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/auto-router/handler.js": {
+      "mtime": 1775031872234,
+      "hash": "0eb9b1aaf36736db",
+      "size": 7570,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/auto-spawn.js": {
+      "mtime": 1775536162780,
+      "hash": "13045209d5d1beea",
+      "size": 7274,
+      "scannedAt": "2026-04-12T12:24:52.004Z"
+    },
+    "scripts/auto_fix.js": {
+      "mtime": 1780854336375,
+      "hash": "3185469c4491710d",
+      "size": 100455,
+      "scannedAt": "2026-06-08T02:00:11.223Z"
+    },
+    "scripts/auto_fix_history.js": {
+      "mtime": 1775535933266,
+      "hash": "6debbfde71794171",
+      "size": 11550,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/auto_issue_creator.js": {
+      "mtime": 1775535933268,
+      "hash": "ea2691a92176e21a",
+      "size": 22848,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/auto_skill_router.js": {
+      "mtime": 1775535933269,
+      "hash": "4b0928e78e3feb8d",
+      "size": 10207,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/autoops/daily_stock_monitor.js": {
+      "mtime": 1775982924547,
+      "hash": "e54a4e39c6226cd6",
+      "size": 8443,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/autoops/health_monitor.js": {
+      "mtime": 1775535933273,
+      "hash": "8df0930e04b7c452",
+      "size": 3195,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/autoops/token_monitor.js": {
+      "mtime": 1775538622873,
+      "hash": "029fe7060998a3d8",
+      "size": 2580,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/balanced_cleaning.py": {
+      "mtime": 1773211825765,
+      "hash": "1fb3046eb6e2d4f3",
+      "size": 5507,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/browser_autoclose.js": {
+      "mtime": 1775535933276,
+      "hash": "6f79163a4ccb6b05",
+      "size": 1172,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/chart_generator.js": {
+      "mtime": 1775535933277,
+      "hash": "788c8daffb78c797",
+      "size": 3391,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/check-router-decision.js": {
+      "mtime": 1774894623710,
+      "hash": "4879dcaf892c4cf0",
+      "size": 1344,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/check_pure_audit_pending.js": {
+      "mtime": 1776434618491,
+      "hash": "2d0fcf22584e983a",
+      "size": 3519,
+      "scannedAt": "2026-04-17T14:03:38.530Z"
+    },
+    "scripts/churn_predictor.js": {
+      "mtime": 1776434618483,
+      "hash": "8d9855e0ce072e91",
+      "size": 4839,
+      "scannedAt": "2026-04-17T14:03:38.530Z"
+    },
+    "scripts/code_quality_generator.js": {
+      "mtime": 1776420208270,
+      "hash": "27d5db7a5a16083b",
+      "size": 13142,
+      "scannedAt": "2026-04-17T14:03:28.364Z"
+    },
+    "scripts/code_quality_manager.js": {
+      "mtime": 1780978938774,
+      "hash": "5efc07c795a5d7fd",
+      "size": 46353,
+      "scannedAt": "2026-06-09T04:22:18.880Z"
+    },
+    "scripts/code_quality_templates.js": {
+      "mtime": 1776420214417,
+      "hash": "b2325e3165040066",
+      "size": 5563,
+      "scannedAt": "2026-04-17T14:03:28.364Z"
+    },
+    "scripts/contact_manager.js": {
+      "mtime": 1776420464167,
+      "hash": "4adfea5737053299",
+      "size": 4900,
+      "scannedAt": "2026-04-17T14:03:28.364Z"
+    },
+    "scripts/context_aware_cleaning.py": {
+      "mtime": 1773211825763,
+      "hash": "049acd2728ea2fed",
+      "size": 6261,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/contract_checker.js": {
+      "mtime": 1774810697570,
+      "hash": "3b0c985bfa2a1165",
+      "size": 3846,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/cross_session_bootstrap.js": {
+      "mtime": 1780551124763,
+      "hash": "b75f92f01fb1b58f",
+      "size": 25282,
+      "scannedAt": "2026-06-04T14:01:52.473Z"
+    },
+    "scripts/cross_session_context.js": {
+      "mtime": 1775535933285,
+      "hash": "64d49bd8160faaec",
+      "size": 7755,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/customer360.js": {
+      "mtime": 1776420479732,
+      "hash": "e81a5ea2818dd539",
+      "size": 6760,
+      "scannedAt": "2026-04-17T14:03:28.364Z"
+    },
+    "scripts/customer_analyzer.js": {
+      "mtime": 1774972757305,
+      "hash": "6f34a127db48e6c6",
+      "size": 4463,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/daily_maintenance.js": {
+      "mtime": 1780857935459,
+      "hash": "2bbbca5728852759",
+      "size": 10312,
+      "scannedAt": "2026-06-08T02:00:11.223Z"
+    },
+    "scripts/daily_summary_bot.js": {
+      "mtime": 1780884292063,
+      "hash": "79f8245786aa6dbc",
+      "size": 13280,
+      "scannedAt": "2026-06-08T15:20:32.168Z"
+    },
+    "scripts/dashboard_generator.js": {
+      "mtime": 1774843312301,
+      "hash": "1a88cf6f00555215",
+      "size": 3421,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/date_tag_automation.js": {
+      "mtime": 1775535933289,
+      "hash": "5269c02c6ca0ff77",
+      "size": 12095,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/diamond_valuation.js": {
+      "mtime": 1775535933290,
+      "hash": "e0e84bc88f170612",
+      "size": 6737,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/document_template_engine.js": {
+      "mtime": 1776420506189,
+      "hash": "7db669be4d9c6e44",
+      "size": 2670,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/email_generator.js": {
+      "mtime": 1775535933292,
+      "hash": "82fe2e49b1171cc8",
+      "size": 5165,
+      "scannedAt": "2026-04-12T12:24:52.005Z"
+    },
+    "scripts/error_generator.js": {
+      "mtime": 1776420234899,
+      "hash": "806c61a948ed9b6b",
+      "size": 10037,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/error_templates.js": {
+      "mtime": 1776420243517,
+      "hash": "733b412fde7ca834",
+      "size": 3633,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/error_tracker.js": {
+      "mtime": 1780282952127,
+      "hash": "1e93c69d8c28fd1f",
+      "size": 27877,
+      "scannedAt": "2026-06-01T07:02:50.629Z"
+    },
+    "scripts/error_wiki_sync.js": {
+      "mtime": 1776420564416,
+      "hash": "aac98184e613c851",
+      "size": 8586,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/excel_report_generator.js": {
+      "mtime": 1776434618502,
+      "hash": "ec94a40d5366f76f",
+      "size": 3147,
+      "scannedAt": "2026-04-17T14:03:38.530Z"
+    },
+    "scripts/extract_rapaport.py": {
+      "mtime": 1773211825755,
+      "hash": "2a2755eae55f0792",
+      "size": 3068,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/gia_batch_processor.js": {
+      "mtime": 1777644185504,
+      "hash": "3e5e38659335047d",
+      "size": 8089,
+      "scannedAt": "2026-05-01T14:03:11.133Z"
+    },
+    "scripts/gia_certificate_ocr.js": {
+      "mtime": 1776420301064,
+      "hash": "3b5b41dcc04cd34d",
+      "size": 7298,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/gia_database.js": {
+      "mtime": 1776420307655,
+      "hash": "ebf3646d3b399822",
+      "size": 4714,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/gia_image_verifier.js": {
+      "mtime": 1776420316097,
+      "hash": "bb4575f815889b68",
+      "size": 4180,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/gia_ocr.js": {
+      "mtime": 1775535933298,
+      "hash": "562e5afbce302c50",
+      "size": 1289,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/health_generator.js": {
+      "mtime": 1775575255556,
+      "hash": "568920dcb4761d60",
+      "size": 11497,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/health_monitor.js": {
+      "mtime": 1778484538440,
+      "hash": "7463897a89338418",
+      "size": 21328,
+      "scannedAt": "2026-05-11T07:29:18.465Z"
+    },
+    "scripts/health_templates.js": {
+      "mtime": 1776420253737,
+      "hash": "5bd0af033cbcfc2c",
+      "size": 6336,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/heartbeat_recall.js": {
+      "mtime": 1775535933301,
+      "hash": "872b0ed1a828ec46",
+      "size": 16259,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/hooks/message_received.js": {
+      "mtime": 1779541215453,
+      "hash": "57a9c7b5247315de",
+      "size": 2840,
+      "scannedAt": "2026-05-23T14:00:06.507Z"
+    },
+    "scripts/idex_fetcher.js": {
+      "mtime": 1776420332088,
+      "hash": "5456f575b24c6e36",
+      "size": 10004,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/idex_fetcher_bot.js": {
+      "mtime": 1776420337278,
+      "hash": "feb7f4dbbad56682",
+      "size": 6077,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/image_processor.js": {
+      "mtime": 1775397809363,
+      "hash": "f27ca7b36a738c22",
+      "size": 3426,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/inventory_forecaster.js": {
+      "mtime": 1774954121411,
+      "hash": "e95ed164577c7865",
+      "size": 3829,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/invoice_generator.js": {
+      "mtime": 1776434618501,
+      "hash": "ed0a9816425beaa0",
+      "size": 3195,
+      "scannedAt": "2026-04-17T14:03:38.530Z"
+    },
+    "scripts/issue_auto_followup.js": {
+      "mtime": 1775535933305,
+      "hash": "b610ee6077723b33",
+      "size": 14481,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/issue_daily_report.js": {
+      "mtime": 1775982946338,
+      "hash": "b9e7f03c0398c4de",
+      "size": 6450,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/issue_manager.js": {
+      "mtime": 1779264752919,
+      "hash": "7e6334affe033cda",
+      "size": 22330,
+      "scannedAt": "2026-05-20T14:00:11.577Z"
+    },
+    "scripts/issue_reminders_sync.js": {
+      "mtime": 1775535933308,
+      "hash": "fbc3487af653fb31",
+      "size": 9606,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/key_memory_marker.js": {
+      "mtime": 1776434618470,
+      "hash": "dbffba696800e10b",
+      "size": 10276,
+      "scannedAt": "2026-04-17T14:03:38.530Z"
+    },
+    "scripts/kimi_cli_runner.js": {
+      "mtime": 1780854336365,
+      "hash": "fad821feace8eae2",
+      "size": 13578,
+      "scannedAt": "2026-06-08T02:00:11.224Z"
+    },
+    "scripts/l0_l1_verify.js": {
+      "mtime": 1775992033802,
+      "hash": "ea9e2e3948399076",
+      "size": 8123,
+      "scannedAt": "2026-04-12T12:24:52.006Z"
+    },
+    "scripts/lib/analyzers/file-analyzer.js": {
+      "mtime": 1775535933311,
+      "hash": "51819b0bd8605867",
+      "size": 5906,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/analyzers/index.js": {
+      "mtime": 1775535933313,
+      "hash": "61585f638cc685bd",
+      "size": 375,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/auditOrchestrator.js": {
+      "mtime": 1778481418696,
+      "hash": "715110b7ba8834d0",
+      "size": 34062,
+      "scannedAt": "2026-05-11T06:37:02.575Z"
+    },
+    "scripts/lib/auto_repair.js": {
+      "mtime": 1778136236245,
+      "hash": "c9ceb1f79a3a13b9",
+      "size": 30321,
+      "scannedAt": "2026-05-07T06:44:29.896Z"
+    },
+    "scripts/lib/batch_verifier.js": {
+      "mtime": 1778136262275,
+      "hash": "bc55949cfeb25ae2",
+      "size": 31538,
+      "scannedAt": "2026-05-07T06:44:29.896Z"
+    },
+    "scripts/lib/config.js": {
+      "mtime": 1780805728510,
+      "hash": "df5df152f68f34a6",
+      "size": 3473,
+      "scannedAt": "2026-06-07T04:22:55.277Z"
+    },
+    "scripts/lib/fileDiscovery.js": {
+      "mtime": 1775981315010,
+      "hash": "1e3bd699afb7cd78",
+      "size": 10183,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/helpers/context_helpers.js": {
+      "mtime": 1775535933319,
+      "hash": "f8fa4b54b6fac449",
+      "size": 9333,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/helpers/file-cache.js": {
+      "mtime": 1775535933320,
+      "hash": "32b8c9ebd111fd39",
+      "size": 1168,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/helpers/index.js": {
+      "mtime": 1775535933321,
+      "hash": "c7e72f1e36c61883",
+      "size": 1760,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/helpers/rule-helpers.js": {
+      "mtime": 1775996709970,
+      "hash": "921ffe65c1ca2af1",
+      "size": 1041,
+      "scannedAt": "2026-04-12T12:25:10.086Z"
+    },
+    "scripts/lib/helpers/skip-list.js": {
+      "mtime": 1775535933322,
+      "hash": "964ebe9469f3ca9b",
+      "size": 8830,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/helpers/try-catch-helpers-ast.js": {
+      "mtime": 1775535933323,
+      "hash": "d02b6f19bf344fb4",
+      "size": 15629,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/helpers/try-catch-helpers.js": {
+      "mtime": 1776175417179,
+      "hash": "9ecdc6e44a1cbd91",
+      "size": 15513,
+      "scannedAt": "2026-04-14T14:03:37.284Z"
+    },
+    "scripts/lib/helpers/whitelist_patterns.js": {
+      "mtime": 1775535933325,
+      "hash": "005c8d07b0128e06",
+      "size": 11373,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/index.js": {
+      "mtime": 1775535933326,
+      "hash": "333b94e900d83a7e",
+      "size": 555,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/issueAggregator.js": {
+      "mtime": 1775535933327,
+      "hash": "619a7ae7e22fd184",
+      "size": 13807,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/pattern_learner.js": {
+      "mtime": 1778136252676,
+      "hash": "7a80be77b1535bed",
+      "size": 25778,
+      "scannedAt": "2026-05-07T06:44:29.896Z"
+    },
+    "scripts/lib/rules/high-risk.js": {
+      "mtime": 1776236689334,
+      "hash": "90a3cacfbbe97ccf",
+      "size": 50418,
+      "scannedAt": "2026-04-15T07:04:49.417Z"
+    },
+    "scripts/lib/rules/index.js": {
+      "mtime": 1775535933330,
+      "hash": "b713b5eb93a3b802",
+      "size": 564,
+      "scannedAt": "2026-04-12T12:24:52.007Z"
+    },
+    "scripts/lib/rules/low-risk.js": {
+      "mtime": 1778482695540,
+      "hash": "d223f6c98dfd359b",
+      "size": 15491,
+      "scannedAt": "2026-05-11T06:58:28.952Z"
+    },
+    "scripts/lib/rules/system-audit.js": {
+      "mtime": 1775983021693,
+      "hash": "2b959793019b0071",
+      "size": 27128,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/lib/semantic_matcher.js": {
+      "mtime": 1775535933332,
+      "hash": "bb647288c15eefd7",
+      "size": 14268,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/lib/skip-list.js": {
+      "mtime": 1775535933333,
+      "hash": "9c9e955caebeb4de",
+      "size": 5616,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/lib/state.js": {
+      "mtime": 1776414080034,
+      "hash": "75ceb3ff56c668e1",
+      "size": 1223,
+      "scannedAt": "2026-04-17T14:03:28.366Z"
+    },
+    "scripts/lib/time.js": {
+      "mtime": 1775535933335,
+      "hash": "35ffe7f5583c5ab3",
+      "size": 644,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/lib/whitelist_patterns.js": {
+      "mtime": 1778033074229,
+      "hash": "a2fb6f7a5f8f1841",
+      "size": 13066,
+      "scannedAt": "2026-05-06T02:04:43.777Z"
+    },
+    "scripts/log_to_daily_memory.js": {
+      "mtime": 1780562972160,
+      "hash": "14fa3a2d19c76b92",
+      "size": 28118,
+      "scannedAt": "2026-06-04T14:01:52.474Z"
+    },
+    "scripts/market_monitor.js": {
+      "mtime": 1778480914262,
+      "hash": "0b28c29e70405eeb",
+      "size": 3275,
+      "scannedAt": "2026-05-11T06:29:09.809Z"
+    },
+    "scripts/memory_archiver.js": {
+      "mtime": 1775535933338,
+      "hash": "cde80fc6f0e22390",
+      "size": 4888,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/memory_cleanup.js": {
+      "mtime": 1774843312307,
+      "hash": "30f57c266c732340",
+      "size": 493,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/memory_distiller.js": {
+      "mtime": 1776419106209,
+      "hash": "759a8bde7cc4b2be",
+      "size": 10093,
+      "scannedAt": "2026-04-17T14:03:28.366Z"
+    },
+    "scripts/memory_generator.js": {
+      "mtime": 1780883221888,
+      "hash": "28ae575492f970a9",
+      "size": 29966,
+      "scannedAt": "2026-06-08T02:00:11.224Z"
+    },
+    "scripts/memory_maintenance.js": {
+      "mtime": 1775983072370,
+      "hash": "3352437e12fb5dbd",
+      "size": 14797,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/memory_sanitizer.js": {
+      "mtime": 1775574802541,
+      "hash": "2aeefbdd3d2fbe24",
+      "size": 10402,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/memory_section_cleanup.js": {
+      "mtime": 1775535933344,
+      "hash": "9aa662f4eb00956f",
+      "size": 9213,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/memory_temporal_search.js": {
+      "mtime": 1775535933345,
+      "hash": "c9867537d44f7726",
+      "size": 9889,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/merge_multi_sheet.js": {
+      "mtime": 1775535933346,
+      "hash": "15fcd0a42c55cf55",
+      "size": 12532,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/news_summarizer.js": {
+      "mtime": 1776420593920,
+      "hash": "12f759b2ad2bb4cd",
+      "size": 2984,
+      "scannedAt": "2026-04-17T14:03:28.366Z"
+    },
+    "scripts/orchestrator.js": {
+      "mtime": 1776420607940,
+      "hash": "ab907514c171368a",
+      "size": 13107,
+      "scannedAt": "2026-04-17T14:03:28.366Z"
+    },
+    "scripts/pattern_analysis_daily.js": {
+      "mtime": 1778484538440,
+      "hash": "7010c39070b3b906",
+      "size": 3574,
+      "scannedAt": "2026-05-11T07:29:18.466Z"
+    },
+    "scripts/pattern_archive.js": {
+      "mtime": 1775535933349,
+      "hash": "23bd81bb76561084",
+      "size": 10710,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/pattern_error_tracker.js": {
+      "mtime": 1780283350831,
+      "hash": "a21b419522cd8c75",
+      "size": 8988,
+      "scannedAt": "2026-06-01T07:02:50.630Z"
+    },
+    "scripts/pattern_periodic_tagger.js": {
+      "mtime": 1776420382627,
+      "hash": "22f7c14246e7b2dd",
+      "size": 7906,
+      "scannedAt": "2026-04-17T14:03:28.366Z"
+    },
+    "scripts/pattern_proactive_trigger.js": {
+      "mtime": 1775535933353,
+      "hash": "b5c00ca80df911f3",
+      "size": 11830,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/pattern_project_tracker.js": {
+      "mtime": 1776420388120,
+      "hash": "88f1919962d75c41",
+      "size": 10950,
+      "scannedAt": "2026-04-17T14:03:28.366Z"
+    },
+    "scripts/pattern_resolver.js": {
+      "mtime": 1775538958754,
+      "hash": "12bc96cdee03c080",
+      "size": 12936,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/pattern_topic_graph.js": {
+      "mtime": 1776420393618,
+      "hash": "788b96af3e6fcc20",
+      "size": 8423,
+      "scannedAt": "2026-04-17T14:03:28.366Z"
+    },
+    "scripts/powerquery_generator.js": {
+      "mtime": 1775535933357,
+      "hash": "d5b482d99c090bd6",
+      "size": 3135,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/preference_tracker.js": {
+      "mtime": 1776420430376,
+      "hash": "692456c020556ca9",
+      "size": 13676,
+      "scannedAt": "2026-04-17T14:03:28.366Z"
+    },
+    "scripts/price_alert_system.js": {
+      "mtime": 1776420344873,
+      "hash": "5cba0ce29047b5e3",
+      "size": 3290,
+      "scannedAt": "2026-04-17T14:03:28.366Z"
+    },
+    "scripts/price_history.js": {
+      "mtime": 1776420351252,
+      "hash": "25d5a1d785a2f1d7",
+      "size": 6849,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/price_predictor.js": {
+      "mtime": 1776434618484,
+      "hash": "ef510c51dda76908",
+      "size": 3439,
+      "scannedAt": "2026-04-17T14:03:38.531Z"
+    },
+    "scripts/pure_audit_runner.js": {
+      "mtime": 1776420859350,
+      "hash": "4a598d3d9cb80ea0",
+      "size": 4779,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/quotation_generator.js": {
+      "mtime": 1776434618500,
+      "hash": "7f92da3e8a0d2364",
+      "size": 1363,
+      "scannedAt": "2026-04-17T14:03:38.531Z"
+    },
+    "scripts/rapaport_extractor.js": {
+      "mtime": 1774843312309,
+      "hash": "943dda91c4feeae9",
+      "size": 1486,
+      "scannedAt": "2026-04-12T12:24:52.008Z"
+    },
+    "scripts/rapnet_sender.js": {
+      "mtime": 1780854336361,
+      "hash": "7b918587363be32e",
+      "size": 8715,
+      "scannedAt": "2026-06-08T02:00:11.224Z"
+    },
+    "scripts/rapnet_weekly.js": {
+      "mtime": 1776418978960,
+      "hash": "9bfed088d04445a7",
+      "size": 7714,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/rapnet_weekly_workflow.js": {
+      "mtime": 1778480772916,
+      "hash": "721079c4a9e8cb0f",
+      "size": 2957,
+      "scannedAt": "2026-05-11T06:26:17.780Z"
+    },
+    "scripts/reminder_discussion.js": {
+      "mtime": 1775535933364,
+      "hash": "3211a9ebaf3bb241",
+      "size": 1400,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/reminder_discussion_bot.js": {
+      "mtime": 1775535933365,
+      "hash": "899fdddf55cf011d",
+      "size": 3417,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/report_generator.js": {
+      "mtime": 1776708685242,
+      "hash": "a9486a27c8157ab2",
+      "size": 26956,
+      "scannedAt": "2026-04-21T02:00:09.522Z"
+    },
+    "scripts/report_templates.js": {
+      "mtime": 1776420864372,
+      "hash": "e43dcbf49f79d5fd",
+      "size": 17745,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/router.py": {
+      "mtime": 1775537227952,
+      "hash": "ad8e1caf063017ea",
+      "size": 4249,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/session_cleanup.js": {
+      "mtime": 1780253523506,
+      "hash": "f62a9048bdcc5475",
+      "size": 11608,
+      "scannedAt": "2026-06-01T02:00:02.714Z"
+    },
+    "scripts/session_recovery.js": {
+      "mtime": 1775538958721,
+      "hash": "c3d873f2efc4632b",
+      "size": 8441,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/skills_manager.js": {
+      "mtime": 1775575581814,
+      "hash": "b66160b8f8cd7c07",
+      "size": 15773,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/smart_followup.js": {
+      "mtime": 1776420447870,
+      "hash": "dcb8de599c7817ca",
+      "size": 6198,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/smart_handwriting_removal.py": {
+      "mtime": 1773211825743,
+      "hash": "969df5a668604205",
+      "size": 4411,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/smart_memory_router.js": {
+      "mtime": 1775570553757,
+      "hash": "7e294fef9698730a",
+      "size": 11658,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/smart_query.js": {
+      "mtime": 1775535933373,
+      "hash": "70cf5ba25d5fea8e",
+      "size": 4178,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/state.js": {
+      "mtime": 1775535933374,
+      "hash": "2c15d5a404b67059",
+      "size": 2775,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/status-server.js": {
+      "mtime": 1776420196597,
+      "hash": "3d73a105861891a4",
+      "size": 7523,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/stock_merge_pro.js": {
+      "mtime": 1776418780165,
+      "hash": "2857d67828b17445",
+      "size": 16797,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/stock_updater.js": {
+      "mtime": 1776418801101,
+      "hash": "778de1c507136957",
+      "size": 13481,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/streaming_archive.js": {
+      "mtime": 1775233974586,
+      "hash": "7ec73842ad6ba13b",
+      "size": 7689,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/system_check_bot.js": {
+      "mtime": 1776175417177,
+      "hash": "4ff79e551230d295",
+      "size": 2225,
+      "scannedAt": "2026-04-14T14:03:37.284Z"
+    },
+    "scripts/system_status_report.js": {
+      "mtime": 1776420201577,
+      "hash": "605994a4f146cc0a",
+      "size": 1313,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/task_router.js": {
+      "mtime": 1776420630440,
+      "hash": "4062db8031e32d01",
+      "size": 22387,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/terminology_manager.js": {
+      "mtime": 1775537227948,
+      "hash": "66d519e89f564042",
+      "size": 3337,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/tesseract_gia_ocr.js": {
+      "mtime": 1776420637840,
+      "hash": "348dc14cedd8b2f0",
+      "size": 8918,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/timezone_fixer.js": {
+      "mtime": 1776416570667,
+      "hash": "862fdf77c18d2c7b",
+      "size": 3166,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/token_archive.js": {
+      "mtime": 1775996628309,
+      "hash": "87ea0f92a2b62418",
+      "size": 10362,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/translator.js": {
+      "mtime": 1775570553748,
+      "hash": "e4c7d06934beeaa7",
+      "size": 5477,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/update_rapaport_universal.js": {
+      "mtime": 1776420647575,
+      "hash": "5d44df147a015839",
+      "size": 9694,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/vba_generator.js": {
+      "mtime": 1775316102118,
+      "hash": "9d089bbb6380d2dc",
+      "size": 4201,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/verify_backup.js": {
+      "mtime": 1776231993072,
+      "hash": "043bb29bf4126b54",
+      "size": 8147,
+      "scannedAt": "2026-04-15T05:46:50.324Z"
+    },
+    "scripts/verify_fix.js": {
+      "mtime": 1775535933387,
+      "hash": "8117b0a12bf647ac",
+      "size": 22545,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/watermark_manager.js": {
+      "mtime": 1774843312313,
+      "hash": "1bd50546af304268",
+      "size": 1968,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/weekly_correction_generator.js": {
+      "mtime": 1780035084702,
+      "hash": "81e7f6dc771f1ebb",
+      "size": 16676,
+      "scannedAt": "2026-05-29T07:00:17.248Z"
+    },
+    "scripts/weekly_correction_loop.js": {
+      "mtime": 1780918858274,
+      "hash": "1da82ddd709419c9",
+      "size": 64603,
+      "scannedAt": "2026-06-08T15:20:32.170Z"
+    },
+    "scripts/weekly_correction_templates.js": {
+      "mtime": 1776420283844,
+      "hash": "a7dc9e14f264a4aa",
+      "size": 6916,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/weekly_parallel.js": {
+      "mtime": 1778484538440,
+      "hash": "883d2d6caf463aeb",
+      "size": 4976,
+      "scannedAt": "2026-05-11T07:29:18.466Z"
+    },
+    "scripts/weekly_session_cleanup.js": {
+      "mtime": 1775316102119,
+      "hash": "c85c8c3e74443c88",
+      "size": 2540,
+      "scannedAt": "2026-04-12T12:24:52.009Z"
+    },
+    "scripts/wiki_issue_sync.js": {
+      "mtime": 1776419131944,
+      "hash": "a41b6414ea9b1498",
+      "size": 8286,
+      "scannedAt": "2026-04-17T14:03:28.367Z"
+    },
+    "scripts/workspace_index_generator.py": {
+      "mtime": 1775535933390,
+      "hash": "f57794a7006a338f",
+      "size": 5853,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/data_analyzer.js": {
+      "mtime": 1775535933391,
+      "hash": "0f86fe8a2058e103",
+      "size": 1028,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/diamond_valuation.js": {
+      "mtime": 1775535933392,
+      "hash": "5a771759f17b19b6",
+      "size": 602,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/excel_ai_formula.js": {
+      "mtime": 1775539831866,
+      "hash": "95a07820ab648d91",
+      "size": 6114,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/file_processor.js": {
+      "mtime": 1775535933394,
+      "hash": "6990da3bc5403989",
+      "size": 900,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/learning_processor.js": {
+      "mtime": 1775535933395,
+      "hash": "02b9e57fc5d9ba7e",
+      "size": 1098,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/memory_manager.js": {
+      "mtime": 1775535933396,
+      "hash": "4e8480b4b3835527",
+      "size": 967,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/productivity_automation.js": {
+      "mtime": 1775535933397,
+      "hash": "e1b0ef0372d00bd3",
+      "size": 7191,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/quotation_generator.js": {
+      "mtime": 1775535933398,
+      "hash": "34438f3278980dd8",
+      "size": 1037,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/reminder_manager.js": {
+      "mtime": 1775535933399,
+      "hash": "3e7ea40d7b9ec8f9",
+      "size": 1183,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/stock_management.js": {
+      "mtime": 1775535933400,
+      "hash": "1224bb1912b966f4",
+      "size": 874,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "skills/whatsapp_notification.js": {
+      "mtime": 1775535933401,
+      "hash": "84ee6c5b32124534",
+      "size": 1033,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "sticker_remover.py": {
+      "mtime": 1775535933402,
+      "hash": "78c0accd9f0a76bd",
+      "size": 11033,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "tmp_check.js": {
+      "mtime": 1775982136683,
+      "hash": "7825dba6a99eeffb",
+      "size": 275,
+      "scannedAt": "2026-04-12T12:24:52.010Z"
+    },
+    "scripts/rapnet_ai_summary.js": {
+      "mtime": 1780854336371,
+      "hash": "bb6b41d94b7c5d06",
+      "size": 2162,
+      "scannedAt": "2026-06-08T02:00:11.224Z"
+    },
+    "scripts/lib/system_check_generator.js": {
+      "mtime": 1780934782842,
+      "hash": "ad57e08732fb1db9",
+      "size": 41331,
+      "scannedAt": "2026-06-08T16:06:27.666Z"
+    },
+    "scripts/lib/system_check_templates.js": {
+      "mtime": 1780933849008,
+      "hash": "69212f583235cec7",
+      "size": 9800,
+      "scannedAt": "2026-06-08T15:52:23.016Z"
+    },
+    "scripts/input_source_scanner.js": {
+      "mtime": 1776420579526,
+      "hash": "24b5b94be6ffeeae",
+      "size": 6209,
+      "scannedAt": "2026-04-17T14:03:28.365Z"
+    },
+    "scripts/auto_remember.js": {
+      "mtime": 1778480836955,
+      "hash": "47047effa909b0f6",
+      "size": 26636,
+      "scannedAt": "2026-05-11T06:29:09.808Z"
+    },
+    "scripts/sa_product_monitor.js": {
+      "mtime": 1776582143152,
+      "hash": "7dd233593d970bc7",
+      "size": 2759,
+      "scannedAt": "2026-04-19T07:02:23.230Z"
+    },
+    "scripts/generate_symbols.js": {
+      "mtime": 1779538957729,
+      "hash": "e6da5fc934355f53",
+      "size": 35454,
+      "scannedAt": "2026-05-23T14:00:06.507Z"
+    },
+    "scripts/get_symbol_info.js": {
+      "mtime": 1778345950148,
+      "hash": "253090fc177259e4",
+      "size": 10532,
+      "scannedAt": "2026-05-10T02:00:05.386Z"
+    },
+    "scripts/knowledge_classifier.js": {
+      "mtime": 1780879646254,
+      "hash": "d506e1588b0427c6",
+      "size": 16589,
+      "scannedAt": "2026-06-08T02:00:11.224Z"
+    },
+    "scripts/knowledge_ingester.js": {
+      "mtime": 1780976311552,
+      "hash": "4bec85b0722b9aef",
+      "size": 31747,
+      "scannedAt": "2026-06-09T04:22:18.881Z"
+    },
+    "scripts/model_comparison.js": {
+      "mtime": 1777212168079,
+      "hash": "fd4b8993aef431a1",
+      "size": 3386,
+      "scannedAt": "2026-04-26T14:02:48.139Z"
+    },
+    "scripts/gia_cert_analyzer.js": {
+      "mtime": 1778481742371,
+      "hash": "ac538465419f7a0e",
+      "size": 244825,
+      "scannedAt": "2026-05-11T06:42:25.852Z"
+    },
+    "scripts/gia_report_bot.js": {
+      "mtime": 1777255348222,
+      "hash": "8e05d4393b9a460f",
+      "size": 24923,
+      "scannedAt": "2026-04-27T02:02:28.289Z"
+    },
+    "scripts/patch_briolette.js": {
+      "mtime": 1777298614511,
+      "hash": "1fa0523da107607a",
+      "size": 1617,
+      "scannedAt": "2026-04-27T14:03:34.570Z"
+    },
+    "scripts/patch_briolette_fluoro.js": {
+      "mtime": 1777298614506,
+      "hash": "17b32283481393df",
+      "size": 3416,
+      "scannedAt": "2026-04-27T14:03:34.570Z"
+    },
+    "scripts/patch_briolette_v2.js": {
+      "mtime": 1777298614510,
+      "hash": "4873b6820660e65a",
+      "size": 1919,
+      "scannedAt": "2026-04-27T14:03:34.570Z"
+    },
+    "scripts/patch_briolette_v3.js": {
+      "mtime": 1777298614509,
+      "hash": "47841a8e39c0ef4f",
+      "size": 2630,
+      "scannedAt": "2026-04-27T14:03:34.570Z"
+    },
+    "scripts/patch_v2.7.js": {
+      "mtime": 1777298614503,
+      "hash": "b92cb38acc58d121",
+      "size": 4220,
+      "scannedAt": "2026-04-27T14:03:34.570Z"
+    },
+    "scripts/generate_mega_test_set.js": {
+      "mtime": 1777359763199,
+      "hash": "9839386fc77477e0",
+      "size": 5109,
+      "scannedAt": "2026-04-28T07:02:43.269Z"
+    },
+    "scripts/run_mega_test.js": {
+      "mtime": 1777359763195,
+      "hash": "405617c2f74474ef",
+      "size": 9776,
+      "scannedAt": "2026-04-28T07:02:43.270Z"
+    },
+    "scripts/v761_stress_test.js": {
+      "mtime": 1777359763202,
+      "hash": "5d8e36ec921bbc4a",
+      "size": 17644,
+      "scannedAt": "2026-04-28T07:02:43.270Z"
+    },
+    "scripts/gia_cert_batch_tester.js": {
+      "mtime": 1777384941319,
+      "hash": "8ab320a5ebab558e",
+      "size": 8461,
+      "scannedAt": "2026-04-28T14:02:21.393Z"
+    },
+    "scripts/gia_analyzer_v760.js": {
+      "mtime": 1777401720831,
+      "hash": "45677bece44e49c3",
+      "size": 207671,
+      "scannedAt": "2026-04-29T02:02:42.561Z"
+    },
+    "scripts/gia_cert_analyzer_v761_20260429.js": {
+      "mtime": 1777404294145,
+      "hash": "8759c9e5a1def84d",
+      "size": 179070,
+      "scannedAt": "2026-04-29T02:02:42.562Z"
+    },
+    "scripts/gia_hybrid_analyzer.js": {
+      "mtime": 1777446181574,
+      "hash": "d44778a1ac1625fe",
+      "size": 44131,
+      "scannedAt": "2026-04-29T07:03:21.336Z"
+    },
+    "scripts/batch_gia_46_60.js": {
+      "mtime": 1777514583491,
+      "hash": "29f90ea0e230934a",
+      "size": 1943,
+      "scannedAt": "2026-04-30T02:03:03.574Z"
+    },
+    "scripts/closed-loop-coder.js": {
+      "mtime": 1777514583488,
+      "hash": "62cea6127d125585",
+      "size": 20243,
+      "scannedAt": "2026-04-30T02:03:03.574Z"
+    },
+    "scripts/test_round8.js": {
+      "mtime": 1777514583493,
+      "hash": "e54189effdffb757",
+      "size": 6208,
+      "scannedAt": "2026-04-30T02:03:03.574Z"
+    },
+    "gia_batch/extract_all.js": {
+      "mtime": 1777515086308,
+      "hash": "eab8c9030aecd5cd",
+      "size": 1590,
+      "scannedAt": "2026-04-30T07:02:32.757Z"
+    },
+    "gia_batch/extract_results.js": {
+      "mtime": 1777514839044,
+      "hash": "005392dbd7c1de11",
+      "size": 1457,
+      "scannedAt": "2026-04-30T07:02:32.757Z"
+    },
+    "gia_batch/parse_all.js": {
+      "mtime": 1777515586135,
+      "hash": "5b3ceb19fb4bcdaa",
+      "size": 2495,
+      "scannedAt": "2026-04-30T07:02:32.757Z"
+    },
+    "scripts/closed_loop_v11_runner.js": {
+      "mtime": 1780854336377,
+      "hash": "46bcd07ec087ea83",
+      "size": 10407,
+      "scannedAt": "2026-06-08T02:00:11.223Z"
+    },
+    "scripts/gia_batch_analyzer.js": {
+      "mtime": 1777532562143,
+      "hash": "15633b1d26c90166",
+      "size": 3065,
+      "scannedAt": "2026-04-30T07:02:42.224Z"
+    },
+    "scripts/gia_debug_test.js": {
+      "mtime": 1777532562146,
+      "hash": "659979a8364700d4",
+      "size": 1499,
+      "scannedAt": "2026-04-30T07:02:42.224Z"
+    },
+    "scripts/gia_cert_analyzer_refactored.js": {
+      "mtime": 1777618943162,
+      "hash": "13e8e3b78c7cdfb8",
+      "size": 51061,
+      "scannedAt": "2026-05-01T07:02:23.239Z"
+    },
+    ".cert-analysis/test_pdf_parse.js": {
+      "mtime": 1777997089093,
+      "hash": "c00a6c8c56ee06b6",
+      "size": 2459,
+      "scannedAt": "2026-05-05T16:18:31.762Z"
+    },
+    ".closed-loop-checkpoints/round-1-fix.js": {
+      "mtime": 1777601839984,
+      "hash": "453488b8633d1b89",
+      "size": 2494,
+      "scannedAt": "2026-05-01T05:18:47.647Z"
+    },
+    "scripts/.closed-loop-checkpoints/code-current.js": {
+      "mtime": 1777601954194,
+      "hash": "c9b4c5aa3868ba70",
+      "size": 34647,
+      "scannedAt": "2026-05-01T05:18:47.672Z"
+    },
+    "scripts/batch2_analyzer.js": {
+      "mtime": 1777618943132,
+      "hash": "5f5889a0d27e2c78",
+      "size": 8118,
+      "scannedAt": "2026-05-01T07:02:23.238Z"
+    },
+    "scripts/batch3_analysis.js": {
+      "mtime": 1777618943135,
+      "hash": "03248a172cdf349b",
+      "size": 9124,
+      "scannedAt": "2026-05-01T07:02:23.238Z"
+    },
+    "scripts/batch_gia_analyzer.js": {
+      "mtime": 1777705393408,
+      "hash": "5cec091dd2e40966",
+      "size": 3862,
+      "scannedAt": "2026-05-02T07:03:13.847Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v14.js": {
+      "mtime": 1777618943129,
+      "hash": "251438afd9d4f656",
+      "size": 54571,
+      "scannedAt": "2026-05-01T07:02:23.239Z"
+    },
+    "scripts/test_boundary_gia.js": {
+      "mtime": 1777618943138,
+      "hash": "8c03442374d63409",
+      "size": 19480,
+      "scannedAt": "2026-05-01T07:02:23.239Z"
+    },
+    "scripts/batch3_runner.js": {
+      "mtime": 1777618943091,
+      "hash": "c7effdecae0e2fdd",
+      "size": 9178,
+      "scannedAt": "2026-05-01T07:02:23.238Z"
+    },
+    "scripts/batch_gia_v14_batch5.js": {
+      "mtime": 1777618943089,
+      "hash": "7978972e69cd767f",
+      "size": 9239,
+      "scannedAt": "2026-05-01T07:02:23.238Z"
+    },
+    "scripts/batch_processor.js": {
+      "mtime": 1777618943099,
+      "hash": "01f9ff936391629c",
+      "size": 3348,
+      "scannedAt": "2026-05-01T07:02:23.238Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.js": {
+      "mtime": 1777625348319,
+      "hash": "9eafb512427d7d68",
+      "size": 124093,
+      "scannedAt": "2026-05-01T14:02:54.273Z"
+    },
+    "scripts/batch_gia_v15_batch1.js": {
+      "mtime": 1777618943047,
+      "hash": "0f729264374cb21a",
+      "size": 13501,
+      "scannedAt": "2026-05-01T07:02:23.238Z"
+    },
+    "scripts/gia_batch_processor_batch3.js": {
+      "mtime": 1777618943043,
+      "hash": "108f5e1b9dfb7239",
+      "size": 8858,
+      "scannedAt": "2026-05-01T07:02:23.239Z"
+    },
+    "scripts/v15_batch2_analyzer.js": {
+      "mtime": 1777618943038,
+      "hash": "cce38bd2f6dccbe4",
+      "size": 5122,
+      "scannedAt": "2026-05-01T07:02:23.239Z"
+    },
+    ".cert-analysis/v11/batch3_processor.js": {
+      "mtime": 1777997089093,
+      "hash": "5e9d44cb8ca62d20",
+      "size": 20476,
+      "scannedAt": "2026-05-05T16:18:31.762Z"
+    },
+    "scripts/apply_round2_fixes.js": {
+      "mtime": 1777627288792,
+      "hash": "d1cd621ee8120392",
+      "size": 9481,
+      "scannedAt": "2026-05-01T14:02:54.271Z"
+    },
+    "scripts/gia_batch_runner.js": {
+      "mtime": 1777730441334,
+      "hash": "eae240ce43d37f8e",
+      "size": 4209,
+      "scannedAt": "2026-05-02T14:00:41.412Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.1.1.js": {
+      "mtime": 1777627344167,
+      "hash": "bba37c5665a3ef1a",
+      "size": 124569,
+      "scannedAt": "2026-05-01T14:02:54.272Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.1.2.js": {
+      "mtime": 1777632820723,
+      "hash": "243a9794aa15eeba",
+      "size": 126985,
+      "scannedAt": "2026-05-01T14:02:54.272Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.2.0.js": {
+      "mtime": 1777635023193,
+      "hash": "076cbc3099797c13",
+      "size": 127477,
+      "scannedAt": "2026-05-01T14:02:54.272Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.2.1.js": {
+      "mtime": 1777634510304,
+      "hash": "be8aa773e2506fd4",
+      "size": 127038,
+      "scannedAt": "2026-05-01T14:02:54.272Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.2.2.js": {
+      "mtime": 1777634683285,
+      "hash": "cb9a219caa593753",
+      "size": 127194,
+      "scannedAt": "2026-05-01T14:02:54.272Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.2.3.js": {
+      "mtime": 1777634866350,
+      "hash": "076cbc3099797c13",
+      "size": 127477,
+      "scannedAt": "2026-05-01T14:02:54.272Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.2.4.js": {
+      "mtime": 1777634880437,
+      "hash": "076cbc3099797c13",
+      "size": 127477,
+      "scannedAt": "2026-05-01T14:02:54.272Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.2.5.js": {
+      "mtime": 1777635772858,
+      "hash": "97845fdabcdbb00a",
+      "size": 140602,
+      "scannedAt": "2026-05-01T14:02:54.272Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.3.0.js": {
+      "mtime": 1777651703578,
+      "hash": "61a2810afc365e9d",
+      "size": 166187,
+      "scannedAt": "2026-05-02T02:00:20.727Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.3.1.js": {
+      "mtime": 1777636833976,
+      "hash": "0185caf7c928c0f9",
+      "size": 158556,
+      "scannedAt": "2026-05-01T14:02:54.273Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15_backup.js": {
+      "mtime": 1777624379893,
+      "hash": "77b220e420230eea",
+      "size": 58267,
+      "scannedAt": "2026-05-01T14:02:54.273Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v16.js": {
+      "mtime": 1777632869086,
+      "hash": "f55428b59534ff9f",
+      "size": 128689,
+      "scannedAt": "2026-05-01T14:02:54.273Z"
+    },
+    "scripts/gia_debug.js": {
+      "mtime": 1777637144635,
+      "hash": "14323fc16f51a743",
+      "size": 160924,
+      "scannedAt": "2026-05-01T14:02:54.273Z"
+    },
+    "scripts/gia_debug2.js": {
+      "mtime": 1777637214454,
+      "hash": "d0075b9c70c9abc9",
+      "size": 160838,
+      "scannedAt": "2026-05-01T14:02:54.273Z"
+    },
+    "scripts/gia_debug3.js": {
+      "mtime": 1777637253040,
+      "hash": "3b91e4684885676b",
+      "size": 160869,
+      "scannedAt": "2026-05-01T14:02:54.273Z"
+    },
+    "scripts/gia_debug4.js": {
+      "mtime": 1777637293837,
+      "hash": "44973b72bb177d68",
+      "size": 160951,
+      "scannedAt": "2026-05-01T14:02:54.274Z"
+    },
+    "scripts/gia_pdf_parser.js": {
+      "mtime": 1777644185500,
+      "hash": "48e039858646d21f",
+      "size": 8906,
+      "scannedAt": "2026-05-01T14:03:11.133Z"
+    },
+    "scripts/test_round1.js": {
+      "mtime": 1777703864560,
+      "hash": "b34a5bf38d88835a",
+      "size": 10314,
+      "scannedAt": "2026-05-02T07:03:00.929Z"
+    },
+    "scripts/test_round2.js": {
+      "mtime": 1777670347189,
+      "hash": "f8fc7e6c1d9c2ed1",
+      "size": 4388,
+      "scannedAt": "2026-05-02T02:00:20.730Z"
+    },
+    "scripts/test_round3.js": {
+      "mtime": 1777704052208,
+      "hash": "e134cfd354dce376",
+      "size": 13775,
+      "scannedAt": "2026-05-02T07:03:00.929Z"
+    },
+    "scripts/test_round4.js": {
+      "mtime": 1777704403221,
+      "hash": "1243a40d4f7d1fe8",
+      "size": 12618,
+      "scannedAt": "2026-05-02T07:03:00.929Z"
+    },
+    "scripts/test_round5.js": {
+      "mtime": 1777651620075,
+      "hash": "01f18403bbdb5c10",
+      "size": 8084,
+      "scannedAt": "2026-05-02T02:00:20.730Z"
+    },
+    "scripts/test_round6.js": {
+      "mtime": 1777653327618,
+      "hash": "758dffa0e1d353fd",
+      "size": 10422,
+      "scannedAt": "2026-05-02T02:00:20.730Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.3.2.js": {
+      "mtime": 1777650250762,
+      "hash": "cfac1c51f7537fc7",
+      "size": 161013,
+      "scannedAt": "2026-05-02T02:00:20.728Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.3.3.js": {
+      "mtime": 1777653375941,
+      "hash": "512114539498a932",
+      "size": 178688,
+      "scannedAt": "2026-05-02T02:00:20.728Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.3.4.js": {
+      "mtime": 1777656674692,
+      "hash": "f27dfa65e0078846",
+      "size": 183716,
+      "scannedAt": "2026-05-02T02:00:20.728Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.3.5.js": {
+      "mtime": 1777656478531,
+      "hash": "8f0c6b611d2e4019",
+      "size": 182701,
+      "scannedAt": "2026-05-02T02:00:20.729Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.3.6.js": {
+      "mtime": 1777695477730,
+      "hash": "17e775b50da65332",
+      "size": 187649,
+      "scannedAt": "2026-05-02T07:03:00.928Z"
+    },
+    "scripts/test_round1_2_3.js": {
+      "mtime": 1777656699989,
+      "hash": "153c9c103a634bd5",
+      "size": 12090,
+      "scannedAt": "2026-05-02T02:00:20.730Z"
+    },
+    "scripts/batch_gia_v37.js": {
+      "mtime": 1777705393400,
+      "hash": "342be3de5ffa2cd5",
+      "size": 3177,
+      "scannedAt": "2026-05-02T07:03:13.848Z"
+    },
+    "scripts/gia_batch_group_c.js": {
+      "mtime": 1777705393409,
+      "hash": "4c77c4012cf45836",
+      "size": 4714,
+      "scannedAt": "2026-05-02T07:03:13.848Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.3.7.js": {
+      "mtime": 1777704392006,
+      "hash": "9a193516b49dbc63",
+      "size": 191051,
+      "scannedAt": "2026-05-02T07:03:00.928Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v15.3.8.js": {
+      "mtime": 1777704396718,
+      "hash": "9a193516b49dbc63",
+      "size": 191051,
+      "scannedAt": "2026-05-02T07:03:00.929Z"
+    },
+    "scripts/gia_compare_test.js": {
+      "mtime": 1777705393406,
+      "hash": "2b9fc85335902b50",
+      "size": 14045,
+      "scannedAt": "2026-05-02T07:03:13.848Z"
+    },
+    "scripts/gia_speed_test.js": {
+      "mtime": 1777705393402,
+      "hash": "1aaf45725647a72c",
+      "size": 3540,
+      "scannedAt": "2026-05-02T07:03:13.848Z"
+    },
+    "scripts/batch_gia_processor.js": {
+      "mtime": 1777730441338,
+      "hash": "b1dec4b3b1f06dfa",
+      "size": 1434,
+      "scannedAt": "2026-05-02T14:00:41.411Z"
+    },
+    "scripts/batch_gia_v38.js": {
+      "mtime": 1777730441347,
+      "hash": "8d7bac398f87f896",
+      "size": 5265,
+      "scannedAt": "2026-05-02T14:00:41.411Z"
+    },
+    "scripts/batch_gia_v38_missing.js": {
+      "mtime": 1777730441344,
+      "hash": "2529546fbb0f5d6a",
+      "size": 1871,
+      "scannedAt": "2026-05-02T14:00:41.411Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v16.0.0.js": {
+      "mtime": 1777720540178,
+      "hash": "bb33ae101502a854",
+      "size": 194576,
+      "scannedAt": "2026-05-02T14:00:27.833Z"
+    },
+    "scripts/test_round7.js": {
+      "mtime": 1777718633440,
+      "hash": "81c018eddddc60d5",
+      "size": 12041,
+      "scannedAt": "2026-05-02T14:00:27.834Z"
+    },
+    "scripts/test_round7_regression.js": {
+      "mtime": 1777718825713,
+      "hash": "b34ab1e8b4b1cd0a",
+      "size": 8918,
+      "scannedAt": "2026-05-02T14:00:27.834Z"
+    },
+    "scripts/batch_gia_v39_group1.js": {
+      "mtime": 1777773765854,
+      "hash": "00c6a71a7604db2e",
+      "size": 1863,
+      "scannedAt": "2026-05-03T02:02:45.928Z"
+    },
+    "scripts/gia_batch_runner_b.js": {
+      "mtime": 1777860140198,
+      "hash": "d3d7a2635336c988",
+      "size": 4720,
+      "scannedAt": "2026-05-04T02:02:20.268Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v17.0.0.js": {
+      "mtime": 1778004500000,
+      "hash": "96367b23b6c27b48",
+      "size": 256526,
+      "scannedAt": "2026-05-06T02:00:17.157Z"
+    },
+    "scripts/gia_cert_analyzer_refactored_v17.1.0.js": {
+      "mtime": 1778479371193,
+      "hash": "39759a76ac162bbd",
+      "size": 295423,
+      "scannedAt": "2026-05-11T06:02:58.302Z"
+    },
+    "batch_process_gia_65.js": {
+      "mtime": 1778085835986,
+      "hash": "51976f4f7e97909f",
+      "size": 10679,
+      "scannedAt": "2026-05-07T02:00:05.359Z"
+    },
+    "fix_gia_results.js": {
+      "mtime": 1778087773297,
+      "hash": "8f09d72154047b23",
+      "size": 7918,
+      "scannedAt": "2026-05-07T02:00:05.359Z"
+    },
+    "scripts/gia_analyze_and_send.js": {
+      "mtime": 1778480941686,
+      "hash": "be38509d79a039dc",
+      "size": 3887,
+      "scannedAt": "2026-05-11T06:29:09.809Z"
+    },
+    "scripts/gia_send_embed.js": {
+      "mtime": 1778479257575,
+      "hash": "e8ec5a76b30e6944",
+      "size": 2007,
+      "scannedAt": "2026-05-11T06:02:58.302Z"
+    },
+    "scripts/llm_judge.js": {
+      "mtime": 1780854336392,
+      "hash": "42de8b5b32b7d5f0",
+      "size": 22345,
+      "scannedAt": "2026-06-08T02:00:11.224Z"
+    },
+    "scripts/compare_gia_ocr_vs_parser.js": {
+      "mtime": 1778311059006,
+      "hash": "f22e3ba22890e553",
+      "size": 7351,
+      "scannedAt": "2026-05-09T07:57:58.771Z"
+    },
+    "scripts/knowledge_capture.js": {
+      "mtime": 1778479337116,
+      "hash": "893e8ac063442fe8",
+      "size": 2999,
+      "scannedAt": "2026-05-11T06:02:58.302Z"
+    },
+    "scripts/test_autofix.js": {
+      "mtime": 1778482787153,
+      "hash": "a7a00163c1a44f77",
+      "size": 1750,
+      "scannedAt": "2026-05-11T06:59:58.584Z"
+    },
+    "scripts/lib/verify_fix.js": {
+      "mtime": 1778483102379,
+      "hash": "5533e54f3aa5409d",
+      "size": 9731,
+      "scannedAt": "2026-05-11T07:05:56.815Z"
+    },
+    "scripts/unified_search.js": {
+      "mtime": 1780215678325,
+      "hash": "898695f0d35cd8c9",
+      "size": 16261,
+      "scannedAt": "2026-05-31T08:56:43.456Z"
+    },
+    "scripts/wiki_vectorizer.js": {
+      "mtime": 1779124834642,
+      "hash": "26d01e8b0f0e6be5",
+      "size": 15353,
+      "scannedAt": "2026-05-19T02:00:03.062Z"
+    },
+    "scripts/anomaly_monitor.js": {
+      "mtime": 1779069614060,
+      "hash": "793dedcb8d2ca07b",
+      "size": 11462,
+      "scannedAt": "2026-05-18T02:00:14.153Z"
+    },
+    "scripts/lib/baseline_store.js": {
+      "mtime": 1779042366888,
+      "hash": "be659cd5e1461a0a",
+      "size": 3661,
+      "scannedAt": "2026-05-17T18:26:57.358Z"
+    },
+    "scripts/mail_monitor.js": {
+      "mtime": 1780557635464,
+      "hash": "62c246779e012d3c",
+      "size": 10754,
+      "scannedAt": "2026-06-04T14:01:52.474Z"
+    },
+    "scripts/mail_tool.js": {
+      "mtime": 1779156012716,
+      "hash": "464665167e1be74e",
+      "size": 14429,
+      "scannedAt": "2026-05-19T02:00:12.762Z"
+    },
+    "scripts/router/auto_corrector.js": {
+      "mtime": 1779279264824,
+      "hash": "79e9d35f55bc8e44",
+      "size": 8068,
+      "scannedAt": "2026-05-20T14:00:11.578Z"
+    },
+    "scripts/router/classifier.js": {
+      "mtime": 1780681436201,
+      "hash": "8b9c01a470ae4d93",
+      "size": 6133,
+      "scannedAt": "2026-06-06T05:30:27.928Z"
+    },
+    "scripts/router/config.js": {
+      "mtime": 1779275636072,
+      "hash": "fc0bd333e76d9217",
+      "size": 451,
+      "scannedAt": "2026-05-20T14:00:11.578Z"
+    },
+    "scripts/router/decision_logger.js": {
+      "mtime": 1780034450646,
+      "hash": "b4576f3fee4dbf87",
+      "size": 3712,
+      "scannedAt": "2026-05-29T07:00:17.248Z"
+    },
+    "scripts/router/email_router.js": {
+      "mtime": 1779285622017,
+      "hash": "dfa7a7d7b3f0c071",
+      "size": 11059,
+      "scannedAt": "2026-05-20T14:00:22.071Z"
+    },
+    "scripts/router/failure_recovery.js": {
+      "mtime": 1780675977065,
+      "hash": "cd2edeb3b6059908",
+      "size": 13092,
+      "scannedAt": "2026-06-06T05:30:27.929Z"
+    },
+    "scripts/router/feedback_collector.js": {
+      "mtime": 1779275961942,
+      "hash": "cf5cd683039a7938",
+      "size": 7814,
+      "scannedAt": "2026-05-20T14:00:11.579Z"
+    },
+    "scripts/router/model_router.js": {
+      "mtime": 1781063603665,
+      "hash": "1967635af3163c1a",
+      "size": 9997,
+      "scannedAt": "2026-06-11T02:07:40.701Z"
+    },
+    "scripts/router/report.js": {
+      "mtime": 1779285622021,
+      "hash": "c6eedb680523eff7",
+      "size": 7756,
+      "scannedAt": "2026-05-20T14:00:22.071Z"
+    },
+    "scripts/router/rule_adjuster.js": {
+      "mtime": 1779285622009,
+      "hash": "a9c2f97f218927ff",
+      "size": 13190,
+      "scannedAt": "2026-05-20T14:00:22.071Z"
+    },
+    "hooks/auto-router/handler.js": {
+      "mtime": 1779541396531,
+      "hash": "dccfe01bdeed4958",
+      "size": 1306,
+      "scannedAt": "2026-05-23T14:00:06.502Z"
+    },
+    "scripts/fix_broken_notes_final.js": {
+      "mtime": 1780215690194,
+      "hash": "766ec30e41a8bd36",
+      "size": 2220,
+      "scannedAt": "2026-05-31T08:56:43.455Z"
+    },
+    "scripts/write_to_obsidian.js": {
+      "mtime": 1780279219792,
+      "hash": "b758206f607ef65d",
+      "size": 8271,
+      "scannedAt": "2026-06-01T02:00:19.858Z"
+    },
+    "scripts/diamond_grading_report.js": {
+      "mtime": 1779976929926,
+      "hash": "e76b7ab2fb57e24c",
+      "size": 16635,
+      "scannedAt": "2026-05-28T14:02:09.984Z"
+    },
+    "scripts/gia_cert_analyzer_v17.2.0.js": {
+      "mtime": 1779962841412,
+      "hash": "833bfad09cebb537",
+      "size": 295290,
+      "scannedAt": "2026-05-28T14:01:59.730Z"
+    },
+    "scripts/gia_grading_logic_extractor.js": {
+      "mtime": 1779976929929,
+      "hash": "c0f7bf7c4b290072",
+      "size": 10378,
+      "scannedAt": "2026-05-28T14:02:09.984Z"
+    },
+    "scripts/hermes_lessons_progress.js": {
+      "mtime": 1779976929918,
+      "hash": "e1e40166bfdaa373",
+      "size": 6217,
+      "scannedAt": "2026-05-28T14:02:09.984Z"
+    },
+    "scripts/test_v17.2.0_tier_floor.js": {
+      "mtime": 1779976929921,
+      "hash": "28f1f69b007aae2b",
+      "size": 2781,
+      "scannedAt": "2026-05-28T14:02:09.985Z"
+    },
+    "tmp_d_search.js": {
+      "mtime": 1779988087385,
+      "hash": "5b7d032bf4c52365",
+      "size": 1600,
+      "scannedAt": "2026-05-28T20:00:08.458Z"
+    },
+    "tmp_rapaport.js": {
+      "mtime": 1779988124156,
+      "hash": "afa4891ccf182f46",
+      "size": 1498,
+      "scannedAt": "2026-05-28T20:00:08.458Z"
+    },
+    "tmp_search.js": {
+      "mtime": 1779988011918,
+      "hash": "d57e85051c5e6dd5",
+      "size": 674,
+      "scannedAt": "2026-05-28T20:00:08.458Z"
+    },
+    "tmp_search2.js": {
+      "mtime": 1779988032577,
+      "hash": "642a86edfdfee5bb",
+      "size": 1093,
+      "scannedAt": "2026-05-28T20:00:08.458Z"
+    },
+    "tmp_search3.js": {
+      "mtime": 1779988047451,
+      "hash": "37176f745eea409d",
+      "size": 1322,
+      "scannedAt": "2026-05-28T20:00:08.459Z"
+    },
+    "tmp_stats.js": {
+      "mtime": 1779988065837,
+      "hash": "a5826683f98eb1e4",
+      "size": 1216,
+      "scannedAt": "2026-05-28T20:00:08.459Z"
+    },
+    "scripts/router/_archive/auto_corrector.js": {
+      "mtime": 1779279264824,
+      "hash": "79e9d35f55bc8e44",
+      "size": 8068,
+      "scannedAt": "2026-05-30T14:02:34.491Z"
+    },
+    "scripts/router/_archive/decision_logger.js": {
+      "mtime": 1780034450646,
+      "hash": "b4576f3fee4dbf87",
+      "size": 3712,
+      "scannedAt": "2026-05-30T14:02:34.491Z"
+    },
+    "scripts/router/_archive/email_router.js": {
+      "mtime": 1779285622017,
+      "hash": "dfa7a7d7b3f0c071",
+      "size": 11059,
+      "scannedAt": "2026-05-30T14:02:34.491Z"
+    },
+    "scripts/router/_archive/failure_recovery.js": {
+      "mtime": 1779285622023,
+      "hash": "5e9fc8e2778eb844",
+      "size": 9478,
+      "scannedAt": "2026-05-30T14:02:34.491Z"
+    },
+    "scripts/router/_archive/feedback_collector.js": {
+      "mtime": 1779275961942,
+      "hash": "cf5cd683039a7938",
+      "size": 7814,
+      "scannedAt": "2026-05-30T14:02:34.491Z"
+    },
+    "scripts/router/_archive/model_router.js": {
+      "mtime": 1779285622020,
+      "hash": "d1b7c4a3831c288c",
+      "size": 4131,
+      "scannedAt": "2026-05-30T14:02:34.491Z"
+    },
+    "scripts/router/_archive/rule_adjuster.js": {
+      "mtime": 1779285622009,
+      "hash": "a9c2f97f218927ff",
+      "size": 13190,
+      "scannedAt": "2026-05-30T14:02:34.491Z"
+    },
+    "scripts/verify_edit.js": {
+      "mtime": 1780211000016,
+      "hash": "877a3a8e14c68c58",
+      "size": 10172,
+      "scannedAt": "2026-05-31T07:03:20.073Z"
+    },
+    "scripts/connection_surface.js": {
+      "mtime": 1781384474875,
+      "hash": "4916ead6b17da952",
+      "size": 10947,
+      "scannedAt": "2026-06-14T02:00:09.670Z"
+    },
+    "scripts/synthesis_closed_loop.js": {
+      "mtime": 1780279219800,
+      "hash": "44992fb462698f40",
+      "size": 8729,
+      "scannedAt": "2026-06-01T02:00:19.858Z"
+    },
+    "scripts/usage_tracker.js": {
+      "mtime": 1780279219793,
+      "hash": "b773a899d6e15e6f",
+      "size": 4641,
+      "scannedAt": "2026-06-01T02:00:19.858Z"
+    },
+    "scripts/session_end.js": {
+      "mtime": 1780581722400,
+      "hash": "944dba1d231cd8ad",
+      "size": 16776,
+      "scannedAt": "2026-06-04T14:02:02.471Z"
+    },
+    "scripts/startup_dashboard.js": {
+      "mtime": 1780599753423,
+      "hash": "3fd5db75e5cb2219",
+      "size": 9283,
+      "scannedAt": "2026-06-04T19:02:38.749Z"
+    },
+    "metrics_collector.js": {
+      "mtime": 1780590600878,
+      "hash": "10134bc33ebf5b13",
+      "size": 12527,
+      "scannedAt": "2026-06-04T19:00:44.975Z"
+    },
+    "scripts/router/tests/integration_tests.js": {
+      "mtime": 1780854031659,
+      "hash": "f7b7ada7336e3fa0",
+      "size": 14089,
+      "scannedAt": "2026-06-08T02:00:11.225Z"
+    },
+    "scripts/test_smart_routing.js": {
+      "mtime": 1780599461283,
+      "hash": "3f1e262cdda68cc9",
+      "size": 2815,
+      "scannedAt": "2026-06-04T19:00:44.978Z"
+    },
+    "scripts/spawn_config.js": {
+      "mtime": 1781064908039,
+      "hash": "c19876f0463154d4",
+      "size": 4635,
+      "scannedAt": "2026-06-11T02:07:40.701Z"
+    },
+    "scripts/router/auxiliary_classifier.js": {
+      "mtime": 1780854016232,
+      "hash": "331461d50cbe3d3d",
+      "size": 2459,
+      "scannedAt": "2026-06-08T02:00:11.225Z"
+    },
+    "scripts/router/config_loader.js": {
+      "mtime": 1780675794426,
+      "hash": "3d12452d27b557ff",
+      "size": 3481,
+      "scannedAt": "2026-06-06T05:30:27.928Z"
+    },
+    "scripts/router/log_rotator.js": {
+      "mtime": 1780675952390,
+      "hash": "0272cb34848e71cd",
+      "size": 2509,
+      "scannedAt": "2026-06-06T05:30:27.929Z"
+    },
+    "scripts/router/tests/classifier_tests.js": {
+      "mtime": 1780673555747,
+      "hash": "04107795948e3d67",
+      "size": 9359,
+      "scannedAt": "2026-06-06T05:30:27.929Z"
+    },
+    "scripts/router/tests/e2e_test.js": {
+      "mtime": 1781063911552,
+      "hash": "0c00ad2ceb3618ec",
+      "size": 7355,
+      "scannedAt": "2026-06-11T02:07:40.701Z"
+    },
+    "scripts/router/tests/spawn_config_tests.js": {
+      "mtime": 1781064953353,
+      "hash": "757f016da7caba6c",
+      "size": 7383,
+      "scannedAt": "2026-06-11T02:07:40.701Z"
+    },
+    "skills/_archive/data_analyzer.js": {
+      "mtime": 1775535933391,
+      "hash": "0f86fe8a2058e103",
+      "size": 1028,
+      "scannedAt": "2026-06-06T05:30:27.930Z"
+    },
+    "skills/_archive/excel_ai_formula.js": {
+      "mtime": 1775539831866,
+      "hash": "95a07820ab648d91",
+      "size": 6114,
+      "scannedAt": "2026-06-06T05:30:27.930Z"
+    },
+    "skills/_archive/file_processor.js": {
+      "mtime": 1775535933394,
+      "hash": "6990da3bc5403989",
+      "size": 900,
+      "scannedAt": "2026-06-06T05:30:27.930Z"
+    },
+    "skills/_archive/learning_processor.js": {
+      "mtime": 1775535933395,
+      "hash": "02b9e57fc5d9ba7e",
+      "size": 1098,
+      "scannedAt": "2026-06-06T05:30:27.930Z"
+    },
+    "skills/_archive/memory_manager.js": {
+      "mtime": 1775535933396,
+      "hash": "4e8480b4b3835527",
+      "size": 967,
+      "scannedAt": "2026-06-06T05:30:27.931Z"
+    },
+    "skills/_archive/productivity_automation.js": {
+      "mtime": 1775535933397,
+      "hash": "e1b0ef0372d00bd3",
+      "size": 7191,
+      "scannedAt": "2026-06-06T05:30:27.931Z"
+    },
+    "skills/_archive/reminder_manager.js": {
+      "mtime": 1775535933399,
+      "hash": "3e7ea40d7b9ec8f9",
+      "size": 1183,
+      "scannedAt": "2026-06-06T05:30:27.931Z"
+    },
+    "skills/_archive/stock_management.js": {
+      "mtime": 1775535933400,
+      "hash": "1224bb1912b966f4",
+      "size": 874,
+      "scannedAt": "2026-06-06T05:30:27.931Z"
+    },
+    "skills/_archive/whatsapp_notification.js": {
+      "mtime": 1775535933401,
+      "hash": "84ee6c5b32124534",
+      "size": 1033,
+      "scannedAt": "2026-06-06T05:30:27.931Z"
+    },
+    "scripts/lib/aggregate_signals.js": {
+      "mtime": 1780759197628,
+      "hash": "1bc0fedbae47134a",
+      "size": 5521,
+      "scannedAt": "2026-06-06T16:29:13.812Z"
+    },
+    "scripts/lib/disk_guard.js": {
+      "mtime": 1780872484268,
+      "hash": "84507ac8e2eeb8be",
+      "size": 4388,
+      "scannedAt": "2026-06-08T02:00:11.224Z"
+    },
+    "scripts/lib/proposal_hash.js": {
+      "mtime": 1780763225426,
+      "hash": "ba3057678016922b",
+      "size": 3762,
+      "scannedAt": "2026-06-06T16:29:13.812Z"
+    },
+    "scripts/migrate_skills_to_subdir.js": {
+      "mtime": 1780804708989,
+      "hash": "deca05cacfbc98c5",
+      "size": 17219,
+      "scannedAt": "2026-06-07T03:58:29.074Z"
+    },
+    "scripts/queue_depth.js": {
+      "mtime": 1780804708977,
+      "hash": "e47149edbf338957",
+      "size": 8002,
+      "scannedAt": "2026-06-07T03:58:29.074Z"
+    },
+    "scripts/skill_reviewer.js": {
+      "mtime": 1781149528641,
+      "hash": "21ecad132360477e",
+      "size": 44228,
+      "scannedAt": "2026-06-11T03:46:20.794Z"
+    },
+    "scripts/skill_reviewer_cleanup.js": {
+      "mtime": 1780872468553,
+      "hash": "33fe1b7c11a0dd85",
+      "size": 1446,
+      "scannedAt": "2026-06-08T02:00:11.225Z"
+    },
+    "scripts/verify_proposal.js": {
+      "mtime": 1780763249613,
+      "hash": "f74f2ee2e88570ff",
+      "size": 3891,
+      "scannedAt": "2026-06-06T16:29:13.813Z"
+    },
+    "scripts/lib/umbrella_consolidation.js": {
+      "mtime": 1780854336380,
+      "hash": "ce40ff81a7956ed9",
+      "size": 19712,
+      "scannedAt": "2026-06-08T02:00:11.224Z"
+    },
+    "tests/test_pin_semantics.js": {
+      "mtime": 1780768831572,
+      "hash": "8ce788cc944549ca",
+      "size": 3295,
+      "scannedAt": "2026-06-06T18:00:31.577Z"
+    },
+    "tests/test_umbrella_consolidation.js": {
+      "mtime": 1780769247323,
+      "hash": "a28bda757046bb62",
+      "size": 19203,
+      "scannedAt": "2026-06-06T18:07:40.838Z"
+    },
+    "scripts/lib/pin_semantics.js": {
+      "mtime": 1780768705934,
+      "hash": "97302aad448e7745",
+      "size": 883,
+      "scannedAt": "2026-06-06T18:00:31.575Z"
+    },
+    "scripts/lib/minimax_scrubber_core.js": {
+      "mtime": 1780804708940,
+      "hash": "b43b157ac715b6f0",
+      "size": 4701,
+      "scannedAt": "2026-06-07T03:58:29.073Z"
+    },
+    "scripts/minimax_reasoning_scrubber.js": {
+      "mtime": 1780771842849,
+      "hash": "801f3a1b9c97068e",
+      "size": 4170,
+      "scannedAt": "2026-06-07T03:58:17.073Z"
+    },
+    "scripts/lib/frontmatter.js": {
+      "mtime": 1780805757737,
+      "hash": "804ff6d1b8462f4a",
+      "size": 3817,
+      "scannedAt": "2026-06-07T04:22:55.277Z"
+    },
+    "scripts/lib/path_safety.js": {
+      "mtime": 1780805808153,
+      "hash": "b9b28c72e9b0b5f5",
+      "size": 2677,
+      "scannedAt": "2026-06-07T04:22:55.277Z"
+    },
+    "scripts/lib/skill_discovery.js": {
+      "mtime": 1780982974351,
+      "hash": "3ecae1f5c1c8a5ab",
+      "size": 2885,
+      "scannedAt": "2026-06-10T02:22:35.069Z"
+    },
+    "scripts/ai_hot_push.js": {
+      "mtime": 1781074568639,
+      "hash": "2c2a46c762455b54",
+      "size": 21583,
+      "scannedAt": "2026-06-11T02:07:40.700Z"
+    },
+    "scripts/cron_preflight_runner.js": {
+      "mtime": 1780884011155,
+      "hash": "de598d9cc79c36de",
+      "size": 10472,
+      "scannedAt": "2026-06-08T02:00:11.223Z"
+    },
+    "scripts/lib/qualitative_signals.js": {
+      "mtime": 1780871887398,
+      "hash": "1b99bf03f86d830d",
+      "size": 1969,
+      "scannedAt": "2026-06-08T02:00:11.224Z"
+    },
+    "scripts/skill_reviewer_bot.js": {
+      "mtime": 1781402409514,
+      "hash": "840ae01f068deacb",
+      "size": 46674,
+      "scannedAt": "2026-06-14T02:00:09.671Z"
+    },
+    "scripts/daily_synthesis.js": {
+      "mtime": 1781144166956,
+      "hash": "5fb86dda4008fd2b",
+      "size": 27342,
+      "scannedAt": "2026-06-11T03:46:20.793Z"
+    },
+    "scripts/lib/skillIntegrityScanner.js": {
+      "mtime": 1780978938778,
+      "hash": "517d463f64ccfba3",
+      "size": 12869,
+      "scannedAt": "2026-06-09T04:22:18.881Z"
+    },
+    "scripts/validate_skill_file.js": {
+      "mtime": 1781149293610,
+      "hash": "987f4af489df6c5f",
+      "size": 8075,
+      "scannedAt": "2026-06-11T03:46:20.794Z"
+    },
+    "scripts/anomaly_proactive_push.js": {
+      "mtime": 1780941172416,
+      "hash": "707f492c8fe150ce",
+      "size": 11779,
+      "scannedAt": "2026-06-09T04:22:18.880Z"
+    },
+    "scripts/cron_health_triage.js": {
+      "mtime": 1780941182083,
+      "hash": "02f5676001cf4b36",
+      "size": 12391,
+      "scannedAt": "2026-06-09T04:22:18.880Z"
+    },
+    "scripts/error_auto_issue.js": {
+      "mtime": 1780941420754,
+      "hash": "55fff0610b0c0705",
+      "size": 13750,
+      "scannedAt": "2026-06-09T04:22:18.881Z"
+    },
+    "scripts/skill_matcher_metrics.js": {
+      "mtime": 1780988400350,
+      "hash": "011d6ee9347459c6",
+      "size": 7272,
+      "scannedAt": "2026-06-10T02:22:35.070Z"
+    },
+    "scripts/skill_junk_tracker.js": {
+      "mtime": 1781240503426,
+      "hash": "f257d41b9bae0ad2",
+      "size": 9945,
+      "scannedAt": "2026-06-12T16:46:32.157Z"
+    },
+    "skills/_archive/diamond_valuation.js": {
+      "mtime": 1775535933392,
+      "hash": "5a771759f17b19b6",
+      "size": 602,
+      "scannedAt": "2026-06-11T03:46:20.794Z"
+    },
+    "skills/_archive/quotation_generator.js": {
+      "mtime": 1775535933398,
+      "hash": "34438f3278980dd8",
+      "size": 1037,
+      "scannedAt": "2026-06-11T03:46:20.794Z"
+    },
+    "scripts/skill_junk_pause.js": {
+      "mtime": 1781263799250,
+      "hash": "964700214b024ea9",
+      "size": 8630,
+      "scannedAt": "2026-06-12T16:46:32.157Z"
+    },
+    "scripts/skill_pitfalls_fallback.js": {
+      "mtime": 1781282818342,
+      "hash": "6cc946e2e0efbcf3",
+      "size": 10011,
+      "scannedAt": "2026-06-12T16:46:58.487Z"
+    },
+    "scripts/skill_reviewer_daily_report.js": {
+      "mtime": 1781263866015,
+      "hash": "9c6a3b73a5006c45",
+      "size": 11129,
+      "scannedAt": "2026-06-12T16:46:32.157Z"
+    },
+    "scripts/skill_reviewer_pipeline.js": {
+      "mtime": 1781323182799,
+      "hash": "79e07588a50f2da3",
+      "size": 7336,
+      "scannedAt": "2026-06-14T02:00:09.671Z"
+    },
+    "scripts/skill_reviewer_resume.js": {
+      "mtime": 1781263901693,
+      "hash": "d3ed42381037557c",
+      "size": 3719,
+      "scannedAt": "2026-06-12T16:46:32.157Z"
+    },
+    "scripts/test_daily_report.js": {
+      "mtime": 1781282818356,
+      "hash": "bf6218e7cae9b46b",
+      "size": 8513,
+      "scannedAt": "2026-06-12T16:46:58.487Z"
+    },
+    "scripts/test_junk_pause.js": {
+      "mtime": 1781282818348,
+      "hash": "a5a2cbb4e179f2e9",
+      "size": 6309,
+      "scannedAt": "2026-06-12T16:46:58.487Z"
+    },
+    "scripts/test_resume.js": {
+      "mtime": 1781282818353,
+      "hash": "86a663f98af2c86e",
+      "size": 7099,
+      "scannedAt": "2026-06-12T16:46:58.487Z"
+    },
+    "scripts/test_skill_reviewer_safety_nets.js": {
+      "mtime": 1781282818350,
+      "hash": "03ab33e2333f64bf",
+      "size": 12602,
+      "scannedAt": "2026-06-12T16:46:58.488Z"
+    }
+  },
+  "lastScan": "2026-06-14T02:00:10.968Z",
+  "version": "1.0"
+}

@@ -1,0 +1,28 @@
+## 分析任務
+
+你是 Kimi Code CLI，請分析以下建議，提出新睇法或改善建議。
+
+### Ally 的建議（核心）
+
+唔好等 Phase 1 整合資源，先直接實現 Phase 2 (Batch Verification) 作 MVP。
+
+**建議的 Phase 順序：**
+- Phase 1 (MVP): 直接實現 Batch Verification（一個 Kimi call 確認所有候選問題，立即見效）
+- Phase 2: 加入 Pattern Store（擴展 FP patterns，減少重複確認）
+- Phase 3: 接入 Auto-Fix（Confidence-based 修復）
+
+**時間估算：** Kimi 建議 6 週，Ally 估 7-8 週
+**Token 預算：** 預期节省 85%
+
+### 分析要求
+1. 呢個建議有冇漏洞？
+2. 有冇更好嘅實現方式？
+3. MVP 範圍係咪足夠小？
+4. 有冇忽略咗咩風險？
+5. 可以點樣進一步優化？
+
+### 請做
+1. 先睇 ~/.openclaw/workspace/scripts/ 了解現有架構
+2. 睇 ~/.openclaw/workspace/memory/patterns/ 了解現有 pattern 格式
+3. 睇 ~/.openclaw/workspace/errors.json 了解錯誤記錄
+4. 然後提供你的分析

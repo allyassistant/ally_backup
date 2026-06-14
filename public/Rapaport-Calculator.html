@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Rapaport Calculator">
+    <meta name="theme-color" content="#C8102E">
+    <link rel="manifest" href="manifest.json">
+    <title>💎 Rapaport Price Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #C8102E;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .header { text-align: center; margin-bottom: 25px; }
+        .ios-icon {
+            width: 60px; height: 60px;
+            background: #C8102E;
+            border-radius: 15px;
+            margin: 0 auto 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        h1 { color: #C8102E; font-size: 24px; font-weight: 700; letter-spacing: 1px; }
+        .subtitle { color: #888; font-size: 14px; margin-top: 5px; }
+        .form-group { margin-bottom: 20px; }
+        label {
+            display: block; margin-bottom: 8px;
+            font-weight: 600; color: #555; font-size: 15px;
+        }
+        select, input {
+            width: 100%; padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px; font-size: 16px;
+            background: #fafafa;
+            -webkit-appearance: none;
+        }
+        select:focus, input:focus {
+            outline: none; border-color: #C8102E; background: white;
+        }
+        .calculate-btn {
+            width: 100%; padding: 18px;
+            background: #C8102E;
+            color: white; border: none; border-radius: 12px;
+            font-size: 18px; font-weight: 700;
+            cursor: pointer; margin-top: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .calculate-btn:active { transform: scale(0.98); background: #A00D24; }
+        .result {
+            margin-top: 25px; padding: 20px;
+            background: #f8f8f8;
+            border-radius: 15px; display: none;
+            border-left: 4px solid #C8102E;
+        }
+        .result.show { display: block; animation: slideUp 0.3s ease; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .result-title { text-align: center; color: #C8102E; font-weight: 700; margin-bottom: 15px; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
+        .result-row {
+            display: flex; justify-content: space-between;
+            padding: 10px 0; border-bottom: 1px solid #ddd;
+        }
+        .result-row:last-child { border-bottom: none; }
+        .result-label { color: #666; }
+        .result-value { font-weight: 600; color: #333; }
+        .total-price {
+            font-size: 28px; color: #C8102E;
+            text-align: center; margin-top: 15px; font-weight: 700;
+        }
+        .error {
+            color: #e74c3c; text-align: center; margin-top: 15px;
+            padding: 10px; background: #fee; border-radius: 8px; display: none;
+        }
+        .add-to-home {
+            text-align: center; margin-top: 20px; padding: 15px;
+            background: #e8f4f8; border-radius: 10px;
+            font-size: 14px; color: #555;
+        }
+        .db-info {
+            text-align: center; font-size: 12px; color: #999;
+            margin-top: 15px; padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .shape-note {
+            font-size: 12px; color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .update-banner {
+            display: none;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: slideDown 0.3s ease;
+        }
+        .update-banner.show { display: block; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .update-btn {
+            background: white;
+            color: #38a169;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #C8102E;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="update-banner" id="updateBanner">
+            📢 New pricing data available!
+            <button class="update-btn" onclick="location.reload()">Update Now</button>
+        </div>
+
+        <div class="header">
+            <div class="ios-icon">R</div>
+            <h1>Rapaport Calculator</h1>
+        </div>
+
+        <div class="loading" id="loading">Loading pricing data...</div>
+        
+        <form id="calculatorForm" style="display:none;">
+            <div class="form-group">
+                <label>Shape</label>
+                <select id="shape" required>
+                    <option value="">Select...</option>
+                    <option value="RBC">ROUND (RBC)</option>
+                    <option value="PS">PEAR (All Others)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Carat Weight</label>
+                <input type="text" inputmode="decimal" id="carat" step="0.01" min="0.1" max="100" placeholder="e.g. 5.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Color</label>
+                <select id="color" required>
+                    <option value="">Select...</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                    <option value="J">J</option>
+                    <option value="K">K</option>
+                    <option value="L">L</option>
+                    <option value="M">M</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Clarity</label>
+                <select id="clarity" required>
+                    <option value="">Select...</option>
+                    <option value="FL">FL - Flawless</option>
+                    <option value="IF">IF - Internally Flawless</option>
+                    <option value="VVS1">VVS1</option>
+                    <option value="VVS2">VVS2</option>
+                    <option value="VS1">VS1</option>
+                    <option value="VS2">VS2</option>
+                    <option value="SI1">SI1</option>
+                    <option value="SI2">SI2</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Discount</label>
+                <input type="number" id="discount" value="-30" step="1" min="-100" max="100" placeholder="e.g. -30">
+            </div>
+            
+            <button type="submit" class="calculate-btn">Calculate Price</button>
+        </form>
+        
+        <div class="error" id="error"></div>
+        
+        <div class="result" id="result">
+            <div class="result-title">PRICE QUOTE</div>
+            
+            <div class="result-row">
+                <span class="result-label">Shape</span>
+                <span class="result-value" id="resShape"></span>
+            </div>
+            
+            <div class="result-row">
+                <span class="result-label">Carat</span>
+                <span class="result-value" id="resCarat"></span>
+            </div>
+            
+            <div class="result-row">
+                <span class="result-label">Spec</span>
+                <span class="result-value" id="resSpec"></span>
+            </div>
+            
+            <div class="result-row">
+                <span class="result-label">List Price</span>
+                <span class="result-value" id="resTable"></span>
+            </div>
+            
+            <div class="result-row">
+                <span class="result-label">Base Price</span>
+                <span class="result-value" id="resBase"></span>
+            </div>
+            
+            <div class="result-row">
+                <span class="result-label">Discount</span>
+                <span class="result-value" id="resDiscount"></span>
+            </div>
+            
+            <div class="total-price" id="resTotal"></div>
+        </div>
+        
+        <div class="db-info" id="dbInfo">
+            Loading data...
+        </div>
+    </div>
+
+    <script>
+        let RAPAPORT_DB = null;
+
+        // Load data from JSON
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                RAPAPORT_DB = await response.json();
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('calculatorForm').style.display = 'block';
+                document.getElementById('dbInfo').textContent = 
+                    `Data: ${RAPAPORT_DB.date} | Version: PWA v1.0`;
+            } catch (error) {
+                document.getElementById('loading').textContent = 
+                    'Failed to load pricing data. Please check your connection.';
+            }
+        }
+
+        loadData();
+        
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then((registration) => {
+                    console.log('SW registered:', registration);
+                })
+                .catch((error) => {
+                    console.log('SW registration failed:', error);
+                });
+
+            // Listen for update messages
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                if (event.data.type === 'update-available') {
+                    document.getElementById('updateBanner').classList.add('show');
+                    document.getElementById('dbInfo').textContent = 
+                        `Data: ${RAPAPORT_DB.date} | New: ${event.data.date} available`;
+                }
+            });
+        }
+        
+        function getCaratRange(carat) {
+            if (carat < 0.9) return '.90-.99';
+            if (carat >= 0.9 && carat <= 0.99) return '.90-.99';
+            if (carat >= 1.0 && carat <= 1.49) return '1.00-1.49';
+            if (carat >= 1.5 && carat <= 1.99) return '1.50-1.99';
+            if (carat >= 2.0 && carat <= 2.99) return '2.00-2.99';
+            if (carat >= 3.0 && carat <= 3.99) return '3.00-3.99';
+            if (carat >= 4.0 && carat <= 4.99) return '4.00-4.99';
+            return '5.00-5.99';
+        }
+        
+        function calculatePrice(shape, carat, color, clarity, discount) {
+            const tableKey = shape === 'RBC' ? 'round' : 'pear';
+            const table = RAPAPORT_DB[tableKey];
+            
+            if (!table) {
+                return { error: 'Table ' + tableKey + ' not found' };
+            }
+            
+            const caratRange = getCaratRange(carat);
+            const rangeData = table[caratRange];
+            
+            if (!rangeData) {
+                return { error: 'Carat range ' + caratRange + ' not found' };
+            }
+            
+            const colorData = rangeData[color];
+            if (!colorData) {
+                return { error: 'Color ' + color + ' not found' };
+            }
+            
+            const lookupClarity = clarity === 'FL' ? 'IF' : clarity;
+            let tableValue = colorData[lookupClarity];
+            
+            if (tableValue === undefined) {
+                return { error: 'Clarity ' + clarity + ' not found' };
+            }
+            
+            if (clarity === 'FL') {
+                tableValue = Math.round(tableValue * 1.1);
+            }
+            
+            const basePrice = tableValue * 100 * carat;
+            const discountDecimal = Math.abs(discount) / 100;
+            const multiplier = discount >= 0 ? (1 + discountDecimal) : (1 - discountDecimal);
+            const totalPrice = Math.round(basePrice * multiplier);
+            
+            return {
+                tableValue,
+                basePrice: Math.round(basePrice),
+                discount,
+                totalPrice,
+                totalPriceFormatted: new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                }).format(totalPrice),
+                caratRange,
+                tableUsed: tableKey
+            };
+        }
+        
+        document.getElementById('calculatorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!RAPAPORT_DB) {
+                alert('Please wait for pricing data to load...');
+                return;
+            }
+            
+            const shape = document.getElementById('shape').value;
+            const carat = parseFloat(document.getElementById('carat').value);
+            const color = document.getElementById('color').value;
+            const clarity = document.getElementById('clarity').value;
+            const discountInput = document.getElementById('discount').value;
+            const discount = discountInput === '' || isNaN(discountInput) ? 0 : parseFloat(discountInput);
+            
+            const error = document.getElementById('error');
+            const result = document.getElementById('result');
+            
+            error.style.display = 'none';
+            result.classList.remove('show');
+            
+            const calcResult = calculatePrice(shape, carat, color, clarity, discount);
+            
+            if (calcResult.error) {
+                error.textContent = calcResult.error;
+                error.style.display = 'block';
+            } else {
+                document.getElementById('resShape').textContent = shape;
+                document.getElementById('resCarat').textContent = carat + ' ct';
+                document.getElementById('resSpec').textContent = color + ' ' + clarity;
+                document.getElementById('resTable').textContent = calcResult.tableValue;
+                document.getElementById('resBase').textContent = 'USD ' + calcResult.basePrice.toLocaleString();
+                document.getElementById('resDiscount').textContent = discount + '%';
+                document.getElementById('resTotal').textContent = calcResult.totalPriceFormatted;
+                
+                result.classList.add('show');
+            }
+        });
+    </script>
+</body>
+</html>

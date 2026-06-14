@@ -1,0 +1,57 @@
+---
+id: 090
+title: Debug F/D/Q Test
+status: archive
+priority: P2
+created: 2026-04-07
+due:  
+updated: 2026-04-07
+progress: 0/0
+---
+
+---
+id: 090
+title: Debug F/D/Q Test
+status: active
+priority: P2
+created: 2026-04-07
+due: 未設定
+progress: 0/0
+---
+
+## F - Facts（事實）
+> 確定已知的事實、數據、現狀
+
+### 現況
+[描述當前狀態]
+
+### 數據/證據
+| 項目 | 值 |
+|------|-----|
+| ... | ... |
+
+## D - Decisions（決定）
+> 識別已做或待做的決定
+
+### ✅ 已做決定
+- [日期] 決定：...
+
+### ⏳ 待做決定
+- [日期] 待定：...
+
+## Q - Questions（未解決）
+> 列出所有未回答的問題
+
+### ❓ 核心問題
+1. [問題描述]
+
+### 🔍 追問（蘇格拉底反詰）
+- 點解係咁決定？
+- 如果 X 會點？
+- 有冇反面例子？
+- 邊個係預設假設？
+
+## Progress
+- [ ]
+
+## Notes

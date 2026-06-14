@@ -1,0 +1,1129 @@
+#!/usr/bin/env node
+
+const _quiet = process.argv.includes('--quiet');
+const log = (...args) => { if (!_quiet) console.log(...args); };
+
+/**
+ * Weekly Correction Loop Script - Level 3 Enhanced
+ * 每周日自動運行：
+ * 1. 讀取 errors.json 分析 pattern
+ * 2. 重複錯誤生成規則草案
+ * 3. 問用戶確認後加入 AGENTS.md P0
+ * 
+ * Run: node scripts/weekly_correction_loop.js
+ * Trigger: Every Sunday 6:00 PM (cron)
+ */
+
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+
+let ERRORS_JSON, WS, MEMORY_DIR;
+try {
+  ({ ERRORS_JSON, WS, MEMORY_DIR } = require('./lib/config'));
+} catch (e) {
+  console.error('❌ Failed to load config:', e.message);
+  process.exit(1);
+}
+
+// Validate environment and paths
+if (!WS || typeof WS !== 'string') {
+  console.error('❌ WORKSPACE path not properly configured');
+  process.exit(1);
+}
+if (!ERRORS_JSON || typeof ERRORS_JSON !== 'string') {
+  console.error('❌ ERRORS_JSON path not properly configured');
+  process.exit(1);
+}
+const { getHKTDate, getHKTDateTime } = require('./lib/time');
+const AGENTS_FILE = (() => { try { return path.join(WS, 'AGENTS.md'); } catch (e) { console.error(`⚠️ Failed to create AGENTS_FILE: ${e.message}`); return ''; } })();
+const STATE_FILE = (() => { try { return path.join(MEMORY_DIR, 'correction-loop-state.json'); } catch (e) { console.error(`⚠️ Failed to create STATE_FILE: ${e.message}`); return '/tmp/correction-loop-state.json'; } })();
+
+// HKT Date helper
+log('=== Weekly Correction Loop (Level 3) ===\n');
+log(`📅 Run time: ${getHKTDateTime()}\n`);
+
+// Load state
+let state = { lastRun: null, lastRunDate: null, processedErrors: [], proposedRules: [], confirmedRules: [] };
+try {
+  if (fs.existsSync(STATE_FILE)) {
+    try {
+      const fileContent = fs.readFileSync(STATE_FILE, 'utf8');
+      if (!fileContent.trim()) {
+        log('⚠️ State file is empty, starting fresh');
+      } else {
+        state = JSON.parse(fileContent);
+      }
+    } catch (e) {
+      log('⚠️ Could not parse state file, starting fresh: ' + e.message);
+      state = { lastRun: null, lastRunDate: null, processedErrors: [], proposedRules: [], confirmedRules: [] };
+    }
+  }
+} catch (e) {
+  log('⚠️ Could not load state, starting fresh: ' + e.message);
+}
+
+// LOCK CHECK: Prevent multiple runs in same day
+const todayDate = getHKTDate();
+const FALLBACK_DAYS = 8; // Force run if > 8 days since last run
+
+if (state.lastRunDate === todayDate) {
+  log(`⏭️ Already ran today (${state.lastRunDate}). Skipping to prevent duplicate.`);
+  log(`   Last run: ${state.lastRun}`);
+  process.exit(0);
+}
+
+// FALLBACK CHECK: Force run if last run was more than 8 days ago
+if (state.lastRunDate) {
+  try {
+    const lastRunTime = new Date(state.lastRunDate);
+    const now = new Date(getHKTDate());
+    const daysSinceLastRun = Math.floor((now - lastRunTime) / (1000 * 60 * 60 * 24));
+    if (daysSinceLastRun >= FALLBACK_DAYS) {
+      log(`🔄 Fallback triggered: Last ran ${daysSinceLastRun} days ago (${state.lastRunDate}). Forcing run.`);
+    } else {
+      log(`⏭️ Last ran ${daysSinceLastRun} days ago. Skipping until Sunday.`);
+      process.exit(0);
+    }
+  } catch (e) {
+    // If date parsing fails, run anyway
+    log(`⚠️ Could not parse lastRunDate, proceeding with run: ${e.message}`);
+  }
+}
+
+// Read errors.json
+let errorsData = { errors: [] };
+try {
+  if (fs.existsSync(ERRORS_JSON)) {
+    try {
+      const fileContent = fs.readFileSync(ERRORS_JSON, 'utf8');
+      if (!fileContent.trim()) {
+        log('⚠️ errors.json is empty');
+        errorsData = { errors: [] };
+      } else {
+        errorsData = JSON.parse(fileContent);
+      }
+    } catch (e) {
+      log('❌ Error parsing errors.json:', e.message);
+      errorsData = { errors: [] };
+    }
+  }
+  log(`✅ Read errors.json: ${errorsData.errors?.length || 0} total errors`);
+} catch (e) {
+  log('❌ Error reading errors.json:', e.message);
+  process.exit(1);
+}
+
+// ============================================
+// 方案 A：整合 Pure AI Audit Findings (放到後面用)
+// ============================================
+// Audit file path defined here but loaded later to match script flow
+const AUDIT_FILE = (() => { 
+  try { return path.join(WS, '.state/pure_ai_audit_results.json'); } 
+  catch (e) { return ''; } 
+})();
+
+// Filter recent errors (within 7 days)
+const today = new Date();
+const oneWeekAgo = new Date(today);
+oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+const recentErrors = (errorsData.errors || []).filter(error => {
+  const errorDate = new Date(error.date || error.timestamp);
+  return errorDate >= oneWeekAgo;
+});
+
+log(`📊 Found ${recentErrors.length} errors from this week\n`);
+
+// ============================================
+// 方案 A：整合 Pure AI Audit Findings
+// ============================================
+let auditFindings = { issues: [], timestamp: null, total_files_audited: 0 };
+try {
+  if (AUDIT_FILE && fs.existsSync(AUDIT_FILE)) {
+    try {
+      const auditContent = fs.readFileSync(AUDIT_FILE, 'utf8');
+      if (auditContent.trim()) {
+        auditFindings = JSON.parse(auditContent);
+        log(`✅ Read Pure AI Audit: ${auditFindings.issues?.length || 0} issues found`);
+      }
+    } catch (e) {
+      log('⚠️ Could not parse pure_ai_audit_results.json:', e.message);
+    }
+  } else {
+    log('⚠️ Pure AI Audit results file not found');
+  }
+} catch (e) {
+  log('⚠️ Error reading audit results:', e.message);
+}
+
+// ============================================
+// 方案 B：AI 輔助分析 - 錯誤分類（擴展版）
+// ============================================
+const AI_ASSISTED_CATEGORIES = {
+  // ── Timeout ──────────────────────────────────────────────────
+  'timeout': {
+    subCategories: {
+      'connection-timeout':  { keywords: ['ETIMEDOUT', 'timed out', 'connection timeout', 'connect timeout', 'request timeout'], suggestion: '增加 timeout 配置；添加重試機制；檢查網絡穩定性' },
+      'operation-timeout':   { keywords: ['operation timed out', 'exec timeout', 'spawn timeout', 'job timeout', 'cron timeout', 'gtimeout', 'timeout -s'], suggestion: '增加 operation timeout；考慮分割大任務；使用 background job' },
+      'read-timeout':        { keywords: ['read timeout', 'socket timeout', 'read ETIMEDOUT'], suggestion: '增加 read timeout；檢查遠程服務響應速度' },
+    },
+    fuzzy: ['timeout', 'timed out', 'TIMEOUT', 'timedout'],
+    suggestion: '增加 timeout 或優化資源使用'
+  },
+
+  // ── File System ──────────────────────────────────────────────
+  'file': {
+    subCategories: {
+      'file-not-found':    { keywords: ['ENOENT', 'no such file', 'not found', 'file not found', 'does not exist', 'path does not exist'], suggestion: '添加路徑驗證；創建所需目錄；檢查路徑拼寫' },
+      'path-traversal':   { keywords: ['path traversal', 'illegal path', 'invalid path', '../', '..%2F'], suggestion: '使用 path.join() 或 realpath() 規範化路徑；禁止 user input 直接拼接路徑' },
+      'directory-missing': { keywords: ['ENOTDIR', 'not a directory', 'is not a directory', 'missing directory'], suggestion: '創建所需目錄；使用 fs.mkdirSync 或 fs.promises.mkdir(recursive:true)' },
+      'file-locked':       { keywords: ['EBUSY', 'file is locked', 'resource locked', 'file in use'], suggestion: '等待檔案釋放；添加重試邏輯；檢查是否有多進程衝突' },
+      'disk-full':         { keywords: ['ENOSPC', 'no space left', 'disk full', 'quota exceeded', 'no disk space'], suggestion: '清理磁盤空間；刪除臨時檔案；添加磁盤空間檢查' },
+      'symlink-broken':    { keywords: ['ELOOP', 'too many levels of symbolic links', 'symlink', 'broken symlink'], suggestion: '檢查符號鏈接目標是否存在；避免循環鏈接' },
+    },
+    fuzzy: ['file', 'path', 'ENOENT', 'filesystem'],
+    suggestion: '添加路徑驗證；檢查檔案/目錄是否存在；使用 atomic write'
+  },
+
+  // ── JSON / Parse ─────────────────────────────────────────────
+  'json': {
+    subCategories: {
+      'json-parse-error':     { keywords: ['JSON.parse', 'unexpected token', 'unexpected end', 'Unexpected token', 'Unexpected end'], suggestion: '添加 try-catch；驗證 JSON 格式；檢查 trailing comma 或 BOM' },
+      'json-stringify-error': { keywords: ['JSON.stringify', 'cyclic object', 'circular reference', 'BigInt'], suggestion: '去除循環引用；使用 JSON.toJSObject 或 replacer function' },
+      'invalid-json':         { keywords: ['invalid json', 'not valid json', 'malformed json'], suggestion: '驗證 JSON 格式；使用 jq 或 JSONlint 預檢' },
+    },
+    fuzzy: ['json', 'parse'],
+    suggestion: '添加 try-catch 並驗證 JSON 格式；使用 JSON.parse(JSON.stringify()) 深拷貝前先處理'
+  },
+
+  // ── Memory ───────────────────────────────────────────────────
+  'memory': {
+    subCategories: {
+      'out-of-memory':     { keywords: ['out of memory', 'OOM', 'heap out of memory', 'JavaScript heap', 'FATAL ERROR'], suggestion: '優化記憶體使用；分割大任務；增加 Node.js heap limit (--max-old-space-size)' },
+      'memory-leak':      { keywords: ['memory leak', 'leak', 'high memory usage', 'memory growth', 'heap size'], suggestion: '檢查未釋放的事件監聽器；使用 weakMap；定期重啟長期運行進程' },
+      'buffer-overflow':  { keywords: ['buffer overflow', 'buffer overrun', 'stack overflow', 'Maximum call stack'], suggestion: '避免遞歸過深；使用 iterative 替代 recursive；增加 stack size' },
+    },
+    fuzzy: ['memory', 'heap', 'RAM'],
+    suggestion: '優化記憶體使用；分割大任務；添加記憶體監控和清理機制'
+  },
+
+  // ── Network ──────────────────────────────────────────────────
+  'network': {
+    subCategories: {
+      'connection-refused':   { keywords: ['ECONNREFUSED', 'connection refused', 'connect ECONNREFUSED'], suggestion: '檢查目標服務是否運行；確認端口配置；添加重試機制' },
+      'host-not-found':      { keywords: ['ENOTFOUND', 'getaddrinfo', 'DNS lookup', 'host not found', 'name or service not known'], suggestion: '檢查 DNS 配置；確認 hostname 正確性；添加 DNS fallback' },
+      'network-unreachable': { keywords: ['ENETUNREACH', 'network unreachable', 'no route to host', 'EAI_AGAIN'], suggestion: '檢查網絡路由；確認防火牆規則；添加網絡 health check' },
+      'connection-reset':    { keywords: ['ECONNRESET', 'connection reset', 'connection aborted', 'socket hang up'], suggestion: '添加連接 keep-alive；檢查對端是否突然斷開；增加重試' },
+      'ssl-tls-error':        { keywords: ['CERT_HAS_EXPIRED', 'UNABLE_TO_VERIFY_LEAF_SIGNATURE', 'self signed certificate', 'ssl', 'tls', 'SELF_SIGNED_CERT_IN_CHAIN'], suggestion: '更新 SSL 證書；配置正確的 CA bundle；測試環境可臨時忽略證書' },
+      'http-error':           { keywords: ['HTTP 400', 'HTTP 401', 'HTTP 403', 'HTTP 404', 'HTTP 500', 'HTTP 502', 'HTTP 503', 'HTTP Error'], suggestion: '檢查請求參數；驗證認證信息；添加錯誤日誌和監控' },
+    },
+    fuzzy: ['network', 'fetch', 'connect', 'http', 'socket'],
+    suggestion: '添加重試機制（指數退避）；設置合理 timeout；添加網絡錯誤監控'
+  },
+
+  // ── Permission / Auth ────────────────────────────────────────
+  'permission': {
+    subCategories: {
+      'permission-denied':    { keywords: ['EACCES', 'permission denied', 'permission denied:', 'access denied', 'EACCES: permission denied'], suggestion: '檢查檔案/目錄權限；使用 chmod/chown 修正；確認運行用戶身份' },
+      'readonly-filesystem':  { keywords: ['EROFS', 'read-only', 'read only file system', 'readonly', 'cannot write'], suggestion: '檢查文件系統掛載選項；確認磁盤是否被重新掛載為 ro' },
+      'auth-error':           { keywords: ['401', 'unauthorized', 'authentication failed', 'invalid credentials', 'bad credentials', 'auth'], suggestion: '驗證 API key/token 正確性；檢查 token 過期時間；使用環境變量存儲敏感信息' },
+      'forbidden':            { keywords: ['403', 'forbidden', 'access forbidden', 'insufficient permissions'], suggestion: '檢查訪問權限配置；確認用戶角色/權限是否足夠' },
+      'rate-limit':           { keywords: ['429', 'rate limit', 'rate limit exceeded', 'too many requests', 'throttl', 'RATE_LIMIT'], suggestion: '添加請求間隔（指數退避）；實現請求排隊；使用 API rate limit 監控' },
+    },
+    fuzzy: ['permission', 'auth', 'denied', 'access', 'forbidden'],
+    suggestion: '檢查檔案權限；驗證 API key/token；添加 rate limit 處理'
+  },
+
+  // ── Code Syntax / Runtime ────────────────────────────────────
+  'syntax': {
+    subCategories: {
+      'syntax-error':       { keywords: ['SyntaxError', 'unexpected', 'expected', 'unterminated'], suggestion: '檢查 JavaScript 語法；注意引號/括號配對；使用 ESLint 預檢' },
+      'reference-error':   { keywords: ['ReferenceError', 'is not defined', 'cannot access', 'variable is not defined'], suggestion: '確認變量聲明；檢查 import/module 是否正確加載' },
+      'type-error':         { keywords: ['TypeError', 'is not a function', 'cannot read property', 'undefined is not an object', 'null is not'], suggestion: '添加 null/undefined 檢查；使用可選鏈 (?.) 和空值合併 (??)' },
+      'module-error':       { keywords: ['Cannot find module', 'module not found', 'err_require_core_type', 'ERR_REQUIRE_ESM'], suggestion: '確認 npm install 已運行；檢查 module 路徑；區分 CJS vs ESM' },
+      'import-error':       { keywords: ['ImportError', 'cannot import', 'SyntaxError: cannot load', 'ERR_PACKAGE_PATH_NOT_EXPORTED'], suggestion: '檢查 module export/import 語法；確認 package.json exports 字段' },
+    },
+    fuzzy: ['syntax', 'error', 'unexpected'],
+    suggestion: '檢查 JavaScript 語法；使用 ESLint 預檢；添加嚴格類型檢查'
+  },
+
+  // ── Process / Concurrency ────────────────────────────────────
+  'process': {
+    subCategories: {
+      'child-process-error': { keywords: ['spawn ENOENT', 'spawn error', 'ENOENT:', 'exec file not found', 'child_process'], suggestion: '確認子進程 command 路徑正確；使用 full path 或 which command' },
+      'deadlock':            { keywords: ['deadlock', 'dead lock', 'circular wait', 'EDEADLK'], suggestion: '避免循環等待；使用 timeout 解鎖；改用 non-blocking 機制' },
+      'race-condition':      { keywords: ['race condition', 'race', 'concurrent modification', 'concurrent access'], suggestion: '使用 mutex/lock；確保 atomic 操作；添加同步機制' },
+      'signal-error':        { keywords: ['SIGTERM', 'SIGKILL', 'SIGINT', 'signal', 'killed', 'SIGSEGV'], suggestion: '正確處理進程信號；添加優雅退出 (graceful shutdown)' },
+      'zombie-process':      { keywords: ['zombie', 'zombie process', 'child still ran after disconnect'], suggestion: '正確 wait() 子進程；使用 spawn exit event 清理' },
+    },
+    fuzzy: ['process', 'child', 'spawn', 'exec'],
+    suggestion: '正確管理子進程生命周期；添加信號處理；避免 zombie processes'
+  },
+
+  // ── Resource Exhaustion ──────────────────────────────────────
+  'resource': {
+    subCategories: {
+      'fd-exhaustion':      { keywords: ['EMFILE', 'too many open files', 'ulimit', 'file descriptor', 'max file descriptors'], suggestion: '增加 ulimit -n；及時關閉不需要的 file descriptors；使用 connection pool' },
+      'cpu-max':            { keywords: ['CPU max', 'cpu 100%', 'cpu overload', 'cpu limit'], suggestion: '分割計算任務；使用 worker threads；添加任務優先級' },
+      'event-loop-lag':     { keywords: ['event loop lag', 'blocked event loop', 'long running operation', 'deferred'], suggestion: '避免同步阻塞操作；使用 worker threads；分割 long tasks' },
+    },
+    fuzzy: ['resource', 'exhaustion', 'limit', 'max', 'too many'],
+    suggestion: '監控資源使用；設置合理上限；及時釋放資源'
+  },
+
+  // ── External Service ────────────────────────────────────────
+  'external': {
+    subCategories: {
+      'discord-error':      { keywords: ['DiscordAPIError', 'Discord delivery', 'discord error', 'DiscordAPI'], suggestion: '檢查 Discord bot token；確認 channel/guild 權限；添加 message queue' },
+      'whatsapp-error':     { keywords: ['WhatsApp', 'whatsapp', 'waapi', 'wa-js'], suggestion: '檢查 WhatsApp session 狀態；確認 webhook 配置；添加重試' },
+      'minimax-error':       { keywords: ['MiniMax', 'minimax', 'MiniMaxError', 'minimax error', 'aborted'], suggestion: '檢查 MiniMax API key；添加 timeout；監控 API quota' },
+      'kimi-error':         { keywords: ['Kimi', 'kimi', 'moonshot', 'kimi error', 'KIMI'], suggestion: '檢查 Kimi API key；添加錯誤重試；監控 API 可用性' },
+      'ollama-error':       { keywords: ['Ollama', 'ollama', 'llm error', 'model not found', 'ollama error'], suggestion: '確認 Ollama service 運行中；檢查 model 已 pull；驗證 API endpoint' },
+      'openclaw-error':     { keywords: ['Gateway Error', 'gateway error', 'gateway closed', 'openclaw error', 'OpenClaw'], suggestion: '檢查 OpenClaw gateway 狀態；重啟 gateway service' },
+    },
+    fuzzy: ['discord', 'whatsapp', 'minimax', 'kimi', 'ollama', 'openclaw', 'service'],
+    suggestion: '添加服務健康檢查；實現 fallback 機制；記錄詳細錯誤日誌'
+  },
+
+  // ── Cron / Schedule ─────────────────────────────────────────
+  'cron': {
+    subCategories: {
+      'cron-timeout':       { keywords: ['cron timeout', 'job timed out', 'job timeout', 'scheduled task timeout'], suggestion: '增加 cron job timeout；分割長時間任務；使用 queue-based processing' },
+      'cron-overlap':       { keywords: ['cron overlap', 'previous job still running', 'job conflict', 'duplicate job'], suggestion: '添加 job lock (flock/pidfile)；使用 cron schedule 避免重疊' },
+      'cron-missed':        { keywords: ['missed schedule', 'cron missed', 'next run', 'did not run'], suggestion: '檢查 cron service 狀態；添加 watchdog monitoring；確保系統時間正確' },
+    },
+    fuzzy: ['cron', 'schedule', 'job', 'scheduled'],
+    suggestion: '添加 cron job timeout；使用 job lock 防止重疊；監控 cron 執行狀態'
+  },
+
+  // ── HA / Sync ────────────────────────────────────────────────
+  'ha': {
+    subCategories: {
+      'heartbeat-miss':     { keywords: ['heartbeat', 'heart beat', 'last_seen', 'no heartbeat', 'node down'], suggestion: '檢查節點網絡連接；增加 heartbeat 頻率；驗證 heartbeat file 權限' },
+      'failover-error':     { keywords: ['failover', 'fail over', 'switchover', 'standby'], suggestion: '確認 primary/secondary 狀態；檢查網絡發現機制；驗證 failover 邏輯' },
+      'sync-conflict':      { keywords: ['sync conflict', '同步衝突', 'state conflict', 'lock conflict'], suggestion: '使用 last-write-wins 或 optimistic locking；添加 conflict resolution' },
+      'tailscale-error':    { keywords: ['tailscale', 'Tailscale SSH', 'tsnet', 'tscur'], suggestion: '檢查 Tailscale service 狀態；驗證 auth key；確認網絡發現' },
+    },
+    fuzzy: ['heartbeat', 'failover', 'sync', 'ha', 'bliss', 'ally'],
+    suggestion: '檢查 HA 狀態；驗證節點連接；確認 failover 邏輯正確'
+  },
+
+  // ── Data / Storage ───────────────────────────────────────────
+  'data': {
+    subCategories: {
+      'corruption':         { keywords: ['corrupt', 'checksum', 'invalid checksum', 'data corrupt'], suggestion: '添加數據校驗（checksum/hash）；實現數據完整性檢查；定期備份' },
+      'encoding-error':     { keywords: ['encoding', 'utf-8', 'utf8', 'decode error', 'invalid encoding', 'charset', 'BOM'], suggestion: '明確指定文件編碼；使用 iconv 轉換編碼；避免 BOM 問題' },
+      'backup-failed':      { keywords: ['backup failed', 'backup error', 'backup corrupt', 'backup restore'], suggestion: '添加 backup 驗證步驟；實現 incremental backup；測試 restore 流程' },
+    },
+    fuzzy: ['data', 'storage', 'backup', 'corrupt', 'encoding'],
+    suggestion: '添加數據校驗；實現定期備份；測試 restore 流程'
+  },
+
+  // ── Shell / Script ───────────────────────────────────────────
+  'shell': {
+    subCategories: {
+      'shell-error':        { keywords: ['shell error', 'bash error', 'sh error', 'exit code 1', 'exit code 127', 'command not found'], suggestion: '添加 shell error handling；檢查命令是否存在；驗證 exit code' },
+      'script-syntax':      { keywords: ['script syntax', 'unexpected char', 'bad substitution', '#!/bin/bash'], suggestion: '使用 shellcheck 檢查腳本；避免 common pitfalls' },
+      'variable-unset':     { keywords: ['unbound variable', 'parameter not set', 'set -u', 'undefined variable'], suggestion: '使用 ${VAR:-default} 提供默认值；脚本开头加 set -u 前检查' },
+    },
+    fuzzy: ['shell', 'bash', 'script', 'zsh', 'sh'],
+    suggestion: '添加 shell error handling；使用 shellcheck 檢查腳本；設置合理 umask'
+  },
+};
+
+/**
+ * Categorize an error using expanded categories with sub-categories and fuzzy matching.
+ * Priority: sub-category keywords (exact) > category fuzzy keywords > unknown
+ */
+function categorizeError(error) {
+  const text = ((error.problem || '') + ' ' + (error.message || '') + ' ' + (error.stack || '')).toLowerCase();
+
+  // Phase 1: Check each category's sub-categories (exact keyword match first)
+  for (const [category, config] of Object.entries(AI_ASSISTED_CATEGORIES)) {
+    for (const [subCat, subConfig] of Object.entries(config.subCategories || {})) {
+      for (const keyword of subConfig.keywords) {
+        if (text.includes(keyword.toLowerCase())) {
+          return {
+            category,
+            subCategory: subCat,
+            suggestion: subConfig.suggestion
+          };
+        }
+      }
+    }
+  }
+
+  // Phase 2: Fuzzy matching on category-level keywords
+  for (const [category, config] of Object.entries(AI_ASSISTED_CATEGORIES)) {
+    const fuzzy = config.fuzzy || [];
+    for (const kw of fuzzy) {
+      // Simple fuzzy: check if keyword appears as substring
+      if (text.includes(kw.toLowerCase())) {
+        return {
+          category,
+          subCategory: 'general',
+          suggestion: config.suggestion
+        };
+      }
+    }
+  }
+
+  return { category: 'unknown', subCategory: null, suggestion: '需要人工分析' };
+}
+
+// Categorize recent errors (expanded with sub-categories)
+const categorizedErrors = {};
+for (const error of recentErrors) {
+  const { category, subCategory, suggestion } = categorizeError(error);
+  const key = subCategory ? `${category}:${subCategory}` : category;
+  if (!categorizedErrors[key]) {
+    categorizedErrors[key] = { count: 0, errors: [], suggestion, category, subCategory };
+  }
+  categorizedErrors[key].count++;
+  categorizedErrors[key].errors.push(error);
+}
+log(`✅ AI-assisted analysis: ${Object.keys(categorizedErrors).length} error categories identified`);
+
+if (recentErrors.length === 0) {
+  log('✅ No errors this week. System is healthy!');
+  
+  state.lastRun = getHKTDateTime();
+  state.lastRunDate = todayDate;
+  // HR-039: Atomic write for state file
+  try {
+    const tmpFile = STATE_FILE + '.tmp';
+    fs.writeFileSync(tmpFile, JSON.stringify(state, null, 2));
+    fs.renameSync(tmpFile, STATE_FILE);
+  } catch (err) {
+    log(`⚠️ Could not save state: ${err.message}`);
+  }
+  
+  // NOTE: AI will handle Discord notification - do not send directly
+  log('📨 NO_ERRORS_FOUND - AI will decide whether to send notification');
+  // sendDiscordNotification('✅ Weekly Correction Loop: No errors this week. System healthy!');
+  log('\n=== OUTPUT_END ===');
+  log('NO_ERRORS');
+  process.exit(0);
+}
+
+// Analyze patterns - group by error type
+const errorPatterns = {};
+
+recentErrors.forEach(error => {
+  const key = extractErrorPattern(error);
+  if (!errorPatterns[key]) {
+    errorPatterns[key] = {
+      count: 0,
+      errors: [],
+      firstSeen: error.date,
+      lastSeen: error.date
+    };
+  }
+  errorPatterns[key].count++;
+  errorPatterns[key].errors.push(error);
+  errorPatterns[key].lastSeen = error.date;
+});
+
+log('=== Pattern Analysis ===');
+const patterns = Object.entries(errorPatterns);
+log(`Found ${patterns.length} distinct error patterns\n`);
+
+// Find patterns that appear 3+ times AND are high/critical severity (AUTO-ADD MODE)
+const recurringPatterns = patterns.filter(([key, data]) => {
+  const hasMinOccurrences = data.count >= 3;
+  const hasHighSeverity = data.errors.some(e => e.severity === 'high' || e.severity === 'critical');
+  return hasMinOccurrences && hasHighSeverity;
+});
+
+log(`🔍 Auto-add patterns (3+ times + high/critical): ${recurringPatterns.length}\n`);
+
+// Generate and AUTO-APPLY rules
+const autoAppliedRules = [];
+
+recurringPatterns.forEach(([key, data]) => {
+  const rule = generateRuleFromPattern(key, data);
+  if (rule && !isRuleAlreadyApplied(rule, state.confirmedRules || [])) {
+    // Mark as auto-generated
+    rule.autoGenerated = true;
+    rule.status = 'auto_applied';
+    autoAppliedRules.push(rule);
+  }
+});
+
+log('=== Auto-Applied Rules ===');
+if (autoAppliedRules.length === 0) {
+  log('No new rules to auto-apply.\n');
+} else {
+  autoAppliedRules.forEach((rule, index) => {
+    log(`\n${index + 1}. ${rule.title} (AUTO)`);
+    log(`   Pattern: ${rule.pattern}`);
+    log(`   Occurrences: ${rule.occurrences}`);
+    log(`   Auto-Applied Rule: ${rule.rule}`);
+  });
+}
+
+// Apply rules immediately to AGENTS.md
+const newlyApplied = applyAutoRules(autoAppliedRules, AGENTS_FILE, state);
+
+// ============================================
+// NEW: Auto-generate Prevention Rules from Pure AI Audit
+// ============================================
+const auditPreventionRules = processAuditFindings(auditFindings, AGENTS_FILE, state);
+if (auditPreventionRules.length > 0) {
+  log(`\n🛡️ Generated ${auditPreventionRules.length} Prevention Rules from Pure AI Audit`);
+}
+// Update state
+state.lastRun = getHKTDateTime();
+state.lastRunDate = todayDate;
+state.processedErrors = [...(state.processedErrors || []), ...recentErrors.map(e => e.id)].slice(-100);
+
+if (newlyApplied.length > 0) {
+  state.confirmedRules = [...(state.confirmedRules || []), ...newlyApplied];
+}
+
+// Track audit prevention rules in state
+if (auditPreventionRules.length > 0) {
+  state.auditPreventionRules = [...(state.auditPreventionRules || []), ...auditPreventionRules];
+}
+
+// Send notification about auto-applied rules
+if (newlyApplied.length > 0) {
+  sendAutoAppliedNotification(newlyApplied);
+}
+
+// HR-039: Atomic write for state file
+try {
+  const tmpFile = STATE_FILE + '.tmp';
+  fs.writeFileSync(tmpFile, JSON.stringify(state, null, 2));
+  fs.renameSync(tmpFile, STATE_FILE);
+  log('\n✅ Updated state');
+} catch (e) {
+  log('⚠️ Could not update state:', e.message);
+}
+
+log('\n=== 總結 ===');
+log(`已分析錯誤: ${recentErrors.length}`);
+log(`找到模式: ${patterns.length}`);
+log(`自動應用模式: ${recurringPatterns.length}`);
+log(`自動應用規則: ${newlyApplied.length}`);
+log(`Audit Prevention Rules: ${auditPreventionRules.length}`);
+log('\n✅ 每周校正循環完成！(自動應用模式)');
+
+// NEW 2026-03-09: Send comprehensive report to Discord
+sendWeeklyReport(recentErrors, errorPatterns, newlyApplied);
+
+// Helper functions
+function extractErrorPattern(error) {
+  // Extract pattern from error
+  const title = error.title || error.problem || '';
+  const category = error.category || 'general';
+  
+  // Normalize similar errors
+  let pattern = title.toLowerCase()
+    .replace(/\d{4}-\d{2}-\d{2}/g, 'DATE')
+    .replace(/\d+/g, 'NUM')
+    .replace(/\s+/g, ' ')
+    .trim();
+  
+  // Extract key keywords
+  const keywords = ['trash', 'rm', 'time', 'timezone', 'utc', 'hkt', 'backup', 'sync'];
+  const matched = keywords.filter(kw => pattern.includes(kw));
+  
+  if (matched.length > 0) {
+    return `${category}:${matched.join('-')}`;
+  }
+  
+  return `${category}:${pattern.substring(0, 50)}`;
+}
+
+function generateRuleFromPattern(key, data) {
+  try {
+    const errors = data.errors || [];
+    const titles = errors.map(e => { try { return e.title || e.problem || ''; } catch (err) { return ''; } }).join(' ');
+    
+    // Rule generation logic based on error patterns
+    let rule = null;
+    let title = '';
+    
+    if (key.includes('trash') || titles.toLowerCase().includes('trash')) {
+      title = '使用 trash 命令';
+      rule = '必須使用 trash 命令移動文件到回收站，禁止使用 rm 或 unlinkSync 直接刪除。';
+    } else if (key.includes('time') || key.includes('utc') || key.includes('hkt') || titles.toLowerCase().includes('timezone')) {
+      title = '時間時區統一';
+      rule = '所有時間操作必須使用 HKT (Asia/Hong_Kong) 時區，使用 toLocaleString("zh-HK", { timeZone: "Asia/Hong_Kong" }) 而非 toISOString()。';
+    } else if (key.includes('backup') || titles.toLowerCase().includes('backup')) {
+      title = '備份驗證';
+      rule = '備份操作完成後必須立即驗證，確保內容完整且可讀取。';
+    } else if (key.includes('sync') || titles.toLowerCase().includes('sync')) {
+      title = '同步機制';
+      rule = '涉及多個系統同步時，必須有重試機制同最終一致性檢查。';
+    }
+    
+    if (rule) {
+      return {
+        id: `rule-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
+        title,
+        pattern: key,
+        occurrences: data.count,
+        rule,
+        errors: errors.map(e => { try { return { id: e.id, date: e.date, title: e.title }; } catch (err) { return null; } }).filter(Boolean),
+        proposedDate: getHKTDate(),
+        status: 'pending_confirmation'
+      };
+    }
+  } catch (err) {
+    console.error('Error in rule generation:', err.message);
+  }
+  
+  return null;
+}
+
+function isRuleAlreadyProposed(rule, proposedRules) {
+  if (!proposedRules || proposedRules.length === 0) return false;
+  return proposedRules.some(pr => pr.pattern === rule.pattern && pr.status !== 'rejected');
+}
+
+function isRuleAlreadyApplied(rule, confirmedRules) {
+  if (!confirmedRules || confirmedRules.length === 0) return false;
+  return confirmedRules.some(cr => cr.pattern === rule.pattern);
+}
+
+function applyAutoRules(rules, agentsFile, state) {
+  if (rules.length === 0) return [];
+  
+  let agentsContent = '';
+  try {
+    agentsContent = fs.readFileSync(agentsFile, 'utf8');
+  } catch (e) {
+    log('❌ Error reading AGENTS.md:', e.message);
+    return [];
+  }
+  
+  const appliedRules = [];
+  
+  rules.forEach(rule => {
+    try {
+      // Check if already in AGENTS.md
+      if (!rule.rule || agentsContent.includes(rule.rule.substring(0, 30))) {
+        log(`⏭️ Rule already in AGENTS.md: ${rule.title}`);
+        rule.applied = true;
+        return;
+      }
+      
+      // Add to AGENTS.md with auto-generated marker
+      const ruleEntry = `\n### 🎯 P0 - ${rule.title} (Auto-generated)\n*📅 Created: ${rule.proposedDate} | 🔄 Updated: ${getHKTDate()} | ⏰ TTL: Never | 🤖 Auto*\n\n${rule.rule}\n\n> 🔄 **Auto-Applied Rule**\n> - 來源：基於 ${rule.occurrences} 次同類型錯誤自動生成\n> - 錯誤 ID: ${(rule.errors || []).map(e => e.id).join(', ')}\n> - 生成時間: ${getHKTDateTime()}\n> - 如需修改/刪除，請手動編輯 AGENTS.md\n`;
+      
+      // Find insertion point (before "## 重要決策記錄" section)
+      const insertPoint = agentsContent.indexOf('## 重要決策記錄');
+      if (insertPoint > 0) {
+        agentsContent = agentsContent.substring(0, insertPoint) + ruleEntry + '\n' + agentsContent.substring(insertPoint);
+        appliedRules.push(rule);
+        rule.applied = true;
+        log(`✅ Auto-applied rule: ${rule.title}`);
+      }
+    } catch (e) {
+      log(`⚠️ Failed to apply rule ${rule.title}: ${e.message}`);
+    }
+  });
+  
+  if (appliedRules.length > 0) {
+    // ── Backup AGENTS.md before writing (保留最近 7 個備份) ──
+    const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    const backupPattern = /^AGENTS\.md\.bak\.\d{8}$/;
+
+    try {
+      // 1. Create backup: cp AGENTS.md AGENTS.md.bak.YYYYMMDD
+      const agentsDir = path.dirname(agentsFile);
+      const backupFile = path.join(agentsDir, `AGENTS.md.bak.${todayStr}`);
+      fs.copyFileSync(agentsFile, backupFile);
+      log(`📦 Backup created: AGENTS.md.bak.${todayStr}`);
+
+      // 2. Keep only the 7 most recent backups (delete older ones)
+      let backups;
+      try {
+        backups = fs.readdirSync(agentsDir)
+          .filter(f => backupPattern.test(f))
+          .sort()
+          .reverse(); // newest first
+      } catch (e) {
+        backups = [];
+      }
+
+      if (backups.length > 7) {
+        const toDelete = backups.slice(7); // 8th, 9th, ... oldest
+        for (const oldBackup of toDelete) {
+          try {
+            fs.unlinkSync(path.join(agentsDir, oldBackup));
+            log(`🗑️ Cleaned old backup: ${oldBackup}`);
+          } catch (e) {
+            // ignore cleanup errors
+          }
+        }
+      }
+    } catch (e) {
+      log(`⚠️ Backup failed (continuing anyway): ${e.message}`);
+      // Non-fatal: continue with write even if backup fails
+    }
+
+    // ── Atomic write for AGENTS.md ──
+    try {
+      const tmpFile = agentsFile + '.tmp';
+      fs.writeFileSync(tmpFile, agentsContent);
+      fs.renameSync(tmpFile, agentsFile);
+      log(`✅ Updated AGENTS.md with ${appliedRules.length} auto-applied rules`);
+    } catch (err) {
+      log(`❌ Error writing AGENTS.md: ${err.message}`);
+    }
+  }
+  
+  return appliedRules;
+}
+
+// Legacy function - kept for backward compatibility
+function applyConfirmedRules(state, agentsFile) {
+  // In auto-apply mode, this is handled by applyAutoRules
+  return [];
+}
+
+/**
+ * Process Pure AI Audit findings — auto-generate Prevention Rules
+ * for P0/P1 issues in execSync_missing_trycatch and magic_numbers categories.
+ *
+ * Reads from: .state/pure_ai_audit_results.json
+ * Writes to: AGENTS.md Coding Standards section (before ## 重要決策記錄)
+ */
+function processAuditFindings(auditFindings, agentsFile, state) {
+  if (!auditFindings || !auditFindings.issues || auditFindings.issues.length === 0) {
+    log('⚠️ No audit findings to process');
+    return [];
+  }
+
+  const targetCategories = ['execSync_missing_trycatch', 'magic_numbers'];
+  const targetSeverities = ['P0', 'P1'];
+
+  // Filter P0/P1 issues in target categories
+  const targetIssues = auditFindings.issues.filter(issue =>
+    targetCategories.includes(issue.category) &&
+    targetSeverities.includes(issue.severity)
+  );
+
+  if (targetIssues.length === 0) {
+    log('✅ No P0/P1 execSync_missing_trycatch or magic_numbers issues found in audit');
+    return [];
+  }
+
+  log(`\n🛡️ Processing ${targetIssues.length} P0/P1 audit issues...`);
+
+  // Group by category
+  const byCategory = {};
+  for (const issue of targetIssues) {
+    if (!byCategory[issue.category]) byCategory[issue.category] = [];
+    byCategory[issue.category].push(issue);
+  }
+
+  // Generate Prevention Rules
+  const preventionRules = [];
+
+  if (byCategory['execSync_missing_trycatch']) {
+    const issues = byCategory['execSync_missing_trycatch'];
+    const affectedFiles = [...new Set(issues.map(i => i.file.replace('scripts/', '')))];
+    preventionRules.push({
+      id: `audit-execSync-trycatch-${Date.now()}`,
+      title: 'execSync / fs 操作必須包 try-catch',
+      category: 'execSync_missing_trycatch',
+      severity: 'P0',
+      source: 'Pure AI Audit',
+      rule: `### ❌ 禁止：execSync / fs 操作無 try-catch
+所有 execSync / execFileSync / fs.readFileSync / fs.writeFileSync 等危險操作**必須**用 try-catch 包圍。
+
+\`\`\`javascript
+// ❌ 錯誤 - 無 try-catch，失敗會 crash
+const result = execSync(command);
+
+// ❌ 錯誤 - async function 入面用 sync 操作
+async function main() {
+  fs.writeFileSync(file, data); // blocking!
+}
+
+// ✅ 正確 - try-catch 包圍
+try {
+  const result = execSync(command);
+} catch (e) {
+  console.error(\`Command failed: \${e.message}\`);
+  return;
+}
+
+// ✅ 正確 - 使用 promises (async)
+async function main() {
+  await fs.promises.writeFile(file, data);
+}
+\`\`\`
+
+> 🛡️ **Prevention Rule** (Auto-generated from Pure AI Audit)
+> - 類別: execSync_missing_trycatch
+> - 發現: ${issues.length} 處問題，受影響: ${affectedFiles.join(', ')}
+> - 狀態: 已在 AGENTS.md Coding Standards P0 中備案`,
+      affectedFiles,
+      issueCount: issues.length
+    });
+  }
+
+  if (byCategory['magic_numbers']) {
+    const issues = byCategory['magic_numbers'];
+    const affectedFiles = [...new Set(issues.map(i => i.file.replace('scripts/', '')))];
+    preventionRules.push({
+      id: `audit-magic-numbers-${Date.now()}`,
+      title: 'Magic numbers 必須提升為 CONFIG 常量',
+      category: 'magic_numbers',
+      severity: 'P1',
+      source: 'Pure AI Audit',
+      rule: `### ❌ 禁止：Hardcoded magic numbers
+所有 hardcoded 數字應提升為命名常量，放在 CONFIG 物件頂部。
+
+\`\`\`javascript
+// ❌ 錯誤 - magic numbers 不可讀
+if (diff > 180 * 24 * 60 * 60 * 1000) // 180 days expressed as ms
+
+// ✅ 正確 - CONFIG 常量
+const CONFIG = {
+  THIRTY_DAYS_MS: 180 * 24 * 60 * 60 * 1000, // 180 days in ms
+  CHANNEL_ID: process.env.DISCORD_CHANNEL_ID,
+  OFFLINE_THRESHOLD_MIN: 3,
+  SSH_TIMEOUT_SEC: 5,
+};
+if (diff > CONFIG.THIRTY_DAYS_MS)
+
+// ✅ 正確 - 多個相關值用 object group
+const SCAN_CONFIG = {
+  maxFileSize: 100 * 1024,     // 100KB
+  progressInterval: 10,        // 每 N 個檔案輸出一次
+  maxDepth: 20,
+  maxRetries: 5,
+  retryDelay_MS: 100,
+};
+\`\`\`
+
+> 🛡️ **Prevention Rule** (Auto-generated from Pure AI Audit)
+> - 類別: magic_numbers
+> - 發現: ${issues.length} 處問題，受影響: ${affectedFiles.join(', ')}
+> - 狀態: 已在 AGENTS.md Coding Standards P1 中備案`,
+      affectedFiles,
+      issueCount: issues.length
+    });
+  }
+
+  // Apply Prevention Rules to AGENTS.md Coding Standards section
+  const appliedRules = applyPreventionRulesToAgents(preventionRules, agentsFile, state);
+
+  return appliedRules;
+}
+
+/**
+ * Insert Prevention Rules into AGENTS.md Coding Standards section.
+ * Inserts before "## 重要決策記錄".
+ */
+function applyPreventionRulesToAgents(rules, agentsFile, state) {
+  if (rules.length === 0) return [];
+
+  let agentsContent = '';
+  try {
+    agentsContent = fs.readFileSync(agentsFile, 'utf8');
+  } catch (e) {
+    log('❌ Error reading AGENTS.md:', e.message);
+    return [];
+  }
+
+  const appliedRules = [];
+  const today = getHKTDate();
+
+  for (const rule of rules) {
+    try {
+      // NEW: Check if same category already applied in state
+      const alreadyAppliedInState = (state.auditPreventionRules || []).some(
+        r => r.category === rule.category && r.applied === true
+      );
+      if (alreadyAppliedInState) {
+        log(`⏭️ Prevention Rule category already applied in state: ${rule.title}`);
+        continue;
+      }
+
+      // Check if already applied (by title)
+      if (agentsContent.includes(rule.title)) {
+        log(`⏭️ Prevention Rule already in AGENTS.md: ${rule.title}`);
+        rule.applied = true;
+        appliedRules.push(rule);
+        continue;
+      }
+
+      // Build Prevention Rule block
+      const ruleBlock = `\n${rule.rule}\n`;
+
+      // Find insertion point: before "## 重要決策記錄" section
+      const insertMarker = '## 重要決策記錄';
+      const insertPoint = agentsContent.indexOf(insertMarker);
+
+      if (insertPoint > 0) {
+        agentsContent = agentsContent.substring(0, insertPoint) + ruleBlock + '\n' + agentsContent.substring(insertPoint);
+        rule.applied = true;
+        appliedRules.push(rule);
+        log(`✅ Applied Prevention Rule: ${rule.title} (${rule.severity})`);
+      } else {
+        log(`⚠️ Could not find insertion point in AGENTS.md for: ${rule.title}`);
+      }
+    } catch (e) {
+      log(`⚠️ Failed to apply Prevention Rule ${rule.title}: ${e.message}`);
+    }
+  }
+
+  // Atomic write
+  if (appliedRules.length > 0) {
+    try {
+      const tmpFile = agentsFile + '.tmp';
+      fs.writeFileSync(tmpFile, agentsContent);
+      fs.renameSync(tmpFile, agentsFile);
+      log(`\n✅ Updated AGENTS.md with ${appliedRules.length} Prevention Rules from Pure AI Audit`);
+    } catch (err) {
+      log(`❌ Error writing AGENTS.md: ${err.message}`);
+    }
+  }
+
+  return appliedRules;
+}
+
+// Discord channel ID (#⚙️系統)
+const DISCORD_CHANNEL_ID = process.env.DISCORD_SYSTEM_CHANNEL_ID || '1473376125584670872';
+
+function getDiscordToken() {
+  try {
+    const configPath = path.join(os.homedir(), '.openclaw', 'openclaw.json');
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    return config.channels?.discord?.token || null;
+  } catch (e) {
+    log('⚠️ Failed to get Discord token:', e.message);
+    return null;
+  }
+}
+
+function sendDiscordNotification(message) {
+  const token = getDiscordToken();
+  if (!token) {
+    log('❌ No Discord token, skipping notification');
+    return;
+  }
+  
+  const options = {
+    hostname: 'discord.com',
+    path: `/api/v10/channels/${DISCORD_CHANNEL_ID}/messages`,
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bot ' + token,
+      'Content-Type': 'application/json'
+    }
+  };
+  
+  return new Promise((resolve, reject) => {
+    const req = require('https').request(options, (res) => {
+      let data = '';
+      res.on('data', c => data += c);
+      res.on('end', () => {
+        if (res.statusCode === 200 || res.statusCode === 204) {
+          log('✅ Discord notification sent');
+          resolve({ status: res.statusCode });
+        } else {
+          log(`❌ Discord API error: ${res.statusCode}`);
+          reject(new Error(`HTTP ${res.statusCode}`));
+        }
+      });
+    });
+    req.on('error', (err) => {
+      log('❌ Failed to send Discord:', err.message);
+      reject(err);
+    });
+    req.write(JSON.stringify({ content: message }));
+    req.end();
+  });
+}
+
+function sendAutoAppliedNotification(rules) {
+  if (rules.length === 0) return;
+  
+  const ruleList = rules.map((r, i) => `${i + 1}. **${r.title}**\n   ${r.rule.substring(0, 60)}...`).join('\n\n');
+  const message = `🤖 每周校正循環 - 自動應用規則\n\n根據 ${rules.reduce((sum, r) => sum + r.occurrences, 0)} 次重複錯誤（出現 3+ 次、高/嚴重級別），我已自動將 ${rules.length} 條新規則加入 AGENTS.md：\n\n${ruleList}\n\n✅ 規則已生效，下次啟動時會自動載入。\n📝 如需修改或刪除，請直接編輯 AGENTS.md。\n⚡ 自動應用條件：出現 3+ 次 + 高/嚴重級別`;
+  
+  sendDiscordNotification(message);
+}
+
+// NEW 2026-03-09: Send comprehensive weekly report
+// Discord embed helpers (from System Check Bot)
+function truncateFieldValue(value, limit = 1024) {
+  if (!value || typeof value !== 'string') return '\u200b';
+  if (value.length <= limit) return value;
+  return value.substring(0, limit - 3) + '...';
+}
+
+function enforceEmbedLimit(embed, limit = 5900) {
+  const countChars = () => {
+    let total = (embed.title || '').length + (embed.description || '').length;
+    if (embed.footer && embed.footer.text) total += embed.footer.text.length;
+    if (embed.author && embed.author.name) total += embed.author.name.length;
+    for (const f of (embed.fields || [])) {
+      total += (f.name || '').length + (f.value || '').length;
+    }
+    return total;
+  };
+  let total = countChars();
+  if (total <= limit) return embed;
+  const fields = embed.fields || [];
+  while (total > limit && fields.length > 0) {
+    let longestIdx = 0;
+    let longestLen = 0;
+    for (let i = 0; i < fields.length; i++) {
+      const vLen = (fields[i].value || '').length;
+      if (vLen > longestLen) { longestLen = vLen; longestIdx = i; }
+    }
+    if (longestLen <= 10) break;
+    const excess = total - limit;
+    const newLen = Math.max(10, longestLen - excess - 3);
+    fields[longestIdx].value = fields[longestIdx].value.substring(0, newLen) + '...';
+    total = countChars();
+  }
+  return embed;
+}
+
+function sendWeeklyReport(recentErrors, errorPatterns, autoAppliedRules) {
+  const totalErrors = recentErrors.length;
+  const patternCount = Object.keys(errorPatterns).length;
+  const newRulesCount = autoAppliedRules.length;
+  const auditRulesCount = auditPreventionRules.length;
+  const todayStr = getHKTDate();
+  
+  // === Load state for trend comparison ===
+  let lastErrorStats = { total: 0, patterns: 0, errorTypes: {} };
+  let lastAuditReportDate = null;
+  let lastAuditHash = null;
+  try {
+    if (fs.existsSync(STATE_FILE)) {
+      const stateData = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+      lastErrorStats = stateData.lastErrorStats || lastErrorStats;
+      lastAuditReportDate = stateData.lastAuditReportDate || null;
+      lastAuditHash = stateData.lastAuditHash || null;
+    }
+  } catch (e) {
+    log('⚠️ Could not load state for trend:', e.message);
+  }
+  
+  // === Calculate audit hash to detect changes ===
+  const currentAuditHash = auditFindings.issues ? 
+    JSON.stringify(auditFindings.issues.map(i => `${i.category}:${i.severity}`).sort()) : '';
+  const auditChanged = lastAuditHash !== currentAuditHash;
+  
+  // === Error trend analysis ===
+  const trendChange = lastErrorStats.total > 0 ? 
+    Math.round((totalErrors - lastErrorStats.total) / lastErrorStats.total * 100) : 0;
+  const trendArrow = trendChange > 0 ? '↑' : (trendChange < 0 ? '↓' : '→');
+  
+  // === Get top 3 error patterns with trend ===
+  const topPatterns = totalErrors > 0 ? 
+    Object.entries(errorPatterns).sort((a, b) => b[1].count - a[1].count).slice(0, 3) : [];
+  
+  // === Trend analysis by error type ===
+  const trendAnalysis = [];
+  if (lastErrorStats.errorTypes && Object.keys(lastErrorStats.errorTypes).length > 0) {
+    const currentTypes = {};
+    for (const [key, data] of Object.entries(errorPatterns)) {
+      currentTypes[key] = data.count;
+    }
+    for (const [type, lastCount] of Object.entries(lastErrorStats.errorTypes)) {
+      const currentCount = currentTypes[type] || 0;
+      if (currentCount > lastCount) {
+        trendAnalysis.push({ type, change: currentCount - lastCount, direction: 'up' });
+      } else if (currentCount < lastCount && currentCount > 0) {
+        trendAnalysis.push({ type, change: lastCount - currentCount, direction: 'down' });
+      }
+    }
+    // New types this week
+    for (const type of Object.keys(currentTypes)) {
+      if (!(type in (lastErrorStats.errorTypes || {}))) {
+        trendAnalysis.push({ type, change: currentTypes[type], direction: 'new' });
+      }
+    }
+  }
+  
+  // === P0/P1 counts ===
+  let p0Count = 0, p1Count = 0;
+  if (auditFindings.issues && auditFindings.issues.length > 0) {
+    p0Count = auditFindings.issues.filter(i => i.severity === 'P0').length;
+    p1Count = auditFindings.issues.filter(i => i.severity === 'P1').length;
+  }
+  
+  // === Build report (Chinese version) ===
+  const reportLines = [
+    `🔄 **每週校正循環報告** | ${todayStr}`,
+    ``,
+    `📊 本週錯誤概覽`,
+    `• 本週: ${totalErrors} 個錯誤，${patternCount} 種模式 (${trendArrow}${Math.abs(trendChange)}% vs 上週 ${lastErrorStats.total} 個)`,
+    `• AI 分類: ${Object.keys(categorizedErrors).length} 個類別`,
+    ``,
+    `🔴 本週主要問題 (Top 3)`,
+    ...(topPatterns.length > 0 ? 
+      topPatterns.map(([key, data], i) => {
+        const lastCount = lastErrorStats.errorTypes?.[key] || 0;
+        const diff = data.count - lastCount;
+        const diffArrow = diff > 0 ? '↑' : (diff < 0 ? '↓' : '→');
+        return `${i + 1}. ${key} (${data.count}x) ${diffArrow}`;
+      }) : ['• 本週冇錯誤']),
+    ``,
+    `📈 趨勢分析`,
+    ...(trendAnalysis.length > 0 ?
+      trendAnalysis.slice(0, 3).map(t => {
+        if (t.direction === 'new') return `🆕 ${t.type}: 新增 ${t.change}x`;
+        if (t.direction === 'up') return `↑ ${t.type}: +${t.change}x`;
+        return `↓ ${t.type}: -${t.change}x`;
+      }) : ['• 無上週數據對比']),
+    ``,
+    `🔍 Pure AI Audit`,
+    ...(auditChanged ?
+      [`• 🆕 審計有變化！發現 ${p0Count} 個 P0, ${p1Count} 個 P1`] :
+      [`• 無變化 (上次報告: ${lastAuditReportDate || '從未'})`]),
+    ``,
+    `🛠️ 自動修復`,
+    newRulesCount > 0 ? `• 本週新增 ${newRulesCount} 條規則` : `• 本週無新規則`,
+    auditRulesCount > 0 ? `• Prevention Rules: ${auditRulesCount} 條已生效` : `• Prevention Rules: 無`,
+    ``,
+    `💡 下週行動建議`,
+    ...(p0Count > 0 ? [`⚠️ 處理 ${p0Count} 個 P0 代碼問題`] : 
+        (trendAnalysis.filter(t => t.direction === 'up').length > 0 ? ['📊 監控上升趨勢的錯誤類型'] : ['🎉 系統健康，保持現狀'])),
+    ``,
+    `🤖 由 Ally 生成 | 每週校正循環 v4`
+  ];
+  
+  // === Update state with current stats ===
+  const newState = {
+    lastRun: getHKTDateTime(),
+    lastRunDate: todayStr,
+    processedErrors: recentErrors.slice(0, 100).map(e => e.id || e.title || 'unknown'),
+    proposedRules: [],
+    confirmedRules: [],
+    auditPreventionRules: auditPreventionRules || [],
+    lastAuditHash: currentAuditHash,
+    lastAuditReportDate: auditChanged ? todayStr : lastAuditReportDate,
+    lastErrorStats: {
+      total: totalErrors,
+      patterns: patternCount,
+      errorTypes: Object.fromEntries(
+        Object.entries(errorPatterns).map(([k, v]) => [k, v.count])
+      )
+    }
+  };
+  
+  try {
+    const tmpFile = STATE_FILE + '.tmp';
+    fs.writeFileSync(tmpFile, JSON.stringify(newState, null, 2));
+    fs.renameSync(tmpFile, STATE_FILE);
+  } catch (e) {
+    log('⚠️ Could not update state:', e.message);
+  }
+  
+  sendDiscordNotification(reportLines.join('\n'));
+}

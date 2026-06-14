@@ -1,0 +1,47 @@
+你係一個 AI Systems Architect，專門分析 memory system design 同 hallucination mitigation strategies。
+
+## 任務
+分析以下 L1 Generator hallucination 修復提案，給出專業評估。
+
+## 背景
+memory_generator.js（v3.1）每日 00:35 自動生成 L1 Overview，用 MiniMax M2.5（temp 0.3）分析 L2 記憶檔案。
+
+2026-05-28 嘅 L1 摘要幻覺咗一句：「Daily Synthesis cron 繼續暫停待決」
+實際情况：該 cron job 早已 setup 好並正常運行緊。
+
+呢個錯誤經 Wiki Daily Ingest 傳播入咗 wiki，造成系統性 misinformation。
+
+## 當前 L1 Prompt（detailInstruction）
+詳細摘要
+- 直接輸出，唔需要標題解釋
+- 每點用 * 開頭（bullet point），唔好用 section 排版
+- 唔好重複 L0 嘅內容結構 — L1 應該有更多分析同 context
+- 如果今日有 action item，第一點必須係 ⚠️ Action Item
+- 可以 include 系統 insight / 模式識別 / 趨勢觀察
+- 語氣保持客觀，唔好用「噉多位」「各位」呢啲開場白
+
+## 提案嘅 Fix
+
+### Level 1 — Prompt 加固
+喺 L1 detailInstruction 加：
+- 「只能陳述對話記錄直接支持嘅事實」
+- 「如果資訊唔喺 source 入面，必須標註 [推測]」
+
+### Level 2 — 系統狀態注入 Ground Truth
+L1 generation 前，先 gather 系統真實狀態，注入 prompt 做 context：
+- Cron job status（用 cron list）
+- Issue status（用 issue_manager.js list active）
+- 其他系統事實
+
+## 分析要求
+請分析：
+1. Level 1 prompt 加固係咪有效？有冇副作用？
+2. Level 2 ground truth injection 點 implement 最好？應該注入咩資訊？
+3. 呢兩個 level 夠唔夠？定係需要更多？
+4. 有冇其他 alternative approach 更好？
+5. 最終建議：做定唔做？點做？
+
+## 輸出格式
+- 結論第一句（Bold）
+- 逐點分析（bullet points）
+- 最終建議（做/唔做/改方式）

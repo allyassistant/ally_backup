@@ -1,0 +1,436 @@
+#!/usr/bin/env node
+/**
+ * Kimi Code CLI Runner - Symbol Injection 版本
+ *
+ * Spawns a MiniMax sub-agent to run Kimi Code CLI tasks
+ * 並自動注入相關 Symbol 上下文以提高準確度
+ *
+ * Usage:
+ *   node scripts/kimi_cli_runner.js "你的任務描述"
+ *   node scripts/kimi_cli_runner.js "重寫登入邏輯" --timeout 600
+ */
+
+const { spawn, execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+const { getHKTDateTime } = require('./lib/time');
+
+// Colors for terminal output
+const colors = {
+  reset: '\x1b[0m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m',
+  red: '\x1b[31m',
+  cyan: '\x1b[36m'
+};
+
+function log(message, color = 'reset') {
+  console.log(`${colors[color]}${message}${colors.reset}`);
+}
+
+function logSection(title) {
+  console.log(`\n${colors.cyan}═══════════════════════════════════════${colors.reset}`);
+  log(title, 'cyan');
+  console.log(`${colors.cyan}═══════════════════════════════════════${colors.reset}\n`);
+}
+
+// Magic numbers as constants
+const DEFAULT_TIMEOUT = 2700;  // 45 minutes
+const DEFAULT_MODEL = 'minimax-portal/MiniMax-M2.7';
+const SYMBOL_QUERY_TIMEOUT = 10000;  // 10 seconds
+
+// Parse arguments
+function parseArgs() {
+  const args = process.argv.slice(2);
+  let task = '';
+  let timeout = DEFAULT_TIMEOUT;
+  let model = DEFAULT_MODEL;
+
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--timeout' && args[i + 1]) {
+      timeout = parseInt(args[i + 1]);
+      i++;
+    } else if (args[i] === '--model' && args[i + 1]) {
+      model = args[i + 1];
+      i++;
+    } else {
+      task += (task ? ' ' : '') + args[i];
+    }
+  }
+
+  return { task, timeout, model };
+}
+
+// ============================================================
+// Symbol Injection 功能
+// ============================================================
+
+/**
+ * 從 task 中提取 symbol 關鍵詞
+ */
+function extractSymbolQueries(task) {
+  const queries = new Set();
+
+  // 匹配 scripts/xxx.js 或 scripts/xxx (可選 .js)
+  const scriptPattern = /scripts\/([a-zA-Z0-9_.-]+(?:\.js)?)/gi;
+  let match;
+  while ((match = scriptPattern.exec(task)) !== null) {
+    queries.add(match[1]);
+  }
+
+  // 匹配 `functionName` (backtick 內的名稱)
+  const backtickPattern = /`([a-zA-Z0-9_]+)`/g;
+  while ((match = backtickPattern.exec(task)) !== null) {
+    queries.add(match[1]);
+  }
+
+  // 匹配常見的 function names
+  const knownFunctions = [
+    'atomicAppend', 'atomicWrite', 'callOllama', 'heartbeat',
+    'generateSymbols', 'getSymbolInfo', 'log', '_log',
+    'extractSymbolQuery', 'querySymbols', 'generatePrompt',
+    'parseArgs', 'checkKimiCLI', 'getKimiVersion'
+  ];
+  knownFunctions.forEach(fn => {
+    // FIX P0: 移除 'g' flag 避免 lastIndex 污染
+    const fnPattern = new RegExp(`\\b${fn}\\b`, 'i');
+    if (fnPattern.test(task)) {
+      queries.add(fn);
+    }
+  });
+
+  return Array.from(queries);
+}
+
+/**
+ * 查詢 symbols，返回結構化結果
+ */
+function querySymbols(symbolNames) {
+  if (!symbolNames || symbolNames.length === 0) {
+    return [];
+  }
+
+  const results = [];
+  const getSymbolScript = path.join(process.cwd(), 'scripts', 'get_symbol_info.js');
+
+  symbolNames.forEach(name => {
+    try {
+      const output = execSync(
+        `node "${getSymbolScript}" "${name}" --json`,
+        { encoding: 'utf8', timeout: SYMBOL_QUERY_TIMEOUT }
+      );
+      const parsed = JSON.parse(output);
+      if (parsed.results && parsed.results.length > 0) {
+        parsed.results.forEach(r => {
+          results.push({
+            name: r.name,
+            file: r.file,
+            line: r.line,
+            type: r.type,
+            description: r.description
+          });
+        });
+      }
+    } catch (e) {
+      // Symbol not found, skip silently
+    }
+  });
+
+  return results;
+}
+
+/**
+ * 生成 Symbol 上下文章節
+ */
+function buildSymbolSection(symbolResults) {
+  if (!symbolResults || symbolResults.length === 0) {
+    return '';
+  }
+
+  let section = '\n\n## 📖 相關 Symbols (Symbol Map)\n';
+  section += '以下是你可能需要參考的代碼符號：\n';
+
+  // 限制最多 5 個symbols，避免 prompt 過長
+  const topSymbols = symbolResults.slice(0, 5);
+  topSymbols.forEach(s => {
+    section += `- \`${s.name}\` @ ${s.file}:${s.line} - ${s.description}\n`;
+  });
+
+  return section;
+}
+
+// ============================================================
+// End Symbol Injection 功能
+// ============================================================
+
+// Check if Kimi Code CLI is installed
+async function checkKimiCLI() {
+  return new Promise((resolve) => {
+    const proc = spawn('which', ['kimi']);
+    let output = '';
+
+    proc.stdout.on('data', (data) => { output += data.toString(); });
+    proc.on('close', (code) => {
+      if (code === 0 && output.trim()) {
+        resolve({ installed: true, path: output.trim() });
+      } else {
+        resolve({ installed: false, path: null });
+      }
+    });
+    proc.on('error', () => resolve({ installed: false, path: null }));
+  });
+}
+
+// Get Kimi version
+async function getKimiVersion(kimiPath) {
+  return new Promise((resolve) => {
+    const proc = spawn(kimiPath, ['--version']);
+    let output = '';
+
+    proc.stdout.on('data', (data) => { output += data.toString(); });
+    proc.on('close', (code) => {
+      resolve(code === 0 ? output.trim() : 'unknown');
+    });
+    proc.on('error', () => resolve('unknown'));
+  });
+}
+
+// Write task info for sub-agent to pick up
+function writeTaskFile(task, config) {
+  const taskData = {
+    task,
+    model: config.model,
+    timeout: config.timeout,
+    createdAt: getHKTDateTime(),
+    status: 'pending'
+  };
+
+  const taskFile = path.join(os.homedir(), '.openclaw', 'workspace', '.kimi-task.json');
+  const tmpFile = taskFile + '.tmp';
+  try {
+    fs.writeFileSync(tmpFile, JSON.stringify(taskData, null, 2));
+    fs.renameSync(tmpFile, taskFile);
+    return taskFile;
+  } catch (e) {
+    log('❌ Failed to write task file: ' + e.message, 'red');
+    try { if(fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch {}
+    return null;
+  }
+}
+
+// Generate the sub-agent prompt (with Symbol Injection)
+function generatePrompt(task, kimiInfo, symbolResults) {
+  let prompt = `你是 Kimi Code CLI 協調員。
+
+## 任務
+用 Kimi Code CLI 完成以下任務：
+"${task}"
+
+## Kimi Code CLI 狀態
+- 路徑：${kimiInfo.path}
+- 版本：${kimiInfo.version}`;
+
+  // [Symbol Injection] 加入相關 symbols 上下文
+  const symbolSection = buildSymbolSection(symbolResults);
+  if (symbolSection) {
+    prompt += symbolSection;
+    prompt += '\n⚠️ 注意：修改代碼前請先查閱上述 Symbol 的具體實現';
+  }
+
+  prompt += `
+
+## 工作流程
+1. 運行 Kimi Code CLI 執行任務
+2. Monitor 進度
+3. 完成後報告結果（成功/失敗、使用了咩方法、任務結果）
+
+## 完成後
+請清晰報告：
+- ✅ 成功 / ❌ 失敗
+- 使用的具體方法
+- 關鍵輸出或錯誤信息
+- 創建/修改的文件（如有）
+
+請立即開始執行任務。`;
+
+  return prompt;
+}
+
+// Check if task involves scripts/ modification
+function checkScriptModification(task) {
+  const scriptKeywords = [
+    'scripts/', 'script', '修改', 'fix', 'refactor',
+    'rebuild', 'edit ', 'update ', 'change ', 'modify'
+  ];
+
+  return scriptKeywords.some(keyword =>
+    task.toLowerCase().includes(keyword.toLowerCase())
+  );
+}
+
+// Run impact analysis for script modification
+function runImpactAnalysis(task) {
+  const { execSync } = require('child_process');
+
+  // Extract potential script names from task
+  const scriptPattern = /scripts?\/([a-zA-Z0-9_.-]+(?:\.js)?)/gi;
+  const matches = [...task.matchAll(scriptPattern)];
+
+  if (matches.length > 0) {
+    console.log('\n⚠️ 檢測到 scripts 目錄修改...');
+    console.log('═'.repeat(50));
+
+    matches.forEach(match => {
+      const scriptName = match[1].replace('.js', '');
+      console.log(`\n📊 影響分析：${scriptName}`);
+      try {
+        const result = execSync(
+          `node "${process.cwd()}/scripts/auto_fix.js" impact ${scriptName}`,
+          { encoding: 'utf8', timeout: 30000 }
+        );
+        console.log(result);
+      } catch (e) {
+        console.log(`❌ Impact analysis failed: ${e.message}`);
+      }
+    });
+
+    console.log('═'.repeat(50));
+    console.log('⚠️ 建議先確認影響範圍，再執行 Kimi Code CLI');
+    console.log('═'.repeat(50));
+    return true;
+  }
+  return false;
+}
+
+async function main() {
+  logSection('🦾 Kimi Code CLI Runner (Symbol Injection 版本)');
+
+  const config = parseArgs();
+
+  // ⚠️ Option C: Impact Check for script modifications
+  if (checkScriptModification(config.task)) {
+    console.log('\n🔍 分析任務是否涉及 scripts 修改...');
+    const hasScriptModification = runImpactAnalysis(config.task);
+
+    if (hasScriptModification) {
+      console.log('\n📌 你可以：');
+      console.log('   1. 先單獨運行 impact 分析確認影響');
+      console.log('   2. 或者繼續執行（已預警）');
+      console.log('');
+    }
+  }
+
+  if (!config.task) {
+    log('❌ 請提供任務描述', 'red');
+    log('\n用法:', 'yellow');
+    log('  node scripts/kimi_cli_runner.js "你的任務"', 'reset');
+    log('  node scripts/kimi_cli_runner.js "重寫登入" --timeout 600', 'reset');
+    log('\n參數:', 'yellow');
+    log('  --timeout <秒>  任務超時（默認300秒）', 'reset');
+    log('  --model <模型>  使用的模型（默認minimax-portal/MiniMax-M2.7）', 'reset');
+    process.exit(1);
+  }
+
+  log(`📋 任務：${config.task}`, 'blue');
+  log(`⏱️  超時：${config.timeout}秒`, 'blue');
+  log(`🤖 模型：${config.model}`, 'blue');
+
+  // [Symbol Injection] 自動提取並查詢相關 symbols
+  console.log('\n🔍 [Symbol Injection] 分析任務中的 symbols...');
+  const symbolQueries = extractSymbolQueries(config.task);
+  log(`📌 提取到 ${symbolQueries.length} 個潛在 symbols: ${symbolQueries.join(', ') || '(無)'}`, 'yellow');
+
+  const symbolResults = querySymbols(symbolQueries);
+  log(`📖 找到 ${symbolResults.length} 個相關 symbols`, 'green');
+  if (symbolResults.length > 0) {
+    symbolResults.slice(0, 3).forEach(s => {
+      log(`   - ${s.name} @ ${s.file}:${s.line}`, 'cyan');
+    });
+  }
+
+  // Check Kimi CLI
+  log('\n🔍 檢查 Kimi Code CLI...', 'yellow');
+  const kimiInfo = await checkKimiCLI();
+
+  if (!kimiInfo.installed) {
+    log('❌ Kimi Code CLI 未安裝', 'red');
+    log('請先安裝：pip install kimi-cli 或參考官方文檔', 'reset');
+    process.exit(1);
+  }
+
+  log(`✅ Kimi Code CLI 已安裝：${kimiInfo.path}`, 'green');
+
+  // Get version
+  kimiInfo.version = await getKimiVersion(kimiInfo.path);
+  log(`📦 版本：${kimiInfo.version}`, 'green');
+
+  // Write task file for sub-agent
+  const taskFile = writeTaskFile(config.task, config);
+  if (taskFile) {
+    log(`\n📝 任務已寫入：${taskFile}`, 'blue');
+  }
+
+  // Generate and save prompt (with Symbol Injection)
+  const prompt = generatePrompt(config.task, kimiInfo, symbolResults);
+  const promptFile = path.join(os.homedir(), '.openclaw', 'workspace', '.kimi-prompt.txt');
+  const promptTmpFile = promptFile + '.tmp';
+  try {
+    fs.writeFileSync(promptTmpFile, prompt);
+    fs.renameSync(promptTmpFile, promptFile);
+  } catch (e) {
+    log('❌ Failed to write prompt file: ' + e.message, 'red');
+    try { if(fs.existsSync(promptTmpFile)) fs.unlinkSync(promptTmpFile); } catch {}
+    return;
+  }
+
+  logSection('🚀 Spawning MiniMax Sub-Agent');
+  log('提示：sub-agent 會自動運行 Kimi Code CLI 並 monitor 進度', 'yellow');
+  log(`提示文件：${promptFile}`, 'yellow');
+
+  // Use the OpenClaw sessions_spawn tool via a helper script
+  const spawnScript = path.join(__dirname, 'spawn_kimi_agent.js');
+  const spawnConfig = {
+    task: prompt,
+    model: config.model,
+    timeout: config.timeout,
+    label: `Kimi-CLI-Symbol-Injection-${Date.now()}`
+  };
+
+  const spawnConfigFile = spawnScript.replace('.js', '-config.json');
+  const spawnConfigTmpFile = spawnConfigFile + '.tmp';
+  try {
+    fs.writeFileSync(spawnConfigTmpFile, JSON.stringify(spawnConfig, null, 2));
+    fs.renameSync(spawnConfigTmpFile, spawnConfigFile);
+  } catch (e) {
+    log('❌ Failed to write spawn config: ' + e.message, 'red');
+    try { if(fs.existsSync(spawnConfigTmpFile)) fs.unlinkSync(spawnConfigTmpFile); } catch {}
+  }
+
+  // For now, we'll create a marker file that the main agent can detect
+  const markerFile = path.join(os.homedir(), '.openclaw', 'workspace', '.kimi-needs-spawn');
+  const markerTmpFile = markerFile + '.tmp';
+  try {
+    fs.writeFileSync(markerTmpFile, JSON.stringify({
+      ready: true,
+      config: spawnConfig,
+      createdAt: getHKTDateTime()
+    }, null, 2));
+    fs.renameSync(markerTmpFile, markerFile);
+  } catch (e) {
+    log('❌ Failed to write marker file: ' + e.message, 'red');
+    try { if(fs.existsSync(markerTmpFile)) fs.unlinkSync(markerTmpFile); } catch {}
+  }
+
+  log('\n✅ 設定完成！', 'green');
+  log('\n請在 OpenClaw 主對話中運行以下命令：', 'yellow');
+  log(`sessions_spawn --task "使用 ${promptFile} 中的提示" --model ${config.model} --timeout ${config.timeout}`, 'cyan');
+
+  log('\n📌 或者告訴我「幫我spawn Kimi sub-agent」，我會自動處理', 'blue');
+}
+
+main().catch(err => {
+  log(`\n❌ Error: ${err.message}`, 'red');
+  process.exit(1);
+});

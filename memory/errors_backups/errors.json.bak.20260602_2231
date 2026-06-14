@@ -1,0 +1,1491 @@
+{
+  "schema": "openclaw.errors.v1",
+  "metadata": {
+    "createdAt": "2026-04-03T18:28:00.633Z",
+    "lastUpdated": "2026-06-02T22:31:48.152Z",
+    "totalErrors": 82
+  },
+  "errors": [
+    {
+      "id": "mpx7pos80qh8f",
+      "date": "2026-06-03",
+      "timestamp": "2026-06-02T22:31:48.152Z",
+      "type": "Cron Timeout",
+      "severity": 3,
+      "title": "Cron Timeout",
+      "problem": "Cron job timed out",
+      "source": "session:fc6e3b77",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-03"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpx7pos8ksm2w",
+      "date": "2026-06-03",
+      "timestamp": "2026-06-02T22:31:48.152Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-03"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpx7pos77gu5x",
+      "date": "2026-06-03",
+      "timestamp": "2026-06-02T22:31:48.151Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-03"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpx7pos5u91nt",
+      "date": "2026-06-03",
+      "timestamp": "2026-06-02T22:31:48.149Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-03"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpwhxlok6mhli",
+      "date": "2026-06-02",
+      "timestamp": "2026-06-02T10:30:07.364Z",
+      "type": "Cron Timeout",
+      "severity": 3,
+      "title": "Cron Timeout",
+      "problem": "Cron job timed out",
+      "source": "session:ff50db02",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-02"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpwhxlok474x3",
+      "date": "2026-06-02",
+      "timestamp": "2026-06-02T10:30:07.364Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:fa343dbf",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-02"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpwhxlojda4eq",
+      "date": "2026-06-02",
+      "timestamp": "2026-06-02T10:30:07.363Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:fa343dbf",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-02"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpwhxloh33jfb",
+      "date": "2026-06-02",
+      "timestamp": "2026-06-02T10:30:07.361Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:fa343dbf",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-02"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpwhxlnhndpx6",
+      "date": "2026-06-02",
+      "timestamp": "2026-06-02T10:30:07.325Z",
+      "type": "Cron Error",
+      "severity": 2,
+      "title": "Cron job failed: Knowledge Base Daily Ingest",
+      "problem": "[2026-06-01T22:00:00.009Z] cron: job execution timed out (last phase: model-call-started)",
+      "source": "cron",
+      "tags": [
+        "cron",
+        "knowledge-base-daily-ingest",
+        "2026-06-02"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpwhxlnfzb077",
+      "date": "2026-06-02",
+      "timestamp": "2026-06-02T10:30:07.323Z",
+      "type": "Cron Error",
+      "severity": 2,
+      "title": "Cron job failed: Wiki Daily Ingest",
+      "problem": "[2026-06-01T17:00:00.020Z] cron: job execution timed out (last phase: model-call-started)",
+      "source": "cron",
+      "tags": [
+        "cron",
+        "wiki-daily-ingest",
+        "2026-06-02"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpumibagq5id8",
+      "date": "2026-06-01",
+      "timestamp": "2026-06-01T03:02:39.784Z",
+      "type": "Cron Timeout",
+      "severity": 3,
+      "title": "Cron Timeout",
+      "problem": "Cron job timed out",
+      "source": "session:ff50db02",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-01"
+      ],
+      "count": 2,
+      "resolved": false
+    },
+    {
+      "id": "mpumibag76l1s",
+      "date": "2026-06-01",
+      "timestamp": "2026-06-01T03:02:39.784Z",
+      "type": "MiniMax Error",
+      "severity": 2,
+      "title": "MiniMax Error",
+      "problem": "MiniMax API error",
+      "source": "session:fdf8ed38",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-01"
+      ],
+      "count": 2,
+      "resolved": false
+    },
+    {
+      "id": "mpumibafi6x7n",
+      "date": "2026-06-01",
+      "timestamp": "2026-06-01T03:02:39.783Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:fa343dbf",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-01"
+      ],
+      "count": 2,
+      "resolved": false
+    },
+    {
+      "id": "mpumibaf8qv7u",
+      "date": "2026-06-01",
+      "timestamp": "2026-06-01T03:02:39.783Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:fa343dbf",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-01"
+      ],
+      "count": 2,
+      "resolved": false
+    },
+    {
+      "id": "mpumibaegevsr",
+      "date": "2026-06-01",
+      "timestamp": "2026-06-01T03:02:39.782Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:fa343dbf",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-06-01"
+      ],
+      "count": 2,
+      "resolved": false
+    },
+    {
+      "id": "mpumi86mdub8p",
+      "date": "2026-06-01",
+      "timestamp": "2026-06-01T03:02:35.758Z",
+      "type": "Cron Error",
+      "severity": 2,
+      "title": "Cron job failed: Wiki Daily Ingest",
+      "problem": "[2026-05-31T17:00:00.014Z] cron: job execution timed out (last phase: model-call-started)",
+      "source": "cron",
+      "tags": [
+        "cron",
+        "wiki-daily-ingest",
+        "2026-06-01"
+      ],
+      "count": 3,
+      "resolved": false
+    },
+    {
+      "id": "mpsfpwxiiwgwa",
+      "date": "2026-05-30",
+      "timestamp": "2026-05-30T14:17:04.758Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-30"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpsfpwxihppmv",
+      "date": "2026-05-30",
+      "timestamp": "2026-05-30T14:17:04.758Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-30"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpsfpwxg6ojky",
+      "date": "2026-05-30",
+      "timestamp": "2026-05-30T14:17:04.756Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-30"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mppx3ca1bn3ll",
+      "date": "2026-05-29",
+      "timestamp": "2026-05-28T20:00:06.121Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-29"
+      ],
+      "count": 2,
+      "resolved": false
+    },
+    {
+      "id": "mppx3ca02pjdf",
+      "date": "2026-05-29",
+      "timestamp": "2026-05-28T20:00:06.120Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-29"
+      ],
+      "count": 2,
+      "resolved": false
+    },
+    {
+      "id": "mppx3c9ymdw2d",
+      "date": "2026-05-29",
+      "timestamp": "2026-05-28T20:00:06.118Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-29"
+      ],
+      "count": 2,
+      "resolved": false
+    },
+    {
+      "id": "mppciw88sz9s6",
+      "date": "2026-05-28",
+      "timestamp": "2026-05-28T10:24:19.880Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:fb5f83d9",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-28"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mppciw87ug3jl",
+      "date": "2026-05-28",
+      "timestamp": "2026-05-28T10:24:19.879Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:fabe1d28",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-28"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mppciw853qtv5",
+      "date": "2026-05-28",
+      "timestamp": "2026-05-28T10:24:19.877Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:fabe1d28",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-28"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpk7bxmnv9292",
+      "date": "2026-05-25",
+      "timestamp": "2026-05-24T20:00:06.143Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:fa25aa1c",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-25"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpk7bxmmrc54g",
+      "date": "2026-05-25",
+      "timestamp": "2026-05-24T20:00:06.142Z",
+      "type": "DNS Error",
+      "severity": 3,
+      "title": "DNS Error",
+      "problem": "DNS lookup failed (ENOTFOUND)",
+      "source": "session:f9ce7dc5",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-25"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpk7bxmmnqse3",
+      "date": "2026-05-25",
+      "timestamp": "2026-05-24T20:00:06.142Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:f83d3a64",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-25"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpk7bxmjzsh0l",
+      "date": "2026-05-25",
+      "timestamp": "2026-05-24T20:00:06.139Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:f83d3a64",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-25"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mphcg6yojiq0l",
+      "date": "2026-05-23",
+      "timestamp": "2026-05-22T20:00:04.416Z",
+      "type": "DNS Error",
+      "severity": 3,
+      "title": "DNS Error",
+      "problem": "DNS lookup failed (ENOTFOUND)",
+      "source": "session:f9ce7dc5",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-23"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mphcg6ynrdan0",
+      "date": "2026-05-23",
+      "timestamp": "2026-05-22T20:00:04.415Z",
+      "type": "Cron Timeout",
+      "severity": 3,
+      "title": "Cron Timeout",
+      "problem": "Cron job timed out",
+      "source": "session:f73dcb36",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-23"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mphcg6ymbpgh1",
+      "date": "2026-05-23",
+      "timestamp": "2026-05-22T20:00:04.414Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:f70a55e5",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-23"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mphcg6ymg16s5",
+      "date": "2026-05-23",
+      "timestamp": "2026-05-22T20:00:04.414Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:f70a55e5",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-23"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mphcg6yku593p",
+      "date": "2026-05-23",
+      "timestamp": "2026-05-22T20:00:04.412Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:f70a55e5",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-23"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpa78zx20d3mh",
+      "date": "2026-05-18",
+      "timestamp": "2026-05-17T20:00:07.382Z",
+      "type": "DNS Error",
+      "severity": 3,
+      "title": "DNS Error",
+      "problem": "DNS lookup failed (ENOTFOUND)",
+      "source": "session:f9ce7dc5",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-18"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpa78zx1jafpr",
+      "date": "2026-05-18",
+      "timestamp": "2026-05-17T20:00:07.381Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:f0541bab",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-18"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mpa78zwz83gah",
+      "date": "2026-05-18",
+      "timestamp": "2026-05-17T20:00:07.379Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:f0541bab",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-18"
+      ],
+      "count": 1,
+      "resolved": true,
+      "resolvedAt": "2026-06-01T03:02:39.785Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "moza3240978kn",
+      "date": "2026-05-10",
+      "timestamp": "2026-05-10T04:34:01.200Z",
+      "type": "Auth Error",
+      "severity": 1,
+      "title": "Auth Error",
+      "problem": "Invalid API key",
+      "source": "session:f9feb075",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-10"
+      ],
+      "count": 1,
+      "resolved": true,
+      "resolvedAt": "2026-05-17T20:00:07.382Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "moza323z5rcao",
+      "date": "2026-05-10",
+      "timestamp": "2026-05-10T04:34:01.199Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:f9feb075",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-10"
+      ],
+      "count": 1,
+      "resolved": true,
+      "resolvedAt": "2026-05-24T20:00:06.144Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "moza323z8x4v0",
+      "date": "2026-05-10",
+      "timestamp": "2026-05-10T04:34:01.199Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:f9ef924a",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-10"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "moza323xw4occ",
+      "date": "2026-05-10",
+      "timestamp": "2026-05-10T04:34:01.197Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "Rate limit exceeded",
+      "source": "session:f9ef924a",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-05-10"
+      ],
+      "count": 1,
+      "resolved": true,
+      "resolvedAt": "2026-05-24T20:00:06.144Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mo2ncyfcxs43m",
+      "date": "2026-04-17",
+      "timestamp": "2026-04-17T08:29:14.184Z",
+      "type": "Manual",
+      "severity": 2,
+      "title": "記住上次merge_stock.js崩潰係因為OOM",
+      "problem": "記住上次merge_stock.js崩潰係因為OOM",
+      "source": "manual",
+      "tags": [
+        "manual",
+        "2026-04-17"
+      ],
+      "count": 1,
+      "resolved": false
+    },
+    {
+      "id": "mnozt9anxlkui",
+      "date": "2026-04-08",
+      "timestamp": "2026-04-07T19:09:03.695Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:e5b7534f",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-08"
+      ],
+      "count": 9,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.200Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnozt9alpvgyh",
+      "date": "2026-04-08",
+      "timestamp": "2026-04-07T19:09:03.693Z",
+      "type": "Ollama Error",
+      "severity": 3,
+      "title": "Ollama Error",
+      "problem": "Ollama service error",
+      "source": "session:e5b7534f",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-08"
+      ],
+      "count": 9,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.200Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnoxnrjaa75eo",
+      "date": "2026-04-08",
+      "timestamp": "2026-04-07T18:08:48.166Z",
+      "type": "WhatsApp Error",
+      "severity": 2,
+      "title": "WhatsApp Error",
+      "problem": "WhatsApp delivery error",
+      "source": "session:ff4fc9b7",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-08"
+      ],
+      "count": 1,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.200Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnot6ic49ugvx",
+      "date": "2026-04-08",
+      "timestamp": "2026-04-07T16:03:24.628Z",
+      "type": "File Not Found",
+      "severity": 3,
+      "title": "File Not Found",
+      "problem": "File not found (ENOENT)",
+      "source": "session:ff4fc9b7",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-08"
+      ],
+      "count": 9,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.200Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnot6ic4p43r6",
+      "date": "2026-04-08",
+      "timestamp": "2026-04-07T16:03:24.628Z",
+      "type": "MiniMax Error",
+      "severity": 2,
+      "title": "MiniMax Error",
+      "problem": "MiniMax API error",
+      "source": "session:ea483165",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-08"
+      ],
+      "count": 16,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.200Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnot6ic33hw47",
+      "date": "2026-04-08",
+      "timestamp": "2026-04-07T16:03:24.627Z",
+      "type": "Kimi Error",
+      "severity": 2,
+      "title": "Kimi Error",
+      "problem": "Kimi API error",
+      "source": "session:ea483165",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-08"
+      ],
+      "count": 16,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnot6ic3pkv7l",
+      "date": "2026-04-08",
+      "timestamp": "2026-04-07T16:03:24.627Z",
+      "type": "Auth Error",
+      "severity": 1,
+      "title": "Auth Error",
+      "problem": "401 Authentication failed",
+      "source": "session:e9ae4187",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-08"
+      ],
+      "count": 6,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnot6ic0arwy5",
+      "date": "2026-04-08",
+      "timestamp": "2026-04-07T16:03:24.624Z",
+      "type": "Discord Error",
+      "severity": 2,
+      "title": "Discord Error",
+      "problem": "Discord delivery error",
+      "source": "session:e9ae4187",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-08"
+      ],
+      "count": 9,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnokn4694p4fz",
+      "date": "2026-04-07",
+      "timestamp": "2026-04-07T12:04:22.881Z",
+      "type": "Auth Error",
+      "severity": 1,
+      "title": "Auth Error",
+      "problem": "401 Authentication failed",
+      "source": "session:e9ae4187",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-07"
+      ],
+      "count": 11,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mno2sit2cljqf",
+      "date": "2026-04-07",
+      "timestamp": "2026-04-07T03:44:42.038Z",
+      "type": "Cron Timeout",
+      "severity": 3,
+      "title": "Cron Timeout",
+      "problem": "Cron job timed out",
+      "source": "session:ff4fc9b7",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-07"
+      ],
+      "count": 5,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnnpxfticilai",
+      "date": "2026-04-07",
+      "timestamp": "2026-04-06T21:44:36.438Z",
+      "type": "WhatsApp Error",
+      "severity": 2,
+      "title": "WhatsApp Error",
+      "problem": "WhatsApp delivery error",
+      "source": "session:ff4fc9b7",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-07"
+      ],
+      "count": 1,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnnmpq7280vwy",
+      "date": "2026-04-07",
+      "timestamp": "2026-04-06T20:14:37.790Z",
+      "type": "Discord Error",
+      "severity": 2,
+      "title": "Discord Error",
+      "problem": "Discord delivery error",
+      "source": "session:ff4fc9b7",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-07"
+      ],
+      "count": 41,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnngel0y4gia0",
+      "date": "2026-04-07",
+      "timestamp": "2026-04-06T17:18:00.178Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:ff3c9f9a",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-07"
+      ],
+      "count": 3,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnngel0yrpnan",
+      "date": "2026-04-07",
+      "timestamp": "2026-04-06T17:18:00.178Z",
+      "type": "MiniMax Error",
+      "severity": 2,
+      "title": "MiniMax Error",
+      "problem": "MiniMax API error",
+      "source": "session:ea483165",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-07"
+      ],
+      "count": 47,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnngel0y5aktp",
+      "date": "2026-04-07",
+      "timestamp": "2026-04-06T17:18:00.178Z",
+      "type": "Kimi Error",
+      "severity": 2,
+      "title": "Kimi Error",
+      "problem": "Kimi API error",
+      "source": "session:ea483165",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-07"
+      ],
+      "count": 47,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnngel0x6hh4e",
+      "date": "2026-04-07",
+      "timestamp": "2026-04-06T17:18:00.177Z",
+      "type": "File Not Found",
+      "severity": 3,
+      "title": "File Not Found",
+      "problem": "File not found (ENOENT)",
+      "source": "session:e9c5c12e",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-07"
+      ],
+      "count": 43,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnlyhc98zd88s",
+      "date": "2026-04-06",
+      "timestamp": "2026-04-05T16:08:29.516Z",
+      "type": "Discord Error",
+      "severity": 2,
+      "title": "Discord Error",
+      "problem": "Discord delivery error",
+      "source": "session:fe9f8aaf",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-06"
+      ],
+      "count": 5,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnlyhc9714qeo",
+      "date": "2026-04-06",
+      "timestamp": "2026-04-05T16:08:29.515Z",
+      "type": "MiniMax Error",
+      "severity": 2,
+      "title": "MiniMax Error",
+      "problem": "MiniMax API error",
+      "source": "session:ea483165",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-06"
+      ],
+      "count": 31,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnlyhc97ngq82",
+      "date": "2026-04-06",
+      "timestamp": "2026-04-05T16:08:29.515Z",
+      "type": "File Error",
+      "severity": 4,
+      "title": "File Error",
+      "problem": "File system error",
+      "source": "session:e463d1f0",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-06"
+      ],
+      "count": 5,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnlyhc971ym6b",
+      "date": "2026-04-06",
+      "timestamp": "2026-04-05T16:08:29.515Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:e463d1f0",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-06"
+      ],
+      "count": 26,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnlyhc92uzrg4",
+      "date": "2026-04-06",
+      "timestamp": "2026-04-05T16:08:29.510Z",
+      "type": "Kimi Error",
+      "severity": 2,
+      "title": "Kimi Error",
+      "problem": "Kimi API error",
+      "source": "session:e463d1f0",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-06"
+      ],
+      "count": 31,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnlwcf9c2zor0",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-05T15:08:40.896Z",
+      "type": "Discord Error",
+      "severity": 2,
+      "title": "Discord Error",
+      "problem": "Discord delivery error",
+      "source": "session:fe9f8aaf",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-05"
+      ],
+      "count": 2,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnkl5b1zy31xm",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-04T17:07:26.903Z",
+      "type": "API Aborted",
+      "severity": 3,
+      "title": "API Aborted",
+      "problem": "Request aborted",
+      "source": "session:d70e8f59",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-05"
+      ],
+      "count": 3,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnkl5b1y8kntt",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-04T17:07:26.902Z",
+      "type": "MiniMax Error",
+      "severity": 2,
+      "title": "MiniMax Error",
+      "problem": "MiniMax API error",
+      "source": "session:d70e8f59",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-05"
+      ],
+      "count": 44,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnkl5b1y6ydmz",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-04T17:07:26.902Z",
+      "type": "File Error",
+      "severity": 4,
+      "title": "File Error",
+      "problem": "File system error",
+      "source": "session:d70e8f59",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-05"
+      ],
+      "count": 29,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnkl5b1y6texm",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-04T17:07:26.902Z",
+      "type": "File Not Found",
+      "severity": 3,
+      "title": "File Not Found",
+      "problem": "File not found (ENOENT)",
+      "source": "session:d70e8f59",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-05"
+      ],
+      "count": 3,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnkl5b1yyj6wf",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-04T17:07:26.902Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:d70e8f59",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-05"
+      ],
+      "count": 29,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnkl5b1x9awyi",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-04T17:07:26.901Z",
+      "type": "Kimi Error",
+      "severity": 2,
+      "title": "Kimi Error",
+      "problem": "Kimi API error",
+      "source": "session:d70e8f59",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-05"
+      ],
+      "count": 44,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnkhm348tf9x3",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-04T15:28:31.304Z",
+      "type": "API Aborted",
+      "severity": 3,
+      "title": "API Aborted",
+      "problem": "Request aborted",
+      "source": "session:d70e8f59",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 2,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnkhm3476sonj",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-04T15:28:31.303Z",
+      "type": "File Error",
+      "severity": 4,
+      "title": "File Error",
+      "problem": "File system error",
+      "source": "session:d70e8f59",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 2,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnk4qbhvx4tf3",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-04T09:27:53.779Z",
+      "type": "WhatsApp Error",
+      "severity": 2,
+      "title": "WhatsApp Error",
+      "problem": "WhatsApp delivery error",
+      "source": "session:ef53ead6",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 1,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnk4qbhvbvsig",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-04T09:27:53.779Z",
+      "type": "Timeout Error",
+      "severity": 3,
+      "title": "Timeout Error",
+      "problem": "Connection timeout",
+      "source": "session:ef53ead6",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 1,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnk4qbhu4p18w",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-04T09:27:53.778Z",
+      "type": "Ollama Error",
+      "severity": 3,
+      "title": "Ollama Error",
+      "problem": "Ollama service error",
+      "source": "session:e65a9a0b",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 1,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnju0i2naajwr",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-04T04:27:53.087Z",
+      "type": "Auth Error",
+      "severity": 1,
+      "title": "Auth Error",
+      "problem": "401 Authentication failed",
+      "source": "session:f1cae485",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 11,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnj9nhm97ld5g",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-03T18:57:53.649Z",
+      "type": "Discord Error",
+      "severity": 2,
+      "title": "Discord Error",
+      "problem": "Discord delivery error",
+      "source": "session:ceab309a",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 3,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnj8l24ccc4eo",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-03T18:28:00.636Z",
+      "type": "Cron Timeout",
+      "severity": 3,
+      "title": "Cron Timeout",
+      "problem": "Cron job timed out",
+      "source": "session:fd4824da",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 8,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnj8l24btn0wl",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-03T18:28:00.635Z",
+      "type": "File Not Found",
+      "severity": 3,
+      "title": "File Not Found",
+      "problem": "File not found (ENOENT)",
+      "source": "session:fd4824da",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 12,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnj8l24bz9uda",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-03T18:28:00.635Z",
+      "type": "MiniMax Error",
+      "severity": 2,
+      "title": "MiniMax Error",
+      "problem": "MiniMax API error",
+      "source": "session:ea483165",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 48,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnj8l24b9jmp8",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-03T18:28:00.635Z",
+      "type": "Kimi Error",
+      "severity": 2,
+      "title": "Kimi Error",
+      "problem": "Kimi API error",
+      "source": "session:ddbd0099",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 48,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    },
+    {
+      "id": "mnj8l2497mfcw",
+      "date": "2026-04-04",
+      "timestamp": "2026-04-03T18:28:00.633Z",
+      "type": "Rate Limit",
+      "severity": 2,
+      "title": "Rate Limit",
+      "problem": "429 Too Many Requests",
+      "source": "session:ddbd0099",
+      "tags": [
+        "auto-detected",
+        "session",
+        "2026-04-04"
+      ],
+      "count": 38,
+      "resolved": true,
+      "resolvedAt": "2026-05-10T04:34:01.201Z",
+      "resolvedBy": "auto-resolve"
+    }
+  ]
+}

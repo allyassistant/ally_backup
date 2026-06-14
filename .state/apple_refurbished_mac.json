@@ -1,0 +1,23 @@
+{
+  "last_updated": "2026-03-19T11:00:00+08:00",
+  "category": "mac",
+  "products": [
+    {"name": "翻新產品 Apple Studio Display，標準玻璃，可調校斜度座架", "price": "HK$9,599"},
+    {"name": "翻新產品 24 吋 iMac Apple M4 晶片配備 10 核心 CPU 及 10 核心 GPU、Gigabit Ethernet - 黃色", "price": "HK$9,799"},
+    {"name": "翻新產品 24 吋 iMac Apple M4 晶片配備 10 核心 CPU 及 10 核心 GPU、Gigabit Ethernet - 藍色", "price": "HK$9,799"},
+    {"name": "翻新產品 24 吋 iMac Apple M4 晶片配備 10 核心 CPU 及 10 核心 GPU、Gigabit Ethernet - 粉紅色", "price": "HK$9,799"},
+    {"name": "翻新產品 24 吋 iMac Apple M4 晶片配備 10 核心 CPU 及 10 核心 GPU、Gigabit Ethernet - 紫色", "price": "HK$9,799"},
+    {"name": "翻新產品 24 吋 iMac Apple M4 晶片配備 10 核心 CPU 及 10 核心 GPU、Gigabit Ethernet - 橙色", "price": "HK$9,799"},
+    {"name": "翻新產品 24 吋 iMac Apple M4 晶片配備 10 核心 CPU 及 10 核心 GPU、Gigabit Ethernet - 銀色", "price": "HK$10,999"},
+    {"name": "翻新產品 24 吋 iMac Apple M4 晶片配備 10 核心 CPU 及 10 核心 GPU、Gigabit Ethernet、納米紋理玻璃 - 藍色", "price": "HK$10,999"},
+    {"name": "翻新產品 Apple Studio Display，納米紋理玻璃，可調校斜度座架", "price": "HK$11,799"},
+    {"name": "翻新產品 24 吋 iMac Apple M4 晶片配備 10 核心 CPU 及 10 核心 GPU、Gigabit Ethernet - 綠色", "price": "HK$12,299"},
+    {"name": "翻新產品 24 吋 iMac Apple M4 晶片配備 10 核心 CPU 及 10 核心 GPU、Gigabit Ethernet - 藍色", "price": "HK$12,299"},
+    {"name": "翻新產品 Apple Studio Display，標準玻璃，可調校斜度和高度座架", "price": "HK$12,899"},
+    {"name": "翻新產品 16 吋 MacBook Pro Apple M4 Pro 晶片配備 14 核心 CPU 及 20 核心 GPU - 太空黑", "price": "HK$19,499"},
+    {"name": "翻新產品 14 吋 MacBook Pro Apple M4 Pro 晶片配備 14 核心 CPU 及 20 核心 GPU、納米紋理顯示器 - 太空黑", "price": "HK$21,399"},
+    {"name": "翻新產品 14 吋 MacBook Pro Apple M2 Max 晶片配備 12 核心 CPU 及 38 核心 GPU - 太空灰", "price": "HK$24,199"},
+    {"name": "翻新產品 14 吋 MacBook Pro Apple M4 Pro 晶片配備 14 核心 CPU 及 20 核心 GPU - 太空黑", "price": "HK$24,199"},
+    {"name": "翻新產品 Mac Studio Apple M2 Ultra 晶片配備 24 核心 CPU 及 60 核心 GPU", "price": "HK$26,699"}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-06-14T02:00:11.139Z",
+  "timestampHKT": "2026-06-14, 10:00:11 a.m.",
+  "dry_run": false,
+  "results": [
+    {
+      "fix_id": "FIX-415",
+      "file": "scripts/skill_reviewer_bot.js",
+      "issue": "1 個 fsSync/execSync 缺少 try-catch",
+      "age_hours": 0,
+      "verified_at": "2026-06-14T02:00:11.139Z",
+      "is_dry_run": false,
+      "verdict": "success",
+      "success_rate": 100,
+      "message": "✅ 修復成功 — 1 個 fsSync/execSync 缺少 try-catch",
+      "details": {
+        "stillFixed": true,
+        "currentCount": 0,
+        "failures": []
+      }
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "success": 1,
+    "fail": 0,
+    "skip": 35
+  }
+}

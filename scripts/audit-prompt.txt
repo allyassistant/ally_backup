@@ -1,0 +1,46 @@
+你是代碼審計員。請詳細審計以下 closed-loop-coder skill 的所有文件。
+
+## 審計重點
+
+1. **SKILL.md**
+   - YAML frontmatter 格式正確？
+   - description 清晰描述觸發條件？
+   - 工作流程清晰可行？
+   - 指令明確可執行？
+
+2. **references/expert-analysis-template.md**
+   - 模板實用？
+   - 包含所有必要部分？
+
+3. **references/code-review-checklist.md**
+   - 4個測試Agent職責清晰？
+   - 檢查清單全面？
+
+4. **整合問題**
+   - 各文件之間引用正確？
+   - 邏輯一致？
+
+## 回報格式
+
+## 發現的問題
+
+### SKILL.md
+| 位置 | 問題 | 嚴重性 | 建議修復 |
+|------|------|--------|----------|
+
+### references/
+
+### 整合問題
+
+## 總結
+
+| 類別 | 問題數 |
+|------|--------|
+| SKILL.md | |
+| references/ | |
+| 整合問題 | |
+| **總計** | |
+
+## 建議改進
+1. ...
+2. ...

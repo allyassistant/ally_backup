@@ -1,0 +1,7 @@
+[2026-03-27T17:43:11.688Z] [INFO] Starting L1 Generator for 2026-03-27
+[2026-03-27T17:43:11.690Z] [INFO] Found 12 L2 files
+[2026-03-27T17:43:11.690Z] [INFO] Using last 8000 chars of L2
+[2026-03-27T17:43:11.690Z] [INFO] Calling Ollama qwen2.5:3b...
+[2026-03-27T17:43:33.151Z] [INFO] Temp file written: /Users/ally/.openclaw/workspace/memory/l1-overview/.temp/l1_2026-03-27.tmp
+[2026-03-27T17:43:33.152Z] [INFO] Moved to final: /Users/ally/.openclaw/workspace/memory/l1-overview/2026-03-27.md
+[2026-03-27T17:43:33.152Z] [SUCCESS] ✅ SUCCESS: L1 written (925 chars)

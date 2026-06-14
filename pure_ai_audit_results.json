@@ -1,0 +1,3676 @@
+{
+  "summary": {
+    "critical": 0,
+    "high": 28,
+    "medium": 0,
+    "low": 430
+  },
+  "findings": [
+    {
+      "file": "_legacy/scripts/extract_4ct_price.js",
+      "line": 21,
+      "severity": "low",
+      "title": "Hardcoded magic number: 73067059554046536028016011554222. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_all_ranges.js",
+      "line": 117,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_all_ranges_v2.js",
+      "line": 24,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_all_ranges_v2.js",
+      "line": 26,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_all_ranges_v3.js",
+      "line": 29,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_all_ranges_v3.js",
+      "line": 30,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_all_ranges_v3.js",
+      "line": 45,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_all_ranges_v3.js",
+      "line": 74,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_all_tables.js",
+      "line": 26,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_final.js",
+      "line": 24,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1320. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_final.js",
+      "line": 27,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/extract_rapaport_v5.js",
+      "line": 15,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1000855770690580. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/test_whatsapp.js",
+      "line": 16,
+      "severity": "low",
+      "title": "Hardcoded magic number: 852XXXXXXX. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/test_whatsapp.js",
+      "line": 17,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/test_whatsapp.js",
+      "line": 20,
+      "severity": "low",
+      "title": "Hardcoded magic number: 852XXXXXXX. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/update_rapaport_db_v2.js",
+      "line": 29,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/send-test.js",
+      "line": 12,
+      "severity": "low",
+      "title": "Hardcoded magic number: 852XXXXXXX. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/send-test.js",
+      "line": 34,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/whatsapp-bot.js",
+      "line": 12,
+      "severity": "low",
+      "title": "Hardcoded magic number: 852XXXXXXX. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/whatsapp-bot.js",
+      "line": 43,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/whatsapp-bot.js",
+      "line": 55,
+      "severity": "low",
+      "title": "Hardcoded magic number: 852XXXXXXX. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/adaptive_timeout.js",
+      "line": 38,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 29,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 31,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 31,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2048. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 31,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4096. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 31,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8192. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 31,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 32,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 32,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 32,
+      "severity": "low",
+      "title": "Hardcoded magic number: 180000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 32,
+      "severity": "low",
+      "title": "Hardcoded magic number: 300000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 32,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3600000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 32,
+      "severity": "low",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 33,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3600. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 34,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 34,
+      "severity": "low",
+      "title": "Hardcoded magic number: 100000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 34,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1073741824. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 34,
+      "severity": "low",
+      "title": "Hardcoded magic number: 17179869184. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 34,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1536000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 35,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3456. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 35,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 35,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5900. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 35,
+      "severity": "low",
+      "title": "Hardcoded magic number: 6000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 35,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 35,
+      "severity": "low",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 36,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 36,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 36,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 37,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 37,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 37,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 37,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567890. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 38,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1100. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 38,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1125. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 38,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1145. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 38,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1175. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 38,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1200. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 38,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1600. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3167. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9063. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4834. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2491. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16054. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1592. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1291. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 6768. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4327. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1934. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2670. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 20639. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 24748. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3725. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 39,
+      "severity": "low",
+      "title": "Hardcoded magic number: 32130. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 40,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 40,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 41,
+      "severity": "low",
+      "title": "Hardcoded magic number: 25504446. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 41,
+      "severity": "low",
+      "title": "Hardcoded magic number: 47494638. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 42,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 42,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 42,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 42,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2700. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 42,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1500. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 43,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1630. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 43,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1680. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 43,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1683. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 43,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1720. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 51,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 51,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 51,
+      "severity": "low",
+      "title": "Hardcoded magic number: 180000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 51,
+      "severity": "low",
+      "title": "Hardcoded magic number: 300000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 51,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3600000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 51,
+      "severity": "low",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 53,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 53,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2048. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 53,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4096. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 53,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8192. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 53,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 55,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 55,
+      "severity": "low",
+      "title": "Hardcoded magic number: 100000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 55,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1073741824. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 55,
+      "severity": "low",
+      "title": "Hardcoded magic number: 17179869184. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 55,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1536000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 57,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3456. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 57,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 57,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5900. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 57,
+      "severity": "low",
+      "title": "Hardcoded magic number: 6000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 57,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 57,
+      "severity": "low",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 59,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 59,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 59,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 61,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 61,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 61,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 61,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567890. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 63,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 63,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 63,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 63,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2700. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 63,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1500. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 65,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 65,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 67,
+      "severity": "low",
+      "title": "Hardcoded magic number: 25504446. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 67,
+      "severity": "low",
+      "title": "Hardcoded magic number: 47494638. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 169,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 169,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4096. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 196,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 196,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4096. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 196,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 196,
+      "severity": "low",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 197,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 197,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 197,
+      "severity": "low",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 198,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/analyze_magic_numbers.js",
+      "line": 198,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/apple_notes.js",
+      "line": 42,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/apple_notes.js",
+      "line": 93,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/apple_notes.js",
+      "line": 123,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/apple_reminders_calendar.js",
+      "line": 62,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/apple_reminders_calendar.js",
+      "line": 125,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/audit_scanner.js",
+      "line": 252,
+      "severity": "low",
+      "title": "Hardcoded magic number: 102400. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 77,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473384999003619500. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 223,
+      "severity": "low",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 226,
+      "severity": "low",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 301,
+      "severity": "low",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 404,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4096. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 415,
+      "severity": "low",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 490,
+      "severity": "low",
+      "title": "Hardcoded magic number: 100000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 494,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 1318,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 1861,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 1921,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_fix.js",
+      "line": 1929,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_issue_creator.js",
+      "line": 451,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1800. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_issue_creator.js",
+      "line": 454,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473376125584670872. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_issue_creator.js",
+      "line": 455,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473376125584670872. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_issue_creator.js",
+      "line": 464,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_skill_router.js",
+      "line": 34,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/auto_skill_router.js",
+      "line": 35,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/autoops/daily_stock_monitor.js",
+      "line": 22,
+      "severity": "low",
+      "title": "Hardcoded magic number: 852XXXXXXX. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/autoops/health_monitor.js",
+      "line": 18,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/autoops/health_monitor.js",
+      "line": 47,
+      "severity": "low",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/autoops/token_monitor.js",
+      "line": 27,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/balanced_cleaning.py",
+      "line": 74,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/browser_autoclose.js",
+      "line": 28,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/code_quality_manager.js",
+      "line": 677,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/code_quality_manager.js",
+      "line": 716,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/code_quality_manager.js",
+      "line": 781,
+      "severity": "low",
+      "title": "Hardcoded magic number: 300000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/context_aware_cleaning.py",
+      "line": 97,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/customer360.js",
+      "line": 149,
+      "severity": "low",
+      "title": "Hardcoded magic number: 100000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/customer360.js",
+      "line": 150,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/customer_analyzer.js",
+      "line": 10,
+      "severity": "low",
+      "title": "Hardcoded magic number: 100000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/customer_analyzer.js",
+      "line": 11,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/daily_maintenance.js",
+      "line": 31,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/daily_maintenance.js",
+      "line": 32,
+      "severity": "low",
+      "title": "Hardcoded magic number: 180000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/daily_maintenance.js",
+      "line": 33,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/daily_summary_bot.js",
+      "line": 35,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473386222998130860. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/daily_summary_bot.js",
+      "line": 165,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/daily_summary_bot.js",
+      "line": 191,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1500. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/daily_summary_bot.js",
+      "line": 197,
+      "severity": "low",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/daily_summary_bot.js",
+      "line": 206,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/gia_certificate_ocr.js",
+      "line": 85,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567890. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/gia_certificate_ocr.js",
+      "line": 95,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567890. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 26,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473376125584670872. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 57,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 64,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 71,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 80,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 81,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 83,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 84,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 86,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 92,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 93,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 112,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 123,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 163,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 218,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3600. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 265,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 354,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 380,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 405,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 455,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/health_monitor.js",
+      "line": 502,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 21,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 122,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3167. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 123,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9063. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 124,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4834. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 125,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2491. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 126,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16054. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 127,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1592. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 128,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1291. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 129,
+      "severity": "low",
+      "title": "Hardcoded magic number: 6768. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 130,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4327. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 131,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1934. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 132,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2670. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 133,
+      "severity": "low",
+      "title": "Hardcoded magic number: 20639. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 134,
+      "severity": "low",
+      "title": "Hardcoded magic number: 24748. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 135,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3725. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher.js",
+      "line": 136,
+      "severity": "low",
+      "title": "Hardcoded magic number: 32130. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 26,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473383064565710929. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 54,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 104,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3167. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 105,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9063. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 106,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4834. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 107,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2491. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 108,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16054. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_auto_followup.js",
+      "line": 280,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_auto_followup.js",
+      "line": 284,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_auto_followup.js",
+      "line": 297,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_auto_followup.js",
+      "line": 310,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_auto_followup.js",
+      "line": 325,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_auto_followup.js",
+      "line": 351,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_manager.js",
+      "line": 371,
+      "severity": "low",
+      "title": "Hardcoded magic number: 9999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_reminders_sync.js",
+      "line": 140,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_reminders_sync.js",
+      "line": 173,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/issue_reminders_sync.js",
+      "line": 204,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/kimi_cli_runner.js",
+      "line": 42,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2700. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/kimi_cli_runner.js",
+      "line": 172,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/l0_l1_verify.js",
+      "line": 31,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/l0_l1_verify.js",
+      "line": 32,
+      "severity": "low",
+      "title": "Hardcoded magic number: 180000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/l0_l1_verify.js",
+      "line": 244,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/l0_l1_verify.js",
+      "line": 244,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 10,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1630. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 10,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1680. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 11,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1683. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 11,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1720. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 23,
+      "severity": "low",
+      "title": "Hardcoded magic number: 100000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 100,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1630. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 100,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1680. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 131,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 188,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1683. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/analyzers/file-analyzer.js",
+      "line": 188,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1720. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/auditOrchestrator.js",
+      "line": 35,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/auditOrchestrator.js",
+      "line": 113,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/fileDiscovery.js",
+      "line": 21,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/fileDiscovery.js",
+      "line": 116,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/helpers/skip-list.js",
+      "line": 21,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567890123456789. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/helpers/skip-list.js",
+      "line": 24,
+      "severity": "low",
+      "title": "Hardcoded magic number: 852XXXXXXX. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/helpers/skip-list.js",
+      "line": 24,
+      "severity": "low",
+      "title": "Hardcoded magic number: 7890. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/helpers/skip-list.js",
+      "line": 28,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/helpers/skip-list.js",
+      "line": 28,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4096. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/helpers/skip-list.js",
+      "line": 28,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8192. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/helpers/skip-list.js",
+      "line": 31,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/high-risk.js",
+      "line": 6,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1100. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/high-risk.js",
+      "line": 138,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1100. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/high-risk.js",
+      "line": 860,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473384999. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 6,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1100. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 6,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1600. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 69,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1100. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 69,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1600. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 124,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1125. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 124,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1145. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 127,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 139,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 151,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1148. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 151,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1175. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 181,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1178. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 181,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1200. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 183,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 213,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1203. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 213,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1235. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 216,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 267,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1240. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 267,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1290. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 337,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1293. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 337,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1320. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 374,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1323. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 374,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1350. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 404,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1353. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 404,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1375. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 434,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1378. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 434,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1395. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 458,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1400. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 458,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1460. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 578,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1463. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 578,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1505. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 658,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1508. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 658,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1550. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 143,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473343330170572904. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 144,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473376125584670872. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 145,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473383064565710929. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 146,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473382857949970515. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 147,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473383628951126182. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 148,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473383964948304089. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 149,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473384999003619500. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 150,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473386222998130860. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 212,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 226,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 237,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/market_monitor.js",
+      "line": 18,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3600000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_generator.js",
+      "line": 47,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_generator.js",
+      "line": 49,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_generator.js",
+      "line": 63,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_generator.js",
+      "line": 65,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_generator.js",
+      "line": 193,
+      "severity": "low",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_generator.js",
+      "line": 238,
+      "severity": "low",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_generator.js",
+      "line": 519,
+      "severity": "low",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_maintenance.js",
+      "line": 187,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_maintenance.js",
+      "line": 210,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_sanitizer.js",
+      "line": 26,
+      "severity": "low",
+      "title": "Hardcoded magic number: 25504446. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_sanitizer.js",
+      "line": 29,
+      "severity": "low",
+      "title": "Hardcoded magic number: 47494638. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_sanitizer.js",
+      "line": 68,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8192. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_sanitizer.js",
+      "line": 71,
+      "severity": "low",
+      "title": "Hardcoded magic number: 8192. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_sanitizer.js",
+      "line": 293,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_sanitizer.js",
+      "line": 303,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_sanitizer.js",
+      "line": 305,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_sanitizer.js",
+      "line": 354,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/memory_sanitizer.js",
+      "line": 386,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pattern_analysis_daily.js",
+      "line": 50,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pattern_archive.js",
+      "line": 144,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pattern_proactive_trigger.js",
+      "line": 82,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pattern_resolver.js",
+      "line": 85,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/price_history.js",
+      "line": 220,
+      "severity": "low",
+      "title": "Hardcoded magic number: 94500. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/price_history.js",
+      "line": 220,
+      "severity": "low",
+      "title": "Hardcoded magic number: 70875. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 74,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 320,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 561,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3600. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 583,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 641,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473384999003619500. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 741,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/pure_audit_runner.js",
+      "line": 49,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/rapnet_sender.js",
+      "line": 16,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473383064565710929. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/rapnet_sender.js",
+      "line": 69,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1900. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/rapnet_weekly.js",
+      "line": 62,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/rapnet_weekly.js",
+      "line": 84,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/rapnet_weekly.js",
+      "line": 101,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/rapnet_weekly.js",
+      "line": 111,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/rapnet_weekly.js",
+      "line": 122,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/rapnet_weekly.js",
+      "line": 260,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/rapnet_weekly_workflow.js",
+      "line": 27,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/reminder_discussion.js",
+      "line": 22,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/reminder_discussion_bot.js",
+      "line": 17,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473376125584670872. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/reminder_discussion_bot.js",
+      "line": 67,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 41,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 253,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 254,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 255,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 256,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 257,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 258,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 426,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 427,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 458,
+      "severity": "low",
+      "title": "Hardcoded magic number: 4096. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 557,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 558,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1536000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 559,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1073741824. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 562,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 563,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 564,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 565,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 568,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 569,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 570,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1234567890. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 587,
+      "severity": "low",
+      "title": "Hardcoded magic number: 2500000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 594,
+      "severity": "low",
+      "title": "Hardcoded magic number: 16667. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 627,
+      "severity": "low",
+      "title": "Hardcoded magic number: 25000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 628,
+      "severity": "low",
+      "title": "Hardcoded magic number: 18000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 629,
+      "severity": "low",
+      "title": "Hardcoded magic number: 32000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 630,
+      "severity": "low",
+      "title": "Hardcoded magic number: 28000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 666,
+      "severity": "low",
+      "title": "Hardcoded magic number: 25000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 776,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/report_generator.js",
+      "line": 826,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/session_cleanup.js",
+      "line": 233,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/session_cleanup.js",
+      "line": 264,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/session_cleanup.js",
+      "line": 268,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/session_recovery.js",
+      "line": 79,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/smart_handwriting_removal.py",
+      "line": 49,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/smart_handwriting_removal.py",
+      "line": 53,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/status-server.js",
+      "line": 11,
+      "severity": "low",
+      "title": "Hardcoded magic number: 3456. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/status-server.js",
+      "line": 12,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/status-server.js",
+      "line": 14,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/status-server.js",
+      "line": 113,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/status-server.js",
+      "line": 126,
+      "severity": "low",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 29,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473376125584670872. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 59,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 60,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 66,
+      "severity": "low",
+      "title": "Hardcoded magic number: 6000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 66,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5900. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 67,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5900. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 342,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 419,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 434,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 439,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 494,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 595,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 702,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 775,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/system_check_bot.js",
+      "line": 819,
+      "severity": "low",
+      "title": "Hardcoded magic number: 10000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/task_router.js",
+      "line": 225,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/token_archive.js",
+      "line": 178,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/token_archive.js",
+      "line": 180,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/token_archive.js",
+      "line": 181,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/token_archive.js",
+      "line": 214,
+      "severity": "low",
+      "title": "Hardcoded magic number: 852XXXXXXX. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/token_archive.js",
+      "line": 217,
+      "severity": "low",
+      "title": "Hardcoded magic number: 15000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/token_archive.js",
+      "line": 220,
+      "severity": "low",
+      "title": "Hardcoded magic number: 852XXXXXXX. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/update_rapaport_universal.js",
+      "line": 85,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/verify_backup.js",
+      "line": 106,
+      "severity": "low",
+      "title": "Hardcoded magic number: 30000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 51,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 52,
+      "severity": "low",
+      "title": "Hardcoded magic number: 5900. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 59,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1473376125584670872. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 902,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/weekly_parallel.js",
+      "line": 37,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/weekly_parallel.js",
+      "line": 82,
+      "severity": "low",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/weekly_parallel.js",
+      "line": 83,
+      "severity": "low",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/weekly_parallel.js",
+      "line": 84,
+      "severity": "low",
+      "title": "Hardcoded magic number: 300000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/weekly_parallel.js",
+      "line": 89,
+      "severity": "low",
+      "title": "Hardcoded magic number: 300000. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/workspace_index_generator.py",
+      "line": 56,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "scripts/workspace_index_generator.py",
+      "line": 58,
+      "severity": "low",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "rule": "magic_numbers",
+      "category": "style"
+    },
+    {
+      "file": "_legacy/scripts/test_whatsapp.js",
+      "line": 6,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/__tests__/auto_fix/test_runner.js",
+      "line": 12,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/apple_reminders_calendar.js",
+      "line": 14,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/autoops/health_monitor.js",
+      "line": 12,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/autoops/token_monitor.js",
+      "line": 12,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/kimi_cli_runner.js",
+      "line": 156,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/lib/rules/system-audit.js",
+      "line": 32,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 153,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/memory_maintenance.js",
+      "line": 9,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/pattern_analysis_daily.js",
+      "line": 11,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 41,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 45,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 442,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 454,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/pure_ai_audit.js",
+      "line": 458,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/reminder_discussion.js",
+      "line": 16,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/session_recovery.js",
+      "line": 14,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/update_rapaport_universal.js",
+      "line": 9,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 793,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 805,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 815,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 835,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 836,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 840,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 841,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 845,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_session_cleanup.js",
+      "line": 16,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    },
+    {
+      "file": "scripts/weekly_session_cleanup.js",
+      "line": 19,
+      "severity": "high",
+      "title": "execSync or execFileSync found without try-catch protection",
+      "rule": "execSync_missing_trycatch",
+      "category": "reliability"
+    }
+  ],
+  "generatedAt": "2026-04-06T08:07:15.739Z",
+  "source": "code-quality-manager"
+}

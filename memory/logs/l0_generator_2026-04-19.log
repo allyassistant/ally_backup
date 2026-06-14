@@ -1,0 +1,8 @@
+[2026-04-18T16:05:06.895Z] [INFO] Starting L0 Abstract Generator for 2026-04-18
+[2026-04-18T16:05:06.898Z] [INFO] Found 61 L2 files
+[2026-04-18T16:05:06.915Z] [INFO] Ollama input pre-filtered: 181 → 108 lines
+[2026-04-18T16:05:06.915Z] [INFO] Using last 8302 chars of L2 (window: 12000)
+[2026-04-18T16:05:06.927Z] [INFO] Ollama pre-check passed
+[2026-04-18T16:05:06.927Z] [INFO] Calling Ollama qwen2.5:3b...
+[2026-04-18T16:05:23.426Z] [INFO] Applied OpenCC s2hk conversion (449 → 449 chars)
+[2026-04-18T16:05:23.428Z] [SUCCESS] ✅ SUCCESS: L0 Abstract written (542 chars)

@@ -1,0 +1,7 @@
+[2026-03-27T17:42:48.569Z] [INFO] Starting L0 Generator for 2026-03-27
+[2026-03-27T17:42:48.570Z] [INFO] Found 12 L2 files
+[2026-03-27T17:42:48.572Z] [INFO] Using last 4000 chars of L2
+[2026-03-27T17:42:48.572Z] [INFO] Calling Ollama qwen2.5:3b...
+[2026-03-27T17:42:56.934Z] [INFO] Temp file written: /Users/ally/.openclaw/workspace/memory/l0-abstract/.temp/l0_2026-03-27.tmp
+[2026-03-27T17:42:56.935Z] [INFO] Moved to final: /Users/ally/.openclaw/workspace/memory/l0-abstract/2026-03-27.md
+[2026-03-27T17:42:56.935Z] [SUCCESS] ✅ SUCCESS: L0 written (380 chars)

@@ -1,0 +1,9 @@
+[2026-05-15T16:35:03.269Z] [INFO] [CRON] Starting L1 Overview Generator for 2026-05-15
+[2026-05-15T16:35:03.271Z] [INFO] [CRON] Found 12 L2 files
+[2026-05-15T16:35:03.272Z] [INFO] [CRON] MiniMax input pre-filtered + dedup: 96 → 53 lines (unique)
+[2026-05-15T16:35:03.272Z] [INFO] [CRON] Using last 8134 chars of L2 (window: 20000)
+[2026-05-15T16:35:03.282Z] [INFO] [CRON] OpenClaw CLI available
+[2026-05-15T16:35:03.282Z] [INFO] [CRON] Calling minimax/MiniMax-M2.5 via OpenClaw CLI...
+[2026-05-15T16:35:14.966Z] [SUCCESS] [CRON] OpenClaw CLI responded in 11.7s
+[2026-05-15T16:35:14.967Z] [INFO] [CRON] Applied OpenCC s2hk conversion (649 → 649 chars)
+[2026-05-15T16:35:14.968Z] [SUCCESS] [CRON] ✅ SUCCESS: L1 Overview written (742 chars)

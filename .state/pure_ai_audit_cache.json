@@ -1,0 +1,1046 @@
+{
+  "adaptive_timeout.js": {
+    "mtime": 1775404310075,
+    "size": 4511,
+    "hash": "2df81379c5793c06d066989cabd2afbc",
+    "lastAudited": "2026-04-06T08:23:01.140Z"
+  },
+  "ai_image_generator.js": {
+    "mtime": 1774843312300,
+    "size": 2485,
+    "hash": "4fa582b8b4582e581e46ce0e3962fd2d",
+    "lastAudited": "2026-03-31T04:35:36.039Z"
+  },
+  "apple_notes.js": {
+    "mtime": 1774976857817,
+    "size": 6373,
+    "hash": "cd44aa3bc438f794159c9ee0266f365d",
+    "lastAudited": "2026-04-01T02:02:33.043Z"
+  },
+  "apple_reminders_calendar.js": {
+    "mtime": 1775235799960,
+    "size": 7137,
+    "hash": "80648cd45ef166a8dfcffa16bf790db7",
+    "lastAudited": "2026-04-03T19:40:04.355Z"
+  },
+  "archive_smart.js": {
+    "mtime": 1774957987193,
+    "size": 1992,
+    "hash": "5c839bcd7451411740d53e7176197419",
+    "lastAudited": "2026-03-31T14:00:09.647Z"
+  },
+  "auto-spawn.js": {
+    "mtime": 1775276888190,
+    "size": 7274,
+    "hash": "4c17f9964f4267ae6c77feb60cd47756",
+    "lastAudited": "2026-04-04T04:45:56.494Z"
+  },
+  "auto_issue_creator.js": {
+    "mtime": 1775293052947,
+    "size": 22848,
+    "hash": "73544fbcb29c8f23c4d13f8a21285088",
+    "lastAudited": "2026-04-04T09:46:51.908Z"
+  },
+  "auto_skill_router.js": {
+    "mtime": 1775397809345,
+    "size": 10207,
+    "hash": "3e81f7a39ae2674190e687d2cd54984f",
+    "lastAudited": "2026-04-05T14:20:43.198Z"
+  },
+  "browser_autoclose.js": {
+    "mtime": 1774955218762,
+    "size": 1172,
+    "hash": "65cff7be14dcfc2ac7eb4633564561d7",
+    "lastAudited": "2026-03-31T14:00:09.648Z"
+  },
+  "chart_generator.js": {
+    "mtime": 1775441010121,
+    "size": 3391,
+    "hash": "28ff612becf35c09812a7769db75d823",
+    "lastAudited": "2026-04-06T08:23:01.142Z"
+  },
+  "check-router-decision.js": {
+    "mtime": 1774894623710,
+    "size": 1344,
+    "hash": "81a67e03ac10c9b240f8e1ad2ac67788",
+    "lastAudited": "2026-03-31T04:35:36.047Z"
+  },
+  "check_pure_audit_pending.js": {
+    "mtime": 1774948846326,
+    "size": 3504,
+    "hash": "618e900f16219ec75022d8fa51a2f8fa",
+    "lastAudited": "2026-03-31T09:57:44.648Z"
+  },
+  "churn_predictor.js": {
+    "mtime": 1774972760148,
+    "size": 4820,
+    "hash": "3b68da76797a16ffbfea3f8375a5d16f",
+    "lastAudited": "2026-04-01T02:02:33.046Z"
+  },
+  "contact_manager.js": {
+    "mtime": 1775316102115,
+    "size": 4890,
+    "hash": "1cec7e0677abb317137bb202b97b3ffa",
+    "lastAudited": "2026-04-05T02:00:05.307Z"
+  },
+  "contract_checker.js": {
+    "mtime": 1774810697570,
+    "size": 3846,
+    "hash": "dc3a565d172bd4a430af991f18bfee9b",
+    "lastAudited": "2026-03-31T04:35:36.048Z"
+  },
+  "customer360.js": {
+    "mtime": 1775316102114,
+    "size": 6766,
+    "hash": "307d36c49258c722191632b18dd49577",
+    "lastAudited": "2026-04-05T02:00:05.307Z"
+  },
+  "customer_analyzer.js": {
+    "mtime": 1774972757305,
+    "size": 4463,
+    "hash": "47cb3cc6f68a061b9f42bb75d28c513a",
+    "lastAudited": "2026-04-01T02:02:33.046Z"
+  },
+  "daily_maintenance.js": {
+    "mtime": 1775300246607,
+    "size": 8461,
+    "hash": "ab96277800f4cb4998b345bd8c15469c",
+    "lastAudited": "2026-04-04T14:00:08.912Z"
+  },
+  "daily_summary_bot.js": {
+    "mtime": 1775233974530,
+    "size": 14518,
+    "hash": "68fb6b7cc91a780a766319cd1b66cd81",
+    "lastAudited": "2026-04-03T19:40:04.358Z"
+  },
+  "dashboard_generator.js": {
+    "mtime": 1774843312301,
+    "size": 3421,
+    "hash": "605f46e9819763947e71841fc962f967",
+    "lastAudited": "2026-03-31T04:35:36.050Z"
+  },
+  "date_tag_automation.js": {
+    "mtime": 1775316102113,
+    "size": 12095,
+    "hash": "46d834c70a23744cf5f091476bfb4d47",
+    "lastAudited": "2026-04-05T02:00:05.309Z"
+  },
+  "diamond_valuation.js": {
+    "mtime": 1775441010111,
+    "size": 6737,
+    "hash": "544d61bf4b8d8f5f180020929618b68f",
+    "lastAudited": "2026-04-06T08:23:01.142Z"
+  },
+  "document_template_engine.js": {
+    "mtime": 1774810697568,
+    "size": 2704,
+    "hash": "898d3f5e3a3afbb8632844877b93b54f",
+    "lastAudited": "2026-03-31T04:35:36.050Z"
+  },
+  "email_generator.js": {
+    "mtime": 1774838146336,
+    "size": 5165,
+    "hash": "d704c8a198ca29b851b99e3ac3c09fe3",
+    "lastAudited": "2026-03-31T04:35:36.050Z"
+  },
+  "error_logger.js": {
+    "mtime": 1775013797522,
+    "size": 12595,
+    "hash": "ad4c7d0122f73e1b41a49beb54c59544",
+    "lastAudited": "2026-04-01T07:01:47.161Z"
+  },
+  "error_tracker.js": {
+    "mtime": 1775363404861,
+    "size": 26074,
+    "hash": "17473cc97c361229801a6b3e57f94162",
+    "lastAudited": "2026-04-05T08:37:10.623Z"
+  },
+  "excel_report_generator.js": {
+    "mtime": 1774810697709,
+    "size": 3127,
+    "hash": "49f69eb0abe495d7e6daef7d291123cb",
+    "lastAudited": "2026-03-31T04:35:36.051Z"
+  },
+  "gia_batch_processor.js": {
+    "mtime": 1775404403361,
+    "size": 2052,
+    "hash": "a8e672434cecfa6f931e55e4a6fb3414",
+    "lastAudited": "2026-04-06T08:23:01.143Z"
+  },
+  "gia_certificate_ocr.js": {
+    "mtime": 1775397809337,
+    "size": 7256,
+    "hash": "acdd418ce1095c78066742575e1be1e7",
+    "lastAudited": "2026-04-05T14:20:43.199Z"
+  },
+  "gia_database.js": {
+    "mtime": 1775404283601,
+    "size": 4680,
+    "hash": "eac3f8aae89167fb440347e423ad99fb",
+    "lastAudited": "2026-04-06T08:23:01.143Z"
+  },
+  "gia_image_verifier.js": {
+    "mtime": 1775397809365,
+    "size": 4137,
+    "hash": "84e5fcff932ba9d14919bc3a2d49c793",
+    "lastAudited": "2026-04-05T14:20:43.199Z"
+  },
+  "gia_ocr.js": {
+    "mtime": 1775379162683,
+    "size": 1289,
+    "hash": "e9f2de4ebb3331b6b10a239129cb3969",
+    "lastAudited": "2026-04-05T09:03:35.170Z"
+  },
+  "health_monitor.js": {
+    "mtime": 1775440282380,
+    "size": 21481,
+    "hash": "47c99e1f8485b6f80c0c44552af73a06",
+    "lastAudited": "2026-04-06T08:23:01.143Z"
+  },
+  "heartbeat_recall.js": {
+    "mtime": 1775379371734,
+    "size": 16259,
+    "hash": "7eefb45357ec13872d08284705ee24ac",
+    "lastAudited": "2026-04-05T09:03:35.170Z"
+  },
+  "idex_fetcher.js": {
+    "mtime": 1775397809340,
+    "size": 9976,
+    "hash": "8fff7c2e6f55637c64f5b74985c49ee9",
+    "lastAudited": "2026-04-05T14:20:43.200Z"
+  },
+  "idex_fetcher_bot.js": {
+    "mtime": 1775397809364,
+    "size": 6043,
+    "hash": "663511519f94aed45912f042e5092418",
+    "lastAudited": "2026-04-05T14:20:43.200Z"
+  },
+  "image_processor.js": {
+    "mtime": 1775397809363,
+    "size": 3426,
+    "hash": "ae4dacc040b5214860cb95bad15b5cb0",
+    "lastAudited": "2026-04-05T14:20:43.200Z"
+  },
+  "inventory_forecaster.js": {
+    "mtime": 1774954121411,
+    "size": 3829,
+    "hash": "5db71e6fa20835208cacdc693cb6bd7b",
+    "lastAudited": "2026-03-31T14:00:09.649Z"
+  },
+  "invoice_generator.js": {
+    "mtime": 1774810697657,
+    "size": 3179,
+    "hash": "4c4e596dd9e5f3cde8b0c4c86a6ad78c",
+    "lastAudited": "2026-03-31T04:35:36.053Z"
+  },
+  "issue_auto_followup.js": {
+    "mtime": 1775277453004,
+    "size": 14481,
+    "hash": "d2b72fba0a67ea0c256958e77c882f70",
+    "lastAudited": "2026-04-04T04:45:56.496Z"
+  },
+  "issue_daily_report.js": {
+    "mtime": 1775441010109,
+    "size": 6467,
+    "hash": "905ddadd43819019116cb1d7eb3afaf4",
+    "lastAudited": "2026-04-06T08:23:01.143Z"
+  },
+  "issue_manager.js": {
+    "mtime": 1775363704980,
+    "size": 20707,
+    "hash": "38b533f1123972fd64fb96e858685b75",
+    "lastAudited": "2026-04-05T08:37:10.624Z"
+  },
+  "issue_reminders_sync.js": {
+    "mtime": 1775316102089,
+    "size": 9606,
+    "hash": "8e6391dc03641d1de531c625dad62d8a",
+    "lastAudited": "2026-04-05T02:00:05.313Z"
+  },
+  "key_memory_marker.js": {
+    "mtime": 1774843312305,
+    "size": 10355,
+    "hash": "bfa71d4ab430c45e0a8b8c500b06190b",
+    "lastAudited": "2026-03-31T04:35:36.054Z"
+  },
+  "l0_generator.js": {
+    "mtime": 1774843312306,
+    "size": 548,
+    "hash": "5c9d630cf8ba623ee5bbf3f488285775",
+    "lastAudited": "2026-03-31T04:35:36.054Z"
+  },
+  "l0_l1_verify.js": {
+    "mtime": 1775316102099,
+    "size": 9226,
+    "hash": "ab4d5e435d0df8d4af32c9aa7a138b54",
+    "lastAudited": "2026-04-05T02:00:05.314Z"
+  },
+  "l1_generator.js": {
+    "mtime": 1774843312306,
+    "size": 548,
+    "hash": "c1f68ab6d1aecc02f2996698d70c5c13",
+    "lastAudited": "2026-03-31T04:35:36.054Z"
+  },
+  "log_to_daily_memory.js": {
+    "mtime": 1775379726008,
+    "size": 17898,
+    "hash": "83b976c96ea791cdd979e7a87e4c7119",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "market_monitor.js": {
+    "mtime": 1775281568581,
+    "size": 3188,
+    "hash": "205ef7217544ef873eb030a4bf594f73",
+    "lastAudited": "2026-04-04T07:00:08.662Z"
+  },
+  "memory_archiver.js": {
+    "mtime": 1775364098807,
+    "size": 4888,
+    "hash": "4b368457c7a7aece0916dca06938f781",
+    "lastAudited": "2026-04-05T08:37:10.626Z"
+  },
+  "memory_cleanup.js": {
+    "mtime": 1774843312307,
+    "size": 493,
+    "hash": "2eed9ef0dce476eddd8866405a46ab8d",
+    "lastAudited": "2026-03-31T04:35:36.055Z"
+  },
+  "memory_distiller.js": {
+    "mtime": 1775379580377,
+    "size": 10137,
+    "hash": "4119446a16c3ecbf5279d075c4dbff27",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "memory_generator.js": {
+    "mtime": 1775379586174,
+    "size": 19735,
+    "hash": "447c54835af956717682a72a615d08a3",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "memory_maintenance.js": {
+    "mtime": 1775379287161,
+    "size": 14724,
+    "hash": "016b5d38da94592859999084e1307227",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "memory_sanitizer.js": {
+    "mtime": 1775379598081,
+    "size": 11546,
+    "hash": "b5508297915f621b9431b46493980573",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "memory_section_cleanup.js": {
+    "mtime": 1775364173837,
+    "size": 9213,
+    "hash": "01074cd31083857804d58904746d0b4c",
+    "lastAudited": "2026-04-05T08:37:10.627Z"
+  },
+  "memory_temporal_search.js": {
+    "mtime": 1775379442353,
+    "size": 9889,
+    "hash": "0ee645210d7f779f8e69399d523279b3",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "merge_multi_sheet.js": {
+    "mtime": 1775397809348,
+    "size": 12295,
+    "hash": "2be71082e8b2290b2cef03a0cbf9ac55",
+    "lastAudited": "2026-04-05T14:20:43.203Z"
+  },
+  "news_summarizer.js": {
+    "mtime": 1775397809346,
+    "size": 2941,
+    "hash": "bea77b9796df787cdf7552ce0b9e59ec",
+    "lastAudited": "2026-04-05T14:20:43.203Z"
+  },
+  "orchestrator.js": {
+    "mtime": 1775379558256,
+    "size": 13073,
+    "hash": "02bc1f2f90a2a7074f9345156efeb5d1",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "powerquery_generator.js": {
+    "mtime": 1775441010123,
+    "size": 3135,
+    "hash": "8e45ffca71cf1e85b28d9a1c84acd22a",
+    "lastAudited": "2026-04-06T08:23:01.146Z"
+  },
+  "price_alert_system.js": {
+    "mtime": 1775316102116,
+    "size": 3256,
+    "hash": "724fdb8171e750ef3bae0ea0e9dd1faa",
+    "lastAudited": "2026-04-05T02:00:05.324Z"
+  },
+  "price_history.js": {
+    "mtime": 1775316102117,
+    "size": 6829,
+    "hash": "89b8ce743f2ac5417b7767f9af930f05",
+    "lastAudited": "2026-04-05T02:00:05.324Z"
+  },
+  "price_predictor.js": {
+    "mtime": 1774810697694,
+    "size": 3438,
+    "hash": "f786d77c0777a24aef3c840ae726713b",
+    "lastAudited": "2026-03-31T04:35:36.058Z"
+  },
+  "pure_audit_runner.js": {
+    "mtime": 1775316102128,
+    "size": 4737,
+    "hash": "ecacda6315c528169a68cce188c474a1",
+    "lastAudited": "2026-04-05T02:00:05.325Z"
+  },
+  "quotation_generator.js": {
+    "mtime": 1774843312308,
+    "size": 1322,
+    "hash": "ef32beb7de6890dc5c3260252c4741ef",
+    "lastAudited": "2026-03-31T04:35:36.058Z"
+  },
+  "qwen3_excel_training.js": {
+    "mtime": 1774843312309,
+    "size": 11132,
+    "hash": "ff5aaaa424e2a89cce1ba9a5ea1d9f54",
+    "lastAudited": "2026-03-31T04:35:36.059Z"
+  },
+  "qwen3_single_module.js": {
+    "mtime": 1775013671070,
+    "size": 13770,
+    "hash": "4051ab772848682f741d1104a6489f9e",
+    "lastAudited": "2026-04-01T07:01:47.163Z"
+  },
+  "qwen3_sync_to_ally.js": {
+    "mtime": 1774948889706,
+    "size": 3624,
+    "hash": "aecb30591488854e29e58e76defbc52e",
+    "lastAudited": "2026-03-31T09:57:44.650Z"
+  },
+  "qwen3_timer.js": {
+    "mtime": 1774843312309,
+    "size": 2959,
+    "hash": "8486071a650c6814af04b1efff856828",
+    "lastAudited": "2026-03-31T04:35:36.059Z"
+  },
+  "rapaport_extractor.js": {
+    "mtime": 1774843312309,
+    "size": 1486,
+    "hash": "ed1cd76d5bff48c10b6bf932bab8fc47",
+    "lastAudited": "2026-03-31T04:35:36.060Z"
+  },
+  "rapnet_sender.js": {
+    "mtime": 1775404488763,
+    "size": 8650,
+    "hash": "cdd6c60f0d9f21421d6c7a832f9a1cfa",
+    "lastAudited": "2026-04-06T08:23:01.146Z"
+  },
+  "rapnet_weekly.js": {
+    "mtime": 1775316102087,
+    "size": 10349,
+    "hash": "b76a729f4617f7c2eb54cc4eab24d563",
+    "lastAudited": "2026-04-05T02:00:05.326Z"
+  },
+  "rapnet_weekly_workflow.js": {
+    "mtime": 1775233974588,
+    "size": 2931,
+    "hash": "784685c3eabbf0cc0c42696cdfb26036",
+    "lastAudited": "2026-04-03T19:40:04.362Z"
+  },
+  "reminder_discussion.js": {
+    "mtime": 1774843312310,
+    "size": 1416,
+    "hash": "6cf5bb5f122de827b8ade5c3d04267e7",
+    "lastAudited": "2026-03-31T04:35:36.061Z"
+  },
+  "reminder_discussion_bot.js": {
+    "mtime": 1775233974593,
+    "size": 3417,
+    "hash": "aaefec93dbbc523ab2a1c91a181b321e",
+    "lastAudited": "2026-04-03T19:40:04.362Z"
+  },
+  "report_generator.js": {
+    "mtime": 1775025718609,
+    "size": 26906,
+    "hash": "2bd539e09fe141388f657601106c98e7",
+    "lastAudited": "2026-04-01T07:01:47.163Z"
+  },
+  "report_templates.js": {
+    "mtime": 1774955075189,
+    "size": 10373,
+    "hash": "765471ac964e2e6eb96c48a55136edc9",
+    "lastAudited": "2026-03-31T14:00:09.650Z"
+  },
+  "session_cleanup.js": {
+    "mtime": 1775233974539,
+    "size": 8910,
+    "hash": "b826af6174359ce9339a688633610eca",
+    "lastAudited": "2026-04-03T19:40:04.362Z"
+  },
+  "session_recovery.js": {
+    "mtime": 1775363285265,
+    "size": 8441,
+    "hash": "9c85eb1350962c7e5170effea8ca1f16",
+    "lastAudited": "2026-04-05T08:37:10.628Z"
+  },
+  "skills_manager.js": {
+    "mtime": 1775379681978,
+    "size": 15781,
+    "hash": "2558c73d9845837c68656b1220c25597",
+    "lastAudited": "2026-04-05T09:03:35.174Z"
+  },
+  "smart_followup.js": {
+    "mtime": 1775316102112,
+    "size": 6182,
+    "hash": "26eb50071b0833d7f7f432ecae64cb19",
+    "lastAudited": "2026-04-05T02:00:05.329Z"
+  },
+  "smart_memory_router.js": {
+    "mtime": 1774843312311,
+    "size": 8528,
+    "hash": "08ef3a75c61f82c22b37eb62e971142c",
+    "lastAudited": "2026-03-31T04:35:36.062Z"
+  },
+  "smart_query.js": {
+    "mtime": 1774955098506,
+    "size": 4178,
+    "hash": "bbe4dfcefeff10880a0d48a34c132df0",
+    "lastAudited": "2026-03-31T14:00:09.651Z"
+  },
+  "smoke_test.js": {
+    "mtime": 1775235799550,
+    "size": 27949,
+    "hash": "765d902f7651a67cad330ae622c062eb",
+    "lastAudited": "2026-04-03T19:40:04.362Z"
+  },
+  "state.js": {
+    "mtime": 1774843312311,
+    "size": 2785,
+    "hash": "fbc475b341bb07eded7f46052b3fd1f7",
+    "lastAudited": "2026-03-31T04:35:36.062Z"
+  },
+  "status-server.js": {
+    "mtime": 1775013061459,
+    "size": 7544,
+    "hash": "fe1d475682cedd40df9150ef25432ec2",
+    "lastAudited": "2026-04-01T07:01:47.163Z"
+  },
+  "stock_merge_pro.js": {
+    "mtime": 1775233974590,
+    "size": 16650,
+    "hash": "2e1f16cfebcc4061f209bc8ee46c1c5f",
+    "lastAudited": "2026-04-03T19:40:04.362Z"
+  },
+  "stock_updater.js": {
+    "mtime": 1775013355026,
+    "size": 13585,
+    "hash": "225f748ecd286a6004ac24c4eb0691fc",
+    "lastAudited": "2026-04-01T07:01:47.163Z"
+  },
+  "streaming_archive.js": {
+    "mtime": 1775233974586,
+    "size": 7689,
+    "hash": "60fce55868987022bf74d56dc45d1436",
+    "lastAudited": "2026-04-03T19:40:04.362Z"
+  },
+  "system_check_bot.js": {
+    "mtime": 1775463375141,
+    "size": 37883,
+    "hash": "e679c8987ed2f29a6bd31a71b667153c",
+    "lastAudited": "2026-04-06T08:23:01.147Z"
+  },
+  "system_status_report.js": {
+    "mtime": 1774843312312,
+    "size": 1271,
+    "hash": "d518433c0de41f279b09da329c090acd",
+    "lastAudited": "2026-03-31T04:35:36.063Z"
+  },
+  "task_router.js": {
+    "mtime": 1775277276017,
+    "size": 15219,
+    "hash": "c244b6402468290aa11528df2f33481b",
+    "lastAudited": "2026-04-04T04:45:56.499Z"
+  },
+  "terminology_manager.js": {
+    "mtime": 1774810697559,
+    "size": 3341,
+    "hash": "3444b2d86ef792196726c01e103c353b",
+    "lastAudited": "2026-03-31T04:35:36.064Z"
+  },
+  "tesseract_gia_ocr.js": {
+    "mtime": 1775316102106,
+    "size": 8812,
+    "hash": "bf4f827e6d80d2c70745d0d4d512ec46",
+    "lastAudited": "2026-04-05T02:00:05.331Z"
+  },
+  "timezone_fixer.js": {
+    "mtime": 1775233974582,
+    "size": 3171,
+    "hash": "7e192abd9b6e30450777ec9408c6251c",
+    "lastAudited": "2026-04-03T19:40:04.362Z"
+  },
+  "token_archive.js": {
+    "mtime": 1775281861719,
+    "size": 10362,
+    "hash": "3431a5153a9467679cc1c58c1a9412c4",
+    "lastAudited": "2026-04-04T07:00:08.665Z"
+  },
+  "translator.js": {
+    "mtime": 1774810697713,
+    "size": 1295,
+    "hash": "ba99bee2c33aed70fa398e91259259ac",
+    "lastAudited": "2026-03-31T04:35:36.065Z"
+  },
+  "update_rapaport_universal.js": {
+    "mtime": 1775277548123,
+    "size": 9660,
+    "hash": "6ad3dcba2f5ead524c0cd09d0c23e02a",
+    "lastAudited": "2026-04-04T04:45:56.500Z"
+  },
+  "vba_generator.js": {
+    "mtime": 1775316102118,
+    "size": 4201,
+    "hash": "81f3646448fc24232d4d0514753f813c",
+    "lastAudited": "2026-04-05T02:00:05.332Z"
+  },
+  "verify_backup.js": {
+    "mtime": 1775233974591,
+    "size": 8147,
+    "hash": "ea7d1482c25c9133839f23681a5826de",
+    "lastAudited": "2026-04-03T19:40:04.363Z"
+  },
+  "watermark_manager.js": {
+    "mtime": 1774843312313,
+    "size": 1968,
+    "hash": "832fbad3d568cdaebd2c5ef1d492aa65",
+    "lastAudited": "2026-03-31T04:35:36.065Z"
+  },
+  "weekly_correction_loop.js": {
+    "mtime": 1775376168402,
+    "size": 55730,
+    "hash": "f5bcef9154c5ce8fee101a39ea214106",
+    "lastAudited": "2026-04-05T08:37:10.629Z"
+  },
+  "weekly_correction_loop_bot.js": {
+    "mtime": 1775013906376,
+    "size": 5637,
+    "hash": "e6136c9a5b77beae69c6488fe9c61696",
+    "lastAudited": "2026-04-01T07:01:47.164Z"
+  },
+  "weekly_parallel.js": {
+    "mtime": 1775233974571,
+    "size": 4797,
+    "hash": "092a09cb8380a0a8b33f626395e57076",
+    "lastAudited": "2026-04-03T19:40:04.363Z"
+  },
+  "weekly_session_cleanup.js": {
+    "mtime": 1775316102119,
+    "size": 2540,
+    "hash": "a5b323437700b2ed42a87c5bda534a00",
+    "lastAudited": "2026-04-05T02:00:05.333Z"
+  },
+  "x_link_summarizer_detailed.js": {
+    "mtime": 1775013272703,
+    "size": 11795,
+    "hash": "df7885021093a99010f8acd06fc2cd9f",
+    "lastAudited": "2026-04-01T07:01:47.164Z"
+  },
+  "archive/compare_stock.js": {
+    "mtime": 1774810697624,
+    "size": 2565,
+    "hash": "f1d384bb4d726c2d4978b7bd0a5909ec",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/cron_health_check.js": {
+    "mtime": 1774810697603,
+    "size": 3283,
+    "hash": "11133a7325bd51c01399b98e997bef59",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/cron_health_monitor.js": {
+    "mtime": 1774839106579,
+    "size": 8738,
+    "hash": "32d319b7b1b98c2a3449d3bb47646c88",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/daily_summary.js": {
+    "mtime": 1774948577864,
+    "size": 13523,
+    "hash": "76977265af6a2dee5bc7c23b04b9f3d8",
+    "lastAudited": "2026-04-01T14:03:11.983Z"
+  },
+  "archive/discord_stock_watcher.js": {
+    "mtime": 1774839685732,
+    "size": 8311,
+    "hash": "f5e382af20d0aff4ac2ae4140861904a",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/error_autofix_backup.js": {
+    "mtime": 1774810697631,
+    "size": 16001,
+    "hash": "4ca8d7e1802885b0de9835773c844a35",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/error_autofix_v2.js": {
+    "mtime": 1774810697609,
+    "size": 16417,
+    "hash": "6d6217531a2317ac3b95f25e474a7443",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/error_recovery.js": {
+    "mtime": 1774839106657,
+    "size": 9914,
+    "hash": "342c2fe0de57e1c32dc6e303be43a8a5",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/health_api.js": {
+    "mtime": 1774810697618,
+    "size": 4047,
+    "hash": "744ad94c2ac3a3ec2cfe460860f33542",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/import_stock.js": {
+    "mtime": 1774810697616,
+    "size": 7189,
+    "hash": "ae437f93e9cebb1c0924193843dd9de6",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/integrate_stock.js": {
+    "mtime": 1774810697622,
+    "size": 18108,
+    "hash": "4c65bd63e1926aca60cc549d1b8deb4b",
+    "lastAudited": "2026-03-31T04:38:33.250Z"
+  },
+  "archive/memory_health.js": {
+    "mtime": 1774810697607,
+    "size": 1074,
+    "hash": "71fb35cffd3e9443630cce5d1f8948b2",
+    "lastAudited": "2026-03-31T04:38:33.251Z"
+  },
+  "archive/merge_stock.js": {
+    "mtime": 1774810697635,
+    "size": 10289,
+    "hash": "c3d92ed19065a7324065f91de2dc017f",
+    "lastAudited": "2026-03-31T04:38:33.251Z"
+  },
+  "archive/stock_valuation.js": {
+    "mtime": 1774810697637,
+    "size": 11135,
+    "hash": "c0c0b5c1a78bc687db0c249b8c10cd37",
+    "lastAudited": "2026-03-31T04:38:33.251Z"
+  },
+  "archive/stock_valuation_bot.js": {
+    "mtime": 1774810697642,
+    "size": 5926,
+    "hash": "1121fd777e5031a3ad52bd6a7f8aa959",
+    "lastAudited": "2026-03-31T04:38:33.251Z"
+  },
+  "archive/system_health_check.js": {
+    "mtime": 1774810697611,
+    "size": 9730,
+    "hash": "f6e121f23569b34e0cf032901df7a944",
+    "lastAudited": "2026-03-31T04:38:33.251Z"
+  },
+  "archive/update_stock_list.js": {
+    "mtime": 1774810697605,
+    "size": 8049,
+    "hash": "94b5ea2c05695934c143e36f637cdfa2",
+    "lastAudited": "2026-03-31T04:38:33.251Z"
+  },
+  "archive/watch_stock.js": {
+    "mtime": 1774839106694,
+    "size": 5039,
+    "hash": "da987d10109023099252eb8906305e6b",
+    "lastAudited": "2026-03-31T04:38:33.251Z"
+  },
+  "archive/whatsapp_stock_handler.js": {
+    "mtime": 1774810697640,
+    "size": 3486,
+    "hash": "95ece09fdcf7c501ebe8c1953fc06573",
+    "lastAudited": "2026-03-31T04:38:33.251Z"
+  },
+  "auto-router/handler.js": {
+    "mtime": 1775031872234,
+    "size": 7570,
+    "hash": "c44168f458020910b3a679a06603ae24",
+    "lastAudited": "2026-04-01T14:03:11.985Z"
+  },
+  "autoops/daily_stock_monitor.js": {
+    "mtime": 1775404283601,
+    "size": 8419,
+    "hash": "1cc2c2c7d53e083d684165b7e2fa4245",
+    "lastAudited": "2026-04-06T08:45:40.811Z"
+  },
+  "autoops/health_monitor.js": {
+    "mtime": 1774810697585,
+    "size": 3195,
+    "hash": "359d0fd3e062083b24cde9ffbb25a75e",
+    "lastAudited": "2026-03-31T04:38:33.252Z"
+  },
+  "autoops/token_monitor.js": {
+    "mtime": 1774810697589,
+    "size": 2580,
+    "hash": "f78905079d6aa24f6371cf0a8b9f13c9",
+    "lastAudited": "2026-03-31T04:38:33.252Z"
+  },
+  "lib/config.js": {
+    "mtime": 1775372494960,
+    "size": 2669,
+    "hash": "e0e413ebedf3143028cb56fbbf955efb",
+    "lastAudited": "2026-04-05T14:21:32.420Z"
+  },
+  "lib/state.js": {
+    "mtime": 1774958186448,
+    "size": 1223,
+    "hash": "a705869d62131a70aa667bfec0479218",
+    "lastAudited": "2026-04-01T14:03:11.987Z"
+  },
+  "lib/time.js": {
+    "mtime": 1774955072369,
+    "size": 644,
+    "hash": "ef9c123f384b8fdaa25fa673b6b3a86d",
+    "lastAudited": "2026-04-01T14:03:11.987Z"
+  },
+  "kimi_cli_runner.js": {
+    "mtime": 1775363000905,
+    "size": 9514,
+    "hash": "35fb62205d99625179ac8dee5f4ea870",
+    "lastAudited": "2026-04-05T08:37:10.624Z"
+  },
+  "preference_tracker.js": {
+    "mtime": 1775233974574,
+    "size": 13666,
+    "hash": "4103469a65e44b65d3172d46baecee77",
+    "lastAudited": "2026-04-03T19:40:04.361Z"
+  },
+  "cross_session_bootstrap.js": {
+    "mtime": 1775363810604,
+    "size": 8467,
+    "hash": "8f4930a14e34895df1a766c4085b6c18",
+    "lastAudited": "2026-04-05T08:37:10.623Z"
+  },
+  "cross_session_context.js": {
+    "mtime": 1775276713718,
+    "size": 7755,
+    "hash": "b0d005f13fdd59706b005c008840c49c",
+    "lastAudited": "2026-04-04T04:45:56.495Z"
+  },
+  "pattern_analysis_daily.js": {
+    "mtime": 1775379384907,
+    "size": 3556,
+    "hash": "00a8c2353c21feced894dfe8dbf5b255",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "pattern_archive.js": {
+    "mtime": 1775379389388,
+    "size": 10710,
+    "hash": "fe376b6514ac3f21b52cef782056abd5",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "pattern_error_tracker.js": {
+    "mtime": 1775379392051,
+    "size": 6788,
+    "hash": "e7933b8a7ab19fc952e205992cde9623",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "pattern_periodic_tagger.js": {
+    "mtime": 1775379405179,
+    "size": 7864,
+    "hash": "3f5505b4a90cd9d7fa2a652db58cb6cf",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "pattern_proactive_trigger.js": {
+    "mtime": 1775379424584,
+    "size": 11830,
+    "hash": "3cb5138eb344cbd9edb5b951bb3d964f",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "pattern_project_tracker.js": {
+    "mtime": 1775379408766,
+    "size": 10908,
+    "hash": "c0dd27fe46253666ed931db833dd1762",
+    "lastAudited": "2026-04-05T09:03:35.173Z"
+  },
+  "pattern_resolver.js": {
+    "mtime": 1775233974549,
+    "size": 12936,
+    "hash": "d6097cea182ccac9267e2bc44ad627e9",
+    "lastAudited": "2026-04-03T19:40:04.361Z"
+  },
+  "pattern_topic_graph.js": {
+    "mtime": 1775276703881,
+    "size": 8381,
+    "hash": "73c3341c4325d5b492564a1721a4db70",
+    "lastAudited": "2026-04-04T04:45:56.498Z"
+  },
+  "__tests__/auto_fix/rules.test.js": {
+    "mtime": 1775244402093,
+    "size": 5607,
+    "hash": "7f7dc6bd4c49aaa59b5e3559f4631222",
+    "lastAudited": "2026-04-03T19:39:43.255Z"
+  },
+  "__tests__/auto_fix/smoke_test.js": {
+    "mtime": 1775244299989,
+    "size": 1735,
+    "hash": "760ed7068eea597df602ada0d6d99531",
+    "lastAudited": "2026-04-03T19:39:43.255Z"
+  },
+  "__tests__/auto_fix/test_runner.js": {
+    "mtime": 1775244393161,
+    "size": 7165,
+    "hash": "e3ae84b0515f9e86615cb86b2b07a201",
+    "lastAudited": "2026-04-03T19:39:43.255Z"
+  },
+  "hooks/message_received.js": {
+    "mtime": 1775233974535,
+    "size": 985,
+    "hash": "d0e6dc0a03fbf81273181d5b9601193e",
+    "lastAudited": "2026-04-03T19:40:41.198Z"
+  },
+  "lib/analyzers/file-analyzer.js": {
+    "mtime": 1775316102096,
+    "size": 5906,
+    "hash": "222c1c440ef322a9ab5e412c460b6801",
+    "lastAudited": "2026-04-05T14:37:00.034Z"
+  },
+  "lib/analyzers/index.js": {
+    "mtime": 1775241616378,
+    "size": 375,
+    "hash": "99b1be30da07f7803b8e113bd4c82077",
+    "lastAudited": "2026-04-03T19:40:41.199Z"
+  },
+  "lib/helpers/file-cache.js": {
+    "mtime": 1775243519010,
+    "size": 1168,
+    "hash": "4d0c35828304c5025d2ed0b99d7c2837",
+    "lastAudited": "2026-04-03T19:40:41.199Z"
+  },
+  "lib/helpers/index.js": {
+    "mtime": 1775372494964,
+    "size": 1760,
+    "hash": "6911c08e12ff558ab93f0ea4b3b7050e",
+    "lastAudited": "2026-04-05T14:37:00.035Z"
+  },
+  "lib/helpers/rule-helpers.js": {
+    "mtime": 1775241669979,
+    "size": 1045,
+    "hash": "d976ac22ca2f26c96b514dcee2037347",
+    "lastAudited": "2026-04-03T19:40:41.199Z"
+  },
+  "lib/helpers/skip-list.js": {
+    "mtime": 1775397809368,
+    "size": 8830,
+    "hash": "4e164910beba10280a4b46e2be9e4657",
+    "lastAudited": "2026-04-05T14:37:00.035Z"
+  },
+  "lib/helpers/try-catch-helpers.js": {
+    "mtime": 1775316102084,
+    "size": 9512,
+    "hash": "55207a1992fc6d97184e6c510f5ffc06",
+    "lastAudited": "2026-04-05T14:37:00.035Z"
+  },
+  "lib/rules/high-risk.js": {
+    "mtime": 1775397809370,
+    "size": 46120,
+    "hash": "fdef9843aee0a13857a6e23961f49342",
+    "lastAudited": "2026-04-05T14:37:00.036Z"
+  },
+  "lib/rules/index.js": {
+    "mtime": 1775241480094,
+    "size": 564,
+    "hash": "b2ac5c47c3aef7f7f4db686e5eb2fa7d",
+    "lastAudited": "2026-04-03T19:40:41.200Z"
+  },
+  "lib/rules/low-risk.js": {
+    "mtime": 1775245904003,
+    "size": 8091,
+    "hash": "bc62b777e37cd46ab1e31a3acf99a59c",
+    "lastAudited": "2026-04-03T19:54:35.267Z"
+  },
+  "lib/rules/system-audit.js": {
+    "mtime": 1775316102082,
+    "size": 26918,
+    "hash": "72a2d6e876c54f50df13c7b21229c930",
+    "lastAudited": "2026-04-05T14:37:00.036Z"
+  },
+  "lib/helpers/try-catch-helpers-ast.js": {
+    "mtime": 1775316102083,
+    "size": 15629,
+    "hash": "a0853a364a393212c833e82ee403944a",
+    "lastAudited": "2026-04-05T14:37:00.035Z"
+  },
+  "auto_fix_history.js": {
+    "mtime": 1775316102064,
+    "size": 11550,
+    "hash": "7c602509338d779844dedb0917c4429f",
+    "lastAudited": "2026-04-05T02:00:05.304Z"
+  },
+  "verify_fix.js": {
+    "mtime": 1775364250723,
+    "size": 18530,
+    "hash": "9a411901dc4d9f1b7559f07a4445ac48",
+    "lastAudited": "2026-04-05T08:37:10.629Z"
+  },
+  "analyze_magic_numbers.js": {
+    "mtime": 1775404319207,
+    "size": 7915,
+    "hash": "35923a8421b3d7dea16c8d3d7e514331",
+    "lastAudited": "2026-04-06T08:23:01.140Z"
+  },
+  "code_quality_manager.js": {
+    "mtime": 1775462914296,
+    "size": 28370,
+    "hash": "6a981beb8e1cb8bcc9e2bc9b9f1b9058",
+    "lastAudited": "2026-04-06T08:23:01.142Z"
+  },
+  ".analysis/context_helpers.js": {
+    "mtime": 1775364933269,
+    "size": 9441,
+    "hash": "bd38fa5725fd6bffa2ee4fed3e66b76c",
+    "lastAudited": "2026-04-05T14:21:32.415Z"
+  },
+  ".analysis/whitelist_patterns.js": {
+    "mtime": 1775364886800,
+    "size": 9166,
+    "hash": "652194cc761f58a4c89f813359603c25",
+    "lastAudited": "2026-04-05T14:21:32.415Z"
+  },
+  "lib/auditOrchestrator.js": {
+    "mtime": 1775464443684,
+    "size": 19558,
+    "hash": "8b85674dc36590e8da33cc89e1126288",
+    "lastAudited": "2026-04-06T08:45:40.813Z"
+  },
+  "lib/fileDiscovery.js": {
+    "mtime": 1775372494957,
+    "size": 9913,
+    "hash": "511ae5448195c8f8c39fc61c8ca15b75",
+    "lastAudited": "2026-04-05T14:21:32.420Z"
+  },
+  "lib/index.js": {
+    "mtime": 1775372494961,
+    "size": 555,
+    "hash": "6c0405a5a5c32768d0679f1357dd3cf5",
+    "lastAudited": "2026-04-05T14:21:32.421Z"
+  },
+  "lib/issueAggregator.js": {
+    "mtime": 1775372494962,
+    "size": 13558,
+    "hash": "ab8f8e7c5ec05180bca7530edda1e93f",
+    "lastAudited": "2026-04-05T14:21:32.421Z"
+  },
+  "lib/helpers/context_helpers.js": {
+    "mtime": 1775372494965,
+    "size": 9333,
+    "hash": "01723acddf8a41990baf944c70b9eaed",
+    "lastAudited": "2026-04-05T14:37:00.035Z"
+  },
+  "lib/helpers/whitelist_patterns.js": {
+    "mtime": 1775400041853,
+    "size": 11373,
+    "hash": "343cdcbad58ab0524a46a21b7eee3053",
+    "lastAudited": "2026-04-05T14:41:07.123Z"
+  },
+  "audit_scanner.js": {
+    "mtime": 1775464157163,
+    "size": 13627,
+    "hash": "983d4836cac48eb0eeb390c5fbd916fe",
+    "lastAudited": "2026-04-06T08:44:47.548Z"
+  }
+}

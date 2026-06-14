@@ -1,0 +1,44 @@
+# Research / Analysis Template
+
+## Task
+[研究任務標題]
+
+## Tools (Read-only)
+read, grep, exec (for file stats only), web_fetch, web_search
+
+## Output Format
+- [Topic]: [具體發現]
+- Sources: [URLs/list]
+- Confidence: [high/medium/low]
+
+## Additional Output (apply when task involves >3 files OR shared dependencies)
+
+### 📊 Project Topology
+```
+Entry points: [main files that run the system]
+Key modules: [important modules and their purpose]
+Dependency direction: [what depends on what]
+Critical files (do not change without full understanding): [list]
+```
+
+### ⚠️ Risk Flags
+- [Risk 1: what it is, why it matters to this task]
+- [Risk 2: ...]
+
+### 🔄 Context Drift Check
+Before writing findings, explicitly verify:
+1. Does my understanding of the task match what the user actually asked for?
+2. Are there implicit assumptions I made that could be wrong?
+3. Is the scope of this task consistent with what was requested?
+
+If context drift is detected:
+→ Stop analysis immediately
+→ Report: "Context drift detected: [what I assumed] vs [what task says]"
+→ Do not continue until context is confirmed with main agent
+
+## Constraints
+- Read-only：唔改任何 file
+- 唔分析唔創作，只搜集 + structure
+- 如果資料唔夠 → 講明，唔好靠估
+- 如果發現 context drift → stop + report immediately (do not proceed with flawed analysis)
+- For topology mapping: limit to files relevant to the task (do not map entire repo)

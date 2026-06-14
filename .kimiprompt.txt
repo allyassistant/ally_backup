@@ -1,0 +1,15 @@
+Fix buildComparison() function in system_check_generator.js:
+
+Replace show format to Delta Priority (建議1):
+- Only show items WITH changes, using +/-
+- Items without change show as "其他 X 項無變化"
+- Discord-friendly format
+
+Example output:
+📊 上期對比
+├─ Issues: 5 → 7 (+2)
+├─ Scripts: 10 ok
+├─ Cron: 無變化
+└─ 其他 2 項無變化
+
+Output the full new function code.

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Show Stock Check V4</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        :root {
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --gray-900: #111111;
+            --gray-800: #333333;
+            --gray-700: #555555;
+            --gray-600: #666666;
+            --gray-500: #888888;
+            --gray-400: #AAAAAA;
+            --gray-300: #CCCCCC;
+            --gray-200: #E5E5E5;
+            --gray-100: #F5F5F5;
+            
+            --green-primary: #10B981;
+            --green-dark: #059669;
+            --green-bg: #ECFDF5;
+            
+            --yellow-primary: #F59E0B;
+            --yellow-bg: #FFFBEB;
+            
+            --blue-primary: #2563EB;
+            --blue-bg: #EFF6FF;
+            
+            --red-primary: #EF4444;
+            --red-bg: #FEF2F2;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Helvetica Neue', sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-900);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+        
+        .tab-page {
+            display: none;
+            padding: 16px;
+            max-width: 480px;
+            margin: 0 auto;
+            padding-bottom: 100px;
+        }
+        
+        .tab-page.active { display: block; }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--pure-black);
+            margin-bottom: 24px;
+            padding-top: 20px;
+        }
+        
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .back-btn {
+            font-size: 20px;
+            color: var(--gray-700);
+            cursor: pointer;
+            padding: 4px;
+        }
+        
+        /* Import 區域 */
+        .import-section {
+            background: var(--pure-white);
+            border: 2px dashed var(--gray-300);
+            border-radius: 12px;
+            padding: 32px 20px;
+            text-align: center;
+            margin-bottom: 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .import-section:hover {
+            border-color: var(--green-primary);
+            background: var(--green-bg);
+        }
+        
+        .import-icon { font-size: 48px; margin-bottom: 12px; }
+        .import-text { font-size: 16px; color: var(--gray-700); font-weight: 500; }
+        .import-hint { font-size: 13px; color: var(--gray-500); margin-top: 8px; }
+        
+        /* Shape Grid */
+        .shape-grid { display: grid; gap: 12px; }
+        
+        .shape-card {
+            background: var(--pure-white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .shape-card:hover {
+            border-color: var(--green-primary);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+        }
+        
+        .shape-card:active { transform: scale(0.98); }
+        
+        .shape-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        
+        .shape-info p { font-size: 14px; color: var(--gray-500); }
+        .shape-arrow { font-size: 24px; color: var(--gray-400); }
+        
+        /* 鑽石卡片 */
+        .diamond-list { display: flex; flex-direction: column; gap: 12px; }
+        
+        .diamond-card {
+            background: var(--pure-white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .diamond-card:active { transform: scale(0.98); }
+        
+        /* 未選狀態 */
+        .diamond-card.unchecked {
+            background: var(--pure-white);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-900);
+        }
+        
+        /* 綠色選取 */
+        .diamond-card.selected-green {
+            background: var(--pure-white);
+            border: 2px solid var(--green-primary);
+            color: var(--green-primary);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+        }
+        
+        .diamond-card.selected-green .diamond-title,
+        .diamond-card.selected-green .diamond-price,
+        .diamond-card.selected-green .spec-tag {
+            color: var(--green-primary);
+        }
+        
+        /* 黃色選取 */
+        .diamond-card.selected-yellow {
+            background: var(--yellow-bg);
+            border: 2px solid var(--yellow-primary);
+            color: var(--yellow-primary);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+        }
+        
+        .diamond-card.selected-yellow .diamond-title,
+        .diamond-card.selected-yellow .diamond-price,
+        .diamond-card.selected-yellow .spec-tag {
+            color: var(--yellow-primary);
+        }
+        
+        /* 藍色選取 */
+        .diamond-card.selected-blue {
+            background: var(--blue-bg);
+            border: 2px solid var(--blue-primary);
+            color: var(--blue-primary);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+        }
+        
+        .diamond-card.selected-blue .diamond-title,
+        .diamond-card.selected-blue .diamond-price,
+        .diamond-card.selected-blue .spec-tag {
+            color: var(--blue-primary);
+        }
+        
+        .diamond-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .diamond-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-900);
+            transition: color 0.2s;
+        }
+        
+        .diamond-price {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gray-900);
+            transition: color 0.2s;
+        }
+        
+        .diamond-specs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .spec-tag {
+            font-size: 14px;
+            color: var(--gray-600);
+            transition: color 0.2s;
+        }
+        
+        .spec-tag:not(:last-child)::after {
+            content: "|";
+            margin-left: 8px;
+            color: var(--gray-300);
+        }
+        
+        .diamond-cert { font-size: 13px; color: var(--gray-500); }
+        
+        /* 狀態標籤 */
+        .status-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.green {
+            background: var(--green-primary);
+            color: var(--pure-white);
+        }
+        
+        .status-badge.yellow {
+            background: var(--yellow-primary);
+            color: var(--pure-white);
+        }
+        
+        .status-badge.blue {
+            background: var(--blue-primary);
+            color: var(--pure-white);
+        }
+        
+        /* Submit 欄 */
+        .submit-bar {
+            position: fixed;
+            bottom: 80px;
+            left: 0;
+            right: 0;
+            background: var(--pure-white);
+            border-top: 1px solid var(--gray-200);
+            padding: 12px 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            z-index: 50;
+        }
+        
+        .submit-info {
+            flex: 1;
+            font-size: 14px;
+            color: var(--gray-700);
+        }
+        
+        .submit-info span {
+            font-weight: 700;
+            color: var(--green-primary);
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--green-primary);
+            color: var(--pure-white);
+        }
+        
+        .btn-primary:hover { background: var(--green-dark); }
+        
+        .btn-secondary {
+            background: var(--pure-white);
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+        }
+        
+        /* 底部 Tab 導航 */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--pure-white);
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 64px;
+            z-index: 100;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        
+        .tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            cursor: pointer;
+            transition: all 0.2s;
+            gap: 4px;
+        }
+        
+        .tab-icon {
+            font-size: 24px;
+            color: var(--gray-400);
+            transition: color 0.2s;
+        }
+        
+        .tab-label {
+            font-size: 11px;
+            color: var(--gray-500);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .tab-item.active .tab-icon,
+        .tab-item.active .tab-label {
+            color: var(--green-primary);
+        }
+        
+        /* 總覽頁 */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .summary-card {
+            background: var(--pure-white);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .summary-card.missing {
+            border: 2px solid var(--red-primary);
+            background: var(--red-bg);
+        }
+        
+        .summary-label {
+            font-size: 13px;
+            color: var(--gray-600);
+            margin-bottom: 4px;
+        }
+        
+        .summary-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .summary-card.missing .summary-value {
+            color: var(--red-primary);
+        }
+        
+        .summary-card.memo-out .summary-value {
+            color: var(--yellow-primary);
+        }
+        
+        .summary-card.sold .summary-value {
+            color: var(--blue-primary);
+        }
+        
+        .summary-card.available .summary-value {
+            color: var(--green-primary);
+        }
+        
+        /* 缺失欄 */
+        .missing-section {
+            background: var(--red-bg);
+            border: 2px solid var(--red-primary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .missing-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--red-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .missing-item {
+            background: var(--pure-white);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            color: var(--red-primary);
+            font-weight: 500;
+        }
+        
+        .missing-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* 圖例 */
+        .legend {
+            display: flex;
+            gap: 16px;
+            margin: 16px 0;
+            padding: 12px;
+            background: var(--pure-white);
+            border-radius: 8px;
+            font-size: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-green { background: var(--green-primary); }
+        .dot-yellow { background: var(--yellow-primary); }
+        .dot-blue { background: var(--blue-primary); }
+        .dot-gray { background: var(--gray-400); }
+        .dot-red { background: var(--red-primary); }
+        
+        /* 空狀態 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray-500);
+        }
+        
+        .empty-icon { font-size: 48px; margin-bottom: 12px; }
+        .empty-text { font-size: 16px; }
+    </style>
+</head>
+<body>
+    <!-- ===== Tab 1: 點貨（綠色 Available） ===== -->
+    <div id="availableTab" class="tab-page active">
+        <div id="availableShapePage">
+            <h1>點貨</h1>
+            <div class="import-section" onclick="importExcel()">
+                <div class="import-icon">📁</div>
+                <div class="import-text">匯入 Excel 清單</div>
+                <div class="import-hint">支援 .xlsx, .csv 格式</div>
+            </div>
+            
+            <h2>選擇 Shape</h2>
+            <div class="shape-grid">
+                <div class="shape-card" onclick="enterCheck('available', 'ALL')">
+                    <div class="shape-info">
+                        <h3>ALL SHAPES</h3>
+                        <p id="available-count-all">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card" onclick="enterCheck('available', 'RBC')">
+                    <div class="shape-info">
+                        <h3>ROUND (RBC)</h3>
+                        <p id="available-count-rbc">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card" onclick="enterCheck('available', 'EM')">
+                    <div class="shape-info">
+                        <h3>EMERALD (EM)</h3>
+                        <p id="available-count-em">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card" onclick="enterCheck('available', 'PR')">
+                    <div class="shape-info">
+                        <h3>PRINCESS (PR)</h3>
+                        <p id="available-count-pr">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="availableCheckPage" style="display: none;">
+            <h2>
+                <span class="back-btn" onclick="backToShapes('available')">←</span>
+                <span id="availableCheckTitle">ALL SHAPES</span>
+            </h2>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot dot-gray"></div>
+                    <span>未選</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-green"></div>
+                    <span>單點 = 選取 Available</span>
+                </div>
+            </div>
+            
+            <div class="diamond-list" id="availableCheckList"></div>
+            
+            <div class="submit-bar">
+                <div class="submit-info">
+                    已選 <span id="availableSubmitCount">0</span> 粒
+                </div>
+                <button class="btn btn-secondary" onclick="resetSelection('available')">重置</button>
+                <button class="btn btn-primary" onclick="submitSelection('available')">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab 2: Memo Out（黃色） ===== -->
+    <div id="memoTab" class="tab-page">
+        <div id="memoShapePage">
+            <h1>Memo Out</h1>
+            
+            <h2>選擇 Shape</h2>
+            <div class="shape-grid">
+                <div class="shape-card" onclick="enterCheck('memo', 'ALL')">
+                    <div class="shape-info">
+                        <h3>ALL SHAPES</h3>
+                        <p id="memo-count-all">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card" onclick="enterCheck('memo', 'RBC')">
+                    <div class="shape-info">
+                        <h3>ROUND (RBC)</h3>
+                        <p id="memo-count-rbc">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card" onclick="enterCheck('memo', 'EM')">
+                    <div class="shape-info">
+                        <h3>EMERALD (EM)</h3>
+                        <p id="memo-count-em">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card" onclick="enterCheck('memo', 'PR')">
+                    <div class="shape-info">
+                        <h3>PRINCESS (PR)</h3>
+                        <p id="memo-count-pr">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="memoCheckPage" style="display: none;">
+            <h2>
+                <span class="back-btn" onclick="backToShapes('memo')">←</span>
+                <span id="memoCheckTitle">ALL SHAPES</span>
+            </h2>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot dot-gray"></div>
+                    <span>未選</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-yellow"></div>
+                    <span>單點 = 選取 Memo Out</span>
+                </div>
+            </div>
+            
+            <div class="diamond-list" id="memoCheckList"></div>
+            
+            <div class="submit-bar">
+                <div class="submit-info">
+                    已選 <span id="memoSubmitCount">0</span> 粒
+                </div>
+                <button class="btn btn-secondary" onclick="resetSelection('memo')">重置</button>
+                <button class="btn btn-primary" onclick="submitSelection('memo')">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab 3: Sold（藍色） ===== -->
+    <div id="soldTab" class="tab-page">
+        <div id="soldShapePage">
+            <h1>Sold</h1>
+            
+            <h2>選擇 Shape</h2>
+            <div class="shape-grid">
+                <div class="shape-card" onclick="enterCheck('sold', 'ALL')">
+                    <div class="shape-info">
+                        <h3>ALL SHAPES</h3>
+                        <p id="sold-count-all">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card" onclick="enterCheck('sold', 'RBC')">
+                    <div class="shape-info">
+                        <h3>ROUND (RBC)</h3>
+                        <p id="sold-count-rbc">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card" onclick="enterCheck('sold', 'EM')">
+                    <div class="shape-info">
+                        <h3>EMERALD (EM)</h3>
+                        <p id="sold-count-em">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card" onclick="enterCheck('sold', 'PR')">
+                    <div class="shape-info">
+                        <h3>PRINCESS (PR)</h3>
+                        <p id="sold-count-pr">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="soldCheckPage" style="display: none;">
+            <h2>
+                <span class="back-btn" onclick="backToShapes('sold')">←</span>
+                <span id="soldCheckTitle">ALL SHAPES</span>
+            </h2>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot dot-gray"></div>
+                    <span>未選</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-blue"></div>
+                    <span>單點 = 選取 Sold</span>
+                </div>
+            </div>
+            
+            <div class="diamond-list" id="soldCheckList"></div>
+            
+            <div class="submit-bar">
+                <div class="submit-info">
+                    已選 <span id="soldSubmitCount">0</span> 粒
+                </div>
+                <button class="btn btn-secondary" onclick="resetSelection('sold')">重置</button>
+                <button class="btn btn-primary" onclick="submitSelection('sold')">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab 4: 總覽 ===== -->
+    <div id="summaryTab" class="tab-page">
+        <h2>盤點總覽</h2>
+        
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-label">總數</div>
+                <div class="summary-value" id="totalSummary">0</div>
+            </div>
+            <div class="summary-card available">
+                <div class="summary-label">Available</div>
+                <div class="summary-value" id="availableSummary">0</div>
+            </div>
+            <div class="summary-card memo-out">
+                <div class="summary-label">Memo Out</div>
+                <div class="summary-value" id="memoOutSummary">0</div>
+            </div>
+            <div class="summary-card sold">
+                <div class="summary-label">Sold</div>
+                <div class="summary-value" id="soldSummary">0</div>
+            </div>
+            <div class="summary-card missing" style="grid-column: span 2;">
+                <div class="summary-label">❌ 缺失</div>
+                <div class="summary-value" id="missingSummary">0</div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot dot-green"></div><span>Available</span></div>
+            <div class="legend-item"><div class="legend-dot dot-yellow"></div><span>Memo Out</span></div>
+            <div class="legend-item"><div class="legend-dot dot-blue"></div><span>Sold</span></div>
+            <div class="legend-item"><div class="legend-dot dot-red"></div><span>缺失</span></div>
+        </div>
+        
+        <div class="missing-section" id="missingSection">
+            <h3>❌ 缺失清單</h3>
+            <div id="missingList"></div>
+        </div>
+        
+        <div style="position: fixed; bottom: 80px; left: 0; right: 0; background: var(--pure-white); border-top: 1px solid var(--gray-200); padding: 12px 16px; z-index: 50;">
+            <button class="btn btn-primary" style="width: 100%;" onclick="generateExcel()">
+                📊 生成 Excel 報告
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== 底部 Tab 導航（4個） ===== -->
+    <div class="tab-bar">
+        <div class="tab-item active" onclick="switchTab('available')">
+            <span class="tab-icon">✅</span>
+            <span class="tab-label">點貨</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('memo')">
+            <span class="tab-icon">📋</span>
+            <span class="tab-label">Memo Out</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('sold')">
+            <span class="tab-icon">💰</span>
+            <span class="tab-label">Sold</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('summary')">
+            <span class="tab-icon">📊</span>
+            <span class="tab-label">總覽</span>
+        </div>
+    </div>
+
+    <script>
+        // Mock 數據
+        const mockData = [
+            { parcel: 'EM-001', shape: 'EM', carat: 8.68, color: 'D', clarity: 'VVS2', fluor: 'Faint', price: 641625, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-002', shape: 'EM', carat: 8.56, color: 'K', clarity: 'VVS2', fluor: 'None', price: 150850, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-003', shape: 'EM', carat: 11.52, color: 'H', clarity: 'VVS2', fluor: 'None', price: 485200, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-004', shape: 'EM', carat: 7.63, color: 'G', clarity: 'VVS2', fluor: 'None', price: 225400, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-005', shape: 'EM', carat: 7.62, color: 'I', clarity: 'VVS1', fluor: 'Faint', price: 185600, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-006', shape: 'EM', carat: 7.57, color: 'I', clarity: 'VVS2', fluor: 'None', price: 168400, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'RBC-001', shape: 'RBC', carat: 10.13, color: 'D', clarity: 'VVS1', fluor: 'None', price: 667481, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'RBC-002', shape: 'RBC', carat: 10.02, color: 'I', clarity: 'SI2', fluor: 'None', price: 228606, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'PR-001', shape: 'PR', carat: 5.23, color: 'G', clarity: 'VS1', fluor: 'None', price: 125000, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'PR-002', shape: 'PR', carat: 4.18, color: 'H', clarity: 'VS2', fluor: 'Faint', price: 98000, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+        ];
+        
+        let allData = [...mockData];
+        let currentShape = { available: 'ALL', memo: 'ALL', sold: 'ALL' };
+        
+        const shapeNames = { 'ALL': 'ALL SHAPES', 'RBC': 'ROUND', 'EM': 'EMERALD', 'PR': 'PRINCESS' };
+        
+        const tabConfig = {
+            'available': { color: 'green', label: 'Available', nextStatus: 'available' },
+            'memo': { color: 'yellow', label: 'Memo Out', nextStatus: 'memo-out' },
+            'sold': { color: 'blue', label: 'Sold', nextStatus: 'sold' }
+        };
+        
+        // ===== Tab 切換 =====
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            const tabIndex = tabName === 'available' ? 0 : tabName === 'memo' ? 1 : tabName === 'sold' ? 2 : 3;
+            document.querySelectorAll('.tab-item')[tabIndex].classList.add('active');
+            
+            if (tabName === 'summary') {
+                renderSummary();
+            } else {
+                updateShapeCounts(tabName);
+            }
+        }
+        
+        // ===== 更新 Shape 計數 =====
+        function updateShapeCounts(type) {
+            const shapes = ['ALL', 'RBC', 'EM', 'PR'];
+            shapes.forEach(shape => {
+                const count = shape === 'ALL'
+                    ? allData.filter(d => !d.confirmedStatus).length
+                    : allData.filter(d => d.shape === shape && !d.confirmedStatus).length;
+                const el = document.getElementById(`${type}-count-${shape.toLowerCase()}`);
+                if (el) el.textContent = `${count} 粒`;
+            });
+        }
+        
+        // ===== 進入盤點頁 =====
+        function enterCheck(type, shape) {
+            currentShape[type] = shape;
+            document.getElementById(`${type}CheckTitle`).textContent = shapeNames[shape];
+            
+            document.getElementById(`${type}ShapePage`).style.display = 'none';
+            document.getElementById(`${type}CheckPage`).style.display = 'block';
+            
+            renderCheckList(type);
+        }
+        
+        // ===== 返回 Shape 頁 =====
+        function backToShapes(type) {
+            document.getElementById(`${type}ShapePage`).style.display = 'block';
+            document.getElementById(`${type}CheckPage`).style.display = 'none';
+            updateShapeCounts(type);
+        }
+        
+        // ===== 渲染盤點列表 =====
+        function renderCheckList(type) {
+            const listEl = document.getElementById(`${type}CheckList`);
+            const config = tabConfig[type];
+            
+            // 只顯示未 confirmed 的貨品
+            let items = allData.filter(d => !d.confirmedStatus);
+            if (currentShape[type] !== 'ALL') {
+                items = items.filter(d => d.shape === currentShape[type]);
+            }
+            
+            const cardClass = items.map(d => {
+                if (d.selection[type]) return `selected-${config.color}`;
+                return 'unchecked';
+            });
+            
+            listEl.innerHTML = items.map((d, i) => {
+                const isSelected = d.selection[type];
+                const badge = isSelected ? `<span class="status-badge ${config.color}">已選 ${config.label}</span>` : '';
+                
+                return `
+                    <div class="diamond-card ${cardClass[i]}" 
+                         onclick="toggleSelection('${type}', '${d.parcel}')">
+                        <div class="diamond-header">
+                            <div class="diamond-title">
+                                ${d.shape} ${d.carat}ct
+                                ${badge}
+                            </div>
+                            <div class="diamond-price">USD ${d.price.toLocaleString()}</div>
+                        </div>
+                        <div class="diamond-specs">
+                            <span class="spec-tag">${d.color}</span>
+                            <span class="spec-tag">${d.clarity}</span>
+                            <span class="spec-tag">${d.fluor}</span>
+                        </div>
+                        <div class="diamond-cert">${d.parcel}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            // 更新 Submit 計數
+            const selectedCount = allData.filter(d => d.selection[type]).length;
+            document.getElementById(`${type}SubmitCount`).textContent = selectedCount;
+        }
+        
+        // ===== 切換選取狀態 =====
+        function toggleSelection(type, parcel) {
+            const item = allData.find(d => d.parcel === parcel);
+            if (!item) return;
+            
+            // 切換選取狀態
+            item.selection[type] = !item.selection[type];
+            renderCheckList(type);
+        }
+        
+        // ===== 重置選取 =====
+        function resetSelection(type) {
+            const config = tabConfig[type];
+            if (confirm(`確定要重置 ${shapeNames[currentShape[type]]} 的所有 ${config.label} 選取？`)) {
+                if (currentShape[type] === 'ALL') {
+                    allData.forEach(d => d.selection[type] = false);
+                } else {
+                    allData.filter(d => d.shape === currentShape[type]).forEach(d => d.selection[type] = false);
+                }
+                renderCheckList(type);
+            }
+        }
+        
+        // ===== 提交選取 =====
+        function submitSelection(type) {
+            const config = tabConfig[type];
+            const selectedCount = allData.filter(d => d.selection[type]).length;
+            
+            if (selectedCount === 0) {
+                alert('請先選取貨品');
+                return;
+            }
+            
+            // 將選取狀態確認
+            allData.forEach(d => {
+                if (d.selection[type]) {
+                    d.confirmedStatus = config.nextStatus;
+                    d.selection[type] = false;
+                }
+            });
+            
+            alert(`提交成功！已確認 ${selectedCount} 粒為 ${config.label}。\n\n資料已更新至總覽。`);
+            renderCheckList(type);
+            updateShapeCounts(type);
+        }
+        
+        // ===== 總覽頁 =====
+        function renderSummary() {
+            const total = allData.length;
+            const available = allData.filter(d => d.confirmedStatus === 'available').length;
+            const memoOut = allData.filter(d => d.confirmedStatus === 'memo-out').length;
+            const sold = allData.filter(d => d.confirmedStatus === 'sold').length;
+            const missing = allData.filter(d => !d.confirmedStatus).length;
+            
+            document.getElementById('totalSummary').textContent = total;
+            document.getElementById('availableSummary').textContent = available;
+            document.getElementById('memoOutSummary').textContent = memoOut;
+            document.getElementById('soldSummary').textContent = sold;
+            document.getElementById('missingSummary').textContent = missing;
+            
+            // 渲染缺失清單
+            const missingItems = allData.filter(d => !d.confirmedStatus);
+            const missingListEl = document.getElementById('missingList');
+            const missingSectionEl = document.getElementById('missingSection');
+            
+            if (missingItems.length === 0) {
+                missingSectionEl.style.display = 'none';
+            } else {
+                missingSectionEl.style.display = 'block';
+                missingListEl.innerHTML = missingItems.map(d => `
+                    <div class="missing-item">
+                        ${d.shape} ${d.carat}ct ${d.color} ${d.clarity} - ${d.parcel}
+                    </div>
+                `).join('');
+            }
+        }
+        
+        // ===== 生成 Excel =====
+        function generateExcel() {
+            const total = allData.length;
+            const available = allData.filter(d => d.confirmedStatus === 'available').length;
+            const memoOut = allData.filter(d => d.confirmedStatus === 'memo-out').length;
+            const sold = allData.filter(d => d.confirmedStatus === 'sold').length;
+            const missing = allData.filter(d => !d.confirmedStatus).length;
+            
+            let csv = 'Parcel,Shape,Carat,Color,Clarity,Fluor,Price,Status\n';
+            allData.forEach(d => {
+                const status = d.confirmedStatus || 'Missing';
+                csv += `${d.parcel},${d.shape},${d.carat},${d.color},${d.clarity},${d.fluor},${d.price},${status}\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Stock_Check_Report_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+            
+            alert(`📊 Excel 報告已生成！\n\n總數: ${total}\nAvailable: ${available}\nMemo Out: ${memoOut}\nSold: ${sold}\n缺失: ${missing}`);
+        }
+        
+        // ===== 匯入 Excel =====
+        function importExcel() {
+            alert('實際功能：開啟文件選擇器，支援 Excel/CSV 匯入');
+        }
+        
+        // ===== 初始化 =====
+        updateShapeCounts('available');
+        updateShapeCounts('memo');
+        updateShapeCounts('sold');
+    </script>
+</body>
+</html>

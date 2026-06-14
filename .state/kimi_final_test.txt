@@ -1,0 +1,65 @@
+Print 'Final test'
+TurnBegin(user_input="Print 'Final test'")
+StepBegin(n=1)
+ThinkPart(
+    type='think',
+    think="The user wants me to print 'Final test'. This is a simple request. I 
+can use the Shell tool to echo this text.",
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_I9VVYe7PMZD07yhgo0yNa6UC',
+    function=FunctionBody(
+        name='Shell',
+        arguments='{"command": "echo \'Final test\'"}'
+    ),
+    extras=None
+)
+StatusUpdate(
+    context_usage=0.03757476806640625,
+    context_tokens=9850,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=1658,
+        output=49,
+        input_cache_read=8192,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-rcZVu3HIgiAH3flETLMgebPy',
+    plan_mode=False,
+    mcp_status=None
+)
+ToolResult(
+    tool_call_id='tool_I9VVYe7PMZD07yhgo0yNa6UC',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='Final test\n',
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+StepBegin(n=2)
+ThinkPart(
+    type='think',
+    think='The command executed successfully and printed "Final test" as request
+ed. The task is complete.',
+    encrypted=None
+)
+TextPart(type='text', text='Final test')
+StatusUpdate(
+    context_usage=0.037872314453125,
+    context_tokens=9928,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=200,
+        output=23,
+        input_cache_read=9728,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-QINUMhJDF5JdMyQTDmBH40Qu',
+    plan_mode=False,
+    mcp_status=None
+)
+TurnEnd()

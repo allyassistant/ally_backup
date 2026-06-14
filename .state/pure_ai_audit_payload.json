@@ -1,0 +1,899 @@
+{
+  "version": "2.0",
+  "timestamp": "2026-04-06T08:45:40.817Z",
+  "config": {
+    "totalFiles": 146,
+    "totalSize": 1263044,
+    "scriptsDir": "/Users/ally/.openclaw/workspace/scripts",
+    "maxFileSize": 102400,
+    "newFiles": 0,
+    "modifiedFiles": 2
+  },
+  "files": [
+    {
+      "path": ".analysis/context_helpers.js",
+      "size": 9441,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": ".analysis/whitelist_patterns.js",
+      "size": 9166,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "__tests__/auto_fix/rules.test.js",
+      "size": 5607,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "__tests__/auto_fix/test_runner.js",
+      "size": 7165,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "adaptive_timeout.js",
+      "size": 4511,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "ai_image_generator.js",
+      "size": 2485,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "analyze_magic_numbers.js",
+      "size": 7915,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "apple_notes.js",
+      "size": 6373,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "apple_reminders_calendar.js",
+      "size": 7137,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "archive_smart.js",
+      "size": 1992,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "audit_scanner.js",
+      "size": 13627,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "auto-router/handler.js",
+      "size": 7570,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "auto-spawn.js",
+      "size": 7274,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "auto_fix_history.js",
+      "size": 11550,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "auto_issue_creator.js",
+      "size": 22848,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "auto_skill_router.js",
+      "size": 10207,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "autoops/daily_stock_monitor.js",
+      "size": 8419,
+      "isNew": false,
+      "changed": true
+    },
+    {
+      "path": "autoops/health_monitor.js",
+      "size": 3195,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "autoops/token_monitor.js",
+      "size": 2580,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "browser_autoclose.js",
+      "size": 1172,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "chart_generator.js",
+      "size": 3391,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "check-router-decision.js",
+      "size": 1344,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "check_pure_audit_pending.js",
+      "size": 3504,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "churn_predictor.js",
+      "size": 4820,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "code_quality_manager.js",
+      "size": 28370,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "contact_manager.js",
+      "size": 4890,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "contract_checker.js",
+      "size": 3846,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "cross_session_bootstrap.js",
+      "size": 8467,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "cross_session_context.js",
+      "size": 7755,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "customer360.js",
+      "size": 6766,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "customer_analyzer.js",
+      "size": 4463,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "daily_maintenance.js",
+      "size": 8461,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "daily_summary_bot.js",
+      "size": 14518,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "dashboard_generator.js",
+      "size": 3421,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "date_tag_automation.js",
+      "size": 12095,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "diamond_valuation.js",
+      "size": 6737,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "document_template_engine.js",
+      "size": 2704,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "email_generator.js",
+      "size": 5165,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "error_tracker.js",
+      "size": 26074,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "excel_report_generator.js",
+      "size": 3127,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "gia_batch_processor.js",
+      "size": 2052,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "gia_certificate_ocr.js",
+      "size": 7256,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "gia_database.js",
+      "size": 4680,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "gia_image_verifier.js",
+      "size": 4137,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "gia_ocr.js",
+      "size": 1289,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "health_monitor.js",
+      "size": 21481,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "heartbeat_recall.js",
+      "size": 16259,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "hooks/message_received.js",
+      "size": 985,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "idex_fetcher.js",
+      "size": 9976,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "idex_fetcher_bot.js",
+      "size": 6043,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "image_processor.js",
+      "size": 3426,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "inventory_forecaster.js",
+      "size": 3829,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "invoice_generator.js",
+      "size": 3179,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "issue_auto_followup.js",
+      "size": 14481,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "issue_daily_report.js",
+      "size": 6467,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "issue_manager.js",
+      "size": 20707,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "issue_reminders_sync.js",
+      "size": 9606,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "key_memory_marker.js",
+      "size": 10355,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "kimi_cli_runner.js",
+      "size": 9514,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "l0_generator.js",
+      "size": 548,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "l0_l1_verify.js",
+      "size": 9226,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "l1_generator.js",
+      "size": 548,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/analyzers/file-analyzer.js",
+      "size": 5906,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/analyzers/index.js",
+      "size": 375,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/auditOrchestrator.js",
+      "size": 19558,
+      "isNew": false,
+      "changed": true
+    },
+    {
+      "path": "lib/config.js",
+      "size": 2669,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/fileDiscovery.js",
+      "size": 9913,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/helpers/context_helpers.js",
+      "size": 9333,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/helpers/file-cache.js",
+      "size": 1168,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/helpers/index.js",
+      "size": 1760,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/helpers/rule-helpers.js",
+      "size": 1045,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/helpers/skip-list.js",
+      "size": 8830,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/helpers/try-catch-helpers-ast.js",
+      "size": 15629,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/helpers/try-catch-helpers.js",
+      "size": 9512,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/helpers/whitelist_patterns.js",
+      "size": 11373,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/index.js",
+      "size": 555,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/issueAggregator.js",
+      "size": 13558,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/rules/high-risk.js",
+      "size": 46120,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/rules/index.js",
+      "size": 564,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/rules/low-risk.js",
+      "size": 8091,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/rules/system-audit.js",
+      "size": 26918,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/state.js",
+      "size": 1223,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "lib/time.js",
+      "size": 644,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "log_to_daily_memory.js",
+      "size": 17898,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "market_monitor.js",
+      "size": 3188,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "memory_archiver.js",
+      "size": 4888,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "memory_cleanup.js",
+      "size": 493,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "memory_distiller.js",
+      "size": 10137,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "memory_generator.js",
+      "size": 19735,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "memory_maintenance.js",
+      "size": 14724,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "memory_sanitizer.js",
+      "size": 11546,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "memory_section_cleanup.js",
+      "size": 9213,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "memory_temporal_search.js",
+      "size": 9889,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "merge_multi_sheet.js",
+      "size": 12295,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "news_summarizer.js",
+      "size": 2941,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "orchestrator.js",
+      "size": 13073,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "pattern_analysis_daily.js",
+      "size": 3556,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "pattern_archive.js",
+      "size": 10710,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "pattern_error_tracker.js",
+      "size": 6788,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "pattern_periodic_tagger.js",
+      "size": 7864,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "pattern_proactive_trigger.js",
+      "size": 11830,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "pattern_project_tracker.js",
+      "size": 10908,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "pattern_resolver.js",
+      "size": 12936,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "pattern_topic_graph.js",
+      "size": 8381,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "powerquery_generator.js",
+      "size": 3135,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "preference_tracker.js",
+      "size": 13666,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "price_alert_system.js",
+      "size": 3256,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "price_history.js",
+      "size": 6829,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "price_predictor.js",
+      "size": 3438,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "pure_audit_runner.js",
+      "size": 4737,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "quotation_generator.js",
+      "size": 1322,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "rapaport_extractor.js",
+      "size": 1486,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "rapnet_sender.js",
+      "size": 8650,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "rapnet_weekly.js",
+      "size": 10349,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "rapnet_weekly_workflow.js",
+      "size": 2931,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "reminder_discussion.js",
+      "size": 1416,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "reminder_discussion_bot.js",
+      "size": 3417,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "report_generator.js",
+      "size": 26906,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "report_templates.js",
+      "size": 10373,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "session_cleanup.js",
+      "size": 8910,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "session_recovery.js",
+      "size": 8441,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "skills_manager.js",
+      "size": 15781,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "smart_followup.js",
+      "size": 6182,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "smart_memory_router.js",
+      "size": 8528,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "smart_query.js",
+      "size": 4178,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "state.js",
+      "size": 2785,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "status-server.js",
+      "size": 7544,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "stock_merge_pro.js",
+      "size": 16650,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "stock_updater.js",
+      "size": 13585,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "streaming_archive.js",
+      "size": 7689,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "system_check_bot.js",
+      "size": 37883,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "system_status_report.js",
+      "size": 1271,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "task_router.js",
+      "size": 15219,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "terminology_manager.js",
+      "size": 3341,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "tesseract_gia_ocr.js",
+      "size": 8812,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "timezone_fixer.js",
+      "size": 3171,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "token_archive.js",
+      "size": 10362,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "translator.js",
+      "size": 1295,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "update_rapaport_universal.js",
+      "size": 9660,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "vba_generator.js",
+      "size": 4201,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "verify_backup.js",
+      "size": 8147,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "verify_fix.js",
+      "size": 18530,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "watermark_manager.js",
+      "size": 1968,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "weekly_correction_loop.js",
+      "size": 55730,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "weekly_parallel.js",
+      "size": 4797,
+      "isNew": false,
+      "changed": false
+    },
+    {
+      "path": "weekly_session_cleanup.js",
+      "size": 2540,
+      "isNew": false,
+      "changed": false
+    }
+  ],
+  "prompt": "你係代碼審計專家。請審計以下 146 個 JavaScript 檔案：\n\n## ⚠️ 重要：必須跳過的目錄\n以下目錄中的檔案請勿分析（它們是歸檔文件或測試代碼）：\n- archive/ 目錄：已歸檔的舊腳本，無需審計\n- __tests__/ 目錄：測試代碼\n- lib/rules/、lib/analyzers/、lib/helpers/：規則定義文件\n\n## 檔案清單\n  - .analysis/context_helpers.js\n  - .analysis/whitelist_patterns.js\n  - __tests__/auto_fix/rules.test.js\n  - __tests__/auto_fix/test_runner.js\n  - adaptive_timeout.js\n  - ai_image_generator.js\n  - analyze_magic_numbers.js\n  - apple_notes.js\n  - apple_reminders_calendar.js\n  - archive_smart.js\n  - audit_scanner.js\n  - auto-router/handler.js\n  - auto-spawn.js\n  - auto_fix_history.js\n  - auto_issue_creator.js\n  - auto_skill_router.js\n  - autoops/daily_stock_monitor.js\n  - autoops/health_monitor.js\n  - autoops/token_monitor.js\n  - browser_autoclose.js\n  - chart_generator.js\n  - check-router-decision.js\n  - check_pure_audit_pending.js\n  - churn_predictor.js\n  - code_quality_manager.js\n  - contact_manager.js\n  - contract_checker.js\n  - cross_session_bootstrap.js\n  - cross_session_context.js\n  - customer360.js\n  - customer_analyzer.js\n  - daily_maintenance.js\n  - daily_summary_bot.js\n  - dashboard_generator.js\n  - date_tag_automation.js\n  - diamond_valuation.js\n  - document_template_engine.js\n  - email_generator.js\n  - error_tracker.js\n  - excel_report_generator.js\n  - gia_batch_processor.js\n  - gia_certificate_ocr.js\n  - gia_database.js\n  - gia_image_verifier.js\n  - gia_ocr.js\n  - health_monitor.js\n  - heartbeat_recall.js\n  - hooks/message_received.js\n  - idex_fetcher.js\n  - idex_fetcher_bot.js\n  - image_processor.js\n  - inventory_forecaster.js\n  - invoice_generator.js\n  - issue_auto_followup.js\n  - issue_daily_report.js\n  - issue_manager.js\n  - issue_reminders_sync.js\n  - key_memory_marker.js\n  - kimi_cli_runner.js\n  - l0_generator.js\n  - l0_l1_verify.js\n  - l1_generator.js\n  - lib/analyzers/file-analyzer.js\n  - lib/analyzers/index.js\n  - lib/auditOrchestrator.js\n  - lib/config.js\n  - lib/fileDiscovery.js\n  - lib/helpers/context_helpers.js\n  - lib/helpers/file-cache.js\n  - lib/helpers/index.js\n  - lib/helpers/rule-helpers.js\n  - lib/helpers/skip-list.js\n  - lib/helpers/try-catch-helpers-ast.js\n  - lib/helpers/try-catch-helpers.js\n  - lib/helpers/whitelist_patterns.js\n  - lib/index.js\n  - lib/issueAggregator.js\n  - lib/rules/high-risk.js\n  - lib/rules/index.js\n  - lib/rules/low-risk.js\n  - lib/rules/system-audit.js\n  - lib/state.js\n  - lib/time.js\n  - log_to_daily_memory.js\n  - market_monitor.js\n  - memory_archiver.js\n  - memory_cleanup.js\n  - memory_distiller.js\n  - memory_generator.js\n  - memory_maintenance.js\n  - memory_sanitizer.js\n  - memory_section_cleanup.js\n  - memory_temporal_search.js\n  - merge_multi_sheet.js\n  - news_summarizer.js\n  - orchestrator.js\n  - pattern_analysis_daily.js\n  - pattern_archive.js\n  - pattern_error_tracker.js\n  - pattern_periodic_tagger.js\n  - pattern_proactive_trigger.js\n  - pattern_project_tracker.js\n  - pattern_resolver.js\n  - pattern_topic_graph.js\n  - powerquery_generator.js\n  - preference_tracker.js\n  - price_alert_system.js\n  - price_history.js\n  - price_predictor.js\n  - pure_audit_runner.js\n  - quotation_generator.js\n  - rapaport_extractor.js\n  - rapnet_sender.js\n  - rapnet_weekly.js\n  - rapnet_weekly_workflow.js\n  - reminder_discussion.js\n  - reminder_discussion_bot.js\n  - report_generator.js\n  - report_templates.js\n  - session_cleanup.js\n  - session_recovery.js\n  - skills_manager.js\n  - smart_followup.js\n  - smart_memory_router.js\n  - smart_query.js\n  - state.js\n  - status-server.js\n  - stock_merge_pro.js\n  - stock_updater.js\n  - streaming_archive.js\n  - system_check_bot.js\n  - system_status_report.js\n  - task_router.js\n  - terminology_manager.js\n  - tesseract_gia_ocr.js\n  - timezone_fixer.js\n  - token_archive.js\n  - translator.js\n  - update_rapaport_universal.js\n  - vba_generator.js\n  - verify_backup.js\n  - verify_fix.js\n  - watermark_manager.js\n  - weekly_correction_loop.js\n  - weekly_parallel.js\n  - weekly_session_cleanup.js\n\n## 審計重點\n\n### 1. 安全性 🔐\n- 動態程式碼執行 (eval / Function / setTimeout with code string)\n- hardcoded secrets、API keys、passwords\n- SQL injection、Command injection、Path traversal\n- 不安全既 crypto 使用\n\n### 2. 錯誤處理 🛡️\n- try-catch 缺失或太闊\n- Promise rejection 無處理\n- async/await 無 try-catch\n- callback error 無處理\n\n### 3. 邏輯錯誤 🧠\n- return 語句錯誤\n- 邊界情況未處理\n- 變量作用域問題\n- 邏輯運算子錯誤（&& vs ||）\n\n### 4. 效能 ⚡\n- 同步操作喺 async context\n- blocking I/O\n- 無限迴圈\n- 記憶體洩漏\n\n### 5. 型別安全 📝\n- undefined / null 未檢查\n- 類型強制轉換問題\n- NaN 處理\n\n### 6. 登出 🚪\n- credentials 無正確清除\n- session 無正確終止\n\n## 輸出格式\n\n請為每個發現既問題提供：\n\n```\n### 🔴/🟠/🟡/⚪ [檔案名稱]\n**位置：** [行號]\n**問題：** [描述]\n**風險：** [Critical/High/Medium/Low]\n**建議：** [修復方案]\n```\n\n## 分級標準（上下文感知）\n\n### 通用分級\n- 🔴 **Critical**：立即修復（crash/security/data loss）\n- 🟠 **High**：盡快修復（logic error/reliability）\n- 🟡 **Medium**：建議修復（architecture/code quality）\n- ⚪ **Low**：可自動修復（formatting/style）\n\n### execSync_missing_trycatch 特殊規則\n根據操作類型調整評級：\n\n| 操作類型 | 評級 | 原因 |\n|----------|------|------|\n| 寫入 errors.json / state / config / cache | 🟠 High | 數據丟失/損壞風險 |\n| 寫入一般檔案 (writeFileSync) | 🟡 Medium | 可靠性問題 |\n| 讀取檔案 (readFileSync/readdirSync) | ⚪ Low | 影響有限 |\n| 非關鍵操作 (logging/cleanup) | ⚪ Low | 影響可忽略 |\n\n### 重要說明：require() 語句不是問題！\n\n請勿將 require('child_process') 標記為問題！這只是 import，不是實際調用。只有 execSync() 或 exec() 的實際調用才需要檢查 try-catch。同樣，require('fs'), require('path') 等標準 import 都不是問題。\n\n### 重要說明：註釋中的關鍵字不是問題！\n\n請跳過註釋中的關鍵字！例如 \"TODO: 使用 execSync 實現\" 只是註釋，不是實際代碼。只檢查實際的代碼行，不要將註釋中的關鍵字當作問題。\n\n### magic_numbers 特殊規則\n- **評級：⚪ Low (P3)**\n- **原因：** 純粹 coding style 問題，可由 auto_fix 自動修復\n- **修復方式：** 提升為 CONFIG 常量\n\n### logic_error 特殊規則\n根據影響範圍調整評級：\n\n| 影響類型 | 評級 |\n|----------|------|\n| 計算邏輯錯誤 (calculation) | 🟡 Medium |\n| 條件判斷錯誤 (condition) | 🟡 Medium |\n| 其他邏輯問題 | ⚪ Low |\n\n## 要求\n\n1. **直接讀取每個檔案**進行分析\n2. **唔好假設**，所有問題都必須睇到實際代碼先提出\n3. **提供具體修復方案**，唔係只指出問題\n4. **分優先次序**，Critical 放最前\n5. **如果冇問題**，明確標示「此檔案無發現問題」\n\n請開始審計。",
+  "auditFocus": [
+    "安全性 (eval, secrets, injection)",
+    "錯誤處理 (try-catch, Promise rejection)",
+    "邏輯錯誤 (return, edge cases)",
+    "效能 (sync in async, blocking)",
+    "型別安全 (undefined, NaN)",
+    "登出 (credentials, session)"
+  ]
+}

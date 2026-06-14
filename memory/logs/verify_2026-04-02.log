@@ -1,0 +1,4 @@
+[2026-04-01T18:03:48.090Z] [INFO] Starting L0/L1 verification for 2026-04-01
+[2026-04-01T18:03:48.092Z] [OK] L0 exists (275 bytes)
+[2026-04-01T18:03:48.092Z] [OK] L1 exists (1159 bytes)
+[2026-04-01T18:03:48.092Z] [SUCCESS] ✅ All verifications passed

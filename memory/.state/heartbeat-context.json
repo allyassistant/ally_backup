@@ -1,0 +1,387 @@
+{
+  "initializedAt": "2026-02-16T10:22:47.996Z",
+  "heartbeatCount": 774,
+  "currentSession": {
+    "topics": [],
+    "sessionTopics": [
+      "stock",
+      "memory",
+      "error",
+      "heartbeat",
+      "session",
+      "MiniMax",
+      "Kimi",
+      "model",
+      "token",
+      "script",
+      "Rapaport",
+      "diamond",
+      "backup",
+      "cron",
+      "Apple",
+      "Notes",
+      "Qwen3",
+      "automation",
+      "Excel"
+    ],
+    "repeatedTopics": [
+      "stock",
+      "memory",
+      "error",
+      "heartbeat",
+      "session",
+      "MiniMax",
+      "Kimi",
+      "model",
+      "token",
+      "script",
+      "Rapaport",
+      "diamond",
+      "backup",
+      "cron",
+      "Apple",
+      "Notes",
+      "Qwen3",
+      "automation",
+      "Excel"
+    ],
+    "lastSummary": "暫無新內容",
+    "lastUpdate": "2026-04-03T16:57:54.963Z"
+  },
+  "todayHighlights": [
+    "離線時長追蹤改用 state file (offline_since)",
+    "本地 Bliss heartbeat 副本同步機制",
+    "Daily Memory - 2026-03-31",
+    "重要系統變更",
+    "Kimi 模型問題 (2026-03-30)",
+    "OpenClaw Config 清理 Kimi",
+    "檔案改名",
+    "Auto-Audit 系統大幅改善",
+    "發現問題",
+    "修復內容"
+  ],
+  "weeklyTopics": [
+    "🔴 Critical 修復（6個）",
+    "🟠 Medium 修復（8個）",
+    "📝 system_check_bot.js 重大改動",
+    "修復問題",
+    "🏗️ Memory 架構優化",
+    "🏗️ HA 架構優化",
+    "2026-03-30 Midnight - 系統優化完成",
+    "Failover Detector 改善 (跟進)",
+    "狀態確認",
+    "新版 explicit case match (Mac-mini → ally, MacBook-Neo → bliss)",
+    "離線時長追蹤改用 state file (offline_since)",
+    "本地 Bliss heartbeat 副本同步機制",
+    "Daily Memory - 2026-03-31",
+    "重要系統變更",
+    "Kimi 模型問題 (2026-03-30)",
+    "OpenClaw Config 清理 Kimi",
+    "檔案改名",
+    "Auto-Audit 系統大幅改善",
+    "發現問題",
+    "修復內容"
+  ],
+  "recallHistory": [
+    {
+      "timestamp": "2026-04-02T16:28:48.677Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T16:58:48.566Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T17:28:48.328Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T17:58:48.541Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T18:28:47.862Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T18:58:46.981Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T19:28:49.093Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T19:58:48.219Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T20:28:58.537Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T20:58:48.739Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T21:28:54.571Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T21:58:47.769Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T22:28:54.684Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T22:58:52.407Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T23:28:50.651Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-02T23:58:47.739Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T00:28:50.168Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T00:58:51.192Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T01:28:52.701Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T01:58:53.930Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T02:28:52.569Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T02:58:53.328Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T03:28:58.597Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T03:58:51.483Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T04:28:49.992Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T04:58:51.015Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T05:39:30.945Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T06:09:34.209Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T06:39:34.855Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T07:09:44.860Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T07:39:49.999Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T08:39:54.435Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T09:09:49.234Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T09:39:47.984Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T10:33:02.978Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T11:02:37.955Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T11:32:37.836Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T12:02:38.543Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T12:33:21.635Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T12:37:07.976Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T13:07:06.830Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T13:37:10.342Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T14:07:07.259Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T14:37:06.770Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T15:07:09.118Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T15:56:37.357Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T16:05:12.594Z",
+      "level": 3,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T16:26:36.880Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T16:35:33.559Z",
+      "level": 1,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    },
+    {
+      "timestamp": "2026-04-03T16:57:54.967Z",
+      "level": 6,
+      "summary": "暫無新內容",
+      "topicsCount": 0
+    }
+  ]
+}

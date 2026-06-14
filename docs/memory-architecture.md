@@ -1,0 +1,624 @@
+# 記憶系統架構詳解
+## Memory System Architecture
+
+*Ally 的記憶系統設計哲學：分層管理，動態遺忘，自我進化*
+
+---
+
+## 一、系統總覽
+
+### 1.1 雙維度架構
+
+記憶系統採用 **時間維度** × **重要性維度** 的雙維度設計：
+
+```
+                    重要性維度 (Priority)
+                         ↑
+        P0 (核心)        │   L0 Abstract (200字)
+        P1 (重要)        │   L1 Overview (600字)
+        P2 (普通)        │   L2 Daily (Raw)
+        P3 (次要)        │
+                         │
+    ←────────────────────┼────────────────────→
+    短期 (1日)           │          長期 (永久)
+                         │
+        時間維度 (Layer) ↓
+```
+
+---
+
+## 二、時間維度：三層記憶架構 (L0 / L1 / L2)
+
+### 2.1 架構對比
+
+| 層級 | 名稱 | 內容粒度 | 更新頻率 | 儲存位置 | 生成方式 |
+|------|------|----------|----------|----------|----------|
+| **L2** | Daily | 原始對話記錄 | 實時 (每 heartbeat) | `memory/YYYY-MM-DD.md` | 自動寫入 |
+| **L1** | Overview | 600字詳細摘要 | 每日 00:35 | `memory/l1-overview/YYYY-MM-DD.md` | AI 生成 (Qwen3) |
+| **L0** | Abstract | 200字精華摘要 | 每日 00:05 | `memory/l0-abstract/YYYY-MM-DD.md` | AI 生成 (Qwen3) |
+
+### 2.2 各層詳解
+
+#### L2 - Daily (每日原始記錄)
+
+**功用：**
+- 保存完整對話歷史
+- 作為 L0/L1 生成的數據源
+- 支援 temporal search (時間搜尋)
+
+**檔案格式：**
+```
+memory/YYYY-MM-DD-HHMM.md
+
+例子：
+- memory/2026-02-24-0717.md (2月24日 07:17)
+- memory/2026-02-24-0852.md (2月24日 08:52)
+- memory/2026-02-25-0231.md (2月25日 02:31)
+```
+
+**重要特性：**
+- **一日多檔**：如果當日有多個 session，會有多個檔案
+- **最新檔案**：L0/L1 Generator 會揀當日最新 (last modified) 嘅檔案
+- **命名原因**：HHMM 時間戳避免檔案衝突，方便追蹤
+
+**運作原理：**
+```
+對話發生
+    ↓
+Session Memory 機制
+    ↓
+寫入 memory/YYYY-MM-DD-HHMM.md (HHMM = 當前時間)
+    ↓
+記錄格式: [HH:MM] [事件日期 | 記錄日期] 內容
+```
+
+**特點：**
+- 檔案大小：通常 5-20KB (乾淨狀態)
+- 保留期限：2 日 (自動歸檔到 `_archive/`)
+- 格式：Markdown + 雙時態標記
+- **讀取方式**：L0/L1 會搵 `memory/YYYY-MM-DD-*.md` pattern，揀最新嘅
+
+**潛在問題：**
+- 可能被 binary content 污染 (Excel, media)
+- **解決：** Memory Sanitizer 自動檢測清理
+- **歷史問題**：舊版 Generator 搵 `YYYY-MM-DD.md` (冇時間戳) 導致讀取失敗 → 已修復 ✅
+
+---
+
+#### L1 - Overview (每日詳細摘要)
+
+**功用：**
+- 提供中等粒度的事件摘要
+- 支援快速回顧當日重點
+- 作為長期記憶的「索引」
+
+**運作原理：**
+```
+00:35 Cron Job 觸發
+    ↓
+讀取 L2 (memory/YYYY-MM-DD.md)
+    ↓
+Qwen3 AI 生成 600-1000字摘要
+    ↓
+提取標記：⭐ (重要) 📝 (決定) 🔴 (教訓) 🛠️ (技術)
+    ↓
+寫入 memory/l1-overview/YYYY-MM-DD.md
+```
+
+**生成邏輯：**
+- **讀取 L2**：搵 `memory/YYYY-MM-DD-*.md`，揀最新 (last modified)
+- **Adaptive Timeout**：根據 L2 檔案大小動態計算 (275s-300s)
+- **Fallback**：如果 timeout，01:00 Fallback Check 用 extraction 生成基本版
+- **內容結構**：
+  - ⭐ Key Important Items
+  - 📝 Decisions Made
+  - 🔴 Lessons Learned
+  - 🛠️ Technical Work
+  - 📋 Topics Discussed
+
+**特點：**
+- 保留期限：長期保留
+- 搜尋優先級：高 (經常被 memory_search 引用)
+
+---
+
+#### L0 - Abstract (每日精華摘要)
+
+**功用：**
+- 提供最快速的重點回顧
+- 類似「每日新聞頭條」
+- 200字內極簡摘要
+
+**運作原理：**
+```
+00:05 Cron Job 觸發
+    ↓
+讀取 L2 (搵 memory/YYYY-MM-DD-*.md，揀最新)
+    ↓
+Qwen3 AI 生成 150-200字摘要 (廣東話)
+    ↓
+格式： bullet list，3-5 個要點
+    ↓
+寫入 memory/l0-abstract/YYYY-MM-DD.md
+```
+
+**Fallback 機制：**
+- 如果 AI 失敗，用 extraction 提取標記 (⭐📝🔴🟡)
+- L0/L1 Fallback Check (01:00) 確保生成
+
+**特點：**
+- 保留期限：長期保留
+- 用途：快速了解某日重點
+
+---
+
+### 2.3 三層記憶的數據流
+
+```
+[對話發生]
+    ↓
+[L2 Daily] ←────── 實時寫入 (memory/YYYY-MM-DD-HHMM.md)
+    ↓                      (一日可能有多個檔案)
+[00:05 L0 Abstract] ←── 讀取最新 L2，AI 生成 (200字)
+    ↓
+[00:35 L1 Overview] ←── 讀取最新 L2，AI 生成 (600字)
+    ↓
+[01:00 Fallback Check] ←── 驗證並補充 (如果 L0/L1 失敗)
+```
+
+**L2 檔案選擇邏輯：**
+```
+L0/L1 Generator 執行
+    ↓
+搵所有 memory/YYYY-MM-DD-*.md (當日)
+    ↓
+按修改時間排序 (mtime)
+    ↓
+揀最新嘅一個檔案
+    ↓
+讀取並生成摘要
+```
+
+**搜尋時的優先順序：**
+1. 先用 L0 快速定位日期
+2. 再用 L1 了解當日詳情
+3. 最後用 L2 查原始細節
+
+---
+
+## 三、重要性維度：四級優先架構 (P0 / P1 / P2 / P3)
+
+### 3.1 架構對比
+
+| 優先級 | TTL (生存時間) | 過期處理 | 適用內容 | 例子 |
+|--------|---------------|----------|----------|------|
+| **P0** | 永不過期 | 永不刪除 | 核心規則、用戶偏好 | 語言設定、系統架構 |
+| **P1** | 180日 | 歸檔 | 重要任務、關鍵決定 | 項目進度、重大決策 |
+| **P2** | 90日 | 歸檔 | 普通任務、臨時記錄 | 待辦事項、臨時想法 |
+| **P3** | 30日 | 刪除 | 次要任務、短期提醒 | 臨時資料、參考連結 |
+
+### 3.2 各級詳解
+
+#### P0 - KEY MEMORY (永不過期)
+
+**功用：**
+- 保存核心知識和規則
+- 決定 Agent 的基本行為
+- 類似「憲法」地位
+
+**儲存位置：**
+- `AGENTS.md` - 行為準則
+- `MEMORY.md` - 系統架構
+- `TOOLS.md` - 核心工具用法
+- `USER.md` - 用戶偏好
+
+**標記格式：**
+```markdown
+### 🎯 P0 - KEY MEMORY: 標題
+*📅 Created: YYYY-MM-DD | 🔄 Updated: YYYY-MM-DD | ⏰ TTL: Never*
+
+內容...
+
+### 🎯 KEY MEMORY END
+```
+
+**維護：**
+- 永不自動刪除
+- 人工定期審閱 (每月)
+- 從 P1 晉升 (如果用戶多次強調)
+
+---
+
+#### P1 - 重要任務 (180日)
+
+**功用：**
+- 保存重要項目和決定
+- Issue 管理系統的預設優先級
+- 定期提醒跟進
+
+**儲存位置：**
+- `.issues/active/` - 進行中任務
+- `MEMORY.md` 內的 P1 區域
+
+**晉升機制：**
+```
+P2 任務 → (用戶多次提及/強調) → P1
+```
+
+**降級機制：**
+```
+P1 任務 → (180日無更新) → 歸檔到 .issues/archive/
+```
+
+---
+
+#### P2 - 普通任務 (90日)
+
+**功用：**
+- 一般待辦事項
+- 臨時記錄
+- 預設優先級
+
+**儲存位置：**
+- `.issues/backlog/` - 待辦任務
+- `MEMORY.md` 內的普通區域
+
+**特點：**
+- 最常用嘅優先級
+- 自動清理時首先被檢查
+
+---
+
+#### P3 - 次要任務 (30日)
+
+**功用：**
+- 短期提醒
+- 參考資料
+- 快速過期以減少噪音
+
+**特點：**
+- 過期後直接刪除 (唔歸檔)
+- 適合臨時性內容
+
+---
+
+### 3.3 四級優先的運作流程
+
+```
+內容創建
+    ↓
+智能分類 (根據關鍵字)
+    ↓
+    ├─ 核心規則 → P0
+    ├─ 重要任務 → P1  
+    ├─ 普通任務 → P2
+    └─ 次要資料 → P3
+
+[Heartbeat 每日執行]
+    ↓
+Memory Cleanup 檢查 TTL
+    ↓
+    ├─ P0: 保留
+    ├─ P1: 180日後歸檔
+    ├─ P2: 90日後歸檔
+    └─ P3: 30日後刪除
+```
+
+---
+
+## 四、整合運作流程
+
+### 4.1 完整數據流
+
+```
+[對話發生]
+    ↓
+[Session Memory] → L2 Daily (memory/YYYY-MM-DD.md)
+    ↓ (每日 00:05)
+[L0 Abstract] (200字精華) → memory/l0-abstract/
+    ↓ (每日 00:35)
+[L1 Overview] (600字詳細) → memory/l1-overview/
+    ↓ (每日 01:00)
+[Fallback Check] 驗證生成
+    ↓ (Heartbeat 每 30分鐘)
+[Smart Router] 分類內容到 P0/P1/P2/P3
+    ↓
+[Memory Cleanup] 根據 TTL 清理
+    ↓ (每周日)
+[Weekly Correction Loop] 學習錯誤，優化規則
+```
+
+### 4.2 搜尋策略
+
+**當用戶問「上個禮拜我哋講過咩」：**
+
+```
+1. 時間定位
+   └─ 查 L0 Abstract (快速搵到相關日期)
+   
+2. 內容了解
+   └─ 查 L1 Overview (了解當日詳情)
+   
+3. 細節確認
+   └─ 查 L2 Daily (原始對話)
+   
+4. 知識提取
+   └─ 查 P0/P1 記憶 (長期規則和決定)
+```
+
+### 4.3 Phase 1 新增的保護機制
+
+**Memory Sanitizer (防污染)：**
+```
+[Excel 檔案上傳]
+    ↓
+[Session Memory 機制]
+    ↓
+[可能寫入 binary 到 L2]
+    ↓
+[Heartbeat Memory Sanitizer 檢測]
+    ↓
+    ├─ 發現污染 → 自動清理 + 記錄錯誤
+    └─ 乾淨 → 繼續正常流程
+```
+
+**Adaptive Timeout (防 timeout)：**
+```
+[L1 Generator 觸發]
+    ↓
+[搵 L2 檔案: memory/YYYY-MM-DD-*.md]
+    ↓
+[揀最新檔案 (按修改時間)]
+    ↓
+[計算建議 timeout = f(檔案大小)]
+    ↓
+[使用 300s 上限 (已優化從 600s)]
+    ↓
+[如果超時 → 01:00 Fallback 生成基本版]
+```
+
+**重要修復 (2026-02-25):**
+舊版 Generator 搵 `memory/YYYY-MM-DD.md` (冇時間戳)，但實際檔名係
+`memory/YYYY-MM-DD-HHMM.md`，導致讀取失敗。已修復 ✅
+
+---
+
+## 五、錯誤追踪同任務管理系統
+
+除了時間維度 (L0/L1/L2) 同重要性維度 (P0-P3)，記憶系統仲包括：
+
+### 5.1 錯誤追踪系統 (Error Tracking)
+
+**功用：**
+- 記錄系統運行中嘅錯誤
+- 從錯誤中學習，防止重複犯錯
+- 支援 Self-Healing (自動修復)
+
+**檔案位置：**
+- `memory/errors.json` - 錯誤記錄 (JSON 格式)
+- `memory/error-patterns.json` - 錯誤模式庫
+
+**錯誤記錄格式：**
+```json
+{
+  "id": "唯一識別碼",
+  "date": "2026-02-25",
+  "title": "錯誤標題",
+  "problem": "問題描述",
+  "cause": "根本原因",
+  "solution": "解決方案",
+  "tags": ["auto-detected", "session"]
+}
+```
+
+**運作流程：**
+```
+錯誤發生
+    ↓
+自動檢測 (scripts/error_tracker.js)
+    ↓
+記錄到 errors.json
+    ↓
+Error AutoFix 嘗試自動修復
+    ↓
+每周日 Weekly Correction Loop 分析
+    ↓
+生成規則建議 (更新 AGENTS.md)
+```
+
+**與記憶系統嘅關係：**
+- 錯誤係「負面記憶」，防止重複犯錯
+- P0 規則可以來自錯誤學習
+- 同 L3 Learning System 緊密整合
+
+---
+
+### 5.2 任務管理系統 (Issue Management)
+
+**功用：**
+- 追蹤進行中同待辦任務
+- 同 P0-P3 優先級系統整合
+- 自動提醒同跟進
+
+**檔案結構：**
+```
+.issues/
+├── active/     ← 進行中任務 (對應 P1)
+├── backlog/    ← 待辦任務 (對應 P2)  
+└── archive/    ← 已完成 (歷史記錄)
+```
+
+**Issue 檔案格式：**
+```markdown
+---
+id: "001"
+title: 任務標題
+status: active
+priority: P1
+created: 2026-02-25
+due: 2026-03-31
+progress: 3/5
+---
+
+## Description
+任務描述
+
+## Progress
+- [x] 已完成步驟
+- [ ] 待完成步驟
+```
+
+**運作流程：**
+```
+新任務創建
+    ↓
+智能分類 → 決定優先級 (P1/P2)
+    ↓
+放入 .issues/active/ 或 .issues/backlog/
+    ↓
+Issue Auto-Followup 定期檢查
+    ↓
+    ├─ 到期提醒
+    ├─ 進度檢查
+    └─ 自動完成
+    ↓
+完成後歸檔到 .issues/archive/
+```
+
+**與記憶系統嘅關係：**
+- Issue 係「行動導向記憶」
+- P1 Issue 會同步到 Apple Reminders
+- 同每日/每周維護流程 (HEARTBEAT) 整合
+
+---
+
+### 5.3 錯誤同 Issue 嘅互動
+
+```
+調查 Issue #019 (L1 Generator timeout)
+    ↓
+發現根本原因：檔名格式唔匹配
+    ↓
+記錄錯誤到 errors.json
+    ↓
+修復 generate_l1.js
+    ↓
+更新 Issue #019 進度
+    ↓
+記錄教訓到 AGENTS.md (P0)
+    ↓
+每周 Correction Loop 複習
+```
+
+---
+
+## 六、檔案結構
+
+```
+workspace/
+├── memory/
+│   ├── 2026-02-24-0717.md         ← L2 Daily (原始, 時間戳格式)
+│   ├── 2026-02-24-0852.md         ← L2 Daily (同一日多個檔案)
+│   ├── 2026-02-25-0231.md         ← L2 Daily (最新)
+│   ├── l0-abstract/
+│   │   └── 2026-02-25.md          ← L0 (200字摘要, 純日期)
+│   ├── l1-overview/
+│   │   └── 2026-02-25.md          ← L1 (600字摘要, 純日期)
+│   ├── _archive/                   ← 過期 L2
+│   ├── _binary_backups/            ← 污染檔案備份
+│   ├── errors.json                 ← 錯誤記錄
+│   └── error-patterns.json         ← 錯誤模式庫
+│
+├── .issues/
+│   ├── active/                     ← P1 任務
+│   ├── backlog/                    ← P2 任務  
+│   └── archive/                    ← 已完成
+│
+├── MEMORY.md                       ← P0 系統架構
+├── AGENTS.md                       ← P0 行為準則
+├── TOOLS.md                        ← P0 工具用法
+├── HEARTBEAT.md                    ← 維護流程
+└── docs/
+    └── memory-architecture.md      ← 本文件
+```
+
+**重要區別：**
+- **L2**: `YYYY-MM-DD-HHMM.md` (含時間戳，一日多檔)
+- **L0/L1**: `YYYY-MM-DD.md` (純日期，一日一檔)
+- **讀取邏輯**: L0/L1 Generator 會搵 `YYYY-MM-DD-*.md`，揀最新
+│   ├── errors.json                 ← 錯誤記錄
+│   └── error-patterns.json         ← 錯誤模式庫
+│
+├── .issues/
+│   ├── active/                     ← P1 任務
+│   ├── backlog/                    ← P2 任務  
+│   └── archive/                    ← 已完成
+│
+├── MEMORY.md                       ← P0 系統架構
+├── AGENTS.md                       ← P0 行為準則
+├── TOOLS.md                        ← P0 工具用法
+└── HEARTBEAT.md                    ← 維護流程
+```
+
+---
+
+## 七、關鍵設計哲學
+
+### 7.1 分層是為了遺忘
+> 「完美的記憶不是記住一切，而是知道該記住咩。」
+
+- **L2 短期保留** (2日) → 減少噪音
+- **P3 快速過期** (30日) → 自動清理次要內容
+- **P0 永久保留** → 核心知識永不丟失
+
+### 7.2 雙維度交叉
+- 時間維度 (L0/L1/L2) 確保「記得幾時發生」
+- 重要性維度 (P0-P3) 確保「記得重要程度」
+- 錯誤追踪 (errors.json) 確保「記得點樣犯錯」
+- Issue 管理 (.issues/) 確保「記得要做咩」
+- 交叉點：可以快速定位「重要的舊事」同「未完成的事」
+
+### 7.3 自我進化
+- Level 3 學習系統從錯誤中學習
+- Pattern Learner (Phase 2) 會分析錯誤模式
+- 自動建議更新 AGENTS.md
+- Issue 系統確保持續改進
+
+### 7.4 記憶系統嘅四個層面
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Ally 記憶系統總覽                      │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  時間維度          重要性維度         行動/學習         │
+│  ─────────────    ─────────────     ─────────────     │
+│  L0 Abstract      P0 KEY MEMORY     Issue Active      │
+│  L1 Overview      P1 Important      Issue Backlog     │
+│  L2 Daily         P2 Normal         Error Tracking    │
+│                   P3 Minor          Pattern Learning  │
+│                                                         │
+│  用途：           用途：            用途：             │
+│  搵返舊事         決定保留多久      改進未來          │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🛠️ 核心實作對照
+
+| 層級 | 邏輯 | 代碼位置 |
+|------|------|---------|
+| L0 生成 | `main()` + `callOllama()` | `memory_generator.js:407,195` |
+| L1 生成 | `main()` + `callOllama()` | `memory_generator.js:407,195` |
+| L2 寫入 | `atomicAppend()` | `log_to_daily_memory.js:129` |
+| L2 去重 | inline in `appendEntry()` | `log_to_daily_memory.js:161` |
+| Cleanup | `cleanup()` | `memory_section_cleanup.js:183` |
+
+> 📖 相關 Wiki：記憶系統架構詳解 (`docs/memory-architecture.md`)
+
+---
+
+*Last Updated: 2026-02-25*
+*Architecture Version: Level 3.5 + Phase 1*

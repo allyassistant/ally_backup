@@ -1,0 +1,27 @@
+{
+  "last_updated": "2026-03-19T07:30:00+08:00",
+  "products": [
+    {"name": "翻新產品 iPad Air Wi-Fi 64GB - 太空灰 (第 5 代)", "price": "HK$2,399"},
+    {"name": "翻新產品 iPad Air Wi-Fi 64GB - 藍色 (第 5 代)", "price": "HK$2,399"},
+    {"name": "翻新產品 iPad Air Wi-Fi 64GB - 紫色 (第 5 代)", "price": "HK$2,399"},
+    {"name": "翻新產品 iPad Air Wi-Fi + 流動網絡 64GB - 藍色 (第 5 代)", "price": "HK$2,999"},
+    {"name": "翻新產品 iPad mini 6 Wi-Fi 256GB - 紫色", "price": "HK$3,499"},
+    {"name": "翻新產品 11 吋 iPad Pro Wi-Fi + 流動網絡 128GB - 銀色 (第 4 代)", "price": "HK$5,699"},
+    {"name": "翻新產品 11 吋 iPad Pro Wi-Fi + 流動網絡 256GB - 銀色 (第 4 代)", "price": "HK$6,399"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi 128GB - 銀色 (第 6 代)", "price": "HK$6,799"},
+    {"name": "翻新產品 11 吋 iPad Pro Wi-Fi + 流動網絡 512GB - 銀色 (第 4 代)", "price": "HK$7,799"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 128GB - 太空灰 (第 6 代)", "price": "HK$7,799"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 128GB - 銀色 (第 6 代)", "price": "HK$7,799"},
+    {"name": "翻新產品 13 吋 iPad Air (M3) Wi-Fi + 流動網絡 512GB - 星光色", "price": "HK$8,099"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 256GB - 太空灰 (第 6 代)", "price": "HK$8,499"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 256GB - 銀色 (第 6 代)", "price": "HK$8,499"},
+    {"name": "翻新產品 13 吋 iPad Air (M3) Wi-Fi + 流動網絡 1TB - 太空灰", "price": "HK$9,399"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 512GB - 太空灰 (第 6 代)", "price": "HK$9,799"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 512GB - 銀色 (第 6 代)", "price": "HK$9,799"},
+    {"name": "翻新產品 11 吋 iPad Pro Wi-Fi + 流動網絡 1TB - 太空灰 (第 4 代)", "price": "HK$10,499"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 2TB - 銀色 (第 5 代)", "price": "HK$11,299"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 1TB - 太空灰 (第 6 代)", "price": "HK$12,599"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 2TB - 太空灰 (第 6 代)", "price": "HK$15,299"},
+    {"name": "翻新產品 12.9 吋 iPad Pro Wi-Fi + 流動網絡 2TB - 銀色 (第 6 代)", "price": "HK$15,299"}
+  ]
+}

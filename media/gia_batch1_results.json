@@ -1,0 +1,205 @@
+{
+  "batch": "batch1",
+  "totalFiles": 15,
+  "analyzedAt": "2026-04-28T20:59:33Z",
+  "results": [
+    {
+      "reportNumber": "1206091556",
+      "shape": "Round Brilliant",
+      "carat": 58.14,
+      "color": "F",
+      "clarity": "VS1",
+      "verdict": "STRONG_BUY",
+      "verdictEmoji": "✅",
+      "clawScore": 100,
+      "recommendation": "APPROVE",
+      "status": "analyzed"
+    },
+    {
+      "reportNumber": "1216850404",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 5.22,
+      "color": "M",
+      "clarity": "SI2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 0,
+      "recommendation": "REJECT",
+      "status": "analyzed",
+      "flags": ["Milky Risk", "Headlight Effect"]
+    },
+    {
+      "reportNumber": "1232576292",
+      "verdict": "ERROR",
+      "clawScore": null,
+      "recommendation": null,
+      "status": "error",
+      "errorType": "ratio.toFixed is not a function"
+    },
+    {
+      "reportNumber": "1232839795",
+      "shape": "Square Modified Brilliant",
+      "carat": 2.05,
+      "color": "H",
+      "clarity": "VVS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 24,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": ["Too Deep", "Headlight Effect"]
+    },
+    {
+      "reportNumber": "1236047100",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 5.24,
+      "color": "F",
+      "clarity": "VS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 34,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": ["Milky Risk", "Headlight Effect"]
+    },
+    {
+      "reportNumber": "1236049381",
+      "verdict": "ERROR",
+      "clawScore": null,
+      "recommendation": null,
+      "status": "error",
+      "errorType": "ratio.toFixed is not a function"
+    },
+    {
+      "reportNumber": "1236123142",
+      "shape": "Oval Brilliant",
+      "carat": 2.03,
+      "color": "E",
+      "clarity": "SI1",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 6,
+      "recommendation": "REJECT",
+      "status": "analyzed",
+      "flags": ["Milky Risk", "Too Deep", "Headlight Effect"]
+    },
+    {
+      "reportNumber": "1493072496",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 3.01,
+      "color": "I",
+      "clarity": "SI1",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 7,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": ["Milky Risk", "Medium Yellow Fluorescence", "Headlight Effect"]
+    },
+    {
+      "reportNumber": "1508164661",
+      "shape": "Square Emerald Cut",
+      "carat": 10.88,
+      "color": "D",
+      "clarity": "VVS2",
+      "verdict": "BUY",
+      "verdictEmoji": "✅",
+      "clawScore": 85,
+      "recommendation": "APPROVE",
+      "status": "analyzed"
+    },
+    {
+      "reportNumber": "1513039628",
+      "shape": "Emerald Cut",
+      "carat": 9.02,
+      "color": "H",
+      "clarity": "VS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 35,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": ["Milky Risk", "Oily Look Risk", "Headlight Effect"]
+    },
+    {
+      "reportNumber": "1543136295",
+      "verdict": "ERROR",
+      "clawScore": null,
+      "recommendation": null,
+      "status": "error",
+      "errorType": "ratio.toFixed is not a function"
+    },
+    {
+      "reportNumber": "1548402190",
+      "shape": "Emerald Cut",
+      "carat": 8.68,
+      "color": "D",
+      "clarity": "VVS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 34,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": ["Milky Risk", "Headlight Effect"]
+    },
+    {
+      "reportNumber": "16148135",
+      "shape": "Briolette",
+      "carat": 3.54,
+      "color": "I",
+      "clarity": "VS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 0,
+      "recommendation": "REJECT",
+      "status": "analyzed",
+      "flags": ["Too Deep", "Very Strong Blue Fluorescence"]
+    },
+    {
+      "reportNumber": "17465731",
+      "shape": "Briolette",
+      "carat": 3.96,
+      "color": "K",
+      "clarity": "Internally Flawless",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 2,
+      "recommendation": "REJECT",
+      "status": "analyzed",
+      "flags": ["Too Deep"]
+    },
+    {
+      "reportNumber": "2213934868",
+      "shape": "Cushion Modified Brilliant",
+      "carat": 1.71,
+      "color": "Fancy Vivid Pink",
+      "clarity": "VS1",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 24,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": ["Milky Risk", "Oily Look Risk"]
+    }
+  ],
+  "summary": {
+    "total": 15,
+    "analyzed": 12,
+    "errors": 3,
+    "successRate": "80%",
+    "errorRate": "20%",
+    "approve": 2,
+    "reject": 9,
+    "conditional": 4,
+    "errorFiles": ["1232576292.pdf", "1236049381.pdf", "1543136295.pdf"],
+    "approveFiles": ["1206091556.pdf", "1508164661.pdf"],
+    "averageScore": 30.08
+  },
+  "notes": {
+    "bugIdentified": "ratio.toFixed is not a function - 3 PDFs (1232576292, 1236049381, 1543136295) fail with this error, indicating ratio is returned as string instead of number. Fix: add parseFloat() or Number() when parsing ratio from raw text.",
+    "commonFlags": {
+      "milkyRisk": "7 files with clouds not shown + SI1/SI2 = milky stone risk",
+      "headlightEffect": "11 files flagged - extremely deep cut causing light leakage"
+    }
+  }
+}

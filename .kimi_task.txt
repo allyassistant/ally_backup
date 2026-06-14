@@ -1,0 +1,85 @@
+你需要修改 /Users/ally/.openclaw/workspace/scripts/auto_fix.js，實施 Skip List 機制。
+
+## 背景
+P0-1 isProtectedByTry 已完成。現在需要實施 Skip List 機制，讓用戶可以將確認為 false positive 的問題標記為跳過，之後審計時自動忽略。
+
+## 需要實現的功能
+
+### 1. 新增 Skip List 狀態檔案
+- 位置：.state/auto_fix_skip_list.json（使用 WS 和 STATE_DIR）
+- 格式：
+{
+  "skips": [
+    {
+      "ruleId": "HR-001",
+      "file": "scripts/pattern_archive.js",
+      "lines": [54, 72, 92, 119],
+      "markedAt": "2026-04-04T02:00:00.000Z",
+      "reason": "confirmed-false-positive"
+    }
+  ],
+  "version": 1
+}
+
+### 2. 新增函數（放在現有 helper functions 附近）
+
+#### loadSkipList()
+- 讀取 .state/auto_fix_skip_list.json
+- 如果檔案唔存在，返回空的 skip list {skips: [], version: 1}
+- 使用 try-catch 處理錯誤
+
+#### saveSkipList(skipList)
+- 寫入 .state/auto_fix_skip_list.json
+- 使用 atomic write（tmp + rename）
+- isDryRun 模式唔實際寫入
+
+#### markFalsePositive(ruleId, file, lines, reason = 'confirmed-false-positive')
+- 將問題標記為 false positive
+- 加入 skip list（如果已存在則更新 lines）
+- 自動保存
+
+#### isSkipped(issue, file)
+- 檢查問題係咪喺 skip list 中
+- 匹配 ruleId + file + lines
+- 傳入的 issue 格式: { rule: ruleId, lines: [54, 72], ... }
+- 檔案格式: result.file (相對路徑)
+
+### 3. 整合到 analyzeFile()
+在 High-risk 檢測後（for loop 完成後），加入過濾 skip list 的邏輯：
+result.highRisk = result.highRisk.filter(issue => {
+  if (isSkipped(issue, result.file)) {
+    return false;
+  }
+  return true;
+});
+
+### 4. 新增 CLI 命令
+在 main() switch 裏面加入 skip case：
+- skip --list：顯示現有 skip list 內容
+- skip --rule=HR-001 --file=scripts/test.js --lines=45,46,47：添加 skip list 項目
+
+注意：需要從 report.highRisk 搵到對應的 rule ID actual name（如 eval-usage 而唔係 HR-001）
+
+### 5. 重要規則
+1. 先備份：已完成（auto_fix.js.bak）
+2. 使用 Atomic Write（tmp + rename）
+3. 驗證語法：完成後運行 node --check 驗證
+4. 唔好改其他功能
+5. 用繁體中文 report
+
+## 實作位置指引
+
+### Skip List 路徑常量
+在現有 CONSTANTS 區塊附近加入：
+const SKIP_LIST_FILE = path.join(STATE_DIR, 'auto_fix_skip_list.json');
+
+### 新函數放置位置
+在 isPureFunction() 同其他 helper functions（isProtectedByTry, isProtectedByPromise 等）附近加入新函數。
+
+### CLI 命令放置位置
+在 main() 裏面的 switch statement 加入 skip case。
+
+完成後：
+1. 運行 node --check 驗證語法
+2. 報告新增加咗邊啲函數
+3. 報告點整合到現有流程

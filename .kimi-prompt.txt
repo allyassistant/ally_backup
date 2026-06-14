@@ -1,0 +1,283 @@
+你是 Kimi Code CLI 協調員。
+
+## 任務
+用 Kimi Code CLI 完成以下任務：
+"任務：寫 `failure_recovery.js` 喺 `/Users/ally/.openclaw/workspace/scripts/router/failure_recovery.js`，unblock `model_router.js` 嘅 `routeModel()` runtime call。
+
+# File Path
+`/Users/ally/.openclaw/workspace/scripts/router/failure_recovery.js`
+
+# 功能目標
+Phase 1 fusion 嘅 CRITICAL artifact。功能:
+1. Health check cache for 7 providers
+2. 60s cooldown for failed providers
+3. 7-step resolution order: main → openrouter → nous_portal → custom → native_anthropic → direct_api → none
+4. Race condition handling (concurrent calls during cooldown)
+5. Lightweight probe: list_models (POST to /v1/models, 5s timeout)
+6. Decision log integration (optional - log provider failures)
+
+# 設計參考
+- `route_model.yaml` schema: `/Users/ally/.openclaw/workspace/scripts/router/route_model.yaml` (7 providers, 7 routes, schema_version 1.0)
+- `model_router.js` (consumer): `/Users/ally/.openclaw/workspace/scripts/router/model_router.js` (defensive import + resolveProvider call)
+- Hermes auxiliary concept: 60s cooldown health cache for failed providers
+- 對齊 Hermes 7-step resolution: main → OpenRouter → Nous → custom → native → direct → none
+
+# Interface Signatures (5 exports)
+
+```js
+// Main entry: returns first healthy provider in chain, or 'none' if all unhealthy
+async function resolveProvider(chain) {
+  // chain: ['main', 'openrouter', ...]  (string array of provider names)
+  // returns: { provider: string, healthy: boolean, latencyMs: number, reason?: string }
+  // throws if chain is empty or invalid
+}
+
+// Check current health status (cached, non-probe)
+function isProviderHealthy(providerName) {
+  // returns: { healthy: boolean, lastCheck: number, cooldownUntil: number, failureCount: number }
+}
+
+// Mark provider as failed (increments failure count, sets cooldown)
+function markProviderFailure(providerName, error) {
+  // error: Error object or string message
+  // sets cooldown_until = now + 60_000 (60s)
+  // increments failure_count
+  // when failure_count >= 3, enters 'unhealthy' state
+}
+
+// Mark provider as healthy (resets failure count, clears cooldown)
+function markProviderSuccess(providerName) {
+  // resets all failure state
+  // updates last_check timestamp
+}
+
+// Background health check loop (call once at startup)
+async function runHealthCheckLoop(intervalMs = 60_000) {
+  // probes all 7 providers in parallel (max 3 concurrent)
+  // updates health cache
+  // returns interval handle (for tests: clearInterval to stop)
+}
+```
+
+# 詳細 Implementation 要點
+
+## 1. Health Cache (in-memory)
+```js
+const healthCache = new Map();
+// Map<providerName, {
+//   healthy: boolean,
+//   lastCheck: number,       // ms timestamp
+//   cooldownUntil: number,   // ms timestamp
+//   failureCount: number,    // 0-3
+//   lastError: string | null,
+//   lastProbeMs: number
+}>
+```
+
+初始化每個 provider entry: `{ healthy: true, lastCheck: 0, cooldownUntil: 0, failureCount: 0, lastError: null, lastProbeMs: 0 }`
+
+## 2. Cooldown Logic
+- 60s cooldown after failure
+- Cooldown 期間 short-circuit return `false` from `isProviderHealthy`
+- 過咗 cooldown → 進入 'recovery' state, 允許 1 probe
+- Probe success → healthy, failure_count = 0
+- Probe failure → cooldown 延長多 60s
+
+## 3. Race Condition Handling
+- Use `Map<providerName, Promise>` for in-flight probes
+- 如果 probe 進行中, await 個 existing promise (唔重新 probe)
+- 避免 thundering herd (多個 concurrent calls 同時 probe)
+
+## 4. list_models Probe (lightweight)
+```js
+async function probeProvider(providerConfig) {
+  // providerConfig: { type, base_url, api_key, timeout }
+  // POST {base_url}/models with Bearer auth
+  // timeout 5s
+  // returns true on 200, false on error/timeout
+  // NEVER throw (return false + log warning)
+}
+```
+
+Implementation:
+- 用 `fetch()` (Node 18+ native, available in v26)
+- Headers: `{ Authorization: 'Bearer ${apiKey}', 'Content-Type': 'application/json' }`
+- AbortController for 5s timeout
+- Catch all errors → return false
+
+## 5. ENV Var Resolution
+- Reuse `process.env.X` for api_key
+- Throw fail-fast if env var missing (per model_router.js pattern)
+- 唔好 commit 落 code
+
+## 6. Config Loading
+- 用 `fs.readFileSync(route_model.yaml)` 攞 providers config
+- Parse with `js-yaml`
+- Cache 30s (唔每次 hit disk)
+
+## 7. 7-Step Resolution Order
+- Hardcoded order array: `['main', 'openrouter', 'nous_portal', 'custom', 'native_anthropic', 'direct_api', 'none']`
+- 'none' 永遠 return healthy (terminal fallback)
+- 跳過 unhealthy provider, 試下一個
+- 全部 unhealthy → return `{ provider: 'none', healthy: false, reason: 'all unhealthy' }`
+
+## 8. Imports
+```js
+const fs = require('fs');
+const path = require('path');
+const yaml = require('js-yaml');
+
+const CONFIG_PATH = path.join(__dirname, 'route_model.yaml');
+const HEALTH_CACHE_TTL_MS = 30_000;     // re-probe if last_check > 30s ago
+const PROBE_TIMEOUT_MS = 5_000;
+const COOLDOWN_MS = 60_000;
+const FAILURE_THRESHOLD = 3;
+const RECOVERY_PROBE_MS = 30_000;
+const PROBE_CONCURRENCY = 3;
+const RESOLUTION_ORDER = ['main', 'openrouter', 'nous_portal', 'custom', 'native_anthropic', 'direct_api', 'none'];
+const DECISION_LOG_PATH = path.join(__dirname, 'decision_log.jsonl');
+```
+
+## 9. Module Export
+```js
+module.exports = {
+  resolveProvider,
+  isProviderHealthy,
+  markProviderFailure,
+  markProviderSuccess,
+  runHealthCheckLoop,
+  // internal (for tests):
+  _probeProvider: probeProvider,
+  _loadConfig: loadConfig,
+  _getHealthCache: () => healthCache,
+  _RESET: () => { /* for tests */ }
+};
+```
+
+## 10. Error Handling
+- ENV var missing → throw with clear message (per model_router.js pattern)
+- list_models probe error → catch + return false (NEVER throw)
+- Decision log write failure → catch + console.warn
+- 空 chain → throw `new Error('chain is empty')`
+- Unknown provider in chain → throw `new Error('unknown provider: X')`
+
+## 11. Coding Standards (P0 rules)
+- All `require()` at top of file
+- All `fs` / `fetch` / `crypto` calls wrapped in try-catch
+- No `eval` / `execSync` / shell injection
+- 唔好用 magic numbers → use top-level constants
+- Surgical: 只寫 failure_recovery.js, 唔好改其他 file
+- 唔好用簡體中文
+- 唔好 commit 真實 API key
+
+# 估計 Length
+~250 lines (with comments + JSDoc + error handling)
+
+# 跑 Verify (重要!)
+
+1. Syntax check: `node --check /Users/ally/.openclaw/workspace/scripts/router/failure_recovery.js` 確認 syntax valid
+2. File size: `ls -la /Users/ally/.openclaw/workspace/scripts/router/failure_recovery.js` 確認 6-10KB range
+3. Line count: `wc -l /Users/ally/.openclaw/workspace/scripts/router/failure_recovery.js` 確認 ~250 lines
+4. P0 check: `grep -E "execSync\(|eval\(|child_process\." /Users/ally/.openclaw/workspace/scripts/router/failure_recovery.js` 確認 0 violations
+5. Hardcoded key check: `grep -E "sk-[a-zA-Z0-9]{20,}" /Users/ally/.openclaw/workspace/scripts/router/failure_recovery.js` 確認 0
+6. Required exports: `grep -E "module\.exports" /Users/ally/.openclaw/workspace/scripts/router/failure_recovery.js`
+7. **Integration smoke test** (重要, 驗證 unblock model_router.js):
+   ```bash
+   cd /Users/ally/.openclaw/workspace/scripts/router && \
+     node -e "
+       const fr = require('./failure_recovery');
+       const { routeModel } = require('./model_router');
+       fr._RESET();
+       
+       // T1: All healthy (mock) → first provider
+       (async () => {
+         try {
+           const r = await routeModel({ text: 'test', route: 'spawn' });
+           console.log('T1 PASS:', JSON.stringify(r, null, 2));
+         } catch (e) {
+           console.log('T1 FAIL:', e.message);
+         }
+       })();
+     "
+   ```
+   - 預期: T1 PASS, return `{ provider: 'main', model: 'minimax-portal/MiniMax-M3', baseUrl, apiKey, timeout, extraBody, fallbackChain, decisionId }`
+   - 如果 ENV var 唔齊, 個 test 會 throw clear error (acceptable, document 喺報告)
+
+# Scope Block
+✅ In scope: 寫 `failure_recovery.js` + verify (含 integration smoke test)
+❌ Out of scope: 改 model_router.js / route_model.yaml / 寫 validate_route_config.js
+🛑 Abort if: js-yaml 唔喺 deps AND 用 require('yaml') 都 fail
+
+# Cannot Do
+- Do NOT 改其他 file
+- Do NOT 自己手寫 (kimi 寫, 唔好 override)
+- Do NOT commit 真實 API key
+- Do NOT 用簡體中文
+- Do NOT use eval / execSync / shell injection
+- Do NOT add features outside spec (e.g. 唔好寫 metrics export, 唔好寫 Prometheus, etc.)
+
+# Success Criteria
+✅ failure_recovery.js file 創建成功
+✅ `node --check` passes
+✅ File size 6-10KB
+✅ ~250 lines
+✅ 5 main exports: resolveProvider, isProviderHealthy, markProviderFailure, markProviderSuccess, runHealthCheckLoop
+✅ Internal test helpers: _probeProvider, _loadConfig, _getHealthCache, _RESET
+✅ 0 個 execSync / eval / child_process
+✅ 0 個 hardcoded API key
+✅ Constants top (唔 magic number)
+✅ **Integration smoke test PASS** (routeModel 唔 throw 'failure_recovery not implemented')
+
+# 報告格式
+
+```
+✅ failure_recovery.js created
+- Path: /Users/ally/.openclaw/workspace/scripts/router/failure_recovery.js
+- Size: X.X KB (NNNN bytes)
+- Lines: NN
+- Syntax: ✓ (node --check passed)
+- Exports: 5 main + 4 internal = 9 total
+- Functions defined: N
+- Imports: fs, path, js-yaml
+- ENV placeholders: resolved at runtime ✓
+- Cooldown: 60s ✓
+- Probe: list_models (5s timeout) ✓
+- P0 violations: 0 ✓
+- Hardcoded keys: 0 ✓
+- Coding standards: ✓
+
+### Integration smoke test
+- T1: PASS / FAIL
+- Output: { provider: 'main', model: 'minimax-portal/MiniMax-M3', ... }
+- Notes: ...
+```
+
+如果 syntax error 或者 integration test 失敗, report detail 然後 retry 一次。"
+
+## Kimi Code CLI 狀態
+- 路徑：/opt/homebrew/bin/kimi
+- 版本：unknown
+
+## 📖 相關 Symbols (Symbol Map)
+以下是你可能需要參考的代碼符號：
+- `class TaskRouter` @ orchestrator.js:145 - 任務路由器 - 智能決策 /
+- `function runRouter` @ auto-router/handler.js:73 - Run router.py and get the decision /
+- `class AITaskRouter` @ task_router.js:85 - [無描述]
+- `variable ROUTER_DIR` @ router/_archive/auto_corrector.js:28 - ── Config ────────────────────────────────────────────────────────────────────
+- `variable ROUTER_DIR` @ router/_archive/failure_recovery.js:21 - [無描述]
+
+⚠️ 注意：修改代碼前請先查閱上述 Symbol 的具體實現
+
+## 工作流程
+1. 運行 Kimi Code CLI 執行任務
+2. Monitor 進度
+3. 完成後報告結果（成功/失敗、使用了咩方法、任務結果）
+
+## 完成後
+請清晰報告：
+- ✅ 成功 / ❌ 失敗
+- 使用的具體方法
+- 關鍵輸出或錯誤信息
+- 創建/修改的文件（如有）
+
+請立即開始執行任務。

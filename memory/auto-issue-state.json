@@ -1,0 +1,30 @@
+{
+  "processedItems": [
+    {
+      "text": "我鍾意用廣東話溝通，唔好用英文",
+      "target": "knowledge/preferences/",
+      "time": "2026-05-09, 16:32:15",
+      "fullText": "我鍾意用廣東話溝通，唔好用英文"
+    },
+    {
+      "text": "我決定就用方案B做storage",
+      "target": "knowledge/decisions/",
+      "time": "2026-05-09, 16:32:15",
+      "fullText": "我決定就用方案B做storage"
+    }
+  ],
+  "dailySummary": {
+    "2026-05-09": [
+      {
+        "text": "我鍾意用廣東話溝通，唔好用英文",
+        "target": "knowledge/preferences/",
+        "time": "2026-05-09, 16:32:15"
+      },
+      {
+        "text": "我決定就用方案B做storage",
+        "target": "knowledge/decisions/",
+        "time": "2026-05-09, 16:32:15"
+      }
+    ]
+  }
+}

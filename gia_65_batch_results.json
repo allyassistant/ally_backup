@@ -1,0 +1,1367 @@
+{
+  "timestamp": "2026-05-06T17:15:15.085Z",
+  "total": 75,
+  "processed": 60,
+  "errors": [
+    {
+      "cn": "1216850404",
+      "reason": "timeout"
+    },
+    {
+      "cn": "6512928723",
+      "reason": "timeout"
+    },
+    {
+      "cn": "5234047114",
+      "reason": "timeout"
+    },
+    {
+      "cn": "1232576292",
+      "reason": "timeout"
+    },
+    {
+      "cn": "2454851318",
+      "reason": "timeout"
+    }
+  ],
+  "skippedYellow": [],
+  "results": [
+    {
+      "certNumber": "2213934868",
+      "carat": "1.71",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1206091556",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (28 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (28 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "5234389814",
+      "carat": "23.7",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (16 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (16 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6234289441",
+      "carat": "7.5",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (18 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (18 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2231756427",
+      "carat": "16.3",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2235838929",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (21 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (21 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1236047100",
+      "carat": "5.24",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (24 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (24 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "5231587368",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 100,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (21 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (21 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6462156306",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 96,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "5232529816",
+      "carat": "1.3",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 94,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (17 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (17 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "5231096959",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 93,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (23 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (23 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6227871813",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 93,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1543136295",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 93,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (19 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (19 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2235028246",
+      "carat": "5.21",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 85,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (20 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (20 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2231477950",
+      "carat": "8.05",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 85,
+      "verdict": "STRONG BUY S",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (26 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (26 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2231839208",
+      "carat": "2.09",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 84,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "• ⚠️ Poor Spread Factor"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "• ⚠️ Poor Spread Factor",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2235048895",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 84,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (20 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (20 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6173042814",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 78,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2497242927",
+      "carat": "3.3",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 78,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "• ⚠️ Poor Spread Factor"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (21 detected)",
+        "• ⚠️ Poor Spread Factor",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1232839795",
+      "carat": "2.05",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 78,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "• ⚠️ Poor Spread Factor"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "• ⚠️ Poor Spread Factor",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2215594329",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 75,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (18 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (18 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2235474565",
+      "carat": "15.92",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 75,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (20 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (20 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6237543868",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 72,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (15 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (15 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6207556511",
+      "carat": "8.33",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 72,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "16148135",
+      "carat": "3.54",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 71,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (13 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (13 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6234175633",
+      "carat": "2.45",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 70,
+      "verdict": "BUY B",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (20 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (20 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1508164661",
+      "carat": "10.88",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 69,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (25 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (25 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1548402190",
+      "carat": "8.68",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 69,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (26 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (26 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2547261015",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 68,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (20 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (20 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features.",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "5221657767",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (26 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (26 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "5222767185",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (19 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (19 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2235046535",
+      "carat": "12.02",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (24 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (24 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6227862493",
+      "carat": "22.01",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (23 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (23 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1513039628",
+      "carat": "9.02",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (24 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (24 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6415242848",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (28 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (28 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2225343116",
+      "carat": "10.21",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (27 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (27 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features.",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2235815380",
+      "carat": "7.01",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Depth:         ⚠️ Probable Data Error (Extreme Shallow)",
+        "Ratio:         ⚠️ Outlier Ratio"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Depth:         ⚠️ Probable Data Error (Extreme Shallow)",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (24 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features.",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6233815892",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 65,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (26 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (26 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features.",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "17465731",
+      "carat": "3.96",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 62,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (6 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (6 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "5221447582",
+      "carat": "6.01",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 57,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (25 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (25 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2225867090",
+      "carat": "3.12",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2235047260",
+      "carat": "8.08",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (26 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (26 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features.",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6234129129",
+      "carat": "7.03",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features.",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2524520170",
+      "carat": "3.47",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (23 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (23 detected)",
+        "• ⚠️ Poor Spread Factor",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1493072496",
+      "carat": "3.01",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (24 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (24 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6234158920",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (26 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (26 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6224571791",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (20 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (20 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6425007646",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (24 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (24 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2517547075",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (25 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (25 detected)",
+        "• ⚠️ Poor Spread Factor",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6237791422",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (27 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (27 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6224169013",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 50,
+      "verdict": "CAUTION C",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (25 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (25 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "• ⚠️ Proceed with caution. Multiple risk factors present."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "1236123142",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 42,
+      "verdict": "CONDITIONAL",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6451678836",
+      "carat": "3.01",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (28 detected)",
+        "• ⚠️ Poor Spread Factor"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (28 detected)",
+        "• ⚠️ Poor Spread Factor",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2231640454",
+      "carat": "25.28",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (16 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (16 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER",
+        "⚠️ No hologram detected — verify physical security features."
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6237208621",
+      "carat": "1.06",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "• ⚠️ Poor Spread Factor"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (22 detected)",
+        "• ⚠️ Poor Spread Factor",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2225839631",
+      "carat": "30.03",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (17 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (17 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "2235608555",
+      "carat": "25.52",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (17 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (17 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "5231560125",
+      "carat": "3.29",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 35,
+      "verdict": "REJECT R",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (24 detected)"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "Ratio:         ⚠️ Outlier Ratio",
+        "🚩 RISK FLAGS (24 detected)",
+        "• ⚠️ Outlier Ratio",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6522986461",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 32,
+      "verdict": "CONDITIONAL",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    },
+    {
+      "certNumber": "6227715442",
+      "carat": "",
+      "color": "Grade",
+      "clarity": "Grade",
+      "cut": "",
+      "score": 20,
+      "verdict": "REJECT R",
+      "flags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "⚠️  TOP RISKS"
+      ],
+      "rawFlags": [
+        "⚠️  Certificate-only assessment. Visual verification recommended.",
+        "🚩 RISK FLAGS (23 detected)",
+        "⚠️  TOP RISKS",
+        "⚠️  CERTIFICATE AUTHENTICITY DISCLAIMER"
+      ],
+      "shape": ""
+    }
+  ]
+}

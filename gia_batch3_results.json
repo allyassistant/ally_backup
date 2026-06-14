@@ -1,0 +1,167 @@
+[
+  {
+    "cert_no": "2235608555",
+    "shape": "Cushion Modified Brilliant",
+    "carat": 25.52,
+    "color": "Fancy Intense Yellow",
+    "clarity": "VS1",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Milky Risk (clouds not shown)", "Very Deep Cut (69.5%)", "Headlight Effect", "Girdle Hidden Weight", "Cloud as Main Inclusion"]
+  },
+  {
+    "cert_no": "2235815380",
+    "shape": "Oval Brilliant",
+    "carat": 7.01,
+    "color": "D",
+    "clarity": "VVS1",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Bow-tie Risk (ratio 2.01 > 1.55)", "Severe Windowing (depth 46.4% < 58%)", "Large Culet (slightly large)", "Moval (Marquise+Oval hybrid)", "Black Eye Effect", "Oval Symmetry Penalty"]
+  },
+  {
+    "cert_no": "2235838929",
+    "shape": "Heart Brilliant",
+    "carat": 5.21,
+    "color": "E",
+    "clarity": "VS2",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Medium Blue Fluorescence", "Headlight Effect (60.7%)", "Wide/Squat Heart (ratio 0.89)"]
+  },
+  {
+    "cert_no": "2454851318",
+    "shape": "Cut-Cornered Triangular Step Cut",
+    "carat": 2.01,
+    "color": "D",
+    "clarity": "SI2",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["High Milky/Hazy Risk (SI2 + crystal/twinning/feather/cavity)", "Cavity Risk (setting hazard)", "Portrait Cut (33% depth - designer spec)", "Eye-Clean Risk (SI2 visible)", "Fish-eye Effect (33% < 38%)", "D-Color Oily Penalty"]
+  },
+  {
+    "cert_no": "2497242927",
+    "shape": "Square Modified Brilliant",
+    "carat": 2.06,
+    "color": "E",
+    "clarity": "VS2",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Milky Risk (clouds not shown)", "Too Deep (72.2% > 68%)", "Nailhead Effect (72.2% > 72%)", "Weight Hidden", "Very Deep Cut (79% spread)"]
+  },
+  {
+    "cert_no": "2517547075",
+    "shape": "Cut-Cornered Triangular Step Cut",
+    "carat": 3.06,
+    "color": "G",
+    "clarity": "SI1",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Milky Risk (clouds not shown)", "High Milky/Hazy Risk (SI1 + multiple inclusions)", "Cloud as Main Inclusion", "Eye-Clean Risk (Crystal on table)", "Portrait Cut (22.2% depth - extreme)", "Extreme Windowing (174% spread)", "Fish-eye Effect (22.2% < 38%)"]
+  },
+  {
+    "cert_no": "2524520170",
+    "shape": "Cut-Cornered Triangular Step Cut",
+    "carat": 3.47,
+    "color": "I",
+    "clarity": "SI2",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Milky Risk (clouds not shown)", "High Milky/Hazy Risk (SI2 + twinning wisp/feather)", "Large Culet (extremely large)", "Portrait Cut (31.1% depth)", "Black Eye Effect (extremely large culet)", "Fish-eye Effect (31.1% < 38%)"]
+  },
+  {
+    "cert_no": "2547118445",
+    "shape": "Marquise Brilliant",
+    "carat": 2.02,
+    "color": "J",
+    "clarity": "SI2",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Milky Risk (clouds not shown)", "Eye-Clean Risk (SI2 visible)", "Borderline 2ct weight"]
+  },
+  {
+    "cert_no": "2547261015",
+    "shape": "Marquise Brilliant",
+    "carat": 4.03,
+    "color": "F",
+    "clarity": "SI2",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Milky Risk (clouds/pinpoints/surface graining not shown)", "Fluorescence Compensation Blocked", "Eye-Clean Risk (SI2 visible)", "Surface Graining noted"]
+  },
+  {
+    "cert_no": "5221447582",
+    "shape": "Cushion Modified Brilliant",
+    "carat": 6.01,
+    "color": "G",
+    "clarity": "VS2",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Milky Risk (clouds not shown)", "Cavity Risk (structural safety + VS2)", "Cloud as Main Inclusion", "Very Deep Cut (84% spread)", "Surface Graining"]
+  },
+  {
+    "cert_no": "5221657767",
+    "shape": "Pear Brilliant",
+    "carat": 10.04,
+    "color": "D",
+    "clarity": "SI1",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Severe Windowing (52.2% < 55%)", "Cavity Risk", "Fluorescence Compensation Blocked", "Eye-Clean Risk (Crystal on table)", "10ct+ Bonus (+20)", "Large克拉 risk (SI clarity at 10ct)"]
+  },
+  {
+    "cert_no": "5222767185",
+    "shape": "Marquise Brilliant",
+    "carat": 8.46,
+    "color": "D",
+    "clarity": "Flawless",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Too Deep (62.5% > 62%)", "Marquise Ratio Warning (2.21 > 2.2)", "Investment Grade (D/FL)", "Headlight Effect"]
+  },
+  {
+    "cert_no": "5231096959",
+    "shape": "Round Brilliant",
+    "carat": 1.70,
+    "color": "I",
+    "clarity": "VVS2",
+    "cut": "Excellent",
+    "score": null,
+    "verdict": "APPROVE (but REJECT flagged - analyst note: verdict contradicts logic)",
+    "flags": ["Super Ideal/H&A (56% table + 62.2% depth + 3EX)", "Investment Grade Table", "Easy Sell (Round/VVS2/3EX/None)"]
+  },
+  {
+    "cert_no": "5231283332",
+    "shape": "Cushion Modified Brilliant",
+    "carat": 35.11,
+    "color": "Fancy Yellow",
+    "clarity": "VS2",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["Severe Windowing (58.4% < 60% for fancy)", "Too Thick/Short (ratio 1.23 > 1.05)", "20ct+ Bonus (+35)", "Headlight Effect"]
+  },
+  {
+    "cert_no": "5231560125",
+    "shape": "Cut-Cornered Triangular Step Cut",
+    "carat": 3.29,
+    "color": "Fancy Yellow",
+    "clarity": "SI1",
+    "cut": "N/A (fancy)",
+    "score": null,
+    "verdict": "REJECT",
+    "flags": ["High Milky/Hazy Risk (SI1 + cloud/crystal/needle/twinning)", "Cloud as Main Inclusion", "Eye-Clean Risk (Crystal on table)", "Extreme Windowing (206% spread)", "Portrait Cut (26.8% depth - extreme)", "Fish-eye Effect (26.8% < 38%)"]
+  }
+]

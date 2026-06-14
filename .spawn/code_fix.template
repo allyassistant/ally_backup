@@ -1,0 +1,37 @@
+# Code Fix Template
+
+## Task
+[具體修復任務 — 一個 sentence]
+
+## Tools
+read, grep, edit, exec
+
+## Output Format
+- Modified files: [list]
+- Verification: [pass/fail]
+- Non-scope findings: [如果有]
+
+## Definition of Done
+- [ ] Output delivered to the right location
+- [ ] Source material cited if applicable
+- [ ] `node --check` pass
+- [ ] Existing behaviour unaffected (git diff check)
+- [ ] Exceptions flagged
+- [ ] Next action stated
+- [ ] Learning captured for next run
+
+### 🚫 Cannot Do
+- Do NOT refactor variable names outside the immediate fix area
+- Do NOT add logging statements unless explicitly requested
+- Do NOT modify any file not in ✅ In scope
+- Do NOT change error handling approach (only fix existing pattern)
+- Do NOT add new dependencies or require packages
+- If asked to fix X but discover Y is broken → report Y as out-of-scope finding, do not fix Y
+- Do NOT write new code that isn't directly in scope of the fix
+
+## Constraints
+- 只改指定檔案
+- 唔引入新 dependency
+- `node --check` must pass
+- If scope is unclear → stop and ask, do not guess
+- If the spec's Cannot Do rules seem to **contradict** each other or the ACs → stop and ask, do not pick a side

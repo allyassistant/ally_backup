@@ -1,0 +1,254 @@
+{
+  "usage": {
+    "Claude + Obsidian 係你唯一既 Moat": {
+      "count": 5,
+      "links_from": [
+        "CyrilXBT - Obsidian 系統：Notes That Produce Output",
+        "Khusboo Tayal - CLAUDE.md 完全ガイド 21の指示",
+        "東大Obsidianオタク - Vault 蘇生 4層架構",
+        "NeilXbt - 用 Obsidian + Claude 建自動專案管理系統",
+        "りゅう - claude-obsidian：自動成長する第二脳構築"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Claude Opus 4.8 - Dynamic Workflows 分析": {
+      "count": 3,
+      "links_from": [
+        "Claude + Obsidian 係你唯一既 Moat",
+        "黄小木 - Agent 小白完整教程",
+        "ChatGPT-Image2 生成企業級商用畫冊 S O P"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Connection Surface - 2026-05-31": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "CyrilXBT - Obsidian 系統：Notes That Produce Output": {
+      "count": 6,
+      "links_from": [
+        "Khusboo Tayal - CLAUDE.md 完全ガイド 21の指示",
+        "東大Obsidianオタク - Vault 蘇生 4層架構",
+        "黄小木 - Agent 小白完整教程",
+        "LISA - 用AI將Reddit變成產品趨勢雷達",
+        "NeilXbt - 用 Obsidian + Claude 建自動專案管理系統",
+        "りゅう - claude-obsidian：自動成長する第二脳構築"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Khusboo Tayal - CLAUDE.md 完全ガイド 21の指示": {
+      "count": 1,
+      "links_from": [
+        "Rahul - Claude 完全活用17機能ガイド"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Rahul - Claude 完全活用17機能ガイド": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "Vox - Minimal AI Loop with OpenClaw and Hermes": {
+      "count": 6,
+      "links_from": [
+        "Claude + Obsidian 係你唯一既 Moat",
+        "Claude Opus 4.8 - Dynamic Workflows 分析",
+        "CyrilXBT - Obsidian 系統：Notes That Produce Output",
+        "東大Obsidianオタク - Vault 蘇生 4層架構",
+        "りゅう - claude-obsidian：自動成長する第二脳構築",
+        "半格HalfBit - Ghostty 終端配置 + 5現代CLI工具"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Vox - Minimal AI Team Loop with OpenClaw and Hermes": {
+      "count": 1,
+      "links_from": [
+        "2026-05-30 Daily Synthesis"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "東大Obsidianオタク - Vault 蘇生 4層架構": {
+      "count": 2,
+      "links_from": [
+        "Khusboo Tayal - CLAUDE.md 完全ガイド 21の指示",
+        "Rahul - Claude 完全活用17機能ガイド"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "黄小木 - Agent 小白完整教程": {
+      "count": 3,
+      "links_from": [
+        "Rahul - Claude 完全活用17機能ガイド",
+        "LISA - 用AI將Reddit變成產品趨勢雷達",
+        "NeilXbt - 用 Obsidian + Claude 建自動專案管理系統"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "LISA - 用AI將Reddit變成產品趨勢雷達": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "MarsCarsChipsDips - 蒸馏Serenity 1000条推文成A股选股框架": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "10 分钟搭一套 AI 自生长知识库：Obsidian + Codex": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "Dan Koe - AI學習五步框架": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "How to Build an Obsidian System That Turns Notes Into Actionable Output": {
+      "count": 2,
+      "links_from": [
+        "10 分钟搭一套 AI 自生长知识库：Obsidian + Codex",
+        "How to Use Obsidian and Claude to Learn Any Subject Twice as Fast by Building a Knowledge Graph"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "How to Use Obsidian and Claude to Learn Any Subject Twice as Fast by Building a Knowledge Graph": {
+      "count": 1,
+      "links_from": [
+        "10 分钟搭一套 AI 自生长知识库：Obsidian + Codex"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Obsidian 係咩": {
+      "count": 2,
+      "links_from": [
+        "必裝插件指南",
+        "筆記組織方法論"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Apple Distills Gemini for iPhone Siri": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "ChatGPT-Image2 生成企業級商用畫冊 S O P": {
+      "count": 1,
+      "links_from": [
+        "ComfyUI 學習路徑與核心概念"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "ComfyUI 學習路徑與核心概念": {
+      "count": 1,
+      "links_from": [
+        "Claude + Obsidian 係你唯一既 Moat"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "CyrilXBT - Obsidian Vault Setup That Replaced Per Month Stack": {
+      "count": 1,
+      "links_from": [
+        "Daily Synthesis - 2026-05-31"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Daily Synthesis - 2026-05-31": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "Dami-Defi - 5 Tool AI Stack Where Each Tool Does What Others Cannot": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "Dami-Defi - Connected Hermes Agent to Obsidian Vault": {
+      "count": 1,
+      "links_from": [
+        "Daily Synthesis - 2026-05-31"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Hermes Agent 多智能體群聊協作配置教程": {
+      "count": 3,
+      "links_from": [
+        "Claude Opus 4.8 - Dynamic Workflows 分析",
+        "Vox - Minimal AI Loop with OpenClaw and Hermes",
+        "黄小木 - Agent 小白完整教程"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "NeilXbt - 用 Obsidian + Claude 建自動專案管理系統": {
+      "count": 2,
+      "links_from": [
+        "東大Obsidianオタク - Vault 蘇生 4層架構",
+        "りゅう - claude-obsidian：自動成長する第二脳構築"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Vox - 10 Lessons for Writing a Good AGENTS.md": {
+      "count": 1,
+      "links_from": [
+        "Daily Synthesis - 2026-05-31"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "Vox - From One AI Loop to an AI Team Workflow With Hermes and OpenClaw": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "りゅう - claude-obsidian：自動成長する第二脳構築": {
+      "count": 1,
+      "links_from": [
+        "東大Obsidianオタク - Vault 蘇生 4層架構"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "半格HalfBit - Ghostty 終端配置 + 5現代CLI工具": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "知野 - Hermes Bundle 一键打包 Skills MCP Rules Hooks": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "必裝插件指南": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "筆記組織方法論": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "x-link-analysis": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "2026-05-23": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    },
+    "2026-05-29 Daily Synthesis": {
+      "count": 2,
+      "links_from": [
+        "2026-05-30 Daily Synthesis"
+      ],
+      "last_used": "2026-05-31"
+    },
+    "2026-05-30 Daily Synthesis": {
+      "count": 0,
+      "links_from": [],
+      "last_used": null
+    }
+  },
+  "last_scan": "2026-05-31"
+}

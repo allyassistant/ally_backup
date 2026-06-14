@@ -1,0 +1,9 @@
+tell application "Microsoft Excel"
+    tell active sheet
+        select range "A2:P136"
+        
+        make new conditional format at end with properties {format type:formula based, formula1:"=$A2=\"Y\"", interior color index:4}
+        
+        display dialog "設定完成！在A欄打Y，整行變綠色。"
+    end tell
+end tell

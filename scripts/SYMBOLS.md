@@ -1,0 +1,13240 @@
+---
+type: symbols_index
+last_updated: 2026-06-13
+scope: scripts/
+total_files: 294
+total_errors: 14
+total_symbols: 4405
+total_issues: 38
+total_crons: 4
+hot_scripts: 0
+---
+
+# 🛠️ Scripts & Symbols Master Map
+
+> 此文件為 OpenClaw 的核心導航地圖。尋找具體邏輯實現時，請優先檢索此處。
+
+**生成時間：** 14/6/2026 上午12:41:00
+**掃描範圍：** `/Users/ally/.openclaw/workspace/scripts`
+
+---
+
+## 📂 .closed-loop-checkpoints
+
+### `.closed-loop-checkpoints/code-current.js`
+- Line 22: `variable RE` 📦
+  - 💡 ============================================================================ REGEX CACHE - Pre-compiled regex patterns for performance ============================================================================
+- Line 40: `variable CLARITY_RANK` 📦
+  - 💡 ============================================================================ CLARITY RANK CONFIG - Centralized clarity grade management ============================================================================
+- Line 85: `function validateInput` 🔧
+  - 💡 Validate input data structure @param {Object} data - GIA certificate data @returns {{valid: boolean, errors: string[]}} /
+- Line 137: `function extractCloudDescriptors` 🔧
+  - 💡 包括 keyToSymbols、comments、clarity 等欄位  @param {Object} data - GIA 證書數據 @returns {Object} cloudInfo - 包含所有 cloud 相關信息 /
+- Line 143: `arrow function cloudIndex` ➡️
+  - 💡 === 1. 找 Cloud 在 keyToSymbols 中的位置 ===
+- Line 203: `function evaluateMilkyRisk` 🔧
+  - 💡 @param {Object} data - GIA 證書數據 @param {Object} cloudInfo - extractCloudDescriptors 的輸出 @returns {Object|null} milkyRiskResult /
+- Line 298: `function evaluateHazyRisk` 🔧
+  - 💡 @param {Object} data - GIA 證書數據 @param {Object} cloudInfo - extractCloudDescriptors 的輸出 @returns {Object|null} hazyRiskResult /
+- Line 385: `function calculateClarityBasedOnClouds` 🔧
+  - 💡 根據 Cloud 位置和權重計算對淨度評分的影響  @param {Object} cloudInfo - extractCloudDescriptors 的輸出 @returns {Object} clarityImpact - 包含 scoreImpact 和 label /
+- Line 459: `function buildCloudFlags` 🔧
+  - 💡 @param {Object} milkyRisk - evaluateMilkyRisk 的輸出 (可能為 null) @param {Object} hazyRisk - evaluateHazyRisk 的輸出 (可能為 null) @param {Object} clarityImpact - calculateClarityBasedOnClouds 的輸出 @returns {Array} flags - 要添加到最終結果的 flags /
+- Line 536: `function calculateTotalScoreImpact` 🔧
+  - 💡 Calculate total score impact from all flags @param {Array} flags - Array of flag objects @returns {number} totalScoreImpact /
+- Line 545: `function determineWorstSeverity` 🔧
+  - 💡 Determine worst severity from flags @param {Array} flags - Array of flag objects @returns {string} worstSeverity /
+- Line 576: `function analyzeCloudPosition` 🔧
+  - 💡 保持原有 checkCloudPosition 的所有功能  @param {Object} data - GIA 證書數據 @returns {Object|null} cloudPositionResult - 包含 flags, scoreImpact, severity /
+- Line 614: `arrow function risks` ➡️
+  - 💡 [無描述]
+- Line 684: `function checkCloudPosition` 🔧
+  - 💡 checkCloudPosition - 原有函數的包裝器  保持原有接口，向後兼容 內部調用新的 analyzeCloudPosition /
+- Line 711: `function runTests` 🔧
+  - 💡 Run unit tests @returns {{passed: number, failed: number, errors: string[]}} /
+- Line 714: `function test` 🔧
+  - 💡 [無描述]
+- Line 726: `function assertEqual` 🔧
+  - 💡 [無描述]
+- Line 732: `function assertDeepEqual` 🔧
+  - 💡 [無描述]
+- Line 980: `variable testData` 📦
+  - 💡 測試用假數據
+- Line 992: `function runTest` 🔧
+  - 💡 執行測試
+
+## 📂 Archive & Backup
+
+### `archive/audit-2026-04/context_helpers.js`
+- Line 28: `function analyzeContext` 🔧
+  - 💡 @param {string[]} lines - 檔案所有行 @param {number} lineIdx - 當前行索引 (0-based) @param {string} operation - 操作類型 (e.g., 'readFileSync') @returns {Object} - 上下文分析結果 /
+- Line 86: `function findSafeContext` 🔧
+  - 💡 查找安全上下文 /
+- Line 89: `arrow function operationMatches` ➡️
+  - 💡 檢查操作是否匹配
+- Line 126: `function isSimpleResourceRead` 🔧
+  - 💡 檢查是否為簡單的資源讀取 /
+- Line 175: `function getFunctionContext` 🔧
+  - 💡 獲取函數上下文 /
+- Line 203: `function shouldRequireTryCatchForReadFile` 🔧
+  - 💡 檢查 readFileSync 操作是否需要錯誤處理 /
+- Line 231: `function shouldRequireTryCatchForMkdir` 🔧
+  - 💡 檢查 mkdirSync 操作是否需要錯誤處理 /
+- Line 236: `arrow function hasExistsCheck` ➡️
+  - 💡 [無描述]
+- Line 272: `function shouldRequireTryCatchForReaddir` 🔧
+  - 💡 檢查 readdirSync 操作是否需要錯誤處理 /
+- Line 322: `function adjustSeverity` 🔧
+  - 💡 根據上下文調整問題嚴重性 /
+
+### `archive/audit-2026-04/whitelist_patterns.js`
+- Line 16: `variable SAFE_PATH_PATTERNS` 📦
+  - 💡 被視為安全的檔案路徑模式 這些路徑不會導致安全問題或需要錯誤處理 /
+- Line 63: `variable SAFE_CONTEXTS` 📦
+  - 💡 定義哪些上下文中的操作被視為安全 /
+- Line 235: `variable DANGER_SIGNALS` 📦
+  - 💡 這些模式表示操作可能真的有風險 即使符合安全上下文，也應保留警告 /
+- Line 277: `variable SAFE_HELPERS` 📦
+  - 💡 已知安全的 wrapper 函數 這些函數內部已處理錯誤 /
+- Line 308: `variable FILE_EXEMPTIONS` 📦
+  - 💡 特定檔案類型的全局豁免 /
+- Line 358: `function isSafePath` 🔧
+  - 💡 檢查路徑是否安全 /
+- Line 372: `function getSafeContext` 🔧
+  - 💡 獲取操作的安全上下文 /
+- Line 375: `arrow function operationMatches` ➡️
+  - 💡 檢查操作是否匹配
+- Line 395: `function hasDangerSignal` 🔧
+  - 💡 檢查是否有危險信號 /
+- Line 404: `function isSafeHelper` 🔧
+  - 💡 檢查是否為安全 helper 函數 /
+- Line 415: `function getFileExemption` 🔧
+  - 💡 獲取檔案類型豁免 /
+
+### `archive/auto-spawn.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function _log` ➡️
+  - 💡 [無描述]
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+- Line 18: `variable colors` 📦
+  - 💡 顏色輸出
+- Line 27: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 35: `function checkNeedSpawn` 🔧
+  - 💡 檢查是否需要 spawn sub-agent @returns {object|null} - 返回 decision 數據或 null /
+- Line 54: `function getSessionLabel` 🔧
+  - 💡 獲取 session label /
+- Line 68: `function spawnSubAgent` 🔧
+  - 💡 調用 OpenClaw spawn sub-agent /
+- Line 95: `function simulateSpawn` 🔧
+  - 💡 模擬 spawn（用於測試） /
+- Line 124: `function autoSpawn` 🔧
+  - 💡 @param {object} options - 選項 @param {boolean} options.dryRun - 是否只模擬，不實際 spawn @param {boolean} options.quiet - 是否靜默模式 @returns {boolean} - true = 已 spawn，false = 未 spawn /
+- Line 173: `function shouldStopAndSpawn` 🔧
+  - 💡 快速檢查函數（用於 Ally 每次回復前調用） @returns {boolean} - true = 應該停止回覆流程（已 spawn） /
+- Line 191: `function main` 🔧
+  - 💡 CLI 入口
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `archive/check-router-decision.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 19: `variable fs` 📦
+  - 💡 [無描述]
+- Line 20: `variable path` 📦
+  - 💡 [無描述]
+- Line 23: `variable DECISION_FILE` 📦
+  - 💡 [無描述]
+- Line 25: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `archive/compare_stock.js`
+- Line 1: `variable XLSX` 📦
+  - 💡 [無描述]
+- Line 4: `variable dnWB` 📦
+  - 💡 Read both files
+- Line 5: `variable stockWB` 📦
+  - 💡 [無描述]
+- Line 7: `variable dnData` 📦
+  - 💡 [無描述]
+- Line 8: `variable stockData` 📦
+  - 💡 [無描述]
+- Line 11: `variable stockMap` 📦
+  - 💡 Create maps by Cert No
+- Line 17: `variable dnMap` 📦
+  - 💡 [無描述]
+- Line 24: `variable newInDN` 📦
+  - 💡 Find differences
+- Line 25: `variable removed` 📦
+  - 💡 [無描述]
+- Line 26: `variable changed` 📦
+  - 💡 [無描述]
+- Line 54: `function formatDiamond` 🔧
+  - 💡 [無描述]
+
+### `archive/cron_health_check.js`
+- Line 10: `variable CRON_STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 13: `variable CRITICAL_JOBS` 📦
+  - 💡 預設既 daily summary cron jobs 要檢查
+- Line 20: `function loadCronState` 🔧
+  - 💡 [無描述]
+- Line 32: `function saveCronState` 🔧
+  - 💡 [無描述]
+- Line 37: `function saveCronState` 🔧
+  - 💡 [無描述]
+- Line 42: `function updateCronJobState` 🔧
+  - 💡 [無描述]
+- Line 57: `function checkJobHealth` 🔧
+  - 💡 [無描述]
+- Line 83: `function generateReport` 🔧
+  - 💡 [無描述]
+- Line 122: `unknown undefined` 
+  - 💡 Export for use in other scripts
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `archive/cron_health_monitor.js`
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+- Line 21: `variable path` 📦
+  - 💡 [無描述]
+- Line 24: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 31: `function getCronJobs` 🔧
+  - 💡 [無描述]
+- Line 45: `function getCronRuns` 🔧
+  - 💡 [無描述]
+- Line 59: `function evaluateJobHealth` 🔧
+  - 💡 [無描述]
+- Line 128: `arrow function successCount` ➡️
+  - 💡 [無描述]
+- Line 145: `function generateReport` 🔧
+  - 💡 [無描述]
+- Line 178: `arrow function criticalJobs` ➡️
+  - 💡 [無描述]
+- Line 188: `function attemptFix` 🔧
+  - 💡 [無描述]
+- Line 216: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 282: `arrow function criticalJobs` ➡️
+  - 💡 檢查是否需要發送警報
+- Line 284: `arrow function alertMsg` ➡️
+  - 💡 [無描述]
+
+### `archive/daily_summary.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable https` 📦
+  - 💡 [無描述]
+- Line 14: `variable http` 📦
+  - 💡 [無描述]
+- Line 17: `variable MEMORY_DIR` 📦
+  - 💡 [無描述]
+- Line 20: `function getTodayDate` 🔧
+  - 💡 [無描述]
+- Line 25: `function getDisplayDate` 🔧
+  - 💡 [無描述]
+- Line 30: `function readTodayMemory` 🔧
+  - 💡 [無描述]
+- Line 65: `function generateJournalWithOllama` 🔧
+  - 💡 用 Ollama (qwen2.5:3b) 生成日记 /
+- Line 121: `arrow function req` ➡️
+  - 💡 [無描述]
+- Line 128: `arrow function paragraphs` ➡️
+  - 💡 [無描述]
+- Line 161: `function generateJournalWithMiniMax` 🔧
+  - 💡 用 MiniMax AI 生成个性化日记 (SIMPLIFIED) /
+- Line 226: `arrow function req` ➡️
+  - 💡 [無描述]
+- Line 234: `arrow function paragraphs` ➡️
+  - 💡 [無描述]
+- Line 264: `function generateDefaultJournal` 🔧
+  - 💡 [無描述]
+- Line 272: `function parseSummary` 🔧
+  - 💡 [無描述]
+- Line 310: `function generateDailySummary` 🔧
+  - 💡 [無描述]
+
+### `archive/discord_stock_watcher.js`
+- Line 19: `variable fs` 📦
+  - 💡 [無描述]
+- Line 20: `variable path` 📦
+  - 💡 [無描述]
+- Line 22: `variable https` 📦
+  - 💡 [無描述]
+- Line 25: `variable CONFIG` 📦
+  - 💡 ==================== 配置 ====================
+- Line 47: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 51: `function ensureDir` 🔧
+  - 💡 [無描述]
+- Line 64: `function getRecentMessages` 🔧
+  - 💡 獲取 Discord channel 最近既訊息 /
+- Line 82: `function hasExcelAttachment` 🔧
+  - 💡 檢查訊息係咪包含 Excel 附件 /
+- Line 96: `function downloadAttachment` 🔧
+  - 💡 下載 Discord 附件 /
+- Line 123: `function processExcelFile` 🔧
+  - 💡 處理單個 Excel 檔案 /
+- Line 188: `function checkOnce` 🔧
+  - 💡 主檢查循環 /
+- Line 269: `function watchMode` 🔧
+  - 💡 持續監聽模式 /
+- Line 285: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `archive/error_autofix_backup.js`
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+- Line 23: `variable CONFIG` 📦
+  - 💡 設定
+- Line 31: `variable DEFAULT_PATTERNS` 📦
+  - 💡 預設錯誤模式 (已知問題 + 解法)
+- Line 124: `function initPatternsFile` 🔧
+  - 💡 初始化 patterns 檔案 /
+- Line 138: `function loadPatterns` 🔧
+  - 💡 讀取 patterns /
+- Line 147: `function loadErrors` 🔧
+  - 💡 讀取 errors /
+- Line 158: `function matchErrorPattern` 🔧
+  - 💡 匹配錯誤模式 /
+- Line 171: `function shouldAttemptFix` 🔧
+  - 💡 檢查是否應該嘗試 auto-fix /
+- Line 197: `function executeFix` 🔧
+  - 💡 執行 auto-fix /
+- Line 275: `function fixIncreaseTimeout` 🔧
+  - 💡 Fix: 增加 timeout /
+- Line 298: `function fixModelName` 🔧
+  - 💡 Fix: 修正 model 名稱 /
+- Line 314: `function fixRunCleanup` 🔧
+  - 💡 Fix: 執行 cleanup /
+- Line 330: `function fixOllama401` 🔧
+  - 💡 Fix: Ollama 401 Authentication Error 自動標記為已知問題，通知 human，自動 skip /
+- Line 346: `function fixMemoryOOM` 🔧
+  - 💡 Fix: Memory OOM (Out of Memory) Archive session to disk, suggest memory cleanup /
+- Line 360: `arrow function stateFiles` ➡️
+  - 💡 ⚠️ DISABLED: 清理 memory state files (2026-03-29) 避免誤刪重要檔案，改為只觸發 GC const stateDir = path.join(__dirname, '..', 'memory', '.state'); if (fs.existsSync(stateDir)) {
+- Line 383: `function scanAndFix` 🔧
+  - 💡 主要功能：掃描並嘗試修復 /
+- Line 400: `arrow function recentErrors` ➡️
+  - 💡 [無描述]
+- Line 480: `arrow function fixDetails` ➡️
+  - 💡 [無描述]
+- Line 500: `function analyzePatterns` 🔧
+  - 💡 分析錯誤模式 /
+- Line 538: `function main` 🔧
+  - 💡 主要入口 /
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `archive/error_autofix_v2.js`
+- Line 9: `variable fs` 📦
+  - 💡 [無描述]
+- Line 10: `variable path` 📦
+  - 💡 [無描述]
+- Line 14: `variable CONFIG` 📦
+  - 💡 ======== CONFIG ========
+- Line 26: `function isAIAvailable` 🔧
+  - 💡 ======== ROOT CAUSE ANALYSIS ========
+- Line 35: `function analyzeRootCause` 🔧
+  - 💡 [無描述]
+- Line 48: `arrow function memFiles` ➡️
+  - 💡 Check if related to binary contamination
+- Line 143: `function executeFix` 🔧
+  - 💡 ======== FIX EXECUTION ========
+- Line 181: `function recordLearning` 🔧
+  - 💡 ======== LEARNING SYSTEM ========
+- Line 201: `arrow function p` ➡️
+  - 💡 [無描述]
+- Line 215: `function main` 🔧
+  - 💡 ======== MAIN ========
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 230: `arrow function recentErrors` ➡️
+  - 💡 [無描述]
+- Line 276: `arrow function details` ➡️
+  - 💡 [無描述]
+- Line 309: `function isAIAvailable` 🔧
+  - 💡 ======== AI-POWERED ROOT CAUSE ANALYSIS ========
+- Line 318: `function analyzeRootCauseWithAI` 🔧
+  - 💡 [無描述]
+- Line 370: `function mainWithAI` 🔧
+  - 💡 ======== ENHANCED MAIN WITH AI ========
+- Line 383: `arrow function recentErrors` ➡️
+  - 💡 [無描述]
+- Line 436: `arrow function details` ➡️
+  - 💡 [無描述]
+- Line 458: `function verifyFix` 🔧
+  - 💡 ======== VERIFICATION SYSTEM ========
+- Line 471: `arrow function memFiles` ➡️
+  - 💡 [無描述]
+
+### `archive/error_recovery.js`
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+- Line 21: `variable path` 📦
+  - 💡 [無描述]
+- Line 24: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 25: `variable MAX_HISTORY` 📦
+  - 💡 [無描述]
+- Line 30: `function logError` 🔧
+  - 💡 ===== 狀態管理 =====
+- Line 42: `variable CHECKS` 📦
+  - 💡 [無描述]
+- Line 145: `arrow function missing` ➡️
+  - 💡 [無描述]
+- Line 159: `arrow function stateFiles` ➡️
+  - 💡 [無描述]
+- Line 174: `arrow function stateFiles` ➡️
+  - 💡 [無描述]
+- Line 197: `function diagnose` 🔧
+  - 💡 [無描述]
+- Line 240: `function fixIssues` 🔧
+  - 💡 [無描述]
+- Line 285: `function showHistory` 🔧
+  - 💡 [無描述]
+- Line 315: `variable command` 📦
+  - 💡 [無描述]
+
+### `archive/health_api.js`
+- Line 15: `variable http` 📦
+  - 💡 [無描述]
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+- Line 19: `variable PORT` 📦
+  - 💡 [無描述]
+- Line 23: `variable HOST` 📦
+  - 💡 [無描述]
+- Line 26: `variable CORS_HEADERS` 📦
+  - 💡 CORS headers
+- Line 34: `function getHealthData` 🔧
+  - 💡 獲取健康數據
+- Line 53: `function getSimpleHealthData` 🔧
+  - 💡 獲取簡化版數據
+- Line 77: `function getOverallStatus` 🔧
+  - 💡 計算整體狀態
+- Line 93: `arrow function server` ➡️
+  - 💡 創建 HTTP server
+
+### `archive/import_stock.js`
+- Line 15: `variable fs` 📦
+  - 💡 [無描述]
+- Line 16: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable XLSX` 📦
+  - 💡 [無描述]
+- Line 19: `variable TEMPLATE_PATH` 📦
+  - 💡 [無描述]
+- Line 20: `variable OUTPUT_DIR` 📦
+  - 💡 [無描述]
+- Line 21: `variable DATABASE_PATH` 📦
+  - 💡 [無描述]
+- Line 24: `variable COLUMN_MAP` 📦
+  - 💡 Column mapping from template
+- Line 43: `function loadDatabase` 🔧
+  - 💡 [無描述]
+- Line 51: `function saveDatabase` 🔧
+  - 💡 [無描述]
+- Line 62: `function readNewStock` 🔧
+  - 💡 [無描述]
+- Line 77: `arrow function items` ➡️
+  - 💡 Filter and map data
+- Line 113: `function mergeWithExisting` 🔧
+  - 💡 [無描述]
+- Line 131: `arrow function newCertNos` ➡️
+  - 💡 Check for sold items (exist in DB but not in new)
+- Line 167: `function saveToTemplate` 🔧
+  - 💡 [無描述]
+- Line 213: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `archive/integrate_stock.js`
+- Line 9: `variable fs` 📦
+  - 💡 [無描述]
+- Line 10: `variable path` 📦
+  - 💡 [無描述]
+- Line 11: `variable XLSX` 📦
+  - 💡 [無描述]
+- Line 13: `variable COLOR_ORDER` 📦
+  - 💡 [無描述]
+- Line 14: `variable CLARITY_ORDER` 📦
+  - 💡 [無描述]
+- Line 15: `variable COMMON_SHAPES` 📦
+  - 💡 [無描述]
+- Line 16: `variable COLOR_PATTERNS` 📦
+  - 💡 [無描述]
+- Line 17: `variable CLARITY_PATTERNS` 📦
+  - 💡 [無描述]
+- Line 19: `function isFancyColor` 🔧
+  - 💡 [無描述]
+- Line 28: `function analyzeColumns` 🔧
+  - 💡 分析每個 column 的數據類型
+- Line 86: `function mapByHeaderName` 🔧
+  - 💡 根據 header 名初步映射
+- Line 148: `function correctMappingByData` 🔧
+  - 💡 根據數據內容修正映射
+- Line 199: `arrow function hasShapePatterns` ➡️
+  - 💡 [無描述]
+- Line 222: `arrow function hasValidColors` ➡️
+  - 💡 [無描述]
+- Line 246: `arrow function hasValidClarity` ➡️
+  - 💡 [無描述]
+- Line 268: `function detectColumns` 🔧
+  - 💡 [無描述]
+- Line 287: `arrow function missing` ➡️
+  - 💡 [無描述]
+- Line 295: `function readSourceFile` 🔧
+  - 💡 [無描述]
+- Line 331: `function transformData` 🔧
+  - 💡 [無描述]
+- Line 335: `arrow function getValue` ➡️
+  - 💡 [無描述]
+- Line 366: `function sortData` 🔧
+  - 💡 [無描述]
+- Line 369: `arrow function regular` ➡️
+  - 💡 [無描述]
+- Line 370: `arrow function fancy` ➡️
+  - 💡 [無描述]
+- Line 375: `arrow function sortFn` ➡️
+  - 💡 [無描述]
+- Line 406: `function groupByShape` 🔧
+  - 💡 [無描述]
+- Line 416: `function prepareOutput` 🔧
+  - 💡 [無描述]
+- Line 425: `arrow function addRows` ➡️
+  - 💡 [無描述]
+- Line 426: `arrow function sortedShapes` ➡️
+  - 💡 [無描述]
+- Line 480: `function saveToExcel` 🔧
+  - 💡 [無描述]
+- Line 498: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `archive/memory_health.js`
+- Line 8: `variable os` 📦
+  - 💡 [無描述]
+- Line 12: `variable HOME` 📦
+  - 💡 Auto-detect machine
+- Line 13: `variable isBliss` 📦
+  - 💡 [無描述]
+- Line 14: `variable WS_PATH` 📦
+  - 💡 [無描述]
+- Line 15: `variable NODE` 📦
+  - 💡 [無描述]
+
+### `archive/merge_stock.js`
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `variable XLSX` 📦
+  - 💡 [無描述]
+- Line 17: `variable DESKTOP_STOCK_DIR` 📦
+  - 💡 [無描述]
+- Line 18: `variable OUTPUT_JSON` 📦
+  - 💡 [無描述]
+- Line 20: `function readConsolidatedStockList` 🔧
+  - 💡 [無描述]
+- Line 37: `arrow function filtered` ➡️
+  - 💡 Filter: >=1ct + 有 Cert No
+- Line 51: `arrow function mapped` ➡️
+  - 💡 Map with Template column structure Note: Column D (labeled "Shape") = actual Carat Column F (labeled "Rapnet") = actual Shape
+- Line 78: `function sortStockData` 🔧
+  - 💡 [無描述]
+- Line 95: `function addBlankRowsBetweenShapes` 🔧
+  - 💡 [無描述]
+- Line 112: `function createFormattedExcel` 🔧
+  - 💡 [無描述]
+- Line 120: `arrow function colWidthsAuto` ➡️
+  - 💡 [無描述]
+- Line 155: `function backupExistingData` 🔧
+  - 💡 [無描述]
+- Line 170: `function findSoldItems` 🔧
+  - 💡 [無描述]
+- Line 171: `arrow function newCertNos` ➡️
+  - 💡 [無描述]
+- Line 172: `arrow function newParcels` ➡️
+  - 💡 [無描述]
+- Line 185: `function removeDuplicates` 🔧
+  - 💡 [無描述]
+- Line 189: `arrow function unique` ➡️
+  - 💡 [無描述]
+- Line 210: `function createSoldStockNote` 🔧
+  - 💡 [無描述]
+- Line 219: `arrow function contentLines` ➡️
+  - 💡 [無描述]
+- Line 242: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `archive/stock_valuation_bot.js`
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 14: `variable XLSX` 📦
+  - 💡 [無描述]
+- Line 15: `variable https` 📦
+  - 💡 [無描述]
+- Line 17: `variable RAPAPORT_DB` 📦
+  - 💡 [無描述]
+- Line 18: `variable IDEX_CACHE` 📦
+  - 💡 [無描述]
+- Line 19: `variable STOCK_DIR` 📦
+  - 💡 [無描述]
+- Line 22: `variable CHANNEL_ID` 📦
+  - 💡 Discord channel ID (#💼工作)
+- Line 24: `function getDiscordToken` 🔧
+  - 💡 [無描述]
+- Line 30: `function sendDiscord` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 44: `arrow function req` ➡️
+  - 💡 [無描述]
+- Line 63: `variable outputBuffer` 📦
+  - 💡 收集輸出
+- Line 64: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 68: `function getOutput` 🔧
+  - 💡 [無描述]
+- Line 73: `function loadRapaport` 🔧
+  - 💡 載入 Rapaport 數據
+- Line 87: `function loadIDEX` 🔧
+  - 💡 載入 IDEX 數據
+- Line 101: `function loadStockList` 🔧
+  - 💡 載入 Stock List
+- Line 138: `function evaluateAndSend` 🔧
+  - 💡 簡化版計算 (只輸出摘要)
+
+### `archive/stock_valuation.js`
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `variable XLSX` 📦
+  - 💡 [無描述]
+- Line 17: `variable RAPAPORT_DB` 📦
+  - 💡 [無描述]
+- Line 18: `variable IDEX_CACHE` 📦
+  - 💡 [無描述]
+- Line 19: `variable STOCK_DIR` 📦
+  - 💡 [無描述]
+- Line 22: `variable outputBuffer` 📦
+  - 💡 收集輸出，最後一次性顯示
+- Line 23: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 26: `function flush` 🔧
+  - 💡 [無描述]
+- Line 31: `function loadRapaport` 🔧
+  - 💡 載入 Rapaport 數據
+- Line 45: `function loadIDEX` 🔧
+  - 💡 載入 IDEX 數據
+- Line 59: `function loadStockList` 🔧
+  - 💡 載入 Stock List
+- Line 99: `function calculateRapaportPrice` 🔧
+  - 💡 從 Rapaport 計算基準價格
+- Line 140: `function getIDEXAdjustment` 🔧
+  - 💡 從 IDEX 獲取市場指數調整
+- Line 181: `function evaluateDiamond` 🔧
+  - 💡 計算單顆鑽石估價
+- Line 215: `function evaluateStockList` 🔧
+  - 💡 主估值函數
+- Line 322: `function showTrends` 🔧
+  - 💡 顯示歷史趨勢
+- Line 337: `arrow function round1ct` ➡️
+  - 💡 [無描述]
+- Line 348: `variable cmd` 📦
+  - 💡 Main
+
+### `archive/system_health_check.js`
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+- Line 20: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 21: `variable LOG_FILE` 📦
+  - 💡 [無描述]
+- Line 24: `variable colors` 📦
+  - 💡 顏色輸出
+- Line 32: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 43: `function checkDailySummary` 🔧
+  - 💡 1. 檢查 Daily Summary 是否存在 /
+- Line 82: `function checkTokenUsage` 🔧
+  - 💡 2. 檢查 Token 使用量 /
+- Line 92: `arrow function mainSession` ➡️
+  - 💡 找 agent:main:main
+- Line 118: `function checkBackupVerification` 🔧
+  - 💡 3. 檢查備份驗證狀態 /
+- Line 158: `function checkDiskSpace` 🔧
+  - 💡 4. 檢查磁碟空間 /
+- Line 182: `function checkMemory` 🔧
+  - 💡 5. 檢查記憶體使用 /
+- Line 188: `arrow function getValue` ➡️
+  - 💡 解析記憶體統計
+- Line 215: `function calculateHealthScore` 🔧
+  - 💡 生成健康評分 /
+- Line 241: `function main` 🔧
+  - 💡 主函數 /
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 314: `arrow function hasCritical` ➡️
+  - 💡 如果有 critical 警告，返回錯誤碼
+
+### `archive/update_stock_list.js`
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+- Line 21: `variable path` 📦
+  - 💡 [無描述]
+- Line 22: `variable XLSX` 📦
+  - 💡 [無描述]
+- Line 23: `variable ExcelJS` 📦
+  - 💡 [無描述]
+- Line 27: `variable CONFIG` 📦
+  - 💡 ==================== 配置 ====================
+- Line 36: `variable quiet` 📦
+  - 💡 ==================== 工具函數 ====================
+- Line 37: `variable sendDiscord` 📦
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 40: `arrow function customFileIndex` ➡️
+  - 💡 檢查係咪有指定檔案路徑
+- Line 41: `variable customFilePath` 📦
+  - 💡 [無描述]
+- Line 45: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 49: `function getToday` 🔧
+  - 💡 [無描述]
+- Line 53: `function getYYYYMMDD` 🔧
+  - 💡 [無描述]
+- Line 63: `function findLatestFile` 🔧
+  - 💡 搵到最新既 Stock list 檔案 /
+- Line 84: `function parseExcel` 🔧
+  - 💡 讀取 Excel 並解析 /
+- Line 90: `arrow function sampleRow` ➡️
+  - 💡 檢測係咪 DN 格式（有 Rapnet 欄）
+- Line 124: `function loadExisting` 🔧
+  - 💡 讀取現有庫存 /
+- Line 132: `function mergeData` 🔧
+  - 💡 合併數據 /
+- Line 133: `arrow function existingMap` ➡️
+  - 💡 [無描述]
+- Line 134: `arrow function incomingMap` ➡️
+  - 💡 [無描述]
+- Line 137: `arrow function newItems` ➡️
+  - 💡 新增：incoming 有但 existing 冇
+- Line 140: `arrow function soldItems` ➡️
+  - 💡 已售：existing 有但 incoming 冇
+- Line 143: `arrow function merged` ➡️
+  - 💡 更新：保留 incoming 既所有項目（新 + 舊更新）
+- Line 156: `function generateExcel` 🔧
+  - 💡 生成 Excel /
+- Line 187: `function notifyDiscord` 🔧
+  - 💡 發送到 Discord /
+- Line 202: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `archive/watch_stock.js`
+- Line 7: `variable fs` 📦
+  - 💡 [無描述]
+- Line 8: `variable path` 📦
+  - 💡 [無描述]
+- Line 9: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 11: `variable STOCK_DIR` 📦
+  - 💡 [無描述]
+- Line 12: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 13: `variable MERGE_SCRIPT` 📦
+  - 💡 [無描述]
+- Line 18: `function getFileHash` 🔧
+  - 💡 Get file hash for comparison
+- Line 28: `function getDirectoryState` 🔧
+  - 💡 Get current state of directory
+- Line 52: `function detectChanges` 🔧
+  - 💡 Load previous state Save current state Check for changes
+- Line 79: `function runMerge` 🔧
+  - 💡 Run merge script
+- Line 94: `function createNotification` 🔧
+  - 💡 Create notification for WhatsApp
+- Line 104: `function watchStockList` 🔧
+  - 💡 Main watcher function
+- Line 187: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `archive/whatsapp_stock_handler.js`
+- Line 7: `variable fs` 📦
+  - 💡 [無描述]
+- Line 8: `variable path` 📦
+  - 💡 [無描述]
+- Line 12: `variable pendingConfirmations` 📦
+  - 💡 Store pending confirmations
+- Line 14: `function generateId` 🔧
+  - 💡 [無描述]
+- Line 19: `function handleIncomingFile` 🔧
+  - 💡 Handler for incoming Excel files
+- Line 44: `function handleConfirmation` 🔧
+  - 💡 Handle user's confirmation response
+- Line 116: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+## 📂 Auto Router
+
+### `auto-router/handler.js`
+- Line 22: `variable log` 📦
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 24: `variable ROUTER_SCRIPT` 📦
+  - 💡 [無描述]
+- Line 25: `variable DECISION_FILE` 📦
+  - 💡 [無描述]
+- Line 26: `variable STATS_FILE` 📦
+  - 💡 [無描述]
+- Line 31: `function getWorkspaceDir` 🔧
+  - 💡 Get the workspace directory from event context /
+- Line 51: `function findRouterScript` 🔧
+  - 💡 Find router.py in common locations /
+- Line 73: `function runRouter` 🔧
+  - 💡 Run router.py and get the decision /
+- Line 122: `function saveDecision` 🔧
+  - 💡 Save the routing decision to a file /
+- Line 138: `function updateRouterStats` 🔧
+  - 💡 Update router stats after each decision /
+- Line 170: `arrow function autoRouter` ➡️
+  - 💡 Main hook handler /
+
+## 📂 Automation & Operations
+
+### `autoops/daily_stock_monitor.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable HOME` 📦
+  - 💡 配置
+- Line 17: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 40: `function log` 🔧
+  - 💡 靜默模式（冇 console.log，除非有問題）
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 50: `function loadInventory` 🔧
+  - 💡 讀取當前庫存據據 /
+- Line 66: `function loadHistory` 🔧
+  - 💡 讀取歷史據據 /
+- Line 81: `function saveHistory` 🔧
+  - 💡 保存歷史據據 /
+- Line 92: `function analyzeInventory` 🔧
+  - 💡 分析庫存健康度 /
+- Line 169: `function generateRecommendations` 🔧
+  - 💡 生成建議行動 /
+- Line 200: `function generateReport` 🔧
+  - 💡 生成報告 /
+- Line 232: `function saveReport` 🔧
+  - 💡 保存報告到文件 /
+- Line 248: `function main` 🔧
+  - 💡 主函據 /
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 292: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `autoops/health_monitor.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 16: `function runCommand` 🔧
+  - 💡 [無描述]
+- Line 25: `function checkSystem` 🔧
+  - 💡 [無描述]
+- Line 65: `arrow function downChecks` ➡️
+  - 💡 計算 overall status
+- Line 66: `arrow function warningChecks` ➡️
+  - 💡 [無描述]
+- Line 79: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `autoops/token_monitor.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 17: `variable THRESHOLDS` 📦
+  - 💡 Token thresholds
+- Line 22: `function getTokenUsage` 🔧
+  - 💡 [無描述]
+- Line 34: `arrow function mainSession` ➡️
+  - 💡 找 main session
+- Line 52: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+## 📂 Legacy
+
+### `_legacy/audit_scanner.js`
+- Line 7: `variable fs` 📦
+  - 💡 [無描述]
+- Line 8: `variable path` 📦
+  - 💡 [無描述]
+- Line 10: `variable BASE` 📦
+  - 💡 [無描述]
+- Line 13: `variable SKIP_DIRS` 📦
+  - 💡 Skip these directories
+- Line 16: `variable FILES_TO_AUDIT` 📦
+  - 💡 Files from payload to audit
+- Line 77: `variable PATTERNS` 📦
+  - 💡 Patterns
+- Line 99: `function body` 🔧
+  - 💡 [無描述]
+- Line 108: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 122: `variable PRIORITY` 📦
+  - 💡 Priority mapping
+- Line 129: `function shouldSkip` 🔧
+  - 💡 [無描述]
+- Line 136: `function isInComment` 🔧
+  - 💡 [無描述]
+- Line 144: `function findIssues` 🔧
+  - 💡 [無描述]
+- Line 203: `function calls` 🔧
+  - 💡 Check for execSync/execFileSync without try-catch
+- Line 204: `function call` 🔧
+  - 💡 Check for execSync/execFileSync without try-catch Match ONLY actual function calls, not destructuring assignments like `const { execSync } = require(...)`
+  - 📋 Log: [OLLAMA_SUCCESS] / [OLLAMA_TIMEOUT]
+- Line 250: `function auditFiles` 🔧
+  - 💡 [無描述]
+- Line 278: `arrow function criticalCount` ➡️
+  - 💡 [無描述]
+- Line 279: `arrow function highCount` ➡️
+  - 💡 [無描述]
+- Line 280: `arrow function mediumCount` ➡️
+  - 💡 [無描述]
+- Line 281: `arrow function lowCount` ➡️
+  - 💡 [無描述]
+- Line 293: `variable issues` 📦
+  - 💡 [無描述]
+- Line 296: `variable counts` 📦
+  - 💡 Summary
+
+### `_legacy/auto_skill_router.js`
+- Line 1: `variable _quiet` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 2: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 16: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 22: `variable skillsManager` 📦
+  - 💡 載入 Skills Manager
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 30: `function handleUserRequest` 🔧
+  - 💡 處理用戶請求 @param {string} message - 用戶消息 @param {object} context - 上下文 @returns {object} - 處理結果 /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 105: `function executeSkill` 🔧
+  - 💡 執行 Skill (加強錯誤處理) /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 181: `function generateResponse` 🔧
+  - 💡 生成回覆 /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 214: `function quickDetect` 🔧
+  - 💡 快速檢測消息類型 /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 241: `function createSkillSuggestionReply` 🔧
+  - 💡 創建 Skills 建議回覆 /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 264: `function proactiveSuggestion` 🔧
+  - 💡 主動建議可用 Skills 當檢測到用戶可能有需求時，主動推薦 /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 275: `arrow function matchingSkills` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 302: `function init` 🔧
+  - 💡 初始化 Auto-Skill Router /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 319: `function registerDefaultSkills` 🔧
+  - 💡 註冊預設 Skills /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+
+### `_legacy/pure_ai_audit.js`
+- Line 22: `variable fs` 📦
+  - 💡 [無描述]
+- Line 23: `variable path` 📦
+  - 💡 [無描述]
+- Line 24: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 28: `variable _quiet` 📦
+  - 💡 ============ GLOBAL STATE ============
+- Line 31: `variable CONFIG` 📦
+  - 💡 ============ CONFIG ============
+- Line 81: `function safeJsonParse` 🔧
+  - 💡 ============ UTILITY: 安全 JSON 解析 ============
+- Line 91: `function safeReadFile` 🔧
+  - 💡 ============ UTILITY: 安全讀取檔案 ============
+- Line 101: `function safeWriteFile` 🔧
+  - 💡 ============ UTILITY: 安全寫入檔案 ============
+- Line 112: `function getFileHash` 🔧
+  - 💡 ============ UTILITY: 計算檔案 Hash ============
+- Line 122: `function loadFileCache` 🔧
+  - 💡 ============ UTILITY: 檔案狀態緩存 ============
+- Line 138: `function saveFileCache` 🔧
+  - 💡 [無描述]
+- Line 160: `function hasFileChanged` 🔧
+  - 💡 [無描述]
+- Line 184: `function updateFileCache` 🔧
+  - 💡 [無描述]
+- Line 195: `function reportMode` 🔧
+  - 💡 ============ COMMAND: report mode ============
+- Line 260: `function getJSFiles` 🔧
+  - 💡 ============ STEP 1: 列出檔案（淨係列出，唔分析）============
+- Line 372: `function generateAuditPrompt` 🔧
+  - 💡 ============ STEP 2: 生成 AI Prompt ============
+- Line 373: `arrow function fileList` ➡️
+  - 💡 [無描述]
+- Line 486: `function writePayload` 🔧
+  - 💡 ============ STEP 3: 寫入 Payload ============
+- Line 541: `function printSpawnInstructions` 🔧
+  - 💡 ============ STEP 4: 生成 Spawn 指令 ============
+- Line 576: `function runSpawnMode` 🔧
+  - 💡 ============ SPAWN MODE: 寫入 payload + pending spawn marker ============
+- Line 713: `function main` 🔧
+  - 💡 ============ MAIN ============
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 718: `arrow function command` ➡️
+  - 💡 檢查是否為 report mode
+- Line 752: `arrow function newFiles` ➡️
+  - 💡 列出檔案（可選，顯示前10個）
+- Line 753: `arrow function modifiedFiles` ➡️
+  - 💡 [無描述]
+
+### `_legacy/skills_manager.js`
+- Line 1: `variable _quiet` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 2: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 22: `variable SKILLS_REGISTRY` 📦
+  - 💡 Skills Registry - 記錄所有可用的 Skills
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 193: `function analyzeIntent` 🔧
+  - 💡 分析用戶消息，提取意圖 @param {string} message - 用戶消息 @returns {object} - 分析結果 /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 271: `function loadMatchingSkills` 🔧
+  - 💡 根據分析結果自動載入 Skills @param {object} analysis - 分析結果 @returns {object} - 載入的 Skills /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 328: `function getSkillSuggestion` 🔧
+  - 💡 創建 Skills 使用建議 @param {object} analysis - 分析結果 @returns {string} - 使用建議 /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 359: `function registerSkill` 🔧
+  - 💡 註山新 Skill @param {string} skillId - Skill ID @param {object} skillConfig - Skill 配置 /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 372: `function unregisterSkill` 🔧
+  - 💡 取消註山 Skill @param {string} skillId - Skill ID /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 384: `function saveRegistry` 🔧
+  - 💡 保存 Registry 到文件 HR-035: Atomic write implementation /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 407: `function listSkills` 🔧
+  - 💡 列出所有註山的 Skills /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 408: `arrow function skillsList` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 426: `function groupByCategory` 🔧
+  - 💡 按類別分組 Skills /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 444: `function searchSkills` 🔧
+  - 💡 搜尋 Skills @param {string} query - 搜尋關鍵詞 @returns {array} - 匹配的 Skills /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 478: `function init` 🔧
+  - 💡 初始化 Skills Manager /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 490: `function loadAllSkills` 🔧
+  - 💡 載入所有 Skills /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+
+## 📂 Library Functions
+
+### `lib/aggregate_signals.js`
+- Line 22: `function aggregateSignals` 🔧
+  - 💡 Aggregate a batch of queue entries into structured signal groups. @param {Array<Object>} entries — Queue entries (raw parsed JSON lines) @returns {{ recurring: Array, errors: Array, workflows: Array }} Each array entry has `firstSeen` and `lastSeen` ISO timestamps. /
+- Line 154: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/analyzers/file-analyzer.js`
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+- Line 22: `variable CONFIG` 📦
+  - 💡 File size limit: 100KB (used to skip large files in analysis)
+- Line 27: `variable rules` 📦
+  - 💡 動態引入 rules
+- Line 28: `function getRules` 🔧
+  - 💡 [無描述]
+- Line 41: `variable skipList` 📦
+  - 💡 動態引入 skip list
+- Line 42: `function getSkipListHelpers` 🔧
+  - 💡 [無描述]
+- Line 67: `variable FILE_CACHE` 📦
+  - 💡 FILE_CACHE - 檔案內容緩存 避免同一檔案被重複讀取 /
+- Line 75: `function getFileContent` 🔧
+  - 💡 獲取檔案內容（使用 Cache）  @param {string} filePath - 檔案路徑 @returns {Object} - { mtime, content, lines, size } /
+- Line 105: `function analyzeFile` 🔧
+  - 💡 原 Lines ~1630-1680  @param {string} filePath - 檔案路徑 @returns {Object} - { file, lowRisk[], highRisk[] } /
+- Line 195: `function autoFixFile` 🔧
+  - 💡 @param {string} filePath - 檔案路徑 @param {Object[]} issues - lowRisk 問題陣列 @param {Object} options - 選項 { isDryRun } @returns {Object} - { fixed, details, changed } /
+- Line 211: `arrow function rule` ➡️
+  - 💡 [無描述]
+
+### `lib/analyzers/index.js`
+- Line 9: `variable fileAnalyzer` 📦
+  - 💡 [無描述]
+
+### `lib/auditOrchestrator.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 20: `variable SEVERITY_ORDER` 📦
+  - 💡 ==================== 共用常量 ==================== CQM-008: 提取 severityOrder 為共用常量
+- Line 21: `variable AI_AUDIT_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+- Line 24: `variable MAGIC_NUMBER_WHITELIST` 📦
+  - 💡 CQM-007: Magic number 白名單
+- Line 40: `variable COMMENT_DATE_KEYWORDS` 📦
+  - 💡 Phase 1: Context-based whitelist for magic_numbers (減少誤報) ==================== Magic Numbers 白名單 ==================== 用於 comment_date 的嚴格匹配，避免過度寬泛導致漏報或誤報
+- Line 42: `variable WHITELIST_CONTEXTS` 📦
+  - 💡 [無描述]
+- Line 108: `variable MAX_FILE_SIZE` 📦
+  - 💡 CQM-005: 文件大小限制 (1MB)
+- Line 111: `variable CONFIG` 📦
+  - 💡 ==================== 常量定義 ====================
+- Line 132: `class Issue` 🏗️
+  - 💡 ==================== Issue Builder 簡化版 ====================
+- Line 165: `class LocalScanner` 🏗️
+  - 💡 ==================== Local Scanner ====================
+- Line 247: `function found` 🔧
+  - 💡 [無描述]
+- Line 262: `function found` 🔧
+  - 💡 [無描述]
+- Line 273: `function calls` 🔧
+  - 💡 P0: execSync_missing_trycatch
+- Line 337: `function calls` 🔧
+  - 💡 [無描述]
+- Line 388: `arrow function isWhitelisted` ➡️
+  - 💡 CQM-007: 使用白名單排除常見的合法數字
+- Line 391: `arrow function isContextWhitelisted` ➡️
+  - 💡 Phase 1: Context 檢測 - 跳過常見誤報
+- Line 455: `arrow function uniqueLines` ➡️
+  - 💡 [無描述]
+- Line 493: `class AIScanner` 🏗️
+  - 💡 ==================== AI Scanner ====================
+- Line 570: `class ErrorScanner` 🏗️
+  - 💡 ==================== Error Scanner ====================
+- Line 598: `arrow function fileBasenames` ➡️
+  - 💡 獲取相關檔案的 error
+- Line 629: `class AuditOrchestrator` 🏗️
+  - 💡 ==================== Audit Orchestrator ====================
+- Line 654: `arrow function highCount` ➡️
+  - 💡 [無描述]
+- Line 655: `arrow function criticalCount` ➡️
+  - 💡 [無描述]
+- Line 656: `arrow function mediumCount` ➡️
+  - 💡 [無描述]
+- Line 839: `function isPathSafe` 🔧
+  - 💡 ==================== 路徑安全檢查 ==================== CQM-010: 路徑遍歷檢查
+- Line 846: `function unifiedScan` 🔧
+  - 💡 CQM-011: 統一掃描邏輯 (與 FileDiscovery 保持一致)
+- Line 855: `arrow function scanDir` ➡️
+  - 💡 [無描述]
+- Line 895: `function main` 🔧
+  - 💡 ==================== CLI 入口 ====================
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `lib/auto_repair.js`
+- Line 15: `variable fs` 📦
+  - 💡 [無描述]
+- Line 16: `variable path` 📦
+  - 💡 [無描述]
+- Line 20: `variable AR_CONFIG` 📦
+  - 💡 ==================== 配置常量 ====================
+- Line 93: `class AutoRepair` 🏗️
+  - 💡 ==================== AutoRepair 类 ====================
+- Line 214: `arrow function approvalList` ➡️
+  - 💡 [無描述]
+- Line 280: `arrow function approvalItem` ➡️
+  - 💡 [無描述]
+- Line 378: `arrow function hasFix` ➡️
+  - 💡 [無描述]
+- Line 881: `function main` 🔧
+  - 💡 ==================== CLI 入口 ====================
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `lib/baseline_store.js`
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+- Line 19: `variable WORKSPACE_DIR` 📦
+  - 💡 [無描述]
+- Line 21: `class BaselineStore` 🏗️
+  - 💡 [無描述]
+- Line 76: `arrow function values` ➡️
+  - 💡 [無描述]
+- Line 78: `arrow function avg` ➡️
+  - 💡 [無描述]
+- Line 79: `arrow function variance` ➡️
+  - 💡 [無描述]
+- Line 123: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/batch_verifier.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable os` 📦
+  - 💡 [無描述]
+- Line 17: `variable BV_CONFIG` 📦
+  - 💡 ==================== 配置常量 ====================
+- Line 52: `class BatchVerifier` 🏗️
+  - 💡 ==================== Batch Verifier ====================
+- Line 589: `arrow function processBatch` ➡️
+  - 💡 並行處理 batch 的輔助函數
+- Line 711: `arrow function batchNums` ➡️
+  - 💡 [無描述]
+- Line 924: `function main` 🔧
+  - 💡 ==================== CLI 入口 ====================
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `lib/config.js`
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 15: `variable os` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 18: `variable HOME` 📦
+  - 💡 ==================== 基礎路徑 ====================
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 20: `variable WS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 23: `variable SCRIPTS_DIR` 📦
+  - 💡 ==================== Scripts / Memory / State ====================
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 24: `variable MEMORY_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 25: `variable STATE_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 26: `variable HA_STATE_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 27: `variable ISSUES_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 30: `variable ERRORS_JSON` 📦
+  - 💡 ==================== 常用檔案路徑 ====================
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 31: `variable OPENCLAW_CONFIG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 35: `variable isBliss` 📦
+  - 💡 ==================== 機器偵測 ==================== Use explicit environment variable or fallback to path-based detection
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 37: `variable NODE_NAME` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 41: `variable SKILLS_ACTIVE` 📦
+  - 💡 ==================== Skill Self-Learning Paths (Issue #133) ==================== Centralized paths for skill-reviewer, skill-learner plugin, weekly_correction_loop
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 42: `variable SKILLS_LEARNED` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 43: `variable SKILL_REVIEW_QUEUE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 44: `variable SKILL_REVIEW_ARCHIVE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 45: `variable SKILL_PROMPT_CACHE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 46: `variable SKILL_METRICS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 47: `variable SKILLS_LEARNED_ARCHIVE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+
+### `lib/disk_guard.js`
+- Line 16: `variable path` 📦
+  - 💡 [無描述]
+- Line 21: `function to` 🔧
+  - 💡 Wrap a synchronous write/rename operation with ENOSPC protection.
+- Line 29: `function withDiskGuard` 🔧
+  - 💡 @param {boolean} [options.silent=false] - Suppress the warning log (for high-frequency writes) @param {boolean} [options.returnError=false] - Return the error object instead of undefined on ENOSPC @returns {*} Return value of fn, or undefined/error on ENOSPC @throws {Error} Non-ENOSPC errors are re-thrown /
+- Line 54: `function safeWriteFileSync` 🔧
+  - 💡 @param {string} filepath - Path to write @param {string|Buffer} data - Data to write @param {Object|string} [options] - Encoding options (same as fs.writeFileSync) @returns {boolean} true on success, false on ENOSPC /
+- Line 71: `function safeAppendFileSync` 🔧
+  - 💡 @param {string} filepath - Path to append to @param {string} data - Data to append @param {Object|string} [options] - Encoding options @returns {boolean} true on success, false on ENOSPC /
+- Line 92: `function safeRenameSync` 🔧
+  - 💡 @param {string} oldPath - Current path @param {string} newPath - New path @returns {boolean} true on success, false on ENOSPC /
+- Line 108: `function atomicWriteJsonSafe` 🔧
+  - 💡 @param {string} filepath - Final file path @param {*} data - Data to serialize as JSON @returns {boolean} true on success, false on ENOSPC (skipped gracefully) /
+  - 📋 Log: [MEM_WRITE_SUCCESS] / [MEM_WRITE_FAILED]
+
+### `lib/fileDiscovery.js`
+- Line 9: `variable fs` 📦
+  - 💡 [無描述]
+- Line 10: `variable path` 📦
+  - 💡 [無描述]
+- Line 11: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 15: `variable DEFAULT_CACHE_DIR` 📦
+  - 💡 ==================== 常量定義 ====================
+- Line 16: `variable DEFAULT_EXTENSIONS` 📦
+  - 💡 [無描述]
+- Line 17: `variable DEFAULT_EXCLUDE_DIRS` 📦
+  - 💡 [無描述]
+- Line 18: `variable DEFAULT_EXCLUDE_FILES` 📦
+  - 💡 [無描述]
+- Line 21: `variable MAX_FILE_SIZE` 📦
+  - 💡 CQM-005: 文件大小限制常量
+- Line 24: `class CacheManager` 🏗️
+  - 💡 ==================== Cache Manager ====================
+- Line 88: `class FileDiscovery` 🏗️
+  - 💡 ==================== File Discovery ====================
+- Line 167: `arrow function recursiveScan` ➡️
+  - 💡 [無描述]
+- Line 307: `arrow function prevMap` ➡️
+  - 💡 [無描述]
+- Line 308: `arrow function currMap` ➡️
+  - 💡 [無描述]
+- Line 352: `function createFileDiscovery` 🔧
+  - 💡 ==================== 便捷函數 ====================
+- Line 356: `function quickScan` 🔧
+  - 💡 [無描述]
+
+### `lib/frontmatter.js`
+- Line 25: `variable FRONTMATTER_RE` 📦
+  - 💡 Match the YAML frontmatter block at the start of a file. Captures everything between the two `---` markers (greedy match safe due to fixed delimiters).
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 28: `arrow function FIELD_RE` ➡️
+  - 💡 Single-line field extractor: ^field:\s*value$ (with optional quoting)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 37: `function parseFrontmatter` 🔧
+  - 💡 Returns { fields: {name, description, ...}, body: string } or null if no frontmatter.  @param {string} content - Full file content @returns {{ fields: Object<string, string>, body: string } | null} /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 72: `function extractField` 🔧
+  - 💡 @param {string} content - Full file content @param {string} fieldName - Field to extract (e.g. 'description') @returns {string | null} /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 95: `function serializeFrontmatter` 🔧
+  - 💡 Used when creating new SKILL.md files.  @param {Object<string, string>} fields - Key-value pairs for frontmatter @returns {string} - YAML block with leading and trailing `---` markers /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+
+### `lib/helpers/context_helpers.js`
+- Line 28: `function analyzeContext` 🔧
+  - 💡 @param {string[]} lines - 檔案所有行 @param {number} lineIdx - 當前行索引 (0-based) @param {string} operation - 操作類型 (e.g., 'readFileSync') @returns {Object} - 上下文分析結果 /
+- Line 86: `function findSafeContext` 🔧
+  - 💡 查找安全上下文 /
+- Line 89: `arrow function operationMatches` ➡️
+  - 💡 檢查操作是否匹配
+- Line 126: `function isSimpleResourceRead` 🔧
+  - 💡 檢查是否為簡單的資源讀取 /
+- Line 175: `function getFunctionContext` 🔧
+  - 💡 獲取函數上下文 /
+- Line 203: `function shouldRequireTryCatchForReadFile` 🔧
+  - 💡 檢查 readFileSync 操作是否需要錯誤處理 /
+- Line 231: `function shouldRequireTryCatchForMkdir` 🔧
+  - 💡 檢查 mkdirSync 操作是否需要錯誤處理 /
+- Line 236: `arrow function hasExistsCheck` ➡️
+  - 💡 [無描述]
+- Line 272: `function shouldRequireTryCatchForReaddir` 🔧
+  - 💡 檢查 readdirSync 操作是否需要錯誤處理 /
+- Line 322: `function adjustSeverity` 🔧
+  - 💡 根據上下文調整問題嚴重性 /
+
+### `lib/helpers/file-cache.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable FILE_CACHE` 📦
+  - 💡 Hash Cache - 避免同一檔案被重複讀取 { path: { mtime, hash, content, lines, size } }
+- Line 26: `function getFileContent` 🔧
+  - 💡 原 Lines 60-79  @param {string} filePath - 檔案路徑 @returns {Object} - { mtime, content, lines, size } /
+
+### `lib/helpers/index.js`
+- Line 7: `variable tryCatchHelpersAST` 📦
+  - 💡 [無描述]
+- Line 8: `variable tryCatchHelpers` 📦
+  - 💡 [無描述]
+- Line 9: `variable ruleHelpers` 📦
+  - 💡 [無描述]
+- Line 10: `variable skipList` 📦
+  - 💡 [無描述]
+- Line 11: `variable fileCache` 📦
+  - 💡 [無描述]
+- Line 14: `variable contextHelpers` 📦
+  - 💡 Context-aware audit helpers (新增)
+- Line 20: `variable whitelistPatterns` 📦
+  - 💡 Whitelist patterns (新增)
+- Line 26: `variable isProtectedByTryNew` 📦
+  - 💡 使用新的 AST 版本作為主要實現
+
+### `lib/helpers/rule-helpers.js`
+- Line 16: `function getSimplifiedMap` 🔧
+  - 💡 原 Lines 280-290  @returns {string[][]} - 簡體→繁體映射陣列 /
+
+### `lib/helpers/skip-list.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 20: `variable SKIP_PATTERNS` 📦
+  - 💡 [無描述]
+- Line 42: `variable ALL_SKIP_PATTERNS` 📦
+  - 💡 組合所有 patterns 用於快速檢查
+- Line 51: `function isStylePreference` 🔧
+  - 💡 @param {string} str - 要檢查的字符串 @param {string} line - 完整的程式碼行（用於上下文檢查） @returns {boolean} - true 表示匹配到 skip pattern /
+- Line 84: `variable SKIP_LIST_FILE` 📦
+  - 💡 [無描述]
+- Line 87: `variable _isDryRun` 📦
+  - 💡 CLI args (需要在 main 中傳入，這裡用簡易方式)
+- Line 88: `function setDryRun` 🔧
+  - 💡 [無描述]
+- Line 97: `function loadSkipList` 🔧
+  - 💡 原 Lines 310-320  @returns {Object} - { skips: [], version: 1 } /
+- Line 115: `function saveSkipList` 🔧
+  - 💡 原 Lines 325-340  @param {Object} skipList - Skip list 對像 /
+- Line 130: `function ensureDir` 🔧
+  - 💡 確保目錄存在 /
+- Line 146: `function markFalsePositive` 🔧
+  - 💡 @param {string} ruleId - 規則 ID @param {string} file - 檔案路徑（相對路徑） @param {number[]} lines - 行號陣列 @param {string} reason - 原因 /
+- Line 155: `arrow function mergedLines` ➡️
+  - 💡 [無描述]
+- Line 181: `function isSkipped` 🔧
+  - 💡 @param {Object} issue - 問題對像 { rule: ruleId, lines: [] } @param {string} file - 檔案路徑（相對路徑） @returns {boolean} - true 表示已跳過 /
+- Line 198: `function showSkipList` 🔧
+  - 💡 顯示 Skip List 內容  原 Lines 400-425 /
+- Line 230: `function toHKT` 🔧
+  - 💡 HKT time helper
+- Line 242: `function handleSkipCommand` 🔧
+  - 💡 原 Lines 428-475  @param {string[]} args - CLI 參據陣列 @param {Object} options - 選項 { AUDIT_REPORT } /
+- Line 246: `arrow function ruleArg` ➡️
+  - 💡 [無描述]
+- Line 247: `arrow function fileArg` ➡️
+  - 💡 [無描述]
+- Line 248: `arrow function linesArg` ➡️
+  - 💡 [無描述]
+- Line 279: `arrow function hrItem` ➡️
+  - 💡 [無描述]
+
+### `lib/helpers/try-catch-helpers-ast.js`
+- Line 14: `variable acorn` 📦
+  - 💡 [無描述]
+- Line 18: `variable AST_CACHE` 📦
+  - 💡 [無描述]
+- Line 19: `variable TRY_BLOCK_CACHE` 📦
+  - 💡 [無描述]
+- Line 28: `function getAST` 🔧
+  - 💡 @param {string} content - JavaScript 檔案內容 @param {string} filePath - 檔案路徑（用於 cache key） @returns {Object|null} - AST 節點或 null（解析失敗時） /
+- Line 56: `function clearASTCache` 🔧
+  - 💡 清除 AST cache（用於 memory management） /
+- Line 69: `function collectTryBlocks` 🔧
+  - 💡 收集所有 TryStatement 節點及其範圍  @param {Object} ast - Acorn AST @returns {Array<{start: number, end: number, block: Object, handler: Object|null, finalizer: Object|null}>} /
+- Line 72: `function traverse` 🔧
+  - 💡 [無描述]
+- Line 160: `function getTryBlocks` 🔧
+  - 💡 @param {Object} ast - Acorn AST @param {string} filePath - 檔案路徑 @returns {Array} - try block 列表 /
+- Line 185: `function isProtectedByTryAST` 🔧
+  - 💡 @param {Object} [options] - 選項 @param {boolean} [options.fallbackToLegacy=true] - AST 解析失敗時是否 fallback 到 legacy @param {boolean} [options.includeCatchBlocks=true] - catch block 內的程式碼是否視為「受保護」 @returns {boolean} - true 表示被 try-catch 保護 /
+- Line 241: `function getTryProtectionInfo` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號 @param {string} [filePath] - 檔案路徑（可選） @returns {Object} - { protected: boolean, tryBlock: Object|null, inCatch: boolean, inFinally: boolean } /
+- Line 304: `function xxx` 🔧
+  - 💡 檢查函數是否被「函數級別」的 try-catch 包圍
+- Line 312: `function isProtectedByFunctionLevelTry` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號（應該是函數定義行） @param {string} [filePath] - 檔案路徑（可選） @returns {boolean} /
+- Line 355: `function findFunctionAtLine` 🔧
+  - 💡 @param {Object} ast - Acorn AST @param {number} targetLine - 1-indexed 行號 @returns {Object|null} - { name, start, end, bodyStart, bodyEnd } 或 null /
+- Line 358: `function traverse` 🔧
+  - 💡 [無描述]
+- Line 398: `function isProtectedByFunctionLevelTryRegex` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號 @returns {boolean} /
+- Line 437: `function analyzeCatchClause` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號 @param {string} [filePath] - 檔案路徑（可選） @returns {Object} - { hasCatch: boolean, hasErrorParam: boolean, paramName: string|null } /
+- Line 481: `function analyzeFileTryCoverage` 🔧
+  - 💡 @param {string} content - 檔案內容 @param {string} [filePath] - 檔案路徑（可選） @returns {Object} - 完整的 try-catch 分析結果 /
+
+### `lib/helpers/try-catch-helpers.js`
+- Line 23: `function isPureFunction` 🔧
+  - 💡 修復 (2026-04-04): 擴展安全 helper 名單,消除 false positive  @param {string} funcName - 函數名 @returns {boolean} - true 表示是純函數 /
+- Line 75: `function isProtectedByTry` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號 @returns {boolean} - true 表示被 try-catch 保護 /
+- Line 96: `function isProtectedByTryFullScan` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號 @returns {boolean} - true 表示被 try-catch 保護 /
+- Line 176: `function isProtectedByTryForward` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號 @returns {boolean} - true 表示被 try-catch 保護 /
+- Line 261: `function isProtectedByGlobalTry` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號 @returns {boolean} - true 表示被全域 try-catch 保護 /
+- Line 305: `function isProtectedByPromise` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號 @returns {boolean} - true 表示被 Promise error handling 保護 /
+- Line 347: `function hasAtomicWriteHelper` 🔧
+  - 💡 原 Lines 553-563  @param {string} content - 檔案內容 @returns {boolean} - true 表示有 atomicWriteSync helper /
+- Line 372: `function hasDefensiveCheck` 🔧
+  - 💡 @param {string[]} lines - 檔案行陣列 @param {number} lineIdx - 0-indexed 行號 @returns {boolean} - true 表示有 defensive check /
+
+### `lib/helpers/whitelist_patterns.js`
+- Line 16: `variable SAFE_PATH_PATTERNS` 📦
+  - 💡 被視為安全的檔案路徑模式 這些路徑不會導致安全問題或需要錯誤處理 /
+- Line 63: `variable SAFE_CONTEXTS` 📦
+  - 💡 定義哪些上下文中的操作被視為安全 /
+- Line 235: `variable DANGER_SIGNALS` 📦
+  - 💡 這些模式表示操作可能真的有風險 即使符合安全上下文，也應保留警告 /
+- Line 277: `variable SAFE_HELPERS` 📦
+  - 💡 已知安全的 wrapper 函據 這些函據內部已處理錯誤 /
+- Line 308: `variable FILE_EXEMPTIONS` 📦
+  - 💡 特定檔案類型的全局豁免 /
+- Line 354: `variable SKIP_PATTERNS` 📦
+  - 💡 這些模式應被跳過，不應標記為問題 /
+- Line 415: `function isSafePath` 🔧
+  - 💡 檢查路徑是否安全 /
+- Line 429: `function getSafeContext` 🔧
+  - 💡 獲取操作的安全上下文 /
+- Line 432: `arrow function operationMatches` ➡️
+  - 💡 檢查操作是否匹配
+- Line 452: `function hasDangerSignal` 🔧
+  - 💡 檢查是否有危險信號 /
+- Line 461: `function isSafeHelper` 🔧
+  - 💡 檢查是否為安全 helper 函據 /
+- Line 472: `function getFileExemption` 🔧
+  - 💡 獲取檔案類型豁免 /
+- Line 484: `function isRequireStatement` 🔧
+  - 💡 檢查是否為 require() 語句（只是 import，不是實際調用） /
+- Line 496: `function isComment` 🔧
+  - 💡 檢查是否為註釋行 /
+- Line 509: `function isStylePreference` 🔧
+  - 💡 檢查是否為 style preference（低優先級問題） /
+
+### `lib/index.js`
+- Line 8: `variable config` 📦
+  - 💡 [無描述]
+- Line 9: `variable state` 📦
+  - 💡 [無描述]
+- Line 10: `variable time` 📦
+  - 💡 [無描述]
+- Line 11: `variable fileDiscovery` 📦
+  - 💡 [無描述]
+- Line 12: `variable issueAggregator` 📦
+  - 💡 [無描述]
+
+### `lib/issueAggregator.js`
+- Line 9: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 12: `variable VALID_SEVERITIES` 📦
+  - 💡 ==================== 常量定義 ====================
+- Line 13: `variable VALID_CATEGORIES` 📦
+  - 💡 [無描述]
+- Line 14: `variable VALID_SOURCES` 📦
+  - 💡 [無描述]
+- Line 15: `variable VALID_STATUSES` 📦
+  - 💡 [無描述]
+- Line 17: `variable SEVERITY_WEIGHTS` 📦
+  - 💡 [無描述]
+- Line 25: `class IssueBuilder` 🏗️
+  - 💡 ==================== Issue Builder ====================
+- Line 114: `arrow function missing` ➡️
+  - 💡 [無描述]
+- Line 134: `class IssueAggregator` 🏗️
+  - 💡 ==================== Issue Aggregator ====================
+- Line 501: `function createIssue` 🔧
+  - 💡 ==================== 便捷函數 ====================
+- Line 527: `function createAggregator` 🔧
+  - 💡 [無描述]
+
+### `lib/minimax_scrubber_core.js`
+- Line 43: `function isReasoningBlock` 🔧
+  - 💡 @param {object} block - Content block { type, text } @param {object[]} allBlocks - Full content array @param {number} index - Index of this block in allBlocks @returns {boolean} /
+- Line 49: `arrow function hasToolCallAfter` ➡️
+  - 💡 [無描述]
+- Line 61: `function scrubContent` 🔧
+  - 💡 @param {object[]} content - Array of content blocks [{ type: 'text', text: '...' }, { type: 'toolCall', ... }, { type: 'text', text: 'answer' }] @returns {object[]} Cleaned content array with reasoning text removed /
+- Line 67: `arrow function hasToolCall` ➡️
+  - 💡 Fast path: no toolCall blocks → no reasoning leak possible
+- Line 73: `arrow function cleaned` ➡️
+  - 💡 Filter out text blocks that are before/among toolCalls
+- Line 88: `function hasReasoningPattern` 🔧
+  - 💡 might miss edge cases (e.g., multi-turn conversations).  @param {string} text - Text to check @returns {boolean} /
+- Line 119: `function deepScrubContent` 🔧
+  - 💡 Use this for extra safety when the content structure is unreliable.  @param {object[]} content - Array of content blocks @returns {object[]} Cleaned content /
+
+### `lib/path_safety.js`
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 21: `variable MAX_PATH_LEN` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 31: `function isPathWithin` 🔧
+  - 💡 @param {string} base - The allowed base directory (absolute path) @param {string} target - The path to validate (relative or absolute) @returns {boolean} true if target is within base /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 47: `function resolveSafePath` 🔧
+  - 💡 @param {string} base - The allowed base directory @param {string} target - The path to validate @returns {string} The resolved absolute path @throws {Error} If target is outside base /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 66: `function isSafeSupportPath` 🔧
+  - 💡 Returns the cleaned path on success, or null if the path is unsafe.  @param {string} p - Path to sanitize @returns {string | null} Cleaned path or null if unsafe /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+
+### `lib/pattern_learner.js`
+- Line 10: `variable fs` 📦
+  - 💡 [無描述]
+- Line 11: `variable path` 📦
+  - 💡 [無描述]
+- Line 14: `variable PL_CONFIG` 📦
+  - 💡 ==================== 配置常量 ====================
+- Line 34: `class PatternLearner` 🏗️
+  - 💡 ==================== PatternLearner 類別 ====================
+- Line 151: `arrow function reasonings` ➡️
+  - 💡 收集所有 reasoning
+- Line 430: `function isFalsePositive` 🔧
+  - 💡 @param {Object} issue - { file, line, rule, code, lineContent } @param {Object} options - { useSemantic: true/false } @returns {Object} - { isFP, reason, matchedPattern, method } /
+- Line 457: `function isFileLineWhitelisted` 🔧
+  - 💡 isFileLineWhitelisted - 檢查 file:line 是否在白名單 /
+- Line 473: `function matchSemanticPattern` 🔧
+  - 💡 matchSemanticPattern - 匹配 semantic pattern /
+- Line 512: `function isCommentLine` 🔧
+  - 💡 isCommentLine - 檢查是否為註釋行 /
+- Line 525: `function matchSemantic` 🔧
+  - 💡 matchSemantic - 匹配 semantic pattern /
+- Line 559: `function filterFalsePositives` 🔧
+  - 💡 @param {Array} issues - Issues 據組 @param {Object} options - { useSemantic: true } @returns {Object} - { falsePositives: [], truePositives: [] } /
+- Line 613: `arrow function existing` ➡️
+  - 💡 檢查是否已存在
+
+### `lib/pin_semantics.js`
+- Line 22: `function isActionBlockedByPin` 🔧
+  - 💡 Check if an action is blocked by pin semantics. @param {string} action - The action to check @returns {boolean} true if the action is blocked /
+- Line 33: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/proposal_hash.js`
+- Line 17: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 26: `function stripHashField` 🔧
+  - 💡 Deep-copies the object to avoid mutating the original.  @param {Object} proposal - Proposal object with optional `hash` field @returns {Object} Deep copy of proposal WITHOUT the `hash` field /
+- Line 40: `function computeProposalHash` 🔧
+  - 💡 Canonicalizes via JSON.stringify with sorted keys.  @param {Object} proposalBody - The proposal content object (e.g., SKILL.md body or workshop payload) @returns {string} Hex-encoded SHA-256 hash /
+- Line 60: `function verifyProposalHash` 🔧
+  - 💡 - valid: true if hash matches or field is absent (no-op) - mismatch: field name that differs, or null if valid - computedHash: hash computed from body (excluding hash field) - storedHash: hash stored in proposal.hash, or null if absent /
+- Line 107: `function signProposal` 🔧
+  - 💡 Mutates and returns the object (with hash field added).  @param {Object} proposal - Proposal object to hash @returns {Object} The same proposal object with `hash` field set /
+
+### `lib/qualitative_signals.js`
+- Line 16: `variable PATTERNS` 📦
+  - 💡 EN + 粵語混雜 patterns
+- Line 45: `function detectSignals` 🔧
+  - 💡 [無描述]
+- Line 62: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/rules/high-risk.js`
+- Line 36: `variable path` 📦
+  - 💡 [無描述]
+- Line 39: `variable helpers` 📦
+  - 💡 動態引入 helpers（避免循環依賴）
+- Line 40: `variable contextHelpers` 📦
+  - 💡 [無描述]
+- Line 41: `function getHelpers` 🔧
+  - 💡 [無描述]
+- Line 53: `function getContextHelpers` 🔧
+  - 💡 動態引入 context_helpers（上下文感知檢測）
+- Line 69: `variable RULE_DEF_FILES` 📦
+  - 💡 ============================================================ Skip Logic - 規則定義檔自身豁免 ============================================================ 不檢測規則定義檔本身，避免 regex/關鍵字被當作問題 修復 (2026-04-04)：擴展到整個 lib/rules/ 和 lib/helpers/ 目錄
+- Line 81: `function isRuleDefinitionFile` 🔧
+  - 💡 [無描述]
+- Line 92: `function skipIfRuleDef` 🔧
+  - 💡 [無描述]
+- Line 102: `variable CLI_HELPER_FILES` 📦
+  - 💡 ============================================================ CLI Detection - 識別主要 CLI Script ============================================================
+- Line 116: `function isCLIHelperFile` 🔧
+  - 💡 [無描述]
+- Line 122: `function isCLIScript` 🔧
+  - 💡 [無描述]
+- Line 133: `variable MAX_FILE_LINES_WARN` 📦
+  - 💡 [無描述]
+- Line 147: `variable HIGH_RISK_RULES` 📦
+  - 💡 - name: 規則名稱 - category: 分類 - severity: 嚴重程度 (critical/high/medium/low) - detect(content, filePath): 檢測函據 /
+- Line 242: `function stripComments` 🔧
+  - 💡 ============================================================ Helper Functions for fsSync Detection ============================================================ Helper: 移除 comment 進行檢測
+- Line 251: `function isInsideString` 🔧
+  - 💡 Helper: 檢查 match 是否在 string literal 或 regex literal 內
+- Line 338: `arrow function hasExistsCheck` ➡️
+  - 💡 [無描述]
+- Line 410: `arrow function highLines` ➡️
+  - 💡 分類問題嚴重性
+- Line 411: `arrow function lowLines` ➡️
+  - 💡 [無描述]
+- Line 412: `arrow function infoLines` ➡️
+  - 💡 [無描述]
+- Line 614: `arrow function matchingOutIf` ➡️
+  - 💡 [無描述]
+- Line 632: `arrow function isWhitelistedFunc` ➡️
+  - 💡 [無描述]
+- Line 633: `arrow function filteredFound` ➡️
+  - 💡 [無描述]
+- Line 744: `arrow function hasTryCatch` ➡️
+  - 💡 短函數檢查是否有基本 error handling
+- Line 745: `arrow function hasErrorReturn` ➡️
+  - 💡 [無描述]
+- Line 754: `arrow function hasTryCatch` ➡️
+  - 💡 [無描述]
+- Line 755: `arrow function hasCatch` ➡️
+  - 💡 [無描述]
+- Line 775: `arrow function isProtected` ➡️
+  - 💡 2. 深度掃描：對每個危險操作，檢查是否有 try-catch 直接包圍 或在函數外部有 try-catch
+- Line 788: `arrow function nonTrivialLines` ➡️
+  - 💡 [無描述]
+- Line 799: `function $` 🔧
+  - 💡 [無描述]
+
+### `lib/rules/index.js`
+- Line 14: `variable lowRisk` 📦
+  - 💡 [無描述]
+- Line 15: `variable highRisk` 📦
+  - 💡 [無描述]
+- Line 16: `variable systemAudit` 📦
+  - 💡 [無描述]
+
+### `lib/rules/low-risk.js`
+- Line 6: `variable path` 📦
+  - 💡 [無描述]
+- Line 7: `variable fs` 📦
+  - 💡 [無描述]
+- Line 21: `variable _simpMap` 📦
+  - 💡 簡體→繁體映射 格式：[簡體, 繁體] 從外部 JSON 文件載入，避免字符腐化問題 /
+- Line 22: `function getSimplifiedMap` 🔧
+  - 💡 [無描述]
+- Line 35: `function isInsideMarkdownCodeBlock` 🔧
+  - 💡 Check if a line is inside a markdown code block (``` ... ```). /
+- Line 47: `variable LOW_RISK_RULES` 📦
+  - 💡 [無描述]
+- Line 114: `arrow function fixed` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 228: `arrow function fixed` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 366: `function type` 🔧
+  - 💡 [無描述]
+- Line 425: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/rules/system-audit.js`
+- Line 29: `variable fs` 📦
+  - 💡 [無描述]
+- Line 30: `variable path` 📦
+  - 💡 [無描述]
+- Line 31: `variable os` 📦
+  - 💡 [無描述]
+- Line 45: `variable fileCache` 📦
+  - 💡 動態引入（避免循環依賴）
+- Line 46: `function getFileContent` 🔧
+  - 💡 [無描述]
+- Line 64: `variable SELF_EXCLUDE` 📦
+  - 💡 自我排除：避免審計自己
+- Line 75: `function runSystemAudit` 🔧
+  - 💡 @param {Object} options - 選項 @param {string} options.scriptsDir - scripts 目錄路徑 @returns {Object} - 審計結果 /
+- Line 99: `function collectFiles` 🔧
+  - 💡 [無描述]
+- Line 120: `arrow function jsFiles` ➡️
+  - 💡 [無描述]
+- Line 121: `arrow function shFiles` ➡️
+  - 💡 [無描述]
+- Line 184: `arrow function cronLines` ➡️
+  - 💡 [無描述]
+- Line 484: `arrow function names` ➡️
+  - 💡 [無描述]
+- Line 609: `function declaration` 🔧
+  - 💡 [無描述]
+- Line 641: `function $` 🔧
+  - 💡 [無描述]
+- Line 646: `function when` 🔧
+  - 💡 [無描述]
+
+### `lib/semantic_matcher.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `variable SEMANTIC_CONFIG` 📦
+  - 💡 ==================== 配置常量 ====================
+- Line 30: `class SemanticMatcher` 🏗️
+  - 💡 ==================== SemanticMatcher 類別 ====================
+
+### `lib/skill_discovery.js`
+- Line 3: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 4: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 9: `function discoverSkillDirs` 🔧
+  - 💡 Discover skill directories in baseDir. /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 28: `variable listSkillDirs` 📦
+  - 💡 Alias for compatibility
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 34: `function listSkillMetadata` 🔧
+  - 💡 List skill metadata from skills-learned/ directory. Returns array of { dir, description, status, category } objects. /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 59: `function listCategorizedSkills` 🔧
+  - 💡 List all skills from multiple base directories, grouped by category. Skips duplicates (same dir name already seen). Returns object: { "Category": [{ name, description }, ...], ... } /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 88: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/skillIntegrityScanner.js`
+- Line 24: `variable fs` 📦
+  - 💡 [無描述]
+- Line 25: `variable path` 📦
+  - 💡 [無描述]
+- Line 30: `variable REQUIRED_FIELDS` 📦
+  - 💡 ── Required frontmatter fields for skill files ──
+- Line 33: `variable KNOWN_CLI_COMMANDS` 📦
+  - 💡 ── Known OpenClaw CLI commands for existence check ──
+- Line 51: `variable KNOWN_ISSUE_RE` 📦
+  - 💡 ── Known event IDs (from this workspace's history) ──
+- Line 52: `variable KNOWN_RUNID_RE` 📦
+  - 💡 [無描述]
+- Line 54: `class SkillIntegrityScanner` 🏗️
+  - 💡 [無描述]
+- Line 199: `arrow function matched` ➡️
+  - 💡 Check if it's a known command
+- Line 335: `function main` 🔧
+  - 💡 ── CLI Entry Point ──
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 337: `arrow function skillFilter` ➡️
+  - 💡 [無描述]
+- Line 368: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/skip-list.js`
+- Line 10: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable SKIP_LIST_CONFIG` 📦
+  - 💡 ==================== Skip List 配置 ====================
+- Line 103: `class SkipList` 🏗️
+  - 💡 ==================== SkipList 類別 ====================
+
+### `lib/state.js`
+- Line 5: `variable fs` 📦
+  - 💡 [無描述]
+- Line 6: `variable path` 📦
+  - 💡 [無描述]
+- Line 8: `function atomicWriteSync` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [MEM_WRITE_SUCCESS] / [MEM_WRITE_FAILED]
+- Line 19: `function createStateManager` 🔧
+  - 💡 [無描述]
+- Line 20: `arrow function getDefault` ➡️
+  - 💡 [無描述]
+- Line 42: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/system_check_generator.js`
+- Line 18: `variable https` 📦
+  - 💡 [無描述]
+- Line 19: `variable fs` 📦
+  - 💡 [無描述]
+- Line 20: `variable os` 📦
+  - 💡 [無描述]
+- Line 21: `variable path` 📦
+  - 💡 [無描述]
+- Line 61: `class SystemCheckGenerator` 🏗️
+  - 💡 [無描述]
+- Line 82: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 268: `arrow function active` ➡️
+  - 💡 [無描述]
+- Line 315: `arrow function total` ➡️
+  - 💡 [無描述]
+- Line 420: `function extractTime` 🔧
+  - 💡 Helper: extract HH:MM from cron expr like "5 0 * * *" or "0 10,15,22 * * *"
+- Line 431: `function categorizeByTime` 🔧
+  - 💡 Helper: categorize by hour
+- Line 444: `function daySuffix` 🔧
+  - 💡 Helper: day suffix for weekly jobs (day 4=Thu, 0=Sun, 1=Mon)
+- Line 455: `arrow function cronJobs` ➡️
+  - 💡 Dynamically build cronJobs from API data
+- Line 471: `arrow function jobsInCat` ➡️
+  - 💡 [無描述]
+- Line 632: `arrow function fixes` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+- Line 633: `arrow function formattingFixes` ➡️
+  - 💡 [無描述]
+- Line 634: `arrow function qualityFixes` ➡️
+  - 💡 [無描述]
+- Line 649: `arrow function qualityWithRate` ➡️
+  - 💡 [無描述]
+- Line 743: `arrow function magicNumCount` ➡️
+  - 💡 Filter out magic_numbers (style/low severity)
+- Line 931: `function toPascalSeverity` 🔧
+  - 💡 Severity helper for skill scan display
+- Line 1163: `arrow function req` ➡️
+  - 💡 [無描述]
+
+### `lib/system_check_templates.js`
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+- Line 19: `variable os` 📦
+  - 💡 [無描述]
+- Line 25: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 142: `function createSystemCheckReportStructure` 🔧
+  - 💡 @param {Object} data - Report data @param {string} data.date - Report date @param {Object} data.summary - Summary statistics @returns {Object} Report structure /
+- Line 172: `function createEmbedStructure` 🔧
+  - 💡 Create Discord embed structure  @param {Object} data - Report data @returns {Object} Discord embed /
+- Line 200: `function createField` 🔧
+  - 💡 @param {string} name - Field name @param {string|Array} value - Field value (string or array of lines) @param {boolean} inline - Inline flag @returns {Object} Field structure /
+- Line 217: `function createSeparator` 🔧
+  - 💡 Create separator field  @returns {Object} Separator field /
+- Line 232: `function truncateFieldValue` 🔧
+  - 💡 @param {string} value - Value to truncate @param {number} limit - Character limit @returns {string} Truncated value /
+- Line 245: `function enforceEmbedLimit` 🔧
+  - 💡 @param {Object} embed - Discord embed object @param {number} limit - Character limit @returns {Object} Modified embed /
+- Line 248: `arrow function countChars` ➡️
+  - 💡 [無描述]
+- Line 296: `function getHKTDateString` 🔧
+  - 💡 Get HKT date string (local timezone)  @param {Date} date - Optional date object @returns {string} Date string in YYYY-MM-DD format /
+- Line 306: `function getHKTYesterday` 🔧
+  - 💡 Get HKT yesterday date string  @returns {string} Yesterday date string in YYYY-MM-DD format /
+- Line 319: `function getHKTTime` 🔧
+  - 💡 Get current time in HKT  @returns {string} Time string in HH:MM format /
+- Line 334: `function getStatusIcon` 🔧
+  - 💡 Get cron status icon by status  @param {string} status - Status string @returns {string} Icon emoji /
+- Line 344: `function getCategoryEmoji` 🔧
+  - 💡 Get category emoji  @param {string} category - Category name @returns {string} Category emoji /
+
+### `lib/time.js`
+- Line 5: `variable os` 📦
+  - 💡 [無描述]
+- Line 6: `variable HOME` 📦
+  - 💡 [無描述]
+- Line 9: `function getHKTDate` 🔧
+  - 💡 [無描述]
+- Line 13: `function getHKTDateTime` 🔧
+  - 💡 [無描述]
+- Line 17: `function getHKTTime` 🔧
+  - 💡 [無描述]
+- Line 21: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/umbrella_consolidation.js`
+- Line 19: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 20: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 26: `variable DEFAULT_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 27: `variable EXEC_MAX_BUFFER` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 28: `variable PCT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 39: `function formatConsolidationPrompt` 🔧
+  - 💡 Format a Hermes-style consolidation prompt for a skill pair.  @param {{ skillA: string, skillB: string, score: number, bodyA: string, bodyB: string }} pair @returns {string} Formatted prompt /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 87: `function callLLM` 🔧
+  - 💡 model timeout, or exec failure).  @param {string} prompt - Consolidated prompt text @returns {Promise<string>} Raw LLM response text /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 104: `function callLLMViaGateway` 🔧
+  - 💡 Uses a temp-file approach for the prompt to avoid shell escaping issues. Temp file is always cleaned up via try/finally — even on execSync failure or unexpected throw — so the temp dir is never littered (BUG-1 fix). /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 169: `function parseYAMLResponse` 🔧
+  - 💡 Falls back to scanning for key: value patterns if no YAML block is found.  @param {string} raw - Raw LLM response text @returns {{ shouldMerge: boolean, umbrellaName: string, reason: string, supportFilesToMove: Array<{from: string, to: string}> }} /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 249: `function heuristicAnalyzePair` 🔧
+  - 💡 Uses Jaccard overlap strength to determine merge: - score > 0.7: always suggest merge - score > 0.5: check topic overlap in names - score ≤ 0.5: don't merge /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 273: `arrow function commonTokens` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 309: `function normalizeResult` 🔧
+  - 💡 Defensive against missing fields, wrong types, or extra junk fields.  @param {object} r - Possibly-incomplete result object @returns {{ shouldMerge: boolean, umbrellaName: string, reason: string, supportFilesToMove: Array<{from: string, to: string}> }} /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 336: `function analyzePair` 🔧
+  - 💡 so callers (and tests) get a consistent shape.  @param {{ skillA: string, skillB: string, score: number, bodyA: string, bodyB: string }} pair @returns {Promise<{ shouldMerge: boolean, umbrellaName: string, reason: string, supportFilesToMove: Array<{from: string, to: string}> }>} /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 397: `function mockAnalyzePair` 🔧
+  - 💡 Returns deterministic results based on score threshold.  @param {{ skillA: string, skillB: string, score: number, bodyA: string, bodyB: string }} pair @returns {{ shouldMerge: boolean, umbrellaName: string, reason: string, supportFilesToMove: Array<{from: string, to: string}> }} /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 443: `function returns` 🔧
+  - 💡 Save a consolidation proposal as a YAML file.  BUG-6 fix: accepts an optional `dryRun` flag (4th arg) so callers can invoke `saveProposal` safely in dry-run mode without touching the disk.
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 452: `function saveProposal` 🔧
+  - 💡 @param {string} proposalsDir - Directory to write proposals into @param {{ skillA: string, skillB: string, score: number }} [pairInfo] - Original pair metadata @param {{ dryRun?: boolean }} [options] - Options; pass `{ dryRun: true }` to skip disk writes @returns {string} Path to the written (or proposed) proposal file /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+
+### `lib/verify_fix.js`
+- Line 21: `variable fs` 📦
+  - 💡 [無描述]
+- Line 22: `variable path` 📦
+  - 💡 [無描述]
+- Line 25: `variable STATE_DIR` 📦
+  - 💡 ── Paths ──
+- Line 26: `variable HISTORY_PATH` 📦
+  - 💡 [無描述]
+- Line 27: `variable VERIFY_LOG_PATH` 📦
+  - 💡 [無描述]
+- Line 28: `variable WORKSPACE_DIR` 📦
+  - 💡 [無描述]
+- Line 40: `variable FORMATTING_ISSUES` 📦
+  - 💡 [無描述]
+- Line 41: `variable FORMATTING_KEYWORDS` 📦
+  - 💡 [無描述]
+- Line 48: `function getFixCategory` 🔧
+  - 💡 Categorize a fix as FORMATTING or QUALITY. @param {Object} fix — A fix record from auto_fix_history.json @returns {'FORMATTING' | 'QUALITY'} /
+- Line 73: `function verifySingleFix` 🔧
+  - 💡 Re-detect issues on a file using the matching LOW_RISK_RULE. @param {Object} fix — Fix record @returns {Object} — { stillFixed: boolean, currentCount: number, verificationFailures: string[] } /
+- Line 98: `arrow function rule` ➡️
+  - 💡 [無描述]
+- Line 108: `arrow function stillFailing` ➡️
+  - 💡 [無描述]
+- Line 134: `function guessRuleIdFromFix` 🔧
+  - 💡 Guess the LOW_RISK_RULE id from a fix's issue description. /
+- Line 155: `function runVerification` 🔧
+  - 💡 @param {boolean} options.force — Re-verify all fixes, not just unverified @param {number} options.hourLimit — Only verify fixes newer than N hours (default 168 = 7d) @param {boolean} options.quiet — Suppress console output @returns {Object} — { results: Array, summary: Object, verifyLog: Object } /
+- Line 172: `arrow function fixes` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+- Line 274: `arrow function hlArg` ➡️
+  - 💡 [無描述]
+- Line 283: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `lib/whitelist_patterns.js`
+- Line 280: `function isFalsePositive` 🔧
+  - 💡 @param {Object} issue - { file, line, rule, code, lineContent } @param {Object} options - { useSemantic: true/false } @returns {Object} - { isFP, reason, matchedPattern, method } /
+- Line 307: `function isFileLineWhitelisted` 🔧
+  - 💡 isFileLineWhitelisted - 檢查 file:line 是否在白名單 /
+- Line 323: `function matchSemanticPattern` 🔧
+  - 💡 matchSemanticPattern - 匹配 semantic pattern /
+- Line 362: `function isCommentLine` 🔧
+  - 💡 isCommentLine - 檢查是否為註釋行 /
+- Line 375: `function matchSemantic` 🔧
+  - 💡 matchSemantic - 匹配 semantic pattern /
+- Line 409: `function filterFalsePositives` 🔧
+  - 💡 @param {Array} issues - Issues 據組 @param {Object} options - { useSemantic: true } @returns {Object} - { falsePositives: [], truePositives: [] } /
+
+## 📂 Root Scripts
+
+### `adaptive_timeout.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 19: `variable fs` 📦
+  - 💡 [無描述]
+- Line 20: `variable path` 📦
+  - 💡 [無描述]
+- Line 23: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 33: `function analyzeFile` 🔧
+  - 💡 [無描述]
+- Line 44: `function calculateTimeout` 🔧
+  - 💡 [無描述]
+- Line 50: `function checkMemoryFiles` 🔧
+  - 💡 [無描述]
+- Line 99: `arrow function largeFiles` ➡️
+  - 💡 Summary
+- Line 112: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 122: `arrow function files` ➡️
+  - 💡 [無描述]
+
+### `ai_hot_push.js`
+- Line 15: `variable https` 📦
+  - 💡 [無描述]
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+- Line 18: `variable OpenCC` 📦
+  - 💡 [無描述]
+- Line 21: `variable AI_HOT_CHANNEL` 📦
+  - 💡 ── Discord direct-post config (v2.0) ──
+- Line 23: `variable FEEDS` 📦
+  - 💡 [無描述]
+- Line 30: `variable SEEN_FILE` 📦
+  - 💡 Dedup state (workspace root, 200-entry FIFO)
+- Line 31: `variable SEEN_CAP` 📦
+  - 💡 [無描述]
+- Line 35: `variable HEADLINE_AUTHORS` 📦
+  - 💡 -------- Category rules (apply in this order; 行業動態 = default catch-all) -------- 1. 頭條  2. 產品更新  3. 研究/觀點  4. 行業動態  5. 開發者
+- Line 36: `variable HEADLINE_MODELS` 📦
+  - 💡 [無描述]
+- Line 37: `variable PRODUCT_VERBS` 📦
+  - 💡 [無描述]
+- Line 38: `variable PRODUCT_SOURCES` 📦
+  - 💡 [無描述]
+- Line 39: `variable RESEARCH_KEYWORDS` 📦
+  - 💡 [無描述]
+- Line 40: `variable RESEARCH_AUTHORS` 📦
+  - 💡 [無描述]
+- Line 41: `variable INDUSTRY_KEYWORDS` 📦
+  - 💡 [無描述]
+- Line 42: `function call` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [OLLAMA_SUCCESS] / [OLLAMA_TIMEOUT]
+- Line 42: `variable DEVELOPER_KEYWORDS` 📦
+  - 💡 [無描述]
+- Line 43: `variable DEVELOPER_AUTHORS` 📦
+  - 💡 [無描述]
+- Line 46: `variable CATEGORY_CAPS` 📦
+  - 💡 Per-category caps (total target: 12-15 items)
+- Line 49: `variable CATEGORY_ORDER` 📦
+  - 💡 Display order (matches spec)
+- Line 58: `function parseArgs` 🔧
+  - 💡 -------- CLI args --------
+- Line 86: `function getDiscordToken` 🔧
+  - 💡 -------- Discord direct-post (v2.0) --------
+- Line 96: `function sendToDiscord` 🔧
+  - 💡 [無描述]
+- Line 127: `function sendToDiscordWithRetry` 🔧
+  - 💡 ── v2.0: retry wrapper (exponential backoff, 3 attempts) ──
+- Line 149: `function fetchUrl` 🔧
+  - 💡 -------- HTTPS fetch (no redirect) --------
+- Line 196: `function parseRss` 🔧
+  - 💡 -------- RSS parser (regex-based, no deps) -------- Extract <item>...</item> blocks first, then sub-fields per block. v1.1: also extracts <guid> for dedup.
+- Line 202: `arrow function get` ➡️
+  - 💡 [無描述]
+- Line 222: `function stripCdata` 🔧
+  - 💡 [無描述]
+- Line 232: `function classifyItem` 🔧
+  - 💡 -------- Classification (v1.1) -------- Apply in order: headline → product → research → industry → developer; 行業動態 = default.
+- Line 235: `arrow function inText` ➡️
+  - 💡 [無描述]
+- Line 250: `function scoreItem` 🔧
+  - 💡 -------- Scoring (v1.1) -------- Recency (decays over ~200h) + source weight (headline authors highest).
+- Line 266: `function categorizeItems` 🔧
+  - 💡 -------- Categorization (v1.1) -------- 1) Top-N promotion: latest 1-2 items (by pubDate) always go to 頭條. 2) Classify remaining into buckets. 3) Sort each bucket by score desc.
+- Line 267: `arrow function byPubDate` ➡️
+  - 💡 [無描述]
+- Line 289: `arrow function promotedItems` ➡️
+  - 💡 [無描述]
+- Line 290: `arrow function classified` ➡️
+  - 💡 [無描述]
+- Line 301: `function loadSeenGuids` 🔧
+  - 💡 -------- Dedup state (v1.1) --------
+- Line 314: `function saveSeenGuids` 🔧
+  - 💡 [無描述]
+- Line 327: `function truncate` 🔧
+  - 💡 -------- Discord formatting --------
+- Line 333: `function formatPubDate` 🔧
+  - 💡 [無描述]
+- Line 347: `function cleanSource` 🔧
+  - 💡 [無描述]
+- Line 361: `function preRenderItem` 🔧
+  - 💡 Pre-render an item's static parts (title, meta) once; the variable part is summary length.
+- Line 387: `function escapeMd` 🔧
+  - 💡 Discord uses its own markdown subset; escape characters that could break formatting.
+- Line 395: `function formatForDiscord` 🔧
+  - 💡 -------- formatForDiscord (v1.2) -------- 5-section categorized output, per-category caps, MULTI-MESSAGE support.
+- Line 414: `arrow function itemsRendered` ➡️
+  - 💡 [無描述]
+- Line 422: `arrow function totalItems` ➡️
+  - 💡 [無描述]
+- Line 432: `function flush` 🔧
+  - 💡 [無描述]
+- Line 463: `arrow function needsHeader` ➡️
+  - 💡 Lazy-add section header: check if header + first item fit together. If not, flush first so the header isn't orphaned in the previous message.
+- Line 486: `function sendMessages` 🔧
+  - 💡 -------- Multi-message send (v1.2) --------
+  - 📋 Log: [MSG_SENT] / [MSG_FAILED]
+- Line 510: `function main` 🔧
+  - 💡 -------- Main --------
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 544: `arrow function fresh` ➡️
+  - 💡 [無描述]
+- Line 552: `arrow function byDate` ➡️
+  - 💡 [無描述]
+- Line 574: `arrow function newGuids` ➡️
+  - 💡 [無描述]
+
+### `ai_image_generator.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `class AIImageGenerator` 🏗️
+  - 💡 [無描述]
+
+### `analyze_magic_numbers.js`
+- Line 7: `variable fs` 📦
+  - 💡 [無描述]
+- Line 19: `variable magicNumbers` 📦
+  - 💡 只篩選 magic_numbers 嘅 low severity 問題
+- Line 28: `variable categories` 📦
+  - 💡 定義分類規則
+- Line 49: `variable knownConstants` 📦
+  - 💡 特別處理嘅已知常量
+- Line 71: `variable fileStats` 📦
+  - 💡 統計
+- Line 72: `variable numberStats` 📦
+  - 💡 [無描述]
+- Line 73: `variable legacyFiles` 📦
+  - 💡 [無描述]
+- Line 74: `variable activeFiles` 📦
+  - 💡 [無描述]
+- Line 126: `variable totalCategorized` 📦
+  - 💡 [無描述]
+- Line 142: `variable sortedFiles` 📦
+  - 💡 [無描述]
+- Line 154: `variable sortedNumbers` 📦
+  - 💡 [無描述]
+- Line 166: `variable skipPatterns` 📦
+  - 💡 [無描述]
+- Line 177: `variable totalSkip` 📦
+  - 💡 [無描述]
+
+### `anomaly_monitor.js`
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 28: `variable CONFIG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 44: `function getErrorCount` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 55: `function getOutputFileSizes` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 83: `function getCqmIssueCount` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 94: `function getDiskUsage` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 106: `function getMemoryUsage` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 127: `function monitor` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 216: `function pushAlert` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 278: `function showStatus` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 309: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 356: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `anomaly_proactive_push.js`
+- Line 25: `variable fs` 📦
+  - 💡 [無描述]
+- Line 26: `variable path` 📦
+  - 💡 [無描述]
+- Line 28: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 29: `variable ALERTS_FILE` 📦
+  - 💡 [無描述]
+- Line 30: `variable DISCORD_CHANNEL` 📦
+  - 💡 [無描述]
+- Line 31: `variable STATE_CAP` 📦
+  - 💡 [無描述]
+- Line 33: `variable QUIET` 📦
+  - 💡 [無描述]
+- Line 34: `variable DRY_RUN` 📦
+  - 💡 [無描述]
+- Line 35: `variable AUTO_DEGRADE` 📦
+  - 💡 [無描述]
+- Line 36: `variable JSON_OUT` 📦
+  - 💡 [無描述]
+- Line 38: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 64: `function runChild` 🔧
+  - 💡 ----------------- Async child process -----------------
+- Line 70: `arrow function timer` ➡️
+  - 💡 [無描述]
+- Line 90: `function loadState` 🔧
+  - 💡 ----------------- State helpers -----------------
+- Line 106: `function saveState` 🔧
+  - 💡 [無描述]
+- Line 119: `function loadAlerts` 🔧
+  - 💡 ----------------- Alerts file -----------------
+- Line 137: `function alertSignature` 🔧
+  - 💡 ----------------- Alert signature (for dedup) -----------------
+- Line 149: `function isActionable` 🔧
+  - 💡 ----------------- Severity filter ----------------- `info` = noise (e.g. "new error pattern" with count=2). Skip. `warning` = noteworthy. Push. `critical` = urgent. Push + consider auto-degrade.
+- Line 155: `function nowHktString` 🔧
+  - 💡 ----------------- Discord formatting -----------------
+- Line 166: `function formatDiscordMessage` 🔧
+  - 💡 [無描述]
+- Line 198: `function sendDiscord` 🔧
+  - 💡 ----------------- Discord push -----------------
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 218: `function autoDegrade` 🔧
+  - 💡 ----------------- Auto-degrade (optional) ----------------- Critical alerts that name a specific cron job (e.g. via alert.data.cron or error_type matching a cron name) → disable that cron to prevent cascading failures.
+- Line 236: `arrow function job` ➡️
+  - 💡 [無描述]
+- Line 253: `function main` 🔧
+  - 💡 ----------------- Main -----------------
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 275: `arrow function newAlerts` ➡️
+  - 💡 Filter for actionable (warning/critical) + not yet pushed
+
+### `apple_notes.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 14: `variable os` 📦
+  - 💡 [無描述]
+- Line 15: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 18: `function getSecureTempFile` 🔧
+  - 💡 Secure temp file name generator
+- Line 22: `function escapeAppleScript` 🔧
+  - 💡 [無描述]
+- Line 42: `function runAppleScript` 🔧
+  - 💡 Safely execute AppleScript by writing to temp file Avoids shell injection via command line arguments /
+- Line 67: `function createNote` 🔧
+  - 💡 [無描述]
+- Line 102: `function createOrUpdateNote` 🔧
+  - 💡 [無描述]
+- Line 106: `function checkNoteExists` 🔧
+  - 💡 [無描述]
+- Line 130: `function appendToNote` 🔧
+  - 💡 [無描述]
+- Line 139: `function markdownToAppleNotesHTML` 🔧
+  - 💡 [無描述]
+- Line 141: `arrow function processedLines` ➡️
+  - 💡 [無描述]
+- Line 160: `function createDailySummary` 🔧
+  - 💡 生成每日總結（正式版） /
+
+### `apple_reminders_calendar.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 15: `variable fs` 📦
+  - 💡 [無描述]
+- Line 16: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable os` 📦
+  - 💡 [無描述]
+- Line 18: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 28: `function getSecureTempFile` 🔧
+  - 💡 Secure temp file name generator
+- Line 37: `arrow function STATE_FILE` ➡️
+  - 💡 [無描述]
+- Line 57: `function checkReminders` 🔧
+  - 💡 [無描述]
+- Line 70: `arrow function lines` ➡️
+  - 💡 [無描述]
+- Line 85: `function checkCalendar` 🔧
+  - 💡 [無描述]
+- Line 139: `arrow function events` ➡️
+  - 💡 [無描述]
+- Line 161: `variable stateManager` 📦
+  - 💡 Shared state manager (eliminates duplicate loadState/saveState definitions)
+- Line 163: `function shouldRun` 🔧
+  - 💡 [無描述]
+- Line 179: `function saveState` 🔧
+  - 💡 [無描述]
+- Line 191: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `archive_smart.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable DAILY_DIR` 📦
+  - 💡 [無描述]
+- Line 17: `variable ARCHIVE_DIR` 📦
+  - 💡 [無描述]
+- Line 18: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 21: `function getFileDate` 🔧
+  - 💡 [無描述]
+- Line 32: `function daysDiff` 🔧
+  - 💡 [無描述]
+- Line 42: `function shouldRun` 🔧
+  - 💡 [無描述]
+- Line 74: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `auto_fix_history.js`
+- Line 35: `variable fs` 📦
+  - 💡 [無描述]
+- Line 36: `variable path` 📦
+  - 💡 [無描述]
+- Line 40: `variable HISTORY_FILE` 📦
+  - 💡 [無描述]
+- Line 43: `variable C` 📦
+  - 💡 ==================== COLORS ====================
+- Line 53: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 62: `function readHistory` 🔧
+  - 💡 Read history file (or return empty structure) /
+- Line 83: `function writeHistory` 🔧
+  - 💡 Atomic write - write to tmp then rename /
+- Line 105: `function generateId` 🔧
+  - 💡 Generate next FIX-ID (FIX-001, FIX-002, ...) /
+- Line 122: `function cmdAdd` 🔧
+  - 💡 Add a new fix record /
+- Line 123: `arrow function file` ➡️
+  - 💡 [無描述]
+- Line 124: `arrow function issue` ➡️
+  - 💡 [無描述]
+- Line 125: `arrow function fix` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 126: `arrow function effect` ➡️
+  - 💡 [無描述]
+- Line 166: `function cmdList` 🔧
+  - 💡 List fix records /
+- Line 179: `arrow function sorted` ➡️
+  - 💡 Sort by timestamp desc
+- Line 205: `function cmdStats` 🔧
+  - 💡 Show statistics /
+- Line 208: `arrow function verified` ➡️
+  - 💡 [無描述]
+- Line 209: `arrow function active` ➡️
+  - 💡 [無描述]
+- Line 210: `arrow function deprecated` ➡️
+  - 💡 [無描述]
+- Line 212: `arrow function withRate` ➡️
+  - 💡 [無描述]
+- Line 217: `arrow function recent` ➡️
+  - 💡 [無描述]
+- Line 222: `arrow function pending24h` ➡️
+  - 💡 [無描述]
+- Line 243: `arrow function deprecatedFixes` ➡️
+  - 💡 Show deprecated fixes
+- Line 257: `function cmdVerify` 🔧
+  - 💡 Manual verification of a fix /
+- Line 258: `arrow function idArg` ➡️
+  - 💡 [無描述]
+- Line 269: `arrow function fix` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 305: `function addFixRecord` 🔧
+  - 💡 Programmatically add a fix record (used by auto_fix.js) Returns the fix ID /
+- Line 376: `unknown undefined` 
+  - 💡 ==================== EXPORTS (for programmatic use) ====================
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `auto_fix.js`
+- Line 2: `variable ONE_DAY_MS` 📦
+  - 💡 [無描述]
+- Line 46: `variable fs` 📦
+  - 💡 [無描述]
+- Line 47: `variable helpers` 📦
+  - 💡 [無描述]
+- Line 48: `variable path` 📦
+  - 💡 [無描述]
+- Line 49: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 55: `variable AUDIT_STATE` 📦
+  - 💡 [無描述]
+- Line 56: `variable AUDIT_REPORT` 📦
+  - 💡 [無描述]
+- Line 57: `variable AUDIT_LOG` 📦
+  - 💡 [無描述]
+- Line 58: `variable SPAWN_PAYLOAD` 📦
+  - 💡 [無描述]
+- Line 59: `variable AUDIT_BRIEF` 📦
+  - 💡 [無描述]
+- Line 60: `variable SKIP_LIST_FILE` 📦
+  - 💡 [無描述]
+- Line 61: `variable PURE_AI_AUDIT_RESULTS` 📦
+  - 💡 [無描述]
+- Line 66: `variable DEFAULT_MODEL` 📦
+  - 💡 ==================== MODEL CONFIG ==================== MiniMax M3 - 用於生成問題分析 brief 注意：呢個唔係用於修復，修復需要另外 spawn Kimi Code CLI
+- Line 69: `variable DEFAULT_SINCE_DAYS` 📦
+  - 💡 [無描述]
+- Line 70: `variable MAX_FILE_LINES_WARN` 📦
+  - 💡 [無描述]
+- Line 71: `variable MAX_SCAN_FILES` 📦
+  - 💡 [無描述]
+- Line 75: `variable SKIP_DIRS` 📦
+  - 💡 自我排除：避免審計自己（規則定義中包含大量 pattern，會造成誤報） 自我排除：避免審計自己（規則定義中包含大量 pattern，會造成誤報）
+- Line 76: `variable SELF_EXCLUDE` 📦
+  - 💡 [無描述]
+- Line 79: `variable DEFAULT_SPAWN_CHANNEL` 📦
+  - 💡 Spawn sub-agent 預設 Discord channel (從環境變數讀取，預設為編程頻道)
+- Line 82: `variable args` 📦
+  - 💡 ==================== CLI ARGS ====================
+- Line 83: `arrow function command` ➡️
+  - 💡 [無描述]
+- Line 84: `variable isDryRun` 📦
+  - 💡 [無描述]
+- Line 85: `variable isQuiet` 📦
+  - 💡 [無描述]
+- Line 88: `variable outputFormat` 📦
+  - 💡 Format output: text (default), json, markdown
+- Line 89: `arrow function formatArg` ➡️
+  - 💡 [無描述]
+- Line 98: `function toHKT` 🔧
+  - 💡 HKT time helper
+- Line 101: `arrow function sinceArg` ➡️
+  - 💡 [無描述]
+- Line 102: `variable sinceDays` 📦
+  - 💡 [無描述]
+- Line 112: `variable C` 📦
+  - 💡 ==================== COLOURS ====================
+- Line 123: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 147: `function loadAuditState` 🔧
+  - 💡 讀取上次 audit 狀態 /
+- Line 161: `function loadPureAIResults` 🔧
+  - 💡 讀取 pure_ai_audit 結果 /
+- Line 182: `function saveAuditState` 🔧
+  - 💡 保存 audit 狀態 /
+- Line 200: `function ensureDir` 🔧
+  - 💡 確保目錄存在 /
+- Line 220: `function findRecentFiles` 🔧
+  - 💡 找到自上次 audit 後（或最近 N 日內）修改的 scripts /
+- Line 235: `function walk` 🔧
+  - 💡 [無描述]
+- Line 281: `function scanErrors` 🔧
+  - 💡 掃描 errors.json 中未解決的錯誤 /
+- Line 331: `function analyzeErrorPatterns` 🔧
+  - 💡 Error Pattern Analysis — 深度分析 errors.json 中的錯誤模式 對每個 error type 提供根本原因、修復建議、是否需要人手介入 /
+- Line 413: `arrow function totalCount` ➡️
+  - 💡 [無描述]
+- Line 414: `arrow function unresolvedCount` ➡️
+  - 💡 [無描述]
+- Line 415: `arrow function recentCount` ➡️
+  - 💡 [無描述]
+- Line 472: `function analyzeFile` 🔧
+  - 💡 分析單個檔案 /
+- Line 551: `function autoFixFile` 🔧
+  - 💡 自動修復 low-risk 問題 /
+- Line 564: `arrow function rule` ➡️
+  - 💡 [無描述]
+- Line 604: `function annotateWithPureAI` 🔧
+  - 💡 用 pure_ai_audit 結果標註報告 /
+- Line 609: `arrow function isHandled` ➡️
+  - 💡 [無描述]
+- Line 625: `function generateReport` 🔧
+  - 💡 生成並保存報告 /
+- Line 697: `arrow function existingIdx` ➡️
+  - 💡 檢查是否已有今天的 audit 記錄，有的話更新，沒有則添加
+- Line 723: `function generateMarkdownReport` 🔧
+  - 💡 生成 Markdown 格式報告 /
+- Line 1015: `function printReport` 🔧
+  - 💡 打印報告到 console /
+- Line 1313: `function findGitModifiedFiles` 🔧
+  - 💡 找出 git 中已修改但未提交的檔案 /
+- Line 1324: `arrow function lines` ➡️
+  - 💡 [無描述]
+- Line 1354: `function runDeployCheck` 🔧
+  - 💡 完整的 Deploy Check 流程 /
+- Line 1382: `arrow function filtered` ➡️
+  - 💡 排除 auto_fix.js 自己（審計自己會造成干擾）
+- Line 1440: `arrow function hasTryCatch` ➡️
+  - 💡 [無描述]
+- Line 1461: `arrow function allSyntaxOk` ➡️
+  - 💡 3. 顯示審查結果
+- Line 1582: `function runScanAndFix` 🔧
+  - 💡 主掃描 + 修復流程 /
+- Line 1692: `arrow function matchedIssues` ➡️
+  - 💡 Extract issue description from lowRisk issues
+- Line 1775: `function showReport` 🔧
+  - 💡 查看上次報告 /
+- Line 1804: `function confirmHighRisk` 🔧
+  - 💡 確認 high-risk 問題已處理 /
+- Line 1830: `arrow function item` ➡️
+  - 💡 [無描述]
+- Line 1866: `function getLightweightImpacts` 🔧
+  - 💡 Lightweight impact scan — single pass for all modified files at deploy-check time. Avoids calling runImpactAnalysis() per-file (which is slow). Returns { dependencies: Set, cronImpact: string[] } /
+- Line 1873: `function collectScripts` 🔧
+  - 💡 [無描述]
+- Line 1929: `function parseCrontab` 🔧
+  - 💡 解析 crontab，返回每個 job 的資訊 /
+- Line 1963: `function describeCronSchedule` 🔧
+  - 💡 描述 cron schedule 為人類可讀格式 /
+- Line 1989: `function checkSyntax` 🔧
+  - 💡 檢查檔案是否存在並有語法錯誤 /
+- Line 2019: `function runImpactAnalysis` 🔧
+  - 💡 分析指定 script 的影響範圍 /
+- Line 2091: `function collectScripts` 🔧
+  - 💡 [無描述]
+- Line 2194: `arrow function hasTryCatch` ➡️
+  - 💡 [無描述]
+- Line 2403: `function generateAuditBrief` 🔧
+  - 💡 將 audit report 壓縮成文字 brief，供 sub-agent 消化 /
+- Line 2540: `function generateSpawnPayload` 🔧
+  - 💡 生成 spawn sub-agent 嘅 payload 返回 { model, label, prompt, channel, target } /
+- Line 2678: `function runSpawn` 🔧
+  - 💡 執行掃描 → 生成 spawn payload → 輸出 當運行 `node scripts/auto_fix.js` 或 `node scripts/auto_fix.js spawn` 時調用 /
+- Line 2787: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 2802: `arrow function id` ➡️
+  - 💡 [無描述]
+- Line 2810: `arrow function target` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+
+### `auto_remember.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+- Line 18: `variable HOME_DIR` 📦
+  - 💡 [無描述]
+- Line 19: `variable SESSIONS_DIR` 📦
+  - 💡 [無描述]
+- Line 20: `variable WORKSPACE_DIR` 📦
+  - 💡 [無描述]
+- Line 22: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 27: `variable CONFIG` 📦
+  - 💡 ==================== CONFIG (Magic Numbers) ====================
+- Line 54: `variable MEMORY_CLASSIFICATIONS` 📦
+  - 💡 [無描述]
+- Line 138: `variable ISSUE_KEYWORDS` 📦
+  - 💡 [無描述]
+- Line 144: `function classifyRememberContent` 🔧
+  - 💡 [無描述]
+- Line 232: `function renderScoreBar` 🔧
+  - 💡 [無描述]
+- Line 238: `function logClassificationResults` 🔧
+  - 💡 [無描述]
+- Line 263: `function appendToMemoryMd` 🔧
+  - 💡 [無描述]
+- Line 277: `function appendToAgentsMd` 🔧
+  - 💡 [無描述]
+- Line 291: `function appendToToolsMd` 🔧
+  - 💡 [無描述]
+- Line 305: `function addToErrors` 🔧
+  - 💡 [無描述]
+- Line 322: `function createIssue` 🔧
+  - 💡 [無描述]
+- Line 341: `function isRecentlyProcessed` 🔧
+  - 💡 ==================== STATE MANAGEMENT ====================
+- Line 367: `function recordProcessed` 🔧
+  - 💡 [無描述]
+- Line 410: `function checkAndPromoteToPreference` 🔧
+  - 💡 Level 3: Preference Learning
+- Line 447: `arrow function alreadyPromoted` ➡️
+  - 💡 [無描述]
+- Line 462: `function extractCoreContent` 🔧
+  - 💡 [無描述]
+- Line 472: `function isContentSimilar` 🔧
+  - 💡 [無描述]
+- Line 484: `arrow function commonWords` ➡️
+  - 💡 [無描述]
+- Line 490: `function notifyPreferencePromotion` 🔧
+  - 💡 [無描述]
+- Line 531: `function saveToKnowledge` 🔧
+  - 💡 [無描述]
+- Line 579: `function processRememberItem` 🔧
+  - 💡 [無描述]
+- Line 584: `arrow function existingPreference` ➡️
+  - 💡 [無描述]
+- Line 672: `function scanForRememberRequests` 🔧
+  - 💡 [無描述]
+- Line 700: `arrow function lines` ➡️
+  - 💡 [無描述]
+- Line 728: `function detectAndCreate` 🔧
+  - 💡 [無描述]
+- Line 746: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `browser_autoclose.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+
+### `chart_generator.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `class ChartGenerator` 🏗️
+  - 💡 [無描述]
+
+### `check_pure_audit_pending.js`
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable WORKSPACE` 📦
+  - 💡 [無描述]
+- Line 18: `variable PENDING_FILE` 📦
+  - 💡 [無描述]
+- Line 19: `variable SPAWN_PAYLOAD_FILE` 📦
+  - 💡 [無描述]
+- Line 20: `variable RESULT_FILE` 📦
+  - 💡 [無描述]
+- Line 25: `function getPendingStatus` 🔧
+  - 💡 讀取 pending spawn 狀態 /
+- Line 56: `function clearPending` 🔧
+  - 💡 清除 pending 狀態 /
+- Line 78: `function main` 🔧
+  - 💡 主函數 /
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `churn_predictor.js`
+- Line 9: `class ChurnPredictor` 🏗️
+  - 💡 [無描述]
+- Line 55: `arrow function sentInteractions` ➡️
+  - 💡 Factor 2: Response rate to communications
+- Line 56: `arrow function receivedResponses` ➡️
+  - 💡 [無描述]
+- Line 67: `arrow function recentInteractions` ➡️
+  - 💡 Factor 3: Declining engagement (fewer interactions over time)
+- Line 72: `arrow function olderInteractions` ➡️
+  - 💡 [無描述]
+- Line 121: `arrow function predictions` ➡️
+  - 💡 [無描述]
+
+### `closed_loop_v11_runner.js`
+- Line 22: `variable fs` 📦
+  - 💡 [無描述]
+- Line 23: `variable path` 📦
+  - 💡 [無描述]
+- Line 26: `variable CODE_FILE` 📦
+  - 💡 [無描述]
+- Line 27: `variable CHECKPOINT_DIR` 📦
+  - 💡 [無描述]
+- Line 28: `variable CHECKPOINT_FILE` 📦
+  - 💡 [無描述]
+- Line 29: `variable MAX_ROUNDS` 📦
+  - 💡 [無描述]
+- Line 30: `variable AGENT_TIMEOUT` 📦
+  - 💡 [無描述]
+- Line 31: `variable MODEL` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+- Line 33: `variable TEST_AGENTS` 📦
+  - 💡 [無描述]
+- Line 43: `function ensureCheckpointDir` 🔧
+  - 💡 ───────────────────────────────────────────────────────────────────────────── Checkpoint helpers ─────────────────────────────────────────────────────────────────────────────
+- Line 53: `function saveCheckpoint` 🔧
+  - 💡 [無描述]
+- Line 62: `function loadCheckpoint` 🔧
+  - 💡 [無描述]
+- Line 73: `function getVersionFromCode` 🔧
+  - 💡 [無描述]
+- Line 83: `function loadFullCode` 🔧
+  - 💡 [無描述]
+- Line 90: `function parseAgentResult` 🔧
+  - 💡 ───────────────────────────────────────────────────────────────────────────── Parse agent result for issues ─────────────────────────────────────────────────────────────────────────────
+- Line 148: `function runIntegrationTest` 🔧
+  - 💡 ───────────────────────────────────────────────────────────────────────────── Integration test ─────────────────────────────────────────────────────────────────────────────
+- Line 166: `function buildAgentPrompts` 🔧
+  - 💡 Build the 4 agent prompts for a given round. Returns the code snippet to include in prompts (first + last 200 lines). /
+- Line 167: `arrow function prompts` ➡️
+  - 💡 [無描述]
+- Line 211: `function main` 🔧
+  - 💡 ───────────────────────────────────────────────────────────────────────────── Main runner - called when running as a normal script This handles checkpoint loading, round iteration, and final reporting ─────────────────────────────────────────────────────────────────────────────
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `code_quality_generator.js`
+- Line 33: `class CodeQualityReportGenerator` 🏗️
+  - 💡 [無描述]
+- Line 172: `arrow function truncate` ➡️
+  - 💡 Truncate content if too long (Discord field value limit is 1024 chars)
+- Line 208: `arrow function issueList` ➡️
+  - 💡 Format issues list
+
+### `code_quality_manager.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 26: `variable VERIFY_TIMEOUT_MS` 📦
+  - 💡 ==================== 超時常量 ====================
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 27: `variable AUTO_FIX_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 73: `variable CQM_CONFIG` 📦
+  - 💡 ==================== 配置常量 ====================
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 97: `class CodeQualityManager` 🏗️
+  - 💡 ==================== Code Quality Manager ====================
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 199: `arrow function filePaths` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 528: `class CLIHandler` 🏗️
+  - 💡 ==================== CLI 命令處理 ====================
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 980: `arrow function successCount` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 981: `arrow function failedCount` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 1240: `variable format` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 1295: `function createCodeQualityManager` 🔧
+  - 💡 ==================== 便捷函數 ====================
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 1299: `function quickAudit` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 1348: `function main` 🔧
+  - 💡 ==================== CLI 入口 ====================
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `code_quality_templates.js`
+- Line 24: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 112: `function createCodeQualityReportStructure` 🔧
+  - 💡 @param {string} data.version - Report version @param {Object} data.summary - Summary statistics @param {Array} data.issues - List of issues @returns {Object} Report structure /
+- Line 155: `function createSection` 🔧
+  - 💡 @param {string} name - Section name @param {string} emoji - Section emoji @param {Array} issues - Issues in this section @returns {Object} Section structure /
+- Line 170: `function groupBySeverity` 🔧
+  - 💡 Group issues by severity  @param {Array} issues - List of issues @returns {Object} Issues grouped by severity /
+- Line 196: `function groupByCategory` 🔧
+  - 💡 Group issues by category  @param {Array} issues - List of issues @returns {Object} Issues grouped by category /
+
+### `connection_surface.js`
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 20: `variable VAULT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 21: `variable STATE_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 22: `variable KNOWLEDGE_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 23: `variable OUTPUT_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 26: `variable CONFIG` 📦
+  - 💡 Config
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 35: `function loadState` 🔧
+  - 💡 ===== State =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 46: `function saveState` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 57: `function getAllNotes` 🔧
+  - 💡 ===== Note scanning =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 65: `arrow function files` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 87: `function findRecentNotes` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 93: `function findConnections` 🔧
+  - 💡 ===== Connection detection =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 152: `function generateReport` 🔧
+  - 💡 ===== Report generation =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 202: `arrow function newPairs` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 215: `function writeKnowledgeNote` 🔧
+  - 💡 ===== Write Knowledge note (via write_to_obsidian.js) =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 244: `function main` 🔧
+  - 💡 ===== Main =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `contact_manager.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+- Line 18: `variable CONTACTS_FILE` 📦
+  - 💡 [無描述]
+- Line 21: `variable CONTACT_TYPES` 📦
+  - 💡 聯絡人類型
+- Line 32: `function loadContacts` 🔧
+  - 💡 加載聯絡人數據 /
+- Line 48: `function saveContacts` 🔧
+  - 💡 保存聯絡人數據 /
+- Line 63: `function addContact` 🔧
+  - 💡 添加聯絡人 /
+- Line 89: `function findContacts` 🔧
+  - 💡 查詢聯絡人 /
+- Line 105: `function updateContact` 🔧
+  - 💡 更新聯絡人 /
+- Line 107: `arrow function index` ➡️
+  - 💡 [無描述]
+- Line 123: `function deleteContact` 🔧
+  - 💡 刪除聯絡人 /
+- Line 133: `function getStats` 🔧
+  - 💡 獲取統計數據 /
+- Line 150: `function listContacts` 🔧
+  - 💡 顯示聯絡人列表（格式化） /
+
+### `contract_checker.js`
+- Line 7: `class ContractChecker` 🏗️
+  - 💡 [無描述]
+- Line 66: `arrow function relevant` ➡️
+  - 💡 [無描述]
+
+### `cron_health_triage.js`
+- Line 24: `variable fs` 📦
+  - 💡 [無描述]
+- Line 25: `variable path` 📦
+  - 💡 [無描述]
+- Line 27: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 28: `variable DISCORD_CHANNEL` 📦
+  - 💡 [無描述]
+- Line 29: `variable STALE_THRESHOLD_HOURS` 📦
+  - 💡 [無描述]
+- Line 30: `variable PUSH_COOLDOWN_HOURS` 📦
+  - 💡 [無描述]
+- Line 31: `variable WARNING_STATUSES` 📦
+  - 💡 [無描述]
+- Line 32: `variable ERROR_STATUSES` 📦
+  - 💡 [無描述]
+- Line 34: `variable QUIET` 📦
+  - 💡 [無描述]
+- Line 35: `variable DRY_RUN` 📦
+  - 💡 [無描述]
+- Line 36: `variable JSON_OUT` 📦
+  - 💡 [無描述]
+- Line 38: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 62: `function loadState` 🔧
+  - 💡 ----------------- State helpers -----------------
+- Line 79: `function saveState` 🔧
+  - 💡 [無描述]
+- Line 90: `function runChild` 🔧
+  - 💡 ----------------- Async child process -----------------
+- Line 96: `arrow function timer` ➡️
+  - 💡 [無描述]
+- Line 116: `function fetchCronJobs` 🔧
+  - 💡 ----------------- Cron fetch -----------------
+- Line 144: `function classifyJob` 🔧
+  - 💡 ----------------- Classification -----------------
+- Line 189: `function truncate` 🔧
+  - 💡 [無描述]
+- Line 196: `function hasChanges` 🔧
+  - 💡 ----------------- Diff vs state -----------------
+- Line 205: `function shouldForcePush` 🔧
+  - 💡 [無描述]
+- Line 214: `function nowHktString` 🔧
+  - 💡 ----------------- Discord formatting -----------------
+- Line 225: `function formatDiscordMessage` 🔧
+  - 💡 [無描述]
+- Line 267: `function sendDiscord` 🔧
+  - 💡 ----------------- Discord push -----------------
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 285: `function main` 🔧
+  - 💡 ----------------- Main -----------------
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 300: `arrow function nonOk` ➡️
+  - 💡 [無描述]
+
+### `cron_preflight_runner.js`
+- Line 31: `variable fs` 📦
+  - 💡 [無描述]
+- Line 32: `variable path` 📦
+  - 💡 [無描述]
+- Line 35: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 45: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 49: `function error` 🔧
+  - 💡 [無描述]
+- Line 53: `function getJobInfo` 🔧
+  - 💡 [無描述]
+- Line 64: `function findSessionForJob` 🔧
+  - 💡 [無描述]
+- Line 92: `function checkProviderHealth` 🔧
+  - 💡 [無描述]
+- Line 145: `function sendDiscordAlert` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 156: `function formatHealthReport` 🔧
+  - 💡 [無描述]
+- Line 163: `function pollUntilDone` 🔧
+  - 💡 [無描述]
+- Line 201: `function sleep` 🔧
+  - 💡 [無描述]
+- Line 205: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 207: `arrow function jobId` ➡️
+  - 💡 [無描述]
+
+### `cross_session_bootstrap.js`
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 20: `variable CONFIG` 📦
+  - 💡 Configuration
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 39: `variable _quiet` 📦
+  - 💡 Quiet mode
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 42: `function log` 🔧
+  - 💡 Helper: log only if not quiet
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 47: `function warn` 🔧
+  - 💡 Helper: warning log
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+- Line 54: `function readJson` 🔧
+  - 💡 讀取 JSON 檔案，失敗時返回 null /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 67: `function ensureDir` 🔧
+  - 💡 確保目錄存在 /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 86: `function formatDate` 🔧
+  - 💡 格式化日期 /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 100: `function generateSystemHealth` 🔧
+  - 💡 /  生成系統健康 section 顯示 cron job 狀態 + 基本系統指標 + 異常提醒 /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 114: `arrow function failed` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 199: `function generateProjectsSection` 🔧
+  - 💡 生成項目 section /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 238: `function generatePeriodicSection` 🔧
+  - 💡 生成週期性 Pattern section /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 282: `function generateTopicGraphSection` 🔧
+  - 💡 生成 Topic 關聯 section /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 325: `function generateKnowledgeSection` 🔧
+  - 💡 掃描 knowledge 目錄，生成知識摘要 /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 377: `function generateCorrectionSection` 🔧
+  - 💡 生成完整的 Markdown /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 409: `function readMemoryLayerByLayer` 🔧
+  - 💡 /  漸進讀取記憶層：L0 → L1 → L2 L0 最好（~200字摘要），冇就試 L1（~600字概述），再冇就讀 L2 raw data /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 414: `function readBody` 🔧
+  - 💡 Helper: read file body (skip header, take bullet lines)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 429: `function latestFiles` 🔧
+  - 💡 Get latest date files from a directory
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 445: `function countBullets` 🔧
+  - 💡 === Layer 1: L0 Abstract (~200 chars) ===
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 514: `function generateMarkdown` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 567: `function generateDashboardStatus` 🔧
+  - 💡 Dashboard status: check if session context metadata is persisted. Guides the model on whether --auto-persist is needed. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 593: `function generateActiveIssuesSection` 🔧
+  - 💡 Compact active issues section /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 634: `function generateCompactPeriodic` 🔧
+  - 💡 Compact periodic section — show only if patterns exist /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 648: `function generateCompactTopicGraph` 🔧
+  - 💡 Compact topic graph — single line with top 5 topics + top 3 edges /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 671: `function main` 🔧
+  - 💡 主函數 /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 732: `function generateHandoffPlaceholders` 🔧
+  - 💡 Generate compaction contract handoff section. - If `.session_handoff.md` exists → inject it (preserve task continuity) - If not → return empty placeholder (first run / no previous session) Reference: AGENTS.md — 🧠 Compaction Contract /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+- Line 761: `function fallbackHandoff` 🔧
+  - 💡 Fallback: return empty placeholder headings so the structure is visible. Used on first run or when handoff file is missing/invalid. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+
+### `cross_session_context.js`
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable CONFIG` 📦
+  - 💡 Configuration
+- Line 27: `variable _quiet` 📦
+  - 💡 Quiet mode
+- Line 30: `function log` 🔧
+  - 💡 Helper: log only if not quiet
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 35: `function warn` 🔧
+  - 💡 Helper: warning log
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+- Line 42: `function readJson` 🔧
+  - 💡 讀取 JSON 檔案，失敗時返回 null /
+- Line 55: `function ensureDir` 🔧
+  - 💡 確保目錄存在 /
+- Line 70: `function formatDate` 🔧
+  - 💡 格式化日期為 HKT /
+- Line 80: `function formatErrors` 🔧
+  - 💡 生成錯誤摘要 /
+- Line 87: `arrow function sorted` ➡️
+  - 💡 排序：按 count 降序
+- Line 105: `function formatProjects` 🔧
+  - 💡 生成項目摘要 /
+- Line 113: `arrow function active` ➡️
+  - 💡 分類：active vs completed
+- Line 114: `arrow function completed` ➡️
+  - 💡 [無描述]
+- Line 153: `function formatPeriodic` 🔧
+  - 💡 生成週期性 Pattern 摘要 /
+- Line 161: `arrow function weekly` ➡️
+  - 💡 找出 day_of_week patterns
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+- Line 197: `function formatTopicGraph` 🔧
+  - 💡 生成 Topic 關聯圖摘要 /
+- Line 225: `function main` 🔧
+  - 💡 主函數 /
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `customer_analyzer.js`
+- Line 7: `class CustomerAnalyzer` 🏗️
+  - 💡 [無描述]
+- Line 17: `arrow function customerTx` ➡️
+  - 💡 [無描述]
+- Line 67: `arrow function avg` ➡️
+  - 💡 [無描述]
+- Line 75: `arrow function avg` ➡️
+  - 💡 [無描述]
+- Line 80: `arrow function sorted` ➡️
+  - 💡 [無描述]
+- Line 92: `arrow function avgInterval` ➡️
+  - 💡 [無描述]
+- Line 102: `arrow function totalSpend` ➡️
+  - 💡 [無描述]
+- Line 110: `arrow function avgOrder` ➡️
+  - 💡 [無描述]
+- Line 118: `arrow function sorted` ➡️
+  - 💡 [無描述]
+
+### `customer360.js`
+- Line 7: `variable fs` 📦
+  - 💡 [無描述]
+- Line 8: `variable path` 📦
+  - 💡 [無描述]
+- Line 11: `class Customer360` 🏗️
+  - 💡 [無描述]
+- Line 146: `arrow function totalSpend` ➡️
+  - 💡 [無描述]
+
+### `daily_maintenance.js`
+- Line 16: `variable os` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 22: `variable exec` 📦
+  - 💡 [無描述]
+  - 📋 Log: [EXEC_OK] / [EXEC_ERROR]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 27: `variable NODE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 30: `variable CONFIG` 📦
+  - 💡 CONFIG: Magic numbers extracted to named constants
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 42: `variable _quiet` 📦
+  - 💡 Quiet mode support (--quiet flag suppresses info output)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 43: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 50: `function scriptExists` 🔧
+  - 💡 Helper to check if script exists and is within workspace
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 66: `function runScript` 🔧
+  - 💡 Helper to run script with timeout
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 110: `variable PARALLEL_JOBS` 📦
+  - 💡 Define parallel jobs NOTE: error_autofix.js removed - runs via System Check (10:00, 15:00, 22:00)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 117: `variable BACKUP_DIR` 📦
+  - 💡 Backup directory for .bak files
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 121: `function isPathSafe` 🔧
+  - 💡 Security: Validate path is within expected directory (prevent path traversal) Uses realpath to resolve symlinks (prevents symlink escape)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 135: `function moveBakFilesToBackup` 🔧
+  - 💡 Helper: Move .bak files to backup directory
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 203: `variable SEQUENTIAL_JOBS` 📦
+  - 💡 Sequential jobs (should run after parallel)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 208: `function runParallelJobs` 🔧
+  - 💡 Run jobs in parallel
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 230: `function runSequentialJobs` 🔧
+  - 💡 Run jobs sequentially
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 248: `variable runningProcesses` 📦
+  - 💡 Track running child processes for graceful shutdown
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 251: `variable isShuttingDown` 📦
+  - 💡 Graceful shutdown handler
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 252: `function gracefulShutdown` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 288: `function main` 🔧
+  - 💡 Main execution
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 316: `arrow function ok` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 317: `arrow function skipped` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 318: `arrow function errors` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+
+### `daily_summary_bot.js`
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 21: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 22: `variable https` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 25: `variable ReportGenerator` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 28: `variable LOCK_FILE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 31: `variable CHANNEL_ID` 📦
+  - 💡 Discord channel ID (#📕日記)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 34: `variable _quietMode` 📦
+  - 💡 Module-level quiet mode
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 37: `variable MINIMAX_TIMEOUT_MS` 📦
+  - 💡 Config for MiniMax via OpenClaw CLI
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 38: `variable MINIMAX_CONFIG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 44: `function getDiscordToken` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 55: `function sendDiscord` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 69: `arrow function req` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 92: `function getTodayDate` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 96: `function getDisplayDate` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 101: `function readTodayMemory` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 130: `function generateJournalWithMiniMax` 🔧
+  - 💡 用 MiniMax M2.5 生成日記 (v5 OpenClaw CLI 版)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 230: `function generateDefaultJournal` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 238: `function parseSummary` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 249: `arrow function lines` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 268: `arrow function workScore` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 269: `arrow function learningScore` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 270: `arrow function problemScore` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 271: `arrow function planScore` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 287: `arrow function formatLines` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 298: `function generateDailySummary` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 300: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+- Line 408: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `daily_synthesis.js`
+- Line 40: `variable fs` 📦
+  - 💡 [無描述]
+- Line 41: `variable path` 📦
+  - 💡 [無描述]
+- Line 48: `variable HOME` 📦
+  - 💡 [無描述]
+- Line 49: `variable WS_PATH` 📦
+  - 💡 [無描述]
+- Line 50: `variable MEMORY_DIR` 📦
+  - 💡 [無描述]
+- Line 51: `variable L0_DIR` 📦
+  - 💡 [無描述]
+- Line 52: `variable L1_DIR` 📦
+  - 💡 [無描述]
+- Line 53: `variable OBSIDIAN_VAULT` 📦
+  - 💡 [無描述]
+- Line 54: `variable OBSIDIAN_DAILY` 📦
+  - 💡 [無描述]
+- Line 55: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 56: `variable TZ` 📦
+  - 💡 [無描述]
+- Line 59: `variable DEFAULT_DISCORD_CHANNEL` 📦
+  - 💡 Default: no Discord push. Pass --discord-channel <id> to enable.
+- Line 62: `variable _quiet` 📦
+  - 💡 Quiet mode (internal — driven by --dry-run so we don't spam stdout)
+- Line 63: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 64: `arrow function warn` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+- Line 70: `function printHelp` 🔧
+  - 💡 [無描述]
+- Line 92: `function parseArgs` 🔧
+  - 💡 [無描述]
+- Line 145: `function getHKTDate` 🔧
+  - 💡 [無描述]
+- Line 155: `function getYMD` 🔧
+  - 💡 [無描述]
+- Line 166: `function safeReadFile` 🔧
+  - 💡 [無描述]
+- Line 178: `function readL2Files` 🔧
+  - 💡 Read all L2 memory files for a given date, concatenated. Returns { combined: string, count: number, topics: [...] }
+- Line 184: `arrow function files` ➡️
+  - 💡 [無描述]
+- Line 207: `function extractL2Signatures` 🔧
+  - 💡 Extract topic signatures from L2 memory content. L2 format: `- * [上午|下午HH:MM] [記錄: YYYY-MM-DD] [SOURCE]: [] <content>` Heuristic: capture "action" sentences (with verbs / keywords like 完成/修復/發現/創建). /
+- Line 241: `function atomicWriteFile` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [MEM_WRITE_SUCCESS] / [MEM_WRITE_FAILED]
+- Line 261: `function extractTopics` 🔧
+  - 💡 Extract topic lines from L0/L1 markdown. Returns array of {raw, normalized} objects. Heuristic: lines starting with `*`, `-`, or numbered `1.` are topics. /
+- Line 283: `function normalizeTopic` 🔧
+  - 💡 [無描述]
+- Line 297: `function topicSimilarity` 🔧
+  - 💡 Compute similarity between two normalized topics (0..1). Uses 4-gram overlap (Jaccard) — simple but effective for short text. /
+- Line 308: `function ngrams` 🔧
+  - 💡 [無描述]
+- Line 321: `function loadState` 🔧
+  - 💡 [無描述]
+- Line 331: `function saveState` 🔧
+  - 💡 [無描述]
+- Line 353: `function compareTopics` 🔧
+  - 💡 - newTopics: in today, not in yesterday (Day 1) - continuing: in today AND yesterday (Day 2+) - If also in dayBefore: Day 3+ - ended: in yesterday, not in today (Day 3+ ended) /
+- Line 396: `arrow function inDayBefore` ➡️
+  - 💡 Was it in day-before too? Mark as Day 3 ended
+- Line 408: `function buildSynthesisMarkdown` 🔧
+  - 💡 [無描述]
+- Line 473: `function buildDiscordContent` 🔧
+  - 💡 [無描述]
+- Line 522: `function truncateForDiscord` 🔧
+  - 💡 [無描述]
+- Line 531: `function writeObsidianNote` 🔧
+  - 💡 [無描述]
+- Line 610: `function sendDiscordMessage` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 652: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `dashboard_generator.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 14: `class DashboardGenerator` 🏗️
+  - 💡 [無描述]
+
+### `date_tag_automation.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+- Line 21: `variable MEMORY_FILE` 📦
+  - 💡 [無描述]
+- Line 22: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 27: `variable DATE_FORMATS` 📦
+  - 💡 Date format patterns
+- Line 34: `variable TAGS` 📦
+  - 💡 Tag patterns
+- Line 44: `function getStandardDate` 🔧
+  - 💡 Get current date in standard format /
+- Line 52: `function getChineseDate` 🔧
+  - 💡 Get current date in Chinese format /
+- Line 60: `function getTimestamp` 🔧
+  - 💡 Get current timestamp /
+- Line 75: `function readMemoryFile` 🔧
+  - 💡 Read MEMORY.md /
+- Line 87: `function writeMemoryFile` 🔧
+  - 💡 Write MEMORY.md /
+- Line 101: `function hasDateTags` 🔧
+  - 💡 Check if a section already has date tags /
+- Line 111: `function addDateTags` 🔧
+  - 💡 Add date tags to a section /
+- Line 142: `function updateModifiedDate` 🔧
+  - 💡 Update "Updated" date for modified sections /
+- Line 186: `function autoTagNewSections` 🔧
+  - 💡 Auto-tag new sections /
+- Line 263: `function updateGlobalTimestamp` 🔧
+  - 💡 Update global "Last Updated" timestamp /
+- Line 288: `function tagSection` 🔧
+  - 💡 Add date tag to specific section /
+- Line 335: `function getUntaggedSections` 🔧
+  - 💡 Get sections without date tags /
+- Line 378: `function generateReport` 🔧
+  - 💡 Generate date tag report /
+
+### `deep_cleanup.sh`
+- Line 29: `function cleanup_files` 🔧
+  - 💡 函數：安全刪除文件
+
+### `diamond_grading_report.js`
+- Line 7: `variable fs` 📦
+  - 💡 Diamond Grading Report Generator Uses GIA analyzer logic from gia_grading_logic_extractor Grades 1,278 stock diamonds + generates full report /
+- Line 14: `variable COLOR_RANK` 📦
+  - 💡 COLOR RANK MAP (D=best, Z=worst, GIA scale) Each color has a "floor" score and a "ceiling" score Score = colorRank at base, capped by ceiling (color premium above H drops sharply)
+- Line 41: `variable CLARITY_RANK` 📦
+  - 💡 CLARITY RANK (FL=best, I3=worst, natural diamonds)
+- Line 42: `variable CLARITY_SCORE` 📦
+  - 💡 [無描述]
+- Line 47: `variable LG_CLARITY_RANK` 📦
+  - 💡 Lab-grown clarity (different scale)
+- Line 48: `variable LG_CLARITY_SCORE` 📦
+  - 💡 [無描述]
+- Line 52: `variable CARAT_TIERS` 📦
+  - 💡 CARAT TIERS
+- Line 65: `variable CUT_GRADE` 📦
+  - 💡 CUT GRADE MAP
+- Line 66: `variable CUT_LABELS` 📦
+  - 💡 [無描述]
+- Line 69: `variable FLUOR_PENALTY` 📦
+  - 💡 FLUORESCENCE PENALTY (Strong+ fluorescence hurts)
+- Line 75: `variable QUALITY_TIERS` 📦
+  - 💡 QUALITY TIERS
+- Line 87: `variable VERDICT` 📦
+  - 💡 VERDICT THRESHOLDS
+- Line 97: `function getCaratTier` 🔧
+  - 💡 [無描述]
+- Line 104: `function getQualityTier` 🔧
+  - 💡 [無描述]
+- Line 124: `function getVerdict` 🔧
+  - 💡 [無描述]
+- Line 131: `function isLabGrown` 🔧
+  - 💡 [無描述]
+- Line 137: `function gradeStone` 🔧
+  - 💡 [無描述]
+- Line 221: `arrow function results` ➡️
+  - 💡 [無描述]
+- Line 228: `variable stats` 📦
+  - 💡 [無描述]
+- Line 245: `variable colorDist` 📦
+  - 💡 Color distribution
+- Line 247: `variable colorDistSorted` 📦
+  - 💡 [無描述]
+- Line 252: `variable clarityDist` 📦
+  - 💡 Clarity distribution
+- Line 254: `arrow function clarityDistSorted` ➡️
+  - 💡 [無描述]
+- Line 257: `variable cutDist` 📦
+  - 💡 Cut distribution
+- Line 262: `variable caratDist` 📦
+  - 💡 Carat distribution
+- Line 266: `variable top10` 📦
+  - 💡 Top 10 stones
+- Line 269: `arrow function missingData` ➡️
+  - 💡 ─── VALIDATION ───────────────────────────────────────────────────────────────
+- Line 340: `arrow function investmentStones` ➡️
+  - 💡 [無描述]
+- Line 347: `variable reportPath` 📦
+  - 💡 Save full report to file
+- Line 348: `variable reportContent` 📦
+  - 💡 [無描述]
+
+### `diamond_valuation.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `variable RAPAPORT_DB` 📦
+  - 💡 [無描述]
+- Line 16: `variable IDEX_CACHE` 📦
+  - 💡 [無描述]
+- Line 19: `function loadRapaport` 🔧
+  - 💡 載入 Rapaport 數據
+- Line 39: `function calculateRapaportPrice` 🔧
+  - 💡 計算 Rapaport 價格
+- Line 79: `function getValuationLevel` 🔧
+  - 💡 獲取估值等級
+- Line 92: `function evaluateSingleDiamond` 🔧
+  - 💡 計算單顆鑽石估值
+- Line 135: `function formatOutput` 🔧
+  - 💡 格式化輸出
+- Line 159: `variable args` 📦
+  - 💡 Main
+- Line 178: `variable validShapes` 📦
+  - 💡 Input validation
+- Line 179: `variable validColors` 📦
+  - 💡 [無描述]
+- Line 180: `variable validClarity` 📦
+  - 💡 [無描述]
+- Line 187: `variable carat` 📦
+  - 💡 [無描述]
+- Line 203: `variable result` 📦
+  - 💡 [無描述]
+
+### `document_template_engine.js`
+- Line 7: `class DocumentTemplateEngine` 🏗️
+  - 💡 [無描述]
+
+### `email_generator.js`
+- Line 7: `class EmailGenerator` 🏗️
+  - 💡 [無描述]
+
+### `error_auto_issue.js`
+- Line 28: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 29: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 31: `variable WORKSPACE_ROOT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 32: `variable ERRORS_FILE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 33: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 34: `variable DISCORD_CHANNEL` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 35: `variable ISSUE_MANAGER` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 36: `variable ISSUES_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 37: `variable STATE_CAP` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 39: `variable QUIET` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 40: `variable DRY_RUN` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 41: `variable JSON_OUT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 43: `function parseIntArg` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 52: `variable REPEAT_THRESHOLD` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 53: `variable LOOKBACK_DAYS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 55: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 80: `function runChild` 🔧
+  - 💡 ----------------- Async child process -----------------
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 86: `arrow function timer` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 106: `function loadState` 🔧
+  - 💡 ----------------- State helpers -----------------
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 122: `function saveState` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 134: `function loadErrors` 🔧
+  - 💡 ----------------- Errors file -----------------
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 153: `function normalizePattern` 🔧
+  - 💡 ----------------- Pattern normalization ----------------- Stable key from (type, problem) — strips numbers/hashes/whitespace for dedup
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 162: `function aggregatePatterns` 🔧
+  - 💡 ----------------- Pattern aggregation -----------------
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 188: `function hktIsoString` 🔧
+  - 💡 ----------------- HKT date utilities -----------------
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 198: `function hktDateString` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 204: `function buildIssueBody` 🔧
+  - 💡 ----------------- Issue body builder -----------------
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 205: `arrow function sampleLines` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 232: `function createIssue` 🔧
+  - 💡 ----------------- Issue creation -----------------
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 257: `arrow function files` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 288: `function sendDiscord` 🔧
+  - 💡 ----------------- Discord push -----------------
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 305: `function formatDiscordMessage` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 313: `function main` 🔧
+  - 💡 ----------------- Main -----------------
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+
+### `error_generator.js`
+- Line 40: `function getSeverityIcon` 🔧
+  - 💡 Get severity icon by level number @param {number} level - Severity level (1-4) @returns {string} Emoji icon /
+- Line 56: `function truncate` 🔧
+  - 💡 Truncate text to max length @param {string} text - Text to truncate @param {number} maxLen - Maximum length @returns {string} Truncated text /
+- Line 66: `class ErrorReportGenerator` 🏗️
+  - 💡 [無描述]
+- Line 217: `arrow function value` ➡️
+  - 💡 [無描述]
+- Line 282: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+
+### `error_templates.js`
+- Line 26: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 54: `variable TITLES` 📦
+  - 💡 [無描述]
+- Line 71: `function createErrorReportStructure` 🔧
+  - 💡 Create error report structure @param {string} date - Report date (YYYY-MM-DD) @returns {object} Standardized error report structure /
+- Line 93: `function createErrorItem` 🔧
+  - 💡 Create a single error item structure @param {object} error - Error data @returns {object} Formatted error item /
+
+### `error_tracker.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 9: `variable fs` 📦
+  - 💡 [無描述]
+- Line 10: `variable fsPromises` 📦
+  - 💡 [無描述]
+- Line 11: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable LOG_DIR` 📦
+  - 💡 [無描述]
+- Line 17: `variable HOME_DIR` 📦
+  - 💡 [無描述]
+- Line 18: `variable SESSIONS_DIR` 📦
+  - 💡 [無描述]
+- Line 24: `variable CONFIG` 📦
+  - 💡 ==================== CONFIG (Magic Numbers) ====================
+- Line 41: `variable AUTO_RESOLVE_RULES` 📦
+  - 💡 [無描述]
+- Line 75: `variable ERROR_PATTERNS` 📦
+  - 💡 ==================== COMPREHENSIVE ERROR PATTERNS ====================
+- Line 124: `function loadErrors` 🔧
+  - 💡 [無描述]
+- Line 150: `function saveErrors` 🔧
+  - 💡 [無描述]
+- Line 274: `function generateId` 🔧
+  - 💡 [無描述]
+- Line 278: `function shouldIgnoreLine` 🔧
+  - 💡 [無描述]
+- Line 285: `function extractCleanMessage` 🔧
+  - 💡 [無描述]
+- Line 376: `function findErrorInLine` 🔧
+  - 💡 [無描述]
+- Line 395: `function extractSourceFromLine` 🔧
+  - 💡 [無描述]
+- Line 403: `function scanLogsForErrors` 🔧
+  - 💡 [無描述]
+- Line 443: `function scanSessionsForErrors` 🔧
+  - 💡 [無描述]
+- Line 497: `function archiveOldResolved` 🔧
+  - 💡 P1-8: Archive/remove resolved errors older than 30 days Keeps errors.json lean for better read performance /
+- Line 515: `function addError` 🔧
+  - 💡 [無描述]
+- Line 521: `arrow function existing` ➡️
+  - 💡 [無描述]
+- Line 553: `function getDaysDiff` 🔧
+  - 💡 [無描述]
+- Line 565: `function autoResolve` 🔧
+  - 💡 [無描述]
+- Line 567: `arrow function unresolved` ➡️
+  - 💡 [無描述]
+- Line 621: `function checkCronStatus` 🔧
+  - 💡 Check all active OpenClaw cron jobs for failures. Queries openclaw cron list --json and records any jobs with errors in the error tracking system. /
+- Line 637: `arrow function failed` ➡️
+  - 💡 [無描述]
+- Line 671: `function scan` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+- Line 711: `function list` 🔧
+  - 💡 [無描述]
+- Line 718: `arrow function sortedErrors` ➡️
+  - 💡 Sort errors by severity, then by date
+- Line 728: `arrow function activeCount` ➡️
+  - 💡 Additional stats at bottom
+- Line 729: `arrow function resolvedCount` ➡️
+  - 💡 [無描述]
+- Line 733: `function stats` 🔧
+  - 💡 [無描述]
+- Line 768: `arrow function autoResolved` ➡️
+  - 💡 Auto-resolve 統計
+- Line 774: `function cmdAdd` 🔧
+  - 💡 [無描述]
+- Line 801: `variable cmd` 📦
+  - 💡 [無描述]
+
+### `error_wiki_sync.js`
+- Line 9: `variable fs` 📦
+  - 💡 [無描述]
+- Line 10: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable WORKSPACE` 📦
+  - 💡 [無描述]
+- Line 14: `variable ERRORS_FILE` 📦
+  - 💡 [無描述]
+- Line 15: `variable WIKI_VAULT` 📦
+  - 💡 [無描述]
+- Line 16: `variable ERRORS_WIKI_DIR` 📦
+  - 💡 [無描述]
+- Line 19: `variable DRY_RUN` 📦
+  - 💡 解析命令行參數
+- Line 21: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 32: `function loadErrors` 🔧
+  - 💡 [無描述]
+- Line 41: `arrow function data` ➡️
+  - 💡 [無描述]
+- Line 51: `function groupErrorsByType` 🔧
+  - 💡 [無描述]
+- Line 71: `function calculateConfidence` 🔧
+  - 💡 [無描述]
+- Line 81: `function determineStatus` 🔧
+  - 💡 [無描述]
+- Line 83: `arrow function unresolvedCount` ➡️
+  - 💡 如果有多個未解決的錯誤，標記為 contested
+- Line 89: `function generateErrorTypePage` 🔧
+  - 💡 [無描述]
+- Line 171: `function generateErrorPatternsIndex` 🔧
+  - 💡 [無描述]
+- Line 172: `arrow function totalErrors` ➡️
+  - 💡 [無描述]
+- Line 238: `function syncErrorsToWiki` 🔧
+  - 💡 [無描述]
+- Line 244: `arrow function unresolvedErrors` ➡️
+  - 💡 [無描述]
+- Line 318: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `excel_report_generator.js`
+- Line 7: `variable fs` 📦
+  - 💡 [無描述]
+- Line 8: `variable path` 📦
+  - 💡 [無描述]
+- Line 11: `class ExcelReportGenerator` 🏗️
+  - 💡 [無描述]
+
+### `fix_broken_notes_final.js`
+- Line 2: `variable fs` 📦
+  - 💡 [無描述]
+- Line 3: `variable path` 📦
+  - 💡 [無描述]
+- Line 5: `variable WIKI_DIR` 📦
+  - 💡 [無描述]
+- Line 6: `variable KNOWLEDGE` 📦
+  - 💡 [無描述]
+- Line 8: `function extractContent` 🔧
+  - 💡 [無描述]
+- Line 18: `variable fixed` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 19: `function walk` 🔧
+  - 💡 [無描述]
+
+### `generate_symbols.js`
+- Line 21: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 22: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 23: `variable readline` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 26: `variable SCRIPTS_DIR` 📦
+  - 💡 ============ 配置 ============
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 27: `variable HEARTBEAT_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 28: `variable ERRORS_JSON_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 29: `variable ISSUES_DIR_ACTIVE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 30: `variable ISSUES_DIR_BACKLOG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 31: `variable OUTPUT_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 34: `variable JS_PATTERNS` 📦
+  - 💡 ============ Regex Patterns ============
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 43: `variable SH_PATTERNS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 49: `variable CATEGORY_MAP` 📦
+  - 💡 ============ 分類映射 ============
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 65: `variable LOG_PATTERNS` 📦
+  - 💡 ============ 內建 Log Pattern 表 ============
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 86: `function priorityEmoji` 🔧
+  - 💡 Priority emoji 映射 /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 91: `function regexEscape` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 98: `function loadIssuesFromDir` 🔧
+  - 💡 讀取指定目錄的所有 Issue 文件 /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 101: `arrow function files` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 119: `function parseIssue` 🔧
+  - 💡 解析單個 Issue 文件 /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 148: `function loadAllIssues` 🔧
+  - 💡 載入所有 Issues（active + backlog） /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 157: `function getDisplayableIssues` 🔧
+  - 💡 過濾顯示用的 Issues（排除 closed/completed/backlog） /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 167: `function findIssueLinks` 🔧
+  - 💡 根據 symbol 名稱和所屬檔案，找到相關的 Issues /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 191: `function loadCronJobsFromHeartbeat` 🔧
+  - 💡 從 HEARTBEAT.md 解析 Cron Jobs，返回 script → cron info 映射 /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 250: `function loadErrorsFromJson` 🔧
+  - 💡 從 memory/errors.json 解析錯誤，統計每個 script 的錯誤 /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 329: `function getLogPattern` 🔧
+  - 💡 根據 symbol 名稱查詢預期 log pattern /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 349: `function buildCronTag` 🔧
+  - 💡 生成 Cron job 的顯示字串 /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 363: `function isHighErrorRate` 🔧
+  - 💡 判斷是否為 HIGH ERROR RATE 24 小時內 count > 5 → 🔥 /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 367: `arrow function isRecent` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 382: `function isComment` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 386: `function cleanComment` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 397: `function extractPrecedingComments` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 412: `function getCategory` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 419: `function getSymbolIcon` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 429: `function getJSsymbolType` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 439: `function extractSymbolsFromFile` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 511: `function scanDirectory` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 535: `function generateMarkdown` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 539: `arrow function totalErrorCount` ➡️
+  - 💡 計算 error stats
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 608: `arrow function sortedSymbols` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 618: `arrow function isMemoryScript` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 686: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 738: `arrow function totalErr` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 767: `arrow function edgeCount` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 829: `function extractCallGraph` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 831: `function cleanName` 🔧
+  - 💡 Helper: strip type prefix
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 890: `arrow function sorted` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 934: `variable SNAPSHOT_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 936: `function buildSnapshotHash` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 941: `arrow function hashContent` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 951: `function loadPreviousSnapshot` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 960: `function saveSnapshot` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 970: `function generateChangeSummary` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+
+### `get_symbol_info.js`
+- Line 22: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 23: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 26: `variable args` 📦
+  - 💡 === 解析參數 ===
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 27: `variable showHelp` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 28: `variable jsonMode` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 29: `variable quietMode` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 30: `variable peekMode` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 33: `arrow function peekArgIdx` ➡️
+  - 💡 解析 --peek=N 或 --peek N
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 34: `variable peekLines` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 41: `arrow function contextArg` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 42: `variable CONTEXT_LINES` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 51: `variable QUERY` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 109: `variable SCRIPTS_DIR` 📦
+  - 💡 === 路徑設定 ===
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 110: `variable SYMBOLS_FILE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 111: `variable STATE_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 114: `variable callGraph` 📦
+  - 💡 === Load Call Graph ===
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 123: `variable changes` 📦
+  - 💡 === Load Changes ===
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 149: `variable content` 📦
+  - 💡 === 跳過 YAML frontmatter ===
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 150: `variable frontmatterEnd` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 160: `variable symbolEntryRegex` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 161: `variable symbols` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 175: `variable allSymbolMatches` 📦
+  - 💡 === 為每個 matched symbol 找到對應的檔案 ===
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 176: `variable currentFile` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 203: `variable queryLower` 📦
+  - 💡 === 搜尋匹配的 Symbol ===
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 204: `arrow function matched` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 222: `arrow function results` ➡️
+  - 💡 把 matched symbols 配上檔案
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 223: `arrow function found` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 233: `function buildSedCommand` 🔧
+  - 💡 === 輸出結果 ===
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 237: `function buildCatCommand` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 244: `function readPeekSnapshot` 🔧
+  - 💡 讀取代碼快照 /
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 265: `arrow function result` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 293: `function name` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+
+### `gia_analyze_and_send.js`
+- Line 7: `variable fs` 📦
+  - 💡 [無描述]
+- Line 8: `variable path` 📦
+  - 💡 [無描述]
+- Line 11: `variable ANALYZER` 📦
+  - 💡 [無描述]
+- Line 12: `variable OPENCLAW` 📦
+  - 💡 [無描述]
+- Line 14: `variable ANALYZER_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+- Line 15: `variable MAX_BUFFER_SIZE` 📦
+  - 💡 [無描述]
+- Line 18: `variable COLOR_WARNING` 📦
+  - 💡 Discord embed color hex values
+- Line 19: `variable COLOR_DANGER` 📦
+  - 💡 [無描述]
+- Line 20: `variable COLOR_SUCCESS` 📦
+  - 💡 [無描述]
+- Line 21: `variable COLOR_INFO` 📦
+  - 💡 [無描述]
+- Line 23: `variable args` 📦
+  - 💡 [無描述]
+- Line 29: `variable pdfPath` 📦
+  - 💡 [無描述]
+- Line 30: `variable channelId` 📦
+  - 💡 [無描述]
+- Line 51: `variable result` 📦
+  - 💡 [無描述]
+- Line 52: `variable analyzer` 📦
+  - 💡 [無描述]
+- Line 55: `variable embed` 📦
+  - 💡 2. Generate Discord embed
+- Line 61: `variable colorMap` 📦
+  - 💡 3. Build presentation payload (Discord embed color hex values)
+- Line 67: `variable tone` 📦
+  - 💡 [無描述]
+- Line 69: `variable blocks` 📦
+  - 💡 [無描述]
+- Line 74: `arrow function specField` ➡️
+  - 💡 Use key fields only for compact display
+- Line 75: `arrow function scoreField` ➡️
+  - 💡 [無描述]
+- Line 76: `arrow function criticalField` ➡️
+  - 💡 [無描述]
+- Line 77: `arrow function posField` ➡️
+  - 💡 [無描述]
+- Line 78: `arrow function recField` ➡️
+  - 💡 [無描述]
+- Line 104: `variable presentation` 📦
+  - 💡 Build presentation JSON
+- Line 110: `variable presJson` 📦
+  - 💡 [無描述]
+- Line 121: `arrow function text` ➡️
+  - 💡 Fallback: send as plain text
+
+### `gia_cert_analyzer_refactored_v17.1.0.js`
+- Line 4: `variable fs` 📦
+  - 💡 [無描述]
+- Line 5: `variable path` 📦
+  - 💡 [無描述]
+- Line 6: `variable https` 📦
+  - 💡 [無描述]
+- Line 9: `variable PDF_CONFIG` 📦
+  - 💡 [無描述]
+- Line 14: `variable HOME` 📦
+  - 💡 [無描述]
+- Line 15: `variable AUTH_PROFILES` 📦
+  - 💡 [無描述]
+- Line 17: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 19: `function export` 🔧
+  - 💡 [無描述]
+- Line 59: `variable RE` 📦
+  - 💡 [無描述]
+- Line 71: `variable DIAMOND_TYPE` 📦
+  - 💡 [無描述]
+- Line 122: `variable FLUOR_COLORS` 📦
+  - 💡 [無描述]
+- Line 152: `variable CARAT_TIERS` 📦
+  - 💡 [無描述]
+- Line 158: `arrow function isMagic` ➡️
+  - 💡 [無描述]
+- Line 176: `variable CUT_GRADE` 📦
+  - 💡 [無描述]
+- Line 195: `variable LAB_TREATMENT` 📦
+  - 💡 [無描述]
+- Line 210: `variable CLARITY_RANK` 📦
+  - 💡 [無描述]
+- Line 221: `variable DEPTH_RANGES` 📦
+  - 💡 [無描述]
+- Line 236: `variable TABLE_RANGES` 📦
+  - 💡 [無描述]
+- Line 251: `variable RATIO_RANGES` 📦
+  - 💡 [無描述]
+- Line 266: `variable FANCY_DEPTH_RANGES` 📦
+  - 💡 [無描述]
+- Line 276: `variable FANCY_TABLE_RANGES` 📦
+  - 💡 [無描述]
+- Line 286: `variable FANCY_COLOR_MODIFIER` 📦
+  - 💡 [無描述]
+- Line 298: `variable FANCY_RARITY_RULE` 📦
+  - 💡 [無描述]
+- Line 314: `variable CHAMPAGNE_EFFECT` 📦
+  - 💡 [無描述]
+- Line 327: `function evaluateDepth` 🔧
+  - 💡 [無描述]
+- Line 395: `function evaluateRatio` 🔧
+  - 💡 [無描述]
+- Line 437: `function evaluateFaceUpSize` 🔧
+  - 💡 [無描述]
+- Line 464: `function evaluateSpreadFactor` 🔧
+  - 💡 [無描述]
+- Line 515: `function checkTreatmentRisk` 🔧
+  - 💡 [無描述]
+- Line 535: `function checkStructuralRisk` 🔧
+  - 💡 [無描述]
+- Line 566: `function checkGirdleDeadWeightRisk` 🔧
+  - 💡 [無描述]
+- Line 581: `function checkAuctionGradeCompensation` 🔧
+  - 💡 [無描述]
+- Line 606: `function checkSymmetrySpecifics` 🔧
+  - 💡 [無描述]
+- Line 621: `function checkEyeCleanRisk` 🔧
+  - 💡 [無描述]
+- Line 655: `function checkCreamyStoneRisk` 🔧
+  - 💡 [無描述]
+- Line 677: `function checkStructuralHaze` 🔧
+  - 💡 [無描述]
+- Line 692: `function checkSuperIdeal` 🔧
+  - 💡 [無描述]
+- Line 718: `function checkCrownPavilionPairing` 🔧
+  - 💡 [無描述]
+- Line 764: `function checkHeartsAndArrows` 🔧
+  - 💡 [無描述]
+- Line 779: `function checkDColorBlueFluorMilky` 🔧
+  - 💡 [無描述]
+- Line 796: `function checkTypeIaClassification` 🔧
+  - 💡 [無描述]
+- Line 811: `function checkTypeIIbUltraWhite` 🔧
+  - 💡 [無描述]
+- Line 826: `function checkTypeIIaRisk` 🔧
+  - 💡 [無描述]
+- Line 843: `function checkFishEyeEnhanced` 🔧
+  - 💡 [無描述]
+- Line 880: `function checkCuletRisk` 🔧
+  - 💡 [無描述]
+- Line 903: `function evaluateCuletSize` 🔧
+  - 💡 [無描述]
+- Line 918: `function checkCuletClarityInteraction` 🔧
+  - 💡 [無描述]
+- Line 934: `function checkNaturalsExtraFacet` 🔧
+  - 💡 [無描述]
+- Line 966: `function checkExtendedInclusionTypes` 🔧
+  - 💡 [無描述]
+- Line 1017: `function evaluateInclusionSize` 🔧
+  - 💡 [無描述]
+- Line 1030: `function checkBearding` 🔧
+  - 💡 [無描述]
+- Line 1043: `function checkFluorescenceColor` 🔧
+  - 💡 [無描述]
+- Line 1089: `function checkCertificateAgeRisk` 🔧
+  - 💡 [無描述]
+- Line 1115: `function checkCaratThresholdRisk` 🔧
+  - 💡 [無描述]
+- Line 1134: `function checkUnderGradedHunter` 🔧
+  - 💡 [無描述]
+- Line 1156: `function checkHazeMatrix` 🔧
+  - 💡 [無描述]
+- Line 1197: `function evaluateGrainingRisk` 🔧
+  - 💡 [無描述]
+- Line 1218: `function checkWindowingRisk` 🔧
+  - 💡 [無描述]
+- Line 1240: `function checkInvestmentGrade` 🔧
+  - 💡 [無描述]
+- Line 1270: `function evaluateRoundCutGradePyramid` 🔧
+  - 💡 [無描述]
+- Line 1314: `function evaluateFacetLustre` 🔧
+  - 💡 [無描述]
+- Line 1338: `function checkTableRisk` 🔧
+  - 💡 [無描述]
+- Line 1357: `function checkBowTieRiskEnhanced` 🔧
+  - 💡 [無描述]
+- Line 1385: `function checkFluorescenceOffset` 🔧
+  - 💡 [無描述]
+- Line 1410: `function checkMeasurementsCaratConsistency` 🔧
+  - 💡 [無描述]
+- Line 1479: `function checkInscriptionMatch` 🔧
+  - 💡 [無描述]
+- Line 1495: `function checkFancyColorDistribution` 🔧
+  - 💡 [無描述]
+- Line 1512: `function evaluateInclusionColor` 🔧
+  - 💡 [無描述]
+- Line 1529: `function evaluateFirstInclusionRisk` 🔧
+  - 💡 [無描述]
+- Line 1552: `function checkCertificateEra` 🔧
+  - 💡 [無描述]
+- Line 1578: `function evaluateCrownHeightRound` 🔧
+  - 💡 [無描述]
+- Line 1605: `function checkTableCrownInteraction` 🔧
+  - 💡 [無描述]
+- Line 1615: `function checkHPATreatment` 🔧
+  - 💡 [無描述]
+- Line 1628: `function checkFacetConsistency` 🔧
+  - 💡 [無描述]
+- Line 1652: `function checkGradingLabInfo` 🔧
+  - 💡 [無描述]
+- Line 1685: `function checkCutGradeApplicable` 🔧
+  - 💡 [無描述]
+- Line 1702: `function checkReportTypeLimitations` 🔧
+  - 💡 [無描述]
+- Line 1719: `function checkAdditionalInscription` 🔧
+  - 💡 [無描述]
+- Line 1744: `function checkMeasurementTolerance` 🔧
+  - 💡 [無描述]
+- Line 1763: `function validateClarityConsistency` 🔧
+  - 💡 [無描述]
+- Line 1777: `function checkSI2LusterPenalty` 🔧
+  - 💡 [無描述]
+- Line 1797: `function checkBothField` 🔧
+  - 💡 [無描述]
+- Line 1805: `function checkPortraitCut` 🔧
+  - 💡 [無描述]
+- Line 1809: `function evaluateGirdleConsistency` 🔧
+  - 💡 [無描述]
+- Line 1821: `function calculateGirdlePenalty` 🔧
+  - 💡 [無描述]
+- Line 1850: `function deduplicateFlags` 🔧
+  - 💡 [無描述]
+- Line 1865: `function checkClarityBasedOnClouds` 🔧
+  - 💡 [無描述]
+- Line 1903: `function evaluateGrainingDetail` 🔧
+  - 💡 [無描述]
+- Line 1965: `function checkPhosphorescence` 🔧
+  - 💡 [無描述]
+- Line 1987: `function evaluateEmeraldCrownHeight` 🔧
+  - 💡 [無描述]
+- Line 2017: `function checkGirdleCondition` 🔧
+  - 💡 [無描述]
+- Line 2040: `function checkUnifiedTintRisk` 🔧
+  - 💡 [無描述]
+- Line 2075: `function checkSurfaceReaching` 🔧
+  - 💡 [無描述]
+- Line 2099: `function checkSilkEffect` 🔧
+  - 💡 [無描述]
+- Line 2121: `function checkFancyColorSecondaryHue` 🔧
+  - 💡 [無描述]
+- Line 2184: `function checkAntiqueCutException` 🔧
+  - 💡 [無描述]
+- Line 2204: `function evaluateStarLowerHalfLength` 🔧
+  - 💡 [無描述]
+- Line 2237: `function checkDepthTableBalance` 🔧
+  - 💡 [無描述]
+- Line 2264: `function checkLaserDrillEnhanced` 🔧
+  - 💡 [無描述]
+- Line 2282: `function checkFluorClarityMasking` 🔧
+  - 💡 [無描述]
+- Line 2300: `function checkPavilionBulge` 🔧
+  - 💡 [無描述]
+- Line 2314: `function checkNaturalExtended` 🔧
+  - 💡 [無描述]
+- Line 2333: `function evaluateInclusionPosition` 🔧
+  - 💡 [無描述]
+- Line 2362: `function evaluateGrainingSeverity` 🔧
+  - 💡 [無描述]
+- Line 2375: `function evaluateClaritySubGrade` 🔧
+  - 💡 [無描述]
+- Line 2391: `function checkFluorescenceEvenness` 🔧
+  - 💡 [無描述]
+- Line 2404: `function checkFancyFluorInteraction` 🔧
+  - 💡 [無描述]
+- Line 2426: `function checkFancyTreatmentRisk` 🔧
+  - 💡 [無描述]
+- Line 2445: `function checkFancyChameleon` 🔧
+  - 💡 [無描述]
+- Line 2459: `function checkFancyDarkDeep` 🔧
+  - 💡 [無描述]
+- Line 2473: `function checkPadparadscha` 🔧
+  - 💡 [無描述]
+- Line 2484: `function checkYellowFluorImpact` 🔧
+  - 💡 [無描述]
+- Line 2501: `function checkWhiteFluorRisk` 🔧
+  - 💡 [無描述]
+- Line 2522: `function checkInclusionPattern` 🔧
+  - 💡 [無描述]
+- Line 2549: `function checkCaratMagicBonus` 🔧
+  - 💡 [無描述]
+- Line 2573: `function checkOriginPremiumExtended` 🔧
+  - 💡 [無描述]
+- Line 2585: `function checkClarityUpgradePotential` 🔧
+  - 💡 [無描述]
+- Line 2606: `function evaluateFancyShapeCutQuality` 🔧
+  - 💡 [無描述]
+- Line 2648: `function checkDUndertone` 🔧
+  - 💡 [無描述]
+- Line 2672: `function clarityIsSI` 🔧
+  - 💡 [無描述]
+- Line 2677: `function safeParseNumeric` 🔧
+  - 💡 [無描述]
+- Line 2687: `function validateGIAReportNumber` 🔧
+  - 💡 [無描述]
+- Line 2696: `function clampScore` 🔧
+  - 💡 [無描述]
+- Line 2700: `function checkBorderlineScore` 🔧
+  - 💡 [無描述]
+- Line 2712: `function safeScoreImpact` 🔧
+  - 💡 [無描述]
+- Line 2722: `variable DataGuard` 📦
+  - 💡 [無描述]
+- Line 2745: `function classifyFlags` 🔧
+  - 💡 [無描述]
+- Line 2761: `function isFancyColorExtended` 🔧
+  - 💡 [無描述]
+- Line 2768: `function parseCaratFraction` 🔧
+  - 💡 [無描述]
+- Line 2785: `function parseMeasurementsWithUnit` 🔧
+  - 💡 [無描述]
+- Line 2802: `function generateResolutionRecommendation` 🔧
+  - 💡 [無描述]
+- Line 2856: `function generateScoreConfidence` 🔧
+  - 💡 [無描述]
+- Line 2879: `function generateRiskSummary` 🔧
+  - 💡 [無描述]
+- Line 2927: `function getPortraitCutResult` 🔧
+  - 💡 [無描述]
+- Line 2946: `function evaluateCrownPavilionBalance` 🔧
+  - 💡 [無描述]
+- Line 3033: `function getVerdict` 🔧
+  - 💡 [無描述]
+- Line 3070: `function calculateClawScore` 🔧
+  - 💡 [無描述]
+- Line 3144: `function getQualityTier` 🔧
+  - 💡 ================================================================ QUALITY TIER SYSTEM (Non-Linear Model) Determines defect severity multiplier and bonus ceiling ================================================================
+- Line 3186: `function makeScoringResult` 🔧
+  - 💡 [無描述]
+- Line 4377: `function formatQuickSummary` 🔧
+  - 💡 [無描述]
+- Line 4425: `function formatProfessionalReport` 🔧
+  - 💡 [無描述]
+- Line 4666: `function generateDiscordEmbed` 🔧
+  - 💡 [無描述]
+- Line 4860: `function sendToDiscord` 🔧
+  - 💡 [無描述]
+- Line 4940: `variable GIA_PROMPT` 📦
+  - 💡 [無描述]
+- Line 5009: `function extractField` 🔧
+  - 💡 [無描述]
+- Line 5026: `function extractMultilineField` 🔧
+  - 💡 [無描述]
+- Line 5045: `function parseGIACertificateText` 🔧
+  - 💡 [無描述]
+- Line 5145: `function validateParsedData` 🔧
+  - 💡 [無描述]
+- Line 5234: `function getMimeType` 🔧
+  - 💡 [無描述]
+- Line 5250: `function loadMinimaxApiKey` 🔧
+  - 💡 [無描述]
+- Line 5266: `function describeImageWithMinimaxVLM` 🔧
+  - 💡 [無描述]
+- Line 5346: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 5386: `function runOneTest` 🔧
+  - 💡 [無描述]
+- Line 5470: `function processData` 🔧
+  - 💡 [無描述]
+
+### `gia_cert_analyzer_v17.2.0.js`
+- Line 4: `variable fs` 📦
+  - 💡 [無描述]
+- Line 5: `variable path` 📦
+  - 💡 [無描述]
+- Line 6: `variable https` 📦
+  - 💡 [無描述]
+- Line 9: `variable PDF_CONFIG` 📦
+  - 💡 [無描述]
+- Line 14: `variable HOME` 📦
+  - 💡 [無描述]
+- Line 15: `variable AUTH_PROFILES` 📦
+  - 💡 [無描述]
+- Line 17: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 59: `variable RE` 📦
+  - 💡 [無描述]
+- Line 71: `variable DIAMOND_TYPE` 📦
+  - 💡 [無描述]
+- Line 122: `variable FLUOR_COLORS` 📦
+  - 💡 [無描述]
+- Line 152: `variable CARAT_TIERS` 📦
+  - 💡 [無描述]
+- Line 158: `arrow function isMagic` ➡️
+  - 💡 [無描述]
+- Line 176: `variable CUT_GRADE` 📦
+  - 💡 [無描述]
+- Line 195: `variable LAB_TREATMENT` 📦
+  - 💡 [無描述]
+- Line 210: `variable CLARITY_RANK` 📦
+  - 💡 [無描述]
+- Line 221: `variable DEPTH_RANGES` 📦
+  - 💡 [無描述]
+- Line 236: `variable TABLE_RANGES` 📦
+  - 💡 [無描述]
+- Line 251: `variable RATIO_RANGES` 📦
+  - 💡 [無描述]
+- Line 266: `variable FANCY_DEPTH_RANGES` 📦
+  - 💡 [無描述]
+- Line 276: `variable FANCY_TABLE_RANGES` 📦
+  - 💡 [無描述]
+- Line 286: `variable FANCY_COLOR_MODIFIER` 📦
+  - 💡 [無描述]
+- Line 298: `variable FANCY_RARITY_RULE` 📦
+  - 💡 [無描述]
+- Line 314: `variable CHAMPAGNE_EFFECT` 📦
+  - 💡 [無描述]
+- Line 327: `function evaluateDepth` 🔧
+  - 💡 [無描述]
+- Line 395: `function evaluateRatio` 🔧
+  - 💡 [無描述]
+- Line 437: `function evaluateFaceUpSize` 🔧
+  - 💡 [無描述]
+- Line 464: `function evaluateSpreadFactor` 🔧
+  - 💡 [無描述]
+- Line 515: `function checkTreatmentRisk` 🔧
+  - 💡 [無描述]
+- Line 535: `function checkStructuralRisk` 🔧
+  - 💡 [無描述]
+- Line 566: `function checkGirdleDeadWeightRisk` 🔧
+  - 💡 [無描述]
+- Line 581: `function checkAuctionGradeCompensation` 🔧
+  - 💡 [無描述]
+- Line 606: `function checkSymmetrySpecifics` 🔧
+  - 💡 [無描述]
+- Line 621: `function checkEyeCleanRisk` 🔧
+  - 💡 [無描述]
+- Line 655: `function checkCreamyStoneRisk` 🔧
+  - 💡 [無描述]
+- Line 677: `function checkStructuralHaze` 🔧
+  - 💡 [無描述]
+- Line 692: `function checkSuperIdeal` 🔧
+  - 💡 [無描述]
+- Line 718: `function checkCrownPavilionPairing` 🔧
+  - 💡 [無描述]
+- Line 764: `function checkHeartsAndArrows` 🔧
+  - 💡 [無描述]
+- Line 779: `function checkDColorBlueFluorMilky` 🔧
+  - 💡 [無描述]
+- Line 796: `function checkTypeIaClassification` 🔧
+  - 💡 [無描述]
+- Line 811: `function checkTypeIIbUltraWhite` 🔧
+  - 💡 [無描述]
+- Line 826: `function checkTypeIIaRisk` 🔧
+  - 💡 [無描述]
+- Line 843: `function checkFishEyeEnhanced` 🔧
+  - 💡 [無描述]
+- Line 880: `function checkCuletRisk` 🔧
+  - 💡 [無描述]
+- Line 903: `function evaluateCuletSize` 🔧
+  - 💡 [無描述]
+- Line 918: `function checkCuletClarityInteraction` 🔧
+  - 💡 [無描述]
+- Line 934: `function checkNaturalsExtraFacet` 🔧
+  - 💡 [無描述]
+- Line 966: `function checkExtendedInclusionTypes` 🔧
+  - 💡 [無描述]
+- Line 1017: `function evaluateInclusionSize` 🔧
+  - 💡 [無描述]
+- Line 1030: `function checkBearding` 🔧
+  - 💡 [無描述]
+- Line 1043: `function checkFluorescenceColor` 🔧
+  - 💡 [無描述]
+- Line 1089: `function checkCertificateAgeRisk` 🔧
+  - 💡 [無描述]
+- Line 1115: `function checkCaratThresholdRisk` 🔧
+  - 💡 [無描述]
+- Line 1134: `function checkUnderGradedHunter` 🔧
+  - 💡 [無描述]
+- Line 1156: `function checkHazeMatrix` 🔧
+  - 💡 [無描述]
+- Line 1197: `function evaluateGrainingRisk` 🔧
+  - 💡 [無描述]
+- Line 1218: `function checkWindowingRisk` 🔧
+  - 💡 [無描述]
+- Line 1240: `function checkInvestmentGrade` 🔧
+  - 💡 [無描述]
+- Line 1270: `function evaluateRoundCutGradePyramid` 🔧
+  - 💡 [無描述]
+- Line 1314: `function evaluateFacetLustre` 🔧
+  - 💡 [無描述]
+- Line 1338: `function checkTableRisk` 🔧
+  - 💡 [無描述]
+- Line 1357: `function checkBowTieRiskEnhanced` 🔧
+  - 💡 [無描述]
+- Line 1385: `function checkFluorescenceOffset` 🔧
+  - 💡 [無描述]
+- Line 1410: `function checkMeasurementsCaratConsistency` 🔧
+  - 💡 [無描述]
+- Line 1479: `function checkInscriptionMatch` 🔧
+  - 💡 [無描述]
+- Line 1495: `function checkFancyColorDistribution` 🔧
+  - 💡 [無描述]
+- Line 1512: `function evaluateInclusionColor` 🔧
+  - 💡 [無描述]
+- Line 1529: `function evaluateFirstInclusionRisk` 🔧
+  - 💡 [無描述]
+- Line 1552: `function checkCertificateEra` 🔧
+  - 💡 [無描述]
+- Line 1578: `function evaluateCrownHeightRound` 🔧
+  - 💡 [無描述]
+- Line 1605: `function checkTableCrownInteraction` 🔧
+  - 💡 [無描述]
+- Line 1615: `function checkHPATreatment` 🔧
+  - 💡 [無描述]
+- Line 1628: `function checkFacetConsistency` 🔧
+  - 💡 [無描述]
+- Line 1652: `function checkGradingLabInfo` 🔧
+  - 💡 [無描述]
+- Line 1685: `function checkCutGradeApplicable` 🔧
+  - 💡 [無描述]
+- Line 1702: `function checkReportTypeLimitations` 🔧
+  - 💡 [無描述]
+- Line 1719: `function checkAdditionalInscription` 🔧
+  - 💡 [無描述]
+- Line 1744: `function checkMeasurementTolerance` 🔧
+  - 💡 [無描述]
+- Line 1763: `function validateClarityConsistency` 🔧
+  - 💡 [無描述]
+- Line 1777: `function checkSI2LusterPenalty` 🔧
+  - 💡 [無描述]
+- Line 1797: `function checkBothField` 🔧
+  - 💡 [無描述]
+- Line 1805: `function checkPortraitCut` 🔧
+  - 💡 [無描述]
+- Line 1809: `function evaluateGirdleConsistency` 🔧
+  - 💡 [無描述]
+- Line 1821: `function calculateGirdlePenalty` 🔧
+  - 💡 [無描述]
+- Line 1850: `function deduplicateFlags` 🔧
+  - 💡 [無描述]
+- Line 1865: `function checkClarityBasedOnClouds` 🔧
+  - 💡 [無描述]
+- Line 1903: `function evaluateGrainingDetail` 🔧
+  - 💡 [無描述]
+- Line 1965: `function checkPhosphorescence` 🔧
+  - 💡 [無描述]
+- Line 1987: `function evaluateEmeraldCrownHeight` 🔧
+  - 💡 [無描述]
+- Line 2017: `function checkGirdleCondition` 🔧
+  - 💡 [無描述]
+- Line 2040: `function checkUnifiedTintRisk` 🔧
+  - 💡 [無描述]
+- Line 2075: `function checkSurfaceReaching` 🔧
+  - 💡 [無描述]
+- Line 2099: `function checkSilkEffect` 🔧
+  - 💡 [無描述]
+- Line 2121: `function checkFancyColorSecondaryHue` 🔧
+  - 💡 [無描述]
+- Line 2184: `function checkAntiqueCutException` 🔧
+  - 💡 [無描述]
+- Line 2204: `function evaluateStarLowerHalfLength` 🔧
+  - 💡 [無描述]
+- Line 2237: `function checkDepthTableBalance` 🔧
+  - 💡 [無描述]
+- Line 2264: `function checkLaserDrillEnhanced` 🔧
+  - 💡 [無描述]
+- Line 2282: `function checkFluorClarityMasking` 🔧
+  - 💡 [無描述]
+- Line 2300: `function checkPavilionBulge` 🔧
+  - 💡 [無描述]
+- Line 2314: `function checkNaturalExtended` 🔧
+  - 💡 [無描述]
+- Line 2333: `function evaluateInclusionPosition` 🔧
+  - 💡 [無描述]
+- Line 2362: `function evaluateGrainingSeverity` 🔧
+  - 💡 [無描述]
+- Line 2375: `function evaluateClaritySubGrade` 🔧
+  - 💡 [無描述]
+- Line 2391: `function checkFluorescenceEvenness` 🔧
+  - 💡 [無描述]
+- Line 2404: `function checkFancyFluorInteraction` 🔧
+  - 💡 [無描述]
+- Line 2426: `function checkFancyTreatmentRisk` 🔧
+  - 💡 [無描述]
+- Line 2445: `function checkFancyChameleon` 🔧
+  - 💡 [無描述]
+- Line 2459: `function checkFancyDarkDeep` 🔧
+  - 💡 [無描述]
+- Line 2473: `function checkPadparadscha` 🔧
+  - 💡 [無描述]
+- Line 2484: `function checkYellowFluorImpact` 🔧
+  - 💡 [無描述]
+- Line 2501: `function checkWhiteFluorRisk` 🔧
+  - 💡 [無描述]
+- Line 2522: `function checkInclusionPattern` 🔧
+  - 💡 [無描述]
+- Line 2549: `function checkCaratMagicBonus` 🔧
+  - 💡 [無描述]
+- Line 2573: `function checkOriginPremiumExtended` 🔧
+  - 💡 [無描述]
+- Line 2585: `function checkClarityUpgradePotential` 🔧
+  - 💡 [無描述]
+- Line 2606: `function evaluateFancyShapeCutQuality` 🔧
+  - 💡 [無描述]
+- Line 2648: `function checkDUndertone` 🔧
+  - 💡 [無描述]
+- Line 2672: `function clarityIsSI` 🔧
+  - 💡 [無描述]
+- Line 2677: `function safeParseNumeric` 🔧
+  - 💡 [無描述]
+- Line 2687: `function validateGIAReportNumber` 🔧
+  - 💡 [無描述]
+- Line 2696: `function clampScore` 🔧
+  - 💡 [無描述]
+- Line 2700: `function checkBorderlineScore` 🔧
+  - 💡 [無描述]
+- Line 2712: `function safeScoreImpact` 🔧
+  - 💡 [無描述]
+- Line 2722: `variable DataGuard` 📦
+  - 💡 [無描述]
+- Line 2745: `function classifyFlags` 🔧
+  - 💡 [無描述]
+- Line 2761: `function isFancyColorExtended` 🔧
+  - 💡 [無描述]
+- Line 2768: `function parseCaratFraction` 🔧
+  - 💡 [無描述]
+- Line 2785: `function parseMeasurementsWithUnit` 🔧
+  - 💡 [無描述]
+- Line 2802: `function generateResolutionRecommendation` 🔧
+  - 💡 [無描述]
+- Line 2856: `function generateScoreConfidence` 🔧
+  - 💡 [無描述]
+- Line 2879: `function generateRiskSummary` 🔧
+  - 💡 [無描述]
+- Line 2927: `function getPortraitCutResult` 🔧
+  - 💡 [無描述]
+- Line 2946: `function evaluateCrownPavilionBalance` 🔧
+  - 💡 [無描述]
+- Line 3033: `function getVerdict` 🔧
+  - 💡 [無描述]
+- Line 3070: `function calculateClawScore` 🔧
+  - 💡 [無描述]
+- Line 3144: `function getQualityTier` 🔧
+  - 💡 ================================================================ QUALITY TIER SYSTEM (Non-Linear Model) Determines defect severity multiplier and bonus ceiling ================================================================
+- Line 3186: `function makeScoringResult` 🔧
+  - 💡 [無描述]
+- Line 4377: `function formatQuickSummary` 🔧
+  - 💡 [無描述]
+- Line 4425: `function formatProfessionalReport` 🔧
+  - 💡 [無描述]
+- Line 4666: `function generateDiscordEmbed` 🔧
+  - 💡 [無描述]
+- Line 4860: `function sendToDiscord` 🔧
+  - 💡 [無描述]
+- Line 4940: `variable GIA_PROMPT` 📦
+  - 💡 [無描述]
+- Line 5009: `function extractField` 🔧
+  - 💡 [無描述]
+- Line 5026: `function extractMultilineField` 🔧
+  - 💡 [無描述]
+- Line 5045: `function parseGIACertificateText` 🔧
+  - 💡 [無描述]
+- Line 5145: `function validateParsedData` 🔧
+  - 💡 [無描述]
+- Line 5234: `function getMimeType` 🔧
+  - 💡 [無描述]
+- Line 5250: `function loadMinimaxApiKey` 🔧
+  - 💡 [無描述]
+- Line 5266: `function describeImageWithMinimaxVLM` 🔧
+  - 💡 [無描述]
+- Line 5346: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 5386: `function runOneTest` 🔧
+  - 💡 [無描述]
+- Line 5470: `function processData` 🔧
+  - 💡 [無描述]
+
+### `gia_cert_analyzer.js`
+- Line 35: `variable fs` 📦
+  - 💡 [無描述]
+- Line 36: `variable path` 📦
+  - 💡 [無描述]
+- Line 37: `variable https` 📦
+  - 💡 [無描述]
+- Line 41: `variable PDF_CONFIG` 📦
+  - 💡 ==================== PDF CONFIG ====================
+- Line 50: `variable HOME` 📦
+  - 💡 ==================== Config ====================
+- Line 51: `variable AUTH_PROFILES` 📦
+  - 💡 [無描述]
+- Line 57: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 208: `variable CORRUPT_PATTERNS` 📦
+  - 💡 @description 用於檢測 GIA Color 欄位腐敗情況： - "Fancy shapes" / "Fancy shape" → 形狀關鍵詞誤入顏色欄位 - "Fancy" alone without intensity → 需要 intensity level - "like" alone → OCR 錯誤讀取 /
+- Line 225: `variable FANCY_COLOR_INTENSITY_REGEX` 📦
+  - 💡 @constant @type {RegExp} @example FANCY_COLOR_INTENSITY_REGEX.test('Fancy Vivid') // true @example FANCY_COLOR_INTENSITY_REGEX.test('Fancy') // false (no intensity) /
+- Line 238: `function parseFancyColorPipeline` 🔧
+  - 💡 @param {string} text - GIA raw text @param {string|null} rawColor - 從 extractField 得到的原始顏色欄位 @returns {Object} 包含 isCorrupted, recoveredColor, isFancy, fancyType, intensity, baseColor /
+- Line 299: `variable DEPTH_RANGES` 📦
+  - 💡 Depth ranges by shape (ideal percentages) 用于光學診斷:判斷是否過淺(看穿效應)或過深(重量被隱藏) /
+- Line 314: `variable TABLE_RANGES` 📦
+  - 💡 [無描述]
+- Line 331: `variable RATIO_RANGES` 📦
+  - 💡 Ratio ranges by shape (L/W ratio for fancy shapes) 用於評估形狀比例是否理想 /
+- Line 354: `variable FANCY_DEPTH_RANGES` 📦
+  - 💡 Fancy Depth Matrix (v7.6.1 - RTF Spec) Shape-specific depth ranges for Fancy stones Note: "Fancy Too Deep" = Fancy Ideal (different from regular stones) /
+- Line 368: `variable FANCY_TABLE_RANGES` 📦
+  - 💡 Fancy Table Ranges (RTF Spec) All shapes: 55-68%, Ideal 58-63% /
+- Line 382: `variable FANCY_COLOR_MODIFIER` 📦
+  - 💡 Fancy Color Modifiers (RTF Spec) /
+- Line 393: `variable FANCY_RARITY_RULE` 📦
+  - 💡 Rarity Rule (RTF Spec) 10ct+ Fancy Intense: +35 bonus (even if depth > 76%) /
+- Line 406: `variable CHAMPAGNE_EFFECT` 📦
+  - 💡 Fancy Color + Intense/Vivid Saturation + Brownish 調 = 香檳效果 呢種組合喺某些市場（亞洲）反而有正面價值  注意:唔好直接扣大分,而係標註為特殊市場價值 /
+- Line 419: `variable FANCY_DEPTH_MATRIX` 📦
+  - 💡 Fancy Depth Matrix (legacy - kept for FANCY_DEPTH_MATRIX backward refs) @deprecated Use FANCY_DEPTH_RANGES instead /
+- Line 433: `variable SHAPE_CONSTANTS` 📦
+  - 💡 Shape Constants for Fancy Cut Spread Evaluation 每克拉預期表面積 (mm2/ct) 用於計算 Expected Area = constant × (carat ^ 0.66) /
+- Line 454: `function fuzzyMatch` 🔧
+  - 💡 模糊匹配函數 - 處理 OCR 拼寫錯誤 例如:Clarity → Clerity, Knot → Knoat /
+- Line 470: `variable CRITICAL_PATTERNS` 📦
+  - 💡 極其關鍵的關鍵詞
+- Line 492: `function normalizeData` 🔧
+  - 💡 確保所有關鍵字段格式統一,防止 OCR 微小格式錯誤導致邏輯失效 @param {Object} data - 證書數據 @param {Object} fancyContext - Fancy Color 上下文 (可選) /
+- Line 508: `arrow function isLikelyShape` ➡️
+  - 💡 [無描述]
+- Line 567: `function sanitizeData` 🔧
+  - 💡 - '1' → 'I' (Color) - '5' → 'S' (Symmetry/Polish) - 不可見字元清理 - 空白清理 /
+- Line 609: `function evaluateOvalMoval` 🔧
+  - 💡 Oval Moval 檢測 當 Oval Ratio > 1.65 時,觸發 Moval 警告 Moval = Marquise + Oval Hybrid,Bow-tie 效應極為明顯 /
+- Line 632: `variable OVAL_RATIO_GOLDEN_MIN` 📦
+  - 💡 Oval Shape Aesthetics Score Constants v8.4.0: Extracted magic numbers into named constants /
+- Line 633: `variable OVAL_RATIO_GOLDEN_MAX` 📦
+  - 💡 [無描述]
+- Line 634: `variable OVAL_RATIO_ACCEPTABLE_MIN` 📦
+  - 💡 [無描述]
+- Line 635: `variable OVAL_RATIO_STRETCHED_MIN` 📦
+  - 💡 [無描述]
+- Line 636: `variable OVAL_RATIO_STRETCHED_MAX` 📦
+  - 💡 [無描述]
+- Line 637: `variable OVAL_RATIO_ROUND_THRESHOLD` 📦
+  - 💡 [無描述]
+- Line 638: `variable OVAL_RATIO_THIN_MIN` 📦
+  - 💡 [無描述]
+- Line 639: `variable OVAL_RATIO_THIN_MAX` 📦
+  - 💡 [無描述]
+- Line 640: `variable OVAL_RATIO_MOVAL_THRESHOLD` 📦
+  - 💡 [無描述]
+- Line 641: `variable OVAL_SCORE_GOLDEN` 📦
+  - 💡 [無描述]
+- Line 642: `variable OVAL_SCORE_ACCEPTABLE` 📦
+  - 💡 [無描述]
+- Line 643: `variable OVAL_SCORE_STRETCHED` 📦
+  - 💡 [無描述]
+- Line 644: `variable OVAL_SCORE_ROUND` 📦
+  - 💡 [無描述]
+- Line 645: `variable OVAL_SCORE_THIN` 📦
+  - 💡 [無描述]
+- Line 646: `variable OVAL_SCORE_MOVAL` 📦
+  - 💡 [無描述]
+- Line 662: `function evaluateOvalShapeAesthetics` 🔧
+  - 💡 - > 1.65 = Extreme (MOVAL)  @param {number} ratioVal - Oval L/W Ratio @returns {Object} 評估結果 { score, emoji, label, detail } /
+- Line 716: `function checkSquareNailheadRisk` 🔧
+  - 💡 Square Modified Nailhead 檢測 當 Square Modified Depth > 72% 時,觸發 Nailhead/Black Center 警告 /
+- Line 747: `function evaluateFancySpread` 🔧
+  - 💡 - Spread Index = actual_area / expected_area  @param {Object} data - 鑽石數據 @returns {Object|null} 評估結果 /
+- Line 832: `function evaluateDepth` 🔧
+  - 💡 @param {number} depthPct - Depth 百分比 @param {string} shape - 鑽石形狀 @param {boolean} isFancyColor - 是否為 Fancy Color(v7.6.1 新增) @returns {Object} 診斷結果 { status, emoji, label, detail } /
+- Line 897: `function checkStepCutExtinction` 🔧
+  - 💡 @param {number} depthPct - Depth 百分比 @param {string} shape - 鑽石形狀 @returns {Object|null} 檢測結果 /
+- Line 932: `function evaluateFancyStone` 🔧
+  - 💡 - "Fancy Ideal" range is wider and shape-specific  @param {Object} parsed - Parsed certificate data @returns {Object} { fancyScore, flags } /
+- Line 947: `arrow function shapeKey` ➡️
+  - 💡 Get shape-specific depth range
+- Line 1100: `function evaluateRatio` 🔧
+  - 💡 評估 Ratio 黃金比例 @param {string|number} ratio - Ratio 值 (L/W) @param {string} shape - 鑽石形狀 @returns {Object} 評估結果 { status, emoji, label, detail } /
+- Line 1302: `function evaluateFaceUpSize` 🔧
+  - 💡 @param {number} carat - 克拉重量 @param {number} depthPct - Depth 百分比 @param {string} shape - 鑽石形狀 @returns {string|null} 警告訊息或 null /
+- Line 1325: `function evaluateSpreadFactor` 🔧
+  - 💡 計算公式:Spread Ratio = 平均直徑 / (sqrt(carat) * 6.45)  理想 1ct 圓鑽直徑 = 6.4-6.5mm 如果直徑偏細,實際石頭可能只值較少克拉 /
+- Line 1390: `function evaluateFluorescenceOilyRisk` 🔧
+  - 💡 評估熒光導致既 Oily/Hazy Risk D/E/F Color + Strong/Very Strong Blue Fluorescence = Oily Risk /
+- Line 1444: `function checkBGMTintRisk` 🔧
+  - 💡 [無描述]
+- Line 1476: `arrow function foundBGM` ➡️
+  - 💡 [無描述]
+- Line 1516: `function checkTreatmentRisk` 🔧
+  - 💡 - Lab-Grown inscriptions / Report numbers starting with "LG" - Inscription mentions HPHT/Lab-Grown  這些係非天然鑽石,貿易商完全不接受 /
+- Line 1581: `function checkStructuralRisk` 🔧
+  - 💡 檢測結構性風險 (Structural Risk)  Cavity (空孔), Chip (缺口), Knot (結晶核) = 設置時可能破裂 呢啲係「老闆級」內含物,B2B 市場常被大額折扣 /
+- Line 1671: `function checkSettingHazard` 🔧
+  - 💡 - location 接近尖端 (Point)  @param {Object} data - GIA 證書數據 @returns {Object|null} 檢測結果 /
+- Line 1690: `arrow function nearPoint` ➡️
+  - 💡 [無描述]
+- Line 1749: `function checkGirdleDeadWeightRisk` 🔧
+  - 💡 Extremely thick girdle = 石頭既重量被腰崖吸收 視覺上唔會變大,但實際重量增加 = 不劃算  GIA 通常寫:extremely thick, very thick to extremely thick /
+- Line 1796: `function checkKnotPositionRisk` 🔧
+  - 💡 - location = "Point" 或 "Edge" 或 "Girdle"  @param {Object} data - GIA 證書數據 @returns {Object|null} 檢測結果 /
+- Line 1812: `arrow function atDangerLocation` ➡️
+  - 💡 [無描述]
+- Line 1834: `function checkGirdleHiddenWeight` 🔧
+  - 💡 檢測 Girdle Hidden Weight Risk (腰崖隱藏重量風險)  Extremely Thick = 可能藏 0.05-0.10ct 額外重量 比 checkGirdleDeadWeightRisk 更 aggressive(用於 v2.6.0) /
+- Line 1870: `function checkSymmetrySpecifics` 🔧
+  - 💡 檢測 Symmetry Specifics (即使 3EX 都扣分)  v2.6.0 新增:即使拋光/對稱都係 Excellent,仍可能因特定 幾何問題而影響光學性能 /
+- Line 1919: `function checkHiddenPolishSubdivision` 🔧
+  - 💡 - "Burn Mark" 或 " polish marks " → 拋光問題，可二次加工 (輕微扣分)  @param {Object} data - GIA 證書數據 @returns {Object|null} 檢測結果 /
+- Line 1993: `function checkHiddenSymmetryRisk` 🔧
+  - 💡 檢測隱藏的對稱問題 (Hidden Symmetry Risk) - Legacy wrapper @deprecated Use checkHiddenPolishSubdivision() instead /
+- Line 2047: `function checkEyeCleanRisk` 🔧
+  - 💡 檢測 Eye-Clean Risk (淨度位置風險)  v2.6.0 新增:評估 SI 淨度石頭的內含物位置風險 SI1/SI2 淨度石頭,某些位置的內含物可能肉眼可見 /
+- Line 2114: `function checkOriginPremium` 🔧
+  - 💡 檢測 Origin Premium (產地溢價)  v2.6.0 新增:評估鑽石產地的市場溢價或制裁風險 某些產地有品牌溢價,某些產地受制裁影響 /
+- Line 2156: `function extractFancyColor` 🔧
+  - 💡 提取 Fancy Color (處理 Fancy Yellow / Fancy Vivid Pink 等) /
+- Line 2190: `function calculateStepCutCompensation` 🔧
+  - 💡 邏輯:如果石頭 Spread 偏細(<1.00),視覺上睇起來會比實際重量輕 公式:Effective Carat = Actual Carat × Spread Ratio  Example: 10.04ct × 0.80 = 8.03ct effective /
+- Line 2196: `arrow function isStepCut` ➡️
+  - 💡 Check if shape contains "Emerald" or "Asscher"
+- Line 2202: `arrow function isExotic` ➡️
+  - 💡 Exotic 3D cuts (Briolette, Rose, etc.) have different geometry - no compensation
+- Line 2210: `variable EXOTIC_NO_TABLE_SHAPES` 📦
+  - 💡 Exotic 3D cuts with no table - skip Effective Carat calculation (non-Briolette)
+- Line 2221: `function calculateBrioletteEffectiveCarat` 🔧
+  - 💡 需要用 Visual Length × Visual Width / (Carat × 22) 計算  @param {Object} data - GIA 證書數據 @returns {Object|null} - Effective Carat 結果 /
+- Line 2256: `arrow function sortedDims` ➡️
+  - 💡 Sort descending to get Visual Length and Width
+- Line 2285: `function evaluateBrioletteRatio` 🔧
+  - 💡 @param {number} visualLength - 最長維度 (mm) @param {number} visualWidth - 中間維度 (mm) @returns {Object} - Ratio 分類結果 /
+- Line 2323: `function checkBrioletteRisks` 🔧
+  - 💡 檢查 Briolette 特殊風險  @param {Object} data - GIA 證書數據 @returns {Array} - 風險列表 /
+- Line 2345: `arrow function sortedDims` ➡️
+  - 💡 [無描述]
+- Line 2392: `function calculateEffectiveCarat` 🔧
+  - 💡 Briolette 使用專用 BSI 公式: BSI = (Lv × Wv) / (Carat × 22) Effective Carat = Carat × BSI /
+- Line 2447: `function checkWindowingRisk` 🔧
+  - 💡 魚眼/漏光警示 (Windowing Risk) 條件:Spread > 140% 且 Depth < 50% /
+- Line 2462: `function checkInvestmentGrade` 🔧
+  - 💡 收藏級 (Investment Grade) 標記 條件:D Color + FL 或 IF Clarity /
+- Line 2485: `function deduplicateFlags` 🔧
+  - 💡 邏輯併攏 - 移除重複的 Milky/Hazy 警告 @param {Array} flags - 原始 flags 列表 @returns {Array} 去重後的 flags /
+- Line 2519: `function calculateGirdlePenalty` 🔧
+  - 💡 /  v7.8.0: Calculate Girdle Penalty with Carat-based Multiplier Extremely Thick 50ct+ = -40 (force BUY → CONDITIONAL) /
+- Line 2571: `variable FLUORESCENCE_OFFSET_CONFIG` 📦
+  - 💡 - I/J + Medium Blue: +3 (藍光偏弱) - H + Very Strong Blue: +2 (過強，補償不足) - H + Strong Blue: +4 (藍光適中) - H + Medium Blue: +1 (補償微弱) /
+- Line 2589: `function checkFluorescenceOffset` 🔧
+  - 💡 [無描述]
+- Line 2641: `function checkPortraitCut` 🔧
+  - 💡 v7.8.0: Portrait Cut Detection Triangular/Marquise/Pear shape + depth < 35% = intentional Portrait Cut Not a manufacturing defect - label as DESIGNER SPEC instead of REJECT /
+- Line 2663: `function isBrioletteShape` 🔧
+  - 💡 v7.8.0: Briolette Fish-eye Exemption Briolette has no table - skip all fish-eye / table-depth warnings /
+- Line 2670: `function isPortraitCutShape` 🔧
+  - 💡 v7.8.0: Check if shape is Portrait Cut (Triangular variants) /
+- Line 2682: `function enhancedRiskDetection` 🔧
+  - 💡 v7.8.0: Portrait Cut Detection in enhancedRiskDetection Triangular/Briolette/Shield 等特殊形狀,如果 Key to Symbols 或 Table/Depth 全為 N/A 應標記 MANUAL REVIEW REQUIRED 而唔係 REJECT /
+- Line 2687: `arrow function _normalizeText` ➡️
+  - 💡 === v9.1.0: Extract common text normalization to avoid repeated join/toLowerCase calls === Returns { commentsLower, keyToSymbolsLower, combinedText } for use throughout the function
+- Line 2736: `arrow function isSpecialShape` ➡️
+  - 💡 [無描述]
+- Line 2740: `arrow function hasKeySymbols` ➡️
+  - 💡 [無描述]
+- Line 2907: `function checkBowTieRiskEnhanced` 🔧
+  - 💡 1. 太薄 (Shallow): Ratio > 1.5 + Depth < 58% 2. 太深 (Deep): Ratio < 1.5 + Depth > 65%  對於 Marquise,理想 Ratio 範圍是 1.8-2.2 /
+- Line 3014: `function checkTableRisk` 🔧
+  - 💡 檢測 Table Percentage 風險 (Table Risk)  Table 太大 (>64%) = Fish-eye Effect Table 理想 (54-57%) = Investment Grade /
+- Line 3067: `function checkCertificateAgeRisk` 🔧
+  - 💡 檢測證書年齡風險 (Certificate Age Risk)  舊證書可能已經有物理損傷 (Nicks/Chips/Scratches) /
+- Line 3184: `function checkCaratThresholdRisk` 🔧
+  - 💡 檢測卡數台階風險 (Carat Threshold Risk) - v7.7.0  1.00ct, 1.50ct, 2.00ct, 3.00ct, 5.00ct 等臨界點 石頭重量非常接近但未達到台階重量時,會有 Borderline Weight Risk /
+- Line 3226: `function evaluateRoundCutGradePyramid` 🔧
+  - 💡 圓鑽切工等級金字塔 (Round Cut Grade Pyramid)  確保一顆石頭只進入一個「比例類別」,防止同時加減分 等級由高到低:Super Ideal > Investment Grade > Good > Fair > Poor /
+- Line 3277: `function evaluateFacetLustre` 🔧
+  - 💡 評估刻面光澤 (Facet Lustre) - v3.0.0  Radiant 同 Cushion 切工最怕睇落似「碎冰」(無層次) Depth > 70% 且 Table > 68% = Crushed Ice /
+- Line 3319: `function evaluateMarketability` 🔧
+  - 💡 對辦率評估 (Marketability Index) - v3.0.0  唔單止係粒石靚唔靚,而係粒石「好唔好賣」 /
+- Line 3337: `arrow function isStandardWeight` ➡️
+  - 💡 [無描述]
+- Line 3385: `function checkTypeIIaRisk` 🔧
+  - 💡 檢測 Type IIa 風險  Type IIa 鑽石通常更純淨,但亦可能是 HPHT 處理候選者 D 色 + Type IIa = 需要注意「油感」風險 /
+- Line 3459: `function checkCuletRisk` 🔧
+  - 💡 檢測底尖條件 (Culet Condition) - 黑眼圈效應  如果 Culet 是 Slightly Large 或更大,石頭中心會出現黑色圓點 /
+- Line 3495: `function checkEmeraldColorRisk` 🔧
+  - 💡 檢測 Emerald Cut 大石顏色風險 (v7.7.0)  5卡以上 Emerald + H色或更低 = 色帶可見風險 Emerald 的開放式刻面設計讓顏色更容易被察覺 /
+- Line 3527: `function checkGirdleCondition` 🔧
+  - 💡 檢測腰圍狀態 (Girdle Condition)  Bruted (磨砂白) 比 Polished/Faceted 睇起低檔 /
+- Line 3585: `function checkUnderGradedHunter` 🔧
+  - 💡 尋找低評級美鑽 (Under-graded Hunter)  大師直覺:E 色 + Strong Blue 螢光 + 乾淨石頭 = 實物極大機會睇落似 D 色 /
+- Line 3630: `function checkSuperIdeal` 🔧
+  - 💡 - Table: 54-57% - Depth: 61-62.5% - Polish: Excellent - Symmetry: Excellent /
+- Line 3682: `function checkClarityBasedOnClouds` 🔧
+  - 💡 檢測「基於雲狀物評級」風險  如果 Comment 寫 "Clarity grade is based on clouds that are not shown" 代表淨度可能被低估 (實際可能更差) /
+- Line 3707: `function checkBothField` 🔧
+  - 💡 v4.1.0: Helper to check both keyToSymbols AND Comments for a pattern Fixes the Regex Gap where Cloud/Grain detection only checked Comments /
+- Line 3718: `function evaluateGrainingRisk` 🔧
+  - 💡 v4.1.0: Graining & Polish Line Risk for Investment Grade  對於 D/IF 等級的「晶體生長特徵」會削弱投資拍賣價值 /
+- Line 3764: `function checkVVS1OilyRisk` 🔧
+  - 💡 v5.1.0: VVS1 + Graining + Strong Blue = Oily Risk  這是最高級別的油感風險組合 VVS1 + Internal Graining + Strong Blue = Oily Risk (-15) /
+- Line 3798: `function checkSpreadFactorWithDepth` 🔧
+  - 💡 v5.1.0: 視覺直徑溢價修正 (Spread Factor Adjustment)  Spread Factor 大的石頭如果 Depth < 58%,會出現 Fish-eye,中間漏光 所以加分需要減半 /
+- Line 3839: `variable STANDARD_DIAMETER_MAP` 📦
+  - 💡 v5.1.0: 標準直徑表 (Standard Diameter Map)  0.90ct 到 1.00ct 之間的標準直徑變化並非線性 需要一個標準直徑表來準確計算 Spread Factor /
+- Line 3854: `function getStandardDiameter` 🔧
+  - 💡 [無描述]
+- Line 3892: `function checkBrownishTint` 🔧
+  - 💡 v5.0.0: 褐色調檢測 (Brownish Tint Detection) 褐色調的鑽石火彩極差,在市場上比帶黃色的便宜 20-30% /
+- Line 3937: `function checkCloudPosition` 🔧
+  - 💡 v5.0.0: 雲狀物分佈檢測 (Cloud Position Detection) Cloud 在 keyToSymbols 的位置代表其重要性 /
+- Line 3940: `arrow function cloudIndex` ➡️
+  - 💡 [無描述]
+- Line 3982: `function checkLaserDrillHole` 🔧
+  - 💡 v5.0.0: 激光鑽孔檢測 (Laser Drill Hole Detection) LDH 屬於人為優化,應直接觸發 Zombie Score = 0 /
+- Line 4013: `function checkPavilionDepthRisk` 🔧
+  - 💡 v4.1.0: Pavilion Depth Risk - 底部太深導致 Headlight Effect  當底部太深,光線會在內部產生過多反射, 這就是 "Headlight Effect",會使石頭看起來有一塊死白或黑影 /
+- Line 4067: `function checkHazeMatrix` 🔧
+  - 💡 v4.1.0: Enhanced Haze Matrix with Short-circuit + Creamy Tint Detection  熔斷機制:當觸發 CRITICAL 問題時,立即返回不允許任何補償 新增 Creamy Tint 風險:M色以下 + Strong Blue = Dirty Creamy 外觀 /
+- Line 4143: `function checkInvestmentGradeUltimate` 🔧
+  - 💡 v4.0.0: Investment Grade Analysis (Blue Chip Logic)  識別能在蘇富比/佳士得拍賣的「全明珠」級別鑽石 /
+- Line 4205: `function checkFishEyeEnhanced` 🔧
+  - 💡 v5.2.0: Fish-eye 二次防線 (Enhanced Fish-eye Detection)  Table > 62% + Depth < 59% = 極明顯魚眼 (比之前更嚴重因為可以在檯面下看到腰圍反射影) /
+- Line 4281: `function checkPremiumCut` 🔧
+  - 💡 v5.2.0: Premium Cut 補償  深度異形石故意切深(63-65%)來消除領結 如果 Pavilion Depth 完美且無領結標記 = Premium Cut (+5) /
+- Line 4336: `variable UPGRADE_KEYWORDS` 📦
+  - 💡 - girdle, edge, side, pavilion, feather, corner  降級關鍵字 (Downgrade Risk): - table, center, under table, top, middle /
+- Line 4337: `variable DOWNGRADE_KEYWORDS` 📦
+  - 💡 [無描述]
+- Line 4345: `function checkClarityPrediction` 🔧
+  - 💡 v6.1.1: 淨度升降級預測 (Clarity Upgrade/Downgrade Prediction)  VVS2 + Edge Pinpoint → 可能升 VVS1 (+5) VS1 + Center Black Crystal → 只值 VS2 (-10) /
+- Line 4354: `arrow function hasUpgradePosition` ➡️
+  - 💡 使用權重表判斷位置
+- Line 4385: `arrow function hasDowngradePosition` ➡️
+  - 💡 [無描述]
+- Line 4419: `function checkFluorescenceColor` 🔧
+  - 💡 v6.0.0: 熒光色彩修正 (Fluorescence Color Correction)  Strong Yellow 或 Strong White 熒光會摧毀顏色價值 /
+- Line 4476: `function checkCreamyStoneRisk` 🔧
+  - 💡 2. 有 Cloud 瑕疵 (即使分散也可能是奶油) 3. Strong/Very Strong Fluorescence  任何2項達標 = ZOMBIE = 直接REJECT /
+- Line 4494: `arrow function hasCloud` ➡️
+  - 💡 條件2: 有 Cloud 瑕疵
+- Line 4529: `function checkStructuralHaze` 🔧
+  - 💡 v7.9.0: Structural Haze Detection 10ct+ + Cloud as main inclusion + "clouds not shown" = Structural Haze (塑料感) This is CRITICAL - score goes to 0 immediately /
+- Line 4559: `function calculateStandardDiameterCubic` 🔧
+  - 💡 v6.1.1: 立方根公式修正  1. 只有 Round 形狀適用 6.47 常數(異形石不適用) 2. 結果加上 .toFixed(2) 避免浮點偏差 /
+- Line 4574: `function getStandardDiameterHybrid` 🔧
+  - 💡 [無描述]
+- Line 4586: `function calculateClawScore` 🔧
+  - 💡 計算 Score (0-100) @param {Object} cert - 證書數據(含 data 和 logicFlags) @returns {number} Score (0-100) /
+- Line 4604: `arrow function hasFancyFlag` ➡️
+  - 💡 [無描述]
+- Line 4946: `variable ldhResult` 📦
+  - 💡 1. Laser Drill Hole (CRITICAL - 最早檢測,優先於幾乎所有其他檢查)
+- Line 4996: `variable vvsiOilyRisk` 📦
+  - 💡 1. VVS1 Oily Risk (CRITICAL - 熔斷)
+- Line 5008: `variable spreadCheck` 📦
+  - 💡 2. Spread Factor with Depth Check
+- Line 5015: `variable brownishRisk` 📦
+  - 💡 === v5.0.0: Brownish Tint (CRITICAL 級別) ===
+- Line 5027: `variable cloudPosition` 📦
+  - 💡 === v5.0.0: Cloud Position (影響分數) ===
+- Line 5187: `arrow function sortedDims` ➡️
+  - 💡 [無描述]
+- Line 5520: `arrow function hasMissingFlag` ➡️
+  - 💡 Add flag if not already present
+- Line 5535: `arrow function hasLargeStoneFlag` ➡️
+  - 💡 Add flag if not already present
+- Line 5661: `arrow function hasFluorOffset` ➡️
+  - 💡 [無描述]
+- Line 5702: `function getVerdict` 🔧
+  - 💡 根據 Score 獲取 Verdict 等級 @param {number} score - Score @param {Array} flags - 邏輯標記列表(可選,用於 CRITICAL Depth 降級) @returns {Object} { grade, emoji, label, verdictText, color } /
+- Line 5704: `arrow function flagText` ➡️
+  - 💡 === Extract flags for efficient pattern matching ===
+- Line 5715: `arrow function hasCriticalDepth` ➡️
+  - 💡 [無描述]
+- Line 5716: `arrow function hasMilkyRisk` ➡️
+  - 💡 [無描述]
+- Line 5780: `function formatProfessionalReport` 🔧
+  - 💡 生成專業終端輸出格式 @param {Object} cert - 證書數據 @returns {string} 格式化報告 /
+- Line 5800: `arrow function highFlags` ➡️
+  - 💡 [無描述]
+- Line 5801: `arrow function mediumFlags` ➡️
+  - 💡 [無描述]
+- Line 5802: `arrow function lowFlags` ➡️
+  - 💡 [無描述]
+- Line 5809: `arrow function hasCritical` ➡️
+  - 💡 === High Brilliance Potential === Score >= 85 + 無 CRITICAL = ✨ High Brilliance Potential
+- Line 5961: `function generateDiscordEmbed` 🔧
+  - 💡 生成 Discord Embed 格式 @param {Object} cert - 證書數據 @returns {Object} Discord Embed /
+- Line 6051: `function sendToDiscord` 🔧
+  - 💡 發送 Embed 到 Discord @param {Object} embed - Discord Embed /
+- Line 6085: `arrow function req` ➡️
+  - 💡 [無描述]
+- Line 6121: `variable GIA_PROMPT` 📦
+  - 💡 [無描述]
+- Line 6152: `variable LOGIC_RULES` 📦
+  - 💡 [無描述]
+- Line 6240: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 6244: `function getMimeType` 🔧
+  - 💡 [無描述]
+- Line 6256: `function loadMinimaxApiKey` 🔧
+  - 💡 [無描述]
+- Line 6270: `function describeImageWithMinimaxVLM` 🔧
+  - 💡 [無描述]
+- Line 6291: `arrow function timeout` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+- Line 6331: `function parseGIACertificateText` 🔧
+  - 💡 v8.5.0: Parse GIA Certificate Text into structured data @param {string} text - Raw text from GIA certificate @returns {Object} Structured certificate data /
+- Line 6333: `arrow function lines` ➡️
+  - 💡 [無描述]
+- Line 6453: `function extractField` 🔧
+  - 💡 [無描述]
+- Line 6458: `function extractMultilineField` 🔧
+  - 💡 [無描述]
+- Line 6466: `function runLogicEngine` 🔧
+  - 💡 [無描述]
+- Line 6481: `function determineRecommendation` 🔧
+  - 💡 [無描述]
+- Line 6485: `arrow function highSeverity` ➡️
+  - 💡 [無描述]
+- Line 6504: `function formatReport` 🔧
+  - 💡 [無描述]
+- Line 6567: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 6665: `arrow function pngFiles` ➡️
+  - 💡 [無描述]
+
+### `gia_certificate_ocr.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `class GIACertificateOCR` 🏗️
+  - 💡 [無描述]
+- Line 187: `arrow function missing` ➡️
+  - 💡 [無描述]
+- Line 215: `arrow function entries` ➡️
+  - 💡 使用 fs.promises.readdir 替代同步版本，避免阻塞事件循環
+
+### `gia_database.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `class GIADatabase` 🏗️
+  - 💡 [無描述]
+- Line 62: `arrow function exists` ➡️
+  - 💡 Check for duplicates (使用可選鏈防止 undefined 錯誤)
+- Line 136: `arrow function rows` ➡️
+  - 💡 使用轉義函數防止 CSV 注入
+
+### `gia_grading_logic_extractor.js`
+- Line 9: `variable fs` 📦
+  - 💡 [無描述]
+- Line 10: `variable path` 📦
+  - 💡 [無描述]
+- Line 12: `variable INPUT` 📦
+  - 💡 [無描述]
+- Line 13: `variable OUTPUT` 📦
+  - 💡 [無描述]
+- Line 23: `variable colorMatch` 📦
+  - 💡 ─── COLOR GRADING ────────────────────────────────────────────────────────────
+- Line 24: `variable colorRanks` 📦
+  - 💡 [無描述]
+- Line 34: `variable clarityRanks` 📦
+  - 💡 ─── CLARITY RANK ──────────────────────────────────────────────────────────── getClarityRank returns 1-11 mapping FL→I3
+- Line 35: `variable clarityRanksMap` 📦
+  - 💡 [無描述]
+- Line 39: `variable cutGrades` 📦
+  - 💡 ─── CUT RANK ────────────────────────────────────────────────────────────────
+- Line 48: `variable caratTiers` 📦
+  - 💡 ─── CARAT TIERS ──────────────────────────────────────────────────────────────
+- Line 61: `variable colorCeiling` 📦
+  - 💡 ─── COLOR CEILING SCORES ─────────────────────────────────────────────────────
+- Line 69: `variable opticalTreshold` 📦
+  - 💡 ─── OPTICAL BONUS ───────────────────────────────────────────────────────────
+- Line 70: `variable opticalBonus` 📦
+  - 💡 [無描述]
+- Line 73: `variable defectPenalties` 📦
+  - 💡 ─── DEFECT PENALTIES ────────────────────────────────────────────────────────
+- Line 83: `variable qualityTiers` 📦
+  - 💡 ─── QUALITY TIERS ────────────────────────────────────────────────────────────
+- Line 112: `variable cutExcellent` 📦
+  - 💡 ─── CUT EXCELLENCE RANGES ────────────────────────────────────────────────────
+- Line 121: `arrow function cutScoreCalc` ➡️
+  - 💡 Cut score: (cutGrade×2) + polish + symm → 0=EX, 3=VG, 6=GD, 9=FR, 12=PR Formula in our analyzer: uses (cutScore×2) + polish + symm where each 0=EX
+- Line 127: `variable verdictThresholds` 📦
+  - 💡 ─── VERDICT THRESHOLDS ───────────────────────────────────────────────────────
+- Line 136: `function gradeStone` 🔧
+  - 💡 ─── GRADING FUNCTION (actual logic from code) ────────────────────────────────
+- Line 195: `function determineQualityTier` 🔧
+  - 💡 [無描述]
+- Line 220: `function getVerdict` 🔧
+  - 💡 [無描述]
+- Line 228: `variable result` 📦
+  - 💡 ─── MAIN: EXTRACT + SAVE ──────────────────────────────────────────────────────
+
+### `gia_image_verifier.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `class GIAImageVerifier` 🏗️
+  - 💡 [無描述]
+
+### `gia_ocr.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 14: `class GIACertificateParser` 🏗️
+  - 💡 [無描述]
+
+### `gia_send_embed.js`
+- Line 10: `variable fs` 📦
+  - 💡 [無描述]
+- Line 11: `variable path` 📦
+  - 💡 [無描述]
+- Line 14: `variable ANALYZER` 📦
+  - 💡 [無描述]
+- Line 15: `variable args` 📦
+  - 💡 [無描述]
+- Line 18: `variable pdfPath` 📦
+  - 💡 [無描述]
+- Line 19: `variable channelId` 📦
+  - 💡 [無描述]
+- Line 29: `variable result` 📦
+  - 💡 [無描述]
+- Line 30: `variable analyzer` 📦
+  - 💡 [無描述]
+- Line 33: `variable embed` 📦
+  - 💡 2. Generate embed
+- Line 36: `variable lines` 📦
+  - 💡 3. Format as rich text (Discord-compatible markdown)
+- Line 50: `variable message` 📦
+  - 💡 [無描述]
+
+### `health_generator.js`
+- Line 38: `class HealthReportGenerator` 🏗️
+  - 💡 [無描述]
+- Line 65: `arrow function servicesSection` ➡️
+  - 💡 Services section: gateway, sessions, channels, model, memoryFiles
+- Line 119: `arrow function resourcesSection` ➡️
+  - 💡 Resources section: system, disk
+- Line 147: `arrow function errorsSection` ➡️
+  - 💡 Errors section
+- Line 158: `arrow function cronSection` ➡️
+  - 💡 Cron section
+- Line 238: `arrow function servicesSection` ➡️
+  - 💡 Services section
+- Line 250: `arrow function resourcesSection` ➡️
+  - 💡 Resources section
+- Line 262: `arrow function errorsSection` ➡️
+  - 💡 Errors section
+- Line 274: `arrow function cronSection` ➡️
+  - 💡 Cron section
+
+### `health_monitor.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+- Line 22: `variable PAGE_SIZE_BYTES` 📦
+  - 💡 [無描述]
+- Line 23: `variable ONE_HOUR_MS` 📦
+  - 💡 [無描述]
+- Line 26: `variable CONFIG` 📦
+  - 💡 配置
+- Line 39: `variable ALERTS` 📦
+  - 💡 警報級別
+- Line 47: `variable args` 📦
+  - 💡 解析命令行參數
+- Line 48: `variable isCronMode` 📦
+  - 💡 [無描述]
+- Line 49: `variable isJsonMode` 📦
+  - 💡 [無描述]
+- Line 50: `variable shouldNotify` 📦
+  - 💡 [無描述]
+- Line 54: `function getHKTTime` 🔧
+  - 💡 獲取香港時間
+- Line 70: `function parseMemoryToGB` 🔧
+  - 💡 獲取當前日期 (HKT) 將內存字符串轉換為 GB
+- Line 79: `function checkSystem` 🔧
+  - 💡 系統檢測: 使用 vm_stat 獲取準確的 Memory，top 獲取 CPU
+- Line 179: `function checkDisk` 🔧
+  - 💡 系統檢測: 磁盤空間 (top 沒有 disk 信息，保留 df)
+- Line 215: `function checkErrors` 🔧
+  - 💡 Error 頻率檢查
+- Line 237: `arrow function recentErrors` ➡️
+  - 💡 [無描述]
+- Line 267: `function checkCron` 🔧
+  - 💡 Cron Job 狀態檢查 (OpenClaw Gateway Cron Jobs)
+- Line 327: `arrow function found` ➡️
+  - 💡 [無描述]
+- Line 365: `function checkGateway` 🔧
+  - 💡 Gateway 狀態檢測
+- Line 391: `function checkSessions` 🔧
+  - 💡 Session 數量檢測
+- Line 416: `function checkChannels` 🔧
+  - 💡 Channel 狀態檢測 (WhatsApp/Discord)
+- Line 466: `function checkModel` 🔧
+  - 💡 Token/Model 使用檢測
+- Line 491: `function checkMemoryFiles` 🔧
+  - 💡 Memory 文件完整性檢查
+- Line 511: `arrow function todayFiles` ➡️
+  - 💡 [無描述]
+- Line 514: `arrow function emptyFiles` ➡️
+  - 💡 檢查異常文件 (大小為0或過大)
+- Line 515: `arrow function oversizedFiles` ➡️
+  - 💡 [無描述]
+- Line 550: `function sendDiscordSimple` 🔧
+  - 💡 簡化的Discord通知 (使用execFileSync避免命令注入)
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 563: `function main` 🔧
+  - 💡 主函數
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `health_templates.js`
+- Line 27: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 97: `function createHealthReportStructure` 🔧
+  - 💡 This is the ONLY place where the report shape is defined.  @param {string} date - Report date (YYYY-MM-DD) @returns {object} Health report structure /
+- Line 139: `function createServiceItem` 🔧
+  - 💡 Create a service status item @param {object} data - { name, status, message, details? } @returns {object} Service item /
+- Line 162: `function createResourceItem` 🔧
+  - 💡 Create a resource status item @param {object} data - { name, status, message, value?, available?, size? } @returns {object} Resource item /
+- Line 187: `function createErrorItem` 🔧
+  - 💡 Create an error status item @param {object} data - { status, count, message, recent? } @returns {object} Error item /
+- Line 210: `function createCronItem` 🔧
+  - 💡 Create a cron status item @param {object} data - { status, totalJobs, requiredFound, requiredTotal, missingJobs, source, message } @returns {object} Cron item /
+
+### `heartbeat_recall.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+- Line 18: `variable os` 📦
+  - 💡 [無描述]
+- Line 20: `variable MEMORY_DIR` 📦
+  - 💡 [無描述]
+- Line 21: `variable CONTEXT_FILE` 📦
+  - 💡 [無描述]
+- Line 24: `variable CONFIG` 📦
+  - 💡 P2 Fix: CONFIG for magic numbers
+- Line 31: `variable MAX_SUMMARY_LENGTH` 📦
+  - 💡 [無描述]
+- Line 50: `function loadContext` 🔧
+  - 💡 初始化或讀取狀態
+- Line 85: `function saveContext` 🔧
+  - 💡 儲存狀態 (atomic write)
+- Line 103: `function getToday` 🔧
+  - 💡 獲取今日日期 (YYYY-MM-DD)
+- Line 108: `function getWeekStart` 🔧
+  - 💡 獲取本週開始日期 (星期日) - P2 Fix: Use HKT timezone consistently
+- Line 120: `function readTodayMemory` 🔧
+  - 💡 讀取今日 memory 文件
+- Line 139: `function extractTopics` 🔧
+  - 💡 從 memory 內容提取 key topics
+- Line 181: `function generateSummary` 🔧
+  - 💡 生成簡短摘要（50字內）
+- Line 194: `function generateTodayHighlights` 🔧
+  - 💡 生成今日重點
+- Line 209: `function generateWeeklyTopics` 🔧
+  - 💡 生成本週相關
+- Line 223: `function formatRecallOutput` 🔧
+  - 💡 格式化輸出
+- Line 243: `function extractTopicsFromSessions` 🔧
+  - 💡 NEW 2026-02-20: Extract topics from sessions
+- Line 312: `arrow function newTopics` ➡️
+  - 💡 Find new topics
+- Line 344: `function checkTopicHistory` 🔧
+  - 💡 NEW 2026-02-20: Cross-reference topics with past conversations
+- Line 368: `arrow function repeated` ➡️
+  - 💡 [無描述]
+- Line 380: `function runHeartbeatRecall` 🔧
+  - 💡 主要執行函數
+- Line 484: `function showStatus` 🔧
+  - 💡 顯示狀態
+- Line 511: `function resetSystem` 🔧
+  - 💡 重置系統
+- Line 529: `variable args` 📦
+  - 💡 命令行處理
+
+### `hermes_lessons_progress.js`
+- Line 6: `variable fs` 📦
+  - 💡 Generate all Lesson 10-15 prompt files These are self-contained prompts for Hermes /
+- Line 8: `variable lessons` 📦
+  - 💡 [無描述]
+
+### `idex_fetcher_bot.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 16: `variable https` 📦
+  - 💡 [無描述]
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+- Line 23: `variable CACHE_FILE` 📦
+  - 💡 [無描述]
+- Line 24: `variable HISTORY_FILE` 📦
+  - 💡 [無描述]
+- Line 27: `variable CHANNEL_ID` 📦
+  - 💡 Discord channel ID (#💼工作) - 優先使用環境變數
+- Line 29: `function getDiscordToken` 🔧
+  - 💡 [無描述]
+- Line 43: `function sendDiscord` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 63: `arrow function req` ➡️
+  - 💡 [無描述]
+- Line 86: `function updateIDEXData` 🔧
+  - 💡 更新 IDEX 數據 (簡化版，直接 copy 原數據)
+- Line 146: `function buildMessage` 🔧
+  - 💡 構建 Discord 訊息
+- Line 169: `function main` 🔧
+  - 💡 Main
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `idex_fetcher.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable https` 📦
+  - 💡 [無描述]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable CACHE_FILE` 📦
+  - 💡 [無描述]
+- Line 18: `variable HISTORY_FILE` 📦
+  - 💡 [無描述]
+- Line 21: `variable CONFIG` 📦
+  - 💡 ==================== CONFIG ====================
+- Line 27: `function fetchIDEXData` 🔧
+  - 💡 IDEX 網站提取
+- Line 39: `arrow function req` ➡️
+  - 💡 [無描述]
+- Line 61: `arrow function cleanup` ➡️
+  - 💡 清理資源：當請求完成或出錯時，確保 socket 被關閉
+- Line 82: `function parseIDEXData` 🔧
+  - 💡 解析 IDEX HTML 提取數據
+- Line 118: `function extractIDEXFromText` 🔧
+  - 💡 簡化版：從已知格式提取
+- Line 144: `function updateIDEXData` 🔧
+  - 💡 獲取最新數據
+- Line 195: `function getPriceReference` 🔧
+  - 💡 獲取指定形狀/重量的參考價格
+- Line 250: `function showCurrentData` 🔧
+  - 💡 顯示當前數據
+- Line 287: `variable cmd` 📦
+  - 💡 Main
+- Line 289: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `image_processor.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `class ImageProcessor` 🏗️
+  - 💡 [無描述]
+
+### `input_source_scanner.js`
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 18: `variable MEMORY_DIR` 📦
+  - 💡 [無描述]
+- Line 20: `function getDateStr` 🔧
+  - 💡 [無描述]
+- Line 26: `function scanSources` 🔧
+  - 💡 [無描述]
+- Line 80: `arrow function hourSize` ➡️
+  - 💡 [無描述]
+- Line 96: `arrow function minSize` ➡️
+  - 💡 [無描述]
+- Line 97: `arrow function maxSize` ➡️
+  - 💡 [無描述]
+- Line 105: `arrow function smallFiles` ➡️
+  - 💡 Quality check
+- Line 106: `arrow function largeFiles` ➡️
+  - 💡 [無描述]
+- Line 132: `function showStats` 🔧
+  - 💡 [無描述]
+- Line 178: `variable args` 📦
+  - 💡 Main
+- Line 179: `arrow function targetDate` ➡️
+  - 💡 [無描述]
+
+### `inventory_forecaster.js`
+- Line 7: `class InventoryForecaster` 🏗️
+  - 💡 [無描述]
+- Line 88: `arrow function variance` ➡️
+  - 💡 Simplified confidence calculation
+- Line 90: `arrow function mean` ➡️
+  - 💡 [無描述]
+- Line 103: `arrow function mean` ➡️
+  - 💡 [無描述]
+- Line 111: `arrow function current` ➡️
+  - 💡 [無描述]
+
+### `invoice_generator.js`
+- Line 9: `class InvoiceGenerator` 🏗️
+  - 💡 [無描述]
+
+### `issue_auto_followup.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+- Line 23: `variable ACTIVE_DIR` 📦
+  - 💡 [無描述]
+- Line 24: `variable BACKLOG_DIR` 📦
+  - 💡 [無描述]
+- Line 25: `variable FOLLOWUP_STATE` 📦
+  - 💡 [無描述]
+- Line 31: `function daysUntil` 🔧
+  - 💡 ==================== HKT TIME ====================
+- Line 41: `function loadIssues` 🔧
+  - 💡 [無描述]
+- Line 108: `function checkDueReminders` 🔧
+  - 💡 [無描述]
+- Line 109: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 209: `function checkProgressUpdates` 🔧
+  - 💡 [無描述]
+- Line 210: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 260: `function tryAutoComplete` 🔧
+  - 💡 [無描述]
+- Line 261: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 339: `arrow function baks` ➡️
+  - 💡 [無描述]
+- Line 413: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 414: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+
+### `issue_daily_report.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 18: `variable ACTIVE_DIR` 📦
+  - 💡 [無描述]
+- Line 19: `variable BACKLOG_DIR` 📦
+  - 💡 [無描述]
+- Line 20: `variable ARCHIVE_DIR` 📦
+  - 💡 [無描述]
+- Line 21: `variable REPORT_FILE` 📦
+  - 💡 [無描述]
+- Line 27: `function loadIssues` 🔧
+  - 💡 [無描述]
+- Line 88: `function generateReport` 🔧
+  - 💡 [無描述]
+- Line 107: `arrow function urgent` ➡️
+  - 💡 [無描述]
+- Line 108: `arrow function overdue` ➡️
+  - 💡 [無描述]
+- Line 203: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 235: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `issue_manager.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+- Line 21: `variable path` 📦
+  - 💡 [無描述]
+- Line 25: `variable ISSUES_DIR` 📦
+  - 💡 [無描述]
+- Line 26: `variable ACTIVE_DIR` 📦
+  - 💡 [無描述]
+- Line 27: `variable BACKLOG_DIR` 📦
+  - 💡 [無描述]
+- Line 28: `variable ARCHIVE_DIR` 📦
+  - 💡 [無描述]
+- Line 49: `function generateId` 🔧
+  - 💡 [無描述]
+- Line 68: `function parseArgs` 🔧
+  - 💡 [無描述]
+- Line 82: `function getIssuePath` 🔧
+  - 💡 [無描述]
+- Line 92: `arrow function file` ➡️
+  - 💡 [無描述]
+- Line 102: `function getIssueDir` 🔧
+  - 💡 [無描述]
+- Line 111: `function loadIssue` 🔧
+  - 💡 [無描述]
+- Line 176: `function saveIssue` 🔧
+  - 💡 [無描述]
+- Line 216: `function moveIssue` 🔧
+  - 💡 [無描述]
+- Line 289: `function withCreateLock` 🔧
+  - 💡 Medium Fix: Acquire lock before create to prevent concurrent duplicate IDs Uses mkdir as atomic operation (POSIX guarantees atomicity for mkdir on same path) /
+- Line 309: `arrow function sleep` ➡️
+  - 💡 Lock exists, wait and retry
+- Line 319: `function cmdCreate` 🔧
+  - 💡 [無描述]
+- Line 375: `function cmdList` 🔧
+  - 💡 [無描述]
+- Line 428: `function cmdShow` 🔧
+  - 💡 [無描述]
+- Line 446: `function cmdProgress` 🔧
+  - 💡 [無描述]
+- Line 500: `function cmdComplete` 🔧
+  - 💡 [無描述]
+- Line 534: `function cmdConvertToError` 🔧
+  - 💡 [無描述]
+- Line 594: `function cmdArchive` 🔧
+  - 💡 [無描述]
+- Line 603: `function cmdScan` 🔧
+  - 💡 [無描述]
+- Line 633: `arrow function urgent` ➡️
+  - 💡 Check for urgent (P0/P1) and overdue
+- Line 634: `arrow function overdue` ➡️
+  - 💡 [無描述]
+- Line 635: `arrow function dueSoon` ➡️
+  - 💡 [無描述]
+- Line 675: `variable args` 📦
+  - 💡 [無描述]
+- Line 676: `variable command` 📦
+  - 💡 [無描述]
+- Line 733: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 738: `function autoCleanupResolved` 🔧
+  - 💡 Auto-cleanup: Archive resolved issues older than specified days /
+
+### `issue_reminders_sync.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable os` 📦
+  - 💡 [無描述]
+- Line 18: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 21: `function getSecureTempFile` 🔧
+  - 💡 Secure temp file name generator
+- Line 27: `variable ACTIVE_DIR` 📦
+  - 💡 [無描述]
+- Line 28: `variable BACKLOG_DIR` 📦
+  - 💡 [無描述]
+- Line 29: `variable SYNC_STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 33: `function loadIssues` 🔧
+  - 💡 [無描述]
+- Line 87: `function loadSyncState` 🔧
+  - 💡 [無描述]
+- Line 99: `function saveSyncState` 🔧
+  - 💡 [無描述]
+- Line 112: `function createReminder` 🔧
+  - 💡 [無描述]
+- Line 153: `function deleteReminder` 🔧
+  - 💡 [無描述]
+- Line 185: `function getReminders` 🔧
+  - 💡 [無描述]
+- Line 218: `function syncIssuesToReminders` 🔧
+  - 💡 [無描述]
+- Line 237: `arrow function existsInReminders` ➡️
+  - 💡 [無描述]
+- Line 258: `arrow function activeIds` ➡️
+  - 💡 Check for completed/archived issues and remove from reminders
+- Line 278: `function cleanupCompletedReminders` 🔧
+  - 💡 [無描述]
+- Line 314: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 358: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `key_memory_marker.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+- Line 22: `variable MEMORY_FILE` 📦
+  - 💡 [無描述]
+- Line 23: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 28: `variable MARKERS` 📦
+  - 💡 Marker patterns
+- Line 37: `variable KEY_MEMORY_PATTERNS` 📦
+  - 💡 Auto-detect patterns for key memories
+- Line 51: `function readMemoryFile` 🔧
+  - 💡 Read MEMORY.md content /
+- Line 62: `function findMarkedSections` 🔧
+  - 💡 Find marked sections in MEMORY.md /
+- Line 101: `function extractTitle` 🔧
+  - 💡 Extract title from marker line /
+- Line 113: `function autoDetectKeyMemories` 🔧
+  - 💡 Auto-detect key memories based on patterns /
+- Line 159: `function getProtectedRanges` 🔧
+  - 💡 Get protected line ranges (marked sections) /
+- Line 179: `function isLineProtected` 🔧
+  - 💡 Check if a line is within protected range /
+- Line 191: `function addMarkers` 🔧
+  - 💡 Add key memory markers to a section /
+- Line 200: `function scanAndUpdate` 🔧
+  - 💡 Scan and update key memory markers /
+- Line 244: `function generateSummary` 🔧
+  - 💡 Generate key memory summary /
+- Line 291: `function getMaintenanceSafeContent` 🔧
+  - 💡 Get maintenance-safe content (excluding protected ranges) This is used by memory_maintenance.js /
+- Line 318: `function validateMarkers` 🔧
+  - 💡 Validate markers are balanced /
+
+### `kimi_cli_runner.js`
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable os` 📦
+  - 💡 [無描述]
+- Line 20: `variable colors` 📦
+  - 💡 Colors for terminal output
+- Line 29: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 33: `function logSection` 🔧
+  - 💡 [無描述]
+- Line 40: `variable DEFAULT_TIMEOUT` 📦
+  - 💡 Magic numbers as constants
+- Line 41: `variable DEFAULT_MODEL` 📦
+  - 💡 [無描述]
+- Line 42: `variable SYMBOL_QUERY_TIMEOUT` 📦
+  - 💡 [無描述]
+- Line 45: `function parseArgs` 🔧
+  - 💡 Parse arguments
+- Line 73: `function extractSymbolQueries` 🔧
+  - 💡 從 task 中提取 symbol 關鍵詞 /
+- Line 89: `function names` 🔧
+  - 💡 [無描述]
+- Line 110: `function querySymbols` 🔧
+  - 💡 查詢 symbols，返回結構化結果 /
+- Line 147: `function buildSymbolSection` 🔧
+  - 💡 生成 Symbol 上下文章節 /
+- Line 169: `function checkKimiCLI` 🔧
+  - 💡 Check if Kimi Code CLI is installed
+- Line 187: `function getKimiVersion` 🔧
+  - 💡 Get Kimi version
+- Line 201: `function writeTaskFile` 🔧
+  - 💡 Write task info for sub-agent to pick up
+- Line 224: `function generatePrompt` 🔧
+  - 💡 Generate the sub-agent prompt (with Symbol Injection)
+- Line 262: `function checkScriptModification` 🔧
+  - 💡 Check if task involves scripts/ modification
+- Line 274: `function runImpactAnalysis` 🔧
+  - 💡 Run impact analysis for script modification
+- Line 307: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `knowledge_capture.js`
+- Line 15: `variable fs` 📦
+  - 💡 [無描述]
+- Line 16: `variable path` 📦
+  - 💡 [無描述]
+- Line 19: `variable KNOWLEDGE_DIR` 📦
+  - 💡 [無描述]
+- Line 21: `variable CATEGORIES` 📦
+  - 💡 [無描述]
+- Line 27: `function ensureDir` 🔧
+  - 💡 [無描述]
+- Line 38: `function capture` 🔧
+  - 💡 [無描述]
+- Line 52: `arrow function contentParts` ➡️
+  - 💡 [無描述]
+- Line 81: `variable args` 📦
+  - 💡 CLI
+
+### `knowledge_classifier.js`
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 23: `variable LLM_MODELS` 📦
+  - 💡 默認 LLM model + fallback chain
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 27: `variable LLM_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 36: `function classifyWithLLM` 🔧
+  - 💡 失敗/timeout → 回傳 null，caller fallback 去 keyword 分類。  Thin executor pattern：避免 cron session 嘅 agent LLM fail 連累成個 job， 改為 script 自己 call LLM，內部有 fallback chain。 /
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 124: `function classifyContentHybrid` 🔧
+  - 💡 合併 LLM + keyword 結果。LLM 成功 → 用 LLM；失敗 → 用 keyword。 LLM 嘅 category 會 override keyword，但保留 keyword 嘅 matchedKeywords。 /
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 156: `variable CATEGORIES` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 165: `variable KEYWORD_PATTERNS` 📦
+  - 💡 識別關鍵詞 - 正則表達式
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 186: `variable SOURCE_DEFAULT` 📦
+  - 💡 來源默認分類映射
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 195: `variable DESTINATION_MAP` 📦
+  - 💡 目的地映射表
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 238: `function classifyContent` 🔧
+  - 💡 分析內容並返回分類 @param {string} content - 內容文字 @param {string} source - 來源 (learning/x-link/discord/youtube/file) @returns {Object} 分類結果 /
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 286: `arrow function hasDecisionVerb` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 330: `function buildReasoning` 🔧
+  - 💡 建立推理說明 /
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 355: `function getDestinationPath` 🔧
+  - 💡 獲取目的地的實際路徑 /
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 378: `function printHelp` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 404: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 451: `arrow function ask` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `knowledge_ingester.js`
+- Line 54: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 55: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 66: `variable WORKSPACE_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 69: `variable CONFIG` 📦
+  - 💡 Configuration - magic numbers extracted
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 129: `function createDiscordClient` 🔧
+  - 💡 初始化 Discord REST client /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 161: `function readMessagesViaRest` 🔧
+  - 💡 使用 Discord REST API 讀取訊息  v2.4: 直接使用 discord.js REST API v3.1: 加入 retry logic (3 attempts with exponential backoff) /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 212: `function loadLastIngestId` 🔧
+  - 💡 讀取上一次攝入的 last_ingest_id /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 227: `function saveLastIngestId` 🔧
+  - 💡 保存 last_ingest_id (atomic write) /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 242: `function getDateStr` 🔧
+  - 💡 格式化日期 /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 249: `function writeFileAtomic` 🔧
+  - 💡 寫入檔案（atomic write） /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 285: `function tryWikiIngestSpawn` 🔧
+  - 💡 - Spawns CLI with 300s timeout - If success → keeps the ingested wiki file, cleans temp - If fail/timeout → cleans temp, returns null (caller falls back to direct write) Returns: ingested filename on success, null on failure/timeout /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 306: `arrow function timer` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 350: `function readLearningChannel` 🔧
+  - 💡 - MAX_BATCHES=1（v2.5 fix: 避免 pagination overlap）  @param {string|null} lastIngestId - 上次已處理的最新訊息 ID @returns {Promise<Array>} 消息陣列（最新在前） /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 357: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 449: `variable USE_LLM_CLASSIFY` 📦
+  - 💡 v3.3: LLM-based 分類開關 預設開啟，內部有 keyword fallback。LLM fail/timeout → 自動用 keyword。 用 --no-llm flag 強制只用 keyword（debug / 緊急 fallback 用）
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 454: `function getDestinationPaths` 🔧
+  - 💡 根據分類獲取寫入路徑 /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 484: `function generateWikiPage` 🔧
+  - 💡 生成 Wiki 頁面內容 /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 531: `function getHktDate` 🔧
+  - 💡 HKT date string (YYYY-MM-DD), matching L2 Logger's convention. /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 543: `function getHktTimeSuffix` 🔧
+  - 💡 HKT HHMM suffix (e.g. "0601"), matching L2 Logger's convention. /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 551: `function appendToMemory` 🔧
+  - 💡 寫入 Memory 檔案 — 改用 timestamped L2 format，等 memory_generator.js 可以食到。 /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 591: `function processMessage` 🔧
+  - 💡 處理單條消息  v3.1: 加入 retry 邏輯（單條 message 寫入失敗會 retry 2 次） /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 668: `function logToFile` 🔧
+  - 💡 v3.4: 跟 mail_monitor.js pattern。Always writes（唔受 --quiet 影響）， 因為 cron 跑緊嗰陣 console 唔一定 visible，但 log 檔一定睇到。 失敗 silently — log 寫入失敗唔應該 crash 個 job。 /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 690: `function sendDiscordMessage` 🔧
+  - 💡 - timeout: 30s - 失敗 → log to stderr 但唔 throw（notify 失敗唔應該 crash 個 job）  跟 daily_synthesis.js sendDiscordMessage 同一個 pattern。 /
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 730: `function printHelp` 🔧
+  - 💡 顯示 usage / 說明 /
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 766: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 898: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `l0_l1_verify.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function _log` ➡️
+  - 💡 [無描述]
+- Line 19: `variable fs` 📦
+  - 💡 [無描述]
+- Line 20: `variable path` 📦
+  - 💡 [無描述]
+- Line 21: `variable os` 📦
+  - 💡 [無描述]
+- Line 25: `variable L0_DIR` 📦
+  - 💡 [無描述]
+- Line 26: `variable L1_DIR` 📦
+  - 💡 [無描述]
+- Line 27: `variable LOG_DIR` 📦
+  - 💡 [無描述]
+- Line 30: `variable CONFIG` 📦
+  - 💡 ==================== CONFIG ====================
+- Line 44: `variable LOG_FILE` 📦
+  - 💡 [無描述]
+- Line 46: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 58: `function getErrorMessage` 🔧
+  - 💡 [無描述]
+- Line 65: `function getYesterdayDate` 🔧
+  - 💡 Aligned with memory_generator.js: derive yesterday from HKT today string
+- Line 86: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 163: `function regenerate` 🔧
+  - 💡 [無描述]
+- Line 219: `function inlineFallback` 🔧
+  - 💡 [無描述]
+
+### `llm_judge.js`
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+- Line 21: `variable JUDGE_CONFIG` 📦
+  - 💡 ==================== 配置常量 ====================
+- Line 60: `class ExpertPromptBuilder` 🏗️
+  - 💡 ==================== Expert Prompt Builder ====================
+- Line 73: `arrow function scoringSection` ➡️
+  - 💡 Build dimension scoring section
+- Line 202: `arrow function scores` ➡️
+  - 💡 Calculate average score for threshold-based verdict
+- Line 237: `class EvalRecordKeeper` 🏗️
+  - 💡 ==================== Eval Record Keeper ====================
+- Line 277: `arrow function scores` ➡️
+  - 💡 [無描述]
+- Line 394: `class CLIHandler` 🏗️
+  - 💡 ==================== CLI Handler ====================
+- Line 597: `function generateJudgePrompt` 🔧
+  - 💡 Generate judge prompt without executing Use when you need to spawn MiniMax sub-agent manually /
+- Line 607: `function judgeViaMessageTool` 🔧
+  - 💡 Convenience wrapper for spawning judge via main agent Accepts --type for preset defaults (overridable by explicit expertRole/dimensions) Default judge model: minimax-portal/MiniMax-M2.7 /
+- Line 646: `function main` 🔧
+  - 💡 ==================== CLI Entry ====================
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `log_to_daily_memory.js`
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 17: `variable MEMORY_DIR` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 20: `variable CONFIG` 📦
+  - 💡 Configuration - magic numbers extracted
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 33: `variable QUIET` 📦
+  - 💡 Quiet mode flag
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 36: `function getTodayDate` 🔧
+  - 💡 Helper: Compute TODAY's date and filename each time (avoids midnight stale value)
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 45: `function getTimeSuffix` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 52: `function getDayFilePath` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 57: `variable DATE` 📦
+  - 💡 Keep module-level getter for backward compatibility (now functions, not stale values)
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 58: `variable TIME_SUFFIX` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 59: `variable DAY_FILE` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 62: `variable memDirExists` 📦
+  - 💡 Ensure memory directory exists
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 77: `function getOrCreateDayFile` 🔧
+  - 💡 Get today's file content or create new
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 105: `function extractEventDate` 🔧
+  - 💡 Parse event date from entry (雙時態 support) Looks for patterns like: [事件: 2026-03-01] or "3月1號" or "2026-03-01"
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 144: `function atomicAppend` 🔧
+  - 💡 Atomic write helper - writes full content to temp file then renames for atomicity NOTE: This is a full REPLACEMENT write (not an append). Callers should read existing content, append new content, then pass the combined result.
+  - 📖 Wiki: memory-architecture
+  - 📋 Log: [MEM_WRITE_SUCCESS] / [MEM_WRITE_FAILED]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 158: `function appendEntry` 🔧
+  - 💡 Append to today's file
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 205: `function extractDiscordMessage` 🔧
+  - 💡 ============================================================ Helper: Extract actual Discord message from EXTERNAL_UNTRUSTED_CONTENT block ============================================================
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 217: `function extractSender` 🔧
+  - 💡 ============================================================ Helper: Extract sender from message metadata ============================================================
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 234: `function extractAssistantContent` 🔧
+  - 💡 ============================================================ Helper: Extract actual content from assistant message ============================================================
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 256: `variable SKIP_PATTERNS` 📦
+  - 💡 ============================================================ Enhanced skip patterns for noise ============================================================
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 393: `function shouldSkipContent` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 405: `function autoDetectActivities` 🔧
+  - 💡 ============================================================ Auto-detect activities from active sessions (ENHANCED v4 - FIXED) ============================================================
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 414: `function getSessionPositions` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 423: `function saveSessionPositions` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 589: `arrow function lines` ➡️
+  - 💡 User message without Discord body (e.g. webchat or other source) Use first meaningful line as content
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 735: `variable args` 📦
+  - 💡 Main
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #000 🚨 (無標題)
+
+### `mail_monitor.js`
+- Line 11: `variable path` 📦
+  - 💡 [無描述]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 16: `variable LOG_FILE` 📦
+  - 💡 [無描述]
+- Line 17: `variable FOLDER_NAME` 📦
+  - 💡 [無描述]
+- Line 18: `variable DISCORD_CHANNEL` 📦
+  - 💡 [無描述]
+- Line 20: `function loadState` 🔧
+  - 💡 [無描述]
+- Line 24: `function saveState` 🔧
+  - 💡 [無描述]
+- Line 29: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 34: `function cleanContent` 🔧
+  - 💡 [無描述]
+- Line 45: `function checkNewMails` 🔧
+  - 💡 === CHECK + READ VIA PURE APPLESCRIPT (macOS TCC protected SQLite) ===
+- Line 117: `function readContent` 🔧
+  - 💡 [無描述]
+- Line 159: `function staticShipmentSummary` 🔧
+  - 💡 === MALCA-AMIT STATIC HANDLER ===
+- Line 213: `function llmSummary` 🔧
+  - 💡 === LLM SUMMARY ===
+- Line 231: `function esc` 🔧
+  - 💡 Escape text for JSON embed (backtick-safe)
+- Line 235: `function sendEmbedDiscord` 🔧
+  - 💡 [無描述]
+- Line 260: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `mail_tool.js`
+- Line 8: `variable path` 📦
+  - 💡 [無描述]
+- Line 9: `variable os` 📦
+  - 💡 [無描述]
+- Line 10: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable args` 📦
+  - 💡 [無描述]
+- Line 13: `variable COMMAND` 📦
+  - 💡 [無描述]
+- Line 14: `arrow function COUNT` ➡️
+  - 💡 [無描述]
+- Line 16: `variable folderIdx` 📦
+  - 💡 [無描述]
+- Line 17: `arrow function FOLDER` ➡️
+  - 💡 [無描述]
+- Line 20: `variable AS_RS` 📦
+  - 💡 [無描述]
+- Line 23: `variable SIGNATURE` 📦
+  - 💡 Email signature
+- Line 25: `function flag` 🔧
+  - 💡 [無描述]
+- Line 26: `arrow function v` ➡️
+  - 💡 [無描述]
+- Line 31: `function fmtSender` 🔧
+  - 💡 [無描述]
+- Line 33: `function runAS` 🔧
+  - 💡 [無描述]
+- Line 48: `function getAccounts` 🔧
+  - 💡 -- ACCOUNTS / FOLDERS --
+- Line 60: `function getFolders` 🔧
+  - 💡 [無描述]
+- Line 73: `function listMsgs` 🔧
+  - 💡 -- LIST --
+- Line 99: `function searchMsgs` 🔧
+  - 💡 -- SEARCH --
+- Line 126: `function readMsg` 🔧
+  - 💡 -- READ --
+- Line 149: `function listAtts` 🔧
+  - 💡 -- ATTACHMENTS --
+- Line 166: `function downloadAtts` 🔧
+  - 💡 [無描述]
+- Line 188: `function compose` 🔧
+  - 💡 -- COMPOSE, REPLY, FORWARD (via heredoc, no template literal issues) --
+- Line 204: `arrow function files` ➡️
+  - 💡 [無描述]
+- Line 218: `function replyMsg` 🔧
+  - 💡 [無描述]
+- Line 239: `function fwdMsg` 🔧
+  - 💡 [無描述]
+- Line 281: `arrow function q` ➡️
+  - 💡 [無描述]
+- Line 298: `arrow function s` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [MSG_SENT] / [MSG_FAILED]
+- Line 299: `arrow function f` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [FAILOVER_IDLE] / [FAILOVER_TRIGGERED]
+- Line 300: `arrow function d` ➡️
+  - 💡 [無描述]
+
+### `market_monitor.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable DEFAULT_CHECK_INTERVAL_MS` 📦
+  - 💡 [無描述]
+- Line 18: `class MarketMonitor` 🏗️
+  - 💡 [無描述]
+
+### `memory_archiver.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 21: `variable ARCHIVE_BASE` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 24: `variable DEFAULT_ARCHIVE_DAYS` 📦
+  - 💡 ==================== CONFIG ====================
+  - 📖 Wiki: memory-architecture
+- Line 28: `function parseArgs` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 43: `function main` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 154: `arrow function remaining` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+
+### `memory_cleanup.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+
+### `memory_distiller.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 19: `variable DAILY_DIR` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 20: `variable KNOWLEDGE_DIR` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 21: `variable ARCHIVE_DIR` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 24: `variable KEYWORDS` 📦
+  - 💡 關鍵詞定義（根據 MiniMax 設計）
+  - 📖 Wiki: memory-architecture
+- Line 42: `function getDailyNotes` 🔧
+  - 💡 讀取 daily notes /
+  - 📖 Wiki: memory-architecture
+- Line 95: `arrow function KEYWORD_LOOKUP` ➡️
+  - 💡 預建關鍵詞查找表以優化性能 (O(n³) → O(n))
+  - 📖 Wiki: memory-architecture
+- Line 122: `function analyzeContent` 🔧
+  - 💡 分析內容重要度 優化版本：使用預建查找表，時間複雜度從 O(n³) 降至 O(n) /
+  - 📖 Wiki: memory-architecture
+- Line 153: `function deduplicate` 🔧
+  - 💡 去重 /
+  - 📖 Wiki: memory-architecture
+- Line 166: `function categorize` 🔧
+  - 💡 分類內容 /
+  - 📖 Wiki: memory-architecture
+- Line 193: `function updateMemory` 🔧
+  - 💡 更新 MEMORY.md /
+  - 📖 Wiki: memory-architecture
+- Line 205: `arrow function errorsSection` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 215: `arrow function decisionsSection` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 232: `function archiveNotes` 🔧
+  - 💡 歸檔文件 /
+  - 📖 Wiki: memory-architecture
+- Line 283: `function generateReport` 🔧
+  - 💡 生成提煉報告 /
+  - 📖 Wiki: memory-architecture
+- Line 318: `function distill` 🔧
+  - 💡 主函據 /
+  - 📖 Wiki: memory-architecture
+- Line 371: `unknown undefined` 
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `memory_generator.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 4: `arrow function _log` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 21: `variable path` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 22: `variable OpenCC` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 33: `function truncateAtConversationBoundary` 🔧
+  - 💡 v4: Conversation-round-aware truncation Truncates L2 content at conversation boundary (time gap > 30min) to ensure model sees complete conversation rounds, not cut-off sentences. /
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 96: `variable IS_CRON` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 100: `variable L0_TIMEOUT_MS` 📦
+  - 💡 v3: MiniMax via OpenClaw CLI (replacing direct API call) Timeouts for L0/L1 generation (milliseconds)
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 101: `variable L1_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 103: `variable MINIMAX_CONFIG` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 111: `variable EXPERT_ROLE_PROMPT` 📦
+  - 💡 v3: Expert role prompt for generating better summaries
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 126: `variable L0_INPUT_WINDOW` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 127: `variable L1_INPUT_WINDOW` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 129: `variable LEVEL_CONFIG` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 164: `variable s2hkConverter` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 166: `variable MEMORY_DIR` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 167: `variable LOG_DIR` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 170: `function getErrorMessage` 🔧
+  - 💡 Safely extract an error message from any thrown value
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 178: `function parseArgs` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 217: `function getYesterdayDate` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 234: `variable _logFile` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 235: `function initLog` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 251: `function log` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 272: `function notifyDiscord` 🔧
+  - 💡 發送 Discord 通知（僅限 cron 運行） /
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 296: `function callViaOpenClaw` 🔧
+  - 💡 v3.1: Call MiniMax via OpenClaw CLI (no direct API key needed) Uses `openclaw infer model run --model minimax-portal/MiniMax-M2.7 --prompt "..." --json` /
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 357: `function gatherSystemContext` 🔧
+  - 💡 v4: Gather ground truth system state for L1 generation Injects context XML block with current cron/issue/system status to prevent hallucination about system components /
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 394: `function callMiniMax` 🔧
+  - 💡 v3.1: Call MiniMax with retry logic via OpenClaw CLI /
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 424: `function checkMiniMaxAvailable` 🔧
+  - 💡 v3.1: Check if OpenClaw CLI is available /
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 442: `function isNoiseLine` 🔧
+  - 💡 v2: Aggressive noise-line detector Handles: cron IDs anywhere in line, self-logging, config dumps, system prompts /
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 475: `function generateFallback` 🔧
+  - 💡 - Phase 1: Aggressive noise removal BEFORE processing - Phase 2: Deduplicate by exact normalized content (not prefix) - Phase 3: Score for conversational quality (Chinese punctuation, real content) - Phase 4: Final exact dedup + variety check /
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 519: `arrow function scored` ➡️
+  - 💡 Phase 3: Score for conversational quality
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 534: `arrow function rawTopics` ➡️
+  - 💡 Phase 4: Pick top N, with variety via exact dedup
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 567: `function main` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 635: `arrow function naturalSort` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 636: `arrow function timestamped` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 637: `arrow function base` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 644: `arrow function targetFiles` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+- Line 645: `arrow function nextDayFiles` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #103 📌 (符號地圖功能：試用一週後評估下一步改進)
+
+### `memory_maintenance.js`
+- Line 10: `variable fs` 📦
+  - 💡 [無描述]
+- Line 11: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `arrow function MEMORY_PATH` ➡️
+  - 💡 [無描述]
+- Line 17: `arrow function STATE_FILE` ➡️
+  - 💡 [無描述]
+- Line 28: `variable LINE_THRESHOLD` 📦
+  - 💡 UPDATED 2026-02-19: Focus on duplicate detection for cleanup L0/L1/L2 handles context, MEMORY.md auto-cleans duplicates
+- Line 29: `variable WARNING_THRESHOLD` 📦
+  - 💡 [無描述]
+- Line 32: `variable CHAR_LIMIT` 📦
+  - 💡 Character limit - Infinity (size doesn't trigger cleanup, only duplicates)
+- Line 35: `variable ALWAYS_CLEAN_DUPLICATES` 📦
+  - 💡 DUPLICATE DETECTION MODE - always run duplicate cleanup regardless of size
+- Line 38: `variable MAX_BACKUPS_PER_DAY` 📦
+  - 💡 NEW 2026-02-19: Prevent duplicate backups
+- Line 41: `function hasBackupToday` 🔧
+  - 💡 Check if we already have a backup today
+- Line 52: `arrow function notes` ➡️
+  - 💡 [無描述]
+- Line 61: `function isContentSameAsLatest` 🔧
+  - 💡 Compare with latest backup content
+- Line 80: `function getCurrentDateTime` 🔧
+  - 💡 [無描述]
+- Line 87: `function backupToAppleNotes` 🔧
+  - 💡 [無描述]
+- Line 133: `function cleanupMemoryMd` 🔧
+  - 💡 [無描述]
+- Line 268: `function sendDiscordNotification` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 300: `function memoryMaintenance` 🔧
+  - 💡 [無描述]
+- Line 301: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 442: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `memory_sanitizer.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 21: `variable BACKUP_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 24: `variable BINARY_SIGNATURES` 📦
+  - 💡 Binary signatures to detect
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 50: `function hasBinaryContent` 🔧
+  - 💡 檢查檔案係咪有 binary content /
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 127: `function sanitizeFile` 🔧
+  - 💡 清理 binary content (只保留可讀文字) /
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 192: `function logContaminationError` 🔧
+  - 💡 Log contamination error via error_tracker.js CLI 當發現污染時，透過 CLI 記錄錯誤以便 Error AutoFix 追蹤 /
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 216: `function checkAll` 🔧
+  - 💡 檢查所有 memory 檔案 /
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 273: `function autoClean` 🔧
+  - 💡 Auto-clean (for Heartbeat) /
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+- Line 320: `variable args` 📦
+  - 💡 Main
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+
+### `memory_section_cleanup.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 17: `variable MEMORY_FILE` 📦
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 22: `function safeExistsSync` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 31: `function safeReadFileSync` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 40: `function safeMkdirSync` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 52: `function safeAtomicWriteSync` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 66: `variable CONFIG` 📦
+  - 💡 ==================== HELPERS ==================== ==================== CONFIG (Magic Numbers) ====================
+  - 📖 Wiki: memory-architecture
+- Line 78: `variable TTL_DAYS` 📦
+  - 💡 Alias for backward compat
+  - 📖 Wiki: memory-architecture
+- Line 82: `function parseMemory` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 160: `function isExpired` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 183: `function cleanup` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 216: `arrow function archiveContent` ➡️
+  - 💡 Archive expired sections
+  - 📖 Wiki: memory-architecture
+- Line 234: `arrow function sectionContent` ➡️
+  - 💡 Rebuild MEMORY.md (preserve preamble: title, intro text before first ## section)
+  - 📖 Wiki: memory-architecture
+- Line 248: `function addTTLToSection` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+- Line 281: `function main` 🔧
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 328: `unknown undefined` 
+  - 💡 [無描述]
+  - 📖 Wiki: memory-architecture
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `memory_temporal_search.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+- Line 24: `variable CONFIG` 📦
+  - 💡 ==================== CONFIG (Magic Numbers) ==================== Time decay weights: maps days-ago threshold to relevance multiplier
+- Line 37: `variable DECAY_WEIGHTS` 📦
+  - 💡 Alias for backward compat
+- Line 40: `function calculateDecayWeight` 🔧
+  - 💡 Calculate time decay weight based on days ago
+- Line 51: `function parseTemporalInfo` 🔧
+  - 💡 Parse dual-temporal info from entry line
+- Line 78: `function calculateScore` 🔧
+  - 💡 Calculate score for a memory entry
+- Line 142: `function searchMemory` 🔧
+  - 💡 Search memory files
+- Line 226: `function formatResults` 🔧
+  - 💡 Format output
+- Line 263: `variable args` 📦
+  - 💡 Main
+- Line 306: `arrow function query` ➡️
+  - 💡 Parse query (first non-flag argument)
+- Line 315: `variable daysIndex` 📦
+  - 💡 Parse options
+- Line 316: `variable daysBack` 📦
+  - 💡 [無描述]
+- Line 319: `variable limitIndex` 📦
+  - 💡 [無描述]
+- Line 320: `variable limit` 📦
+  - 💡 [無描述]
+- Line 323: `variable applyDecay` 📦
+  - 💡 [無描述]
+- Line 324: `variable prioritizeEventDate` 📦
+  - 💡 [無描述]
+- Line 325: `variable verbose` 📦
+  - 💡 [無描述]
+- Line 334: `variable results` 📦
+  - 💡 [無描述]
+
+### `merge_multi_sheet.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 19: `variable XLSX` 📦
+  - 💡 [無描述]
+- Line 20: `variable ExcelJS` 📦
+  - 💡 [無描述]
+- Line 21: `variable fs` 📦
+  - 💡 [無描述]
+- Line 22: `variable path` 📦
+  - 💡 [無描述]
+- Line 25: `variable OUTPUT_COLUMNS` 📦
+  - 💡 Output columns order
+- Line 32: `variable COLOR_ORDER` 📦
+  - 💡 Color order for sorting (D to Z, then fancy colors)
+- Line 35: `variable COLUMN_MAPPINGS` 📦
+  - 💡 Column mapping for each sheet format
+- Line 79: `function fixSwappedColumns` 🔧
+  - 💡 Detect and fix swapped Crt/Shape columns
+- Line 93: `function readSheet` 🔧
+  - 💡 [無描述]
+- Line 106: `arrow function mapped` ➡️
+  - 💡 [無描述]
+- Line 118: `arrow function foundKey` ➡️
+  - 💡 [無描述]
+- Line 132: `function filterValidRows` 🔧
+  - 💡 [無描述]
+- Line 157: `function sortRows` 🔧
+  - 💡 [無描述]
+- Line 158: `function getShapePriority` 🔧
+  - 💡 [無描述]
+- Line 164: `function getColorIndex` 🔧
+  - 💡 [無描述]
+- Line 193: `function key` 🔧
+  - 💡 抽出 key generation — 區分「成功」(有 key) 同「跳過」(冇 key)
+- Line 206: `function removeDuplicates` 🔧
+  - 💡 Return value semantics: - included[] : rows in final output (valid+unique OR invalid-key) - excluded[] : duplicate rows removed from output - stats: { kept: valid+unique count, skipped: invalid-key count, duplicates: removed count }
+- Line 211: `arrow function included` ➡️
+  - 💡 [無描述]
+- Line 238: `function addBlankRowsBetweenShapes` 🔧
+  - 💡 [無描述]
+- Line 257: `function createFormattedExcel` 🔧
+  - 💡 [無描述]
+- Line 346: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `migrate_skills_to_subdir.js`
+- Line 27: `variable fs` 📦
+  - 💡 [無描述]
+- Line 28: `variable path` 📦
+  - 💡 [無描述]
+- Line 29: `variable os` 📦
+  - 💡 [無描述]
+- Line 31: `variable WORKSPACE` 📦
+  - 💡 [無描述]
+- Line 32: `variable SKILLS_DIR` 📦
+  - 💡 [無描述]
+- Line 33: `variable SKILLS_ACTIVE` 📦
+  - 💡 [無描述]
+- Line 34: `variable ARCHIVE_DIR` 📦
+  - 💡 [無描述]
+- Line 36: `variable isDryRun` 📦
+  - 💡 [無描述]
+- Line 37: `arrow function provenanceFlag` ➡️
+  - 💡 [無描述]
+- Line 47: `arrow function categoryFlag` ➡️
+  - 💡 [無描述]
+- Line 52: `variable stats` 📦
+  - 💡 [無描述]
+- Line 54: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 58: `function warn` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+- Line 72: `function injectCategory` 🔧
+  - 💡 Inject category field into SKILL.md frontmatter. Adds \`category: <value>\` to existing frontmatter, or wraps content in a minimal frontmatter block if none exists. /
+- Line 87: `function injectProvenance` 🔧
+  - 💡 [無描述]
+- Line 103: `function migrateFlatFiles` 🔧
+  - 💡 [無描述]
+- Line 195: `function fixSymlinks` 🔧
+  - 💡 [無描述]
+- Line 297: `function cleanupArchive` 🔧
+  - 💡 [無描述]
+- Line 351: `function report` 🔧
+  - 💡 [無描述]
+- Line 419: `function tagExistingSkills` 🔧
+  - 💡 [無描述]
+- Line 514: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 530: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `minimax_reasoning_scrubber.js`
+- Line 31: `function showUsage` 🔧
+  - 💡 [無描述]
+- Line 49: `function readStdin` 🔧
+  - 💡 [無描述]
+- Line 59: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `model_comparison.js`
+- Line 7: `variable http` 📦
+  - 💡 [無描述]
+- Line 9: `variable MODELS` 📦
+  - 💡 [無描述]
+- Line 10: `variable OLLAMA_HOST` 📦
+  - 💡 [無描述]
+- Line 11: `variable OLLAMA_PORT` 📦
+  - 💡 [無描述]
+- Line 13: `variable PROMPTS` 📦
+  - 💡 [無描述]
+- Line 21: `function callOllama` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [OLLAMA_SUCCESS] / [OLLAMA_TIMEOUT]
+- Line 41: `arrow function req` ➡️
+  - 💡 [無描述]
+- Line 65: `function runComparison` 🔧
+  - 💡 [無描述]
+
+### `news_summarizer.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `class NewsSummarizer` 🏗️
+  - 💡 [無描述]
+
+### `openclaw_guard.sh`
+- Line 12: `function color_green` 🔧
+  - 💡 [無描述]
+- Line 13: `function color_red` 🔧
+  - 💡 [無描述]
+- Line 14: `function color_yellow` 🔧
+  - 💡 [無描述]
+- Line 17: `function show_status` 🔧
+  - 💡 顯示狀態
+- Line 44: `function create_backup` 🔧
+  - 💡 創建備份
+- Line 102: `function cleanup_old_backups` 🔧
+  - 💡 清理舊備份
+- Line 111: `function restore_backup` 🔧
+  - 💡 還原備份
+- Line 175: `function health_check` 🔧
+  - 💡 健康檢查
+- Line 222: `function auto_fix` 🔧
+  - 💡 自動修復
+
+### `orchestrator.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+- Line 22: `variable CONFIG_DIR` 📦
+  - 💡 [無描述]
+- Line 23: `variable PREFERENCE_FILE` 📦
+  - 💡 [無描述]
+- Line 24: `variable LOG_FILE` 📦
+  - 💡 [無描述]
+- Line 25: `variable FEEDBACK_FILE` 📦
+  - 💡 [無描述]
+- Line 43: `class PreferenceLearner` 🏗️
+  - 💡 用戶偏好學習系統 /
+- Line 145: `class TaskRouter` 🏗️
+  - 💡 任務路由器 - 智能決策 /
+- Line 247: `class SubAgentSpawner` 🏗️
+  - 💡 Sub-agent Spawner - 自動生成 Qwen 任務 /
+- Line 288: `class DualVerifier` 🏗️
+  - 💡 雙重驗證系統 /
+- Line 350: `class HybridOrchestrator` 🏗️
+  - 💡 主控制器 /
+- Line 474: `function main` 🔧
+  - 💡 CLI 用法
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 495: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `pattern_analysis_daily.js`
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `variable SCRIPT_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+- Line 18: `variable HOME_DIR` 📦
+  - 💡 === CONFIG ===
+- Line 19: `variable SCRIPTS_DIR` 📦
+  - 💡 [無描述]
+- Line 20: `variable QUIET` 📦
+  - 💡 [無描述]
+- Line 23: `variable PATTERN_SCRIPTS` 📦
+  - 💡 Scripts to run in order
+- Line 30: `variable CROSS_SESSION_SCRIPT` 📦
+  - 💡 [無描述]
+- Line 33: `function log` 🔧
+  - 💡 === HELPERS ===
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 37: `function logSection` 🔧
+  - 💡 [無描述]
+- Line 43: `function runScript` 🔧
+  - 💡 [無描述]
+- Line 69: `function main` 🔧
+  - 💡 === MAIN ===
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 94: `arrow function successCount` ➡️
+  - 💡 [無描述]
+- Line 95: `arrow function failCount` ➡️
+  - 💡 [無描述]
+
+### `pattern_archive.js`
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+- Line 21: `variable HOME_DIR` 📦
+  - 💡 === CONFIG ===
+- Line 22: `variable WORKSPACE_DIR` 📦
+  - 💡 [無描述]
+- Line 23: `variable MEMORY_PATTERNS_DIR` 📦
+  - 💡 [無描述]
+- Line 24: `variable ARCHIVE_DIR` 📦
+  - 💡 [無描述]
+- Line 25: `variable ERRORS_FILE` 📦
+  - 💡 [無描述]
+- Line 26: `variable PROJECTS_FILE` 📦
+  - 💡 [無描述]
+- Line 28: `variable QUIET` 📦
+  - 💡 [無描述]
+- Line 29: `variable DRY_RUN` 📦
+  - 💡 [無描述]
+- Line 30: `variable EXECUTE` 📦
+  - 💡 [無描述]
+- Line 33: `variable CONFIG` 📦
+  - 💡 === CONFIG CONSTANTS ===
+- Line 40: `function log` 🔧
+  - 💡 === HELPERS ===
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 44: `function error` 🔧
+  - 💡 [無描述]
+- Line 51: `function ensureDir` 🔧
+  - 💡 確保目錄存在 /
+- Line 65: `function readJSON` 🔧
+  - 💡 讀取 JSON 檔案 /
+- Line 87: `function writeJSON` 🔧
+  - 💡 Atomic write - 寫入 JSON 檔案 /
+- Line 113: `function writeArchiveFile` 🔧
+  - 💡 Atomic write - 寫入 archive 檔案 /
+- Line 140: `function nowHKT` 🔧
+  - 💡 獲取當前 HKT 時間 ISO 格式 /
+- Line 151: `function daysAgo` 🔧
+  - 💡 獲取多久之前（天數） /
+- Line 162: `function dateToFilename` 🔧
+  - 💡 格式化日期為檔案名 /
+- Line 176: `function archiveResolvedErrors` 🔧
+  - 💡 Archive resolved errors /
+- Line 242: `function archiveCompletedProjects` 🔧
+  - 💡 Archive completed projects /
+- Line 308: `function listArchiveHistory` 🔧
+  - 💡 列出 archive 歷史 /
+- Line 352: `function main` 🔧
+  - 💡 === MAIN ===
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `pattern_error_tracker.js`
+- Line 8: `variable fs` 📦
+  - 💡 [無描述]
+- Line 9: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable MEMORY_DIR` 📦
+  - 💡 === CONFIG ===
+- Line 14: `variable OUTPUT_FILE` 📦
+  - 💡 [無描述]
+- Line 15: `variable DRY_RUN` 📦
+  - 💡 [無描述]
+- Line 18: `variable ERROR_KEYWORDS` 📦
+  - 💡 Error keywords to scan
+- Line 21: `variable DATE_PATTERN` 📦
+  - 💡 Date extraction patterns
+- Line 22: `variable SESSION_PATTERN` 📦
+  - 💡 [無描述]
+- Line 24: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 28: `function ensurePatternsDir` 🔧
+  - 💡 [無描述]
+- Line 41: `function getMemoryFiles` 🔧
+  - 💡 [無描述]
+- Line 66: `function extractDateFromContent` 🔧
+  - 💡 [無描述]
+- Line 71: `function extractSessionId` 🔧
+  - 💡 [無描述]
+- Line 76: `function categorizeError` 🔧
+  - 💡 [無描述]
+- Line 104: `function checkCronFailures` 🔧
+  - 💡 Check all active OpenClaw cron jobs for failures. Adds cron error patterns to the analysis for display in bootstrap context. /
+- Line 154: `function analyzeErrors` 🔧
+  - 💡 [無描述]
+- Line 169: `arrow function hasError` ➡️
+  - 💡 [無描述]
+- Line 220: `function generateOutput` 🔧
+  - 💡 [無描述]
+- Line 230: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `pattern_periodic_tagger.js`
+- Line 8: `variable fs` 📦
+  - 💡 [無描述]
+- Line 9: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable MEMORY_DIR` 📦
+  - 💡 === CONFIG ===
+- Line 14: `variable OUTPUT_FILE` 📦
+  - 💡 [無描述]
+- Line 15: `variable DRY_RUN` 📦
+  - 💡 [無描述]
+- Line 16: `variable MIN_DAYS` 📦
+  - 💡 [無描述]
+- Line 19: `variable TOPIC_KEYWORDS` 📦
+  - 💡 Topic keywords to track
+- Line 33: `variable DAY_NAMES` 📦
+  - 💡 Day of week names (HKT)
+- Line 35: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 39: `function ensurePatternsDir` 🔧
+  - 💡 [無描述]
+- Line 52: `function getMemoryFiles` 🔧
+  - 💡 [無描述]
+- Line 66: `function parseDate` 🔧
+  - 💡 [無描述]
+- Line 80: `function extractTopics` 🔧
+  - 💡 [無描述]
+- Line 96: `function analyzePeriodicPatterns` 🔧
+  - 💡 [無描述]
+- Line 222: `function generateOutput` 🔧
+  - 💡 [無描述]
+- Line 224: `arrow function sortedPatterns` ➡️
+  - 💡 Sort by confidence
+- Line 233: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `pattern_proactive_trigger.js`
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 18: `variable HOME_DIR` 📦
+  - 💡 === CONFIG ===
+- Line 19: `variable WORKSPACE_DIR` 📦
+  - 💡 [無描述]
+- Line 20: `variable MEMORY_PATTERNS_DIR` 📦
+  - 💡 [無描述]
+- Line 21: `variable OUTPUT_FILE` 📦
+  - 💡 [無描述]
+- Line 23: `variable QUIET` 📦
+  - 💡 [無描述]
+- Line 26: `variable CONFIG` 📦
+  - 💡 Trigger thresholds
+- Line 34: `function log` 🔧
+  - 💡 === HELPERS ===
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 38: `function readJSON` 🔧
+  - 💡 [無描述]
+- Line 52: `function writeJSON` 🔧
+  - 💡 [無描述]
+- Line 63: `function daysAgo` 🔧
+  - 💡 [無描述]
+- Line 73: `function getDayOfWeek` 🔧
+  - 💡 [無描述]
+- Line 78: `function nowHKT` 🔧
+  - 💡 [無描述]
+- Line 91: `function detectReopenedErrors` 🔧
+  - 💡 === REOPEN DETECTION ===  檢測 resolved error 是否重新出現 當 error 重新出現時，自動 reopen 併記錄 /
+- Line 144: `function checkErrorFrequency` 🔧
+  - 💡 === TRIGGER CONDITIONS ===
+- Line 168: `function checkNewErrorPatterns` 🔧
+  - 💡 [無描述]
+- Line 199: `function checkProjectOverdue` 🔧
+  - 💡 [無描述]
+- Line 252: `function checkPeriodicPatterns` 🔧
+  - 💡 [無描述]
+- Line 300: `function main` 🔧
+  - 💡 === MAIN ===
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 338: `arrow function uniqueAlerts` ➡️
+  - 💡 [無描述]
+
+### `pattern_project_tracker.js`
+- Line 8: `variable fs` 📦
+  - 💡 [無描述]
+- Line 9: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable MEMORY_DIR` 📦
+  - 💡 === CONFIG ===
+- Line 14: `variable ISSUES_DIR` 📦
+  - 💡 [無描述]
+- Line 15: `variable OUTPUT_FILE` 📦
+  - 💡 [無描述]
+- Line 16: `variable DRY_RUN` 📦
+  - 💡 [無描述]
+- Line 19: `variable PROJECT_KEYWORDS` 📦
+  - 💡 Project keywords (must appear in context that suggests actual project discussion)
+- Line 22: `variable MARKDOWN_TABLE_PATTERN` 📦
+  - 💡 Markdown table pattern to exclude (e.g., "| 數值 | |------|")
+- Line 25: `variable ISSUE_PATTERN` 📦
+  - 💡 Issue pattern: Issue #數字
+- Line 26: `variable ISSUE_REF_PATTERN` 📦
+  - 💡 [無描述]
+- Line 28: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 32: `function ensurePatternsDir` 🔧
+  - 💡 [無描述]
+- Line 45: `function getMemoryFiles` 🔧
+  - 💡 [無描述]
+- Line 59: `function getIssueFiles` 🔧
+  - 💡 [無描述]
+- Line 71: `function parseIssueFile` 🔧
+  - 💡 [無描述]
+- Line 117: `function extractProjectName` 🔧
+  - 💡 [無描述]
+- Line 166: `function determineStatus` 🔧
+  - 💡 [無描述]
+- Line 183: `function analyzeProjects` 🔧
+  - 💡 [無描述]
+- Line 218: `arrow function hasProjectKeyword` ➡️
+  - 💡 [無描述]
+- Line 304: `function generateOutput` 🔧
+  - 💡 [無描述]
+- Line 311: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `pattern_resolver.js`
+- Line 21: `variable fs` 📦
+  - 💡 [無描述]
+- Line 22: `variable path` 📦
+  - 💡 [無描述]
+- Line 25: `variable HOME_DIR` 📦
+  - 💡 === CONFIG ===
+- Line 26: `variable WORKSPACE_DIR` 📦
+  - 💡 [無描述]
+- Line 27: `variable MEMORY_PATTERNS_DIR` 📦
+  - 💡 [無描述]
+- Line 28: `variable ERRORS_FILE` 📦
+  - 💡 [無描述]
+- Line 29: `variable PROJECTS_FILE` 📦
+  - 💡 [無描述]
+- Line 31: `variable QUIET` 📦
+  - 💡 [無描述]
+- Line 34: `variable CONFIG` 📦
+  - 💡 === CONFIG CONSTANTS ===
+- Line 41: `function log` 🔧
+  - 💡 === HELPERS ===
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 45: `function error` 🔧
+  - 💡 [無描述]
+- Line 49: `function readJSON` 🔧
+  - 💡 [無描述]
+- Line 65: `function writeJSON` 🔧
+  - 💡 Atomic write - 寫入 JSON 檔案 /
+- Line 81: `function nowHKT` 🔧
+  - 💡 獲取當前 HKT 時間 ISO 格式 /
+- Line 92: `function daysAgo` 🔧
+  - 💡 獲取多久之前（天數） /
+- Line 104: `function resolveError` 🔧
+  - 💡 標記 Error 為 Resolved /
+- Line 111: `arrow function errorIndex` ➡️
+  - 💡 [無描述]
+- Line 159: `function reopenError` 🔧
+  - 💡 重新打開已 Resolved 的 Error /
+- Line 166: `arrow function errorIndex` ➡️
+  - 💡 [無描述]
+- Line 209: `function completeProject` 🔧
+  - 💡 標記 Project 為 Completed /
+- Line 216: `arrow function projectIndex` ➡️
+  - 💡 [無描述]
+- Line 260: `function listResolved` 🔧
+  - 💡 列出所有 Resolved 項目 /
+- Line 354: `function parseArgs` 🔧
+  - 💡 === ARGUMENT PARSING ===
+- Line 390: `function main` 🔧
+  - 💡 === MAIN ===
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `pattern_topic_graph.js`
+- Line 8: `variable fs` 📦
+  - 💡 [無描述]
+- Line 9: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable MEMORY_DIR` 📦
+  - 💡 === CONFIG ===
+- Line 14: `variable OUTPUT_FILE` 📦
+  - 💡 [無描述]
+- Line 15: `variable DRY_RUN` 📦
+  - 💡 [無描述]
+- Line 18: `variable TOPIC_DEFINITIONS` 📦
+  - 💡 Topic definitions with related keywords
+- Line 70: `variable TRANSITION_KEYWORDS` 📦
+  - 💡 Transition keywords that suggest topic flow
+- Line 77: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 81: `function ensurePatternsDir` 🔧
+  - 💡 [無描述]
+- Line 94: `function getMemoryFiles` 🔧
+  - 💡 [無描述]
+- Line 108: `function parseDate` 🔧
+  - 💡 [無描述]
+- Line 113: `function detectTopics` 🔧
+  - 💡 [無描述]
+- Line 127: `function detectTopicTransitions` 🔧
+  - 💡 [無描述]
+- Line 138: `arrow function hasTransition` ➡️
+  - 💡 Check if there's a transition indicator
+- Line 153: `function analyzeTopicGraph` 🔧
+  - 💡 [無描述]
+- Line 246: `function generateOutput` 🔧
+  - 💡 [無描述]
+- Line 258: `function printGraph` 🔧
+  - 💡 [無描述]
+- Line 272: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `powerquery_generator.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `class PowerQueryGenerator` 🏗️
+  - 💡 [無描述]
+
+### `preference_tracker.js`
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 20: `variable CONFIG` 📦
+  - 💡 ==================== CONFIG ====================
+- Line 52: `variable _quiet` 📦
+  - 💡 ==================== QUIET MODE ====================
+- Line 53: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 60: `function loadState` 🔧
+  - 💡 初始化或載入 state /
+- Line 81: `function saveState` 🔧
+  - 💡 使用 atomic write 儲存 state /
+- Line 99: `function detectPreferences` 🔧
+  - 💡 從對話內容中識別偏好關鍵詞 @param {string} text - 對話內容 @returns {Array} 識別到的偏好列表 /
+- Line 136: `function updateCandidates` 🔧
+  - 💡 更新候選偏好列表 /
+- Line 184: `function getConfidenceLevel` 🔧
+  - 💡 計算置信度等級 /
+- Line 194: `function promoteConfirmed` 🔧
+  - 💡 將高置信度的候選移動到 confirmed /
+- Line 231: `function generateDiscordReport` 🔧
+  - 💡 生成 Discord 格式的偏好報告 /
+- Line 307: `arrow function totalHigh` ➡️
+  - 💡 統計摘要
+- Line 308: `arrow function totalMedium` ➡️
+  - 💡 [無描述]
+- Line 309: `arrow function totalLow` ➡️
+  - 💡 [無描述]
+- Line 328: `function analyzeCommand` 🔧
+  - 💡 分析對話內容 /
+- Line 367: `function reportCommand` 🔧
+  - 💡 生成報告 /
+- Line 391: `function statusCommand` 🔧
+  - 💡 顯示狀態 /
+- Line 429: `function resetCommand` 🔧
+  - 💡 重置狀態 /
+- Line 450: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 454: `arrow function commands` ➡️
+  - 💡 過濾掉 --quiet
+
+### `price_alert_system.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `class PriceAlertSystem` 🏗️
+  - 💡 [無描述]
+- Line 86: `arrow function alert` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+
+### `price_history.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable HISTORY_FILE` 📦
+  - 💡 [無描述]
+- Line 18: `function loadHistory` 🔧
+  - 💡 [無描述]
+- Line 35: `function saveHistory` 🔧
+  - 💡 [無描述]
+- Line 47: `function calculateSimilarity` 🔧
+  - 💡 計算4C相似度分數
+- Line 81: `function addRecord` 🔧
+  - 💡 添加新記錄
+- Line 110: `function findSimilar` 🔧
+  - 💡 查找相近記錄
+- Line 118: `arrow function scored` ➡️
+  - 💡 計算每條記錄嘅相似度
+- Line 131: `function showSimilarRecords` 🔧
+  - 💡 顯示相近記錄
+- Line 155: `function showAllRecords` 🔧
+  - 💡 顯示所有記錄
+- Line 182: `variable cmd` 📦
+  - 💡 Main
+- Line 225: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `price_predictor.js`
+- Line 9: `class PricePredictor` 🏗️
+  - 💡 [無描述]
+- Line 97: `arrow function predictions` ➡️
+  - 💡 [無描述]
+
+### `pure_audit_runner.js`
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+- Line 22: `variable PURE_AUDIT_JS` 📦
+  - 💡 [無描述]
+- Line 23: `variable SPAWN_PAYLOAD_FILE` 📦
+  - 💡 [無描述]
+- Line 24: `variable RESULT_FILE` 📦
+  - 💡 [無描述]
+- Line 27: `variable C` 📦
+  - 💡 ANSI colors
+- Line 36: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 43: `function runPureAuditSpawn` 🔧
+  - 💡 運行 pure_ai_audit.js --spawn /
+- Line 84: `function spawnAuditSubAgent` 🔧
+  - 💡 注意：OpenClaw CLI 沒有直接 spawn 命令 但我們可以通過 gateway API 進行 spawn  @deprecated 此函數已被棄用，請使用新的 spawn 機製 /
+- Line 141: `function main` 🔧
+  - 💡 主函數 /
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `queue_depth.js`
+- Line 22: `variable fs` 📦
+  - 💡 [無描述]
+- Line 23: `variable path` 📦
+  - 💡 [無描述]
+- Line 24: `variable os` 📦
+  - 💡 [無描述]
+- Line 26: `variable QUEUE_FILE` 📦
+  - 💡 [無描述]
+- Line 27: `variable WATCH_INTERVAL` 📦
+  - 💡 [無描述]
+- Line 29: `function readQueue` 🔧
+  - 💡 [無描述]
+- Line 55: `function analyzeQueue` 🔧
+  - 💡 [無描述]
+- Line 67: `arrow function parseErrors` ➡️
+  - 💡 [無描述]
+- Line 129: `function formatTime` 🔧
+  - 💡 [無描述]
+- Line 144: `function formatAge` 🔧
+  - 💡 [無描述]
+- Line 159: `function printHuman` 🔧
+  - 💡 [無描述]
+- Line 186: `arrow function toolKeys` ➡️
+  - 💡 Tool usage breakdown
+- Line 210: `function printJSON` 🔧
+  - 💡 [無描述]
+- Line 214: `function runReport` 🔧
+  - 💡 [無描述]
+- Line 227: `function watchMode` 🔧
+  - 💡 [無描述]
+- Line 231: `function tick` 🔧
+  - 💡 [無描述]
+- Line 252: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `quotation_generator.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `class QuotationGenerator` 🏗️
+  - 💡 [無描述]
+
+### `rapaport_extractor.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 6: `variable fs` 📦
+  - 💡 [無描述]
+- Line 7: `variable path` 📦
+  - 💡 [無描述]
+- Line 14: `class RapaportExtractor` 🏗️
+  - 💡 [無描述]
+- Line 23: `arrow function lines` ➡️
+  - 💡 [無描述]
+
+### `rapnet_ai_summary.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `variable DATA_FILE` 📦
+  - 💡 [無描述]
+- Line 18: `function hasExistingSummaries` 🔧
+  - 💡 檢查是否已有完整 summary（所有文章都有且最少20字符）
+- Line 22: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 54: `arrow function articleList` ➡️
+  - 💡 生成 prompt
+- Line 82: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `rapnet_sender.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable https` 📦
+  - 💡 [無描述]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable CHANNEL_ID` 📦
+  - 💡 [無描述]
+- Line 19: `variable DATA_FILE` 📦
+  - 💡 [無描述]
+- Line 20: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 21: `variable RAPNET_URL` 📦
+  - 💡 [無描述]
+- Line 22: `variable _newOnly` 📦
+  - 💡 [無描述]
+- Line 23: `variable _autoSummary` 📦
+  - 💡 [無描述]
+- Line 25: `function getDiscordToken` 🔧
+  - 💡 [無描述]
+- Line 35: `function sendDiscord` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 50: `arrow function req` ➡️
+  - 💡 [無描述]
+- Line 67: `variable MAX_DISCORD_LENGTH` 📦
+  - 💡 [無描述]
+- Line 69: `function truncateMessage` 🔧
+  - 💡 [無描述]
+- Line 74: `function sendDiscordWithRetry` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 90: `function updateState` 🔧
+  - 💡 [無描述]
+- Line 108: `function autoGenerateSummaries` 🔧
+  - 💡 自動生成 AI 摘要
+- Line 112: `arrow function articleList` ➡️
+  - 💡 構建 prompt
+- Line 173: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 196: `arrow function needsSummary` ➡️
+  - 💡 [無描述]
+- Line 233: `arrow function important` ➡️
+  - 💡 重要文章先
+- Line 234: `arrow function others` ➡️
+  - 💡 [無描述]
+- Line 278: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `rapnet_weekly_workflow.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable SCRIPTS_DIR` 📦
+  - 💡 [無描述]
+- Line 19: `function runScript` 🔧
+  - 💡 [無描述]
+- Line 38: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `rapnet_weekly.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `variable https` 📦
+  - 💡 [無描述]
+- Line 18: `variable RAPNET_URL` 📦
+  - 💡 [無描述]
+- Line 19: `variable RAPNET_BASE_URL` 📦
+  - 💡 [無描述]
+- Line 20: `variable DEFAULT_USER_AGENT` 📦
+  - 💡 [無描述]
+- Line 21: `variable SUMMARY_MAX_CHARS` 📦
+  - 💡 [無描述]
+- Line 22: `variable MAX_ARTICLES` 📦
+  - 💡 [無描述]
+- Line 24: `variable DATA_FILE` 📦
+  - 💡 [無描述]
+- Line 25: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 29: `variable IMPORTANT_KEYWORDS` 📦
+  - 💡 [無描述]
+- Line 35: `function saveData` 🔧
+  - 💡 [無描述]
+- Line 45: `function isImportantArticle` 🔧
+  - 💡 [無描述]
+- Line 51: `function isDuplicate` 🔧
+  - 💡 去重 helper
+- Line 57: `arrow function baseUrl2` ➡️
+  - 💡 [無描述]
+- Line 64: `function scrapeWithBrowser` 🔧
+  - 💡 使用 Browser 工具抓取頁面
+- Line 121: `function extractArticles` 🔧
+  - 💡 從頁面內容提取文章（加強去重）
+- Line 193: `function main` 🔧
+  - 💡 主函數
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 259: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `reminder_discussion_bot.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `variable https` 📦
+  - 💡 [無描述]
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+- Line 17: `variable CHANNEL_ID` 📦
+  - 💡 Discord channel ID (⚙️系統)
+- Line 19: `function getDiscordToken` 🔧
+  - 💡 [無描述]
+- Line 30: `function sendDiscord` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 44: `arrow function req` ➡️
+  - 💡 [無描述]
+- Line 62: `function getTodayReminders` 🔧
+  - 💡 [無描述]
+- Line 88: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `reminder_discussion.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 18: `function getTodayReminders` 🔧
+  - 💡 [無描述]
+- Line 40: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `report_generator.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable path` 📦
+  - 💡 [無描述]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 40: `function formatBytes` 🔧
+  - 💡 Format bytes to human-readable string @param {number} bytes - Bytes to format @returns {string} Formatted string (e.g., "1.5 MB") /
+- Line 54: `function formatCurrency` 🔧
+  - 💡 Format number as currency @param {number} value - Value to format @param {string} currency - Currency code (default: 'USD') @returns {string} Formatted currency string /
+- Line 66: `function formatNumber` 🔧
+  - 💡 Format number with locale separators @param {number} num - Number to format @returns {string} Formatted number string /
+- Line 76: `function formatPercent` 🔧
+  - 💡 Format value as percentage @param {number} value - Value to format (e.g., 0.75) @param {number} decimals - Number of decimal places (default: 1) @returns {string} Formatted percentage string (e.g., "75.0%") /
+- Line 84: `class ReportGenerator` 🏗️
+  - 💡 Report Generator Class Generates standardized reports using templates /
+- Line 428: `arrow function truncate` ➡️
+  - 💡 Truncate content if too long (Discord field value limit is 1024 chars)
+- Line 435: `arrow function shouldInline` ➡️
+  - 💡 Determine inline based on section name (not inline for longer content)
+- Line 488: `arrow function header` ➡️
+  - 💡 Build header row
+- Line 491: `arrow function separator` ➡️
+  - 💡 Build separator row with alignment
+- Line 499: `arrow function rows` ➡️
+  - 💡 Build data rows
+- Line 807: `variable generator` 📦
+  - 💡 [無描述]
+- Line 810: `variable report` 📦
+  - 💡 Generate report
+- Line 818: `variable discordEmbed` 📦
+  - 💡 Convert to Discord embed
+- Line 821: `variable table` 📦
+  - 💡 Create table
+- Line 833: `variable filepath` 📦
+  - 💡 Save report
+
+### `report_templates.js`
+- Line 47: `variable CONFIG` 📦
+  - 💡 Configuration constants for report_templates module Centralizes all magic numbers and settings for easy maintenance. /
+- Line 115: `function formatDate` 🔧
+  - 💡 @param {Date|string} [date=new Date()] - Date object or string @returns {string} Formatted date (YYYY-MM-DD) @throws {Error} If date is invalid /
+- Line 141: `function validateInput` 🔧
+  - 💡 @param {object} [data={}] - Input data @param {Array<string>} [requiredFields=[]] - Required field names @returns {object} Validated data with defaults applied @throws {Error} If data is not a valid object /
+- Line 179: `function createReportStructure` 🔧
+  - 💡 @param {string} format - Output format (must be in VALID_FORMATS) @param {object} [data={}] - Template data @returns {object} Standardized report structure @throws {Error} If format is invalid or title is missing /
+- Line 213: `arrow function sectionArray` ➡️
+  - 💡 Build sections with safe indexing
+- Line 255: `function dailySummaryTemplate` 🔧
+  - 💡 Used for: AI daily summaries, personal reflections  @param {object} [data={}] - { date?, work?: [], reflections?: [], plans?: [] } @returns {object} Report structure with sections /
+- Line 276: `function stockReportTemplate` 🔧
+  - 💡 Used for: Diamond inventory reports, stock valuation  @param {object} [data={}] - { date?, totalCount?, totalValue?, changes?: {}, valuation?: {} } @returns {object} Report structure with sections /
+- Line 306: `function errorReportTemplate` 🔧
+  - 💡 Used for: System errors, bug tracking  @param {object} [data={}] - { date?, criticalErrors?: [], warnings?: [], autoFixed?: [] } @returns {object} Report structure with sections /
+- Line 336: `function memoryCleanupTemplate` 🔧
+  - 💡 Used for: Memory cleanup summaries, storage management  @param {object} [data={}] - { date?, deletedFiles?: [], spaceFreed?: number, preservedMemories?: [] } @returns {object} Report structure with sections /
+- Line 362: `function tokenReportTemplate` 🔧
+  - 💡 Used for: API usage tracking, cost monitoring  @param {object} [data={}] - { date?, currentUsage?: {}, trend?: [], warnings?: [] } @returns {object} Report structure with sections /
+- Line 391: `function backupReportTemplate` 🔧
+  - 💡 Used for: Backup status, sync reports  @param {object} [data={}] - { date?, successful?: [], failed?: [], summary?: {} } @returns {object} Report structure with sections /
+- Line 420: `function issueReportTemplate` 🔧
+  - 💡 Used for: Task tracking, project management  @param {object} [data={}] - { date?, active?: [], backlog?: [], completed?: [] } @returns {object} Report structure with sections /
+- Line 449: `function healthReportTemplate` 🔧
+  - 💡 Used for: System monitoring, health checks  @param {object} [data={}] - { date?, services?: {}, resources?: {}, alerts?: [] } @returns {object} Report structure with sections /
+- Line 481: `function reminderReportTemplate` 🔧
+  - 💡 Used for: Daily reminders, task summaries  @param {object} [data={}] - { date?, dueToday?: [], overdue?: [], completed?: [] } @returns {object} Report structure with sections /
+- Line 510: `function systemCheckTemplate` 🔧
+  - 💡 Used for: Reminder Discussion Bot - includes reminders + active errors  @param {object} [data={}] - { date?, reminders?: [], errors?: [], overdue?: [] } @returns {object} Report structure with sections /
+- Line 535: `function getExports` 🔧
+  - 💡 Safely require this module Returns an object with all templates and utilities.  @returns {object} Module exports /
+
+### `run_kb_ingest.sh`
+- Line 60: `function log` 🔧
+  - 💡 原子 log 寫入
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+
+### `sa_product_monitor.js`
+- Line 9: `variable PRODUCTS` 📦
+  - 💡 [無描述]
+- Line 14: `variable HOME_PAGE_SHORT` 📦
+  - 💡 [無描述]
+- Line 15: `variable HOME_PAGE_FULL` 📦
+  - 💡 [無描述]
+- Line 17: `function checkProduct` 🔧
+  - 💡 [無描述]
+- Line 57: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `session_cleanup.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function _log` ➡️
+  - 💡 [無描述]
+- Line 22: `variable fs` 📦
+  - 💡 [無描述]
+- Line 23: `variable path` 📦
+  - 💡 [無描述]
+- Line 25: `variable HOME` 📦
+  - 💡 [無描述]
+- Line 26: `variable SESSIONS_FILE` 📦
+  - 💡 [無描述]
+- Line 29: `variable CONFIG` 📦
+  - 💡 ==================== CONFIG (Magic Numbers) ====================
+- Line 36: `variable THREE_DAYS_MS` 📦
+  - 💡 Alias for backward compat
+- Line 41: `variable GREEN` 📦
+  - 💡 Colors
+- Line 42: `variable YELLOW` 📦
+  - 💡 [無描述]
+- Line 43: `variable RED` 📦
+  - 💡 [無描述]
+- Line 44: `variable RESET` 📦
+  - 💡 [無描述]
+- Line 46: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 50: `function cleanupSessions` 🔧
+  - 💡 [無描述]
+- Line 177: `arrow function recentCronCount` ➡️
+  - 💡 Show how many cron sessions were protected (recently active)
+- Line 241: `function cleanupTrajectoryFiles` 🔧
+  - 💡 [無描述]
+- Line 251: `arrow function allFiles` ➡️
+  - 💡 [無描述]
+- Line 303: `function cleanupLargeSessionFiles` 🔧
+  - 💡 [無描述]
+- Line 314: `arrow function allFiles` ➡️
+  - 💡 [無描述]
+
+### `session_cleanup.sh`
+- Line 21: `function log` 🔧
+  - 💡 記錄函數
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 26: `function cleanup_session` 🔧
+  - 💡 檢查並清理單個 session
+- Line 74: `function main` 🔧
+  - 💡 主程序
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 121: `function show_help` 🔧
+  - 💡 顯示幫助
+
+### `session_end.js`
+- Line 24: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 25: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 28: `variable WORKSPACE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 29: `variable HANDOFF_FILE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 30: `variable PENDING_FILE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 31: `variable BOOTSTRAP_SCRIPT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 32: `variable HEARTBEAT_SCRIPT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 33: `variable DASHBOARD_SCRIPT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 35: `variable colors` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 45: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 46: `arrow function color` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 50: `function getHKTTimestamp` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 57: `function readTextFile` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 63: `function parseArgs` 🔧
+  - 💡 ── Parse args ────────────────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 110: `arrow function get` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 128: `function appendPendingDecisions` 🔧
+  - 💡 ── Pending Decisions ─────────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 131: `arrow function items` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 179: `function writeHandoff` 🔧
+  - 💡 ── Standardized Handoff ──────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 200: `arrow function items` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 208: `arrow function items` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 216: `arrow function items` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 229: `arrow function items` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 250: `function autoExtractTasks` 🔧
+  - 💡 ── Auto-Extraction (data-driven, no manual flags needed) ────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 253: `arrow function files` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 258: `arrow function raw` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 272: `function autoExtractNextStep` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 275: `arrow function files` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 281: `arrow function raw` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 298: `function autoExtractFacts` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 305: `arrow function lines` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 316: `arrow function yesterday` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 320: `arrow function lines` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 333: `function autoExtractBlockers` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 337: `arrow function files` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 340: `arrow function raw` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 351: `function autoExtractObjective` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 355: `arrow function line` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 363: `function runBootstrap` 🔧
+  - 💡 ── Post-Write Steps ──────────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 372: `function updateHeartbeat` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 402: `function runDashboard` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 412: `function main` 🔧
+  - 💡 ── Main ───────────────────────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `session_recovery.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 21: `function createDefaultState` 🔧
+  - 💡 [無描述]
+- Line 51: `function checkInProgressTasks` 🔧
+  - 💡 檢查是否有進行中任務 /
+- Line 75: `function checkCronStatus` 🔧
+  - 💡 檢查 Cron 任務狀態 /
+- Line 120: `function checkStreamingArchive` 🔧
+  - 💡 檢查 Streaming Archive 狀態 /
+- Line 145: `function checkTodayReminders` 🔧
+  - 💡 檢查今日待辦 /
+- Line 148: `arrow function dueToday` ➡️
+  - 💡 [無描述]
+- Line 163: `function checkTokenStatus` 🔧
+  - 💡 檢查 Token 狀態 /
+- Line 176: `function generateRecoveryReport` 🔧
+  - 💡 生成恢復報告 /
+- Line 256: `function autoFix` 🔧
+  - 💡 自動修復動作 /
+- Line 287: `function runRecovery` 🔧
+  - 💡 主函數 /
+
+### `session_startup.sh`
+- Line 23: `function log_info` 🔧
+  - 💡 [無描述]
+- Line 27: `function log_success` 🔧
+  - 💡 [無描述]
+- Line 31: `function log_warn` 🔧
+  - 💡 [無描述]
+- Line 35: `function log_error` 🔧
+  - 💡 [無描述]
+
+### `skill_junk_pause.js`
+- Line 38: `variable fs` 📦
+  - 💡 [無描述]
+- Line 39: `variable path` 📦
+  - 💡 [無描述]
+- Line 43: `variable JUNK_RATE_FILE` 📦
+  - 💡 [無描述]
+- Line 44: `variable PAUSE_FILE` 📦
+  - 💡 [無描述]
+- Line 45: `variable DEFAULT_THRESHOLD` 📦
+  - 💡 [無描述]
+- Line 46: `variable DEFAULT_HOURS` 📦
+  - 💡 [無描述]
+- Line 47: `variable PAUSE_DURATION_MS` 📦
+  - 💡 [無描述]
+- Line 51: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 55: `function err` 🔧
+  - 💡 [無描述]
+- Line 59: `function readJunkRateEntries` 🔧
+  - 💡 [無描述]
+- Line 90: `function computeJunkRate` 🔧
+  - 💡 [無描述]
+- Line 111: `function readPauseState` 🔧
+  - 💡 [無描述]
+- Line 121: `function parseArgs` 🔧
+  - 💡 [無描述]
+- Line 155: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 263: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `skill_junk_tracker.js`
+- Line 32: `variable fs` 📦
+  - 💡 [無描述]
+- Line 33: `variable path` 📦
+  - 💡 [無描述]
+- Line 34: `variable os` 📦
+  - 💡 [無描述]
+- Line 36: `variable WS` 📦
+  - 💡 [無描述]
+- Line 37: `variable LOG_FILE` 📦
+  - 💡 [無描述]
+- Line 38: `variable SOURCE` 📦
+  - 💡 [無描述]
+- Line 39: `variable ARCHIVE_ROOT` 📦
+  - 💡 [無描述]
+- Line 41: `variable TARGET_VALIDATOR_CATCH` 📦
+  - 💡 [無描述]
+- Line 42: `variable TARGET_JUNK_IN_PRODUCTION` 📦
+  - 💡 [無描述]
+- Line 45: `variable args` 📦
+  - 💡 Parse args
+- Line 46: `arrow function days` ➡️
+  - 💡 [無描述]
+- Line 50: `variable jsonOnly` 📦
+  - 💡 [無描述]
+- Line 51: `variable quiet` 📦
+  - 💡 [無描述]
+- Line 53: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 55: `function round2` 🔧
+  - 💡 [無描述]
+- Line 64: `function readEvents` 🔧
+  - 💡 Read .skill_created.jsonl and filter events within the time window. @param {number} windowDays @returns {Array<{ts: string, validationPassed: boolean, name: string, reason: string}>} /
+- Line 112: `function scanQuarantinedSkills` 🔧
+  - 💡 - Flat timestamp format: strip "quarantine-<digits>-" prefix from top dir name - failed-validations: strip trailing "-<8+ digits>" suffix from subdir name  @returns {Set<string>} /
+- Line 145: `arrow function subdirs` ➡️
+  - 💡 [無描述]
+- Line 179: `function computeStats` 🔧
+  - 💡 - null when no passed skills in window (can't compute ratio)  @param {Array} events @param {Set<string>} quarantinedNames /
+- Line 181: `arrow function passed` ➡️
+  - 💡 [無描述]
+- Line 188: `arrow function passedNames` ➡️
+  - 💡 Metric 2: Junk-in-Production Rate (name-based cross-reference)
+- Line 189: `arrow function passedAndQuarantined` ➡️
+  - 💡 [無描述]
+- Line 206: `function appendLog` 🔧
+  - 💡 [無描述]
+- Line 214: `function verdictIcon` 🔧
+  - 💡 [無描述]
+- Line 218: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `skill_matcher_metrics.js`
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable WORKSPACE` 📦
+  - 💡 ── Config ──────────────────────────────────────────────────────────────────
+- Line 18: `variable METRICS_FILE` 📦
+  - 💡 [無描述]
+- Line 19: `variable CHANNEL_SYSTEM` 📦
+  - 💡 [無描述]
+- Line 20: `variable TZ` 📦
+  - 💡 [無描述]
+- Line 23: `variable args` 📦
+  - 💡 ── CLI ─────────────────────────────────────────────────────────────────────
+- Line 40: `variable entries` 📦
+  - 💡 [無描述]
+- Line 58: `variable now` 📦
+  - 💡 ── Compute stats ───────────────────────────────────────────────────────────
+- Line 59: `variable yesterday` 📦
+  - 💡 [無描述]
+- Line 62: `arrow function recent` ➡️
+  - 💡 Filter to last 24h (overlap with potential rotation)
+- Line 68: `variable sample` 📦
+  - 💡 Use all entries if recent has < 10
+- Line 71: `variable total` 📦
+  - 💡 Counts
+- Line 72: `arrow function matches` ➡️
+  - 💡 [無描述]
+- Line 73: `arrow function noMatches` ➡️
+  - 💡 [無描述]
+- Line 74: `arrow function skipped` ➡️
+  - 💡 [無描述]
+- Line 76: `variable matchRate` 📦
+  - 💡 [無描述]
+- Line 79: `variable skillCounts` 📦
+  - 💡 Top skills
+- Line 84: `variable topSkills` 📦
+  - 💡 [無描述]
+- Line 89: `variable rejectedScores` 📦
+  - 💡 Threshold analysis
+- Line 92: `variable avgRejected` 📦
+  - 💡 [無描述]
+- Line 97: `variable phase` 📦
+  - 💡 Determine phase from first entry
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+- Line 98: `variable threshold` 📦
+  - 💡 [無描述]
+- Line 102: `variable matchPct` 📦
+  - 💡 [無描述]
+- Line 114: `arrow function sorted` ➡️
+  - 💡 Time range
+- Line 115: `variable firstTs` 📦
+  - 💡 [無描述]
+- Line 116: `variable lastTs` 📦
+  - 💡 [無描述]
+- Line 156: `arrow function recent3` ➡️
+  - 💡 [無描述]
+
+### `skill_pitfalls_fallback.js`
+- Line 58: `variable fs` 📦
+  - 💡 [無描述]
+- Line 59: `variable path` 📦
+  - 💡 [無描述]
+- Line 65: `variable PITFALLS_HEADER_REGEX` 📦
+  - 💡 [無描述]
+- Line 66: `variable PLACEHOLDER_BLOCK` 📦
+  - 💡 [無描述]
+- Line 67: `variable SKIP_DIRS` 📦
+  - 💡 [無描述]
+- Line 71: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 75: `function err` 🔧
+  - 💡 [無描述]
+- Line 79: `function isVerbose` 🔧
+  - 💡 [無描述]
+- Line 83: `function isDryRun` 🔧
+  - 💡 [無描述]
+- Line 91: `function hasPitfallsSection` 🔧
+  - 💡 Check whether a file already has a `## Pitfalls` section. Line-anchored match to mirror the validator's detection logic. /
+- Line 100: `function backupDirFor` 🔧
+  - 💡 Build the backup root path for a given run. One backup dir per run so all changes from a single invocation are colocated and can be reverted as a group with `rm -rf skills-learned/.backup-<ts>`. /
+- Line 113: `function discoverSkillFiles` 🔧
+  - 💡 Skips the `skills-learned/_archive/` subtree entirely — quarantined and failed-validation files are explicitly out of scope.  Returns an array of absolute paths to SKILL.md files in scope. /
+- Line 146: `function injectPitfallsPlaceholder` 🔧
+  - 💡 predictable behaviour, and a human editor can move the section later if they prefer a different position.  @returns {{ newContent: string, injectedBytes: number }} /
+- Line 155: `function processFile` 🔧
+  - 💡 Process a single file. Returns a status object describing the action. /
+- Line 190: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `skill_reviewer_bot.js`
+- Line 23: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 24: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 25: `variable https` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 30: `variable MODEL` 📦
+  - 💡 ── Config ──
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 31: `variable MODEL_FALLBACKS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 34: `variable OPENCLAW_CLI` 📦
+  - 💡 OPENCLAW_CLI path resolution (v3 pattern): known paths first, which fallback, raw name last. Cron isolated sessions have truncated PATH — 'which' alone fails there.
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 42: `variable TIMEOUT_MS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 43: `variable REVIEWER_SCRIPT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 44: `variable CLEANUP_SCRIPT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 45: `variable QUEUE_FILE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 46: `variable DISCORD_CHANNEL` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 47: `variable LOCK_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 48: `variable SKILL_CREATED_LOG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 49: `variable LLM_JUDGE_SHADOW_LOG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 54: `variable S1_MISMATCH_HISTORY_LOG` 📦
+  - 💡 ── S1 mismatch escalation (Phase 1) ── Event log: every mark-mismatch invocation, with the source event, destination, and actions taken (or planned, for --dry-run).
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 57: `variable S1_ALERTS_LOG` 📦
+  - 💡 Alert log: written only on a successful (non-dry-run) quarantine, so downstream consumers (Discord / dashboards) can pick them up.
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 63: `variable CONFIG` 📦
+  - 💡 ── Week 1 Safety Nets (Issue #154) ── Make auto-symlink behavior EXPLICIT + guard-railed. Previously, validation-passed skills were silently symlinked into skills/. Now: pause + threshold + env override give Josh a kill switch.
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 76: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 80: `function err` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 90: `function recordSkillCreated` 🔧
+  - 💡 Record a skill_created event to .skill_created.jsonl (append-only). Used for quality trend telemetry: pitfalls count, workflow steps, quarantine rate over time. Separate from .skill_metrics.json (run-level telemetry) to keep this lightweight and event-sourced. /
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 103: `function recordLlmJudgeShadow` 🔧
+  - 💡 Phase 2: Record an LLM judge shadow event to .llm_judge_shadow.jsonl. Append-only, used by the calibration report (7-day analysis). Silent on failure — shadow logging must never block the pipeline. /
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 113: `function getDiscordToken` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 123: `function sendDiscordMessage` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 152: `function sendDiscordMessageWithRetry` 🔧
+  - 💡 ── WARN-03 fix: Discord delivery with retry + exponential backoff ──
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 156: `function tryOnce` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 176: `function readQueueCount` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 188: `function buildReviewPrompt` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 279: `function extractFileBlocks` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 396: `function extractSummaryBlock` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 417: `function checkExistingFiles` 🔧
+  - 💡 Check which target files already exist BEFORE writing
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 426: `function writeSkillFiles` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 700: `function parseMarkMismatchArgs` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 721: `function findSkillCreatedEvent` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 738: `function writeS1MismatchEvent` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 748: `function writeS1Alert` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 758: `function quarantineSkillS1` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 804: `function markMismatchHandler` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 874: `function printMarkMismatchHelp` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 898: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 1087: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `skill_reviewer_cleanup.js`
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 18: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `skill_reviewer_daily_report.js`
+- Line 37: `variable fs` 📦
+  - 💡 [無描述]
+- Line 38: `variable path` 📦
+  - 💡 [無描述]
+- Line 43: `variable SKILL_CREATED_LOG` 📦
+  - 💡 [無描述]
+- Line 44: `variable JUNK_RATE_FILE` 📦
+  - 💡 [無描述]
+- Line 45: `variable PAUSE_FILE` 📦
+  - 💡 [無描述]
+- Line 46: `variable DISCORD_CHANNEL` 📦
+  - 💡 [無描述]
+- Line 47: `variable DEFAULT_HOURS` 📦
+  - 💡 [無描述]
+- Line 48: `variable AUTO_PAUSE_THRESHOLD` 📦
+  - 💡 [無描述]
+- Line 49: `variable VALIDATOR_CATCH_TARGET` 📦
+  - 💡 [無描述]
+- Line 53: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 57: `function err` 🔧
+  - 💡 [無描述]
+- Line 61: `function readEventsSince` 🔧
+  - 💡 [無描述]
+- Line 91: `function readLatestJunkRate` 🔧
+  - 💡 [無描述]
+- Line 109: `function readPauseState` 🔧
+  - 💡 [無描述]
+- Line 118: `function topClusters` 🔧
+  - 💡 [無描述]
+- Line 132: `function buildReport` 🔧
+  - 💡 [無描述]
+- Line 249: `function sendDiscordMessage` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+- Line 280: `function parseArgs` 🔧
+  - 💡 [無描述]
+- Line 308: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 343: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `skill_reviewer_pipeline.js`
+- Line 32: `variable path` 📦
+  - 💡 [無描述]
+- Line 34: `variable SCRIPT_REVIEWER` 📦
+  - 💡 [無描述]
+- Line 35: `variable SCRIPT_JUNK_PAUSE` 📦
+  - 💡 [無描述]
+- Line 36: `variable SCRIPT_PITFALLS_FALLBACK` 📦
+  - 💡 [無描述]
+- Line 37: `variable SCRIPT_LLM_JUDGE_BATCH` 📦
+  - 💡 [無描述]
+- Line 40: `variable LLM_JUDGE_BATCH_TIMEOUT_MS` 📦
+  - 💡 Phase 2: shadow LLM judge batch — 10 skills × ~60s each = 10 min upper bound
+- Line 44: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 48: `function err` 🔧
+  - 💡 [無描述]
+- Line 52: `function shouldSkipJunkPause` 🔧
+  - 💡 [無描述]
+- Line 56: `function shouldSkipPitfallsFallback` 🔧
+  - 💡 [無描述]
+- Line 60: `function isDryRun` 🔧
+  - 💡 [無描述]
+- Line 66: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `skill_reviewer_resume.js`
+- Line 29: `variable fs` 📦
+  - 💡 [無描述]
+- Line 30: `variable path` 📦
+  - 💡 [無描述]
+- Line 34: `variable PAUSE_FILE` 📦
+  - 💡 [無描述]
+- Line 36: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 40: `function err` 🔧
+  - 💡 [無描述]
+- Line 44: `function parseArgs` 🔧
+  - 💡 [無描述]
+- Line 62: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 130: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `skill_reviewer.js`
+- Line 21: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 22: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 23: `variable os` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 24: `variable crypto` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 35: `variable FORCE_REBUILD` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 36: `variable BATCH_MODE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 37: `variable VERIFY_AFTER_WRITE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 40: `variable CACHE_VERSION` 📦
+  - 💡 Cache version — bump when prompt format changes to force rebuild
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 41: `variable MAX_METRICS_ENTRIES` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 45: `function readQueue` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 63: `function listExistingSkills` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 65: `function uses` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 85: `function buildSkillCatalog` 🔧
+  - 💡 Audit finding: 11% of past skills duplicated existing content. This makes the overlap check trivial at prompt-construction time.  Returns a markdown table string, or '*(no existing skills)*' if directory is empty/missing. /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 127: `function computeSkillHash` 🔧
+  - 💡 Compute hash of all SKILL.md frontmatter blocks in skills-learned/. Only hashes frontmatter (between --- markers), not the body, to keep it fast. Uses shared FRONTMATTER_RE from lib/frontmatter.js (Issue #133 DRY cleanup). /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 149: `function computeSignalHash` 🔧
+  - 💡 Compute hash of the last 20 queue entries. Only includes tool + errorClass + timestamp for quick comparison. /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 187: `function atomicWriteJson` 🔧
+  - 💡 Atomic JSON write: write to .tmp first, then rename (atomic on most filesystems). /
+  - 📋 Log: [MEM_WRITE_SUCCESS] / [MEM_WRITE_FAILED]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 195: `function checkCache` 🔧
+  - 💡 Check if cache is valid given current skill and signal hashes. Returns { valid: boolean, cached: Object|null } /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 228: `function saveCache` 🔧
+  - 💡 Save cache to disk atomically. /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 252: `function loadMetrics` 🔧
+  - 💡 Load metrics from disk. /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 264: `function trackMetrics` 🔧
+  - 💡 Track a reviewer or curator run. /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 300: `variable REVIEW_INSTRUCTIONS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 569: `class of` 🏗️
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 575: `class of` 🏗️
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 604: `function readAggregatedSignals` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 614: `arrow function entries` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 623: `function formatSignalLines` 🔧
+  - 💡 Format structured signal data from aggregateSignals() into review-prompt lines. /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 651: `function buildBatchReviewInstructions` 🔧
+  - 💡 Build a batch-mode version of REVIEW_INSTRUCTIONS that strips tool references. The agentTurn LLM in batch mode has NO write/edit/exec tools — it outputs fenced code blocks instead. /
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 713: `variable VERIFY_AFTER_WRITE_SECTION` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 762: `variable VERIFY_AFTER_WRITE_SECTION_BATCH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 780: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+
+### `smart_followup.js`
+- Line 9: `class SmartFollowUp` 🏗️
+  - 💡 [無描述]
+- Line 24: `arrow function rule` ➡️
+  - 💡 [無描述]
+
+### `smart_query.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `variable query` 📦
+  - 💡 [無描述]
+- Line 38: `variable classification` 📦
+  - 💡 Classify the task
+- Line 92: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `spawn_config.js`
+- Line 32: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 34: `variable ROUTER_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 35: `variable modelRouter` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 39: `variable DEFAULT_MODELS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 46: `variable ROUTE_DEFAULT_FALLBACK` 📦
+  - 💡 Route-specific fallback model (when router resolves to fallback provider) Overrides DEFAULT_MODELS per route — keeps quality tier appropriate
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 51: `variable DEFAULT_THINKING` 📦
+  - 💡 Default thinking preference per provider (when no extra_body reasoning set)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 58: `function extraBodyToThinking` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 68: `function normalizeRoute` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 78: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+
+### `startup_dashboard.js`
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 22: `variable C` 📦
+  - 💡 ── ANSI Colors ────────────────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 34: `variable SEP` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 35: `variable SEP_END` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 37: `variable WORKSPACE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 40: `function readJSON` 🔧
+  - 💡 ── Helpers ───────────────────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 45: `function readTextFile` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 50: `function section` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 54: `function getDateNDaysAgo` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 60: `function stripBullet` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 65: `function showDirective` 🔧
+  - 💡 ── 1. → DO THIS directive ────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 73: `arrow function line` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 82: `arrow function line` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 91: `function showPendingDecisions` 🔧
+  - 💡 ── 2. Pending Decisions ─────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 97: `arrow function items` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 113: `function showGroupedTasks` 🔧
+  - 💡 ── 3. Grouped Tasks ──────────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 124: `arrow function raw` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 153: `arrow function overdue` ➡️
+  - 💡 Group
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 154: `arrow function dueToday` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 155: `arrow function p1Tasks` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 156: `arrow function p1Ids` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 157: `arrow function inProgress` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 158: `arrow function monitoring` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 159: `arrow function backlog` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 166: `arrow function render` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 196: `variable VERSION` 📦
+  - 💡 ── Main ───────────────────────────────────────────────────────────────────────
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 198: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `state.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 40: `arrow function task` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+
+### `status-server.js`
+- Line 1: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 2: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 10: `variable CONFIG` 📦
+  - 💡 HR-072: Magic numbers moved to CONFIG
+- Line 17: `variable http` 📦
+  - 💡 [無描述]
+- Line 19: `variable util` 📦
+  - 💡 [無描述]
+- Line 20: `variable execPromise` 📦
+  - 💡 [無描述]
+- Line 24: `variable PORT` 📦
+  - 💡 配置
+- Line 25: `variable CHECK_INTERVAL` 📦
+  - 💡 [無描述]
+- Line 28: `variable systemStatus` 📦
+  - 💡 狀態緩存
+- Line 36: `variable corsHeaders` 📦
+  - 💡 CORS 頭
+- Line 44: `function checkOpenClaw` 🔧
+  - 💡 檢查 OpenClaw 狀態
+- Line 63: `function checkWhatsApp` 🔧
+  - 💡 檢查 WhatsApp 狀態
+- Line 92: `function checkKimi` 🔧
+  - 💡 檢查 Kimi API 狀態
+- Line 123: `function checkQwen3` 🔧
+  - 💡 檢查 Qwen3 (Ollama) 狀態
+- Line 134: `arrow function hasQwen3` ➡️
+  - 💡 [無描述]
+- Line 155: `function runAllChecks` 🔧
+  - 💡 執行所有檢查
+- Line 179: `arrow function server` ➡️
+  - 💡 HTTP Server
+
+### `stock_merge_pro.js`
+- Line 1: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 2: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 4: `variable ExcelJS` 📦
+  - 💡 [無描述]
+- Line 5: `variable fs` 📦
+  - 💡 [無描述]
+- Line 6: `variable path` 📦
+  - 💡 [無描述]
+- Line 23: `variable COLOR_ORDER` 📦
+  - 💡 Color order for sorting (D to Z)
+- Line 26: `variable OUTPUT_COLUMNS` 📦
+  - 💡 Output columns in required order
+- Line 45: `function getShapePriority` 🔧
+  - 💡 Shape priority: RBC → PS → OV → EM → CU → RAD → MQ → HS
+- Line 64: `function normalizeShape` 🔧
+  - 💡 Normalize shape names
+- Line 74: `function parseCarat` 🔧
+  - 💡 Parse carat value
+- Line 84: `function getColorIndex` 🔧
+  - 💡 Get color index for sorting
+- Line 91: `function isValidGiaNumber` 🔧
+  - 💡 Check if GIA number is valid
+- Line 99: `function readExcelFile` 🔧
+  - 💡 Read Excel file and extract data
+- Line 120: `arrow function hasParcelName` ➡️
+  - 💡 [無描述]
+- Line 121: `arrow function hasShape` ➡️
+  - 💡 [無描述]
+- Line 122: `arrow function hasCertNo` ➡️
+  - 💡 [無描述]
+- Line 139: `function isRowSwapped` 🔧
+  - 💡 Helper: Check if Shape/Crt columns are swapped
+- Line 155: `function getValue` 🔧
+  - 💡 Helper to get cell value
+- Line 221: `arrow function filteredData` ➡️
+  - 💡 Filter out TOTAL rows
+- Line 227: `arrow function itemsWithPrice` ➡️
+  - 💡 Count items with price
+- Line 228: `arrow function totalPrice` ➡️
+  - 💡 [無描述]
+- Line 237: `function sortData` 🔧
+  - 💡 Sort data: Shape (RBC first) → Carat (desc) → Color (D→Z)
+- Line 260: `function groupByShape` 🔧
+  - 💡 Group by shape for blank row insertion
+- Line 282: `function removeDuplicates` 🔧
+  - 💡 Remove duplicates by Cert No + Parcel Name + Carat When duplicate found, keep the one with Memo Price (prefer the one with price)
+- Line 322: `function createOutputExcel` 🔧
+  - 💡 Create output Excel with professional formatting
+- Line 433: `function main` 🔧
+  - 💡 Main function
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 504: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `stock_updater.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+- Line 20: `variable XLSX` 📦
+  - 💡 [無描述]
+- Line 23: `variable DESKTOP_STOCK_DIR` 📦
+  - 💡 [無描述]
+- Line 24: `variable OUTPUT_JSON` 📦
+  - 💡 [無描述]
+- Line 28: `function readConsolidatedStockList` 🔧
+  - 💡 [無描述]
+- Line 45: `arrow function filtered` ➡️
+  - 💡 Filter: >=1ct + 有 Cert No
+- Line 59: `arrow function mapped` ➡️
+  - 💡 Map with Template column structure Note: Column D (labeled "Shape") = actual Carat Column F (labeled "Rapnet") = actual Shape
+- Line 86: `function sortStockData` 🔧
+  - 💡 [無描述]
+- Line 110: `function addBlankRowsBetweenShapes` 🔧
+  - 💡 [無描述]
+- Line 127: `function createFormattedExcel` 🔧
+  - 💡 [無描述]
+- Line 135: `arrow function colWidthsAuto` ➡️
+  - 💡 [無描述]
+- Line 174: `function backupExistingData` 🔧
+  - 💡 [無描述]
+- Line 208: `function findSoldItems` 🔧
+  - 💡 [無描述]
+- Line 212: `arrow function newCertNos` ➡️
+  - 💡 [無描述]
+- Line 213: `arrow function newParcels` ➡️
+  - 💡 [無描述]
+- Line 227: `function cert` 🔧
+  - 💡 抽出 cert 驗證 — 區分「成功」(有 cert) 同「跳過」(冇 cert)
+- Line 235: `function removeDuplicates` 🔧
+  - 💡 [無描述]
+- Line 243: `arrow function unique` ➡️
+  - 💡 [無描述]
+- Line 290: `function createSoldStockNote` 🔧
+  - 💡 [無描述]
+- Line 299: `arrow function contentLines` ➡️
+  - 💡 [無描述]
+- Line 322: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 398: `arrow function jsonData` ➡️
+  - 💡 Save JSON data (use uniqueData) - without Memo In Price
+
+### `streaming_archive.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable os` 📦
+  - 💡 [無描述]
+- Line 18: `variable TRANSCRIPT_DIR` 📦
+  - 💡 [無描述]
+- Line 20: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 21: `variable ARCHIVE_INTERVAL` 📦
+  - 💡 [無描述]
+- Line 22: `variable TIME_INTERVAL` 📦
+  - 💡 [無描述]
+- Line 26: `function getCurrentDate` 🔧
+  - 💡 [無描述]
+- Line 30: `function getCurrentTime` 🔧
+  - 💡 [無描述]
+- Line 34: `function findLatestTranscript` 🔧
+  - 💡 [無描述]
+- Line 50: `function readNewMessages` 🔧
+  - 💡 [無描述]
+- Line 53: `arrow function lines` ➡️
+  - 💡 [無描述]
+- Line 129: `function createOrUpdateNote` 🔧
+  - 💡 [無描述]
+- Line 139: `function streamingArchive` 🔧
+  - 💡 [無描述]
+- Line 214: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `synthesis_closed_loop.js`
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 21: `variable VAULT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 22: `variable SYNTHESIS_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 23: `variable OUTPUT_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 24: `variable KNOWLEDGE_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 25: `variable STATE_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 27: `variable CONFIG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 36: `function loadState` 🔧
+  - 💡 ===== State =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 45: `function saveState` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 56: `function getAllNotes` 🔧
+  - 💡 ===== Scanning =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 80: `function getRecentOutputs` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 118: `function generateSynthesisPrompt` 🔧
+  - 💡 ===== Prompt generation =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 151: `function generateClosedLoopPrompt` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 156: `arrow function existing` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 187: `function writeSynthesisReport` 🔧
+  - 💡 ===== Report =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 225: `function writeClosedLoopReport` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 229: `arrow function outputs` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 270: `function main` 🔧
+  - 💡 ===== Main =====
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `system_check_bot.js`
+- Line 30: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 36: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+
+### `system_status_report.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 6: `variable fs` 📦
+  - 💡 [無描述]
+- Line 7: `variable path` 📦
+  - 💡 [無描述]
+- Line 11: `function getSystemStatus` 🔧
+  - 💡 [無描述]
+- Line 26: `function formatReport` 🔧
+  - 💡 [無描述]
+- Line 37: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `task_router.js`
+- Line 26: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 27: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 32: `variable CONFIG` 📦
+  - 💡 ============================================================ CONFIG - All Magic Numbers centralized ============================================================
+- Line 76: `variable fs` 📦
+  - 💡 ============================================================ IMPORTS ============================================================
+- Line 77: `variable path` 📦
+  - 💡 [無描述]
+- Line 81: `variable util` 📦
+  - 💡 [無描述]
+- Line 82: `variable execFileAsync` 📦
+  - 💡 [無描述]
+- Line 85: `class AITaskRouter` 🏗️
+  - 💡 [無描述]
+- Line 167: `arrow function match` ➡️
+  - 💡 [無描述]
+- Line 207: `arrow function hasComplexIndicator` ➡️
+  - 💡 [無描述]
+- Line 236: `arrow function bestMatch` ➡️
+  - 💡 [無描述]
+- Line 365: `arrow function successCount` ➡️
+  - 💡 [無描述]
+- Line 515: `arrow function qwen3Direct` ➡️
+  - 💡 [無描述]
+- Line 516: `arrow function qwen3Reviewed` ➡️
+  - 💡 [無描述]
+- Line 517: `arrow function kimiDirect` ➡️
+  - 💡 [無描述]
+- Line 566: `function classifyTask` 🔧
+  - 💡 Quick classification with source info
+- Line 617: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `terminology_manager.js`
+- Line 7: `class TerminologyManager` 🏗️
+  - 💡 [無描述]
+
+### `tesseract_gia_ocr.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `class TesseractGIAOCR` 🏗️
+  - 💡 [無描述]
+- Line 87: `arrow function lines` ➡️
+  - 💡 [無描述]
+
+### `test_daily_report.js`
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+- Line 23: `variable SKILL_CREATED_LOG` 📦
+  - 💡 [無描述]
+- Line 24: `variable JUNK_RATE_FILE` 📦
+  - 💡 [無描述]
+- Line 25: `variable PAUSE_FILE` 📦
+  - 💡 [無描述]
+- Line 26: `variable SCRIPT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 28: `variable pass` 📦
+  - 💡 [無描述]
+- Line 29: `variable failures` 📦
+  - 💡 [無描述]
+- Line 31: `function assert` 🔧
+  - 💡 [無描述]
+- Line 42: `function backup` 🔧
+  - 💡 [無描述]
+- Line 51: `function restore` 🔧
+  - 💡 [無描述]
+- Line 67: `function runScript` 🔧
+  - 💡 [無描述]
+- Line 80: `function runTests` 🔧
+  - 💡 [無描述]
+
+### `test_junk_pause.js`
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 16: `variable SCRIPT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 17: `variable JUNK_RATE_FILE` 📦
+  - 💡 [無描述]
+- Line 18: `variable PAUSE_FILE` 📦
+  - 💡 [無描述]
+- Line 20: `variable passed` 📦
+  - 💡 [無描述]
+- Line 21: `variable failed` 📦
+  - 💡 [無描述]
+- Line 23: `function logPass` 🔧
+  - 💡 [無描述]
+- Line 24: `function logFail` 🔧
+  - 💡 [無描述]
+- Line 25: `function assert` 🔧
+  - 💡 [無描述]
+- Line 27: `function backup` 🔧
+  - 💡 [無描述]
+- Line 35: `function restore` 🔧
+  - 💡 [無描述]
+- Line 40: `function runScript` 🔧
+  - 💡 [無描述]
+- Line 53: `function runTests` 🔧
+  - 💡 [無描述]
+
+### `test_resume.js`
+- Line 19: `variable fs` 📦
+  - 💡 [無描述]
+- Line 20: `variable path` 📦
+  - 💡 [無描述]
+- Line 24: `variable PAUSE_FILE` 📦
+  - 💡 [無描述]
+- Line 25: `variable SCRIPT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+- Line 27: `variable pass` 📦
+  - 💡 [無描述]
+- Line 28: `variable failures` 📦
+  - 💡 [無描述]
+- Line 30: `function assert` 🔧
+  - 💡 [無描述]
+- Line 41: `function backup` 🔧
+  - 💡 [無描述]
+- Line 50: `function restore` 🔧
+  - 💡 [無描述]
+- Line 66: `function runScript` 🔧
+  - 💡 [無描述]
+- Line 79: `function runTests` 🔧
+  - 💡 [無描述]
+
+### `test_skill_reviewer_safety_nets.js`
+- Line 30: `variable fs` 📦
+  - 💡 [無描述]
+- Line 31: `variable path` 📦
+  - 💡 [無描述]
+- Line 35: `variable SKILL_REVIEWER` 📦
+  - 💡 [無描述]
+- Line 36: `variable PAUSE_FILE` 📦
+  - 💡 [無描述]
+- Line 37: `variable SKILL_CREATED_LOG` 📦
+  - 💡 [無描述]
+- Line 38: `variable LOCK_DIR` 📦
+  - 💡 [無描述]
+- Line 40: `variable pass` 📦
+  - 💡 [無描述]
+- Line 41: `variable failures` 📦
+  - 💡 [無描述]
+- Line 43: `function assert` 🔧
+  - 💡 [無描述]
+- Line 54: `function backup` 🔧
+  - 💡 [無描述]
+- Line 63: `function restore` 🔧
+  - 💡 [無描述]
+- Line 89: `function runHelperScript` 🔧
+  - 💡 [無描述]
+- Line 92: `variable path` 📦
+  - 💡 [無描述]
+- Line 94: `variable fs` 📦
+  - 💡 [無描述]
+- Line 113: `function runTests` 🔧
+  - 💡 [無描述]
+
+### `test_smart_routing.js`
+- Line 7: `variable fs` 📦
+  - 💡 [無描述]
+- Line 11: `variable ROUTE_FILE` 📦
+  - 💡 [無描述]
+- Line 13: `variable TEST_CASES` 📦
+  - 💡 [無描述]
+- Line 23: `function run` 🔧
+  - 💡 [無描述]
+
+### `test_v17.2.0_tier_floor.js`
+- Line 6: `variable fs` 📦
+  - 💡 GIA Analyzer v17.2.0 Quick Test Tests the tier floor fix: was tierCfg.floor - 5, now exact tierCfg.floor /
+- Line 7: `variable path` 📦
+  - 💡 [無描述]
+- Line 9: `variable ANALYZER_V17_2` 📦
+  - 💡 [無描述]
+- Line 19: `variable tests` 📦
+  - 💡 [無描述]
+- Line 41: `variable allPassed` 📦
+  - 💡 [無描述]
+
+### `timezone_fixer.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `variable fs` 📦
+  - 💡 [無描述]
+- Line 12: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable alreadyFixed` 📦
+  - 💡 已經修復嘅腳本（有 getHKTDate 函數）
+- Line 26: `variable patterns` 📦
+  - 💡 需要修復嘅常用模式
+- Line 39: `function checkScript` 🔧
+  - 💡 [無描述]
+- Line 80: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 84: `arrow function files` ➡️
+  - 💡 [無描述]
+- Line 126: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `token_archive.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 13: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable path` 📦
+  - 💡 [無描述]
+- Line 15: `variable os` 📦
+  - 💡 [無描述]
+- Line 18: `variable STATE_FILE` 📦
+  - 💡 [無描述]
+- Line 19: `variable TRANSCRIPT_DIR` 📦
+  - 💡 [無描述]
+- Line 20: `variable THRESHOLD` 📦
+  - 💡 [無描述]
+- Line 21: `variable ALERT_THRESHOLD` 📦
+  - 💡 [無描述]
+- Line 25: `function getCurrentDate` 🔧
+  - 💡 [無描述]
+- Line 29: `function getCurrentTime` 🔧
+  - 💡 [無描述]
+- Line 33: `function findLatestTranscript` 🔧
+  - 💡 [無描述]
+- Line 62: `function readTranscript` 🔧
+  - 💡 [無描述]
+- Line 70: `arrow function lines` ➡️
+  - 💡 [無描述]
+- Line 146: `function extractText` 🔧
+  - 💡 [無描述]
+- Line 160: `function archiveToAppleNotes` 🔧
+  - 💡 [無描述]
+- Line 200: `function sendWhatsAppNotification` 🔧
+  - 💡 [無描述]
+- Line 226: `function checkAndArchive` 🔧
+  - 💡 [無描述]
+- Line 304: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `translator.js`
+- Line 26: `variable CONFIG` 📦
+  - 💡 ============================================================================ CONFIG - Tunable constants ============================================================================
+- Line 33: `class Translator` 🏗️
+  - 💡 [無描述]
+
+### `unified_search.js`
+- Line 22: `variable fs` 📦
+  - 💡 [無描述]
+- Line 23: `variable path` 📦
+  - 💡 [無描述]
+- Line 29: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 47: `function normalizeVector` 🔧
+  - 💡 [無描述]
+- Line 48: `arrow function mag` ➡️
+  - 💡 [無描述]
+- Line 53: `function getEmbedding` 🔧
+  - 💡 [無描述]
+- Line 68: `function searchWiki` 🔧
+  - 💡 [無描述]
+- Line 89: `function getRecentFiles` 🔧
+  - 💡 [無描述]
+- Line 114: `function searchL0L1` 🔧
+  - 💡 [無描述]
+- Line 118: `arrow function l0Files` ➡️
+  - 💡 Get recent L0 and L1 files (use file name timestamps too)
+- Line 119: `arrow function l1Files` ➡️
+  - 💡 [無描述]
+- Line 122: `arrow function l0DateFiles` ➡️
+  - 💡 Also include date-based files (not just kb-)
+- Line 123: `arrow function l1DateFiles` ➡️
+  - 💡 [無描述]
+- Line 141: `arrow function queryWords` ➡️
+  - 💡 Keyword pre-filter: skip if no word overlap (optimization)
+- Line 143: `arrow function wordHits` ➡️
+  - 💡 [無描述]
+- Line 170: `function cosineSimilarity` 🔧
+  - 💡 [無描述]
+- Line 184: `function searchMemory` 🔧
+  - 💡 [無描述]
+- Line 206: `arrow function hits` ➡️
+  - 💡 [無描述]
+- Line 251: `function searchConfigFiles` 🔧
+  - 💡 [無描述]
+- Line 265: `arrow function hits` ➡️
+  - 💡 [無描述]
+- Line 304: `function searchIssues` 🔧
+  - 💡 [無描述]
+- Line 312: `arrow function files` ➡️
+  - 💡 [無描述]
+- Line 318: `arrow function hits` ➡️
+  - 💡 [無描述]
+- Line 344: `function unifiedSearch` 🔧
+  - 💡 [無描述]
+- Line 411: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 478: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `update_rapaport_universal.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function _log` ➡️
+  - 💡 [無描述]
+- Line 10: `variable fs` 📦
+  - 💡 [無描述]
+- Line 11: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable PDF_PATH` 📦
+  - 💡 [無描述]
+- Line 14: `variable FORCE_TYPE` 📦
+  - 💡 [無描述]
+- Line 20: `variable DB_PATH` 📦
+  - 💡 [無描述]
+- Line 21: `arrow function BACKUP_DIR` ➡️
+  - 💡 [無描述]
+- Line 22: `arrow function DATA_JSON_PATH` ➡️
+  - 💡 [無描述]
+- Line 23: `arrow function EXTRACT_SCRIPT` ➡️
+  - 💡 [無描述]
+- Line 26: `function log` 🔧
+  - 💡 ==================== FIX: Use console.log instead of recursive log() ====================
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 28: `function compareChanges` 🔧
+  - 💡 [無描述]
+- Line 52: `function detectPDFType` 🔧
+  - 💡 [無描述]
+- Line 59: `function extractWithPython` 🔧
+  - 💡 [無描述]
+- Line 96: `function verifyTrends` 🔧
+  - 💡 [無描述]
+- Line 112: `function backupDatabase` 🔧
+  - 💡 [無描述]
+- Line 136: `function copyToDataJson` 🔧
+  - 💡 [無描述]
+- Line 145: `function uploadToGitHub` 🔧
+  - 💡 [無描述]
+- Line 212: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `usage_tracker.js`
+- Line 15: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 16: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 18: `variable VAULT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 19: `variable STATE_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 21: `variable CONFIG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 27: `function loadState` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 34: `function saveState` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 40: `function getAllNotes` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 42: `function walk` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 61: `function scanUsage` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 90: `function escapeRegex` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 94: `function generateReport` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 99: `arrow function sorted` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 101: `arrow function unused` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 129: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `validate_skill_file.js`
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 21: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 23: `function validateSkill` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 33: `function validateSkillContent` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 46: `arrow function words` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 137: `arrow function lastLine` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 161: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+- Line 188: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `vba_generator.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `class VBAGenerator` 🏗️
+  - 💡 [無描述]
+
+### `verify_backup.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function _log` ➡️
+  - 💡 [無描述]
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 13: `variable path` 📦
+  - 💡 [無描述]
+- Line 14: `variable crypto` 📦
+  - 💡 [無描述]
+- Line 17: `function getSecureTempFile` 🔧
+  - 💡 Secure temp file name generator
+- Line 35: `arrow function STATE_FILE` ➡️
+  - 💡 [無描述]
+- Line 45: `arrow function LOG_FILE` ➡️
+  - 💡 [無描述]
+- Line 47: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 55: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 66: `function getTimestamp` 🔧
+  - 💡 [無描述]
+- Line 77: `function searchNotes` 🔧
+  - 💡 Search for notes - Simplified version without complex AppleScript records /
+- Line 142: `function verifyBackup` 🔧
+  - 💡 [無描述]
+- Line 170: `function verifyRecentBackups` 🔧
+  - 💡 [無描述]
+- Line 231: `function runVerification` 🔧
+  - 💡 [無描述]
+- Line 256: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `verify_edit.js`
+- Line 18: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 19: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 22: `variable ROOT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 23: `variable CONFIG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 26: `variable target` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 27: `variable _quiet` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 30: `variable RED` 📦
+  - 💡 Colors
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 31: `variable GREEN` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 32: `variable YELLOW` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 33: `variable CYAN` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 34: `variable BOLD` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 35: `variable NC` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 37: `function ok` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 38: `function fail` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [FAILOVER_IDLE] / [FAILOVER_TRIGGERED]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 39: `function warn` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 40: `function info` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 45: `function getFiles` 🔧
+  - 💡 Get list of .js files to check /
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 94: `function walkDir` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 114: `function checkSyntax` 🔧
+  - 💡 Check 1: Syntax check /
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 142: `variable P0_PATTERNS` 📦
+  - 💡 scanAllPatterns() iterates over this array (skipping index 0 which is handled by scanTryCatchSafety() for context-aware detection). Each entry: { name, regex, severity, skipComment? } /
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 166: `function scanP1P2Patterns` 🔧
+  - 💡 Scan P0_PATTERNS[1..n] — simple regex patterns (P1/P2) /
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 180: `arrow function isInConfig` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 203: `function scanTryCatchSafety` 🔧
+  - 💡 Full line-level scan for try-catch safety (P0_PATTERNS[0] — context-aware) /
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 246: `function references` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 248: `function checkUndefinedRefs` 🔧
+  - 💡 Check: undefined function references (basic) /
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 253: `function definitions` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 261: `function expressions` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+- Line 270: `function main` 🔧
+  - 💡 Main /
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+
+### `verify_fix.js`
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+- Line 22: `variable HISTORY_FILE` 📦
+  - 💡 [無描述]
+- Line 23: `variable ERRORS_FILE` 📦
+  - 💡 [無描述]
+- Line 24: `variable VERIFY_LOG` 📦
+  - 💡 [無描述]
+- Line 26: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 34: `variable FIX_CATEGORIES` 📦
+  - 💡 ==================== FIX CATEGORIES ==================== 修復類別分組配置 - Phase 2: 分層驗證系統
+- Line 56: `function getFixCategory` 🔧
+  - 💡 判斷修復類型 @param {Object} fix - fix record @returns {string} 'FORMATTING' | 'QUALITY' /
+- Line 80: `variable C` 📦
+  - 💡 ==================== COLORS ====================
+- Line 91: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 97: `function readHistory` 🔧
+  - 💡 [無描述]
+- Line 128: `function writeHistory` 🔧
+  - 💡 [無描述]
+- Line 179: `function readErrors` 🔧
+  - 💡 [無描述]
+- Line 203: `function writeVerifyLog` 🔧
+  - 💡 [無描述]
+- Line 252: `function toHKT` 🔧
+  - 💡 [無描述]
+- Line 261: `function extractErrorPatterns` 🔧
+  - 💡 從 error record 提取關鍵 pattern /
+- Line 309: `function checkErrorRecurrence` 🔧
+  - 💡 檢查 fix 的 issue 是否在 errors 中再出現 返回 { matched: bool, matchedErrors: [], score: number } /
+- Line 383: `function verifyFix` 🔧
+  - 💡 Verify a single fix record /
+- Line 441: `function runVerification` 🔧
+  - 💡 [無描述]
+- Line 466: `arrow function fix` ➡️
+  - 💡 Verify specific fix
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 552: `arrow function fixEntry` ➡️
+  - 💡 [無描述]
+- Line 580: `arrow function deprecated` ➡️
+  - 💡 Show deprecated
+- Line 581: `arrow function fix` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 588: `arrow function fix` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 595: `arrow function verified` ➡️
+  - 💡 Show newly verified
+- Line 596: `arrow function fix` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+- Line 619: `function showReport` 🔧
+  - 💡 [無描述]
+- Line 631: `arrow function fixes` ➡️
+  - 💡 過濾掉 audit records
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+- Line 634: `arrow function formattingFixes` ➡️
+  - 💡 分類統計
+- Line 635: `arrow function qualityFixes` ➡️
+  - 💡 [無描述]
+- Line 638: `arrow function formattingVerified` ➡️
+  - 💡 計算各類統計
+- Line 641: `arrow function qualityVerified` ➡️
+  - 💡 [無描述]
+- Line 643: `arrow function qualityPending` ➡️
+  - 💡 [無描述]
+- Line 644: `arrow function qualityDeprecated` ➡️
+  - 💡 [無描述]
+- Line 647: `arrow function qualityWithRate` ➡️
+  - 💡 計算有意義的成功率（只算 quality）
+- Line 676: `arrow function sorted` ➡️
+  - 💡 [無描述]
+- Line 695: `arrow function deprecatedFixes` ➡️
+  - 💡 已降級詳情
+- Line 713: `arrow function fixIdArg` ➡️
+  - 💡 [無描述]
+
+### `verify_proposal.js`
+- Line 14: `variable fs` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 18: `function readJSON` 🔧
+  - 💡 [無描述]
+- Line 32: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 91: `function printResult` 🔧
+  - 💡 [無描述]
+
+### `watermark_manager.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 11: `class WatermarkManager` 🏗️
+  - 💡 [無描述]
+
+### `weekly_correction_generator.js`
+- Line 31: `class WeeklyCorrectionReportGenerator` 🏗️
+  - 💡 [無描述]
+- Line 303: `arrow function truncate` ➡️
+  - 💡 Truncate helper
+- Line 329: `arrow function patternList` ➡️
+  - 💡 [無描述]
+- Line 344: `arrow function trendList` ➡️
+  - 💡 [無描述]
+- Line 375: `arrow function recText` ➡️
+  - 💡 [無描述]
+
+### `weekly_correction_loop.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 4: `variable DRY_RUN` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 5: `variable INACTIVITY_TRIGGER` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 6: `variable METRICS_FLAG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 7: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 22: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 23: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 24: `variable os` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 49: `variable umbrellaConsolidation` 📦
+  - 💡 Phase B: LLM Umbrella Consolidation (see scripts/lib/umbrella_consolidation.js)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 51: `variable HKT_TIMEZONE_OFFSET` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 52: `arrow function STATE_FILE` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 57: `variable CONFIG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 64: `variable SCRIPT_START_TIME` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 66: `variable SKILLS_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 67: `variable SKILLS_ACTIVE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 68: `variable CONSOLIDATION_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 69: `variable SIMILARITY_THRESHOLD` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 70: `variable PROPOSALS_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 73: `variable CURATOR_RUN_FILE` 📦
+  - 💡 Phase 4: Inactivity-based curator trigger
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 74: `variable CURATOR_RUN_MIN_DAYS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 75: `variable CURATOR_RUN_MIN_NEW` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 78: `variable METRICS_FILE` 📦
+  - 💡 Phase 4: Performance telemetry
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 79: `variable MAX_METRICS_ENTRIES` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 103: `variable dryRunModifications` 📦
+  - 💡 Collected modifications that would have been made in dry-run mode. Populated throughout the curator loop, printed in the summary. @type {string[]} /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 109: `function recordDryRunMod` 🔧
+  - 💡 Record a dry-run modification for the summary. No-op when not in dry-run mode. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 113: `variable reportGenerator` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 114: `arrow function DEFAULT_STATE` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 138: `variable state` 📦
+  - 💡 ── Load state ──
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 149: `variable todayDate` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 177: `arrow function cacheHits` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 205: `variable CONSOLIDATE_MODE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 206: `variable APPLY_CONSOLIDATION_IDX` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 207: `variable APPLY_CONSOLIDATION` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 229: `variable todayDayOfWeek` 📦
+  - 💡 ── Day check ──
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 248: `function readSkillBody` 🔧
+  - 💡 Read a skill file and extract its first 200 chars of body for similarity comparison. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 260: `variable FRONTMATTER_RE` 📦
+  - 💡 Frontmatter regex (shared constant for both literal and constructor use)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 263: `variable STOP_WORDS` 📦
+  - 💡 Stop words for Jaccard similarity (BUG-08 fix: prevent inflation from common words)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 284: `function jaccardSimilarity` 🔧
+  - 💡 Normalization: lowercase, strip punctuation, remove stop words. Returns null if either input is empty or has <10 meaningful tokens.  TODO (BUG-14): Future: use embeddings for semantic similarity /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 286: `arrow function tokensA` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 287: `arrow function tokensB` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 292: `arrow function intersection` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 300: `function readFrontmatterField` 🔧
+  - 💡 Read SKILL.md frontmatter field safely. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 319: `function findSimilarSkills` 🔧
+  - 💡 Find pairs of similar agent-provenance skills using Jaccard similarity. Only considers provenance: agent skills. Excludes pinned skills. Returns: [{ skillA, skillB, score, bodyA, bodyB }] /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 338: `arrow function agentDirs` ➡️
+  - 💡 Filter: only provenance:agent and not pin-blocked (consolidation is blocked)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 387: `function generateConsolidationProposal` 🔧
+  - 💡 Generate a consolidation proposal for a pair of similar skills. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 401: `arrow function overlap` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 440: `function handleConsolidation` 🔧
+  - 💡 Handle --consolidate mode: find similar skills, write proposals. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 506: `arrow function llmPairs` ➡️
+  - 💡 Filter pairs above Jaccard > 0.5 for LLM analysis (more confident merges only)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 551: `function applyConsolidation` 🔧
+  - 💡 Handle --apply-consolidation mode: read a proposal file, restructure skills. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 611: `arrow function files` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 689: `function addParentField` 🔧
+  - 💡 4. Add parent field to moved skills' frontmatter
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 721: `arrow function overlap` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 783: `function atomicWriteJson` 🔧
+  - 💡 Atomic JSON write: write to .tmp first, then rename (atomic on most filesystems). Safe: on any failure, clean up the tmp file and re-throw. /
+  - 📋 Log: [MEM_WRITE_SUCCESS] / [MEM_WRITE_FAILED]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 799: `function safeParseJson` 🔧
+  - 💡 Safe JSON parse with structure validation and default fallback. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 817: `function trackMetrics` 🔧
+  - 💡 Track a curator run to .skill_metrics.json /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 842: `function readCuratorRun` 🔧
+  - 💡 Read the last curator run from .last_curator_run.json /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 849: `function writeCuratorRun` 🔧
+  - 💡 Write curator run stats to .last_curator_run.json /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 869: `function handleMiniCurator` 🔧
+  - 💡 Handle the inactivity-based mini-curator pass. Checks if new skills exist since last run and min days have passed. /
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 879: `arrow function dirs` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 910: `arrow function dirs` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 951: `arrow function newContent` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1023: `variable DECISION_LOG` 📦
+  - 💡 ═══════════════════════════════════════════════════════════════ PHASE 1: Behavior Analysis (primary — always runs) ═══════════════════════════════════════════════════════════════
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1024: `variable decisions` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1034: `variable suggestions` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1046: `arrow function overrides` ➡️
+  - 💡 1. Manual override: rule says 'manual_override' when route != classifier suggestion
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1056: `arrow function nonCatchall` ➡️
+  - 💡 2. FDQ sensitivity: if FDQ > 30% of non-catchall decisions, may be too aggressive
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1057: `arrow function fqCount` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1067: `arrow function catchall` ➡️
+  - 💡 3. Catch-all ratio: too many catch-all = classifier missing patterns
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1084: `variable ARCHIVE_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1085: `variable BACKUP_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1086: `variable KEEP_BACKUPS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1087: `variable MIN_CONTENT_CHARS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1088: `variable ARCHIVE_AFTER_DAYS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1090: `variable skillStats` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1101: `arrow function backups` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1179: `function listSupportFiles` 🔧
+  - 💡 ── Helper: list support files in skill subdirectory ──
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1322: `arrow function links` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1390: `variable errorsData` 📦
+  - 💡 ═══════════════════════════════════════════════════════════════ PHASE 2: System Health (secondary — errors.json summary) ═══════════════════════════════════════════════════════════════
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1401: `variable oneWeekAgo` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1402: `arrow function recentErrors` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1409: `variable categorizedErrors` 📦
+  - 💡 Simple category counts (replaces the 100+ line AI_ASSISTED_CATEGORIES)
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1410: `variable CATEGORY_KEYWORDS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1417: `function simpleCategorize` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1435: `variable SUGGESTIONS_FILE` 📦
+  - 💡 ═══════════════════════════════════════════════════════════════ PHASE 3: Generate suggestions file ═══════════════════════════════════════════════════════════════
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1436: `variable suggestionData` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1551: `function getDiscordToken` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1562: `function sendDiscordNotification` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+- Line 1601: `function sendWeeklyReport` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+
+### `weekly_correction_templates.js`
+- Line 24: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 132: `function createWeeklyCorrectionReportStructure` 🔧
+  - 💡 Create a standard Weekly Correction Report structure  @param {Object} data - Report data @returns {Object} Report structure /
+- Line 195: `function createSection` 🔧
+  - 💡 @param {string} name - Section name @param {string} emoji - Section emoji @param {Array} items - Items in this section @returns {Object} Section structure /
+- Line 212: `function createTrendItem` 🔧
+  - 💡 @param {string} type - Error type @param {number} change - Change count @param {string} direction - 'up', 'down', 'new' @returns {Object} Trend item /
+- Line 231: `function createTopPatternItem` 🔧
+  - 💡 @param {string} pattern - Pattern key @param {number} count - Occurrence count @param {number} lastCount - Last week count @returns {Object} Pattern item /
+- Line 249: `function createRecommendation` 🔧
+  - 💡 @param {string} type - Recommendation type @param {string} message - Recommendation message @returns {Object} Recommendation item /
+
+### `weekly_parallel.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 17: `variable os` 📦
+  - 💡 [無描述]
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+- Line 22: `variable execFile` 📦
+  - 💡 [無描述]
+- Line 26: `variable NODE` 📦
+  - 💡 [無描述]
+- Line 28: `variable DEFAULT_SCRIPT_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+- Line 29: `variable RAPNET_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+- Line 32: `function scriptExists` 🔧
+  - 💡 Helper to check if script exists
+- Line 41: `function runScript` 🔧
+  - 💡 Helper to run script with timeout
+- Line 53: `arrow function parsedArgs` ➡️
+  - 💡 Parse args safely - split by space but respect quotes
+- Line 85: `variable MONDAY_JOBS` 📦
+  - 💡 Monday jobs (07:00-08:00)
+- Line 92: `variable SUNDAY_JOBS` 📦
+  - 💡 Sunday jobs (10:00) - weekly_correction_loop_bot.js removed (2026-04-02, use weekly_correction_loop.js via cron instead)
+- Line 97: `function runParallelJobs` 🔧
+  - 💡 Run jobs in parallel
+- Line 108: `variable args` 📦
+  - 💡 Parse command line args
+- Line 109: `variable mode` 📦
+  - 💡 [無描述]
+- Line 111: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 141: `arrow function ok` ➡️
+  - 💡 [無描述]
+- Line 142: `arrow function skipped` ➡️
+  - 💡 [無描述]
+- Line 143: `arrow function errors` ➡️
+  - 💡 [無描述]
+
+### `weekly_session_cleanup.js`
+- Line 3: `variable _quiet` 📦
+  - 💡 [無描述]
+- Line 4: `arrow function log` ➡️
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+- Line 21: `variable SESSIONS_DIR` 📦
+  - 💡 [無描述]
+- Line 26: `variable sessions` 📦
+  - 💡 Get current sessions from OpenClaw
+- Line 30: `arrow function lines` ➡️
+  - 💡 Parse the text output since --json flag is not supported
+- Line 44: `variable cronUUIDs` 📦
+  - 💡 Find cron session UUIDs
+- Line 55: `variable deleted` 📦
+  - 💡 Find and delete files
+- Line 56: `variable notFound` 📦
+  - 💡 [無描述]
+- Line 58: `variable files` 📦
+  - 💡 [無描述]
+- Line 90: `variable remaining` 📦
+  - 💡 Count remaining files
+
+### `wiki_issue_sync.js`
+- Line 9: `variable fs` 📦
+  - 💡 [無描述]
+- Line 10: `variable path` 📦
+  - 💡 [無描述]
+- Line 13: `variable WORKSPACE` 📦
+  - 💡 [無描述]
+- Line 14: `variable ISSUES_DIR` 📦
+  - 💡 [無描述]
+- Line 15: `variable WIKI_VAULT` 📦
+  - 💡 [無描述]
+- Line 16: `variable ISSUES_WIKI_DIR` 📦
+  - 💡 [無描述]
+- Line 19: `variable DRY_RUN` 📦
+  - 💡 解析命令行參數
+- Line 21: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+- Line 32: `function parseIssue` 🔧
+  - 💡 [無描述]
+- Line 51: `arrow function tags` ➡️
+  - 💡 [無描述]
+- Line 56: `function generateIssuePage` 🔧
+  - 💡 [無描述]
+- Line 121: `function syncIssuesToWiki` 🔧
+  - 💡 [無描述]
+- Line 134: `arrow function issueFiles` ➡️
+  - 💡 讀取所有 active issues
+- Line 150: `arrow function content` ➡️
+  - 💡 [無描述]
+- Line 165: `arrow function existingContent` ➡️
+  - 💡 [無描述]
+- Line 175: `arrow function fileTime` ➡️
+  - 💡 [無描述]
+- Line 218: `function generateIssuesIndex` 🔧
+  - 💡 [無描述]
+- Line 234: `arrow function content` ➡️
+  - 💡 [無描述]
+- Line 288: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `wiki_vectorizer.js`
+- Line 22: `variable fs` 📦
+  - 💡 [無描述]
+- Line 23: `variable path` 📦
+  - 💡 [無描述]
+- Line 24: `variable lancedb` 📦
+  - 💡 [無描述]
+- Line 30: `variable CONFIG` 📦
+  - 💡 [無描述]
+- Line 46: `function normalizeVector` 🔧
+  - 💡 [無描述]
+- Line 47: `arrow function mag` ➡️
+  - 💡 [無描述]
+- Line 52: `function getEmbedding` 🔧
+  - 💡 [無描述]
+- Line 71: `function getDB` 🔧
+  - 💡 [無描述]
+- Line 83: `function getTable` 🔧
+  - 💡 [無描述]
+- Line 108: `function chunkWikiContent` 🔧
+  - 💡 [無描述]
+- Line 160: `function readWikiFiles` 🔧
+  - 💡 [無描述]
+- Line 187: `function fileFingerprint` 🔧
+  - 💡 [無描述]
+- Line 197: `function loadState` 🔧
+  - 💡 [無描述]
+- Line 202: `function saveState` 🔧
+  - 💡 [無描述]
+- Line 212: `function indexWiki` 🔧
+  - 💡 [無描述]
+- Line 298: `function search` 🔧
+  - 💡 [無描述]
+- Line 331: `function bm25Search` 🔧
+  - 💡 [無描述]
+- Line 378: `function hybridSearch` 🔧
+  - 💡 [無描述]
+- Line 405: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+- Line 476: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `write_to_obsidian.js`
+- Line 30: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 31: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 33: `variable VAULT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 34: `variable OUTPUT_FOLDER` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 37: `variable CATEGORY_FOLDERS` 📦
+  - 💡 ===== Category → folder mapping =====
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 48: `variable VALID_TYPES` 📦
+  - 💡 ===== Note types (from Dami-Defi's vault intelligence system) =====
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 50: `variable TYPE_DESCRIPTIONS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 60: `function parseArgs` 🔧
+  - 💡 ===== Parse args =====
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 93: `function sanitizeFilename` 🔧
+  - 💡 ===== Sanitize filename =====
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+- Line 102: `function main` 🔧
+  - 💡 ===== Main =====
+  - 🔗 Issue: #000 🚨 (無標題)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+## 📂 hooks
+
+### `hooks/message_received.js`
+- Line 14: `variable config` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 17: `variable fs` 📦
+  - 💡 Proof marker: write to /tmp every time this hook fires
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 21: `variable TRIGGER_PATTERN` 📦
+  - 💡 Pre-compile trigger pattern for auto_remember
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+
+## 📂 router
+
+### `router/_archive/auto_corrector.js`
+- Line 20: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 21: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 28: `variable ROUTER_DIR` 📦
+  - 💡 ── Config ────────────────────────────────────────────────────────────────────
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 29: `variable DECISION_LOG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 36: `function parseArgs` 🔧
+  - 💡 Parse CLI args (no external deps). @param {string[]} args @returns {Object} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 69: `function inferActualRoute` 🔧
+  - 💡 would be classified differently now, that's a divergence signal.  @param {string} text @returns {string|null} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 81: `function readRecentDecisions` 🔧
+  - 💡 Read decision_log.jsonl entries within the time window.  @param {number} sinceHours - look back in hours @returns {Object[]} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 91: `arrow function lines` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 122: `function detectMisroutes` 🔧
+  - 💡 @param {Object} options @param {number} [options.sinceHours=1] @param {boolean} [options.dryRun=false] - if true, don't log to misroute_log @returns {Object} summary /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 201: `variable watchIntervalId` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 208: `function watch` 🔧
+  - 💡 Run in watch mode — check every N seconds. @param {number} sinceHours @param {number} intervalSec /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 220: `function stopWatch` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+
+### `router/_archive/decision_logger.js`
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+- Line 32: `function logRoute` 🔧
+  - 💡 @param {string} [opts.messageId] - Discord message ID @param {boolean} [opts.trivialSpawn]  - 係咪 trivial spawn（應該 direct answer） @param {boolean} [opts.browserTabLeft] - browser 用完冇 close @param {boolean} [opts.corrected]       - Josh 之後糾正咗呢個 decision /
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+- Line 58: `function logStats` 🔧
+  - 💡 Check current log size /
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+- Line 108: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `router/_archive/email_router.js`
+- Line 16: `variable path` 📦
+  - 💡 [無描述]
+- Line 29: `variable EMAIL_TYPES` 📦
+  - 💡 @type {Record<string, EmailTypeConfig>}
+- Line 71: `variable TYPE_PATTERNS` 📦
+  - 💡 @type {Array<{type: string, patterns: RegExp[]}>}
+- Line 131: `function detectEmailType` 🔧
+  - 💡 @param {string} emailMetadata.subject  - Email subject line @param {string} emailMetadata.from     - Sender address or display name @param {string} [emailMetadata.body]  - Email body (optional, for deeper detection) @returns {string} Detected email type key /
+- Line 160: `function routeEmail` 🔧
+  - 💡 @param {string} emailMetadata.subject @param {string} emailMetadata.from @param {string} [emailMetadata.body] @returns {{ type: string, handler: string, model: string|null, costTier: string }} /
+- Line 184: `function extractMalcaAmit` 🔧
+  - 💡 @param {string} subject @param {string} sender @param {string} content @returns {{ summary: string|null, extracted: Object|null }} /
+- Line 249: `function extractTracking` 🔧
+  - 💡 @param {string} subject @param {string} sender @param {string} content @returns {{ summary: string|null, extracted: Object|null }} /
+- Line 280: `function extractByType` 🔧
+  - 💡 @param {string} subject @param {string} sender @param {string} content @returns {{ summary: string|null, extracted: Object|null }} /
+- Line 293: `function parseArgs` 🔧
+  - 💡 [無描述]
+
+### `router/_archive/failure_recovery.js`
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 21: `variable ROUTER_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 22: `variable MISROUTE_LOG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 23: `variable LOG_FILE` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 25: `function log` 🔧
+  - 💡 [無描述]
+  - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 37: `variable MODEL_FALLBACK_MAP` 📦
+  - 💡 Fallback chain when a model fails/times out. Key: primary model, Value: fallback model @type {Record<string, string>} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 48: `function getFallbackModel` 🔧
+  - 💡 Get the fallback model for a given model. @param {string} model @returns {string|null} fallback model, or null if none /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 54: `variable MISROUTE_THRESHOLD` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 75: `function detectMisroute` 🔧
+  - 💡 @param {string} opts.actualRoute     - What actually happened @param {string} [opts.messageId]     - Optional message ID @param {string} [opts.reason]        - Optional reason @returns {MisrouteEntry} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 99: `function getRecoveryStats` 🔧
+  - 💡 Parse the misroute log and return statistics.  @returns {Object} Stats: { total, byPair, alerts } /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 106: `arrow function entries` ➡️
+  - 💡 @type {MisrouteEntry[]}
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 139: `function checkMisrouteAlert` 🔧
+  - 💡 @param {string} suggested @param {string} actual @returns {string|null} Alert message or null /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 142: `arrow function found` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 165: `function autoFallback` 🔧
+  - 💡 Logs the event for later analysis.  @param {ModelError} modelError @returns {{ fallbackModel: string|null, modelError: ModelError, logged: boolean }} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 192: `function parseArgs` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+
+### `router/_archive/feedback_collector.js`
+- Line 23: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 35: `function collectFeedback` 🔧
+  - 💡 @param {string} opts.correctRoute  - The correct route that should have been chosen @param {string} opts.messageId     - Message identifier this feedback relates to @param {string} opts.reason        - Human-readable reason for the correction @returns {Object} The logged feedback entry /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 62: `function readFeedbackEntries` 🔧
+  - 💡 Read all feedback entries from the log file. @param {number} [days] - Filter to last N days (optional) @returns {Object[]} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 69: `arrow function lines` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 70: `arrow function entries` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 99: `function summarizeFeedback` 🔧
+  - 💡 @param {Object} options @param {number} [options.days=7] - Look back period @param {boolean} [options.autoFix=false] - Generate regex suggestions @returns {Object} Summary with correction counts and optional auto-fix suggestions /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 127: `arrow function sorted` ➡️
+  - 💡 Sort by count descending
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 179: `function parseArgs` 🔧
+  - 💡 Parse simple key=value / --key value CLI arguments (no external deps). @param {string[]} args - process.argv.slice(2) @returns {Object} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+
+### `router/_archive/model_router.js`
+- Line 13: `variable config` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 28: `variable ROUTE_MODEL_MAP` 📦
+  - 💡 @type {Record<string, ModelConfig>}
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 116: `function getModelForRoute` 🔧
+  - 💡 Get model configuration for a given route.  @param {string} route - Route label (FDQ, DIRECT_ANSWER, SOP, etc.) @returns {ModelConfig} Model configuration with primary, fallback, reason /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 137: `function getPrimaryModel` 🔧
+  - 💡 Get just the primary model for a route (convenience helper).  @param {string} route @returns {string|null} Primary model name, or null if skip routing /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 147: `function getRoutingAdvice` 🔧
+  - 💡 Get routing advice as a human-readable string.  @param {string} route @returns {string} /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+
+### `router/_archive/rule_adjuster.js`
+- Line 21: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 22: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 28: `variable ROUTER_DIR` 📦
+  - 💡 ── Config ────────────────────────────────────────────────────────────────────
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 29: `variable FEEDBACK_LOG` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 37: `function parseArgs` 🔧
+  - 💡 @param {string[]} args @returns {Object} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 68: `function readFeedback` 🔧
+  - 💡 Read feedback entries from feedback_log.jsonl within the time window. @param {number} days @returns {Object[]} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 77: `arrow function lines` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 107: `function extractKeywords` 🔧
+  - 💡 Deduplicates by messageId first.  @param {Object[]} entries - feedback entries to analyze @returns {string[]} common keyword tokens /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 123: `arrow function tokens` ➡️
+  - 💡 Split on Chinese chars, English words, punctuation
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 147: `function analyze` 🔧
+  - 💡 @param {Object} options @param {number} [options.days=7] @param {boolean} [options.apply=false] - if true, output code diff @returns {Object[]} suggestions /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 178: `arrow function existingRule` ➡️
+  - 💡 Check what rules currently exist for correctRoute
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 208: `arrow function alreadyCovered` ➡️
+  - 💡 Check if any keyword is already in existing pattern
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 243: `function printSuggestions` 🔧
+  - 💡 Print human-readable suggestions to console. @param {Object[]} suggestions @param {number} days /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 278: `arrow function highCount` ➡️
+  - 💡 Summary
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 279: `arrow function addPatternCount` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 291: `function printCodeDiff` 🔧
+  - 💡 Print code-diff output for --apply mode. Shows the suggested changes to classifier.js. @param {Object[]} suggestions /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 292: `arrow function addPatternSugs` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 328: `function runCron` 🔧
+  - 💡 Run in cron mode — log suggestions to a file. @param {number} days /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+
+### `router/auxiliary_classifier.js`
+- Line 16: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+- Line 17: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+- Line 19: `variable CONFIG_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+- Line 22: `variable configCache` 📦
+  - 💡 @type {{ version: string, categories: Array<{task: string, desc: string, match: string[], model: string, provider: string}> }|null}
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+- Line 23: `variable configMtime` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+- Line 29: `function loadConfig` 🔧
+  - 💡 Load auxiliary routing config with mtime-aware cache. Reloads if the file has been modified since last load. /
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+- Line 50: `function classifyAuxiliaryTask` 🔧
+  - 💡 Classify a prompt into an auxiliary task category. @param {string} prompt - The user's prompt / current turn instruction @returns {{ task: string, model: string, provider: string }|null} /
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+- Line 80: `unknown undefined` 
+  - 💡 [無描述]
+  - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
+  - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
+  - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
+  - 🔗 Issue: #111 📌 (Wiki ingest SDK helper — 觀察一星期)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #115 📎 (Enterprise Scalability — 多人對話 Routing 架構)
+  - 🔗 Issue: #123 📌 (Obsidian workflow improvements — insights from X articles trilogy (CyrilXBT / NeilXbt / 0x小师妹))
+  - 🔗 Issue: #124 📌 (Compaction & Handoff 架構 — 觀察7日)
+  - 🔗 Issue: #131 📌 (Dynamic Workflow Pilot — 1st judgment-heavy skill (spawn_prompt_review))
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+  - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
+  - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
+  - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
+  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #139 🔥 (Route-Enforcer Plugin: sessions_spawn model= override Bug)
+  - 🔗 Issue: #140 🔥 (Daily Synthesis Migration + Skill Automation Next Steps)
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #150 🔥 (7-day observation: skill junk rate post-#146 fix (target <10%))
+  - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
+  - 🔗 Issue: #152 🔥 (QW-1~5 觀察：skill reviewer junk rate 改善成效 (target ≤30%))
+  - 🔗 Issue: #154 🔥 (Loop Engineering Phase 1 (Narrow): Termination Manifest + Token Budget)
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
+  - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
+  - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
+  - 🔗 Issue: #158 🔥 (Skill Reviewer vs Anthropic Skill Creator — 架構比較分析)
+  - 🔗 Issue: #159 🔥 (KB Ingest --no-llm quality + infer endpoint fix)
+
+### `router/classifier.js`
+- Line 17: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 18: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 19: `variable config` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 39: `variable RULES` 📦
+  - 💡 @type {Rule[]}
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 90: `variable DEFAULT_ROUTE` 📦
+  - 💡 @type {string}
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 91: `variable MAX_INPUT_LENGTH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 98: `function regexClassify` 🔧
+  - 💡 Regex-based classification (~1ms). @param {string} text @returns {ClassifyResult} /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 120: `function classifySync` 🔧
+  - 💡 Classify a message text — sync, ~1ms. Replaces the old async classify() which had LLM slow path. Always returns immediately — no blocking, no API calls. /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 146: `function logDecision` 🔧
+  - 💡 Log a routing decision to a JSON Lines file. Uses async I/O deferred via nextTick to avoid blocking the classifier sync path. /
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+
+### `router/config_loader.js`
+- Line 10: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 11: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 12: `variable yaml` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 14: `variable CONFIG_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 15: `variable ENV_PLACEHOLDER_REGEX` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 18: `variable yamlCache` 📦
+  - 💡 @type {{ mtime: number, config: object }|null}
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 28: `function loadRouteModelYaml` 🔧
+  - 💡 Load and parse route_model.yaml with mtime-aware caching.  @returns {object} Parsed YAML config @throws {Error} If file missing, unreadable, or YAML parse fails /
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 74: `function resolveEnvPlaceholders` 🔧
+  - 💡 @param {*} obj @returns {*} @throws {Error} If a referenced env var is not defined /
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 108: `function _invalidateCache` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+
+### `router/config.js`
+- Line 7: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+- Line 9: `variable ROUTER_DIR` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #133 📌 (Skill Self-Learning — Hermes-style background review (rewrite))
+
+### `router/failure_recovery.js`
+- Line 8: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 9: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 16: `variable DECISION_LOG_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 19: `variable HEALTH_CACHE_TTL_MS` 📦
+  - 💡 Defaults (overridden by YAML health_check settings)
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 20: `variable PROBE_TIMEOUT_MS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 21: `variable COOLDOWN_MS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 22: `variable DEFAULT_FAILURE_THRESHOLD` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 23: `variable DEFAULT_RECOVERY_PROBE_MS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 24: `variable DEFAULT_PROBE_CONCURRENCY` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 25: `variable DEFAULT_RESOLUTION_ORDER` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 29: `variable healthCache` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 30: `variable inFlightProbes` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 32: `function getResolutionOrder` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 44: `function getHealthCheckSettings` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 63: `function initHealthCache` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 76: `function loadConfig` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 83: `function appendDecisionLog` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 92: `function probeProvider` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 108: `arrow function timeoutId` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 161: `function isProviderHealthy` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 179: `function markProviderFailure` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 202: `function markProviderSuccess` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 217: `function resolveProvider` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 272: `function _executeProbe` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 274: `arrow function promise` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 287: `function runHealthCheckLoop` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 288: `function tick` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 321: `arrow function handle` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+- Line 329: `function resetAll` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+  - 🔗 Issue: #132 📌 (Cron jobs: timeout fix + route-enforcer cron override fix)
+
+### `router/log_rotator.js`
+- Line 12: `variable fs` 📦
+  - 💡 [無描述]
+- Line 14: `variable DEFAULT_MAX_SIZE_MB` 📦
+  - 💡 [無描述]
+- Line 15: `variable DEFAULT_MAX_FILES` 📦
+  - 💡 [無描述]
+- Line 18: `variable rotationLocks` 📦
+  - 💡 In-memory lock to prevent concurrent rotation races
+- Line 21: `variable lastCheckTime` 📦
+  - 💡 Throttle map: filePath → last check timestamp (ms)
+- Line 22: `variable ROTATION_CHECK_INTERVAL_MS` 📦
+  - 💡 [無描述]
+- Line 27: `function rotateFile` 🔧
+  - 💡 Rotate log file backups. Synchronous, atomic-ish (rename is atomic on POSIX). /
+- Line 47: `function maybeRotate` 🔧
+  - 💡 Check if rotation is needed and perform it. Synchronous. Uses an in-memory lock to prevent concurrent races. /
+
+### `router/model_router.js`
+- Line 15: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 16: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 17: `variable crypto` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 35: `variable DECISION_LOG_PATH` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 37: `variable REQUIRED_ROUTES` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 41: `variable SCHEMA_VERSION` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 42: `variable DEFAULT_TIMEOUT` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 52: `function validateRouteConfig` 🔧
+  - 💡 Validate config. Fail-fast on schema error.  @param {object} config @throws {Error} On any validation failure /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 100: `function appendDecisionLog` 🔧
+  - 💡 Append to decision_log.jsonl (fire-and-forget, do NOT await).  @param {object} entry /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 117: `function mergeResolvedConfig` 🔧
+  - 💡 @param {string} resolvedProvider @param {object} routeCfg @param {object} providers @returns {{ baseUrl: string, apiKey: string, timeout: number, extraBody: object }} /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 145: `function generateDecisionId` 🔧
+  - 💡 @returns {string} UUID v4
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 170: `function routeModel` 🔧
+  - 💡 Route to best available provider / model. @param {Object} opts @returns {Promise<object>} @throws {Error} If route invalid, config broken, or env var missing /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+
+### `router/report.js`
+- Line 24: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 25: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 26: `variable config` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 36: `function parseArgs` 🔧
+  - 💡 @param {string[]} args @returns {Object} /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 70: `function readJsonLines` 🔧
+  - 💡 Parse JSON Lines file into array of objects. @param {string} filePath @returns {Object[]} /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 77: `arrow function lines` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 97: `function filterByDays` 🔧
+  - 💡 Filter entries to last N days. @param {Object[]} entries @param {number} days @returns {Object[]} /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 110: `function countRoutes` 🔧
+  - 💡 Count route distribution. @param {Object[]} entries @returns {Map<string, number>} /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 124: `function countCorrections` 🔧
+  - 💡 Group feedback corrections by (wrongRoute, correctRoute) pair. @param {Object[]} feedbackEntries @returns {Map<string, number>} /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 143: `function formatRouteDistribution` 🔧
+  - 💡 Format a route distribution map for display. @param {Map<string, number>} routeCounts @param {number} total @returns {string[]} /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 151: `arrow function sorted` ➡️
+  - 💡 Sort by count descending
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 169: `function formatCorrections` 🔧
+  - 💡 @param {Map<string, number>} correctionCounts @param {number} totalCorrections @param {number} totalDecisions @returns {string[]} /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 183: `arrow function sorted` ➡️
+  - 💡 Sort by count descending
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+- Line 201: `function generateReport` 🔧
+  - 💡 Generate and print the dashboard report. @param {{ days: number }} options /
+  - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
+
+### `router/tests/classifier_tests.js`
+- Line 14: `variable assert` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable routerDir` 📦
+  - 💡 [無描述]
+- Line 22: `variable passed` 📦
+  - 💡 [無描述]
+- Line 23: `variable failed` 📦
+  - 💡 [無描述]
+- Line 24: `variable results` 📦
+  - 💡 [無描述]
+- Line 26: `function test` 🔧
+  - 💡 [無描述]
+- Line 43: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `router/tests/e2e_test.js`
+- Line 18: `variable assert` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 19: `variable fs` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 20: `variable path` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 21: `variable os` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 23: `variable routerDir` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 24: `variable classifier` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 25: `variable modelRouter` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 26: `variable fr` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 27: `variable spawnConfig` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 31: `function setFresh` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 41: `function setUnhealthy` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 53: `function test` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 64: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 175: `function to` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+- Line 176: `function to` 🔧
+  - 💡 E2E-7: ENV replacement uses function to avoid $ injection
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+
+### `router/tests/integration_tests.js`
+- Line 14: `variable assert` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable routerDir` 📦
+  - 💡 [無描述]
+- Line 18: `variable fr` 📦
+  - 💡 [無描述]
+- Line 19: `variable mr` 📦
+  - 💡 [無描述]
+- Line 23: `variable passed` 📦
+  - 💡 [無描述]
+- Line 24: `variable failed` 📦
+  - 💡 [無描述]
+- Line 25: `variable results` 📦
+  - 💡 [無描述]
+- Line 27: `function test` 🔧
+  - 💡 [無描述]
+- Line 47: `function setFresh` 🔧
+  - 💡 Make provider healthy + fresh → resolveProvider returns it immediately (no re-probe)
+- Line 58: `function setStale` 🔧
+  - 💡 Make provider healthy + stale (lastCheck=0) → re-probe will trigger
+- Line 69: `function setUnhealthy` 🔧
+  - 💡 Make provider unhealthy; lastProbeMs=0 so cooldown-expired re-probe is eligible
+- Line 81: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+### `router/tests/spawn_config_tests.js`
+- Line 14: `variable assert` 📦
+  - 💡 [無描述]
+- Line 15: `variable path` 📦
+  - 💡 [無描述]
+- Line 17: `variable scriptsDir` 📦
+  - 💡 [無描述]
+- Line 21: `variable DEFAULT_MODELS` 📦
+  - 💡 [無描述]
+- Line 26: `variable DEFAULT_THINKING` 📦
+  - 💡 [無描述]
+- Line 31: `variable ROUTE_DEFAULT_FALLBACK` 📦
+  - 💡 [無描述]
+- Line 35: `function resolveFallbackModel` 🔧
+  - 💡 [無描述]
+- Line 39: `function extraBodyToThinking` 🔧
+  - 💡 [無描述]
+- Line 47: `function normalizeRoute` 🔧
+  - 💡 [無描述]
+- Line 57: `variable passed` 📦
+  - 💡 [無描述]
+- Line 58: `variable failed` 📦
+  - 💡 [無描述]
+- Line 59: `variable results` 📦
+  - 💡 [無描述]
+- Line 61: `function test` 🔧
+  - 💡 [無描述]
+- Line 77: `function main` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
+
+---
+
+## 📋 Symbol Types Legend
+
+| Type | Icon | Description |
+|------|------|-------------|
+| `function` | 🔧 | 函數聲明 |
+| `arrow function` | ➡️ | 箭頭函數 |
+| `variable` | 📦 | 常量/變量 |
+| `class` | 🏗️ | 類聲明 |
+| `function` (shell) | 🔧 | Shell 函數 |
+
+## 🔗 Issue Tags Legend
+
+| Emoji | Priority | 說明 |
+|------|----------|------|
+| 🚨 | P0 | 最高優先，緊急 |
+| 🔥 | P1 | 高優先，待重構 |
+| 📌 | P2 | 中優先，功能增強 |
+| 📎 | P3 | 低優先，優化探索 |
+
+## ⏰ Cron Job Legend
+
+| Emoji | 說明 |
+|------|------|
+| ⏰ | Cron Job 關聯（讀取 HEARTBEAT.md） |
+| 🔥 | HIGH ERROR RATE（24h 內 >5 個錯誤） |
+| 📋 | 預期 Log 關鍵字（內建表） |
+
+> Cron Jobs、Errors、Logs 數據來自 HEARTBEAT.md、memory/errors.json、內建 LOG_PATTERNS 表。
+> 已關閉（closed/completed/backlog）的 Issue 不會顯示於符號地圖。
+

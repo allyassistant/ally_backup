@@ -1,0 +1,99 @@
+---
+id: 021
+title: L0/L1 Generator 修復驗證成功 - Phase 1 完成 (發現根本原因：Discord Session Compaction)
+status: archive
+priority: P2
+created: 2026-02-26
+due: 2026-03-31
+updated: 2026-03-26
+progress: 5/5
+---
+
+## Description
+記錄 L0/L1 Generator 修復驗證成功同 Phase 1 新架構完成狀態
+**重要更新 (2026-03-07)**: 發現 Phase 1 修復後仍出現 L0/L1 失敗，根本原因是 Discord Session Compaction 導致系統重啟。
+
+## 驗證結果 (2026-02-26)
+✅ **L0/L1 成功生成** - 2026-02-25
+- L0 Abstract: 705 bytes，00:06 生成
+- L1 Overview: 3,208 bytes，00:35 生成
+- 數據源: 2026-02-25-0231.md (正確讀取時間戳格式)
+
+## 🔥 重大發現 (2026-03-07)
+
+### Phase 1 修復後仍出現問題
+雖然 Phase 1 修復咗檔名格式同 timeout 問題，但 L0/L1 仍持續失敗/延遲。
+
+**根本原因找到：**
+```
+Discord Session Compaction Timeout (ead3cbd5... 10.5MB)
+        ↓
+Health Monitor 每 10-35 分鐘強制重啟
+        ↓
+Cron Jobs (L0: 00:05, L1: 00:35) 被延遲/中斷
+        ↓
+L0/L1 Generator 失敗或超時
+```
+
+### 歷史記錄
+| 日期 | L0 生成 | L1 生成 | 重啟次數 | 狀態 |
+|------|---------|---------|----------|------|
+| 2月17日 | ❌ 冇生成 | ❌ 冇生成 | 55 次 | 問題開始 |
+| 2月18日 | ❌ 冇生成 | 01:53 (延遲 1h+) | 25 次 | 🔴 |
+| 2月19日 | ❌ 冇生成 | 03:30 (延遲 3h+) | 6 次 | 🔴 |
+| 2月20日 | ❌ 冇生成 | 15:47 (延遲 15h+) | 0 次 | 🔴 |
+| 2月25日 | 00:06 ✅ | 00:35 ✅ | 較少 | ✅ 正常 |
+| 3月4日 | 00:06 ✅ | 01:00 (延遲 25分鐘) | 21 次 | 🟠 |
+| 3月5日 | 00:26 (延遲) | 未知 | 24 次 | 🟠 |
+| **3月6日** | **00:05 ✅** | **待驗證** | **0 次** | **🟢 恢復** |
+
+**關鍵：** 3月6日清理 844 個 sessions 後，重啟停止，L0 恢復準時生成！
+
+## 修復內容 (Phase 1)
+1. ✅ 清理 binary contamination (3 個 corrupted files)
+2. ✅ 修復檔名格式 (支援 YYYY-MM-DD-HHMM.md)
+3. ✅ 優化 timeout (600s → 300s)
+4. ✅ 統一所有 scripts (generate_l1.js, generate_abstract.js, memory_temporal_search.js, log_to_daily_memory.js)
+5. ✅ 更新 cron jobs 說明
+
+## 根本解決 (2026-03-07)
+- ✅ 清理 844 個舊 sessions (包括 10.5MB 問題 session)
+- ✅ 設置每日自動清理機制 (凌晨 3:00 AM)
+- ✅ 加強 Pre-compaction Flush
+
+## Phase 1 新架構完成
+| 組件 | 狀態 |
+|------|------|
+| Adaptive Timeout | ✅ 300s |
+| Smoke Test | ✅ + 每週全量測試 |
+| Error AutoFix | ✅ 6 個模式 |
+| Memory Sanitizer | ✅ + 錯誤聯動 |
+| Cron SessionKey | ✅ 16/16 統一 |
+| Session Auto-Cleanup | ✅ 新增 |
+
+## 錯誤記錄
+- errors.json: `l2-filename-mismatch-*` (已解決)
+- errors.json: `filename-format-inconsistency-*` (已解決)
+- errors.json: `discord-session-compaction-timeout` (已解決)
+
+## 文檔更新
+- ✅ docs/memory-architecture.md (完整 7 章)
+- ✅ SOUL.md (Memory Architecture + Issue Check)
+- ✅ MEMORY.md (精簡版)
+
+## Progress
+- [x] L0/L1 修復驗證 (Phase 1)
+- [x] Phase 1 組件完成
+- [x] 文檔更新完成
+- [x] 錯誤記錄
+- [x] 發現並解決根本原因 (Session Compaction)
+
+## Notes
+- 2026-02-26: L0/L1 成功生成，證明 Phase 1 修復有效
+- 2026-03-07: 發現根本原因係 Discord Session Compaction，已徹底解決
+- 3月6日清理 sessions 後，L0 恢復準時生成
+- 準備進入 Phase 2: Pattern Learner
+
+## 關聯 Issue
+- Issue #006: Discord Session Compaction 調查
+- Issue #024: L1 Generator Timeout (已歸檔，合併至 #006)

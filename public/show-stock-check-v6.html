@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Stock Check</title>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <style>
+        /* ===== iOS Design System ===== */
+        :root {
+            /* iOS Colors */
+            --ios-bg: #F2F2F7;
+            --ios-card: #FFFFFF;
+            --ios-label: #000000;
+            --ios-secondary-label: #8E8E93;
+            --ios-tertiary-label: #C7C7CC;
+            --ios-separator: #E5E5EA;
+            --ios-blue: #007AFF;
+            --ios-green: #34C759;
+            --ios-orange: #FF9500;
+            --ios-red: #FF3B30;
+            --ios-yellow: #FFCC00;
+            --ios-gray: #8E8E93;
+            --ios-gray2: #AEAEB2;
+            --ios-gray3: #C7C7CC;
+            --ios-gray4: #D1D1D6;
+            --ios-gray5: #E5E5EA;
+            --ios-gray6: #F2F2F7;
+            
+            /* Status Colors */
+            --status-available: #34C759;
+            --status-memo: #FF9500;
+            --status-sold: #007AFF;
+            --status-missing: #FF3B30;
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            background: var(--ios-bg);
+            color: var(--ios-label);
+            min-height: 100vh;
+            padding-bottom: 100px;
+            line-height: 1.4;
+        }
+        
+        /* ===== Typography (iOS Style) ===== */
+        .ios-title {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            margin-bottom: 16px;
+            padding-top: 20px;
+        }
+        
+        .ios-headline {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ios-label);
+        }
+        
+        .ios-subhead {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+        }
+        
+        .ios-body {
+            font-size: 17px;
+            font-weight: 400;
+            color: var(--ios-label);
+        }
+        
+        .ios-footnote {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+        }
+        
+        .ios-caption {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+        }
+        
+        /* ===== Layout ===== */
+        .tab-page {
+            display: none;
+            padding: 0 16px 100px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .tab-page.active { display: block; }
+        
+        /* ===== iOS List Style ===== */
+        .ios-list {
+            background: var(--ios-card);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        
+        .ios-list-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--ios-card);
+            border-bottom: 0.5px solid var(--ios-separator);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .ios-list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ios-list-item:active {
+            background: var(--ios-gray5);
+        }
+        
+        .ios-list-item-content {
+            flex: 1;
+        }
+        
+        .ios-list-item-title {
+            font-size: 17px;
+            font-weight: 400;
+            color: var(--ios-label);
+        }
+        
+        .ios-list-item-subtitle {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+            margin-top: 2px;
+        }
+        
+        .ios-list-item-arrow {
+            color: var(--ios-gray3);
+            font-size: 20px;
+            margin-left: 8px;
+        }
+        
+        .ios-list-item-badge {
+            background: var(--ios-gray5);
+            color: var(--ios-secondary-label);
+            font-size: 15px;
+            font-weight: 400;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-right: 8px;
+        }
+        
+        /* ===== iOS Button ===== */
+        .ios-button {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: var(--ios-blue);
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .ios-button:active {
+            opacity: 0.8;
+        }
+        
+        .ios-button-secondary {
+            background: var(--ios-gray5);
+            color: var(--ios-blue);
+        }
+        
+        .ios-button-danger {
+            background: var(--ios-red);
+        }
+        
+        /* ===== iOS Search Bar ===== */
+        .ios-search {
+            background: var(--ios-gray6);
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .ios-search input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 17px;
+            background: transparent;
+            color: var(--ios-label);
+        }
+        
+        .ios-search input::placeholder {
+            color: var(--ios-secondary-label);
+        }
+        
+        .ios-search-icon {
+            color: var(--ios-secondary-label);
+            font-size: 16px;
+        }
+        
+        /* ===== iOS Card ===== */
+        .ios-card {
+            background: var(--ios-card);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        /* ===== Diamond Card ===== */
+        .diamond-card {
+            background: var(--ios-card);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .diamond-card:active {
+            transform: scale(0.98);
+        }
+        
+        .diamond-card.selected {
+            border-color: var(--ios-blue);
+            background: rgba(0, 122, 255, 0.05);
+        }
+        
+        .diamond-card.selected-green {
+            border-color: var(--status-available);
+            background: rgba(52, 199, 89, 0.05);
+        }
+        
+        .diamond-card.selected-yellow {
+            border-color: var(--status-memo);
+            background: rgba(255, 149, 0, 0.05);
+        }
+        
+        .diamond-card.selected-blue {
+            border-color: var(--status-sold);
+            background: rgba(0, 122, 255, 0.05);
+        }
+        
+        .diamond-line1 {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+            margin-bottom: 4px;
+        }
+        
+        .diamond-line2 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 4px;
+        }
+        
+        .diamond-line3 {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+        }
+        
+        .diamond-price {
+            float: right;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ios-label);
+        }
+        
+        .diamond-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+            text-transform: uppercase;
+        }
+        
+        .diamond-badge.green {
+            background: var(--status-available);
+            color: white;
+        }
+        
+        .diamond-badge.yellow {
+            background: var(--status-memo);
+            color: white;
+        }
+        
+        .diamond-badge.blue {
+            background: var(--status-sold);
+            color: white;
+        }
+        
+        /* ===== Summary Cards ===== */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .summary-card {
+            background: var(--ios-card);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .summary-card:active {
+            transform: scale(0.96);
+        }
+        
+        .summary-label {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+            margin-bottom: 4px;
+        }
+        
+        .summary-value {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+        }
+        
+        .summary-card.available .summary-value {
+            color: var(--status-available);
+        }
+        
+        .summary-card.memo .summary-value {
+            color: var(--status-memo);
+        }
+        
+        .summary-card.sold .summary-value {
+            color: var(--status-sold);
+        }
+        
+        .summary-card.missing .summary-value {
+            color: var(--status-missing);
+        }
+        
+        /* ===== Import Section ===== */
+        .import-section {
+            background: var(--ios-card);
+            border: 2px dashed var(--ios-gray4);
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .import-section:active {
+            background: var(--ios-gray6);
+        }
+        
+        .import-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        
+        .import-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 4px;
+        }
+        
+        .import-subtitle {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+        }
+        
+        /* ===== Data Source Badge ===== */
+        .data-source {
+            background: var(--ios-green);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .data-source-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .data-source-btn {
+            font-size: 15px;
+            font-weight: 400;
+            color: white;
+            background: rgba(255,255,255,0.3);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        /* ===== Submit Bar ===== */
+        .submit-bar {
+            position: fixed;
+            bottom: 84px;
+            left: 16px;
+            right: 16px;
+            background: var(--ios-card);
+            border-radius: 10px;
+            padding: 12px 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 50;
+        }
+        
+        .submit-info {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+        }
+        
+        .submit-info span {
+            font-weight: 600;
+            color: var(--ios-label);
+        }
+        
+        /* ===== Tab Bar ===== */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 0.5px solid var(--ios-separator);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 84px;
+            padding-bottom: 20px;
+            z-index: 100;
+        }
+        
+        .tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            cursor: pointer;
+            gap: 4px;
+            padding-top: 8px;
+        }
+        
+        .tab-icon {
+            font-size: 24px;
+            color: var(--ios-gray);
+            transition: color 0.2s;
+        }
+        
+        .tab-label {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--ios-gray);
+            transition: color 0.2s;
+        }
+        
+        .tab-item.active .tab-icon,
+        .tab-item.active .tab-label {
+            color: var(--ios-blue);
+        }
+        
+        /* ===== Toast ===== */
+        .toast-container {
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .toast {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            animation: slideDown 0.3s ease;
+            pointer-events: auto;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .toast-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* ===== Modal ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 200;
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--ios-bg);
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh;
+            border-radius: 20px 20px 0 0;
+            padding: 20px;
+            animation: slideUp 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .modal-close {
+            font-size: 24px;
+            color: var(--ios-secondary-label);
+            cursor: pointer;
+            padding: 4px;
+        }
+        
+        .modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 80px;
+        }
+        
+        .modal-item {
+            background: var(--ios-card);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-item-info {
+            flex: 1;
+        }
+        
+        .modal-item-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 2px;
+        }
+        
+        .modal-item-subtitle {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+        }
+        
+        .modal-remove-btn {
+            background: var(--ios-red);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* ===== Empty State ===== */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        
+        .empty-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 8px;
+        }
+        
+        .empty-subtitle {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+        }
+        
+        /* ===== Navigation Bar ===== */
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            margin-bottom: 8px;
+        }
+        
+        .nav-back {
+            color: var(--ios-blue);
+            font-size: 17px;
+            font-weight: 400;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .nav-title {
+            flex: 1;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 600;
+            margin-right: 60px;
+        }
+        
+        /* ===== Legend ===== */
+        .legend {
+            display: flex;
+            gap: 16px;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--ios-secondary-label);
+        }
+        
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .dot-available { background: var(--status-available); }
+        .dot-memo { background: var(--status-memo); }
+        .dot-sold { background: var(--status-sold); }
+        .dot-missing { background: var(--status-missing); }
+        .dot-gray { background: var(--ios-gray3); }
+        
+        /* ===== Hidden ===== */
+        #fileInput { display: none; }
+    </style>
+</head>
+<body>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Modal -->
+    <div class="modal-overlay" id="detailModal" onclick="app.closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">Details</span>
+                <span class="modal-close" onclick="app.closeModal()">✕</span>
+            </div>
+            <div class="ios-search">
+                <span class="ios-search-icon">🔍</span>
+                <input type="text" id="modalSearch" placeholder="Search by Parcel, Cert No or Carat..." oninput="app.handleModalSearch()">
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+    
+    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="app.handleFileSelect(event)">
+
+    <!-- ===== Tab 1: Check (Available) ===== -->
+    <div id="availableTab" class="tab-page active">
+        <div id="availableShapePage">
+            <h1 class="ios-title">Check</h1>
+            
+            <div class="data-source" id="dataSourceInfo" style="display: none;">
+                <span class="data-source-text">📊 <span id="dataSourceCount">0</span> diamonds loaded</span>
+                <button class="data-source-btn" onclick="app.clearData()">Clear</button>
+            </div>
+            
+            <div class="import-section" onclick="app.triggerImport()" ondrop="app.handleDrop(event)" ondragover="app.handleDragOver(event)" ondragleave="app.handleDragLeave(event)">
+                <div class="import-icon">📁</div>
+                <div class="import-title">Import Excel</div>
+                <div class="import-subtitle">Tap to select or drop file here</div>
+            </div>
+            
+            <div class="ios-headline" style="margin-bottom: 12px;">Select Shape</div>
+            <div class="ios-list" id="available-shape-list">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+        
+        <div id="availableCheckPage" style="display: none;">
+            <div class="nav-bar">
+                <span class="nav-back" onclick="app.backToShapes('available')">< Back</span>
+                <span class="nav-title" id="availableCheckTitle">All Shapes</span>
+            </div>
+            
+            <div class="ios-search">
+                <span class="ios-search-icon">🔍</span>
+                <input type="text" id="availableSearch" placeholder="Search by Parcel, Cert No or Carat..." oninput="app.handleSearch('available')">
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot dot-gray"></div>
+                    <span>Unchecked</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-available"></div>
+                    <span>Tap to select Available</span>
+                </div>
+            </div>
+            
+            <div id="availableCheckList"></div>
+            
+            <div class="submit-bar">
+                <div class="submit-info">
+                    <span id="availableSubmitCount">0</span> selected
+                </div>
+                <button class="ios-button ios-button-secondary" style="width: auto; padding: 10px 20px;" onclick="app.resetSelection('available')">Reset</button>
+                <button class="ios-button" style="width: auto; padding: 10px 20px;" onclick="app.submitSelection('available')">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab 2: Memo Out ===== -->
+    <div id="memoTab" class="tab-page">
+        <div id="memoShapePage">
+            <h1 class="ios-title">Memo Out</h1>
+            
+            <div class="ios-headline" style="margin-bottom: 12px;">Select Shape</div>
+            <div class="ios-list" id="memo-shape-list">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+        
+        <div id="memoCheckPage" style="display: none;">
+            <div class="nav-bar">
+                <span class="nav-back" onclick="app.backToShapes('memo')">< Back</span>
+                <span class="nav-title" id="memoCheckTitle">All Shapes</span>
+            </div>
+            
+            <div class="ios-search">
+                <span class="ios-search-icon">🔍</span>
+                <input type="text" id="memoSearch" placeholder="Search by Parcel, Cert No or Carat..." oninput="app.handleSearch('memo')">
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot dot-gray"></div>
+                    <span>Unchecked</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-memo"></div>
+                    <span>Tap to select Memo Out</span>
+                </div>
+            </div>
+            
+            <div id="memoCheckList"></div>
+            
+            <div class="submit-bar">
+                <div class="submit-info">
+                    <span id="memoSubmitCount">0</span> selected
+                </div>
+                <button class="ios-button ios-button-secondary" style="width: auto; padding: 10px 20px;" onclick="app.resetSelection('memo')">Reset</button>
+                <button class="ios-button" style="width: auto; padding: 10px 20px;" onclick="app.submitSelection('memo')">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab 3: Sold ===== -->
+    <div id="soldTab" class="tab-page">
+        <div id="soldShapePage">
+            <h1 class="ios-title">Sold</h1>
+            
+            <div class="ios-headline" style="margin-bottom: 12px;">Select Shape</div>
+            <div class="ios-list" id="sold-shape-list">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+        
+        <div id="soldCheckPage" style="display: none;">
+            <div class="nav-bar">
+                <span class="nav-back" onclick="app.backToShapes('sold')">< Back</span>
+                <span class="nav-title" id="soldCheckTitle">All Shapes</span>
+            </div>
+            
+            <div class="ios-search">
+                <span class="ios-search-icon">🔍</span>
+                <input type="text" id="soldSearch" placeholder="Search by Parcel, Cert No or Carat..." oninput="app.handleSearch('sold')">
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot dot-gray"></div>
+                    <span>Unchecked</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-sold"></div>
+                    <span>Tap to select Sold</span>
+                </div>
+            </div>
+            
+            <div id="soldCheckList"></div>
+            
+            <div class="submit-bar">
+                <div class="submit-info">
+                    <span id="soldSubmitCount">0</span> selected
+                </div>
+                <button class="ios-button ios-button-secondary" style="width: auto; padding: 10px 20px;" onclick="app.resetSelection('sold')">Reset</button>
+                <button class="ios-button" style="width: auto; padding: 10px 20px;" onclick="app.submitSelection('sold')">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab 4: Summary ===== -->
+    <div id="summaryTab" class="tab-page">
+        <h1 class="ios-title">Summary</h1>
+        
+        <div class="summary-grid">
+            <div class="summary-card" onclick="app.openModal('all')">
+                <div class="summary-label">Total</div>
+                <div class="summary-value" id="totalSummary">0</div>
+            </div>
+            <div class="summary-card available" onclick="app.openModal('available')">
+                <div class="summary-label">Available</div>
+                <div class="summary-value" id="availableSummary">0</div>
+            </div>
+            <div class="summary-card memo" onclick="app.openModal('memo-out')">
+                <div class="summary-label">Memo Out</div>
+                <div class="summary-value" id="memoOutSummary">0</div>
+            </div>
+            <div class="summary-card sold" onclick="app.openModal('sold')">
+                <div class="summary-label">Sold</div>
+                <div class="summary-value" id="soldSummary">0</div>
+            </div>
+            <div class="summary-card missing" style="grid-column: span 2;" onclick="app.openModal('missing')">
+                <div class="summary-label">🔴 Missing</div>
+                <div class="summary-value" id="missingSummary">0</div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot dot-available"></div><span>Available</span></div>
+            <div class="legend-item"><div class="legend-dot dot-memo"></div><span>Memo Out</span></div>
+            <div class="legend-item"><div class="legend-dot dot-sold"></div><span>Sold</span></div>
+            <div class="legend-item"><div class="legend-dot dot-missing"></div><span>Missing</span></div>
+        </div>
+        
+        <div class="ios-card" id="missingSection">
+            <div class="ios-headline" style="margin-bottom: 12px;">🔴 Missing Items</div>
+            <div id="missingList"></div>
+        </div>
+        
+        <div style="position: fixed; bottom: 100px; left: 16px; right: 16px; z-index: 50;">
+            <button class="ios-button" onclick="app.generateExcel()">
+                📊 Export Excel Report
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== Tab Bar ===== -->
+    <div class="tab-bar">
+        <div class="tab-item active" onclick="app.switchTab('available')">
+            <span class="tab-icon">✅</span>
+            <span class="tab-label">Check</span>
+        </div>
+        <div class="tab-item" onclick="app.switchTab('memo')">
+            <span class="tab-icon">📋</span>
+            <span class="tab-label">Memo</span>
+        </div>
+        <div class="tab-item" onclick="app.switchTab('sold')">
+            <span class="tab-icon">💰</span>
+            <span class="tab-label">Sold</span>
+        </div>
+        <div class="tab-item" onclick="app.switchTab('summary')">
+            <span class="tab-icon">📊</span>
+            <span class="tab-label">Summary</span>
+        </div>
+    </div>
+
+    <script>
+        class StockCheckApp {
+            constructor() {
+                this.allData = [];
+                this.currentShape = { available: 'ALL', memo: 'ALL', sold: 'ALL' };
+                this.searchQuery = { available: '', memo: '', sold: '' };
+                this.undoStack = [];
+                this.modalType = null;
+                this.modalSearchQuery = '';
+                this.originalColumns = [];
+                
+                this.tabConfig = {
+                    'available': { color: 'green', label: 'Available', nextStatus: 'available' },
+                    'memo': { color: 'yellow', label: 'Memo Out', nextStatus: 'memo-out' },
+                    'sold': { color: 'blue', label: 'Sold', nextStatus: 'sold' }
+                };
+                
+                this.shapeNames = {
+                    'ALL': 'All Shapes',
+                    'RBC': 'Round',
+                    'EM': 'Emerald',
+                    'PR': 'Princess',
+                    'PS': 'Pear',
+                    'CU': 'Cushion',
+                    'OV': 'Oval',
+                    'RAD': 'Radiant',
+                    'HS': 'Heart',
+                    'MQ': 'Marquise',
+                    'SEM': 'Square Emerald'
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                this.loadFromStorage();
+                this.updateDataSourceInfo();
+                this.renderDynamicShapeLists();
+            }
+            
+            saveToStorage() {
+                try {
+                    localStorage.setItem('stockCheckV6_data', JSON.stringify(this.allData));
+                    localStorage.setItem('stockCheckV6_timestamp', new Date().toISOString());
+                    localStorage.setItem('stockCheckV6_columns', JSON.stringify(this.originalColumns));
+                } catch (e) {
+                    console.error('Save failed:', e);
+                }
+            }
+            
+            loadFromStorage() {
+                try {
+                    const saved = localStorage.getItem('stockCheckV6_data');
+                    const savedCols = localStorage.getItem('stockCheckV6_columns');
+                    if (saved) {
+                        this.allData = JSON.parse(saved);
+                        if (savedCols) this.originalColumns = JSON.parse(savedCols);
+                        const timestamp = localStorage.getItem('stockCheckV6_timestamp');
+                        if (timestamp) {
+                            const date = new Date(timestamp);
+                            this.showToast(`Restored ${this.allData.length} diamonds (${date.toLocaleDateString()})`);
+                        }
+                    }
+                } catch (e) {
+                    console.error('Load failed:', e);
+                    this.allData = [];
+                }
+            }
+            
+            clearData() {
+                if (confirm('Clear all data? This cannot be undone.')) {
+                    this.allData = [];
+                    this.originalColumns = [];
+                    localStorage.removeItem('stockCheckV6_data');
+                    localStorage.removeItem('stockCheckV6_timestamp');
+                    localStorage.removeItem('stockCheckV6_columns');
+                    this.updateDataSourceInfo();
+                    this.renderDynamicShapeLists();
+                    this.showToast('Data cleared');
+                }
+            }
+            
+            triggerImport() {
+                document.getElementById('fileInput').click();
+            }
+            
+            handleDragOver(e) {
+                e.preventDefault();
+                e.currentTarget.style.background = 'var(--ios-gray6)';
+            }
+            
+            handleDragLeave(e) {
+                e.currentTarget.style.background = '';
+            }
+            
+            handleDrop(e) {
+                e.preventDefault();
+                e.currentTarget.style.background = '';
+                const files = e.dataTransfer.files;
+                if (files.length > 0) this.processFile(files[0]);
+            }
+            
+            handleFileSelect(e) {
+                const file = e.target.files[0];
+                if (file) this.processFile(file);
+            }
+            
+            processFile(file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                        const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+                        this.importDataWithOrder(jsonData);
+                    } catch (err) {
+                        this.showToast('❌ Import failed: ' + err.message);
+                    }
+                };
+                reader.readAsArrayBuffer(file);
+            }
+            
+            importDataWithOrder(jsonData) {
+                if (jsonData.length < 2) {
+                    this.showToast('❌ Invalid Excel format');
+                    return;
+                }
+                
+                this.originalColumns = jsonData[0];
+                const headers = jsonData[0].map(h => String(h).toLowerCase().trim());
+                
+                const findIndex = (names) => {
+                    for (const name of names) {
+                        const idx = headers.findIndex(h => h.includes(name.toLowerCase()));
+                        if (idx >= 0) return idx;
+                    }
+                    return -1;
+                };
+                
+                const colMap = {
+                    parcel: findIndex(['parcel', 'name']),
+                    shape: findIndex(['shape', 'rapnet']),
+                    carat: findIndex(['carat', 'crt']),
+                    color: findIndex(['color']),
+                    clarity: findIndex(['clarity']),
+                    fluor: findIndex(['fluor', 'fluorescence']),
+                    price: findIndex(['price', 'memo']),
+                    certNo: findIndex(['cert', 'gia'])
+                };
+                
+                const newData = [];
+                for (let i = 1; i < jsonData.length; i++) {
+                    const row = jsonData[i];
+                    if (!row[0]) continue;
+                    
+                    newData.push({
+                        parcel: String(row[colMap.parcel] || `ROW-${i}`).trim(),
+                        shape: String(row[colMap.shape] || 'RBC').toUpperCase().trim(),
+                        carat: parseFloat(row[colMap.carat]) || 0,
+                        color: String(row[colMap.color] || '').toUpperCase().trim(),
+                        clarity: String(row[colMap.clarity] || '').toUpperCase().trim(),
+                        fluor: String(row[colMap.fluor] || 'None').trim(),
+                        price: parseFloat(row[colMap.price]) || 0,
+                        certNo: String(row[colMap.certNo] || '').trim(),
+                        confirmedStatus: null,
+                        selection: { available: false, memo: false, sold: false },
+                        _originalRow: row
+                    });
+                }
+                
+                if (this.allData.length > 0) {
+                    if (confirm(`Merge with existing ${this.allData.length} diamonds?\nOK = Merge\nCancel = Replace`)) {
+                        this.allData = [...this.allData, ...newData];
+                    } else {
+                        this.allData = newData;
+                    }
+                } else {
+                    this.allData = newData;
+                }
+                
+                this.saveToStorage();
+                this.updateDataSourceInfo();
+                this.renderDynamicShapeLists();
+                this.showToast(`✅ Imported ${newData.length} diamonds`);
+            }
+            
+            updateDataSourceInfo() {
+                const infoEl = document.getElementById('dataSourceInfo');
+                const countEl = document.getElementById('dataSourceCount');
+                if (this.allData.length > 0) {
+                    infoEl.style.display = 'flex';
+                    countEl.textContent = this.allData.length;
+                } else {
+                    infoEl.style.display = 'none';
+                }
+            }
+            
+            getUniqueShapes() {
+                const shapeMap = new Map();
+                shapeMap.set('ALL', { code: 'ALL', name: 'All Shapes', count: this.allData.filter(d => !d.confirmedStatus).length });
+                
+                this.allData.forEach(d => {
+                    const code = d.shape?.toUpperCase() || 'RBC';
+                    if (!shapeMap.has(code)) {
+                        const name = this.shapeNames[code] || code;
+                        shapeMap.set(code, { code, name: `${name} (${code})`, count: 0 });
+                    }
+                });
+                
+                this.allData.filter(d => !d.confirmedStatus).forEach(d => {
+                    const code = d.shape?.toUpperCase() || 'RBC';
+                    if (shapeMap.has(code)) shapeMap.get(code).count++;
+                });
+                
+                return Array.from(shapeMap.values());
+            }
+            
+            renderDynamicShapeLists() {
+                const shapes = this.getUniqueShapes();
+                ['available', 'memo', 'sold'].forEach(type => {
+                    const container = document.getElementById(`${type}-shape-list`);
+                    if (!container) return;
+                    
+                    container.innerHTML = shapes.map(s => `
+                        <div class="ios-list-item" onclick="app.enterCheck('${type}', '${s.code}')">
+                            <div class="ios-list-item-content">
+                                <div class="ios-list-item-title">${s.name}</div>
+                            </div>
+                            <span class="ios-list-item-badge">${s.count}</span>
+                            <span class="ios-list-item-arrow">›</span>
+                        </div>
+                    `).join('');
+                });
+            }
+            
+            switchTab(tabName) {
+                document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                document.getElementById(tabName + 'Tab').classList.add('active');
+                const tabIndex = tabName === 'available' ? 0 : tabName === 'memo' ? 1 : tabName === 'sold' ? 2 : 3;
+                document.querySelectorAll('.tab-item')[tabIndex].classList.add('active');
+                if (tabName === 'summary') this.renderSummary();
+            }
+            
+            enterCheck(type, shape) {
+                this.currentShape[type] = shape;
+                const shapeName = shape === 'ALL' ? 'All Shapes' : this.shapeNames[shape] || shape;
+                document.getElementById(`${type}CheckTitle`).textContent = shapeName;
+                document.getElementById(`${type}ShapePage`).style.display = 'none';
+                document.getElementById(`${type}CheckPage`).style.display = 'block';
+                this.searchQuery[type] = '';
+                document.getElementById(`${type}Search`).value = '';
+                this.renderCheckList(type);
+            }
+            
+            backToShapes(type) {
+                document.getElementById(`${type}ShapePage`).style.display = 'block';
+                document.getElementById(`${type}CheckPage`).style.display = 'none';
+                this.renderDynamicShapeLists();
+            }
+            
+            handleSearch(type) {
+                this.searchQuery[type] = document.getElementById(`${type}Search`).value.toLowerCase().trim();
+                this.renderCheckList(type);
+            }
+            
+            renderCheckList(type) {
+                const listEl = document.getElementById(`${type}CheckList`);
+                const config = this.tabConfig[type];
+                const query = this.searchQuery[type];
+                
+                let items = this.allData.filter(d => !d.confirmedStatus);
+                if (this.currentShape[type] !== 'ALL') {
+                    items = items.filter(d => d.shape === this.currentShape[type]);
+                }
+                
+                if (query) {
+                    items = items.filter(d => {
+                        const caratStr = String(d.carat);
+                        return d.parcel.toLowerCase().includes(query) ||
+                               d.certNo.toLowerCase().includes(query) ||
+                               caratStr.includes(query);
+                    });
+                }
+                
+                if (items.length === 0) {
+                    listEl.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">🔍</div>
+                            <div class="empty-title">${query ? 'No matches found' : 'No diamonds to check'}</div>
+                        </div>`;
+                    document.getElementById(`${type}SubmitCount`).textContent = '0';
+                    return;
+                }
+                
+                listEl.innerHTML = items.map(d => {
+                    const isSelected = d.selection[type];
+                    const badge = isSelected ? `<span class="diamond-badge ${config.color}">Selected</span>` : '';
+                    
+                    return `
+                        <div class="diamond-card ${isSelected ? `selected-${config.color}` : ''}" 
+                             onclick="app.toggleSelection('${type}', '${d.parcel}')">
+                            <div class="diamond-line1">${d.parcel}</div>
+                            <div class="diamond-line2">
+                                ${d.shape} ${d.carat}ct ${d.color} ${d.clarity}
+                                <span class="diamond-price">$${d.price.toLocaleString()}</span>
+                            </div>
+                            <div class="diamond-line3">${d.certNo || 'No Certificate'}${badge}</div>
+                        </div>`;
+                }).join('');
+                
+                const selectedCount = this.allData.filter(d => d.selection[type]).length;
+                document.getElementById(`${type}SubmitCount`).textContent = selectedCount;
+            }
+            
+            toggleSelection(type, parcel) {
+                const item = this.allData.find(d => d.parcel === parcel);
+                if (!item) return;
+                item.selection[type] = !item.selection[type];
+                this.renderCheckList(type);
+            }
+            
+            resetSelection(type) {
+                const selectedItems = this.allData.filter(d => d.selection[type]);
+                if (selectedItems.length === 0) {
+                    this.showToast('No items selected');
+                    return;
+                }
+                if (confirm(`Reset ${selectedItems.length} selections?`)) {
+                    selectedItems.forEach(d => d.selection[type] = false);
+                    this.renderCheckList(type);
+                    this.showToast(`Reset ${selectedItems.length} items`);
+                }
+            }
+            
+            submitSelection(type) {
+                const config = this.tabConfig[type];
+                const selectedItems = this.allData.filter(d => d.selection[type]);
+                
+                if (selectedItems.length === 0) {
+                    this.showToast('Please select items first');
+                    return;
+                }
+                
+                this.undoStack.push({
+                    type: type,
+                    parcels: selectedItems.map(d => d.parcel),
+                    timestamp: Date.now()
+                });
+                
+                selectedItems.forEach(d => {
+                    d.confirmedStatus = config.nextStatus;
+                    d.selection[type] = false;
+                });
+                
+                this.saveToStorage();
+                this.renderCheckList(type);
+                this.renderDynamicShapeLists();
+                this.showUndoToast(`✅ ${selectedItems.length} marked as ${config.label}`, type);
+            }
+            
+            showUndoToast(message, type) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `
+                    <span>${message}</span>
+                    <button class="toast-btn" onclick="app.undoLastAction(); this.parentElement.remove();">Undo</button>
+                `;
+                container.appendChild(toast);
+                setTimeout(() => {
+                    if (toast.parentElement) {
+                        toast.style.opacity = '0';
+                        setTimeout(() => toast.remove(), 300);
+                    }
+                }, 5000);
+            }
+            
+            undoLastAction() {
+                const lastAction = this.undoStack.pop();
+                if (!lastAction || !lastAction.parcels) {
+                    this.showToast('Nothing to undo');
+                    return;
+                }
+                
+                lastAction.parcels.forEach(parcel => {
+                    const item = this.allData.find(d => d.parcel === parcel);
+                    if (item) item.confirmedStatus = null;
+                });
+                
+                this.saveToStorage();
+                this.renderCheckList(lastAction.type);
+                this.renderDynamicShapeLists();
+                this.showToast('↩️ Undo successful');
+            }
+            
+            renderSummary() {
+                const total = this.allData.length;
+                const available = this.allData.filter(d => d.confirmedStatus === 'available').length;
+                const memoOut = this.allData.filter(d => d.confirmedStatus === 'memo-out').length;
+                const sold = this.allData.filter(d => d.confirmedStatus === 'sold').length;
+                const missing = this.allData.filter(d => !d.confirmedStatus).length;
+                
+                document.getElementById('totalSummary').textContent = total;
+                document.getElementById('availableSummary').textContent = available;
+                document.getElementById('memoOutSummary').textContent = memoOut;
+                document.getElementById('soldSummary').textContent = sold;
+                document.getElementById('missingSummary').textContent = missing;
+                
+                const missingItems = this.allData.filter(d => !d.confirmedStatus);
+                const missingListEl = document.getElementById('missingList');
+                const missingSectionEl = document.getElementById('missingSection');
+                
+                if (missingItems.length === 0) {
+                    missingSectionEl.style.display = 'none';
+                } else {
+                    missingSectionEl.style.display = 'block';
+                    missingListEl.innerHTML = missingItems.map(d => `
+                        <div class="ios-list-item">
+                            <div class="ios-list-item-content">
+                                <div class="ios-list-item-title">${d.parcel}</div>
+                                <div class="ios-list-item-subtitle">${d.shape} ${d.carat}ct ${d.color} ${d.clarity}</div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+            
+            openModal(type) {
+                this.modalType = type;
+                this.modalSearchQuery = '';
+                document.getElementById('modalSearch').value = '';
+                
+                const titles = {
+                    'all': 'All Diamonds',
+                    'available': 'Available',
+                    'memo-out': 'Memo Out',
+                    'sold': 'Sold',
+                    'missing': 'Missing'
+                };
+                document.getElementById('modalTitle').textContent = titles[type] || 'Details';
+                document.getElementById('detailModal').classList.add('active');
+                this.renderModalContent();
+            }
+            
+            closeModal(e) {
+                if (!e || e.target.id === 'detailModal') {
+                    document.getElementById('detailModal').classList.remove('active');
+                    this.modalType = null;
+                }
+            }
+            
+            handleModalSearch() {
+                this.modalSearchQuery = document.getElementById('modalSearch').value.toLowerCase().trim();
+                this.renderModalContent();
+            }
+            
+            renderModalContent() {
+                const bodyEl = document.getElementById('modalBody');
+                const query = this.modalSearchQuery;
+                
+                let items = [];
+                switch(this.modalType) {
+                    case 'all': items = this.allData; break;
+                    case 'available': items = this.allData.filter(d => d.confirmedStatus === 'available'); break;
+                    case 'memo-out': items = this.allData.filter(d => d.confirmedStatus === 'memo-out'); break;
+                    case 'sold': items = this.allData.filter(d => d.confirmedStatus === 'sold'); break;
+                    case 'missing': items = this.allData.filter(d => !d.confirmedStatus); break;
+                }
+                
+                if (query) {
+                    items = items.filter(d => {
+                        const caratStr = String(d.carat);
+                        return d.parcel.toLowerCase().includes(query) ||
+                               d.certNo.toLowerCase().includes(query) ||
+                               caratStr.includes(query);
+                    });
+                }
+                
+                if (items.length === 0) {
+                    bodyEl.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">📭</div>
+                            <div class="empty-title">${query ? 'No matches' : 'No items'}</div>
+                        </div>`;
+                    return;
+                }
+                
+                bodyEl.innerHTML = items.map(d => {
+                    const canRemove = d.confirmedStatus !== null;
+                    return `
+                        <div class="modal-item">
+                            <div class="modal-item-info">
+                                <div class="modal-item-title">${d.parcel}</div>
+                                <div class="modal-item-subtitle">${d.shape} ${d.carat}ct ${d.color} ${d.clarity}</div>
+                            </div>
+                            ${canRemove ? `<button class="modal-remove-btn" onclick="app.removeFromStatus('${d.parcel}')">Remove</button>` : ''}
+                        </div>`;
+                }).join('');
+            }
+            
+            removeFromStatus(parcel) {
+                const item = this.allData.find(d => d.parcel === parcel);
+                if (!item) return;
+                item.confirmedStatus = null;
+                this.saveToStorage();
+                this.renderModalContent();
+                this.renderSummary();
+                this.renderDynamicShapeLists();
+                this.showToast(`↩️ ${parcel} restored`);
+            }
+            
+            generateExcel() {
+                if (this.allData.length === 0) {
+                    this.showToast('No data to export');
+                    return;
+                }
+                
+                const statusEmoji = {
+                    'available': '🟢 AVAILABLE',
+                    'memo-out': '🟡 MEMO OUT',
+                    'sold': '🔵 SOLD',
+                    'missing': '🔴 MISSING'
+                };
+                
+                // Status 欄在最左邊
+                let headers = this.originalColumns.length > 0 
+                    ? ['STATUS', ...this.originalColumns]
+                    : ['STATUS', 'PARCEL', 'SHAPE', 'CARAT', 'COLOR', 'CLARITY', 'FLUOR', 'PRICE', 'CERT_NO'];
+                
+                const rows = [headers.join(',')];
+                
+                this.allData.forEach(d => {
+                    const row = [];
+                    const status = statusEmoji[d.confirmedStatus || 'missing'];
+                    
+                    // Status 放第一個
+                    row.push(status);
+                    
+                    if (this.originalColumns.length > 0 && d._originalRow) {
+                        this.originalColumns.forEach((col, idx) => {
+                            const val = d._originalRow[idx] || '';
+                            row.push(this.escapeCsv(String(val)));
+                        });
+                    } else {
+                        row.push(
+                            this.escapeCsv(d.parcel),
+                            this.escapeCsv(d.shape),
+                            d.carat,
+                            this.escapeCsv(d.color),
+                            this.escapeCsv(d.clarity),
+                            this.escapeCsv(d.fluor),
+                            d.price,
+                            this.escapeCsv(d.certNo)
+                        );
+                    }
+                    rows.push(row.join(','));
+                });
+                
+                rows.push('');
+                rows.push('SUMMARY,');
+                rows.push('TOTAL,' + this.allData.length);
+                rows.push(statusEmoji['available'] + ' AVAILABLE,' + this.allData.filter(d => d.confirmedStatus === 'available').length);
+                rows.push(statusEmoji['memo-out'] + ' MEMO OUT,' + this.allData.filter(d => d.confirmedStatus === 'memo-out').length);
+                rows.push(statusEmoji['sold'] + ' SOLD,' + this.allData.filter(d => d.confirmedStatus === 'sold').length);
+                rows.push(statusEmoji['missing'] + ' MISSING,' + this.allData.filter(d => !d.confirmedStatus).length);
+                
+                const csv = '\uFEFF' + rows.join('\n');
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `Stock_Check_${new Date().toISOString().split('T')[0]}.csv`;
+                link.click();
+                
+                this.showToast(`📊 Exported ${this.allData.length} diamonds`);
+            }
+            
+            escapeCsv(val) {
+                if (val.includes(',') || val.includes('"') || val.includes('\n')) {
+                    return '"' + val.replace(/"/g, '""') + '"';
+                }
+                return val;
+            }
+            
+            showToast(message) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<span>${message}</span>`;
+                container.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+        }
+        
+        const app = new StockCheckApp();
+    </script>
+</body>
+</html>

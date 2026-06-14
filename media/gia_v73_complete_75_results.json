@@ -1,0 +1,2751 @@
+{
+  "source": "GIA Batch Analysis v7.7.0 - 75 Certificates",
+  "analyzer_version": "7.7.0",
+  "generatedAt": "2026-04-29T11:36:00+08:00",
+  "batches": {
+    "batch1": [
+      {
+        "reportNumber": "1206091556",
+        "shape": "Round Brilliant",
+        "carat": 58.14,
+        "color": "F",
+        "clarity": "VS1",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "tablePct": "58",
+        "depthPct": "61.3",
+        "clawScore": 100,
+        "verdict": "STRONG_BUY",
+        "verdictEmoji": "✅",
+        "recommendation": "APPROVE",
+        "source": "gia_v73_batch1_01-1.png"
+      },
+      {
+        "reportNumber": "1216850404",
+        "shape": "Cut-Cornered Rectangular Modified Brilliant",
+        "carat": 5.22,
+        "color": "M",
+        "clarity": "SI2",
+        "polish": "Very Good",
+        "symmetry": "Very Good",
+        "fluorescence": "Faint",
+        "tablePct": "77",
+        "depthPct": "66.0",
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "REJECT",
+        "source": "gia_v73_batch1_02-1.png"
+      },
+      {
+        "reportNumber": "1232576292",
+        "shape": "Modified Pear Step Cut",
+        "carat": 5.01,
+        "color": "D",
+        "clarity": "SI1",
+        "polish": "Very Good",
+        "symmetry": "Very Good",
+        "fluorescence": "None",
+        "tablePct": "68",
+        "depthPct": "42.8",
+        "clawScore": 16,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "REJECT",
+        "source": "gia_v73_batch1_03-1.png"
+      },
+      {
+        "reportNumber": "1232839795",
+        "shape": "Square Modified Brilliant",
+        "carat": 2.05,
+        "color": "H",
+        "clarity": "VVS2",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "tablePct": "69",
+        "depthPct": "68.9",
+        "clawScore": 24,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "CONDITIONAL",
+        "source": "gia_v73_batch1_04-1.png"
+      },
+      {
+        "reportNumber": "1236047100",
+        "shape": "Cut-Cornered Rectangular Modified Brilliant",
+        "carat": 5.24,
+        "color": "F",
+        "clarity": "VS2",
+        "polish": "Excellent",
+        "symmetry": "Very Good",
+        "fluorescence": "None",
+        "tablePct": "66",
+        "depthPct": "58.6",
+        "clawScore": 34,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "CONDITIONAL",
+        "source": "gia_v73_batch1_05-1.png"
+      },
+      {
+        "reportNumber": "1236049381",
+        "shape": "Pear Modified Brilliant",
+        "carat": 1.17,
+        "color": "Fancy Pinkish Purple",
+        "clarity": "SI1",
+        "polish": "Excellent",
+        "symmetry": "Very Good",
+        "fluorescence": "None",
+        "tablePct": "69",
+        "depthPct": "68.6",
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "REJECT",
+        "source": "gia_v73_batch1_06-1.png"
+      },
+      {
+        "reportNumber": "1236123142",
+        "shape": "Oval Brilliant",
+        "carat": 2.03,
+        "color": "E",
+        "clarity": "SI1",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "tablePct": "60",
+        "depthPct": "63.3",
+        "clawScore": 18,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "REJECT",
+        "source": "gia_v73_batch1_07-1.png"
+      },
+      {
+        "reportNumber": "1493072496",
+        "shape": "Cut-Cornered Rectangular Modified Brilliant",
+        "carat": 3.01,
+        "color": "I",
+        "clarity": "SI1",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "Medium Yellow",
+        "tablePct": "68",
+        "depthPct": "64.2",
+        "clawScore": 4,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "CONDITIONAL",
+        "source": "gia_v73_batch1_08-1.png"
+      },
+      {
+        "reportNumber": "1508164661",
+        "shape": "Square Emerald Cut",
+        "carat": 10.88,
+        "color": "D",
+        "clarity": "VVS2",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "tablePct": "66",
+        "depthPct": "65.7",
+        "clawScore": 85,
+        "verdict": "BUY",
+        "verdictEmoji": "✅",
+        "recommendation": "APPROVE",
+        "source": "gia_v73_batch1_09-1.png"
+      },
+      {
+        "reportNumber": "1513039628",
+        "shape": "Emerald Cut",
+        "carat": 9.02,
+        "color": "H",
+        "clarity": "VS2",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "tablePct": "65",
+        "depthPct": "68.0",
+        "clawScore": 34,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "CONDITIONAL",
+        "source": "gia_v73_batch1_10-1.png"
+      },
+      {
+        "reportNumber": "1543136295",
+        "shape": "Pear Brilliant",
+        "carat": 6.5,
+        "color": "Fancy Brown-Yellow",
+        "clarity": "VVS1",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "tablePct": "60",
+        "depthPct": "55.5",
+        "clawScore": 34,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "REJECT",
+        "source": "gia_v73_batch1_11-1.png"
+      },
+      {
+        "reportNumber": "1548402190",
+        "shape": "Emerald Cut",
+        "carat": 8.68,
+        "color": "D",
+        "clarity": "VVS2",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "Faint",
+        "tablePct": "66",
+        "depthPct": "66.7",
+        "clawScore": 34,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "CONDITIONAL",
+        "source": "gia_v73_batch1_12-1.png"
+      },
+      {
+        "reportNumber": "16148135",
+        "shape": "Briolette",
+        "carat": 3.54,
+        "color": "I",
+        "clarity": "VS2",
+        "polish": "Good",
+        "symmetry": "Excellent",
+        "fluorescence": "Very Strong Blue",
+        "tablePct": null,
+        "depthPct": "188.4 (N/A - Briolette)",
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "REJECT",
+        "source": "gia_v73_batch1_13-1.png"
+      },
+      {
+        "reportNumber": "17465731",
+        "shape": "Briolette",
+        "carat": 3.96,
+        "color": "K",
+        "clarity": "Internally Flawless",
+        "polish": "Very Good",
+        "symmetry": "Very Good",
+        "fluorescence": "None",
+        "tablePct": null,
+        "depthPct": "239.3 (N/A - Briolette)",
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "REJECT",
+        "source": "gia_v73_batch1_14-1.png"
+      },
+      {
+        "reportNumber": "2213934868",
+        "shape": "Cushion Modified Brilliant",
+        "carat": 1.71,
+        "color": "Fancy Vivid Pink",
+        "clarity": "VS1",
+        "polish": "Excellent",
+        "symmetry": "Good",
+        "fluorescence": "None",
+        "tablePct": "68",
+        "depthPct": "64.5",
+        "clawScore": 24,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "recommendation": "CONDITIONAL",
+        "source": "gia_v73_batch1_15-1.png"
+      }
+    ],
+    "batch2": [
+      {
+        "fileIndex": 1,
+        "sourceFile": "2215594329.pdf",
+        "pngFile": "gia_v73_batch2_1-1.png",
+        "reportNumber": "2215594329",
+        "shape": "Pear",
+        "carat": 8.08,
+        "color": "Fancy Deep Blue",
+        "clarity": "VVS1",
+        "verdict": "REJECT",
+        "clawScore": 34
+      },
+      {
+        "fileIndex": 2,
+        "sourceFile": "2225343116.pdf",
+        "pngFile": "gia_v73_batch2_2-1.png",
+        "reportNumber": "2225343116",
+        "shape": "Cut-Cornered Rectangular Modified Brilliant",
+        "carat": 10.21,
+        "color": "K",
+        "clarity": "SI1",
+        "verdict": "REJECT",
+        "clawScore": 2
+      },
+      {
+        "fileIndex": 3,
+        "sourceFile": "2225839631.pdf",
+        "pngFile": "gia_v73_batch2_3-1.png",
+        "reportNumber": "2225839631",
+        "shape": "Cut-Cornered Rectangular Modified Brilliant",
+        "carat": 30.03,
+        "color": "Fancy Vivid Yellow",
+        "clarity": "VVS2",
+        "verdict": "CAUTION",
+        "clawScore": 59
+      },
+      {
+        "fileIndex": 4,
+        "sourceFile": "2225867090.pdf",
+        "pngFile": "gia_v73_batch2_4-1.png",
+        "reportNumber": "2225867090",
+        "shape": "Modified Triangular Brilliant",
+        "carat": 3.12,
+        "color": "F",
+        "clarity": "SI1",
+        "verdict": "REJECT",
+        "clawScore": 0
+      },
+      {
+        "fileIndex": 5,
+        "sourceFile": "2231477950.pdf",
+        "pngFile": "gia_v73_batch2_5-1.png",
+        "reportNumber": "2231477950",
+        "shape": "Cushion Modified Brilliant",
+        "carat": 8.05,
+        "color": "G",
+        "clarity": "VS1",
+        "verdict": "REJECT",
+        "clawScore": 29
+      },
+      {
+        "fileIndex": 6,
+        "sourceFile": "2231640454.pdf",
+        "pngFile": "gia_v73_batch2_6-1.png",
+        "reportNumber": "2231640454",
+        "shape": "Pear",
+        "carat": 25.28,
+        "color": "Fancy Deep Brownish Yellow",
+        "clarity": "VVS2",
+        "verdict": "BUY",
+        "clawScore": 85
+      },
+      {
+        "fileIndex": 7,
+        "sourceFile": "2231756427.pdf",
+        "pngFile": "gia_v73_batch2_7-1.png",
+        "reportNumber": "2231756427",
+        "shape": "Square Emerald Cut",
+        "carat": 16.3,
+        "color": "E",
+        "clarity": "VVS2",
+        "verdict": "BUY",
+        "clawScore": 85
+      },
+      {
+        "fileIndex": 8,
+        "sourceFile": "2231839208.pdf",
+        "pngFile": "gia_v73_batch2_8-1.png",
+        "reportNumber": "2231839208",
+        "shape": "Cut-Cornered Rectangular Modified Brilliant",
+        "carat": 2.09,
+        "color": "D",
+        "clarity": "VVS1",
+        "verdict": "REJECT",
+        "clawScore": 30
+      },
+      {
+        "fileIndex": 9,
+        "sourceFile": "2235028246.pdf",
+        "pngFile": "gia_v73_batch2_9-1.png",
+        "reportNumber": "2235028246",
+        "shape": "Emerald Cut",
+        "carat": 5.21,
+        "color": "E",
+        "clarity": "SI1",
+        "verdict": "REJECT",
+        "clawScore": 11
+      },
+      {
+        "fileIndex": 10,
+        "sourceFile": "2235046535.pdf",
+        "pngFile": "gia_v73_batch2_10-1.png",
+        "reportNumber": "2235046535",
+        "shape": "Cut-Cornered Square Modified Brilliant",
+        "carat": 12.02,
+        "color": "F",
+        "clarity": "SI2",
+        "verdict": "REJECT",
+        "clawScore": 33
+      },
+      {
+        "fileIndex": 11,
+        "sourceFile": "2235047260.pdf",
+        "pngFile": "gia_v73_batch2_11-1.png",
+        "reportNumber": "2235047260",
+        "shape": "Square Modified Brilliant",
+        "carat": 8.08,
+        "color": "K",
+        "clarity": "SI1",
+        "verdict": "REJECT",
+        "clawScore": 0
+      },
+      {
+        "fileIndex": 12,
+        "sourceFile": "2235048895.pdf",
+        "pngFile": "gia_v73_batch2_12-1.png",
+        "reportNumber": "2235048895",
+        "shape": "Pear",
+        "carat": 6.52,
+        "color": "F",
+        "clarity": "SI2",
+        "verdict": "REJECT",
+        "clawScore": 0
+      },
+      {
+        "fileIndex": 13,
+        "sourceFile": "2235179945.pdf",
+        "pngFile": "gia_v73_batch2_13-1.png",
+        "reportNumber": "2235179945",
+        "shape": "Oval",
+        "carat": 2.01,
+        "color": "F",
+        "clarity": "VVS1",
+        "verdict": "BUY",
+        "clawScore": 72
+      },
+      {
+        "fileIndex": 14,
+        "sourceFile": "2235474565.pdf",
+        "pngFile": "gia_v73_batch2_14-1.png",
+        "reportNumber": "2235474565",
+        "shape": "Oval",
+        "carat": 1.8,
+        "color": "E",
+        "clarity": "VVS1",
+        "verdict": "BUY",
+        "clawScore": 85
+      },
+      {
+        "fileIndex": 15,
+        "sourceFile": "2235510763.pdf",
+        "pngFile": "gia_v73_batch2_15-1.png",
+        "reportNumber": "2235510763",
+        "shape": "Cushion Brilliant",
+        "carat": 1.51,
+        "color": "F",
+        "clarity": "VS1",
+        "verdict": "CAUTION",
+        "clawScore": 49
+      }
+    ],
+    "batch3": [
+      {
+        "analyzedAt": "2026-04-29T03:10:58.743Z",
+        "sourceFile": "gia_2235608555-1.png",
+        "rawText": "Based on the provided GIA Natural Colored Diamond Report, here is the extracted data:\n\n*   **Report Number:** 2235608555\n*   **Report Date:** June 13, 2025\n*   **Shape and Cutting Style:** Cushion Modified Brilliant\n*   **Measurements:** 16.83 x 15.04 x 10.45 mm\n*   **Carat Weight:** 25.52 carat\n*   **Color Grade:** Fancy Intense Yellow\n*   **Color Origin:** Natural\n*   **Color Distribution:** Even\n*   **Clarity Grade:** VS1\n*   **Cut Grade:** Not applicable (standard for fancy shapes)\n*   **Polish:** Excellent\n*   **Symmetry:** Excellent\n*   **Fluorescence:** Faint\n*   **Comments:** Additional clouds are not shown. Pinpoints are not shown.\n*   **Key to Symbols:** Crystal, Feather, Cloud, Needle\n*   **Inscription(s):** GIA 2235608555\n*   **Girdle:** very thick - extremely thick (faceted)\n*   **Table %:** 61%\n*   **Depth %:** 69.5%\n*   **Culet:** none\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Ratio (L/W):** 1.12 (calculated: 16.83 / 15.04)",
+        "data": {
+          "reportNumber": "2235608555",
+          "shape": "Cushion Modified Brilliant",
+          "measurements": {
+            "length": 16.83,
+            "width": 15.04,
+            "depth": 10.45
+          },
+          "carat": 25.52,
+          "color": "Fancy Intense Yellow",
+          "clarity": "VS1",
+          "polish": "Excellent",
+          "symmetry": "Excellent",
+          "fluorescence": "Faint",
+          "comments": [
+            "Additional clouds are not shown. Pinpoints are not shown."
+          ],
+          "keyToSymbols": [
+            "Crystal, Feather, Cloud, Needle"
+          ],
+          "tablePct": "61",
+          "culet": "none",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "69.5",
+          "girdle": "very thick - extremely thick (faceted)",
+          "inscription": "(s): GIA 2235608555",
+          "ratio": "1.12"
+        },
+        "logicFlags": [
+          {
+            "flag": "Milky Risk",
+            "severity": "HIGH",
+            "detail": "Comments mention \"clouds not shown\" - potential for milky/clarity issue not visible in diagram."
+          },
+          {
+            "flag": "🌈 Fancy Color Asset",
+            "severity": "INFO",
+            "detail": "彩色 (FANCY INTENSE YELLOW) 具有獨特市場價值,顏色越濃郁越值錢"
+          },
+          {
+            "flag": "💎 Fancy Intense/Vivid Color: +15 bonus",
+            "severity": "INFO",
+            "detail": "Fancy Intense/Vivid 等級 = 顏色最濃郁,市場價值最高"
+          },
+          {
+            "flag": "💎 OPTIMAL COLOR TRAP",
+            "detail": "Fancy Depth 69.5% 完美 (範圍: 62-76%),顏色呈現最佳"
+          },
+          {
+            "flag": "💎 Ideal Table",
+            "detail": "Fancy Table 61% 接近理想 (61.5%)"
+          },
+          {
+            "flag": "💎 15pts: Fancy Intense/Vivid",
+            "detail": "Fancy Vivid/Intense 顏色最濃郁"
+          },
+          {
+            "flag": "⚠️ Cloud as Main Inclusion (雲狀物為主要瑕疵): Cloud 位於 Key to Symbols 第一位 = 這是主要瑕疵。即使淨度看似乾淨,實物可能受其影響。",
+            "severity": "MEDIUM",
+            "detail": "Cloud 位於 Key to Symbols 第一位 = 這是主要瑕疵。即使淨度看似乾淨,實物可能受其影響。"
+          },
+          {
+            "flag": "🟡 Girdle Hidden Weight (隱藏重量): Extremely Thick 腰崖可能藏 0.05-0.10ct 額外重量,視覺上唔會變大",
+            "severity": "MEDIUM",
+            "detail": "Extremely Thick 腰崖可能藏 0.05-0.10ct 額外重量,視覺上唔會變大"
+          },
+          {
+            "flag": "📐 Very Deep Cut",
+            "severity": "HIGH",
+            "detail": "表面積指數 78%,石頭睇起嚟比實際輕"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎 GOOD SELL (正常): 對辦率評估: VS1 淨度, 3EX 切工",
+            "severity": "LOW",
+            "detail": "對辦率評估: VS1 淨度, 3EX 切工"
+          },
+          {
+            "flag": "💎 20ct+ Bonus: +35",
+            "severity": "INFO",
+            "detail": "25.52ct 大石,稀缺性高,市場溢價"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 69.5% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 69.5% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "CONDITIONAL",
+          "reason": "1 HIGH severity flag: Milky Risk. Verify with seller before proceeding."
+        },
+        "depthDiagnosis": {
+          "status": "ideal",
+          "emoji": "✅",
+          "label": "Ideal Depth",
+          "detail": "Depth 69.5% 完美 (理想值: 69.0%)"
+        },
+        "ratioDiagnosis": {
+          "status": "warning",
+          "emoji": "⚠️",
+          "label": "Too Thick/Short",
+          "detail": "Ratio 1.12 > 最高 1.05 | 形狀過於短寬"
+        },
+        "clawScore": 59,
+        "verdict": "CAUTION",
+        "verdictEmoji": "🟡",
+        "scoringMode": "fancy",
+        "isFancyColor": true
+      },
+      {
+        "analyzedAt": "2026-04-29T03:11:22.656Z",
+        "sourceFile": "gia_2235815380-1.png",
+        "rawText": "Based on the provided GIA diamond certificate, here is the extracted data:\n\n*   **Report Number:** 2235815380\n*   **Shape and Cutting Style:** Oval Brilliant\n*   **Measurements:** 20.49 × 10.20 × 4.73 mm\n*   **Carat Weight:** 7.01 carat\n*   **Color Grade:** D\n*   **Clarity Grade:** VVS1\n*   **Cut Grade:** Not visible (GIA does not provide cut grades for fancy shapes like Ovals)\n*   **Polish:** Very Good\n*   **Symmetry:** Very Good\n*   **Fluorescence:** None\n*   **Comments:** Not visible\n*   **Key to Symbols:** Feather\n*   **Inscription:** Not visible\n*   **Girdle:** thick - extremely thick (faceted)\n*   **Table %:** 54%\n*   **Depth %:** 46.4%\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Diagram/Profile proportions:** \n    *   Table: 54%\n    *   Depth: 46.4%\n    *   Girdle: thick - extremely thick (faceted)\n    *   Culet: slightly large\n*   **Ratio (L/W):** 2.01",
+        "data": {
+          "reportNumber": "2235815380",
+          "shape": "Oval Brilliant",
+          "measurements": {
+            "length": 20.49,
+            "width": 10.2,
+            "depth": 4.73
+          },
+          "carat": 7.01,
+          "color": "fancy shapes like Ovals)",
+          "clarity": "VVS1",
+          "polish": "Very Good",
+          "symmetry": "Very Good",
+          "fluorescence": "None",
+          "comments": [
+            "Not visible"
+          ],
+          "keyToSymbols": [
+            "Feather"
+          ],
+          "tablePct": "54",
+          "culet": "slightly large",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "46.4",
+          "girdle": "thick - extremely thick (faceted)",
+          "inscription": "Not visible",
+          "ratio": "2.01"
+        },
+        "logicFlags": [
+          {
+            "flag": "Bow-tie Risk",
+            "severity": "HIGH",
+            "detail": "Oval ratio 2.01 is outside safe range (1.30-1.55). Significant bow-tie effect possible."
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 46.4% < 最低 60% | 光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 46.4% 極淺,光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "⚠️ Bow-tie Risk: Too Thin (太薄)",
+            "severity": "HIGH",
+            "detail": "oval brilliant Ratio 2.01 > 1.5 + Depth 46.4% < 58% = 中心黑色陰影"
+          },
+          {
+            "flag": "📐 Extreme Ratio: Likely Moval",
+            "severity": "HIGH",
+            "detail": "Oval Ratio 2.01 > 1.65,屬於 Moval (Marquise + Oval)。此類石頭 Bow-tie 效應極為明顯,中心可能出現黑洞效應"
+          },
+          {
+            "flag": "🔴 CRITICAL: Large Culet",
+            "severity": "HIGH",
+            "detail": "底尖過大 (slightly large),正面看會像中心破了一個黑洞。"
+          },
+          {
+            "flag": "🌈 Fancy Color Asset",
+            "severity": "INFO",
+            "detail": "彩色 (FANCY SHAPES LIKE OVALS)) 具有獨特市場價值,顏色越濃郁越值錢"
+          },
+          {
+            "flag": "⚠️ COLOR LEAKAGE RISK",
+            "detail": "Fancy Depth 46.4% < 60% | 光線直接穿透,顏色流失"
+          },
+          {
+            "flag": "⚠️ Table Too Small",
+            "detail": "Table 54% < 55%"
+          },
+          {
+            "flag": "💎 High Clarity Bonus",
+            "detail": "VVS1 淨度提升價值"
+          },
+          {
+            "flag": "🟡 Girdle Hidden Weight (隱藏重量): Extremely Thick 腰崖可能藏 0.05-0.10ct 額外重量,視覺上唔會變大",
+            "severity": "MEDIUM",
+            "detail": "Extremely Thick 腰崖可能藏 0.05-0.10ct 額外重量,視覺上唔會變大"
+          },
+          {
+            "flag": "✨ Excellent Spread",
+            "severity": "MEDIUM",
+            "detail": "表面積指數 134%,視覺效果佳"
+          },
+          {
+            "flag": "⚠️ Black Eye Effect (黑眼圈): Culet slightly large = 石頭中心出現黑色圓點",
+            "severity": "HIGH",
+            "detail": "Culet slightly large = 石頭中心出現黑色圓點"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎 GOOD SELL (正常): 對辦率評估: VVS1 淨度, None 熒光",
+            "severity": "LOW",
+            "detail": "對辦率評估: VVS1 淨度, None 熒光"
+          },
+          {
+            "flag": "💎 5ct+ Bonus: +10",
+            "severity": "INFO",
+            "detail": "7.01ct 大石,稀缺性高,市場溢價"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 46.4% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 46.4% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "REJECT",
+          "reason": "6 HIGH severity flags detected. Review required before trade."
+        },
+        "depthDiagnosis": {
+          "status": "critical",
+          "emoji": "🔴",
+          "label": "CRITICAL: Severe Windowing",
+          "detail": "Depth 46.4% < 最低 60% | 光線直接穿透,中心失去閃爍"
+        },
+        "ratioDiagnosis": {
+          "status": "critical",
+          "emoji": "📐",
+          "label": "Extreme Ratio: Likely Moval",
+          "detail": "Oval Ratio 2.01 > 1.65,屬於 Moval (Marquise + Oval)。此類石頭 Bow-tie 效應極為明顯,中心可能出現黑洞效應"
+        },
+        "clawScore": 6,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true
+      },
+      {
+        "analyzedAt": "2026-04-29T03:11:38.204Z",
+        "sourceFile": "gia_2235838929-1.png",
+        "rawText": "Based on the provided GIA certificate, here is the extracted information:\n\n1.  **Report Number:** 2235838929\n2.  **Shape and Cutting Style:** Heart Brilliant\n3.  **Measurements:** 10.42 × 11.66 × 7.08 mm\n4.  **Carat Weight:** 5.21 carat\n5.  **Color Grade:** E\n6.  **Clarity Grade:** VS2\n7.  **Cut Grade:** Not visible (GIA does not assign cut grades for heart-shaped diamonds)\n8.  **Polish:** Excellent\n9.  **Symmetry:** Excellent\n10. **Fluorescence:** Medium Blue\n11. **Comments:** Additional pinpoints are not shown.\n12. **Key to Symbols:** Crystal, Feather, Pinpoint\n13. **Inscription:** GIA 2235838929\n14. **Girdle:** Slightly thick to very thick (faceted)\n15. **Table % and Depth %:** \n    *   **Table %:** 56%\n    *   **Depth %:** 60.7%\n16. **Crown Angle and Pavilion Angle:** Not visible\n17. **Diagram/Profile proportions:**\n    *   **Table:** 56%\n    *   **Total Depth:** 60.7%\n    *   **Girdle:** slightly thick to very thick (faceted)\n    *   **Culet:** none\n18. **Ratio (Length/Width):** 0.89 (calculated from measurements 10.42 / 11.66)",
+        "data": {
+          "reportNumber": "2235838929",
+          "shape": "Heart Brilliant",
+          "measurements": {
+            "length": 10.42,
+            "width": 11.66,
+            "depth": 7.08
+          },
+          "carat": 5.21,
+          "color": "E",
+          "clarity": "VS2",
+          "polish": "Excellent",
+          "symmetry": "Excellent",
+          "fluorescence": "Medium Blue",
+          "comments": [
+            "Additional pinpoints are not shown."
+          ],
+          "keyToSymbols": [
+            "Crystal, Feather, Pinpoint"
+          ],
+          "tablePct": "56",
+          "culet": "none",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "60.7",
+          "girdle": "Slightly thick to very thick (faceted)",
+          "inscription": "GIA 2235838929",
+          "ratio": "0.89"
+        },
+        "logicFlags": [
+          {
+            "flag": "💎 Fluorescence Compensation: Blue turns yellow into white",
+            "severity": "INFO",
+            "detail": "E 色 + Medium Blue = 藍光抵消黃色,提升視覺白度"
+          },
+          {
+            "flag": "⚠️ Fancy Color + Blue Fluorescence",
+            "severity": "MEDIUM",
+            "detail": "彩色鑽石 + 藍色熒光可能影響顏色穩定性"
+          },
+          {
+            "flag": "🟡 Girdle Heavy Weight: 腰崖偏厚,部分重量被腰崖吸收",
+            "severity": "LOW",
+            "detail": "腰崖偏厚,部分重量被腰崖吸收"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎 GOOD SELL (正常): 對辦率評估: E 色高色, VS2 淨度, 3EX 切工",
+            "severity": "LOW",
+            "detail": "對辦率評估: E 色高色, VS2 淨度, 3EX 切工"
+          },
+          {
+            "flag": "💎 5ct+ Bonus: +10",
+            "severity": "INFO",
+            "detail": "5.21ct 大石,稀缺性高,市場溢價"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 60.7% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 60.7% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "APPROVE",
+          "reason": "No significant red flags detected. Standard trading parameters."
+        },
+        "depthDiagnosis": {
+          "status": "normal",
+          "emoji": "⚡",
+          "label": "Normal Depth",
+          "detail": "Depth 60.7% 正常 (範圍: 58-68%)"
+        },
+        "ratioDiagnosis": {
+          "emoji": "📐",
+          "label": "Wide/Squat",
+          "status": "fair",
+          "detail": "Heart 偏闊/矮,Ratio <0.90"
+        },
+        "clawScore": 67,
+        "verdict": "CAUTION",
+        "verdictEmoji": "🟡",
+        "scoringMode": "white",
+        "isFancyColor": false
+      },
+      {
+        "analyzedAt": "2026-04-29T03:12:14.972Z",
+        "sourceFile": "gia_2454851318-1.png",
+        "rawText": "Based on the GIA report image provided, here is the extracted diamond data:\n\n*   **Report Number:** 2454851318\n*   **Shape and Cutting Style:** Cut-Cornered Triangular Step Cut\n*   **Measurements:** 8.44 x 9.80 x 3.24 mm\n*   **Carat Weight:** 2.01 carat\n*   **Color Grade:** D\n*   **Clarity Grade:** SI2\n*   **Cut Grade:** Not applicable (standard for fancy shapes)\n*   **Polish:** Excellent\n*   **Symmetry:** Very Good\n*   **Fluorescence:** Medium Blue\n*   **Comments:** Additional twinning wisps, pinpoints and surface graining are not shown.\n*   **Key to Symbols:**\n    *   Crystal\n    *   Twinning Wisp\n    *   Feather\n    *   Cavity\n*   **Inscription:** GIA 2454851318\n*   **Girdle:** thick - very thick (polished)\n*   **Table %:** 63%\n*   **Depth %:** 33.0%\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Diagram/Profile Proportions:**\n    *   Table: 63%\n    *   Total Depth: 33.0%\n    *   Girdle: thick - very thick (polished)\n    *   Culet: none\n*   **Ratio (Length/Width):** 1.16 (9.80 / 8.44)",
+        "data": {
+          "reportNumber": "2454851318",
+          "shape": "Cut-Cornered Triangular Step Cut",
+          "measurements": {
+            "length": 8.44,
+            "width": 9.8,
+            "depth": 3.24
+          },
+          "carat": 2.01,
+          "color": "fancy shapes)",
+          "clarity": "SI2",
+          "polish": "Excellent",
+          "symmetry": "Very Good",
+          "fluorescence": "Medium Blue",
+          "comments": [
+            "Additional twinning wisps, pinpoints and surface graining are not shown."
+          ],
+          "keyToSymbols": [
+            "*   Crystal",
+            "*   Twinning Wisp",
+            "*   Feather",
+            "*   Cavity"
+          ],
+          "tablePct": "63",
+          "culet": "none",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "33.0",
+          "girdle": "thick - very thick (polished)",
+          "inscription": "GIA 2454851318",
+          "ratio": "0.86"
+        },
+        "logicFlags": [
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 33% < 最低 58% | 光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 33% 極淺,光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "🌈 Fancy Color Asset",
+            "severity": "INFO",
+            "detail": "彩色 (FANCY SHAPES)) 具有獨特市場價值,顏色越濃郁越值錢"
+          },
+          {
+            "flag": "💎 Ideal Table",
+            "detail": "Fancy Table 63% 接近理想 (61.5%)"
+          },
+          {
+            "flag": "🟡 ⚠️ Eye-Clean Risk: SI2 Visible: SI2 淨度通常肉眼可見,購買前需親眼確認",
+            "severity": "LOW",
+            "detail": "SI2 淨度通常肉眼可見,購買前需親眼確認"
+          },
+          {
+            "flag": "✨ Excellent Spread",
+            "severity": "MEDIUM",
+            "detail": "表面積指數 130%,視覺效果佳"
+          },
+          {
+            "flag": "⚠️ Borderline Weight Risk: 重量 2.01ct 接近 2ct 台階,視覺效果需確認",
+            "severity": "LOW",
+            "detail": "重量 2.01ct 接近 2ct 台階,視覺效果需確認"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "✅ STANDARD (標準): 對辦率評估: 經典重量 2.01ct",
+            "severity": "LOW",
+            "detail": "對辦率評估: 經典重量 2.01ct"
+          },
+          {
+            "flag": "⚠️ Hidden Polish Issue (拉絲感): Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感",
+            "severity": "HIGH",
+            "detail": "Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感"
+          },
+          {
+            "flag": "⚠️ Fish-eye Effect (魚眼 - 太淺): 深度 33.0% < 38% = 光線從腰部漏出,中心黑暗",
+            "severity": "HIGH",
+            "detail": "深度 33.0% < 38% = 光線從腰部漏出,中心黑暗"
+          }
+        ],
+        "recommendation": {
+          "action": "REJECT",
+          "reason": "2 HIGH severity flags detected. Review required before trade."
+        },
+        "depthDiagnosis": {
+          "status": "critical",
+          "emoji": "🔴",
+          "label": "CRITICAL: Severe Windowing",
+          "detail": "Depth 33% < 最低 58% | 光線直接穿透,中心失去閃爍"
+        },
+        "ratioDiagnosis": {
+          "status": "warning",
+          "emoji": "⚠️",
+          "label": "Too Thin/Stretched",
+          "detail": "Ratio 0.86 < 最低 1 | 形狀過於拉長"
+        },
+        "clawScore": 17,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true
+      },
+      {
+        "analyzedAt": "2026-04-29T03:12:29.595Z",
+        "sourceFile": "gia_2497242927-1.png",
+        "rawText": "Based on the GIA Diamond Grading Report provided, here is the extracted data:\n\n*   **Report Number:** 2497242927\n*   **Shape and Cutting Style:** Square Modified Brilliant\n*   **Measurements:** 8.43 x 8.25 x 5.96 mm\n*   **Carat Weight:** 3.30 carat\n*   **Color Grade:** E\n*   **Clarity Grade:** VS2\n*   **Cut Grade:** Not applicable (GIA does not provide a cut grade for fancy shapes like Square Modified Brilliant)\n*   **Polish:** Excellent\n*   **Symmetry:** Very Good\n*   **Fluorescence:** Faint\n*   **Comments:** Additional pinpoints are not shown. A cloud is not shown.\n*   **Key to Symbols:** Crystal, Needle, Pinpoint, Indented Natural\n*   **Inscription:** GIA 2497242927\n*   **Girdle:** medium (polished)\n*   **Table %:** 72%\n*   **Depth %:** 72.2%\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Culet:** none\n*   **Ratio (Length/Width):** 1.02 (calculated from measurements 8.43 / 8.25)",
+        "data": {
+          "reportNumber": "2497242927",
+          "shape": "Square Modified Brilliant",
+          "measurements": {
+            "length": 8.43,
+            "width": 8.25,
+            "depth": 5.96
+          },
+          "carat": 3.3,
+          "color": "fancy shapes like Square Modified Brilliant)",
+          "clarity": "VS2",
+          "polish": "Excellent",
+          "symmetry": "Very Good",
+          "fluorescence": "Faint",
+          "comments": [
+            "Additional pinpoints are not shown. A cloud is not shown."
+          ],
+          "keyToSymbols": [
+            "Crystal, Needle, Pinpoint, Indented Natural"
+          ],
+          "tablePct": "72",
+          "culet": "none",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "72.2",
+          "girdle": "medium (polished)",
+          "inscription": "GIA 2497242927",
+          "ratio": "1.02"
+        },
+        "logicFlags": [
+          {
+            "flag": "Milky Risk",
+            "severity": "HIGH",
+            "detail": "Comments mention \"clouds not shown\" - potential for milky/clarity issue not visible in diagram."
+          },
+          {
+            "flag": "🔴 CRITICAL: Too Deep",
+            "severity": "HIGH",
+            "detail": "Depth 72.2% > 最高 68% | 視覺重量被隱藏,看起來比實際小"
+          },
+          {
+            "flag": "🔴 CRITICAL: Weight Hidden",
+            "severity": "HIGH",
+            "detail": "Depth 72.2% 過深,視覺重量被隱藏,看起來比實際小"
+          },
+          {
+            "flag": "🌈 Fancy Color Asset",
+            "severity": "INFO",
+            "detail": "彩色 (FANCY SHAPES LIKE SQUARE MODIFIED BRILLIANT)) 具有獨特市場價值,顏色越濃郁越值錢"
+          },
+          {
+            "flag": "⚠️ Table Too Large",
+            "detail": "Table 72% > 68%"
+          },
+          {
+            "flag": "⚠️ Nailhead / Black Center",
+            "severity": "CRITICAL",
+            "detail": "Square Modified Depth 72.2% > 72%,中心光線全反射失敗,視覺上呈現黑色暗區(Nailhead Effect)"
+          },
+          {
+            "flag": "📐 Very Deep Cut",
+            "severity": "HIGH",
+            "detail": "表面積指數 79%,石頭睇起嚟比實際輕"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "✅ STANDARD (標準): 對辦率評估: VS2 淨度",
+            "severity": "LOW",
+            "detail": "對辦率評估: VS2 淨度"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 72.2% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 72.2% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "REJECT",
+          "reason": "3 HIGH severity flags detected. Review required before trade."
+        },
+        "depthDiagnosis": {
+          "status": "critical",
+          "emoji": "🔴",
+          "label": "CRITICAL: Too Deep",
+          "detail": "Depth 72.2% > 最高 68% | 視覺重量被隱藏,看起來比實際小"
+        },
+        "ratioDiagnosis": {
+          "status": "fair",
+          "emoji": "⚡",
+          "label": "Fair Ratio",
+          "detail": "Ratio 1.02 正常 (範圍: 1-2)"
+        },
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true
+      },
+      {
+        "analyzedAt": "2026-04-29T03:12:45.771Z",
+        "sourceFile": "gia_2517547075-1.png",
+        "rawText": "Based on the GIA natural diamond grading report provided, here is the extracted data:\n\n*   **Report Number:** 2517547075\n*   **Shape and Cutting Style:** Cut-Cornered Triangular Step Cut\n*   **Measurements:** 11.49 × 12.67 × 2.81 mm\n*   **Carat Weight:** 3.06 carat\n*   **Color Grade:** G\n*   **Clarity Grade:** SI1\n*   **Cut Grade:** Not visible (N/A for this fancy shape)\n*   **Polish:** Very Good\n*   **Symmetry:** Very Good\n*   **Fluorescence:** None\n*   **Comments:** Additional clouds are not shown. Pinpoints are not shown.\n*   **Key to Symbols:** Feather, Cloud, Crystal, Needle, Indented Natural, Natural\n*   **Inscription(s):** GIA 2517547075\n*   **Girdle:** thick - very thick (polished)\n*   **Table %:** 74%\n*   **Depth %:** 22.2%\n*   **Culet:** none\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Ratio:** 1.10 (calculated as 12.67 / 11.49)",
+        "data": {
+          "reportNumber": "2517547075",
+          "shape": "Cut-Cornered Triangular Step Cut",
+          "measurements": {
+            "length": 11.49,
+            "width": 12.67,
+            "depth": 2.81
+          },
+          "carat": 3.06,
+          "color": "fancy shape)",
+          "clarity": "SI1",
+          "polish": "Very Good",
+          "symmetry": "Very Good",
+          "fluorescence": "None",
+          "comments": [
+            "Additional clouds are not shown. Pinpoints are not shown."
+          ],
+          "keyToSymbols": [
+            "Feather, Cloud, Crystal, Needle, Indented Natural, Natural"
+          ],
+          "tablePct": "74",
+          "culet": "none",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "22.2",
+          "girdle": "thick - very thick (polished)",
+          "inscription": "(s): GIA 2517547075",
+          "ratio": "0.91",
+          "_milkyReject": true
+        },
+        "logicFlags": [
+          {
+            "flag": "Milky Risk",
+            "severity": "HIGH",
+            "detail": "Comments mention \"clouds not shown\" - potential for milky/clarity issue not visible in diagram."
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 22.2% < 最低 58% | 光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "❌ Milky Risk: Clouds not shown = REJECT",
+            "severity": "CRITICAL",
+            "detail": "SI1/SI2 + Clouds not shown = 極高奶油石風險 (Hidden cloud concentration),直接 REJECT"
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 22.2% 極淺,光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "🟡 Clarity Check",
+            "severity": "LOW",
+            "detail": "SI 淨度 + None 螢光 - 建議確認內含物位置"
+          },
+          {
+            "flag": "🔴 High Milky/Hazy Risk",
+            "severity": "HIGH",
+            "detail": "淨度為 SI1 且首要瑕疵為 feather, cloud, crystal, needle, indented natural, natural,極高機率影響鑽石整體透明度。"
+          },
+          {
+            "flag": "🌈 Fancy Color Asset",
+            "severity": "INFO",
+            "detail": "彩色 (FANCY SHAPE)) 具有獨特市場價值,顏色越濃郁越值錢"
+          },
+          {
+            "flag": "⚠️ Table Too Large",
+            "detail": "Table 74% > 68%"
+          },
+          {
+            "flag": "⚠️ Cloud as Main Inclusion (雲狀物為主要瑕疵): Cloud 位於 Key to Symbols 第一位 = 這是主要瑕疵。即使淨度看似乾淨,實物可能受其影響。",
+            "severity": "MEDIUM",
+            "detail": "Cloud 位於 Key to Symbols 第一位 = 這是主要瑕疵。即使淨度看似乾淨,實物可能受其影響。"
+          },
+          {
+            "flag": "🟡 ⚠️ Eye-Clean Risk: Table Inclusion: SI1 淨度 + Table 位置有 Crystal,肉眼可見",
+            "severity": "HIGH",
+            "detail": "SI1 淨度 + Table 位置有 Crystal,肉眼可見"
+          },
+          {
+            "flag": "✨ Excellent Spread",
+            "severity": "MEDIUM",
+            "detail": "表面積指數 174%,視覺效果佳"
+          },
+          {
+            "flag": "⚠️ 魚眼/漏光警示:超大表面積源於極端深度不足,石頭看起來像透明玻璃",
+            "severity": "CRITICAL",
+            "detail": "Spread > 140% + Depth < 50% = 極端漏光"
+          },
+          {
+            "flag": "⚠️ Borderline Weight Risk: 重量 3.06ct 接近 3ct 台階,視覺效果需確認",
+            "severity": "LOW",
+            "detail": "重量 3.06ct 接近 3ct 台階,視覺效果需確認"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💡 MODERATE (普通): 對辦率評估: None 熒光, 單卡畸數 3.06ct",
+            "severity": "LOW",
+            "detail": "對辦率評估: None 熒光, 單卡畸數 3.06ct"
+          },
+          {
+            "flag": "⚠️ Fish-eye Effect (魚眼 - 太淺): 深度 22.2% < 38% = 光線從腰部漏出,中心黑暗",
+            "severity": "HIGH",
+            "detail": "深度 22.2% < 38% = 光線從腰部漏出,中心黑暗"
+          }
+        ],
+        "recommendation": {
+          "action": "REJECT",
+          "reason": "4 HIGH severity flags detected. Review required before trade."
+        },
+        "depthDiagnosis": {
+          "status": "critical",
+          "emoji": "🔴",
+          "label": "CRITICAL: Severe Windowing",
+          "detail": "Depth 22.2% < 最低 58% | 光線直接穿透,中心失去閃爍"
+        },
+        "ratioDiagnosis": {
+          "status": "warning",
+          "emoji": "⚠️",
+          "label": "Too Thin/Stretched",
+          "detail": "Ratio 0.91 < 最低 1 | 形狀過於拉長"
+        },
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true
+      },
+      {
+        "analyzedAt": "2026-04-29T03:13:01.001Z",
+        "sourceFile": "gia_2524520170-1.png",
+        "rawText": "Based on the provided GIA certificate image, here is the extracted data:\n\n1.  **Report Number:** 2524520170\n2.  **Shape and Cutting Style:** Cut-Cornered Triangular Step Cut\n3.  **Measurements:** 9.02 x 12.19 x 3.80 mm\n4.  **Carat Weight:** 3.47 carat\n5.  **Color Grade:** I\n6.  **Clarity Grade:** SI2\n7.  **Cut Grade:** Not visible (not typically graded for this shape)\n8.  **Polish:** Very Good\n9.  **Symmetry:** Very Good\n10. **Fluorescence:** Faint\n11. **Comments:** Additional twinning wisps, clouds, pinpoints and surface graining are not shown.\n12. **Key to Symbols:** Twinning Wisp, Feather\n13. **Inscription:** GIA 2524520170\n14. **Girdle:** very thick - extremely thick (polished)\n15. **Table %:** 76%\n16. **Depth %:** 31.1%\n17. **Crown Angle and Pavilion Angle:** Not visible\n18. **Diagram/Profile proportions:**\n    *   **Table:** 76%\n    *   **Total Depth:** 31.1%\n    *   **Girdle:** very thick - extremely thick (polished)\n    *   **Culet:** extremely large\n19. **Ratio (L/W):** 1.35 (calculated from measurements 12.19 / 9.02)",
+        "data": {
+          "reportNumber": "2524520170",
+          "shape": "Cut-Cornered Triangular Step Cut",
+          "measurements": {
+            "length": 9.02,
+            "width": 12.19,
+            "depth": 3.8
+          },
+          "carat": 3.47,
+          "color": "I",
+          "clarity": "SI2",
+          "polish": "Very Good",
+          "symmetry": "Very Good",
+          "fluorescence": "Faint",
+          "comments": [
+            "Additional twinning wisps, clouds, pinpoints and surface graining are not shown."
+          ],
+          "keyToSymbols": [
+            "Twinning Wisp, Feather"
+          ],
+          "tablePct": "76",
+          "culet": "extremely large",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "31.1",
+          "girdle": "very thick - extremely thick (polished)",
+          "inscription": "GIA 2524520170",
+          "ratio": "0.74",
+          "_milkyReject": true
+        },
+        "logicFlags": [
+          {
+            "flag": "Milky Risk",
+            "severity": "HIGH",
+            "detail": "Comments mention \"clouds not shown\" - potential for milky/clarity issue not visible in diagram."
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 31.1% < 最低 58% | 光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "❌ Milky Risk: Clouds not shown = REJECT",
+            "severity": "CRITICAL",
+            "detail": "SI1/SI2 + Clouds not shown = 極高奶油石風險 (Hidden cloud concentration),直接 REJECT"
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 31.1% 極淺,光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "🔴 CRITICAL: Large Culet",
+            "severity": "HIGH",
+            "detail": "底尖過大 (extremely large),正面看會像中心破了一個黑洞。"
+          },
+          {
+            "flag": "🔴 High Milky/Hazy Risk",
+            "severity": "HIGH",
+            "detail": "淨度為 SI2 且首要瑕疵為 twinning wisp, feather,極高機率影響鑽石整體透明度。"
+          },
+          {
+            "flag": "🔴 💎 Twinning Wisp Bonus (3-5ct Eye-Clean Likelihood): 3.47ct + Twinning Wisp 在 3-5ct 範圍內更容易 Eye-Clean,實物可能更好",
+            "severity": "INFO",
+            "detail": "3.47ct + Twinning Wisp 在 3-5ct 範圍內更容易 Eye-Clean,實物可能更好"
+          },
+          {
+            "flag": "🟡 Girdle Hidden Weight (隱藏重量): Extremely Thick 腰崖可能藏 0.05-0.10ct 額外重量,視覺上唔會變大",
+            "severity": "MEDIUM",
+            "detail": "Extremely Thick 腰崖可能藏 0.05-0.10ct 額外重量,視覺上唔會變大"
+          },
+          {
+            "flag": "🟡 ⚠️ Eye-Clean Risk: SI2 Visible: SI2 淨度通常肉眼可見,購買前需親眼確認",
+            "severity": "LOW",
+            "detail": "SI2 淨度通常肉眼可見,購買前需親眼確認"
+          },
+          {
+            "flag": "✨ Excellent Spread",
+            "severity": "MEDIUM",
+            "detail": "表面積指數 121%,視覺效果佳"
+          },
+          {
+            "flag": "⚠️ Black Eye Effect (黑眼圈): Culet extremely large = 石頭中心出現黑色圓點",
+            "severity": "HIGH",
+            "detail": "Culet extremely large = 石頭中心出現黑色圓點"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "✅ STANDARD (標準): 對辦率評估: 無特殊因素",
+            "severity": "LOW",
+            "detail": "對辦率評估: 無特殊因素"
+          },
+          {
+            "flag": "⚠️ Hidden Polish Issue (拉絲感): Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感",
+            "severity": "HIGH",
+            "detail": "Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感"
+          },
+          {
+            "flag": "⚠️ Fish-eye Effect (魚眼 - 太淺): 深度 31.1% < 38% = 光線從腰部漏出,中心黑暗",
+            "severity": "HIGH",
+            "detail": "深度 31.1% < 38% = 光線從腰部漏出,中心黑暗"
+          }
+        ],
+        "recommendation": {
+          "action": "REJECT",
+          "reason": "5 HIGH severity flags detected. Review required before trade."
+        },
+        "depthDiagnosis": {
+          "status": "critical",
+          "emoji": "🔴",
+          "label": "CRITICAL: Severe Windowing",
+          "detail": "Depth 31.1% < 最低 58% | 光線直接穿透,中心失去閃爍"
+        },
+        "ratioDiagnosis": {
+          "status": "warning",
+          "emoji": "⚠️",
+          "label": "Too Thin/Stretched",
+          "detail": "Ratio 0.74 < 最低 1 | 形狀過於拉長"
+        },
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "white",
+        "isFancyColor": false
+      },
+      {
+        "analyzedAt": "2026-04-29T03:13:20.412Z",
+        "sourceFile": "gia_2547118445-1.png",
+        "rawText": "Based on the provided GIA diamond certificate, here is the extracted data:\n\n*   **Report Number:** 2547118445\n*   **Shape and Cutting Style:** Marquise Brilliant\n*   **Measurements:** 12.92 x 6.64 x 3.96 mm\n*   **Carat Weight:** 2.02 carat\n*   **Color Grade:** J\n*   **Clarity Grade:** SI2\n*   **Cut Grade:** Not visible (GIA does not provide a cut grade for Marquise shapes)\n*   **Polish:** Excellent\n*   **Symmetry:** Very Good\n*   **Fluorescence:** None\n*   **Comments:** Clouds are not shown. Pinpoints are not shown.\n*   **Key to Symbols:** Crystal, Feather, Needle\n*   **Inscription(s):** GIA 2547118445\n*   **Girdle:** medium - thick (faceted)\n*   **Table %:** 61%\n*   **Depth %:** 59.6%\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Diagram/Profile proportions:** Table 61%, Depth 59.6%, Girdle (medium to thick, faceted), Culet (none)\n*   **Ratio (L/W):** 1.95 (calculated from measurements 12.92 / 6.64)",
+        "data": {
+          "reportNumber": "2547118445",
+          "shape": "Marquise Brilliant",
+          "measurements": {
+            "length": 12.92,
+            "width": 6.64,
+            "depth": 3.96
+          },
+          "carat": 2.02,
+          "color": "J",
+          "clarity": "SI2",
+          "polish": "Excellent",
+          "symmetry": "Very Good",
+          "fluorescence": "None",
+          "comments": [
+            "Clouds are not shown. Pinpoints are not shown."
+          ],
+          "keyToSymbols": [
+            "Crystal, Feather, Needle"
+          ],
+          "tablePct": "61",
+          "culet": "",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "59.6",
+          "girdle": "medium - thick (faceted)",
+          "inscription": "(s): GIA 2547118445",
+          "ratio": "1.95",
+          "_milkyReject": true
+        },
+        "logicFlags": [
+          {
+            "flag": "Milky Risk",
+            "severity": "HIGH",
+            "detail": "Comments mention \"clouds not shown\" - potential for milky/clarity issue not visible in diagram."
+          },
+          {
+            "flag": "❌ Milky Risk: Clouds not shown = REJECT",
+            "severity": "CRITICAL",
+            "detail": "SI1/SI2 + Clouds not shown = 極高奶油石風險 (Hidden cloud concentration),直接 REJECT"
+          },
+          {
+            "flag": "🟡 Clarity Check",
+            "severity": "LOW",
+            "detail": "SI 淨度 + None 螢光 - 建議確認內含物位置"
+          },
+          {
+            "flag": "🟡 ⚠️ Eye-Clean Risk: SI2 Visible: SI2 淨度通常肉眼可見,購買前需親眼確認",
+            "severity": "LOW",
+            "detail": "SI2 淨度通常肉眼可見,購買前需親眼確認"
+          },
+          {
+            "flag": "✨ Excellent Spread",
+            "severity": "MEDIUM",
+            "detail": "表面積指數 135%,視覺效果佳"
+          },
+          {
+            "flag": "⚠️ Borderline Weight Risk: 重量 2.02ct 接近 2ct 台階,視覺效果需確認",
+            "severity": "LOW",
+            "detail": "重量 2.02ct 接近 2ct 台階,視覺效果需確認"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎 GOOD SELL (正常): 對辦率評估: 經典重量 2.02ct, None 熒光,  Marquise 形狀",
+            "severity": "LOW",
+            "detail": "對辦率評估: 經典重量 2.02ct, None 熒光,  Marquise 形狀"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 59.6% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 59.6% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "CONDITIONAL",
+          "reason": "1 HIGH severity flag: Milky Risk. Verify with seller before proceeding."
+        },
+        "depthDiagnosis": {
+          "status": "ideal",
+          "emoji": "✅",
+          "label": "Ideal Depth",
+          "detail": "Depth 59.6% 完美 (理想值: 60.0%)"
+        },
+        "ratioDiagnosis": {
+          "emoji": "✅",
+          "label": "Ideal",
+          "status": "ideal",
+          "detail": "Marquise 標準比例"
+        },
+        "clawScore": 24,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "white",
+        "isFancyColor": false
+      },
+      {
+        "analyzedAt": "2026-04-29T03:13:34.592Z",
+        "sourceFile": "gia_2547261015-1.png",
+        "rawText": "Based on the GIA diamond grading report provided, here is the extracted data:\n\n*   **Report Number:** 2547261015\n*   **Shape and Cutting Style:** Marquise Brilliant\n*   **Measurements:** 17.45 x 8.02 x 4.79 mm\n*   **Carat Weight:** 4.03 carat\n*   **Color Grade:** F\n*   **Clarity Grade:** SI2\n*   **Cut Grade:** Not applicable (GIA only provides cut grades for Round Brilliant diamonds)\n*   **Polish:** Excellent\n*   **Symmetry:** Excellent\n*   **Fluorescence:** Medium Blue\n*   **Comments:** Clouds, pinpoints and surface graining are not shown.\n*   **Key to Symbols:** Crystal, Needle\n*   **Inscription(s):** GIA 2547261015\n*   **Girdle:** slightly thick - thick (faceted)\n*   **Table %:** 55%\n*   **Depth %:** 59.7%\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Culet:** none\n*   **Ratio:** 2.18 (Length/Width ratio calculated from measurements)",
+        "data": {
+          "reportNumber": "2547261015",
+          "shape": "Marquise Brilliant",
+          "measurements": {
+            "length": 17.45,
+            "width": 8.02,
+            "depth": 4.79
+          },
+          "carat": 4.03,
+          "color": "F",
+          "clarity": "SI2",
+          "polish": "Excellent",
+          "symmetry": "Excellent",
+          "fluorescence": "Medium Blue",
+          "comments": [
+            "Clouds, pinpoints and surface graining are not shown."
+          ],
+          "keyToSymbols": [
+            "Crystal, Needle"
+          ],
+          "tablePct": "55",
+          "culet": "none",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "59.7",
+          "girdle": "slightly thick - thick (faceted)",
+          "inscription": "(s): GIA 2547261015",
+          "ratio": "2.18",
+          "_milkyReject": true
+        },
+        "logicFlags": [
+          {
+            "flag": "Milky Risk",
+            "severity": "HIGH",
+            "detail": "Comments mention \"clouds not shown\" - potential for milky/clarity issue not visible in diagram."
+          },
+          {
+            "flag": "❌ Milky Risk: Clouds not shown = REJECT",
+            "severity": "CRITICAL",
+            "detail": "SI1/SI2 + Clouds not shown = 極高奶油石風險 (Hidden cloud concentration),直接 REJECT"
+          },
+          {
+            "flag": "⚠️ Fluorescence Compensation Blocked (補償被抵銷)",
+            "detail": "F + Medium Blue 但有 Clouds/Graining,補償被抵銷"
+          },
+          {
+            "flag": "⚠️ Fancy Color + Blue Fluorescence",
+            "severity": "MEDIUM",
+            "detail": "彩色鑽石 + 藍色熒光可能影響顏色穩定性"
+          },
+          {
+            "flag": "🟡 ⚠️ Eye-Clean Risk: SI2 Visible: SI2 淨度通常肉眼可見,購買前需親眼確認",
+            "severity": "LOW",
+            "detail": "SI2 淨度通常肉眼可見,購買前需親眼確認"
+          },
+          {
+            "flag": "✨ Excellent Spread",
+            "severity": "MEDIUM",
+            "detail": "表面積指數 139%,視覺效果佳"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎 GOOD SELL (正常): 對辦率評估: F 色高色, 3EX 切工,  Marquise 形狀",
+            "severity": "LOW",
+            "detail": "對辦率評估: F 色高色, 3EX 切工,  Marquise 形狀"
+          },
+          {
+            "flag": "⚠️ Hidden Polish Issue (拉絲感): Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感",
+            "severity": "HIGH",
+            "detail": "Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 59.7% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 59.7% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "CONDITIONAL",
+          "reason": "1 HIGH severity flag: Milky Risk. Verify with seller before proceeding."
+        },
+        "depthDiagnosis": {
+          "status": "ideal",
+          "emoji": "✅",
+          "label": "Ideal Depth",
+          "detail": "Depth 59.7% 完美 (理想值: 60.0%)"
+        },
+        "ratioDiagnosis": {
+          "emoji": "✅",
+          "label": "Ideal",
+          "status": "ideal",
+          "detail": "Marquise 標準比例"
+        },
+        "clawScore": 22,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "white",
+        "isFancyColor": false
+      },
+      {
+        "analyzedAt": "2026-04-29T03:13:48.947Z",
+        "sourceFile": "gia_5221447582-1.png",
+        "rawText": "Based on the provided GIA Diamond Grading Report, here is the extracted data:\n\n*   **Report Number:** 5221447582\n*   **Shape and Cutting Style:** Cushion Modified Brilliant\n*   **Measurements:** 10.27 x 10.25 x 6.58 mm\n*   **Carat Weight:** 6.01 carat\n*   **Color Grade:** J\n*   **Clarity Grade:** VS2\n*   **Cut Grade:** Not visible (N/A for cushion shapes)\n*   **Polish:** Very Good\n*   **Symmetry:** Good\n*   **Fluorescence:** None\n*   **Comments:** Additional clouds, pinpoints and surface graining are not shown.\n*   **Key to Symbols:** Cloud, Crystal, Feather, Cavity, Needle, Natural\n*   **Inscription:** GIA 5221447582\n*   **Girdle:** Medium to very thick (faceted)\n*   **Table %:** 63%\n*   **Depth %:** 64.2%\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Diagram/Profile Proportions:** Table 63%, Total Depth 64.2%, Girdle (medium to very thick, faceted), Culet (none).\n*   **Ratio (L/W):** 1.00 (Calculated as 10.27 / 10.25)",
+        "data": {
+          "reportNumber": "5221447582",
+          "shape": "Cushion Modified Brilliant",
+          "measurements": {
+            "length": 10.27,
+            "width": 10.25,
+            "depth": 6.58
+          },
+          "carat": 6.01,
+          "color": "J",
+          "clarity": "VS2",
+          "polish": "Very Good",
+          "symmetry": "Good",
+          "fluorescence": "None",
+          "comments": [
+            "Additional clouds, pinpoints and surface graining are not shown."
+          ],
+          "keyToSymbols": [
+            "Cloud, Crystal, Feather, Cavity, Needle, Natural"
+          ],
+          "tablePct": "63",
+          "culet": "",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "64.2",
+          "girdle": "Medium to very thick (faceted)",
+          "inscription": "GIA 5221447582",
+          "ratio": "1.00"
+        },
+        "logicFlags": [
+          {
+            "flag": "Milky Risk",
+            "severity": "HIGH",
+            "detail": "Comments mention \"clouds not shown\" - potential for milky/clarity issue not visible in diagram."
+          },
+          {
+            "flag": "⚠️ Cloud as Main Inclusion (雲狀物為主要瑕疵): Cloud 位於 Key to Symbols 第一位 = 這是主要瑕疵。即使淨度看似乾淨,實物可能受其影響。",
+            "severity": "MEDIUM",
+            "detail": "Cloud 位於 Key to Symbols 第一位 = 這是主要瑕疵。即使淨度看似乾淨,實物可能受其影響。"
+          },
+          {
+            "flag": "🔴 CRITICAL: Cavity Risk + VS2 (結構安全): Cavity (空孔) + VS2 = 即使淨度尚可,結構安全問題仍然存在,設置時可能破裂",
+            "severity": "HIGH",
+            "detail": "Cavity (空孔) + VS2 = 即使淨度尚可,結構安全問題仍然存在,設置時可能破裂"
+          },
+          {
+            "flag": "📐 Very Deep Cut",
+            "severity": "HIGH",
+            "detail": "表面積指數 84%,石頭睇起嚟比實際輕"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎 GOOD SELL (正常): 對辦率評估: VS2 淨度, None 熒光",
+            "severity": "LOW",
+            "detail": "對辦率評估: VS2 淨度, None 熒光"
+          },
+          {
+            "flag": "⚠️ Hidden Polish Issue (拉絲感): Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感",
+            "severity": "HIGH",
+            "detail": "Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感"
+          },
+          {
+            "flag": "💎 5ct+ Bonus: +10",
+            "severity": "INFO",
+            "detail": "6.01ct 大石,稀缺性高,市場溢價"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 64.2% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 64.2% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "CONDITIONAL",
+          "reason": "1 HIGH severity flag: Milky Risk. Verify with seller before proceeding."
+        },
+        "depthDiagnosis": {
+          "status": "ideal",
+          "emoji": "✅",
+          "label": "Ideal Depth",
+          "detail": "Depth 64.2% 完美 (理想值: 64.0%)"
+        },
+        "ratioDiagnosis": {
+          "status": "excellent",
+          "emoji": "✅",
+          "label": "Excellent Ratio",
+          "detail": "Ratio 1 完美 (±0.05,理想值: 1.02)"
+        },
+        "clawScore": 12,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "white",
+        "isFancyColor": false
+      },
+      {
+        "analyzedAt": "2026-04-29T03:14:05.879Z",
+        "sourceFile": "gia_5221657767-1.png",
+        "rawText": "Based on the GIA natural diamond grading report provided, here is the extracted data:\n\n*   **Report Number:** 5221657767\n*   **Shape and Cutting Style:** Pear Brilliant\n*   **Measurements:** 20.28 x 12.31 x 6.42 mm\n*   **Carat Weight:** 10.04 carat\n*   **Color Grade:** D\n*   **Clarity Grade:** SI1\n*   **Cut Grade:** Not visible (GIA does not provide cut grades for fancy shapes like Pear)\n*   **Polish:** Excellent\n*   **Symmetry:** Excellent\n*   **Fluorescence:** Medium Blue\n*   **Comments:** Clouds are not shown. Pinpoints are not shown.\n*   **Key to Symbols:** Crystal, Feather, Cavity, Needle, Natural\n*   **Inscription:** GIA 5221657767\n*   **Girdle:** thick - very thick (faceted)\n*   **Table %:** 56%\n*   **Depth %:** 52.2%\n*   **Crown Angle and Pavilion Angle:** Not visible\n*   **Diagram/Profile proportions:** \n    *   Table: 56%\n    *   Total Depth: 52.2%\n    *   Girdle: thick to very thick (faceted)\n    *   Culet: none\n*   **Ratio (Length/Width):** 1.65 (calculated from measurements: 20.28 / 12.31)",
+        "data": {
+          "reportNumber": "5221657767",
+          "shape": "Pear Brilliant",
+          "measurements": {
+            "length": 20.28,
+            "width": 12.31,
+            "depth": 6.42
+          },
+          "carat": 10.04,
+          "color": "fancy shapes like Pear)",
+          "clarity": "SI1",
+          "polish": "Excellent",
+          "symmetry": "Excellent",
+          "fluorescence": "Medium Blue",
+          "comments": [
+            "Clouds are not shown. Pinpoints are not shown."
+          ],
+          "keyToSymbols": [
+            "Crystal, Feather, Cavity, Needle, Natural"
+          ],
+          "tablePct": "56",
+          "culet": "none",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "52.2",
+          "girdle": "thick - very thick (faceted)",
+          "inscription": "GIA 5221657767",
+          "ratio": "1.65",
+          "_milkyReject": true
+        },
+        "logicFlags": [
+          {
+            "flag": "Milky Risk",
+            "severity": "HIGH",
+            "detail": "Comments mention \"clouds not shown\" - potential for milky/clarity issue not visible in diagram."
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 52.2% < 最低 60% | 光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "❌ Milky Risk: Clouds not shown = REJECT",
+            "severity": "CRITICAL",
+            "detail": "SI1/SI2 + Clouds not shown = 極高奶油石風險 (Hidden cloud concentration),直接 REJECT"
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 52.2% 極淺,光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "💡 Bow-tie Mitigated (3EX補償)",
+            "severity": "MEDIUM",
+            "detail": "pear brilliant Ratio 1.65 > 1.5 + Depth 52.2% < 58% = 中心黑色陰影,但 3EX + 小 Table 切割師已補償"
+          },
+          {
+            "flag": "🌈 Fancy Color Asset",
+            "severity": "INFO",
+            "detail": "彩色 (FANCY SHAPES LIKE PEAR)) 具有獨特市場價值,顏色越濃郁越值錢"
+          },
+          {
+            "flag": "⚠️ COLOR LEAKAGE RISK",
+            "detail": "Fancy Depth 52.2% < 60% | 光線直接穿透,顏色流失"
+          },
+          {
+            "flag": "🔴 CRITICAL: Cavity Risk: Cavity (空孔) 位於表面,設置時可能破裂",
+            "severity": "HIGH",
+            "detail": "Cavity (空孔) 位於表面,設置時可能破裂"
+          },
+          {
+            "flag": "🟡 ⚠️ Eye-Clean Risk: Table Inclusion: SI1 淨度 + Table 位置有 Crystal,肉眼可見",
+            "severity": "HIGH",
+            "detail": "SI1 淨度 + Table 位置有 Crystal,肉眼可見"
+          },
+          {
+            "flag": "✨ Excellent Spread",
+            "severity": "MEDIUM",
+            "detail": "表面積指數 131%,視覺效果佳"
+          },
+          {
+            "flag": "⚠️ Borderline Weight Risk: 重量 10.04ct 接近 10ct 台階,視覺效果需確認",
+            "severity": "LOW",
+            "detail": "重量 10.04ct 接近 10ct 台階,視覺效果需確認"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "✅ STANDARD (標準): 對辦率評估: 3EX 切工",
+            "severity": "LOW",
+            "detail": "對辦率評估: 3EX 切工"
+          },
+          {
+            "flag": "⚠️ 大克拉風險 (10ct+)",
+            "severity": "HIGH",
+            "detail": "10.04ct 大石 + SI 淨度,刻面大瑕疵難遮掩,風險幾何倍增"
+          },
+          {
+            "flag": "💎 10ct+ Bonus: +20",
+            "severity": "INFO",
+            "detail": "10.04ct 大石,稀缺性高,市場溢價"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 52.2% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 52.2% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "REJECT",
+          "reason": "3 HIGH severity flags detected. Review required before trade."
+        },
+        "depthDiagnosis": {
+          "status": "critical",
+          "emoji": "🔴",
+          "label": "CRITICAL: Severe Windowing",
+          "detail": "Depth 52.2% < 最低 60% | 光線直接穿透,中心失去閃爍"
+        },
+        "ratioDiagnosis": {
+          "emoji": "✅",
+          "label": "Ideal",
+          "status": "ideal",
+          "detail": "Pear 標準比例"
+        },
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true
+      },
+      {
+        "analyzedAt": "2026-04-29T03:14:19.769Z",
+        "sourceFile": "gia_5222767185-1.png",
+        "rawText": "Based on the provided GIA diamond certificate image, here is the extracted data:\n\n*   **Report Number:** 5222767185\n*   **Shape and Cutting Style:** Marquise Brilliant\n*   **Measurements:** 22.28 x 10.07 x 6.30 mm\n*   **Carat Weight:** 8.46 carat\n*   **Color Grade:** D\n*   **Clarity Grade:** Flawless\n*   **Cut Grade:** Not visible (GIA does not provide a cut grade for Marquise shapes)\n*   **Polish:** Excellent\n*   **Symmetry:** Excellent\n*   **Fluorescence:** None\n*   **Comments:** Not visible\n*   **Key to Symbols:** None (Diamond is graded as Flawless, so no internal or external characteristics are plotted)\n*   **Inscription:** GIA 5222767185\n*   **Girdle:** thin - thick (faceted)\n*   **Table %:** 60%\n*   **Depth %:** 62.5%\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Diagram/Profile Proportions:**\n    *   Table: 60%\n    *   Total Depth: 62.5%\n    *   Girdle: thin to thick (faceted)\n    *   Culet: none\n*   **Ratio (Length/Width):** 2.21 (Calculated: 22.28 / 10.07)",
+        "data": {
+          "reportNumber": "5222767185",
+          "shape": "Marquise Brilliant",
+          "measurements": {
+            "length": 22.28,
+            "width": 10.07,
+            "depth": 6.3
+          },
+          "carat": 8.46,
+          "color": "D",
+          "clarity": "IF",
+          "polish": "Excellent",
+          "symmetry": "Excellent",
+          "fluorescence": "None",
+          "comments": [
+            "Not visible"
+          ],
+          "keyToSymbols": [
+            "None (Diamond is graded as Flawless, so no internal or external characteristics are plotted)"
+          ],
+          "tablePct": "60",
+          "culet": "none",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "62.5",
+          "girdle": "thin - thick (faceted)",
+          "inscription": "GIA 5222767185",
+          "ratio": "2.21"
+        },
+        "logicFlags": [
+          {
+            "flag": "🔴 CRITICAL: Too Deep",
+            "severity": "HIGH",
+            "detail": "Depth 62.5% > 最高 62% | 視覺重量被隱藏,看起來比實際小"
+          },
+          {
+            "flag": "💡 Marquise Ratio Warning (馬眼偏長)",
+            "severity": "MEDIUM",
+            "detail": "Marquise Ratio 2.21 > 2.2,偏長纖細,易碎風險"
+          },
+          {
+            "flag": "✨ Excellent Spread",
+            "severity": "MEDIUM",
+            "detail": "表面積指數 137%,視覺效果佳"
+          },
+          {
+            "flag": "💎 Investment Grade (收藏級): D/FL 頂級品質,稀缺性極高",
+            "severity": "INFO",
+            "detail": "D Color + FL/IF = 稀缺性極高的收藏級寶石"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎💎 EASY SELL (熱賣): 對辦率評估: D 色高色, IF 淨度, 3EX 切工, None 熒光,  Marquise 形狀",
+            "severity": "SUPER",
+            "detail": "對辦率評估: D 色高色, IF 淨度, 3EX 切工, None 熒光,  Marquise 形狀"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 62.5% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 62.5% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "CONDITIONAL",
+          "reason": "1 HIGH severity flag: 🔴 CRITICAL: Too Deep. Verify with seller before proceeding."
+        },
+        "depthDiagnosis": {
+          "status": "critical",
+          "emoji": "🔴",
+          "label": "CRITICAL: Too Deep",
+          "detail": "Depth 62.5% > 最高 62% | 視覺重量被隱藏,看起來比實際小"
+        },
+        "ratioDiagnosis": {
+          "emoji": "📐",
+          "label": "Slender/Long",
+          "status": "fair",
+          "detail": "Marquise 偏長/纖細"
+        },
+        "clawScore": 24,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "white",
+        "isFancyColor": false
+      },
+      {
+        "analyzedAt": "2026-04-29T03:14:35.976Z",
+        "sourceFile": "gia_5231096959-1.png",
+        "rawText": "Based on the GIA diamond certificate provided, here is the extracted data:\n\n*   **Report Number:** 5231096959\n*   **Shape and Cutting Style:** Round Brilliant\n*   **Measurements:** 7.62 - 7.65 x 4.75 mm\n*   **Carat Weight:** 1.70 carat\n*   **Color Grade:** I\n*   **Clarity Grade:** VVS2\n*   **Cut Grade:** Excellent\n*   **Polish:** Excellent\n*   **Symmetry:** Excellent\n*   **Fluorescence:** None\n*   **Comments:** Not visible/None listed\n*   **Key to Symbols:** Needle, Pinpoint\n*   **Inscription(s):** GIA 5231096959\n*   **Girdle:** medium to slightly thick (faceted), 3.5%\n*   **Table %:** 56%\n*   **Depth %:** 62.2%\n*   **Crown Angle:** 35.0°\n*   **Pavilion Angle:** 40.8°\n*   **Other Proportions (from diagram):**\n    *   Crown Height: 15.5%\n    *   Pavilion Depth: 43.0%\n    *   Star Length: 50%\n    *   Lower Half: 80%\n    *   Culet: None\n*   **Ratio:** Not applicable for round brilliant diamonds.",
+        "data": {
+          "reportNumber": "5231096959",
+          "shape": "Round Brilliant",
+          "measurements": {
+            "length": 7.62,
+            "width": 7.65,
+            "depth": 4.75
+          },
+          "carat": 1.7,
+          "color": "I",
+          "clarity": "VVS2",
+          "polish": "Excellent",
+          "symmetry": "Excellent",
+          "fluorescence": "None",
+          "comments": [
+            "Not visible/None listed"
+          ],
+          "keyToSymbols": [
+            "Needle, Pinpoint"
+          ],
+          "tablePct": "56",
+          "culet": "None",
+          "crownAngle": "35.0",
+          "pavilionAngle": "40.8",
+          "depthPct": "62.2",
+          "girdle": "medium to slightly thick (faceted), 3.5%",
+          "inscription": "(s): GIA 5231096959",
+          "ratio": "1.00"
+        },
+        "logicFlags": [
+          {
+            "flag": "💎 Investment Grade Table (投資級檯面): Table 56.0% 完美範圍 (54-57%),光學性能最佳",
+            "severity": "INFO",
+            "detail": "Table 56.0% 完美範圍 (54-57%),光學性能最佳"
+          },
+          {
+            "flag": "💎💎💎 SUPER IDEAL / H&A (最高等級): Table 56.0% + Depth 62.2% + 3EX,光學性能頂尖",
+            "severity": "INFO",
+            "detail": "Table 56.0% + Depth 62.2% + 3EX,光學性能頂尖"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎💎 EASY SELL (熱賣): 對辦率評估: Round 形狀, VVS2 淨度, 3EX 切工, None 熒光",
+            "severity": "SUPER",
+            "detail": "對辦率評估: Round 形狀, VVS2 淨度, 3EX 切工, None 熒光"
+          }
+        ],
+        "recommendation": {
+          "action": "APPROVE",
+          "reason": "No significant red flags detected. Standard trading parameters."
+        },
+        "depthDiagnosis": {
+          "status": "normal",
+          "emoji": "⚡",
+          "label": "Normal Depth",
+          "detail": "Depth 62.2% 正常 (範圍: 61-62.5%)"
+        },
+        "ratioDiagnosis": {
+          "status": "ideal",
+          "emoji": "✅",
+          "label": "Ideal Ratio",
+          "detail": "Round Ratio 1 完美 (1.00-1.01 理想範圍)"
+        },
+        "clawScore": 100,
+        "verdict": "STRONG_BUY",
+        "verdictEmoji": "✅",
+        "scoringMode": "white",
+        "isFancyColor": false
+      },
+      {
+        "analyzedAt": "2026-04-29T03:14:57.950Z",
+        "sourceFile": "gia_5231283332-1.png",
+        "rawText": "Based on the provided GIA Natural Colored Diamond Report, here is the extracted data:\n\n*   **Report Number:** 5231283332\n*   **Shape and Cutting Style:** Cushion Modified Brilliant\n*   **Measurements:** 21.95 x 17.87 x 10.44 mm\n*   **Carat Weight:** 35.11 carat\n*   **Color Grade:** Fancy Yellow\n*   **Clarity Grade:** VS2\n*   **Cut Grade:** Not visible (N/A for this shape)\n*   **Polish:** Excellent\n*   **Symmetry:** Excellent\n*   **Fluorescence:** Faint\n*   **Comments:** Additional pinpoints are not shown.\n*   **Key to Symbols:** Feather, Crystal, Needle, Pinpoint\n*   **Inscription:** GIA 5231283332\n*   **Girdle:** thick - very thick (faceted)\n*   **Table %:** 61%\n*   **Depth %:** 58.4%\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Culet:** none\n*   **Ratio (L/W):** 1.23 (calculated from measurements)\n*   **Color Origin:** Natural\n*   **Color Distribution:** Even",
+        "data": {
+          "reportNumber": "5231283332",
+          "shape": "Cushion Modified Brilliant",
+          "measurements": {
+            "length": 21.95,
+            "width": 17.87,
+            "depth": 10.44
+          },
+          "carat": 35.11,
+          "color": "Fancy Yellow",
+          "clarity": "VS2",
+          "polish": "Excellent",
+          "symmetry": "Excellent",
+          "fluorescence": "Faint",
+          "comments": [
+            "Additional pinpoints are not shown."
+          ],
+          "keyToSymbols": [
+            "Feather, Crystal, Needle, Pinpoint"
+          ],
+          "tablePct": "61",
+          "culet": "none",
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "58.4",
+          "girdle": "thick - very thick (faceted)",
+          "inscription": "GIA 5231283332",
+          "ratio": "1.23"
+        },
+        "logicFlags": [
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 58.4% < 最低 62% | 光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "🌈 Fancy Color Asset",
+            "severity": "INFO",
+            "detail": "彩色 (FANCY YELLOW) 具有獨特市場價值,顏色越濃郁越值錢"
+          },
+          {
+            "flag": "⚠️ COLOR LEAKAGE RISK",
+            "detail": "Fancy Depth 58.4% < 60% | 光線直接穿透,顏色流失"
+          },
+          {
+            "flag": "💎 Ideal Table",
+            "detail": "Fancy Table 61% 接近理想 (61.5%)"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎 GOOD SELL (正常): 對辦率評估: VS2 淨度, 3EX 切工, 單卡畸數 35.11ct",
+            "severity": "LOW",
+            "detail": "對辦率評估: VS2 淨度, 3EX 切工, 單卡畸數 35.11ct"
+          },
+          {
+            "flag": "💎 20ct+ Bonus: +35",
+            "severity": "INFO",
+            "detail": "35.11ct 大石,稀缺性高,市場溢價"
+          },
+          {
+            "flag": "⚠️ Headlight Effect (死區火彩 - 太深): 深度 58.4% > 45% = 光線在底部產生過多反射,中心漏光",
+            "severity": "HIGH",
+            "detail": "深度 58.4% > 45% = 光線在底部產生過多反射,中心漏光"
+          }
+        ],
+        "recommendation": {
+          "action": "CONDITIONAL",
+          "reason": "1 HIGH severity flag: 🔴 CRITICAL: Severe Windowing. Verify with seller before proceeding."
+        },
+        "depthDiagnosis": {
+          "status": "critical",
+          "emoji": "🔴",
+          "label": "CRITICAL: Severe Windowing",
+          "detail": "Depth 58.4% < 最低 62% | 光線直接穿透,中心失去閃爍"
+        },
+        "ratioDiagnosis": {
+          "status": "warning",
+          "emoji": "⚠️",
+          "label": "Too Thick/Short",
+          "detail": "Ratio 1.23 > 最高 1.05 | 形狀過於短寬"
+        },
+        "clawScore": 59,
+        "verdict": "CAUTION",
+        "verdictEmoji": "🟡",
+        "scoringMode": "fancy",
+        "isFancyColor": true
+      },
+      {
+        "analyzedAt": "2026-04-29T03:15:15.477Z",
+        "sourceFile": "gia_5231560125-1.png",
+        "rawText": "Based on the GIA report provided, here is the extracted data:\n\n*   **GIA Report Number:** 5231560125\n*   **Shape and Cutting Style:** Cut-Cornered Triangular Step Cut\n*   **Measurements:** 13.16 x 13.76 x 3.68 mm\n*   **Carat Weight:** 3.29 carat\n*   **Color Grade:** F\n*   **Clarity Grade:** SI1\n*   **Cut Grade:** Not applicable (not a round brilliant)\n*   **Polish:** Very Good\n*   **Symmetry:** Excellent\n*   **Fluorescence:** None\n*   **Comments:** Additional twinning wisps, additional clouds, pinpoints and surface graining are not shown.\n*   **Key to Symbols:** Cloud, Crystal, Twinning Wisp, Feather, Cavity, Needle, Indented Natural\n*   **Inscription:** GIA 5231560125\n*   **Girdle:** Medium to thick (polished)\n*   **Table %:** 70%\n*   **Depth %:** 26.8%\n*   **Crown Angle:** Not visible\n*   **Pavilion Angle:** Not visible\n*   **Ratio (L/W):** 1.05 (calculated as 13.76 / 13.16)\n*   **Report Date:** April 22, 2025",
+        "data": {
+          "reportNumber": "5231560125",
+          "shape": "Cut-Cornered Triangular Step Cut",
+          "measurements": {
+            "length": 13.16,
+            "width": 13.76,
+            "depth": 3.68
+          },
+          "carat": 3.29,
+          "color": "F",
+          "clarity": "SI1",
+          "polish": "Very Good",
+          "symmetry": "Excellent",
+          "fluorescence": "None",
+          "comments": [
+            "Additional twinning wisps, additional clouds, pinpoints and surface graining are not shown."
+          ],
+          "keyToSymbols": [
+            "Cloud, Crystal, Twinning Wisp, Feather, Cavity, Needle, Indented Natural"
+          ],
+          "tablePct": "70",
+          "culet": null,
+          "crownAngle": null,
+          "pavilionAngle": null,
+          "depthPct": "26.8",
+          "girdle": "Medium to thick (polished)",
+          "inscription": "GIA 5231560125",
+          "ratio": "0.96",
+          "_milkyReject": true
+        },
+        "logicFlags": [
+          {
+            "flag": "Milky Risk",
+            "severity": "HIGH",
+            "detail": "Comments mention \"clouds not shown\" - potential for milky/clarity issue not visible in diagram."
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 26.8% < 最低 58% | 光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "❌ Milky Risk: Clouds not shown = REJECT",
+            "severity": "CRITICAL",
+            "detail": "SI1/SI2 + Clouds not shown = 極高奶油石風險 (Hidden cloud concentration),直接 REJECT"
+          },
+          {
+            "flag": "🔴 CRITICAL: Severe Windowing",
+            "severity": "HIGH",
+            "detail": "Depth 26.8% 極淺,光線直接穿透,中心失去閃爍"
+          },
+          {
+            "flag": "🟡 Clarity Check",
+            "severity": "LOW",
+            "detail": "SI 淨度 + None 螢光 - 建議確認內含物位置"
+          },
+          {
+            "flag": "🔴 High Milky/Hazy Risk",
+            "severity": "HIGH",
+            "detail": "淨度為 SI1 且首要瑕疵為 cloud, crystal, twinning wisp, feather, cavity, needle, indented natural,極高機率影響鑽石整體透明度。"
+          },
+          {
+            "flag": "⚠️ Cloud as Main Inclusion (雲狀物為主要瑕疵): Cloud 位於 Key to Symbols 第一位 = 這是主要瑕疵。即使淨度看似乾淨,實物可能受其影響。",
+            "severity": "MEDIUM",
+            "detail": "Cloud 位於 Key to Symbols 第一位 = 這是主要瑕疵。即使淨度看似乾淨,實物可能受其影響。"
+          },
+          {
+            "flag": "🔴 💎 Twinning Wisp Bonus (3-5ct Eye-Clean Likelihood): 3.29ct + Twinning Wisp 在 3-5ct 範圍內更容易 Eye-Clean,實物可能更好",
+            "severity": "INFO",
+            "detail": "3.29ct + Twinning Wisp 在 3-5ct 範圍內更容易 Eye-Clean,實物可能更好"
+          },
+          {
+            "flag": "🟡 ⚠️ Eye-Clean Risk: Table Inclusion: SI1 淨度 + Table 位置有 Crystal,肉眼可見",
+            "severity": "HIGH",
+            "detail": "SI1 淨度 + Table 位置有 Crystal,肉眼可見"
+          },
+          {
+            "flag": "✨ Excellent Spread",
+            "severity": "MEDIUM",
+            "detail": "表面積指數 206%,視覺效果佳"
+          },
+          {
+            "flag": "⚠️ 魚眼/漏光警示:超大表面積源於極端深度不足,石頭看起來像透明玻璃",
+            "severity": "CRITICAL",
+            "detail": "Spread > 140% + Depth < 50% = 極端漏光"
+          },
+          {
+            "flag": "💎 Polished/Faceted Girdle (拋光腰): 腰圍精工拋光,高級工藝",
+            "severity": "INFO",
+            "detail": "腰圍精工拋光,高級工藝"
+          },
+          {
+            "flag": "💎💎 GOOD SELL (正常): 對辦率評估: F 色高色, None 熒光",
+            "severity": "LOW",
+            "detail": "對辦率評估: F 色高色, None 熒光"
+          },
+          {
+            "flag": "⚠️ Hidden Polish Issue (拉絲感): Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感",
+            "severity": "HIGH",
+            "detail": "Polish 聲稱 Excellent 但 Surface graining is not shown,可能有拉絲感/波紋感"
+          },
+          {
+            "flag": "⚠️ Fish-eye Effect (魚眼 - 太淺): 深度 26.8% < 38% = 光線從腰部漏出,中心黑暗",
+            "severity": "HIGH",
+            "detail": "深度 26.8% < 38% = 光線從腰部漏出,中心黑暗"
+          }
+        ],
+        "recommendation": {
+          "action": "REJECT",
+          "reason": "4 HIGH severity flags detected. Review required before trade."
+        },
+        "depthDiagnosis": {
+          "status": "critical",
+          "emoji": "🔴",
+          "label": "CRITICAL: Severe Windowing",
+          "detail": "Depth 26.8% < 最低 58% | 光線直接穿透,中心失去閃爍"
+        },
+        "ratioDiagnosis": {
+          "status": "warning",
+          "emoji": "⚠️",
+          "label": "Too Thin/Stretched",
+          "detail": "Ratio 0.96 < 最低 1 | 形狀過於拉長"
+        },
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "white",
+        "isFancyColor": false
+      }
+    ],
+    "batch4": [
+      {
+        "reportNumber": "5231587368",
+        "sourceFile": "5231587368.pdf",
+        "verdict": "REJECT",
+        "clawScore": 39,
+        "shape": "Round Brilliant",
+        "carat": 3.29,
+        "color": "F",
+        "clarity": "VVS2",
+        "cutGrade": "Excellent",
+        "depthPct": "60.5",
+        "depthDiagnosis": "CRITICAL: Severe Windowing",
+        "keyFlags": [
+          "🔴 CRITICAL: Severe Windowing (Depth 60.5% < 61%)",
+          "💎💎💎 EASY SELL: Round, F色, VVS2, 3EX"
+        ],
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "5232009785",
+        "sourceFile": "5232009785.pdf",
+        "verdict": "REJECT",
+        "clawScore": 0,
+        "shape": "Cushion Modified Brilliant",
+        "carat": 5.17,
+        "color": "F",
+        "clarity": "SI1",
+        "cutGrade": null,
+        "depthPct": "67.1",
+        "depthDiagnosis": "Normal Depth (fancy range)",
+        "keyFlags": [
+          "🔴 CRITICAL: Knot Risk (可能破裂)",
+          "🔴 High Milky Risk (Cloud為主瑕疵)",
+          "⚠️ Headlight Effect (太深)"
+        ],
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "5232529816",
+        "sourceFile": "5232529816.pdf",
+        "verdict": "BUY",
+        "clawScore": 85,
+        "shape": "Cut-Cornered Rectangular Modified Brilliant",
+        "carat": 1.3,
+        "color": "Fancy Intense Pink",
+        "clarity": "VVS2",
+        "cutGrade": null,
+        "depthPct": "61.7",
+        "depthDiagnosis": "Normal Depth (fancy range)",
+        "keyFlags": [
+          "🌈 Fancy Intense Pink - 獨特市場價值",
+          "💎 VVS2 淨度提升價值",
+          "✅ GOOD SELL"
+        ],
+        "recommendation": "APPROVE"
+      },
+      {
+        "reportNumber": "5232728659",
+        "sourceFile": "5232728659.pdf",
+        "verdict": "REJECT",
+        "clawScore": 24,
+        "shape": "Cushion Modified Brilliant",
+        "carat": 1.52,
+        "color": "Fancy Vivid Orangy Yellow",
+        "clarity": "VS2",
+        "cutGrade": null,
+        "depthPct": "69.5",
+        "depthDiagnosis": "Ideal Depth (fancy range)",
+        "keyFlags": [
+          "🔴 Milky Risk (clouds not shown)",
+          "⚠️ Cloud as Main Inclusion",
+          "💎💎💎 EASY SELL"
+        ],
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "5234047114",
+        "sourceFile": "5234047114.pdf",
+        "verdict": "REJECT",
+        "clawScore": 32,
+        "shape": "Cut-Cornered Rectangular Modified Brilliant",
+        "carat": 5.24,
+        "color": "E",
+        "clarity": "SI1",
+        "cutGrade": null,
+        "depthPct": "68.0",
+        "depthDiagnosis": "Normal Depth",
+        "keyFlags": [
+          "🔴 Table Inclusion: Crystal可見",
+          "🔴 Hidden Polish Issue (Surface graining)",
+          "🔴 Headlight Effect (太深)"
+        ],
+        "recommendation": "CAUTION"
+      },
+      {
+        "reportNumber": "5234358447",
+        "sourceFile": "5234358447.pdf",
+        "verdict": "REJECT",
+        "clawScore": 13,
+        "shape": "Modified Triangular Brilliant",
+        "carat": 1.0,
+        "color": "Fancy Intense Yellow",
+        "clarity": "SI1",
+        "cutGrade": null,
+        "depthPct": "53.9",
+        "depthDiagnosis": "CRITICAL: Severe Windowing",
+        "keyFlags": [
+          "🔴 CRITICAL: Severe Windowing (53.9% < 58%)",
+          "❌ Milky Risk: Clouds not shown = REJECT",
+          "🔴 High Milky/Hazy Risk"
+        ],
+        "recommendation": "REJECT"
+      },
+      {
+        "reportNumber": "5234389814",
+        "sourceFile": "5234389814.pdf",
+        "verdict": "BUY",
+        "clawScore": 85,
+        "shape": "Oval Modified Brilliant",
+        "carat": 23.7,
+        "color": "Fancy Yellow",
+        "clarity": "VVS2",
+        "cutGrade": null,
+        "depthPct": "65.7",
+        "depthDiagnosis": "Normal Depth (fancy range)",
+        "keyFlags": [
+          "💎 20ct+ Bonus: +35",
+          "💎 VVS2 淨度",
+          "✅ GOOD SELL"
+        ],
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "6173042814",
+        "sourceFile": "6173042814.pdf",
+        "verdict": "REJECT",
+        "clawScore": 30,
+        "shape": "Pear Brilliant",
+        "carat": 5.01,
+        "color": "D",
+        "clarity": "SI1",
+        "cutGrade": null,
+        "depthPct": "65.2",
+        "depthDiagnosis": "CRITICAL: Too Deep",
+        "keyFlags": [
+          "🔴 CRITICAL: Too Deep (65.2% > 65%)",
+          "🔴 Eye-Clean Risk: Table Crystal可見",
+          "🔴 Headlight Effect"
+        ],
+        "recommendation": "REJECT"
+      },
+      {
+        "reportNumber": "6207556511",
+        "sourceFile": "6207556511.pdf",
+        "verdict": "REJECT",
+        "clawScore": 9,
+        "shape": "Cut-Cornered Square Modified Brilliant",
+        "carat": 8.33,
+        "color": "G",
+        "clarity": "SI1",
+        "cutGrade": null,
+        "depthPct": "64.3",
+        "depthDiagnosis": "Normal Depth",
+        "keyFlags": [
+          "❌ Milky Risk: Clouds not shown = REJECT",
+          "🔴 Eye-Clean Risk: Table Crystal可見",
+          "🔴 Hidden Polish Issue"
+        ],
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "6224169013",
+        "sourceFile": "6224169013.pdf",
+        "verdict": "REJECT",
+        "clawScore": 16,
+        "shape": "Heart Brilliant",
+        "carat": 3.0,
+        "color": "G",
+        "clarity": "SI1",
+        "cutGrade": null,
+        "depthPct": "55.7",
+        "depthDiagnosis": "CRITICAL: Severe Windowing",
+        "keyFlags": [
+          "❌ Milky Risk: Clouds not shown = REJECT",
+          "🔴 CRITICAL: Severe Windowing (55.7% < 58%)",
+          "🔴 High Milky/Hazy Risk"
+        ],
+        "recommendation": "REJECT"
+      },
+      {
+        "reportNumber": "6224571791",
+        "sourceFile": "6224571791.pdf",
+        "verdict": "REJECT",
+        "clawScore": 4,
+        "shape": "Heart Brilliant",
+        "carat": 9.04,
+        "color": "D",
+        "clarity": "SI2",
+        "cutGrade": null,
+        "depthPct": "62.5",
+        "depthDiagnosis": "Ideal Depth",
+        "keyFlags": [
+          "🔴 Chipping Risk (Very thin girdle)",
+          "🔴 High Milky/Hazy Risk (SI2)",
+          "⚠️ D-Color Oily Penalty"
+        ],
+        "recommendation": "REJECT"
+      },
+      {
+        "reportNumber": "6227715442",
+        "sourceFile": "6227715442.pdf",
+        "verdict": "REJECT",
+        "clawScore": 24,
+        "shape": "Pear Brilliant",
+        "carat": 2.04,
+        "color": "E",
+        "clarity": "SI2",
+        "cutGrade": null,
+        "depthPct": "65.8",
+        "depthDiagnosis": "Ideal Depth (fancy range)",
+        "keyFlags": [
+          "🔴 CRITICAL: Cavity Risk (設置時可能破裂)",
+          "⚠️ Headlight Effect (太深)",
+          "🔴 Medium Blue熒光"
+        ],
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "6227862493",
+        "sourceFile": "6227862493.pdf",
+        "verdict": "REJECT",
+        "clawScore": 35,
+        "shape": "Emerald Cut",
+        "carat": 22.01,
+        "color": "J",
+        "clarity": "SI1",
+        "cutGrade": null,
+        "depthPct": "69.7",
+        "depthDiagnosis": "Normal Depth",
+        "keyFlags": [
+          "⚠️ Color Visibility Risk (22ct + J色 = 色帶可見)",
+          "🔴 Eye-Clean Risk: Table Crystal",
+          "⚠️ 大克拉風險 (10ct+)"
+        ],
+        "recommendation": "APPROVE"
+      },
+      {
+        "reportNumber": "6227871813",
+        "sourceFile": "6227871813.pdf",
+        "verdict": "CAUTION",
+        "clawScore": 50,
+        "shape": "Pear Brilliant",
+        "carat": 5.02,
+        "color": "D",
+        "clarity": "SI1",
+        "cutGrade": null,
+        "depthPct": "60.0",
+        "depthDiagnosis": "Ideal Depth",
+        "keyFlags": [
+          "💎 D色 + Medium Blue = 極致白效果",
+          "🔴 Eye-Clean Risk: Table Crystal可見",
+          "✨ Excellent Spread"
+        ],
+        "recommendation": "APPROVE"
+      },
+      {
+        "reportNumber": "6233815892",
+        "sourceFile": "6233815892.pdf",
+        "verdict": "REJECT",
+        "clawScore": 22,
+        "shape": "Marquise Brilliant",
+        "carat": 6.28,
+        "color": "G",
+        "clarity": "VS2",
+        "cutGrade": null,
+        "depthPct": "62.1",
+        "depthDiagnosis": "CRITICAL: Too Deep",
+        "keyFlags": [
+          "🔴 CRITICAL: Knot Risk + VS2 (結構安全)",
+          "🔴 CRITICAL: Too Deep (62.1% > 62%)",
+          "🔴 Hidden Polish Issue"
+        ],
+        "recommendation": "CONDITIONAL"
+      }
+    ],
+    "batch5": [
+      {
+        "reportNumber": "6234129129",
+        "shape": "Pear Brilliant",
+        "carat": 7.03,
+        "color": "Fancy Deep Pink",
+        "clarity": "VS2",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "depthPct": 60.8,
+        "tablePct": 55,
+        "ratio": 1.37,
+        "girdle": "Very thick to extremely thick (faceted)",
+        "inscription": "GIA 6234129129",
+        "clawScore": 72,
+        "verdict": "BUY",
+        "verdictEmoji": "✅",
+        "scoringMode": "fancy",
+        "isFancyColor": true,
+        "recommendation": "APPROVE",
+        "analyzedAt": "2026-04-29T03:10:xxZ"
+      },
+      {
+        "reportNumber": "6234158920",
+        "shape": "Pear Brilliant",
+        "carat": 5.03,
+        "color": "E",
+        "clarity": "IF",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "depthPct": 51.4,
+        "tablePct": 61,
+        "ratio": 1.45,
+        "girdle": "medium - very thick (faceted)",
+        "inscription": "GIA 6234158920",
+        "clawScore": 13,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "white",
+        "isFancyColor": false,
+        "recommendation": "REJECT",
+        "analyzedAt": "2026-04-29T03:11:xxZ"
+      },
+      {
+        "reportNumber": "6234175633",
+        "shape": "Oval Brilliant",
+        "carat": 2.45,
+        "color": "Fancy Light Pink",
+        "clarity": "VS1",
+        "polish": "Excellent",
+        "symmetry": "Good",
+        "fluorescence": "Faint",
+        "depthPct": 63.7,
+        "tablePct": 65,
+        "ratio": 1.21,
+        "girdle": "thick - very thick (polished)",
+        "inscription": "GIA 6234175633",
+        "clawScore": 24,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true,
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "6234289441",
+        "shape": "Square Emerald Cut",
+        "carat": 7.5,
+        "color": "D",
+        "clarity": "Flawless",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "depthPct": 68.5,
+        "tablePct": 63,
+        "ratio": 1.0,
+        "girdle": "slightly thick to thick (polished)",
+        "inscription": "GIA 6234289441",
+        "clawScore": 34,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true,
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "6237208621",
+        "shape": "Cut-Cornered Rectangular Mixed Cut",
+        "carat": 1.06,
+        "color": "Fancy Intense Pink",
+        "clarity": "SI1",
+        "polish": "Very Good",
+        "symmetry": "Very Good",
+        "fluorescence": "Medium Blue",
+        "depthPct": 65.9,
+        "tablePct": 63,
+        "ratio": 1.17,
+        "girdle": "Very thick to extremely thick (polished)",
+        "inscription": "GIA 6237208621",
+        "clawScore": 24,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true,
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "6237543868",
+        "shape": "Pear Brilliant",
+        "carat": 7.02,
+        "color": "H",
+        "clarity": "Internally Flawless",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "Faint",
+        "depthPct": 63.0,
+        "tablePct": 58,
+        "ratio": 1.59,
+        "girdle": "medium - very thick (faceted)",
+        "inscription": "GIA 6237543868",
+        "clawScore": 85,
+        "verdict": "BUY",
+        "verdictEmoji": "✅",
+        "scoringMode": "white",
+        "isFancyColor": false,
+        "recommendation": "APPROVE"
+      },
+      {
+        "reportNumber": "6237791422",
+        "shape": "Modified Kite Step Cut (Baguette/Marquise type)",
+        "carat": 3.03,
+        "color": "H",
+        "clarity": "SI2",
+        "polish": "Very Good",
+        "symmetry": "Very Good",
+        "fluorescence": "Faint",
+        "depthPct": 37.6,
+        "tablePct": 59,
+        "ratio": 2.21,
+        "girdle": "thin - thick (polished)",
+        "inscription": "GIA 6237791422",
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true,
+        "recommendation": "REJECT"
+      },
+      {
+        "reportNumber": "6415242848",
+        "shape": "Round Brilliant",
+        "carat": 10.02,
+        "color": "J",
+        "clarity": "SI2",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "depthPct": 61.1,
+        "tablePct": 61,
+        "ratio": 1.0,
+        "girdle": "medium - slightly thick (polished)",
+        "inscription": "GIA 6415242848",
+        "clawScore": 18,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "white",
+        "isFancyColor": false,
+        "recommendation": "REJECT"
+      },
+      {
+        "reportNumber": "6425007646",
+        "shape": "Heart Brilliant",
+        "carat": 3.01,
+        "color": "I",
+        "clarity": "SI2",
+        "polish": "Excellent",
+        "symmetry": "Very Good",
+        "fluorescence": "None",
+        "depthPct": 60.7,
+        "tablePct": 55,
+        "ratio": 0.82,
+        "girdle": "slightly thick to very thick (faceted)",
+        "inscription": "GIA 6425007646",
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "white",
+        "isFancyColor": false,
+        "recommendation": "REJECT"
+      },
+      {
+        "reportNumber": "6451678836",
+        "shape": "Oval Brilliant",
+        "carat": 3.01,
+        "color": "Fancy Yellow",
+        "clarity": "SI1",
+        "polish": "Excellent",
+        "symmetry": "Very Good",
+        "fluorescence": "Strong Blue",
+        "depthPct": 71.2,
+        "tablePct": 57,
+        "ratio": 1.3,
+        "girdle": "very thick to extremely thick (faceted)",
+        "inscription": "GIA 6451678836",
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true,
+        "recommendation": "REJECT"
+      },
+      {
+        "reportNumber": "6462156306",
+        "shape": "Oval Brilliant",
+        "carat": 10.04,
+        "color": "K",
+        "clarity": "SI1",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "None",
+        "depthPct": 61.7,
+        "tablePct": 59,
+        "ratio": 1.48,
+        "girdle": "very thick to extremely thick (faceted)",
+        "inscription": "GIA 6462156306",
+        "clawScore": 3,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true,
+        "recommendation": "REJECT"
+      },
+      {
+        "reportNumber": "6512928723",
+        "shape": "Round Brilliant",
+        "carat": 5.02,
+        "color": "D",
+        "clarity": "VVS1",
+        "polish": "Excellent",
+        "symmetry": "Very Good",
+        "fluorescence": "Faint",
+        "depthPct": 67.0,
+        "tablePct": 67,
+        "ratio": 1.04,
+        "girdle": "medium - slightly thick (polished)",
+        "inscription": "GIA 6512928723",
+        "clawScore": 67,
+        "verdict": "CAUTION",
+        "verdictEmoji": "🟡",
+        "scoringMode": "white",
+        "isFancyColor": false,
+        "recommendation": "APPROVE"
+      },
+      {
+        "reportNumber": "6522986461",
+        "shape": "Pear Brilliant",
+        "carat": 2.0,
+        "color": "J",
+        "clarity": "SI2",
+        "polish": "Excellent",
+        "symmetry": "Excellent",
+        "fluorescence": "Faint",
+        "depthPct": 64.1,
+        "tablePct": 61,
+        "ratio": 1.55,
+        "girdle": "thick (faceted)",
+        "inscription": "GIA 6522986461",
+        "clawScore": 53,
+        "verdict": "CAUTION",
+        "verdictEmoji": "🟡",
+        "scoringMode": "fancy",
+        "isFancyColor": true,
+        "recommendation": "CONDITIONAL"
+      },
+      {
+        "reportNumber": "7235047225",
+        "shape": "Cut-Cornered Rectangular Modified Brilliant",
+        "carat": 5.07,
+        "color": "H",
+        "clarity": "VVS2",
+        "polish": "Excellent",
+        "symmetry": "Very Good",
+        "fluorescence": "Faint",
+        "depthPct": 65.8,
+        "tablePct": 69,
+        "ratio": 1.15,
+        "girdle": "slightly thick (polished)",
+        "inscription": "GIA 7235047225",
+        "clawScore": 61,
+        "verdict": "CAUTION",
+        "verdictEmoji": "🟡",
+        "scoringMode": "white",
+        "isFancyColor": false,
+        "recommendation": "APPROVE"
+      },
+      {
+        "reportNumber": "7516553492",
+        "shape": "Modified Triangular Step Cut",
+        "carat": 4.45,
+        "color": "K",
+        "clarity": "SI2",
+        "polish": "Very Good",
+        "symmetry": "Very Good",
+        "fluorescence": "None",
+        "depthPct": 34.1,
+        "tablePct": 70,
+        "ratio": 0.85,
+        "girdle": "Very thick to extremely thick (polished)",
+        "inscription": "GIA 7516553492",
+        "clawScore": 0,
+        "verdict": "REJECT",
+        "verdictEmoji": "🔴",
+        "scoringMode": "fancy",
+        "isFancyColor": true,
+        "recommendation": "REJECT"
+      }
+    ]
+  },
+  "summary": {
+    "total_analyzed": 75,
+    "BUY": 9,
+    "REJECT": 55,
+    "CAUTION": 9,
+    "CONDITIONAL": 0,
+    "STRONG_BUY": 2,
+    "MANUAL_REVIEW": 0,
+    "ERROR": 0,
+    "average_score": 30.6,
+    "score_range": "0-100"
+  }
+}

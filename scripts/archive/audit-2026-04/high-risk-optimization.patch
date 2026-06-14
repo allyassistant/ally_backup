@@ -1,0 +1,105 @@
+--- a/scripts/lib/rules/high-risk.js
++++ b/scripts/lib/rules/high-risk.js
+@@ -49,6 +49,16 @@ function getHelpers() {
+   return helpers;
+ }
+ 
++// 動態引入 context helpers（新增）
++let contextHelpers = null;
++function getContextHelpers() {
++  if (!contextHelpers) {
++    try {
++      contextHelpers = require('../helpers/context-helpers');
++    } catch { contextHelpers = {}; }
++  }
++  return contextHelpers;
++}
++
+ // ============================================================
+ // Skip Logic - 規則定義檔自身豁免
+ // ============================================================
+@@ -220,12 +230,35 @@ const HIGH_RISK_RULES = [
+ 
+       const h = getHelpers();
+       const lines = content.split('\n');
+       const found = [];
++      const ch = getContextHelpers();
+ 
+       // 已經在 try-catch 內的函數調用豁免模式
+       const safeCallPatterns = [
+         /safeReadFile\s*\(/,
+         /safeWriteFile\s*\(/,
+         /safeJsonParse\s*\(/,
+         /atomicWriteSync\s*\(/,
++        // 新增：配置讀取模式
++        /loadConfig/,
++        /parseConfig/,
++        /loadState/,
++        /saveState/,
++        // 新增：目錄確保模式
++        /ensureDir/,
++        /init\w*Dir/,
+       ];
+ 
+       lines.forEach((line, i) => {
+@@ -249,10 +282,26 @@ const HIGH_RISK_RULES = [
+             found.push({ line: i + 1, severity: 'high' });
+           }
+         }
+-        // 一般 fs 讀取 = Low（影響有限）
+-        // 修復：如果是 simple existence check（fs.existsSync），進一步降低優先級
++        
++        // 修復：上下文感知的 fs 讀取檢測
+         if (/fs\.(readFileSync|readdirSync|statSync|accessSync)\s*\(/.test(line)) {
++          // 使用新的上下文分析
++          if (ch.shouldRequireTryCatchForReadFile) {
++            const result = ch.shouldRequireTryCatchForReadFile(lines, i);
++            if (!result.required) {
++              if (result.severity === 'info') {
++                found.push({ line: i + 1, severity: 'info' });
++              }
++              return; // 跳過標準處理
++            }
++          }
++          
+           if (!(h.isProtectedByTry?.(lines, i, filePath)) && !(h.isProtectedByPromise?.(lines, i))) {
+             // 如果是 existsSync，視為 info 級別
+             const isExistsCheck = /existsSync/.test(line);
+@@ -260,6 +309,31 @@ const HIGH_RISK_RULES = [
+           }
+         }
++        
++        // 修復：上下文感知的 mkdirSync 檢測
++        if (/fs\.mkdirSync\s*\(/.test(line)) {
++          if (ch.shouldRequireTryCatchForMkdir) {
++            const result = ch.shouldRequireTryCatchForMkdir(lines, i);
++            if (!result.required) {
++              return; // 完全跳過
++            }
++          }
++        }
++        
++        // 修復：上下文感知的 readdirSync 檢測
++        if (/fs\.readdirSync\s*\(/.test(line)) {
++          if (ch.shouldRequireTryCatchForReaddir) {
++            const result = ch.shouldRequireTryCatchForReaddir(lines, i);
++            if (!result.required) {
++              if (result.severity === 'info') {
++                found.push({ line: i + 1, severity: 'info' });
++              }
++              return;
++            }
++          }
++        }
+       });
+ 
+       // 過濾掉 info 級別的（existsSync 檢查）
+@@ -277,7 +351,7 @@ const HIGH_RISK_RULES = [
+       return {
+         found: found.length > 0,
+         details: found.length > 0
+-          ? `${highLines.length} 處 High-risk（exec/危險fs）+ ${lowLines.length} 處 Low-risk（fs讀取）`
++          ? `${highLines.length} 處 High-risk（exec/危險fs）+ ${lowLines.length} 處 Low-risk（fs讀取）+ ${found.filter(f => f.severity === 'info').length} 處 Info`
+           : '',
+         lines: found.filter(f => f.severity !== 'info').map(f => f.line).slice(0, 10),
+         severity: overallSeverity,

@@ -1,0 +1,527 @@
+{
+  "last_updated": "2026-06-14, 04:00:01",
+  "summary": {
+    "total_nodes": 12,
+    "total_edges": 126
+  },
+  "nodes": {
+    "discord": {
+      "count": 886,
+      "first": "2026-03-19",
+      "last": "2026-06-14",
+      "co_occurrences": [
+        "discord+stock",
+        "discord+system",
+        "discord+project",
+        "discord+error",
+        "apple+discord",
+        "coding+discord",
+        "discord+memory",
+        "discord+github",
+        "discord+review",
+        "browser+discord",
+        "discord+finance"
+      ]
+    },
+    "stock": {
+      "count": 330,
+      "first": "2026-03-18",
+      "last": "2026-06-12",
+      "co_occurrences": [
+        "coding+stock",
+        "project+stock",
+        "review+stock",
+        "error+stock",
+        "stock+system",
+        "discord+stock",
+        "apple+stock",
+        "github+stock",
+        "memory+stock",
+        "finance+stock",
+        "browser+stock"
+      ]
+    },
+    "coding": {
+      "count": 978,
+      "first": "2026-03-18",
+      "last": "2026-06-14",
+      "co_occurrences": [
+        "coding+stock",
+        "coding+project",
+        "coding+review",
+        "coding+error",
+        "coding+system",
+        "coding+discord",
+        "coding+github",
+        "coding+memory",
+        "coding+finance",
+        "apple+coding",
+        "browser+coding"
+      ]
+    },
+    "github": {
+      "count": 541,
+      "first": "2026-03-21",
+      "last": "2026-06-14",
+      "co_occurrences": [
+        "github+stock",
+        "github+system",
+        "github+review",
+        "discord+github",
+        "github+project",
+        "coding+github",
+        "finance+github",
+        "github+memory",
+        "error+github",
+        "apple+github",
+        "browser+github"
+      ]
+    },
+    "finance": {
+      "count": 66,
+      "first": "2026-03-24",
+      "last": "2026-06-07",
+      "co_occurrences": [
+        "finance+system",
+        "finance+memory",
+        "discord+finance",
+        "finance+stock",
+        "coding+finance",
+        "finance+github",
+        "finance+project",
+        "finance+review",
+        "error+finance",
+        "apple+finance",
+        "browser+finance"
+      ]
+    },
+    "system": {
+      "count": 1648,
+      "first": "2026-03-18",
+      "last": "2026-06-14",
+      "co_occurrences": [
+        "memory+system",
+        "error+system",
+        "stock+system",
+        "project+system",
+        "discord+system",
+        "apple+system",
+        "coding+system",
+        "github+system",
+        "review+system",
+        "finance+system",
+        "browser+system"
+      ]
+    },
+    "memory": {
+      "count": 1140,
+      "first": "2026-03-18",
+      "last": "2026-06-14",
+      "co_occurrences": [
+        "memory+system",
+        "error+memory",
+        "memory+stock",
+        "memory+review",
+        "discord+memory",
+        "finance+memory",
+        "coding+memory",
+        "memory+project",
+        "github+memory",
+        "apple+memory",
+        "browser+memory"
+      ]
+    },
+    "apple": {
+      "count": 228,
+      "first": "2026-03-19",
+      "last": "2026-06-13",
+      "co_occurrences": [
+        "apple+discord",
+        "apple+stock",
+        "apple+system",
+        "apple+project",
+        "apple+error",
+        "apple+review",
+        "apple+coding",
+        "apple+finance",
+        "apple+memory",
+        "apple+github",
+        "apple+browser"
+      ]
+    },
+    "project": {
+      "count": 629,
+      "first": "2026-03-18",
+      "last": "2026-06-14",
+      "co_occurrences": [
+        "project+stock",
+        "coding+project",
+        "project+review",
+        "error+project",
+        "project+system",
+        "discord+project",
+        "apple+project",
+        "github+project",
+        "memory+project",
+        "finance+project",
+        "browser+project"
+      ]
+    },
+    "review": {
+      "count": 560,
+      "first": "2026-03-18",
+      "last": "2026-06-14",
+      "co_occurrences": [
+        "review+stock",
+        "coding+review",
+        "project+review",
+        "error+review",
+        "github+review",
+        "review+system",
+        "memory+review",
+        "apple+review",
+        "discord+review",
+        "finance+review",
+        "browser+review"
+      ]
+    },
+    "browser": {
+      "count": 114,
+      "first": "2026-03-26",
+      "last": "2026-06-14",
+      "co_occurrences": [
+        "browser+discord",
+        "browser+system",
+        "browser+memory",
+        "apple+browser",
+        "browser+github",
+        "browser+project",
+        "browser+coding",
+        "browser+review",
+        "browser+error",
+        "browser+stock",
+        "browser+finance"
+      ]
+    },
+    "error": {
+      "count": 835,
+      "first": "2026-03-18",
+      "last": "2026-06-14",
+      "co_occurrences": [
+        "error+system",
+        "error+memory",
+        "error+stock",
+        "coding+error",
+        "error+project",
+        "error+review",
+        "discord+error",
+        "apple+error",
+        "error+github",
+        "error+finance",
+        "browser+error"
+      ]
+    }
+  },
+  "edges": [
+    {
+      "from": "coding",
+      "to": "system",
+      "weight": 504,
+      "examples": [
+        "2026-03-21",
+        "2026-03-21",
+        "2026-03-21"
+      ]
+    },
+    {
+      "from": "error",
+      "to": "system",
+      "weight": 471,
+      "examples": [
+        "2026-03-18",
+        "2026-03-18",
+        "2026-03-18"
+      ]
+    },
+    {
+      "from": "system",
+      "to": "coding",
+      "weight": 451,
+      "examples": [
+        "2026-03-21",
+        "2026-03-21",
+        "2026-03-21"
+      ]
+    },
+    {
+      "from": "review",
+      "to": "system",
+      "weight": 435,
+      "examples": [
+        "2026-03-29",
+        "2026-03-29",
+        "2026-03-29"
+      ]
+    },
+    {
+      "from": "system",
+      "to": "review",
+      "weight": 430,
+      "examples": [
+        "2026-03-23",
+        "2026-03-23",
+        "2026-03-23"
+      ]
+    },
+    {
+      "from": "system",
+      "to": "discord",
+      "weight": 417,
+      "examples": [
+        "2026-03-19",
+        "2026-03-19",
+        "2026-03-19"
+      ]
+    },
+    {
+      "from": "system",
+      "to": "error",
+      "weight": 414,
+      "examples": [
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-20"
+      ]
+    },
+    {
+      "from": "memory",
+      "to": "system",
+      "weight": 404,
+      "examples": [
+        "2026-03-18",
+        "2026-03-18",
+        "2026-03-18"
+      ]
+    },
+    {
+      "from": "system",
+      "to": "memory",
+      "weight": 395,
+      "examples": [
+        "2026-03-24",
+        "2026-03-27",
+        "2026-03-28"
+      ]
+    },
+    {
+      "from": "project",
+      "to": "system",
+      "weight": 366,
+      "examples": [
+        "2026-03-19",
+        "2026-03-19",
+        "2026-03-19"
+      ]
+    },
+    {
+      "from": "discord",
+      "to": "system",
+      "weight": 349,
+      "examples": [
+        "2026-03-22",
+        "2026-03-22",
+        "2026-03-22"
+      ]
+    },
+    {
+      "from": "github",
+      "to": "system",
+      "weight": 313,
+      "examples": [
+        "2026-03-21",
+        "2026-03-21",
+        "2026-03-28"
+      ]
+    },
+    {
+      "from": "system",
+      "to": "project",
+      "weight": 308,
+      "examples": [
+        "2026-03-25",
+        "2026-03-25",
+        "2026-03-26"
+      ]
+    },
+    {
+      "from": "system",
+      "to": "github",
+      "weight": 304,
+      "examples": [
+        "2026-03-29",
+        "2026-03-29",
+        "2026-03-29"
+      ]
+    },
+    {
+      "from": "memory",
+      "to": "coding",
+      "weight": 284,
+      "examples": [
+        "2026-03-27",
+        "2026-03-28",
+        "2026-03-28"
+      ]
+    },
+    {
+      "from": "error",
+      "to": "review",
+      "weight": 244,
+      "examples": [
+        "2026-03-29",
+        "2026-03-31",
+        "2026-04-02"
+      ]
+    },
+    {
+      "from": "error",
+      "to": "coding",
+      "weight": 243,
+      "examples": [
+        "2026-03-21",
+        "2026-03-21",
+        "2026-03-21"
+      ]
+    },
+    {
+      "from": "coding",
+      "to": "review",
+      "weight": 201,
+      "examples": [
+        "2026-03-28",
+        "2026-03-29",
+        "2026-03-29"
+      ]
+    },
+    {
+      "from": "stock",
+      "to": "system",
+      "weight": 185,
+      "examples": [
+        "2026-03-19",
+        "2026-03-19",
+        "2026-03-19"
+      ]
+    },
+    {
+      "from": "review",
+      "to": "project",
+      "weight": 183,
+      "examples": [
+        "2026-03-23",
+        "2026-03-23",
+        "2026-03-23"
+      ]
+    },
+    {
+      "from": "coding",
+      "to": "github",
+      "weight": 182,
+      "examples": [
+        "2026-03-29",
+        "2026-03-29",
+        "2026-03-29"
+      ]
+    },
+    {
+      "from": "review",
+      "to": "github",
+      "weight": 173,
+      "examples": [
+        "2026-03-21",
+        "2026-03-21",
+        "2026-04-02"
+      ]
+    },
+    {
+      "from": "review",
+      "to": "coding",
+      "weight": 167,
+      "examples": [
+        "2026-03-23",
+        "2026-03-23",
+        "2026-03-25"
+      ]
+    },
+    {
+      "from": "discord",
+      "to": "memory",
+      "weight": 160,
+      "examples": [
+        "2026-03-25",
+        "2026-03-25",
+        "2026-03-25"
+      ]
+    },
+    {
+      "from": "memory",
+      "to": "discord",
+      "weight": 159,
+      "examples": [
+        "2026-03-25",
+        "2026-03-25",
+        "2026-03-25"
+      ]
+    },
+    {
+      "from": "review",
+      "to": "error",
+      "weight": 158,
+      "examples": [
+        "2026-03-25",
+        "2026-04-02",
+        "2026-04-02"
+      ]
+    },
+    {
+      "from": "github",
+      "to": "coding",
+      "weight": 145,
+      "examples": [
+        "2026-03-23",
+        "2026-03-23",
+        "2026-03-28"
+      ]
+    },
+    {
+      "from": "project",
+      "to": "error",
+      "weight": 142,
+      "examples": [
+        "2026-03-19",
+        "2026-03-19",
+        "2026-03-19"
+      ]
+    },
+    {
+      "from": "github",
+      "to": "project",
+      "weight": 142,
+      "examples": [
+        "2026-04-16",
+        "2026-04-16",
+        "2026-04-16"
+      ]
+    },
+    {
+      "from": "project",
+      "to": "coding",
+      "weight": 135,
+      "examples": [
+        "2026-03-23",
+        "2026-03-23",
+        "2026-03-25"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+Print 'Debug test'
+TurnBegin(user_input="Print 'Debug test'")
+StepBegin(n=1)
+ThinkPart(
+    type='think',
+    think='The user wants me to print "Debug test". This is a simple request tha
+t I can fulfill directly by using a shell command to echo the text.',
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_Y5dHgBcgaCb38gTzWu3Z5oDX',
+    function=FunctionBody(
+        name='Shell',
+        arguments='{"command": "echo \'Debug test\'"}'
+    ),
+    extras=None
+)
+StatusUpdate(
+    context_usage=0.03757476806640625,
+    context_tokens=9850,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=1658,
+        output=52,
+        input_cache_read=8192,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-bKHfFlq1Qd90UYs1DCA9XGlo',
+    plan_mode=False,
+    mcp_status=None
+)
+ToolResult(
+    tool_call_id='tool_Y5dHgBcgaCb38gTzWu3Z5oDX',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='Debug test\n',
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+StepBegin(n=2)
+ThinkPart(
+    type='think',
+    think='The command executed successfully and printed "Debug test" as request
+ed. The task is complete.',
+    encrypted=None
+)
+TextPart(type='text', text='Debug test')
+StatusUpdate(
+    context_usage=0.037883758544921875,
+    context_tokens=9931,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=203,
+        output=23,
+        input_cache_read=9728,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-bd5tMeFu3PuyIi80WhVgosQL',
+    plan_mode=False,
+    mcp_status=None
+)
+TurnEnd()

@@ -1,0 +1,22 @@
+[
+  {
+    "timestamp": "2026-02-05T16:38:28.908Z",
+    "task": "幫我寫個 Python 腳本計算 Rapaport 價格",
+    "decision": "kimi",
+    "confidence": 50,
+    "result": "direct_execution"
+  },
+  {
+    "timestamp": "2026-02-05T16:38:33.244Z",
+    "task": "寫個 script 處理 Excel 數據",
+    "decision": "kimi",
+    "confidence": 75,
+    "result": "direct_execution"
+  },
+  {
+    "timestamp": "2026-02-05T16:39:01.416Z",
+    "task": "幫我分析呢份市場報告嘅重點",
+    "decision": "hybrid",
+    "confidence": 95
+  }
+]

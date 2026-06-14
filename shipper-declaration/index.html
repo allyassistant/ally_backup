@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foreign Shipper's Declaration</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body { font-family: Arial; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        .form-container { background: white; padding: 30px; border-radius: 8px; }
+        h1 { text-align: center; font-size: 18px; margin-bottom: 5px; }
+        .subtitle { text-align: center; font-size: 12px; color: #666; margin-bottom: 20px; }
+        
+        .company-select { text-align: center; margin-bottom: 25px; padding: 15px; background: #e8f4ff; border-radius: 8px; border: 2px solid #007bff; }
+        .company-select select { font-size: 16px; padding: 8px 20px; border: 2px solid #007bff; border-radius: 4px; }
+        
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input[type="text"], input[type="date"], input[type="number"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        
+        .declaration { background: #f9f9f9; padding: 15px; border-left: 4px solid #007bff; margin: 20px 0; font-size: 13px; line-height: 2; }
+        .declaration input { background: white; }
+        
+        .items-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .items-table th, .items-table td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        .items-table th { background: #d3d3d3; color: black; }
+        .items-table td input { background: white; border: 1px solid #ccc; width: 100%; padding: 5px; color: #333; }
+        
+        .signature-section { display: flex; gap: 20px; margin-top: 20px; }
+        .signature-section .form-group { flex: 1; }
+        
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+        button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;14px; }
+        .btn-primary font-size:  { background: #007bff; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-green { background: #28a745; color: white; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="company-select">
+            <label style="display:inline;">Company: </label>
+            <select id="companyName" onchange="fillDeclarer()">
+                <option value="">-- Select Company --</option>
+                <option value="DN Group (HK) Ltd.">DN Group (HK) Ltd.</option>
+                <option value="DN Diamonds 2007 Ltd.">DN Diamonds 2007 Ltd.</option>
+            </select>
+        </div>
+        
+        <h1>FOREIGN SHIPPER'S DECLARATION FOR U.S. GOODS RETURNED</h1>
+        <p class="subtitle">19 CFR 10.1 (a)</p>
+        
+        <form id="declarationForm">
+            <div class="form-group">
+                <label>Shipped by:</label>
+                <input type="text" name="shippedBy">
+            </div>
+            
+            <div class="form-group">
+                <label>Consigned to:</label>
+                <input type="text" name="consignedTo">
+            </div>
+            
+            <div class="declaration">
+                <strong>Declaration:</strong><br><br>
+                I, <input type="text" id="declarerName" name="declarerName" style="width:180px;">, declare that to the best of my knowledge and belief, the articles herein specified were exported from the United States, from the port of <input type="text" name="declarationPort" style="width:100px;"> on or about <input type="date" name="declarationDate" placeholder="DD/MM/YYYY" style="width:130px;">, and that they are returned without having been advanced in value or improved in condition by any process of manufacture or other means.
+            </div>
+            
+            <h3>Goods Details</h3>
+            <table class="items-table" id="itemsTable">
+                <thead>
+                    <tr>
+                        <th style="width:18%; border-right:1px solid #666; text-align:center;">Marks</th>
+                        <th style="width:18%; border-right:1px solid #666; text-align:center;">Notes</th>
+                        <th style="width:39%; border-right:1px solid #666; text-align:center;">Description</th>
+                        <th style="width:15%; border-right:1px solid #666; text-align:center;">Value (USD)</th>
+                        <th style="width:10%; text-align:center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsBody">
+                    <tr>
+                        <td><input type="text" name="marks[]" value="NO MARK"></td>
+                        <td><input type="text" name="notes[]"></td>
+                        <td><input type="text" name="description[]" value="POLISHED DIAMONDS"></td>
+                        <td><input type="number" name="value[]" step="0.01"></td>
+                        <td><button type="button" onclick="deleteRow(this)" style="background:#dc3545;color:white;">X</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn-green" onclick="addRow()">+ Add Item</button>
+            
+            <div class="signature-section">
+                <div class="form-group">
+                    <label>Signature:</label>
+                    <input type="text" name="signature">
+                </div>
+                <div class="form-group">
+                    <label>Date:</label>
+                    <input type="date" name="date" placeholder="DD/MM/YYYY">
+                </div>
+            </div>
+            
+            <div class="signature-section">
+                <div class="form-group">
+                    <label>Capacity:</label>
+                    <input type="text" name="capacity" value="Admin">
+                </div>
+                <div class="form-group">
+                    <label>Address:</label>
+                    <input type="text" name="address">
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button type="button" class="btn-primary" onclick="downloadPDF()">Download PDF</button>
+                <button type="button" class="btn-secondary" onclick="saveJSON()">Save Data</button>
+                <button type="button" class="btn-secondary" onclick="loadJSON()">Load Data</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function fillDeclarer() {
+            var company = document.getElementById('companyName').value;
+            document.getElementById('declarerName').value = company;
+            
+            // Auto-fill Consigned to based on company
+            var consignedTo = document.querySelector('input[name="consignedTo"]');
+            if (company === "DN Group (HK) Ltd.") {
+                consignedTo.value = "DN Group (HK) Ltd.";
+            } else if (company === "DN Diamonds 2007 Ltd.") {
+                consignedTo.value = "DN Diamonds 2007 Ltd.";
+            } else {
+                consignedTo.value = "";
+            }
+        }
+        
+        function addRow() {
+            var tbody = document.getElementById('itemsBody');
+            var row = document.createElement('tr');
+            row.innerHTML = '<td><input type="text" name="marks[]" value="NO MARK"></td><td><input type="text" name="notes[]"></td><td><input type="text" name="description[]" value="POLISHED DIAMONDS"></td><td><input type="number" name="value[]" step="0.01"></td><td><button type="button" onclick="deleteRow(this)" style="background:#dc3545;color:white;">X</button></td>';
+            tbody.appendChild(row);
+        }
+        
+        function deleteRow(btn) {
+            if (document.querySelectorAll('#itemsBody tr').length > 1) {
+                btn.closest('tr').remove();
+            }
+        }
+        
+        // Convert date format to DD/MM/YYYY
+        function formatDateDisplay(dateInput) {
+            if (!dateInput.value) return;
+            var date = new Date(dateInput.value);
+            if (isNaN(date.getTime())) return;
+            var day = String(date.getDate()).padStart(2, '0');
+            var month = String(date.getMonth() + 1).padStart(2, '0');
+            var year = date.getFullYear();
+            dateInput.setAttribute('data-display', day + '/' + month + '/' + year);
+        }
+        
+        // Add event listeners to date inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('input[type="date"]').forEach(function(input) {
+                input.addEventListener('change', function() { formatDateDisplay(this); });
+            });
+        });
+        
+        function downloadPDF() {
+            var jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF('p', 'mm', 'a4');  // Portrait, millimeters, A4 size
+            var form = document.getElementById('declarationForm');
+            var formData = new FormData(form);
+            var company = document.getElementById('companyName').value;
+            
+            function formatCurrency(num) {
+                if (!num) return '';
+                var parts = num.toString().split('.');
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                return parts.join('.');
+            }
+            
+            function formatDateForPDF(dateStr) {
+                if (!dateStr) return '';
+                // If already in DD/MM/YYYY format, return as is
+                if (dateStr.match(/^\d{2}\/\d{2}\/\d{4}$/)) return dateStr;
+                // If in YYYY-MM-DD format, convert to DD/MM/YYYY
+                if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                    var parts = dateStr.split('-');
+                    return parts[2] + '/' + parts[1] + '/' + parts[0];
+                }
+                return dateStr;
+            }
+            
+            var y = 15;
+            if (company) {
+                doc.setFontSize(16);
+                doc.text(company, 105, y, { align: 'center' });
+                y += 12;
+            }
+            
+            doc.setFontSize(14);
+            doc.text("FOREIGN SHIPPER'S DECLARATION FOR U.S. GOODS RETURNED", 105, y, { align: 'center' });
+            y += 6;
+            doc.setFontSize(10);
+            doc.text("19 CFR 10.1 (a)", 105, y, { align: 'center' });
+            y += 15;
+            
+            doc.setFontSize(11);
+            doc.text("Shipped by:", 20, y);
+            doc.text(formData.get('shippedBy') || '', 60, y);
+            y += 18;
+            
+            doc.text("Consigned to:", 20, y);
+            doc.text(formData.get('consignedTo') || '', 60, y);
+            y += 18;
+            
+            var declarer = formData.get('declarerName') || '[Name]';
+            var port = formData.get('declarationPort') || '[Port]';
+            var date = formatDateForPDF(formData.get('declarationDate')) || '[Date]';
+            var declText = "I, " + declarer + ", declare that to the best of my knowledge and belief, the articles herein specified were exported from the United States, from the port of " + port + " on or about " + date + ", and that they are returned without having been advanced in value or improved in condition by any process of manufacture or other means.";
+            
+            var lines = doc.splitTextToSize(declText, 170);
+            doc.text(lines, 20, y);
+            y += lines.length * 5 + 10;
+            
+            // Table header
+            doc.setFillColor(211, 211, 211);
+            doc.rect(20, y, 170, 8, 'F');
+            doc.setLineWidth(0.5);
+            doc.rect(20, y, 170, 8, 'S');
+            // Vertical lines in header
+            doc.line(58, y, 58, y + 8);   // After Marks
+            doc.line(98, y, 98, y + 8);   // After Notes
+            doc.line(155, y, 155, y + 8); // After Description
+            doc.setTextColor(0, 0, 0);
+            doc.text("Marks", 39, y + 5.5, { align: 'center' });
+            doc.text("Notes", 78, y + 5.5, { align: 'center' });
+            doc.text("Description", 126, y + 5.5, { align: 'center' });
+            doc.text("Value (USD)", 172, y + 5.5, { align: 'center' });
+            doc.setTextColor(0, 0, 0);
+            var tableStartY = y;
+            var headerBottomY = y + 8;
+            y += 12;
+            
+            // Items
+            var marks = formData.getAll('marks[]');
+            var notes = formData.getAll('notes[]');
+            var desc = formData.getAll('description[]');
+            var vals = formData.getAll('value[]');
+            
+            for (var i = 0; i < marks.length; i++) {
+                if (marks[i] || notes[i] || desc[i] || vals[i]) {
+                    doc.text((marks[i] || '').substring(0, 25), 39, y, { align: 'center' });
+                    doc.text((notes[i] || '').substring(0, 25), 78, y, { align: 'center' });
+                    doc.text((desc[i] || '').substring(0, 30), 126, y, { align: 'center' });
+                    doc.text(formatCurrency(vals[i]) || '', 172, y, { align: 'center' });
+                    y += 7;
+                }
+            }
+            
+            // Table outer border and vertical lines
+            doc.setLineWidth(0.5);
+            doc.rect(20, tableStartY, 170, y - tableStartY);
+            // Vertical lines to separate columns
+            doc.line(58, headerBottomY, 58, y);  // After Marks
+            doc.line(98, headerBottomY, 98, y);  // After Notes
+            doc.line(155, headerBottomY, 155, y); // After Description
+            
+            y += 20;
+            doc.text("Signature:", 20, y);
+            
+            // Add signature image if DN Diamonds 2007 Ltd. is selected
+            if (company === "DN Diamonds 2007 Ltd.") {
+                try {
+                    doc.addImage('dn_diamonds_signature.png', 'PNG', 20, y + 2, 40, 15);
+                    y += 18;
+                } catch(e) {
+                    doc.text(formData.get('signature') || '', 60, y);
+                }
+            } else {
+                doc.text(formData.get('signature') || '', 60, y);
+            }
+            
+            doc.text("Date:", 120, y);
+            doc.text(formatDateForPDF(formData.get('date')) || '', 140, y);
+            y += 18;
+            
+            doc.text("Capacity:", 20, y);
+            doc.text(formData.get('capacity') || '', 60, y);
+            y += 18;
+            
+            doc.text("Address:", 20, y);
+            doc.text(formData.get('address') || '', 60, y);
+            
+            doc.save('shipper_declaration.pdf');
+        }
+        
+        function saveJSON() {
+            var form = document.getElementById('declarationForm');
+            var formData = new FormData(form);
+            var data = {};
+            
+            for (var pair of formData.entries()) {
+                if (data[pair[0]]) {
+                    if (Array.isArray(data[pair[0]])) {
+                        data[pair[0]].push(pair[1]);
+                    } else {
+                        data[pair[0]] = [data[pair[0]], pair[1]];
+                    }
+                } else {
+                    data[pair[0]] = pair[1];
+                }
+            }
+            data.companyName = document.getElementById('companyName').value;
+            
+            var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'declaration.json';
+            a.click();
+        }
+        
+        function loadJSON() {
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var data = JSON.parse(e.target.result);
+                    var form = document.getElementById('declarationForm');
+                    
+                    if (data.companyName) {
+                        document.getElementById('companyName').value = data.companyName;
+                    }
+                    
+                    for (var key in data) {
+                        if (key === 'companyName') continue;
+                        var inputs = form.querySelectorAll('[name="' + key + '"]');
+                        if (inputs.length > 1) {
+                            inputs.forEach(function(inp, i) {
+                                if (Array.isArray(data[key])) {
+                                    inp.value = data[key][i] || '';
+                                }
+                            });
+                        } else if (inputs.length === 1) {
+                            inputs[0].value = data[key];
+                        }
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1918 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-04-12T07:37:40.706Z",
+  "title": "📊 Code Quality Report - 2026-04-12",
+  "summary": {
+    "total": 118,
+    "critical": 0,
+    "high": 46,
+    "medium": 0,
+    "low": 72,
+    "autoFixable": 0,
+    "bySeverity": {},
+    "byCategory": {}
+  },
+  "issues": [
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/auto_fix.js",
+      "line": 223,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "46aae695ed8caf71"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/auto_fix.js",
+      "line": 226,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "1a8c8b1985465ef4"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/auto_fix.js",
+      "line": 301,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "049a8667e55f8738"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/auto_fix.js",
+      "line": 415,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 86400000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "93df462df139016e"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/auto_issue_creator.js",
+      "line": 451,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1800. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "35b01ffe4d93c3c1"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/code_quality_generator.js",
+      "line": 170,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "2fc77508d3dd4f24"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/code_quality_manager.js",
+      "line": 960,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "d6132029d17cc303"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/code_quality_manager.js",
+      "line": 1025,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 300000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "df67476ab769efbb"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/context_aware_cleaning.py",
+      "line": 97,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "786a6a85283c9a3e"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/daily_summary_bot.js",
+      "line": 165,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "4d34b60084fc1291"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/daily_summary_bot.js",
+      "line": 191,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1500. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "d8e11635e76f7860"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/daily_summary_bot.js",
+      "line": 197,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 11434. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "925cc03b2c220567"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/gia_certificate_ocr.js",
+      "line": 85,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1234567890. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "4c516dddcc6b6de9"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/gia_certificate_ocr.js",
+      "line": 95,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1234567890. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "1cd05b13c47e5911"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/health_monitor.js",
+      "line": 92,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "bc5be471118c196e"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/health_monitor.js",
+      "line": 93,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "5a57a7c707f9865e"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/health_monitor.js",
+      "line": 96,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "ddc8dcd7ef200ee0"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/health_monitor.js",
+      "line": 98,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 16384. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "f3c8a1ed42d69b20"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/health_monitor.js",
+      "line": 230,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 3600. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "b0b74f4e792591c1"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 122,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 3167. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "d8e3c54fdd93c67a"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 123,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 9063. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "7ba2da6e23a230a4"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 124,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 4834. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "47e02745c468dac9"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 125,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 2491. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "4601c581f0f36d88"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 126,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 16054. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "16d33af7d73d17dc"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 127,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1592. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "60341c32bbf6e610"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 128,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1291. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "c6a7bd013b991a64"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 129,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 6768. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "b645bdae18fcae28"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 130,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 4327. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "446368e51c055a4c"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 131,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1934. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "2a64d428d88e03b3"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 132,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 2670. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "15b608d965e173f9"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 133,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 20639. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "d59c928bb4da6d28"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 134,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 24748. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "71e5d7a1337e001b"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 135,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 3725. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "da47317278863cf7"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher.js",
+      "line": 136,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 32130. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "9bcb3b4987d8238c"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 104,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 3167. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "a553c4cc539dc3b3"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 105,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 9063. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "532f80ff3abfaf06"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 106,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 4834. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "5e60ee489cc80dcd"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 107,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 2491. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "ba8d74a6a5b6da04"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/idex_fetcher_bot.js",
+      "line": 108,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 16054. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "6a6fea01b16ca575"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/kimi_cli_runner.js",
+      "line": 42,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 2700. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "83ffae4184099978"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/l0_l1_verify.js",
+      "line": 250,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 4000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "0149d9c7dc7fe4a0",
+      "duplicates": [
+        {
+          "status": "open",
+          "createdAt": "2026-04-12T07:37:40.705Z",
+          "source": "local",
+          "severity": "low",
+          "category": "style",
+          "file": "scripts/l0_l1_verify.js",
+          "line": 250,
+          "rule": "magic_numbers",
+          "title": "Hardcoded magic number: 8000. Should be named constant.",
+          "autoFixable": false,
+          "metadata": {
+            "confidence": null
+          },
+          "id": "c739c9b762b4eb92"
+        }
+      ]
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/lib/auditOrchestrator.js",
+      "line": 453,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 180000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "5f98d39ca83f3964"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/lib/auto_repair.js",
+      "line": 922,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1234567890. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "75defabf72ec6c96"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/lib/batch_verifier.js",
+      "line": 552,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 180000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "f3fb6ab3c02660f6"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/lib/batch_verifier.js",
+      "line": 772,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 180000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "2182d8ba83dd3434"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/lib/helpers/skip-list.js",
+      "line": 28,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "aa121a83fd007879",
+      "duplicates": [
+        {
+          "status": "open",
+          "createdAt": "2026-04-12T07:37:40.705Z",
+          "source": "local",
+          "severity": "low",
+          "category": "style",
+          "file": "scripts/lib/helpers/skip-list.js",
+          "line": 28,
+          "rule": "magic_numbers",
+          "title": "Hardcoded magic number: 4096. Should be named constant.",
+          "autoFixable": false,
+          "metadata": {
+            "confidence": null
+          },
+          "id": "326d2738b2a4fc9d"
+        },
+        {
+          "status": "open",
+          "createdAt": "2026-04-12T07:37:40.705Z",
+          "source": "local",
+          "severity": "low",
+          "category": "style",
+          "file": "scripts/lib/helpers/skip-list.js",
+          "line": 28,
+          "rule": "magic_numbers",
+          "title": "Hardcoded magic number: 8192. Should be named constant.",
+          "autoFixable": false,
+          "metadata": {
+            "confidence": null
+          },
+          "id": "c5731b827bcafa60"
+        }
+      ]
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/lib/helpers/skip-list.js",
+      "line": 31,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "217373a49e5d9fd8"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/market_monitor.js",
+      "line": 18,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 3600000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "48ab200a3cbecc6f"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/memory_generator.js",
+      "line": 47,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 4000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "f18db299fa261e64"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/memory_generator.js",
+      "line": 63,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 8000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "6b5d89d0928f155a"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/memory_generator.js",
+      "line": 65,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "e270174640744806"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/pattern_analysis_daily.js",
+      "line": 50,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "07e6dd15b39aba76"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/rapnet_sender.js",
+      "line": 69,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1900. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "c177dca3b29aafd3"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/rapnet_weekly_workflow.js",
+      "line": 27,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "36207999b61395f0"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/report_generator.js",
+      "line": 426,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "710a77b5ff3fdc2f"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/report_generator.js",
+      "line": 587,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 2500000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "5ae2142618c1817e"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/report_generator.js",
+      "line": 594,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 16667. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "a020c0c147090b6b"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/report_generator.js",
+      "line": 627,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 25000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "22919c0b5bd642d4"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/report_generator.js",
+      "line": 628,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 18000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "22323ec5f0f5443b"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/report_generator.js",
+      "line": 629,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 32000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "061d058a194b7cff"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/report_generator.js",
+      "line": 630,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 28000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "ffb3b4c371896042"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/report_generator.js",
+      "line": 666,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 25000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "0eaa409510d2bf08"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/system_check_bot.js",
+      "line": 59,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 1024. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "f26fe92a2626ff58"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/system_check_bot.js",
+      "line": 66,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 6000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "44f2dca4849b864f",
+      "duplicates": [
+        {
+          "status": "open",
+          "createdAt": "2026-04-12T07:37:40.705Z",
+          "source": "local",
+          "severity": "low",
+          "category": "style",
+          "file": "scripts/system_check_bot.js",
+          "line": 66,
+          "rule": "magic_numbers",
+          "title": "Hardcoded magic number: 5900. Should be named constant.",
+          "autoFixable": false,
+          "metadata": {
+            "confidence": null
+          },
+          "id": "f03971c27bf38537"
+        }
+      ]
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/system_check_bot.js",
+      "line": 67,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 5900. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "81abf6767a45d5bf"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/system_check_bot.js",
+      "line": 710,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "0fefafdf39b20006"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/token_archive.js",
+      "line": 178,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 5000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "a2304b74ec3daaef"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/weekly_parallel.js",
+      "line": 37,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "02df337c403e21f0"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/weekly_parallel.js",
+      "line": 82,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 120000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "94bb1798dd93ef24"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/weekly_parallel.js",
+      "line": 83,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 60000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "30d9a15bde8816c8"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/weekly_parallel.js",
+      "line": 84,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 300000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "3014105b4ff92d01"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "low",
+      "category": "style",
+      "file": "scripts/weekly_parallel.js",
+      "line": 89,
+      "rule": "magic_numbers",
+      "title": "Hardcoded magic number: 300000. Should be named constant.",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "1e14a02ee0ef5ced"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/adaptive_timeout.js",
+      "line": 122,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "3c69672a4143b8b9"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/analyze_simp_chinese_verification.js",
+      "line": 18,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "2451ecbe07e76e42"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/analyze_simp_chinese_verification.js",
+      "line": 32,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "86b26b82465baef2"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/analyze_simp_chinese_verification.js",
+      "line": 47,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "f09c68f108479f59"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/autoops/daily_stock_monitor.js",
+      "line": 31,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "1e8099a331dde1d1"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/code_quality_manager.js",
+      "line": 893,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "b3a3afc0ae4fbbe4"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/code_quality_manager.js",
+      "line": 948,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "cbb1ae6afdff31ab"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/code_quality_manager.js",
+      "line": 1007,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "c608e1af7279e6cc"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/code_quality_manager.js",
+      "line": 1105,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "d3cdedfd6124f13c"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/error_wiki_sync.js",
+      "line": 32,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "5ba61e90528eff25"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/error_wiki_sync.js",
+      "line": 36,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "fed03f3b781e230a"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/error_wiki_sync.js",
+      "line": 242,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "76821a9fc8c4367e"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/error_wiki_sync.js",
+      "line": 254,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "f4c654dc845cbc76"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/error_wiki_sync.js",
+      "line": 267,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "eed385a6cf15a4fc"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/issue_daily_report.js",
+      "line": 206,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "539ec1b73888777f"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/lib/auto_repair.js",
+      "line": 324,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "a5c33f73761ea0a6"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/lib/auto_repair.js",
+      "line": 436,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "28ee26a97697a59e"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/lib/auto_repair.js",
+      "line": 564,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "cc730bc80cc8b853"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/lib/fileDiscovery.js",
+      "line": 99,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "fa66b7bf036d5222"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/lib/fileDiscovery.js",
+      "line": 270,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "2184ee643f644aa5"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/lib/rules/high-risk.js",
+      "line": 425,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "49ba16b5506c8361"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/log_to_daily_memory.js",
+      "line": 197,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "6e1ee7aa53f16c1e"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/memory_generator.js",
+      "line": 520,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "6adfca3b20785654"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/stock_merge_pro.js",
+      "line": 466,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "1df6e7fa09f93948"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/stock_updater.js",
+      "line": 353,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "b4f3993ac27c24ac"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/system_check_bot.js",
+      "line": 643,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "d405637f07a50879"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/system_check_bot.js",
+      "line": 644,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "803f0f2e4e781008"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/system_check_bot.js",
+      "line": 675,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "33ba474432e60f44"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/system_check_bot.js",
+      "line": 676,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "7f419a01c3c37d93"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/system_check_bot.js",
+      "line": 721,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "5b68f310801174cd"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/tesseract_gia_ocr.js",
+      "line": 258,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "6e72f120ddc98763"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/verify_backup.js",
+      "line": 137,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "6f245b9ab16fc424"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/weekly_correction_loop.js",
+      "line": 857,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "6a349ada326994c5"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/wiki_issue_sync.js",
+      "line": 125,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "53b44db81232f909"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/wiki_issue_sync.js",
+      "line": 129,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "84d6eae0d52bcc2e"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/wiki_issue_sync.js",
+      "line": 139,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "a2898a8d7ac81851"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/wiki_issue_sync.js",
+      "line": 147,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "e7d777250ca390bc"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/wiki_issue_sync.js",
+      "line": 148,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "51018683a01d9834"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/wiki_issue_sync.js",
+      "line": 155,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "cacbc406d9dde28c"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/wiki_issue_sync.js",
+      "line": 168,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "b89e09a1e9a7986d"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/wiki_issue_sync.js",
+      "line": 204,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "eea529c737f42e88"
+    },
+    {
+      "status": "open",
+      "createdAt": "2026-04-12T07:37:40.705Z",
+      "source": "local",
+      "severity": "high",
+      "category": "reliability",
+      "file": "scripts/wiki_issue_sync.js",
+      "line": 224,
+      "rule": "fsSync_missing_trycatch",
+      "title": "fs.*Sync function found without try-catch protection",
+      "autoFixable": false,
+      "metadata": {
+        "confidence": null
+      },
+      "id": "3d2d6e6b5f72d5a1"
+    }
+  ],
+  "metadata": {
+    "date": "2026-04-12",
+    "reportVersion": "1.0.0",
+    "moduleVersion": "1.0.0",
+    "totalFiles": 0,
+    "filesScanned": 0
+  }
+}

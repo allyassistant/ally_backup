@@ -1,0 +1,69 @@
+{
+  "version": "1.0",
+  "description": "Auxiliary task routing — per-turn model override based on task type",
+  "categories": [
+    {
+      "task": "code_review",
+      "desc": "Code review, debugging, refactoring, auditing",
+      "match": ["review this code", "code review", "debug", "find bug", "refactor this", "audit this", "lint this", "fix this code", "code smell", "security issue", "vulnerability", "檢查 code", "搵 bug", "fix bug"],
+      "model": "minimax-portal/MiniMax-M2.7",
+      "provider": "minimax-portal"
+    },
+    {
+      "task": "summarize",
+      "desc": "Summarization, condensation, key points extraction",
+      "match": ["summarize", "summary", "tl;dr", "key points", "main ideas", "conclusion", "recap", "brief", "overview", "digest", "要點", "總結", "撮要", "濃縮"],
+      "model": "deepseek-v4-flash",
+      "provider": "deepseek"
+    },
+    {
+      "task": "deep_research",
+      "desc": "Deep research, investigation, comparative analysis",
+      "match": ["research", "deep analysis", "investigate", "study this", "compare and contrast", "comprehensive", "thorough", "in-depth", "literature", "findings", "研究", "分析", "深入", "對比"],
+      "model": "minimax-portal/MiniMax-M2.7",
+      "provider": "minimax-portal"
+    },
+    {
+      "task": "architecture",
+      "desc": "System design, architecture planning, technical design",
+      "match": ["architecture", "system design", "technical design", "design", "design pattern", "architecture decision", "tech stack", "component diagram", "data flow", "api design", "架構", "設計系統", "系統設計"],
+      "model": "minimax-portal/MiniMax-M2.7",
+      "provider": "minimax-portal"
+    },
+    {
+      "task": "creative",
+      "desc": "Creative writing, content generation, drafting",
+      "match": ["write a", "create a", "draft", "compose", "brainstorm", "generate content", "write an", "essay", "story", "blog post", "創作", "寫文", "作故"],
+      "model": "minimax-portal/MiniMax-M2.7",
+      "provider": "minimax-portal"
+    },
+    {
+      "task": "web_extract",
+      "desc": "Web scraping, URL content extraction, data fetching",
+      "match": ["fetch", "scrape", "extract", "get url", "http", "curl", "web page", "download", "crawl", "提取", "抓網頁", "拎網頁"],
+      "model": "deepseek-v4-flash",
+      "provider": "deepseek"
+    },
+    {
+      "task": "data_process",
+      "desc": "Data transformation, parsing, formatting, conversion",
+      "match": ["parse", "convert", "transform", "format this", "process this", "merge", "split", "extract data", "normalize", "map", "轉換", "處理數據", "合併", "分割"],
+      "model": "deepseek-v4-flash",
+      "provider": "deepseek"
+    },
+    {
+      "task": "translation",
+      "desc": "Language translation, localization",
+      "match": ["translate", "translation", "in english", "in chinese", "in cantonese", "in mandarin", "粵語", "廣東話", "中文", "英文", "翻釋", "翻譯", "轉做粵語", "轉做英文"],
+      "model": "deepseek-v4-flash",
+      "provider": "deepseek"
+    },
+    {
+      "task": "simple_reply",
+      "desc": "Simple direct answers, status checks, quick lookups",
+      "match": ["hello", "hi ", "what is", "who is", "list", "show me", "check", "status", "how to", "where is", "tell me", "define", "meaning of", "係咩", "咩係", "點樣", "有冇", "check下"],
+      "model": "deepseek-v4-flash",
+      "provider": "deepseek"
+    }
+  ]
+}

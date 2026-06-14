@@ -1,0 +1,404 @@
+{
+  "merged": [
+    {
+      "file": "scripts/test_1.js",
+      "line": 11,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_2.js",
+      "line": 12,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_3.js",
+      "line": 13,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_4.js",
+      "line": 14,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_5.js",
+      "line": 15,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_6.js",
+      "line": 16,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_7.js",
+      "line": 17,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_8.js",
+      "line": 18,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_9.js",
+      "line": 19,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_10.js",
+      "line": 20,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_11.js",
+      "line": 21,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_12.js",
+      "line": 22,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_13.js",
+      "line": 23,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_14.js",
+      "line": 24,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_15.js",
+      "line": 25,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_16.js",
+      "line": 26,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_17.js",
+      "line": 27,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_18.js",
+      "line": 28,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_19.js",
+      "line": 29,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_20.js",
+      "line": 30,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_21.js",
+      "line": 31,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_22.js",
+      "line": 32,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_23.js",
+      "line": 33,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_24.js",
+      "line": 34,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_25.js",
+      "line": 35,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_26.js",
+      "line": 36,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_27.js",
+      "line": 37,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_28.js",
+      "line": 38,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_29.js",
+      "line": 39,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_30.js",
+      "line": 40,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_31.js",
+      "line": 41,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_32.js",
+      "line": 42,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_33.js",
+      "line": 43,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_34.js",
+      "line": 44,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_35.js",
+      "line": 45,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_36.js",
+      "line": 46,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_37.js",
+      "line": 47,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_38.js",
+      "line": 48,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_39.js",
+      "line": 49,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_40.js",
+      "line": 50,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_41.js",
+      "line": 51,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_42.js",
+      "line": 52,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_43.js",
+      "line": 53,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_44.js",
+      "line": 54,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_45.js",
+      "line": 55,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_46.js",
+      "line": 56,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_47.js",
+      "line": 57,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_48.js",
+      "line": 58,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_49.js",
+      "line": 59,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    },
+    {
+      "file": "scripts/test_50.js",
+      "line": 60,
+      "rule": "execSync_missing_trycatch",
+      "message": "Potential execSync call without try-catch",
+      "severity": "warning",
+      "source": "scanner"
+    }
+  ]
+}

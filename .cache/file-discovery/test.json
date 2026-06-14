@@ -1,0 +1,126 @@
+{
+  "files": {
+    "lib/analyzers/file-analyzer.js": {
+      "mtime": 1775316102096,
+      "hash": "51819b0bd8605867",
+      "size": 5906,
+      "scannedAt": "2026-04-05T05:20:48.430Z"
+    },
+    "lib/analyzers/index.js": {
+      "mtime": 1775241616378,
+      "hash": "61585f638cc685bd",
+      "size": 375,
+      "scannedAt": "2026-04-05T05:20:48.430Z"
+    },
+    "lib/config.js": {
+      "mtime": 1774972725843,
+      "hash": "9cb28416aaff0f44",
+      "size": 2105,
+      "scannedAt": "2026-04-05T05:20:48.430Z"
+    },
+    "lib/fileDiscovery.js": {
+      "mtime": 1775366349520,
+      "hash": "f0203250dde098de",
+      "size": 8845,
+      "scannedAt": "2026-04-05T05:20:48.430Z"
+    },
+    "lib/helpers/context_helpers.js": {
+      "mtime": 1775364985221,
+      "hash": "55a2b46888df6e97",
+      "size": 9441,
+      "scannedAt": "2026-04-05T05:20:48.430Z"
+    },
+    "lib/helpers/file-cache.js": {
+      "mtime": 1775243519010,
+      "hash": "32b8c9ebd111fd39",
+      "size": 1168,
+      "scannedAt": "2026-04-05T05:20:48.430Z"
+    },
+    "lib/helpers/index.js": {
+      "mtime": 1775364998617,
+      "hash": "d51d5e0eb0784675",
+      "size": 1762,
+      "scannedAt": "2026-04-05T05:20:48.430Z"
+    },
+    "lib/helpers/rule-helpers.js": {
+      "mtime": 1775241669979,
+      "hash": "62f7d2ad096e2688",
+      "size": 1045,
+      "scannedAt": "2026-04-05T05:20:48.430Z"
+    },
+    "lib/helpers/skip-list.js": {
+      "mtime": 1775245882225,
+      "hash": "2461c300ba924838",
+      "size": 6686,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/helpers/try-catch-helpers-ast.js": {
+      "mtime": 1775316102083,
+      "hash": "d02b6f19bf344fb4",
+      "size": 15629,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/helpers/try-catch-helpers.js": {
+      "mtime": 1775316102084,
+      "hash": "2c25428a4dd9ce2e",
+      "size": 9512,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/helpers/whitelist_patterns.js": {
+      "mtime": 1775364984793,
+      "hash": "66e63a008ba6349f",
+      "size": 9166,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/index.js": {
+      "mtime": 1775366424797,
+      "hash": "bfd27ccbdaf61a6a",
+      "size": 560,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/issueAggregator.js": {
+      "mtime": 1775366421511,
+      "hash": "15a2f343027b358d",
+      "size": 13561,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/rules/high-risk.js": {
+      "mtime": 1775365537158,
+      "hash": "6e4e467208039dcf",
+      "size": 45293,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/rules/index.js": {
+      "mtime": 1775241480094,
+      "hash": "b713b5eb93a3b802",
+      "size": 564,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/rules/low-risk.js": {
+      "mtime": 1775245904003,
+      "hash": "175f48d8401d4d0a",
+      "size": 8091,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/rules/system-audit.js": {
+      "mtime": 1775316102082,
+      "hash": "ed8cbe2def7c9d1d",
+      "size": 26918,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/state.js": {
+      "mtime": 1774958186448,
+      "hash": "5f841d03fe9f1951",
+      "size": 1223,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    },
+    "lib/time.js": {
+      "mtime": 1774955072369,
+      "hash": "35ffe7f5583c5ab3",
+      "size": 644,
+      "scannedAt": "2026-04-05T05:20:48.431Z"
+    }
+  },
+  "lastScan": "2026-04-05T05:20:48.434Z",
+  "version": "1.0"
+}

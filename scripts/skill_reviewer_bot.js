@@ -29,6 +29,16 @@ const { WS, OPENCLAW_CONFIG, SKILLS_ACTIVE } = require('./lib/config');
 // ── Config ──
 const MODEL = 'minimax-portal/MiniMax-M2.7';
 const MODEL_FALLBACKS = ['deepseek/deepseek-v4-flash'];  // M2.5 removed: has max_tokens constraint incompatibility with long prompts
+// OPENCLAW_CLI path resolution (v3 pattern): known paths first, which fallback, raw name last.
+// Cron isolated sessions have truncated PATH — 'which' alone fails there.
+const OPENCLAW_CLI = (function() {
+  const knownPaths = ['/opt/homebrew/bin/openclaw', '/usr/local/bin/openclaw'];
+  for (const p of knownPaths) {
+    try { fs.accessSync(p, fs.constants.X_OK); return p; } catch (_) {}
+  }
+  try { return require('child_process').execFileSync('which', ['openclaw'], { encoding: 'utf8', timeout: 5000 }).trim(); }
+  catch (_) { return 'openclaw'; }
+})();
 const TIMEOUT_MS = 300000;
 const REVIEWER_SCRIPT = path.join(WS, 'scripts', 'skill_reviewer.js');
 const CLEANUP_SCRIPT = path.join(WS, 'scripts', 'skill_reviewer_cleanup.js');
@@ -36,6 +46,30 @@ const QUEUE_FILE = path.join(WS, '.skill_review_queue.jsonl');
 const DISCORD_CHANNEL = '1473376125584670872';
 const LOCK_DIR = path.join(WS, '.skill_reviewer_bot.lockdir');
 const SKILL_CREATED_LOG = path.join(WS, '.skill_created.jsonl');
+const LLM_JUDGE_SHADOW_LOG = path.join(WS, '.llm_judge_shadow.jsonl');
+
+// ── S1 mismatch escalation (Phase 1) ──
+// Event log: every mark-mismatch invocation, with the source event,
+// destination, and actions taken (or planned, for --dry-run).
+const S1_MISMATCH_HISTORY_LOG = path.join(WS, '.s1_mismatch_history.jsonl');
+// Alert log: written only on a successful (non-dry-run) quarantine,
+// so downstream consumers (Discord / dashboards) can pick them up.
+const S1_ALERTS_LOG = path.join(WS, '.s1_alerts.jsonl');
+
+// ── Week 1 Safety Nets (Issue #154) ──
+// Make auto-symlink behavior EXPLICIT + guard-railed.
+// Previously, validation-passed skills were silently symlinked into skills/.
+// Now: pause + threshold + env override give Josh a kill switch.
+const CONFIG = {
+  // SKILL_REVIEWER_AUTO_APPLY=false → skip symlink, keep as draft in skills-learned/
+  AUTO_APPLY: process.env.SKILL_REVIEWER_AUTO_APPLY === 'false' ? false : true,
+  // 24h junk rate above this → skill_junk_pause.js writes .skill_reviewer_pause.json
+  AUTO_PAUSE_THRESHOLD: 0.15,       // 15% (matches skill_junk_tracker target band)
+  AUTO_PAUSE_DURATION_MS: 86400000, // 24h
+  DAILY_REPORT_TIME: '23:55 HKT',   // cron time, soft hint (not enforced here)
+  PAUSE_FILE: path.join(WS, '.skill_reviewer_pause.json'),
+  JUNK_RATE_FILE: path.join(WS, '.skill_junk_rate.jsonl'),
+};
 
 // ── Helpers ──
 
@@ -58,6 +92,21 @@ function recordSkillCreated(event) {
     fs.appendFileSync(SKILL_CREATED_LOG, JSON.stringify(event) + '\n', 'utf8');
   } catch (e) {
     err('skill_created event write failed: ' + e.message);
+  }
+}
+
+/**
+ * Phase 2: Record an LLM judge shadow event to .llm_judge_shadow.jsonl.
+ * Append-only, used by the calibration report (7-day analysis).
+ * Silent on failure — shadow logging must never block the pipeline.
+ */
+function recordLlmJudgeShadow(event) {
+  try {
+    fs.appendFileSync(LLM_JUDGE_SHADOW_LOG, JSON.stringify(event) + '\n', 'utf8');
+    return true;
+  } catch (e) {
+    err('llm_judge_shadow write failed: ' + e.message);
+    return false;
   }
 }
 
@@ -137,7 +186,7 @@ function readQueueCount() {
 // ── Prompt building ──
 
 function buildReviewPrompt() {
-  var basePrompt = execSync('node "' + REVIEWER_SCRIPT + '" --batch', {
+  var basePrompt = execFileSync('node', [REVIEWER_SCRIPT, '--batch'], {
     timeout: 30000,
     maxBuffer: 10 * 1024 * 1024,
     encoding: 'utf8',
@@ -153,6 +202,18 @@ function buildReviewPrompt() {
     '## \u26a0\ufe0f BATCH MODE \u2014 TOOLS NOT AVAILABLE\n\n' +
     'IMPORTANT: You are running in batch mode. You do NOT have write/edit/message tools.\n' +
     'Output skill file content directly in your response, not tool calls.\n\n' +
+    '### \u26a0\ufe0f MANDATORY: Pitfalls Section\n\n' +
+    'Every skill file MUST include a `## Pitfalls` section. Skills missing this section\n' +
+    'will FAIL post-write validation (`validate_skill_file.js`) and be auto-quarantined\n' +
+    'to `skills-learned/_archive/failed-validations/`. Root-cause stats (post-QW fix):\n' +
+    '7 of 8 skill failures (87.5%) were caused by missing `## Pitfalls`. This is the\n' +
+    '#1 cause of junk output \u2014 do not skip it.\n\n' +
+    'Requirements for the `## Pitfalls` section:\n' +
+    '- At least 3 bullet points (validator enforces `PITFALLS_MIN = 3`).\n' +
+    '- Each bullet must describe a CONCRETE failure mode you have observed or can\n' +
+    '  reasonably anticipate (not generic filler like "be careful" or "test things").\n' +
+    '- Use the patterns: `- \u26a0\ufe0f <failure mode> \u2014 <consequence>` or plain `- <bullet>`.\n' +
+    '- Place the section AFTER `## Workflow` and before any closing fence.\n\n' +
     '### How to output skill files\n\n' +
     'For each skill you create or update, output a fenced code block\n' +
     'with the RELATIVE file path as the language tag.\n\n' +
@@ -171,8 +232,13 @@ function buildReviewPrompt() {
     '  1. Step one\n' +
     '  2. Step two\n\n' +
     '  ## Pitfalls\n' +
-    '  - Watch out for X\n' +
+    '  - \u26a0\ufe0f <concrete failure mode you observed or can anticipate> \u2014 <consequence>\n' +
+    '  - \u26a0\ufe0f <another concrete failure mode> \u2014 <consequence>\n' +
+    '  - \u26a0\ufe0f <a third concrete failure mode> \u2014 <consequence>\n' +
     '  ```\n\n' +
+    'NOTE: The `## Pitfalls` block in the example above is NOT optional. It is a hard\n' +
+    'requirement \u2014 the post-write validator (`validate_skill_file.js`, line ~131) checks\n' +
+    '`PITFALLS_MIN = 3` and rejects any skill with fewer pitfalls or a missing section.\n\n' +
     '### Final JSON summary (REQUIRED)\n\n' +
     'After ALL file blocks, output a summary JSON block as the LAST thing:\n\n' +
     '```json\n' +
@@ -191,6 +257,18 @@ function buildReviewPrompt() {
     '- DO NOT mention tools (write/edit/message)\n' +
     '- Output each file as ```skills-learned/... fenced block\n' +
     '- End with JSON summary, NOTHING after it\n\n' +
+    '### \ud83c\udfaf Writing Quality\n\n' +
+    'When generating skill content, follow these quality guidelines:\n\n' +
+    '1. **Explain the why, not just the what** \u2014 Workflow steps that say "run X" should\n' +
+    '   say "run X because Y". This is what makes skills transferable to novel contexts.\n' +
+    '2. **Progressive disclosure** \u2014 Lead with one-line description. Workflow in middle.\n' +
+    '   Pitfalls / edge cases last. Don\'t front-load everything into Workflow.\n' +
+    '3. **Lean prompts, concrete examples** \u2014 "Use terse output" beats "be concise in\n' +
+    '   your responses". Examples > abstractions.\n' +
+    '4. **Avoid ALL CAPS, exclamation marks, filler** \u2014 This is a reference doc, not a\n' +
+    '   tutorial. Professional tone.\n' +
+    '5. **Self-contained** \u2014 A skill should work even if the surrounding conversation is\n' +
+    '   gone. Don\'t reference "as discussed above" or "in the context above".\n\n' +
     'Continue review.\n';
 
   return basePrompt + instructions;
@@ -379,7 +457,11 @@ function writeSkillFiles(blocks) {
           var qDirName = 'quarantine-' + Date.now() + '-' + path.basename(dir);
           var qDir = path.join(WS, 'skills-learned/_archive', qDirName);
           if (!fs.existsSync(qDir)) {
-            fs.mkdirSync(qDir, { recursive: true });
+            try {
+              fs.mkdirSync(qDir, { recursive: true });
+            } catch (e) {
+              console.error(`Directory creation failed: ${e.message}`);
+            }
           }
           safeWriteFileSync(path.join(qDir, 'SKILL.md'), block.content + '\n');
           recordSkillCreated({v:1, ts:new Date().toISOString(), name:path.basename(dir), file:block.filePath, bytes:block.content.length, validationPassed:false, symlinked:false, reason:'pre-write validator fail (QW-3): ' + preResult.errors.join('; ')});
@@ -394,7 +476,11 @@ function writeSkillFiles(blocks) {
       // ── BUG-04 fix (legacy, now superseded by QW-3 above) ──
       // (Old size-only stub check removed — QW-3 uses validator's composite check)
       if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
+        try {
+          fs.mkdirSync(dir, { recursive: true });
+        } catch (e) {
+          console.error(`Directory creation failed: ${e.message}`);
+        }
         log('Created directory: ' + dir.replace(WS, ''));
       }
       // ── BUG-06 fix: atomic write via safeWriteFileSync ──
@@ -411,6 +497,11 @@ function writeSkillFiles(blocks) {
       // <available_skills> system prompt).
       if (path.basename(absPath) === 'SKILL.md' && block.filePath.indexOf('skills-learned/') === 0) {
         var validationPassed = true;
+        // Hoist symlinkedActual so it is visible to the unified telemetry
+        // block below regardless of validationPassed branch. Default true
+        // (matches the historical assumption); flipped to false by the
+        // pause / AUTO_APPLY safety nets above.
+        var symlinkedActual = true;
         try {
           var validatorOut = require('child_process').execFileSync(
             'node',
@@ -429,25 +520,67 @@ function writeSkillFiles(blocks) {
           }
         }
         if (validationPassed) {
-          // ── QW3: Symlink instant-create to skills/ (idempotent) ──
-          // Solves 7-day latency: new skills in skills-learned/ are immediately
-          // discoverable via a symlink in skills/, no need to wait for the
-          // weekly_correction_loop migration. Use _learned_ prefix (matches
-          // weekly_correction_loop.js convention) to avoid duplicate detection
-          // when listCategorizedSkills scans both skills/ and skills-learned/.
-          try {
-            var className = path.basename(dir);
-            var symlinkPath = path.join(SKILLS_ACTIVE, '_learned_' + className);
-            if (!fs.existsSync(symlinkPath)) {
-              fs.symlinkSync(dir, symlinkPath, 'dir');
-              log('Symlinked: skills/_learned_' + className + ' -> ' + dir.replace(WS, ''));
+          // Week 1 Safety Nets (Issue #154) — track actual symlink state.
+          // We set symlinkedActual=false when we decide to skip the symlink
+          // (paused or AUTO_APPLY=false), so the unified telemetry block
+          // below records the correct state. This ensures accurate
+          // symlinked:false telemetry without duplicate recordSkillCreated
+          // calls.
+          // ── Week 1 Safety Net #2: pause state check ──
+          // skill_junk_pause.js writes .skill_reviewer_pause.json when 24h junk
+          // rate > AUTO_PAUSE_THRESHOLD. If active, skip symlink so junk does
+          // not get injected into <available_skills>. Auto-expire when until
+          // passes (cron will eventually re-evaluate).
+          var pausedHere = false;
+          if (fs.existsSync(CONFIG.PAUSE_FILE)) {
+            try {
+              var pauseState = JSON.parse(fs.readFileSync(CONFIG.PAUSE_FILE, 'utf8'));
+              if (Date.now() < pauseState.until) {
+                log('PAUSED: skipping symlink for ' + block.filePath + ' (junk rate was ' + pauseState.junkRateAtPause + ' at ' + pauseState.pausedAt + ')');
+                written.push(block.filePath); // count as written but NOT symlinked
+                symlinkedActual = false;  // recorded by unified telemetry below
+                pausedHere = true;
+              } else {
+                log('Pause expired; resuming normal flow');
+                try { fs.unlinkSync(CONFIG.PAUSE_FILE); } catch (e) {}
+              }
+            } catch (pauseParseErr) {
+              err('Failed to read pause state: ' + pauseParseErr.message);
             }
-          } catch (symErr) {
-            if (symErr.code !== 'EEXIST') {
-              err('Symlink failed for ' + className + ': ' + symErr.message);
+          }
+          if (!pausedHere) {
+            // ── Week 1 Safety Net #1: AUTO_APPLY env override ──
+            // SKILL_REVIEWER_AUTO_APPLY=false → keep as draft, no symlink.
+            // Gives Josh a kill switch without code changes.
+            if (!CONFIG.AUTO_APPLY) {
+              log('AUTO_APPLY=false: skipping symlink for ' + block.filePath + ' (kept as draft)');
+              written.push(block.filePath);
+              symlinkedActual = false;  // recorded by unified telemetry below
+            } else {
+              // ── QW3: Symlink instant-create to skills/ (idempotent) ──
+              // Solves 7-day latency: new skills in skills-learned/ are immediately
+              // discoverable via a symlink in skills/, no need to wait for the
+              // weekly_correction_loop migration. Use _learned_ prefix (matches
+              // weekly_correction_loop.js convention) to avoid duplicate detection
+              // when listCategorizedSkills scans both skills/ and skills-learned/.
+              try {
+                var className = path.basename(dir);
+                var symlinkPath = path.join(SKILLS_ACTIVE, '_learned_' + className);
+                if (!fs.existsSync(symlinkPath)) {
+                  fs.symlinkSync(dir, symlinkPath, 'dir');
+                  log('Symlinked: skills/_learned_' + className + ' -> ' + dir.replace(WS, ''));
+                }
+              } catch (symErr) {
+                if (symErr.code !== 'EEXIST') {
+                  err('Symlink failed for ' + className + ': ' + symErr.message);
+                }
+              }
             }
           }
         } else {
+          // Validation failed: file moved to failed-validations/ and stale
+          // symlink removed (H-1). Symlink state is false.
+          symlinkedActual = false;
           // ── H-1 fix: Remove stale symlink on validation failure ──
           // If a previous valid version of this skill had a symlink in skills/,
           // an UPDATE that just wrote flawed content would leave the symlink
@@ -526,6 +659,9 @@ function writeSkillFiles(blocks) {
           var workflowSteps = stepsMatch
             ? (stepsMatch[1].match(/^(?:#{1,3}\s+)?\s*\d+\.\s+/gm) || []).length
             : 0;
+          // Use symlinkedActual (computed by safety nets above) instead of
+          // assuming validationPassed==symlinked. The pause and AUTO_APPLY
+          // cases set symlinkedActual=false even when validationPassed=true.
           recordSkillCreated({
             v: 1,
             ts: new Date().toISOString(),
@@ -535,7 +671,7 @@ function writeSkillFiles(blocks) {
             pitfallsCount: pitfallsCount,
             workflowSteps: workflowSteps,
             validationPassed: validationPassed,
-            symlinked: validationPassed
+            symlinked: symlinkedActual
           });
         } catch (telemetryErr) {
           err('skill_created telemetry failed: ' + telemetryErr.message);
@@ -553,6 +689,213 @@ function writeSkillFiles(blocks) {
     }
   }
   return written;
+}
+
+// ── S1 mismatch escalation (Phase 1) ──
+// Surgical add for Step 1: 0-token mismatch detector. Looks up a skill
+// in .skill_created.jsonl (filter: validationPassed=true AND symlinked=true),
+// quarantines the source + symlink, and writes history/alert logs.
+// No LLM judge call (deferred to Step 2 shadow mode).
+
+function parseMarkMismatchArgs(args) {
+  var name = null;
+  var reason = '';
+  var dryRun = false;
+  var showHelp = false;
+  for (var i = 0; i < args.length; i++) {
+    var a = args[i];
+    if (a === '--help' || a === '-h') showHelp = true;
+    else if (a === '--dry-run') dryRun = true;
+    else if (a === '--reason' || a === '-r') {
+      reason = args[++i] || '';
+    } else if (a.indexOf('--reason=') === 0) {
+      reason = a.slice('--reason='.length);
+    } else if (a.indexOf('-r=') === 0) {
+      reason = a.slice(3);
+    } else if (name === null) name = a;
+    else throw new Error('Unknown argument: ' + a);
+  }
+  return { name: name, reason: reason, dryRun: dryRun, showHelp: showHelp };
+}
+
+function findSkillCreatedEvent(name) {
+  if (!fs.existsSync(SKILL_CREATED_LOG)) return null;
+  let lines;
+  try {
+    lines = fs.readFileSync(SKILL_CREATED_LOG, 'utf8').split('\n');
+  } catch (e) {
+    console.error(`File read failed: ${e.message}`);
+  }
+  var latest = null;
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+    if (!line) continue;
+    try {
+      var ev = JSON.parse(line);
+      if (ev.name === name && ev.validationPassed === true && ev.symlinked === true) {
+        if (!latest || (ev.ts && ev.ts > latest.ts)) latest = ev;
+      }
+    } catch (e) { /* skip malformed */ }
+  }
+  return latest;
+}
+
+function writeS1MismatchEvent(event) {
+  try {
+    fs.appendFileSync(S1_MISMATCH_HISTORY_LOG, JSON.stringify(event) + '\n', 'utf8');
+    return true;
+  } catch (e) {
+    err('s1_mismatch_history write failed: ' + e.message);
+    return false;
+  }
+}
+
+function writeS1Alert(alert) {
+  try {
+    fs.appendFileSync(S1_ALERTS_LOG, JSON.stringify(alert) + '\n', 'utf8');
+    return true;
+  } catch (e) {
+    err('s1_alerts write failed: ' + e.message);
+    return false;
+  }
+}
+
+function quarantineSkillS1(name, reason, dryRun) {
+  var srcDir = path.join(WS, 'skills-learned', name);
+  var symlinkPath = path.join(SKILLS_ACTIVE, '_learned_' + name);
+  var dateStr = new Date().toISOString().slice(0, 10);
+  var qParent = path.join(SKILLS_ACTIVE, '_archive', 's1-mismatch-' + dateStr);
+  var qDest = path.join(qParent, name);
+  var actions = [];
+  if (dryRun) {
+    actions.push(fs.existsSync(symlinkPath) ? 'would-remove-symlink: ' + symlinkPath : 'WARN: symlinkPath not found: ' + symlinkPath);
+    actions.push(fs.existsSync(srcDir) ? 'would-move: ' + srcDir + ' -> ' + qDest : 'WARN: source not found: ' + srcDir);
+    return { ok: true, actions: actions, qDest: qDest, symlinkPath: symlinkPath, srcDir: srcDir };
+  }
+  // 1. Remove symlink (best effort — may already be gone)
+  try {
+    if (fs.existsSync(symlinkPath)) {
+      fs.unlinkSync(symlinkPath);
+      actions.push('removed symlink: ' + symlinkPath);
+    } else {
+      actions.push('WARN: symlinkPath not found (already removed?): ' + symlinkPath);
+    }
+  } catch (symErr) {
+    actions.push('ERROR: failed to remove symlink: ' + symErr.message);
+  }
+  // 2. Move source to archive
+  try {
+    if (fs.existsSync(srcDir)) {
+      if (!fs.existsSync(qParent)) {
+        fs.mkdirSync(qParent, { recursive: true });
+        actions.push('created archive dir: ' + qParent);
+      }
+      if (fs.existsSync(qDest)) {
+        qDest = path.join(qParent, name + '-' + Date.now());
+        actions.push('WARN: dest exists, renaming to: ' + qDest);
+      }
+      fs.renameSync(srcDir, qDest);
+      actions.push('moved: ' + srcDir + ' -> ' + qDest);
+    } else {
+      actions.push('WARN: source not found: ' + srcDir);
+    }
+  } catch (mvErr) {
+    actions.push('ERROR: failed to move source: ' + mvErr.message);
+    return { ok: false, actions: actions, qDest: qDest, symlinkPath: symlinkPath, srcDir: srcDir };
+  }
+  return { ok: true, actions: actions, qDest: qDest, symlinkPath: symlinkPath, srcDir: srcDir };
+}
+
+async function markMismatchHandler(args) {
+  var parsed;
+  try {
+    parsed = parseMarkMismatchArgs(args);
+  } catch (e) {
+    err('ERROR: ' + e.message);
+    printMarkMismatchHelp();
+    return 2;
+  }
+  if (parsed.showHelp) {
+    printMarkMismatchHelp();
+    return 0;
+  }
+  if (parsed.name === null) {
+    printMarkMismatchHelp();
+    return 2;
+  }
+  log('S1 mismatch escalation: looking up event for name=' + parsed.name);
+  var ev = findSkillCreatedEvent(parsed.name);
+  if (!ev) {
+    err('No matching skill_created event found for name="' + parsed.name + '" with validationPassed=true AND symlinked=true.');
+    err('Refusing to mark mismatch — this skill was either never validated as passed+symlinked, or the event log is missing.');
+    return 3;
+  }
+  log('Found event: ts=' + ev.ts + ', file=' + ev.file + ', bytes=' + ev.bytes);
+  var result = quarantineSkillS1(parsed.name, parsed.reason, parsed.dryRun);
+  var timestamp = new Date().toISOString();
+  var event = {
+    v: 1,
+    ts: timestamp,
+    name: parsed.name,
+    reason: parsed.reason || '(no reason given)',
+    dryRun: parsed.dryRun,
+    sourceFile: ev.file,
+    sourceBytes: ev.bytes,
+    sourceTs: ev.ts,
+    qDest: result.qDest,
+    symlinkPath: result.symlinkPath,
+    srcDir: result.srcDir,
+    actions: result.actions,
+    ok: result.ok
+  };
+  if (result.ok) {
+    log('S1 mismatch quarantine complete:');
+    result.actions.forEach(function (a) { log('  - ' + a); });
+    log('Archived to: ' + result.qDest);
+  } else {
+    err('S1 mismatch quarantine FAILED:');
+    result.actions.forEach(function (a) { err('  - ' + a); });
+  }
+  writeS1MismatchEvent(event);
+  if (!parsed.dryRun && result.ok) {
+    var alert = {
+      v: 1,
+      ts: timestamp,
+      severity: 'warning',
+      kind: 's1_mismatch',
+      name: parsed.name,
+      reason: parsed.reason || '(no reason given)',
+      qDest: result.qDest,
+      sourceFile: ev.file
+    };
+    writeS1Alert(alert);
+    log('Alert written to ' + path.relative(WS, S1_ALERTS_LOG));
+  } else if (parsed.dryRun) {
+    log('(dry-run: skipping alert)');
+  }
+  return result.ok ? 0 : 1;
+}
+
+function printMarkMismatchHelp() {
+  console.log('Usage: node scripts/skill_reviewer_bot.js mark-mismatch <name> [--reason "..."] [--dry-run]');
+  console.log('');
+  console.log('  Mark a skill that passed validation+symlink as a S1 mismatch (false positive).');
+  console.log('  The skill will be:');
+  console.log('    1. Symlink removed from skills/_learned_<name>');
+  console.log('    2. Source moved from skills-learned/<name>/ to skills/_archive/s1-mismatch-YYYY-MM-DD/<name>/');
+  console.log('    3. Event logged to .s1_mismatch_history.jsonl');
+  console.log('    4. Alert written to .s1_alerts.jsonl (skipped on --dry-run)');
+  console.log('');
+  console.log('Options:');
+  console.log('  --reason "..."   Free-text reason for the mismatch (recommended)');
+  console.log('  --dry-run        Show actions without modifying filesystem');
+  console.log('  --help, -h       Show this help');
+  console.log('');
+  console.log('Exit codes:');
+  console.log('  0  success (or dry-run)');
+  console.log('  1  quarantine failed');
+  console.log('  2  bad arguments');
+  console.log('  3  no matching skill_created event (refused)');
 }
 
 // ── Main ──
@@ -601,7 +944,7 @@ async function main() {
       }
 
       try {
-        stdout = execFileSync('openclaw', [
+        stdout = execFileSync(OPENCLAW_CLI, [
           'infer', 'model', 'run',
           '--model', currentModel,
           '--prompt', prompt,
@@ -719,7 +1062,7 @@ async function main() {
   } finally {
     if (cleanup) {
       try {
-        execSync('node "' + CLEANUP_SCRIPT + '"', { timeout: 10000, stdio: 'pipe' });
+        execFileSync('node', [CLEANUP_SCRIPT], { timeout: 10000, stdio: 'pipe' });
         log('Queue cleaned.');
       } catch (e) {
         err('Cleanup: ' + e.message);
@@ -732,10 +1075,18 @@ async function main() {
 }
 
 if (require.main === module) {
-  main().then(function() { process.exit(0); }).catch(function(e) {
-    err('Fatal: ' + e.message);
-    process.exit(1);
-  });
+  var _cliArgv = process.argv.slice(2);
+  if (_cliArgv[0] === 'mark-mismatch') {
+    markMismatchHandler(_cliArgv.slice(1)).then(function(code) { process.exit(code || 0); }).catch(function(e) {
+      err('Fatal: ' + e.message);
+      process.exit(1);
+    });
+  } else {
+    main().then(function() { process.exit(0); }).catch(function(e) {
+      err('Fatal: ' + e.message);
+      process.exit(1);
+    });
+  }
 }
 
 module.exports = { main };

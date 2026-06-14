@@ -1,0 +1,38 @@
+[16:35:39] Pre-run state captured
+[16:38:40] === INITIAL STATE ===
+--- Initial provider probes ---
+950
+--- Decision log last 5 min ---
+  2026-06-06T08:34:43 → deepseek           success=True route=none
+  2026-06-06T08:35:09 → minimax-portal     success=True route=browser
+  2026-06-06T08:35:09 → minimax-portal     success=True route=browser
+  2026-06-06T08:38:30 → deepseek           success=True route=direct_answer
+--- Route-enforcer active ---
+[16:39:06] Monitor started. Polling every 15s until 16:50 HKT
+[16:39:06] ⏹️ Monitor stopped (test window ended)
+[16:40:32] KB Ingest FIRED ✅ runningAtMs=
+--- Router decisions since 16:38 HKT ---
+  08:38:30 EVENT: provider_recovery deepseek
+  08:38:30 → deepseek           succ=True route=direct_answer lat=272ms
+[16:43:00] AI HOT FIRED ✅ runningAtMs=
+[16:43:00] KB Ingest DONE ✅ (147s, delivered)
+--- Router since 16:40 ---
+[16:43:57] AI HOT DONE ✅ (73s, delivered!)
+
+=== KB Ingest: 147s ✅ | AI HOT: 73s ✅ ===
+
+--- Final Router Check (16:38-16:45) ---
+  08:38:30 EVENT: provider_recovery deepseek
+  08:38:30 → deepseek           succ=True route=direct_answer lat=272ms
+(no router decisions = cron jobs bypass Smart Router correctly)
+=== Test Complete ===
+[16:49:24] Test 3 set: Bootstrap 16:53 / SYMBOLS 16:54 / WikiBridge 16:55
+[16:56:18] === ALL 5 CRON TESTS COMPLETE ===
+
+--- Final Router Check (16:38-17:00) ---
+  08:38:30 EVENT: provider_recovery deepseek
+  08:38:30 → deepseek           succ=True route=direct_answer lat=272ms
+  08:48:56 EVENT: provider_recovery deepseek
+  08:48:56 → deepseek           succ=True route=none lat=234ms
+(end of router log)
+=== DONE ===

@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-06-14, 03:09:26",
+  "date": "2026-06-14",
+  "systemHealth": {
+    "errorsThisWeek": 15,
+    "categories": [
+      "other",
+      "api",
+      "timeout"
+    ]
+  },
+  "behaviour": {
+    "decisionsLogged": 7815,
+    "routeDistribution": {
+      "SPAWN": 422,
+      "CODE": 211,
+      "DIRECT_ANSWER": 691,
+      "SOP": 128,
+      "CRON": 2,
+      "SYSTEM": 1,
+      "WEEKLY_CORRECTION": 5,
+      "NONE": 601,
+      "FDQ": 17,
+      "BROWSER": 31,
+      "unknown": 2809,
+      "spawn": 574,
+      "direct_answer": 644,
+      "none": 1138,
+      "sop": 123,
+      "code": 274,
+      "fdq": 23,
+      "browser": 62,
+      "spawn_quality": 59
+    }
+  },
+  "suggestions": [
+    {
+      "severity": "MEDIUM",
+      "title": "18 次手動 override — classifier 可能需要調整",
+      "detail": "Route decisions were manually overridden 18 times."
+    },
+    {
+      "severity": "LOW",
+      "title": "Skills maintenance: 18 promoted, 0 archived",
+      "detail": "51 skills total — 36 active, 12 draft, 0 archived."
+    }
+  ]
+}

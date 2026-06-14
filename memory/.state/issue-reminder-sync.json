@@ -1,0 +1,75 @@
+{
+  "synced": {
+    "044": {
+      "title": "Self-Improving Skills 概念 - 自動優化腳本系統",
+      "syncedAt": "16/3/2026 上午8:34:12",
+      "reminderTitle": "[#044] Self-Improving Skills 概念 - 自動優化腳本系統"
+    },
+    "054": {
+      "title": "實施 Google Cloud Agent Skill Design Patterns",
+      "syncedAt": "20/3/2026 上午6:13:04",
+      "reminderTitle": "[#054] 實施 Google Cloud Agent Skill Design Patterns"
+    },
+    "061": {
+      "title": "Template-Engine Separation - 其他 Systems",
+      "syncedAt": "23/3/2026 下午11:26:47",
+      "reminderTitle": "[#061] Template-Engine Separation - 其他 Systems"
+    },
+    "066": {
+      "title": "ima 知識庫自動化 - Apple Notes sync",
+      "syncedAt": "26/3/2026 上午9:30:04",
+      "reminderTitle": "[#066] ima 知識庫自動化 - Apple Notes sync"
+    },
+    "067": {
+      "title": "ima 知識庫自動化 - Discord code/精彩內容 archive",
+      "syncedAt": "26/3/2026 上午9:30:05",
+      "reminderTitle": "[#067] ima 知識庫自動化 - Discord code/精彩內容 archive"
+    },
+    "068": {
+      "title": "ima 知識庫自動化 - 靈感 filter system (靈感：前綴)",
+      "syncedAt": "26/3/2026 上午9:30:05",
+      "reminderTitle": "[#068] ima 知識庫自動化 - 靈感 filter system (靈感：前綴)"
+    },
+    "069": {
+      "title": "ima 知識庫自動化 - Diamond/Stock 知識庫",
+      "syncedAt": "26/3/2026 上午9:30:05",
+      "reminderTitle": "[#069] ima 知識庫自動化 - Diamond/Stock 知識庫"
+    },
+    "070": {
+      "title": "ima 知識庫自動化 - 錯誤學習簿",
+      "syncedAt": "26/3/2026 上午9:30:06",
+      "reminderTitle": "[#070] ima 知識庫自動化 - 錯誤學習簿"
+    },
+    "075": {
+      "title": "\"觀察：Pure AI Audit + System Check Bot timing\"",
+      "syncedAt": "31/3/2026 上午10:33:48",
+      "reminderTitle": "[#075] \"觀察：Pure AI Audit + System Check Bot timing\""
+    },
+    "076": {
+      "title": "\"實現：Heartbeat 自動發 Discord 通知 Kimi Code 完成\"",
+      "syncedAt": "31/3/2026 下午1:58:32",
+      "reminderTitle": "[#076] \"實現：Heartbeat 自動發 Discord 通知 Kimi Code 完成\""
+    },
+    "078": {
+      "title": "統一所有 Audit 歷史到 Weekly Report",
+      "syncedAt": "2/4/2026 下午4:29:01",
+      "reminderTitle": "[#078] 統一所有 Audit 歷史到 Weekly Report"
+    },
+    "079": {
+      "title": "自動做夢 (Auto Dreaming) - 自主後台整理對話記憶",
+      "syncedAt": "2/4/2026 下午8:28:54",
+      "reminderTitle": "[#079] 自動做夢 (Auto Dreaming) - 自主後台整理對話記憶"
+    },
+    "080": {
+      "title": "Ollama 模型測試結果記錄",
+      "syncedAt": "3/4/2026 下午4:39:55",
+      "reminderTitle": "[#080] Ollama 模型測試結果記錄"
+    },
+    "081": {
+      "title": "Implement Hook Logger + DRY_RUN System",
+      "syncedAt": "3/4/2026 下午11:07:09",
+      "reminderTitle": "[#081] Implement Hook Logger + DRY_RUN System"
+    }
+  },
+  "lastSync": "4/4/2026 上午3:57:55"
+}

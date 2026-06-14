@@ -1,0 +1,164 @@
+{
+  "batch": "Batch 2/5",
+  "processedAt": "2026-04-29T04:55:00Z",
+  "total": 15,
+  "verdicts": {
+    "REJECT": 8,
+    "CAUTION": 4,
+    "BUY": 3
+  },
+  "avgScore": 45.416666666666664,
+  "scoreRange": {
+    "min": 2,
+    "max": 85
+  },
+  "rejectReasons": {
+    "🔴 CRITICAL: Severe Windowing": 5,
+    "📐 Very Deep Cut": 5,
+    "⚠️ Hidden Polish Issue (拉絲感): Polish 聲稱 Excellent 但 Surface graining is not shown，可能有拉絲感/波紋感": 4,
+    "🔴 High Milky/Hazy Risk": 4,
+    "🟡 ⚠️ Eye-Clean Risk: Table Inclusion: SI1 淨度 + Table 位置有 Crystal，肉眼可見": 3,
+    "🔴 CRITICAL: Too Deep": 2,
+    "Milky Risk": 2,
+    "⚠️ Headlight Effect (死區火彩 - 太深): 深度 57.3% > 45% = 光線在底部產生過多反射，中心漏光": 1,
+    "⚠️ 大克拉風險 (10ct+)": 1,
+    "⚠️ Headlight Effect (死區火彩 - 太深): 深度 69.0% > 45% = 光線在底部產生過多反射，中心漏光": 1
+  },
+  "details": [
+    {
+      "reportNumber": "2215594329",
+      "verdict": "REJECT",
+      "score": 34,
+      "color": "F",
+      "clarity": "VVS1",
+      "carat": 8.08,
+      "shape": "Heart Brilliant"
+    },
+    {
+      "reportNumber": "2225343116",
+      "verdict": "REJECT",
+      "score": 2,
+      "color": "K",
+      "clarity": "SI1",
+      "carat": 10.21,
+      "shape": "Cut-Cornered Rectangular Modified Brilliant"
+    },
+    {
+      "reportNumber": "2225839631",
+      "verdict": "CAUTION",
+      "score": 59,
+      "color": "Fancy Vivid Yellow",
+      "clarity": "VVS2",
+      "carat": 30.03,
+      "shape": "Cut-Cornered Rectangular Modified Brilliant"
+    },
+    {
+      "reportNumber": "2225867090",
+      "verdict": "REJECT",
+      "score": 0,
+      "color": "F",
+      "clarity": "SI1",
+      "carat": 3.12,
+      "shape": "Modified Triangular Brilliant"
+    },
+    {
+      "reportNumber": "2231477950",
+      "verdict": "REJECT",
+      "score": 23,
+      "color": "G",
+      "clarity": "VS1",
+      "carat": 8.05,
+      "shape": "Cushion Modified Brilliant"
+    },
+    {
+      "reportNumber": "2231640454",
+      "verdict": "CAUTION",
+      "score": 53,
+      "color": "F",
+      "clarity": "VVS2",
+      "carat": 25.28,
+      "shape": "Cushion Modified Brilliant"
+    },
+    {
+      "reportNumber": "2231756427",
+      "verdict": "BUY",
+      "score": 85,
+      "color": "E",
+      "clarity": "VVS2",
+      "carat": 16.3,
+      "shape": "Square Emerald Cut"
+    },
+    {
+      "reportNumber": "2231839208",
+      "verdict": "REJECT",
+      "score": 30,
+      "color": "D",
+      "clarity": "VVS1",
+      "carat": 2.09,
+      "shape": "Cut-Cornered Rectangular Modified Brilliant"
+    },
+    {
+      "reportNumber": "2235028246",
+      "verdict": "REJECT",
+      "score": 11,
+      "color": "E",
+      "clarity": "SI1",
+      "carat": 5.21,
+      "shape": "Emerald Cut"
+    },
+    {
+      "reportNumber": "2235046535",
+      "verdict": "CAUTION",
+      "score": 42,
+      "color": "F",
+      "clarity": "SI2",
+      "carat": 12.02,
+      "shape": "Cut-Cornered Square Modified Brilliant"
+    },
+    {
+      "reportNumber": "2235047260",
+      "verdict": "REJECT",
+      "score": 0,
+      "color": "K",
+      "clarity": "SI1",
+      "carat": 8.08,
+      "shape": "Square Modified Brilliant"
+    },
+    {
+      "reportNumber": "2235048895",
+      "verdict": "REJECT",
+      "score": 0,
+      "color": "Fancy Vivid Yellow",
+      "clarity": "SI1",
+      "carat": 1.03,
+      "shape": "Modified Triangular Brilliant"
+    },
+    {
+      "reportNumber": "2235179945",
+      "verdict": "BUY",
+      "score": 72,
+      "color": "D",
+      "clarity": "Internally Flawless",
+      "carat": 2.25,
+      "shape": "Emerald Cut"
+    },
+    {
+      "reportNumber": "2235474565",
+      "verdict": "BUY",
+      "score": 85,
+      "color": "Fancy Brownish Yellow",
+      "clarity": "VS2",
+      "carat": 15.92,
+      "shape": "Pear Modified Brilliant"
+    },
+    {
+      "reportNumber": "2235510763",
+      "verdict": "CAUTION",
+      "score": 49,
+      "color": "F",
+      "clarity": "VVS2",
+      "carat": 5.21,
+      "shape": "Round Brilliant"
+    }
+  ]
+}

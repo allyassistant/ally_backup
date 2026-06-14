@@ -1,0 +1,1 @@
+{"last_run":"2026-06-02T10:30:00Z","exit_code":1,"alerts":1,"error_count":28,"baseline":"14.37±6.43","sigma":"2.1σ","anomaly":"error_count_high","cron_timeouts":2,"rate_limits":2}

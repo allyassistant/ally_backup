@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Qwen3 Excel Training//EN
+BEGIN:VEVENT
+DTSTART:20260207T030000
+DTEND:20260207T090000
+RRULE:FREQ=DAILY;UNTIL=20260701T000000Z
+SUMMARY:Qwen3 Excel Training Session
+DESCRIPTION:Daily automated Excel training for Qwen3 AI assistant.\n\nTraining Modules:\n1. Advanced Formulas (Week 1)\n2. PivotTables (Week 1-2)\n3. Power Query (Week 2-3)\n4. VBA Basics (Week 3-4)\n5. Python + Excel (Week 4-5)\n6. Practice Projects (Week 5)\n\nRuns in isolated session - no impact on daily work.
+LOCATION:Automated System
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Qwen3 Training Started
+TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

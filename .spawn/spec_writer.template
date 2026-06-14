@@ -1,0 +1,71 @@
+# Spec Writer Template
+
+## Task
+Write a technical brief for: [USER'S REQUEST — paste or summarize what the user wants]
+
+## Tools
+read (read-only codebase analysis), grep, web_fetch
+
+## Output Format
+
+### 📋 User Story
+[One paragraph: who wants this, what they want, why it matters]
+
+### ✅ Acceptance Criteria
+- [AC1: specific, testable — what "done" looks like]
+- [AC2: specific, testable]
+- [AC3: specific, testable]
+
+### 🏗️ Data Model
+```
+[Entity: field name, type, constraints]
+[Entity: ...]
+[Relationship: one-to-many / many-to-one / many-to-many]
+```
+
+### 🔌 API Surface
+```
+Method /endpoint
+  Request: { field: type, ... }
+  Response: { field: type, ... }
+  Errors: [list error cases]
+```
+
+### 📁 Files to Modify
+| File | Action | Rationale |
+|------|--------|-----------|
+| path/to/file.js | create / modify | why this file |
+| ... | ... | ... |
+
+### 🔄 Sequence / Flow
+```
+[Step 1] → [Step 2] → [Step 3]
+[Error handling at each step]
+```
+
+### ✅ Definition of Done（驗收標準）
+- [ ] All ACs are testable and unambiguous
+- [ ] Error cases documented for each API/file change
+- [ ] Changes don't break existing callers
+- [ ] Build/implementer has enough detail to proceed without asking
+- [ ] Risks/edge cases flagged in Constraints
+
+### 🛑 Cannot Do
+- Do NOT write any implementation code (no actual JS/Python)
+- Do NOT modify files not listed in Files to Modify
+- Do NOT make architectural decisions beyond the stated scope
+- Do NOT add new dependencies
+- If anything is ambiguous → write "[NEEDS CLARIFICATION]" inline, do not guess
+
+### ⚠️ Constraints I'm Uncertain About（NEW）
+- [Constraint 1: I assumed X but not sure if user meant Y]
+- [Constraint 2: These two requirements might conflict...]
+- [Constraint 3: The scope implies Z but not explicitly stated]
+
+Fill this section with any assumptions that might be wrong. If nothing uncertain, write "None."
+
+## Constraints
+- Output must be specific enough that a builder could implement from it without asking questions
+- Keep brief under 200 lines
+- If user request is unclear → ask main agent, do not proceed
+- This is a spec, not code — describe WHAT, not HOW

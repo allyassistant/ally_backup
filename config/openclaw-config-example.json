@@ -1,0 +1,144 @@
+{
+  "version": "2026.4.8",
+  "agent": {
+    "name": "Ally",
+    "role": "conversation-specialist",
+    "ha_mode": "primary",
+    "language": "zh-Hant",
+    "location": "home"
+  },
+  "plugins": {
+    "entries": {
+      "memory-core": {
+        "enabled": true,
+        "config": {
+          "storage": {
+            "basePath": "~/.openclaw/workspace/memory"
+          },
+          "dreaming": {
+            "enabled": true,
+            "frequency": "0 3 * * *",
+            "timezone": "Asia/Hong_Kong",
+            "verboseLogging": true,
+            "storage": {
+              "mode": "both",
+              "separateReports": true,
+              "path": "~/.openclaw/workspace/memory/dreaming"
+            },
+            "phases": {
+              "light": {
+                "enabled": true,
+                "lookbackDays": 2,
+                "limit": 100,
+                "dedupeSimilarity": 0.9
+              },
+              "rem": {
+                "enabled": true,
+                "lookbackDays": 7,
+                "limit": 10,
+                "minPatternStrength": 0.75
+              },
+              "deep": {
+                "enabled": true,
+                "limit": 10,
+                "minScore": 0.8,
+                "minRecallCount": 3,
+                "minUniqueQueries": 3,
+                "recencyHalfLifeDays": 14,
+                "maxAgeDays": 30
+              }
+            }
+          }
+        }
+      },
+      "memory-wiki": {
+        "enabled": true,
+        "config": {
+          "vaultMode": "bridge",
+          "vault": {
+            "path": "~/.openclaw/workspace/.openclaw-wiki",
+            "renderMode": "obsidian"
+          },
+          "bridge": {
+            "enabled": true,
+            "readMemoryArtifacts": true,
+            "indexDreamReports": true,
+            "indexDailyNotes": true,
+            "indexErrors": true,
+            "indexIssues": true,
+            "paths": {
+              "l0Abstracts": "~/.openclaw/workspace/memory/l0-abstract",
+              "l1Overviews": "~/.openclaw/workspace/memory/l1-overview",
+              "dreaming": "~/.openclaw/workspace/memory/dreaming",
+              "errors": "~/.openclaw/workspace/memory/errors.json",
+              "issues": "~/.openclaw/workspace/.issues",
+              "patterns": "~/.openclaw/workspace/memory/patterns"
+            }
+          },
+          "ingest": {
+            "autoCompile": true,
+            "maxConcurrentJobs": 4,
+            "defaultFreshness": "fresh"
+          },
+          "context": {
+            "includeCompiledDigestPrompt": true,
+            "digestMaxClaims": 10,
+            "digestMaxPages": 4,
+            "digestMinConfidence": 0.75
+          },
+          "obsidian": {
+            "enabled": true,
+            "useOfficialCli": false,
+            "openAfterWrites": false
+          },
+          "claims": {
+            "autoExtract": true,
+            "minConfidence": 0.7,
+            "requireEvidence": true,
+            "defaultStatus": "supported"
+          }
+        }
+      },
+      "memory-lancedb": {
+        "enabled": false,
+        "config": {
+          "path": "~/.openclaw/workspace/memory/lancedb"
+        }
+      }
+    }
+  },
+  "integration": {
+    "discord": {
+      "enabled": true,
+      "channelId": "${DISCORD_CHANNEL_ID}",
+      "webhookUrl": "${DISCORD_WEBHOOK_URL}",
+      "notifications": {
+        "wikiCompile": true,
+        "wikiLint": true,
+        "newContradictions": true,
+        "highSeverityErrors": true
+      }
+    },
+    "crossSession": {
+      "enabled": true,
+      "bootstrapScript": "~/.openclaw/workspace/scripts/cross_session_bootstrap.js",
+      "useWikiDigest": true,
+      "maxContextClaims": 5
+    }
+  },
+  "ha": {
+    "enabled": true,
+    "nodeId": "ally-mac-a",
+    "partnerNode": "bliss-mac-b",
+    "failoverEnabled": true,
+    "heartbeatInterval": 60,
+    "offlineThreshold": 180,
+    "responsibilities": {
+      "conversation": true,
+      "l1Generation": true,
+      "wikiMaintenance": true,
+      "dreaming": true,
+      "errorAnalysis": true
+    }
+  }
+}

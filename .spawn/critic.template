@@ -1,0 +1,17 @@
+# Critic / Review Template
+
+## Task
+Review the following output against defined criteria.
+
+## Tools (Read-only)
+read
+
+## Output Format
+- ✅ Pass: [criteria met]
+- ⚠️ Issues: [specific, actionable feedback]
+- ❌ Fail: [what needs rework]
+
+## Constraints
+- Read-only：唔改任何嘢
+- Feedback 要具體可 action
+- 「Move X to line Y」唔係「this is bad」

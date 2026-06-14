@@ -1,0 +1,1378 @@
+[2026-02-09T19:03:55.165Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-09T19:03:55.203Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770663835176.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770663835176.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-09T19:03:55.228Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770663835203.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770663835203.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-09T19:03:55.254Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770663835228.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770663835228.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-09T19:03:55.254Z] 
+📊 Verification Results:
+[2026-02-09T19:03:55.254Z]    Total: 0
+[2026-02-09T19:03:55.254Z]    Passed: 0
+[2026-02-09T19:03:55.254Z]    Failed: 0
+[2026-02-09T20:03:29.327Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-09T20:03:29.365Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770667409338.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770667409338.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-09T20:03:29.391Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770667409366.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770667409366.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-09T20:03:29.417Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770667409391.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770667409391.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-09T20:03:29.417Z] 
+📊 Verification Results:
+[2026-02-09T20:03:29.417Z]    Total: 0
+[2026-02-09T20:03:29.417Z]    Passed: 0
+[2026-02-09T20:03:29.417Z]    Failed: 0
+[2026-02-09T22:33:27.072Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-09T22:33:27.110Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770676407083.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770676407083.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-09T22:33:27.136Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770676407110.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770676407110.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-09T22:33:27.161Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770676407136.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770676407136.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-09T22:33:27.162Z] 
+📊 Verification Results:
+[2026-02-09T22:33:27.162Z]    Total: 0
+[2026-02-09T22:33:27.162Z]    Passed: 0
+[2026-02-09T22:33:27.162Z]    Failed: 0
+[2026-02-10T01:33:20.473Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T01:33:20.512Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770687200484.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770687200484.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T01:33:20.538Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770687200512.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770687200512.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T01:33:20.564Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770687200538.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770687200538.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T01:33:20.564Z] 
+📊 Verification Results:
+[2026-02-10T01:33:20.564Z]    Total: 0
+[2026-02-10T01:33:20.565Z]    Passed: 0
+[2026-02-10T01:33:20.565Z]    Failed: 0
+[2026-02-10T03:03:26.370Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T03:03:26.408Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770692606381.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770692606381.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T03:03:26.433Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770692606408.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770692606408.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T03:03:26.459Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770692606434.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770692606434.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T03:03:26.459Z] 
+📊 Verification Results:
+[2026-02-10T03:03:26.459Z]    Total: 0
+[2026-02-10T03:03:26.460Z]    Passed: 0
+[2026-02-10T03:03:26.460Z]    Failed: 0
+[2026-02-10T03:35:25.454Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T03:35:25.493Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770694525465.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770694525465.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T03:35:25.519Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770694525493.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770694525493.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T03:35:25.544Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770694525519.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770694525519.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T03:35:25.544Z] 
+📊 Verification Results:
+[2026-02-10T03:35:25.544Z]    Total: 0
+[2026-02-10T03:35:25.545Z]    Passed: 0
+[2026-02-10T03:35:25.545Z]    Failed: 0
+[2026-02-10T06:35:36.716Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T06:35:36.755Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770705336727.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770705336727.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T06:35:36.781Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770705336755.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770705336755.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T06:35:36.806Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770705336781.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770705336781.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T06:35:36.806Z] 
+📊 Verification Results:
+[2026-02-10T06:35:36.806Z]    Total: 0
+[2026-02-10T06:35:36.806Z]    Passed: 0
+[2026-02-10T06:35:36.807Z]    Failed: 0
+[2026-02-10T07:06:04.637Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T07:06:04.676Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770707164648.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770707164648.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T07:06:04.702Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770707164676.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770707164676.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T07:06:04.728Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770707164702.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770707164702.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T07:06:04.728Z] 
+📊 Verification Results:
+[2026-02-10T07:06:04.728Z]    Total: 0
+[2026-02-10T07:06:04.728Z]    Passed: 0
+[2026-02-10T07:06:04.728Z]    Failed: 0
+[2026-02-10T07:37:05.212Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T07:37:05.251Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770709025223.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770709025223.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T07:37:05.277Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770709025252.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770709025252.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T07:37:05.303Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770709025278.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770709025278.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T07:37:05.303Z] 
+📊 Verification Results:
+[2026-02-10T07:37:05.303Z]    Total: 0
+[2026-02-10T07:37:05.303Z]    Passed: 0
+[2026-02-10T07:37:05.304Z]    Failed: 0
+[2026-02-10T08:37:50.213Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T08:37:50.252Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770712670224.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770712670224.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T08:37:50.278Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770712670252.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770712670252.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T08:37:50.303Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770712670278.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770712670278.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T08:37:50.304Z] 
+📊 Verification Results:
+[2026-02-10T08:37:50.304Z]    Total: 0
+[2026-02-10T08:37:50.304Z]    Passed: 0
+[2026-02-10T08:37:50.304Z]    Failed: 0
+[2026-02-10T09:09:18.573Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T09:09:18.613Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770714558585.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770714558585.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T09:09:18.639Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770714558613.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770714558613.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T09:09:18.665Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770714558639.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770714558639.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T09:09:18.665Z] 
+📊 Verification Results:
+[2026-02-10T09:09:18.665Z]    Total: 0
+[2026-02-10T09:09:18.665Z]    Passed: 0
+[2026-02-10T09:09:18.665Z]    Failed: 0
+[2026-02-10T09:47:23.351Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T09:47:23.390Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770716843362.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770716843362.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T09:47:23.416Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770716843390.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770716843390.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T09:47:23.441Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770716843416.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770716843416.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T09:47:23.442Z] 
+📊 Verification Results:
+[2026-02-10T09:47:23.442Z]    Total: 0
+[2026-02-10T09:47:23.442Z]    Passed: 0
+[2026-02-10T09:47:23.442Z]    Failed: 0
+[2026-02-10T09:53:22.718Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T09:53:22.757Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770717202730.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770717202730.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T09:53:22.783Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770717202757.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770717202757.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T09:53:22.808Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770717202783.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770717202783.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T09:53:22.809Z] 
+📊 Verification Results:
+[2026-02-10T09:53:22.809Z]    Total: 0
+[2026-02-10T09:53:22.809Z]    Passed: 0
+[2026-02-10T09:53:22.809Z]    Failed: 0
+[2026-02-10T10:54:08.872Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T10:54:08.910Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770720848883.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770720848883.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T10:54:08.936Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770720848911.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770720848911.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T10:54:08.961Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770720848936.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770720848936.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T10:54:08.962Z] 
+📊 Verification Results:
+[2026-02-10T10:54:08.962Z]    Total: 0
+[2026-02-10T10:54:08.962Z]    Passed: 0
+[2026-02-10T10:54:08.962Z]    Failed: 0
+[2026-02-10T14:01:02.334Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T14:01:02.372Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770732062345.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770732062345.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T14:01:02.398Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770732062372.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770732062372.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T14:01:02.423Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770732062398.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770732062398.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T14:01:02.424Z] 
+📊 Verification Results:
+[2026-02-10T14:01:02.424Z]    Total: 0
+[2026-02-10T14:01:02.424Z]    Passed: 0
+[2026-02-10T14:01:02.424Z]    Failed: 0
+[2026-02-10T15:44:25.649Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T15:44:25.687Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770738265660.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770738265660.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T15:44:25.712Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770738265687.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770738265687.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T15:44:25.738Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770738265713.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770738265713.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T15:44:25.738Z] 
+📊 Verification Results:
+[2026-02-10T15:44:25.738Z]    Total: 0
+[2026-02-10T15:44:25.738Z]    Passed: 0
+[2026-02-10T15:44:25.738Z]    Failed: 0
+[2026-02-10T16:15:08.617Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T16:15:08.654Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770740108627.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770740108627.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T16:15:08.680Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770740108654.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770740108654.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T16:15:08.705Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770740108680.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770740108680.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T16:15:08.706Z] 
+📊 Verification Results:
+[2026-02-10T16:15:08.706Z]    Total: 0
+[2026-02-10T16:15:08.706Z]    Passed: 0
+[2026-02-10T16:15:08.706Z]    Failed: 0
+[2026-02-10T16:46:14.739Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T16:46:14.777Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770741974750.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770741974750.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T16:46:14.803Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770741974777.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770741974777.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T16:46:14.828Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770741974803.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770741974803.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T16:46:14.828Z] 
+📊 Verification Results:
+[2026-02-10T16:46:14.828Z]    Total: 0
+[2026-02-10T16:46:14.828Z]    Passed: 0
+[2026-02-10T16:46:14.828Z]    Failed: 0
+[2026-02-10T17:17:07.047Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T17:17:07.085Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770743827057.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770743827057.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T17:17:07.110Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770743827085.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770743827085.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T17:17:07.135Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770743827110.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770743827110.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T17:17:07.136Z] 
+📊 Verification Results:
+[2026-02-10T17:17:07.136Z]    Total: 0
+[2026-02-10T17:17:07.136Z]    Passed: 0
+[2026-02-10T17:17:07.136Z]    Failed: 0
+[2026-02-10T19:17:07.622Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T19:17:07.659Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770751027633.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770751027633.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T19:17:07.685Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770751027659.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770751027659.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T19:17:07.710Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770751027685.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770751027685.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T19:17:07.711Z] 
+📊 Verification Results:
+[2026-02-10T19:17:07.711Z]    Total: 0
+[2026-02-10T19:17:07.711Z]    Passed: 0
+[2026-02-10T19:17:07.711Z]    Failed: 0
+[2026-02-10T20:16:46.699Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-10T20:16:46.737Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770754606711.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770754606711.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T20:16:46.763Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770754606738.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770754606738.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T20:16:46.789Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770754606763.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770754606763.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-10T20:16:46.789Z] 
+📊 Verification Results:
+[2026-02-10T20:16:46.789Z]    Total: 0
+[2026-02-10T20:16:46.789Z]    Passed: 0
+[2026-02-10T20:16:46.789Z]    Failed: 0
+[2026-02-11T07:52:41.102Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-11T07:52:41.141Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770796361113.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770796361113.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-11T07:52:41.167Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770796361142.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770796361142.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-11T07:52:41.192Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770796361167.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770796361167.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-11T07:52:41.192Z] 
+📊 Verification Results:
+[2026-02-11T07:52:41.192Z]    Total: 0
+[2026-02-11T07:52:41.192Z]    Passed: 0
+[2026-02-11T07:52:41.192Z]    Failed: 0
+[2026-02-11T16:39:19.944Z] 🚀 Starting Apple Notes backup verification...
+[2026-02-11T16:39:19.983Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770827959956.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770827959956.scpt:554:559: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-11T16:39:20.009Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770827959983.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770827959983.scpt:548:553: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-11T16:39:20.035Z] ❌ Error searching notes: Command failed: osascript "/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770827960009.scpt"
+/var/folders/fl/kdywc_y91r95tgrwkl9kmfsc0000gn/T/verify_notes_1770827960009.scpt:536:541: script error: 預期的是表示式等，但找到的是「error」。 (-2741)
+
+[2026-02-11T16:39:20.035Z] 
+📊 Verification Results:
+[2026-02-11T16:39:20.035Z]    Total: 0
+[2026-02-11T16:39:20.035Z]    Passed: 0
+[2026-02-11T16:39:20.035Z]    Failed: 0
+[2026-02-11T16:41:06.572Z] 🚀 Starting backup verification...
+[2026-02-11T16:41:09.677Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午12:39" in "Ally's Memories"
+[2026-02-11T16:41:10.796Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 下午03:52" in "Ally's Memories"
+[2026-02-11T16:41:12.480Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T16:41:12.830Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T16:41:13.196Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T16:41:13.546Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T16:41:13.913Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T16:41:14.279Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T16:41:14.646Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-11T16:41:14.996Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-11T16:41:15.346Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-11T16:41:15.696Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-11T16:41:16.046Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-11T16:41:16.396Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-11T16:41:16.746Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-11T16:41:17.099Z] 
+📊 Results: Total=15, Passed=15, Failed=0
+[2026-02-11T20:28:40.931Z] 🚀 Starting backup verification...
+[2026-02-11T20:28:44.171Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:28" in "Ally's Memories"
+[2026-02-11T20:28:45.324Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午12:39" in "Ally's Memories"
+[2026-02-11T20:28:46.475Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 下午03:52" in "Ally's Memories"
+[2026-02-11T20:28:48.174Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T20:28:48.524Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T20:28:48.892Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T20:28:49.241Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T20:28:49.607Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T20:28:49.975Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T20:28:50.341Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-11T20:28:50.691Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-11T20:28:51.042Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-11T20:28:51.406Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-11T20:28:51.775Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-11T20:28:52.140Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-11T20:28:52.508Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-11T20:28:52.877Z] 
+📊 Results: Total=16, Passed=16, Failed=0
+[2026-02-11T20:59:10.088Z] 🚀 Starting backup verification...
+[2026-02-11T20:59:13.399Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T20:59:14.568Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:28" in "Ally's Memories"
+[2026-02-11T20:59:15.735Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午12:39" in "Ally's Memories"
+[2026-02-11T20:59:16.902Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 下午03:52" in "Ally's Memories"
+[2026-02-11T20:59:18.652Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T20:59:19.035Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T20:59:19.419Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T20:59:19.818Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T20:59:20.180Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T20:59:20.584Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T20:59:20.984Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T20:59:21.385Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-11T20:59:21.768Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-11T20:59:22.152Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-11T20:59:22.535Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-11T20:59:22.918Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-11T20:59:23.301Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-11T20:59:23.685Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-11T20:59:24.070Z] 
+📊 Results: Total=18, Passed=18, Failed=0
+[2026-02-11T20:59:41.706Z] 🚀 Starting backup verification...
+[2026-02-11T20:59:45.032Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T20:59:46.218Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T20:59:47.418Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:28" in "Ally's Memories"
+[2026-02-11T20:59:48.601Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午12:39" in "Ally's Memories"
+[2026-02-11T20:59:49.784Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 下午03:52" in "Ally's Memories"
+[2026-02-11T20:59:51.585Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T20:59:52.002Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T20:59:52.502Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T20:59:52.951Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T20:59:53.418Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T20:59:53.818Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T20:59:54.235Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T20:59:54.652Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T20:59:55.067Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-11T20:59:55.469Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-11T20:59:55.868Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-11T20:59:56.268Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-11T20:59:56.669Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-11T20:59:57.068Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-11T20:59:57.468Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-11T20:59:57.888Z] 
+📊 Results: Total=20, Passed=20, Failed=0
+[2026-02-11T21:00:12.184Z] 🚀 Starting backup verification...
+[2026-02-11T21:00:15.549Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:00" in "Ally's Memories"
+[2026-02-11T21:00:16.752Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:00:17.969Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:00:19.202Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:28" in "Ally's Memories"
+[2026-02-11T21:00:20.402Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午12:39" in "Ally's Memories"
+[2026-02-11T21:00:21.619Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 下午03:52" in "Ally's Memories"
+[2026-02-11T21:00:23.535Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:00:24.019Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:00:24.501Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:00:24.986Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:00:25.469Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:00:25.969Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:00:26.467Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:00:26.885Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:00:27.319Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:00:27.750Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:00:28.168Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-11T21:00:28.585Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-11T21:00:29.002Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-11T21:00:29.419Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-11T21:00:29.833Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-11T21:00:30.317Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-11T21:00:30.733Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-11T21:00:31.151Z] 
+📊 Results: Total=23, Passed=23, Failed=0
+[2026-02-11T21:00:47.887Z] 🚀 Starting backup verification...
+[2026-02-11T21:00:51.316Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:00" in "Ally's Memories"
+[2026-02-11T21:00:52.536Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:00" in "Ally's Memories"
+[2026-02-11T21:00:53.768Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:00:55.002Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:00:56.236Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:28" in "Ally's Memories"
+[2026-02-11T21:00:57.452Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午12:39" in "Ally's Memories"
+[2026-02-11T21:00:58.718Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 下午03:52" in "Ally's Memories"
+[2026-02-11T21:01:00.685Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:01.201Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:01.719Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:02.236Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:02.752Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:03.268Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:03.786Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:04.319Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:01:04.752Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:01:05.202Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:01:05.652Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:01:06.102Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-11T21:01:06.536Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-11T21:01:06.969Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-11T21:01:07.402Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-11T21:01:07.835Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-11T21:01:08.269Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-11T21:01:08.719Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-11T21:01:09.155Z] 
+📊 Results: Total=25, Passed=25, Failed=0
+[2026-02-11T21:01:24.972Z] 🚀 Starting backup verification...
+[2026-02-11T21:01:28.399Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:01" in "Ally's Memories"
+[2026-02-11T21:01:29.619Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:00" in "Ally's Memories"
+[2026-02-11T21:01:30.886Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:00" in "Ally's Memories"
+[2026-02-11T21:01:32.134Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:01:33.385Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:01:34.636Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:28" in "Ally's Memories"
+[2026-02-11T21:01:35.902Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午12:39" in "Ally's Memories"
+[2026-02-11T21:01:37.136Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 下午03:52" in "Ally's Memories"
+[2026-02-11T21:01:39.119Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:39.669Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:40.219Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:40.768Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:41.319Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:41.869Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:42.419Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:42.986Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:01:43.552Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:01:44.002Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:01:44.469Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:01:44.936Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:01:45.402Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-11T21:01:45.853Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-11T21:01:46.302Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-11T21:01:46.752Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-11T21:01:47.202Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-11T21:01:47.653Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-11T21:01:48.103Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-11T21:01:48.571Z] 
+📊 Results: Total=27, Passed=27, Failed=0
+[2026-02-11T21:02:02.086Z] 🚀 Starting backup verification...
+[2026-02-11T21:02:05.532Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:01" in "Ally's Memories"
+[2026-02-11T21:02:06.786Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:01" in "Ally's Memories"
+[2026-02-11T21:02:08.053Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:00" in "Ally's Memories"
+[2026-02-11T21:02:09.319Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:00" in "Ally's Memories"
+[2026-02-11T21:02:10.586Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:02:11.852Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:02:13.152Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:28" in "Ally's Memories"
+[2026-02-11T21:02:14.402Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午12:39" in "Ally's Memories"
+[2026-02-11T21:02:15.653Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 下午03:52" in "Ally's Memories"
+[2026-02-11T21:02:17.703Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:02:18.302Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:02:18.885Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:02:19.469Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:02:20.052Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:02:20.636Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:02:21.219Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:02:21.802Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:02:22.385Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:02:22.986Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:02:23.453Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:02:23.936Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:02:24.419Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:02:24.902Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-11T21:02:25.369Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-11T21:02:25.836Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-11T21:02:26.319Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-11T21:02:26.786Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-11T21:02:27.252Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-11T21:02:27.719Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-11T21:02:28.188Z] 
+📊 Results: Total=29, Passed=29, Failed=0
+[2026-02-11T21:02:42.371Z] 🚀 Starting backup verification...
+[2026-02-11T21:02:45.866Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:02" in "Ally's Memories"
+[2026-02-11T21:02:47.119Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:01" in "Ally's Memories"
+[2026-02-11T21:02:48.402Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:01" in "Ally's Memories"
+[2026-02-11T21:02:49.686Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:00" in "Ally's Memories"
+[2026-02-11T21:02:50.970Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午05:00" in "Ally's Memories"
+[2026-02-11T21:02:52.252Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:02:53.569Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:59" in "Ally's Memories"
+[2026-02-11T21:02:54.853Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午04:28" in "Ally's Memories"
+[2026-02-11T21:02:56.119Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 上午12:39" in "Ally's Memories"
+[2026-02-11T21:02:57.385Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-11 下午03:52" in "Ally's Memories"
+[2026-02-11T21:02:59.470Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:00.086Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:00.686Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:01.319Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:01.936Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:02.553Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:03.169Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:03.787Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:04.403Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:05.019Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-11T21:03:05.653Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:03:06.136Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-11T21:03:06.636Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:03:07.136Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-11T21:03:07.636Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-11T21:03:08.119Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-11T21:03:08.619Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-11T21:03:09.103Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-11T21:03:09.586Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-11T21:03:10.070Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-11T21:03:10.552Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-11T21:03:11.039Z] 
+📊 Results: Total=31, Passed=31, Failed=0
+[2026-02-12T04:15:31.975Z] 🚀 Starting backup verification...
+[2026-02-12T04:15:40.263Z] 🔍 Verifying: "AI Session Archive - 2026-02-12 下午12:07" in "Ally's Chat History"
+[2026-02-12T04:15:44.462Z] 🔍 Verifying: "AI Session Archive - 2026-02-12 03:12" in "Ally's Chat History"
+[2026-02-12T04:15:58.899Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-12 下午12:15" in "Ally's Memories"
+[2026-02-12T04:16:05.997Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月12日" in "Ally's Daily"
+[2026-02-12T04:16:07.502Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:09.483Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:11.474Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:13.437Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:15.450Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:17.426Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:19.409Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:21.418Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:23.427Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:25.416Z] 🔍 Verifying: "AI 每日總結 - 2026年2月11日" in "Ally's Daily"
+[2026-02-12T04:16:27.474Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-12T04:16:28.985Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-12T04:16:30.552Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-12T04:16:32.117Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-12T04:16:33.684Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-12T04:16:35.192Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-12T04:16:36.708Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-12T04:16:38.220Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-12T04:16:39.737Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-12T04:16:41.254Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-12T04:16:42.751Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-12T04:16:44.280Z] 
+📊 Results: Total=25, Passed=25, Failed=0
+[2026-02-14T14:14:29.009Z] 🚀 Starting backup verification...
+[2026-02-14T14:14:30.152Z] 🔍 Verifying: "AI Session Archive - 2026-02-14 下午10:05" in "Ally's Chat History"
+[2026-02-14T14:14:33.758Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-14 下午10:14" in "Ally's Memories"
+[2026-02-14T14:14:35.637Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-14T14:14:36.041Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-14T14:14:36.457Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-14T14:14:36.829Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-14T14:14:37.199Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-14T14:14:37.600Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-14T14:14:38.005Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-14T14:14:38.392Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-14T14:14:38.764Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-14T14:14:39.141Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-14T14:14:39.518Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-14T14:14:39.890Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-14T14:14:40.260Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-14T14:14:40.644Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-14T14:14:41.020Z] 
+📊 Results: Total=16, Passed=16, Failed=0
+[2026-02-15T14:48:47.137Z] 🚀 Starting backup verification...
+[2026-02-15T14:48:57.425Z] 🔍 Verifying: "AI Session Archive - 2026-02-15 下午03:30" in "Ally's Chat History"
+[2026-02-15T14:49:16.979Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-15 下午10:48" in "Ally's Memories"
+[2026-02-15T14:49:24.741Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-15T14:49:26.015Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-15T14:49:27.476Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-15T14:49:28.919Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-15T14:49:30.307Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-15T14:49:31.694Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-15T14:49:33.135Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-15T14:49:34.590Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-15T14:49:36.062Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-15T14:49:37.453Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-15T14:49:38.801Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-15T14:49:40.187Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-15T14:49:41.571Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-15T14:49:42.937Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-15T14:49:44.318Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-15T14:49:45.702Z] 
+📊 Results: Total=17, Passed=17, Failed=0
+[2026-02-16T02:02:22.964Z] 🚀 Starting backup verification...
+[2026-02-16T02:02:47.987Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午10:02" in "Ally's Memories"
+[2026-02-16T02:02:55.583Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-16T02:02:57.185Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-16T02:02:58.925Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-16T02:03:00.517Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-16T02:03:02.269Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-16T02:03:03.839Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-16T02:03:05.377Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-16T02:03:06.926Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-16T02:03:08.529Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-16T02:03:10.134Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-16T02:03:11.751Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-16T02:03:13.278Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-16T02:03:14.811Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-16T02:03:16.350Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-16T02:03:17.900Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-16T02:03:19.404Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-16T02:03:20.945Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-16T02:03:22.486Z] 
+📊 Results: Total=18, Passed=18, Failed=0
+[2026-02-16T03:23:40.802Z] 🚀 Starting backup verification...
+[2026-02-16T03:23:59.386Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午10:02" in "Ally's Memories"
+[2026-02-16T03:24:07.595Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-16T03:24:09.204Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-16T03:24:10.945Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-16T03:24:12.544Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-16T03:24:14.307Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-16T03:24:15.915Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-16T03:24:17.454Z] 🔍 Verifying: "🧪 TEST - AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-16T03:24:18.986Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-16T03:24:20.581Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-16T03:24:22.180Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-16T03:24:23.788Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-16T03:24:25.308Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-16T03:24:26.850Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-16T03:24:28.380Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-16T03:24:29.908Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-16T03:24:31.437Z] 🔍 Verifying: "AI 每日總結 - 2026年2月1日" in "Ally's Daily"
+[2026-02-16T03:24:32.968Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-16T03:24:34.510Z] 
+📊 Results: Total=18, Passed=18, Failed=0
+[2026-02-16T16:24:20.069Z] 🚀 Starting backup verification...
+[2026-02-16T16:24:46.610Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午12:24" in "Ally's Memories"
+[2026-02-16T17:40:50.369Z] 🚀 Starting backup verification...
+[2026-02-16T17:41:15.497Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午01:40" in "Ally's Memories"
+[2026-02-16T20:17:59.863Z] 🚀 Starting backup verification...
+[2026-02-16T20:18:28.591Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午04:17" in "Ally's Memories"
+[2026-02-16T20:18:34.880Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午03:47" in "Ally's Memories"
+[2026-02-16T20:18:41.033Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午03:17" in "Ally's Memories"
+[2026-02-16T20:18:47.255Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午02:47" in "Ally's Memories"
+[2026-02-16T20:18:53.581Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午02:10" in "Ally's Memories"
+[2026-02-16T20:18:59.924Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午01:40" in "Ally's Memories"
+[2026-02-16T20:19:06.279Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午12:24" in "Ally's Memories"
+[2026-02-16T20:19:12.627Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午11:24" in "Ally's Memories"
+[2026-02-16T20:19:18.816Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-16 上午10:02" in "Ally's Memories"
+[2026-02-16T20:19:27.447Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-16T20:19:28.930Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-16T20:19:30.431Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-16T20:19:31.944Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-16T20:19:33.303Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-16T20:19:34.741Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-16T20:19:36.096Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-16T20:19:37.451Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-16T20:19:38.798Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-16T20:19:40.151Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-16T20:19:41.511Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-16T20:19:42.853Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-16T20:19:44.197Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-16T20:19:45.557Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-16T20:19:46.911Z] 
+📊 Results: Total=23, Passed=23, Failed=0
+[2026-02-17T20:24:53.256Z] 🚀 Starting backup verification...
+[2026-02-17T20:25:16.852Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-17T20:25:18.365Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-17T20:25:20.087Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-17T20:25:21.783Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-17T20:25:23.443Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-17T20:25:24.961Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-17T20:25:26.541Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-17T20:25:28.041Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-17T20:25:29.550Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-17T20:25:31.056Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-17T20:25:32.554Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-17T20:25:34.041Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-17T20:25:35.532Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-17T20:25:37.021Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-17T20:25:38.504Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-17T20:25:39.988Z] 
+📊 Results: Total=15, Passed=15, Failed=0
+[2026-02-18T17:17:22.358Z] 🚀 Starting backup verification...
+[2026-02-18T17:17:45.655Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-18T17:17:47.140Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-18T17:17:48.767Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-18T17:17:50.400Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-18T17:17:52.009Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-18T17:17:53.470Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-18T17:17:55.031Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-18T17:17:56.518Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-18T17:17:58.009Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-18T17:17:59.481Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-18T17:18:00.951Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-18T17:18:02.433Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-18T17:18:03.922Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-18T17:18:05.401Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-18T17:18:06.880Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-18T17:18:08.361Z] 
+📊 Results: Total=15, Passed=15, Failed=0
+[2026-02-18T17:47:08.586Z] 🚀 Starting backup verification...
+[2026-02-18T17:47:31.977Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-18T17:47:33.452Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-18T17:47:35.105Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-18T17:47:36.733Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-18T17:47:38.371Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-18T17:47:39.855Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-18T17:47:41.421Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-18T17:47:42.902Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-18T17:47:44.397Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-18T17:47:45.877Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-18T17:47:47.360Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-18T17:47:48.841Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-18T17:47:50.324Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-18T17:47:51.809Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-18T17:47:53.285Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-18T17:47:54.772Z] 
+📊 Results: Total=15, Passed=15, Failed=0
+[2026-02-18T23:47:42.884Z] 🚀 Starting backup verification...
+[2026-02-18T23:48:04.134Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-18 上午07:47" in "Ally's Memories"
+[2026-02-18T23:48:13.101Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-18T23:48:14.606Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-18T23:48:16.264Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-18T23:48:17.913Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-18T23:48:19.563Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-18T23:48:21.064Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-18T23:48:22.633Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-18T23:48:24.139Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-18T23:48:25.652Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-18T23:48:27.166Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-18T23:48:28.665Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-18T23:48:30.167Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-18T23:48:31.659Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-18T23:48:33.163Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-18T23:48:34.668Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-18T23:48:36.146Z] 
+📊 Results: Total=16, Passed=16, Failed=0
+[2026-02-19T02:17:20.527Z] 🚀 Starting backup verification...
+[2026-02-19T02:17:56.923Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 上午10:16" in "Ally's Memories"
+[2026-02-19T02:18:13.787Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-19T02:18:16.380Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T02:18:18.024Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T02:18:19.680Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T02:18:21.320Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-19T02:18:22.811Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-19T02:18:24.378Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-19T02:18:25.875Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-19T02:18:27.363Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-19T02:18:28.859Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-19T02:18:30.349Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-19T02:18:31.849Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-19T02:18:33.339Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-19T02:18:34.837Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-19T02:18:36.307Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-19T02:18:37.814Z] 
+📊 Results: Total=16, Passed=16, Failed=0
+[2026-02-19T02:47:03.793Z] 🚀 Starting backup verification...
+[2026-02-19T02:47:31.479Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 上午10:16" in "Ally's Memories"
+[2026-02-19T02:47:56.595Z] 🚀 Starting backup verification...
+[2026-02-19T02:48:18.009Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 上午10:16" in "Ally's Memories"
+[2026-02-19T06:37:17.599Z] 🚀 Starting backup verification...
+[2026-02-19T06:37:39.147Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午02:36" in "Ally's Memories"
+[2026-02-19T06:37:45.589Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 上午10:16" in "Ally's Memories"
+[2026-02-19T06:37:54.596Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-19T06:37:56.088Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T06:37:57.728Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T06:37:59.371Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T06:38:01.014Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-19T06:38:02.507Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-19T06:38:04.082Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-19T06:38:05.589Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-19T06:38:07.096Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-19T06:38:08.585Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-19T06:38:10.085Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-19T06:38:11.582Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-19T06:38:13.074Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-19T06:38:14.560Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-19T06:38:16.063Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-19T06:38:17.562Z] 
+📊 Results: Total=17, Passed=17, Failed=0
+[2026-02-19T08:06:43.102Z] 🚀 Starting backup verification...
+[2026-02-19T08:07:20.943Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午02:36" in "Ally's Memories"
+[2026-02-19T08:07:27.428Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 上午10:16" in "Ally's Memories"
+[2026-02-19T08:07:36.486Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-19T08:07:37.995Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T08:07:39.633Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T08:07:41.280Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T08:07:42.917Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-19T08:07:44.405Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-19T08:07:45.987Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-19T08:07:47.500Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-19T08:07:48.989Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-19T08:07:50.482Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-19T08:07:51.982Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-19T08:07:53.478Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-19T08:07:54.971Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-19T08:07:56.481Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-19T08:07:57.983Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-19T08:07:59.477Z] 
+📊 Results: Total=17, Passed=17, Failed=0
+[2026-02-19T09:07:41.305Z] 🚀 Starting backup verification...
+[2026-02-19T09:08:03.229Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午05:07" in "Ally's Memories"
+[2026-02-19T09:08:09.812Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午02:36" in "Ally's Memories"
+[2026-02-19T09:08:16.389Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 上午10:16" in "Ally's Memories"
+[2026-02-19T09:08:24.551Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-19T09:08:26.062Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T09:08:27.717Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T09:08:29.366Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T09:08:31.012Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-19T09:08:32.518Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-19T09:08:34.092Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-19T09:08:35.604Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-19T09:08:37.118Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-19T09:08:38.612Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-19T09:08:40.115Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-19T09:08:41.616Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-19T09:08:43.118Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-19T09:08:44.619Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-19T09:08:46.130Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-19T09:08:47.637Z] 
+📊 Results: Total=18, Passed=18, Failed=0
+[2026-02-19T11:06:46.593Z] 🚀 Starting backup verification...
+[2026-02-19T11:06:48.956Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午06:43" in "Ally's Memories"
+[2026-02-19T11:06:49.398Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午05:38" in "Ally's Memories"
+[2026-02-19T11:06:49.848Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午05:07" in "Ally's Memories"
+[2026-02-19T11:06:50.314Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午02:36" in "Ally's Memories"
+[2026-02-19T11:06:50.798Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 上午10:16" in "Ally's Memories"
+[2026-02-19T11:06:51.914Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-19T11:06:52.331Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T11:06:52.781Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T11:06:53.231Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T11:06:53.681Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-19T11:06:54.098Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-19T11:06:54.531Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-19T11:06:54.948Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-19T11:06:55.364Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-19T11:06:55.781Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-19T11:06:56.197Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-19T11:06:56.614Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-19T11:06:57.031Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-19T11:06:57.448Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-19T11:06:57.864Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-19T11:06:58.283Z] 
+📊 Results: Total=20, Passed=20, Failed=0
+[2026-02-19T12:08:02.990Z] 🚀 Starting backup verification...
+[2026-02-19T12:08:04.873Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午06:43" in "Ally's Memories"
+[2026-02-19T12:08:05.165Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-19 下午05:38" in "Ally's Memories"
+[2026-02-19T12:08:06.115Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-19T12:08:06.532Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T12:08:06.999Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T12:08:07.449Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-19T12:08:07.899Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-19T12:08:08.332Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-19T12:08:08.766Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-19T12:08:09.182Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-19T12:08:09.599Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-19T12:08:10.016Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-19T12:08:10.432Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-19T12:08:10.849Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-19T12:08:11.266Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-19T12:08:11.682Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-19T12:08:12.099Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-19T12:08:12.535Z] 
+📊 Results: Total=17, Passed=17, Failed=0
+[2026-02-20T20:02:06.086Z] 🚀 Starting backup verification...
+[2026-02-20T20:02:12.533Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-20 下午02:58" in "Ally's Memories"
+[2026-02-20T20:02:15.671Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-20T20:02:16.992Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-20T20:02:18.304Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-20T20:02:19.661Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-20T20:02:21.141Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-20T20:02:22.616Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-20T20:02:23.882Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-20T20:02:25.244Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-20T20:02:26.675Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-20T20:02:28.011Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-20T20:02:29.346Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-20T20:02:30.700Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-20T20:02:32.064Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-20T20:02:33.417Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-20T20:02:34.584Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-20T20:02:35.906Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-21T05:32:03.666Z] 🚀 Starting backup verification...
+[2026-02-21T05:32:12.458Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-21T05:32:13.605Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-21T05:32:14.952Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-21T05:32:16.256Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T05:32:17.705Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T05:32:19.145Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T05:32:20.594Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-21T05:32:21.923Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-21T05:32:23.316Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-21T05:32:24.456Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-21T05:32:25.797Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-21T05:32:27.128Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-21T05:32:28.467Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-21T05:32:29.776Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-21T05:32:31.108Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-21T05:32:32.432Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-21T05:32:33.752Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-21T05:32:34.965Z] 
+📊 Results: Total=17, Passed=17, Failed=0
+[2026-02-21T13:02:01.441Z] 🚀 Starting backup verification...
+[2026-02-21T13:02:10.180Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-21T13:02:11.528Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-21T13:02:12.858Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-21T13:02:14.215Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T13:02:15.681Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T13:02:17.144Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T13:02:18.600Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-21T13:02:19.807Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-21T13:02:21.109Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-21T13:02:22.424Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-21T13:02:23.716Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-21T13:02:25.058Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-21T13:02:26.386Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-21T13:02:27.719Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-21T13:02:29.055Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-21T13:02:30.381Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-21T16:31:53.740Z] 🚀 Starting backup verification...
+[2026-02-21T16:32:02.483Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-02-21T16:32:03.884Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-21T16:32:05.275Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-21T16:32:06.687Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-21T16:32:08.077Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T16:32:09.412Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T16:32:10.892Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T16:32:12.405Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-21T16:32:13.797Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-21T16:32:15.237Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-21T16:32:16.635Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-21T16:32:18.028Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-21T16:32:19.418Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-21T16:32:20.650Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-21T16:32:22.039Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-21T16:32:23.420Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-21T23:32:13.872Z] 🚀 Starting backup verification...
+[2026-02-21T23:32:22.684Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-02-21T23:32:24.087Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-21T23:32:25.482Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-21T23:32:26.786Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-21T23:32:28.071Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T23:32:29.605Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T23:32:31.130Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-21T23:32:32.653Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-21T23:32:34.049Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-21T23:32:35.498Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-21T23:32:36.919Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-21T23:32:38.131Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-21T23:32:39.499Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-21T23:32:40.909Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-21T23:32:42.315Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-21T23:32:43.697Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-22T04:02:18.382Z] 🚀 Starting backup verification...
+[2026-02-22T04:02:25.005Z] 🔍 Verifying: "MEMORY.md Backup - 2026-02-22 下午12:01" in "Ally's Memories"
+[2026-02-22T04:02:28.325Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-02-22T04:02:29.774Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-22T04:02:31.198Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-22T04:02:32.655Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-22T04:02:34.116Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-22T04:02:35.568Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-22T04:02:37.037Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-22T04:02:38.618Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-22T04:02:40.085Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-22T04:02:41.560Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-22T04:02:43.015Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-22T04:02:44.479Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-22T04:02:45.921Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-22T04:02:47.204Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-23T20:28:00.456Z] 🚀 Starting backup verification...
+[2026-02-23T20:28:09.685Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-02-23T20:28:11.121Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-23T20:28:12.539Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-23T20:28:13.960Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-23T20:28:15.380Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-23T20:28:16.907Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-23T20:28:18.456Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-23T20:28:19.997Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-23T20:28:21.400Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-23T20:28:22.896Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-23T20:28:24.307Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-23T20:28:25.715Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-23T20:28:27.119Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-23T20:28:28.540Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-23T20:28:29.950Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-23T20:28:31.359Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-23T20:28:32.773Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-23T20:28:34.195Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-23T20:28:35.602Z] 
+📊 Results: Total=18, Passed=18, Failed=0
+[2026-02-28T01:00:46.814Z] 🚀 Starting backup verification...
+[2026-02-28T01:00:57.511Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-02-28T01:00:59.320Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-02-28T01:01:01.126Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-02-28T01:01:02.940Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-02-28T01:01:04.735Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-02-28T01:01:06.528Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-28T01:01:08.317Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-28T01:01:10.108Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-28T01:01:11.902Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T01:01:13.832Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T01:01:15.760Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T02:30:43.642Z] 🚀 Starting backup verification...
+[2026-02-28T02:30:47.292Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-02-28T02:30:48.128Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-02-28T02:30:48.661Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-02-28T02:30:49.193Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-02-28T02:30:49.729Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-02-28T02:30:50.263Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-28T02:30:50.829Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-28T02:30:51.378Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-28T02:30:51.928Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T02:30:52.645Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T02:30:53.209Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T02:30:53.812Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-28T02:30:54.345Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-28T02:30:55.637Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-28T02:30:57.082Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-28T02:30:57.646Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-28T02:30:58.180Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-28T02:30:58.964Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-28T02:30:59.511Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-28T02:31:00.046Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-28T02:31:00.582Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-28T02:31:01.129Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-28T02:31:01.661Z] 
+📊 Results: Total=22, Passed=22, Failed=0
+[2026-02-28T05:00:42.651Z] 🚀 Starting backup verification...
+[2026-02-28T05:00:53.267Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-02-28T05:00:55.079Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-02-28T05:00:56.916Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-02-28T05:00:57.753Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-02-28T05:00:58.320Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-02-28T05:00:58.889Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-28T05:00:59.433Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-28T05:01:00.056Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-28T05:01:00.623Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T05:01:01.219Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T05:01:01.868Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T05:01:02.472Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-28T05:01:03.022Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-28T05:01:03.606Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-28T05:01:04.507Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-28T05:01:05.057Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-28T05:01:06.042Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-28T05:01:07.877Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-28T05:01:09.707Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-28T05:01:11.513Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-28T10:30:35.193Z] 🚀 Starting backup verification...
+[2026-02-28T10:30:46.027Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-02-28T10:30:47.689Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-02-28T10:30:48.285Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-02-28T10:30:48.911Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-02-28T10:30:49.533Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-02-28T10:30:50.258Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-02-28T10:30:50.851Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-02-28T10:30:51.719Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-02-28T10:30:52.284Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T10:30:52.965Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T10:30:53.635Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-02-28T10:30:54.453Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-02-28T10:30:55.047Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-02-28T10:30:55.632Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-02-28T10:30:56.201Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-02-28T10:30:56.751Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-02-28T10:30:58.557Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-02-28T10:31:00.219Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-02-28T10:31:00.813Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-02-28T10:31:01.496Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-02-28T10:31:02.152Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-02-28T10:31:02.732Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-02-28T10:31:03.652Z] 
+📊 Results: Total=22, Passed=22, Failed=0
+[2026-03-05T01:26:35.062Z] 🚀 Starting backup verification...
+[2026-03-05T01:26:42.433Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-05 上午09:26" in "Ally's Memories"
+[2026-03-05T01:26:47.055Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-05T01:26:49.222Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-05T01:26:51.314Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-05T01:26:54.810Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-05T01:26:56.863Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-05T01:26:58.907Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-05T01:27:00.932Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-03-05T01:27:02.938Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-03-05T01:27:04.987Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-03-10T13:21:17.482Z] 🚀 Starting backup verification...
+[2026-03-10T13:21:28.488Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-10T13:21:30.650Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-10T13:21:32.780Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-10T13:21:34.908Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-10T13:21:37.056Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-10T13:21:39.113Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-10T13:21:41.243Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-10T13:21:43.365Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-10T13:21:45.525Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-03-10T13:21:47.659Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-03-10T13:21:49.807Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-03-10T13:21:51.960Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-03-10T13:21:54.110Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-03-10T13:21:56.255Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-03-10T13:21:58.410Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-03-10T13:22:00.558Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-10T13:22:02.815Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-10T13:22:05.051Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-10T13:22:07.327Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-03-10T13:22:09.463Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-03-10T13:22:11.676Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-03-10T13:22:13.806Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-03-10T13:22:15.947Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-03-10T13:22:18.082Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-03-10T13:22:20.232Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-03-10T13:22:22.344Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-03-10T13:22:24.476Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-03-10T13:22:26.631Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-03-10T13:22:28.702Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-03-10T13:22:30.835Z] 
+📊 Results: Total=29, Passed=29, Failed=0
+[2026-03-10T14:51:34.374Z] 🚀 Starting backup verification...
+[2026-03-10T14:51:36.294Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-10 下午10:51" in "Ally's Memories"
+[2026-03-10T14:51:37.740Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-10T14:51:38.390Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-10T14:51:39.039Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-10T14:51:39.690Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-10T14:51:40.339Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-10T14:51:40.992Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-10T14:51:41.640Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-10T14:51:42.289Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-10T14:51:42.940Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-03-10T14:51:43.592Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-03-10T14:51:44.241Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-03-10T14:51:44.892Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-03-10T14:51:45.543Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-03-10T14:51:46.190Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-03-10T14:51:46.840Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-03-10T14:51:47.489Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-10T14:51:48.175Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-10T14:51:48.859Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-10T14:51:49.542Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-03-10T14:51:50.191Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-03-10T14:51:50.860Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-03-10T14:51:51.508Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-03-10T14:51:52.158Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-03-10T14:51:52.809Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-03-10T14:51:53.460Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-03-10T14:51:54.091Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-03-10T14:51:54.742Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-03-10T14:51:55.392Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-03-10T14:51:56.042Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-03-10T14:51:56.693Z] 
+📊 Results: Total=30, Passed=30, Failed=0
+[2026-03-10T16:21:33.568Z] 🚀 Starting backup verification...
+[2026-03-10T16:21:41.951Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-10 下午10:51" in "Ally's Memories"
+[2026-03-10T16:21:46.762Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-10T16:21:48.929Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-10T16:21:51.075Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-10T16:21:52.430Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-10T16:21:53.691Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-10T16:21:55.703Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-10T16:21:57.582Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-10T16:21:59.678Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-10T16:22:01.476Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-03-10T18:38:16.057Z] 🚀 Starting backup verification...
+[2026-03-10T18:38:25.010Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-10 下午10:51" in "Ally's Memories"
+[2026-03-10T18:38:30.000Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-10T18:38:32.171Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-10T18:38:34.345Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-10T18:38:36.523Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-10T18:38:38.700Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-10T18:38:40.867Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-10T18:38:43.058Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-10T18:38:45.114Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-10T19:18:45.521Z] 🚀 Starting backup verification...
+[2026-03-10T19:18:54.338Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-10 下午10:51" in "Ally's Memories"
+[2026-03-10T19:18:59.315Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-10T19:19:01.487Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-10T19:19:03.658Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-10T19:19:05.794Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-10T19:19:07.970Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-10T19:19:10.131Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-10T19:19:12.322Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-10T19:19:14.490Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-14T13:52:45.003Z] 🚀 Starting backup verification...
+[2026-03-14T13:52:50.152Z] 🔍 Verifying: "AI Session Archive - 2026-03-14 下午07:00" in "Ally's Chat History"
+[2026-03-14T13:52:57.236Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-14 上午08:01" in "Ally's Memories"
+[2026-03-14T13:53:02.303Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-14T13:53:04.475Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-14T13:53:06.652Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-14T13:53:08.822Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-14T13:53:10.982Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-14T13:53:13.159Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-15T02:06:49.693Z] 🚀 Starting backup verification...
+[2026-03-15T02:06:57.346Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-15 上午10:06" in "Ally's Memories"
+[2026-03-15T02:07:02.544Z] 🔍 Verifying: "AI 每日總結 - 2026年3月14日" in "Ally's Daily"
+[2026-03-15T02:07:04.797Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-15T02:07:07.036Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-15T02:07:09.251Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-15T02:07:11.489Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-15T02:07:13.724Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-15T02:07:15.905Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-15T02:07:18.103Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-15T03:35:39.461Z] 🚀 Starting backup verification...
+[2026-03-15T03:35:47.137Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-15 上午10:06" in "Ally's Memories"
+[2026-03-15T03:35:52.382Z] 🔍 Verifying: "AI 每日總結 - 2026年3月14日" in "Ally's Daily"
+[2026-03-15T03:35:54.599Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-15T03:35:56.815Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-15T03:35:59.019Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-15T03:36:01.183Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-15T03:36:03.386Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-15T03:36:05.624Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-15T03:36:07.868Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-15T03:36:10.104Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-15T03:36:12.345Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-03-15T03:36:14.579Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-03-15T03:36:16.812Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-03-15T03:36:19.040Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-03-15T03:36:21.264Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-03-15T03:36:23.496Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-03-15T03:36:25.733Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-03-15T03:36:28.028Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T03:36:30.369Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T03:36:32.723Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T03:36:35.047Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-03-15T03:36:37.259Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-03-15T14:13:39.781Z] 🚀 Starting backup verification...
+[2026-03-15T14:13:46.830Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-15 上午10:06" in "Ally's Memories"
+[2026-03-15T14:13:52.968Z] 🔍 Verifying: "AI 每日總結 - 2026年3月15日" in "Ally's Daily"
+[2026-03-15T14:13:56.735Z] 🔍 Verifying: "AI 每日總結 - 2026年3月14日" in "Ally's Daily"
+[2026-03-15T14:13:58.935Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-15T14:14:01.051Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-15T14:14:03.130Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-15T14:14:05.026Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-15T14:14:07.119Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-15T14:14:09.360Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-15T14:14:11.585Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-15T14:14:14.003Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-15T14:14:15.990Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-03-15T14:14:18.426Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-03-15T14:14:20.785Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-03-15T14:14:23.195Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-03-15T14:14:25.392Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-03-15T14:14:27.402Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-03-15T14:14:29.694Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-03-15T14:14:32.123Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T14:14:34.647Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T14:14:36.947Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T14:14:39.230Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-03-15T14:14:41.351Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-03-15T14:14:43.813Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-03-15T14:14:45.846Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-03-15T14:14:48.157Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-03-15T14:14:50.372Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-03-15T14:14:52.491Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-03-15T14:14:54.372Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-03-15T14:14:56.585Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-03-15T14:14:58.896Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-03-15T14:15:01.170Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-03-15T14:15:03.301Z] 
+📊 Results: Total=32, Passed=32, Failed=0
+[2026-03-15T16:04:15.575Z] 🚀 Starting backup verification...
+[2026-03-15T16:04:23.330Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-15 上午10:06" in "Ally's Memories"
+[2026-03-15T16:04:28.793Z] 🔍 Verifying: "AI 每日總結 - 2026年3月15日" in "Ally's Daily"
+[2026-03-15T16:04:31.127Z] 🔍 Verifying: "AI 每日總結 - 2026年3月14日" in "Ally's Daily"
+[2026-03-15T16:04:33.397Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-15T16:04:35.699Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-15T16:04:37.986Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-15T16:04:40.203Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-15T16:04:42.484Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-15T16:04:44.689Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-15T16:04:46.882Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-15T16:04:49.189Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-15T16:04:51.476Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-03-15T16:04:53.797Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-03-15T16:04:56.103Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-03-15T16:04:58.408Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-03-15T16:05:00.715Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-03-15T16:05:02.882Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-03-15T16:05:05.191Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-03-15T16:05:07.500Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T16:05:09.928Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T16:05:12.348Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T16:05:14.762Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-03-15T16:05:17.064Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-03-15T16:05:19.427Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-03-15T16:05:21.690Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-03-15T16:05:24.012Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-03-15T16:05:26.301Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-03-15T16:05:28.623Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-03-15T16:05:30.921Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-03-15T16:05:33.210Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-03-15T16:05:35.512Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-03-15T16:05:37.784Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-03-15T16:05:40.091Z] 
+📊 Results: Total=32, Passed=32, Failed=0
+[2026-03-15T17:03:05.642Z] 🚀 Starting backup verification...
+[2026-03-15T17:03:07.837Z] 🔍 Verifying: "MEMORY.md Backup - 2026-03-15 上午10:06" in "Ally's Memories"
+[2026-03-15T17:03:09.459Z] 🔍 Verifying: "AI 每日總結 - 2026年3月15日" in "Ally's Daily"
+[2026-03-15T17:03:10.167Z] 🔍 Verifying: "AI 每日總結 - 2026年3月14日" in "Ally's Daily"
+[2026-03-15T17:03:10.890Z] 🔍 Verifying: "AI 每日總結 - 2026年3月8日" in "Ally's Daily"
+[2026-03-15T17:03:11.593Z] 🔍 Verifying: "AI 每日總結 - 2026年3月5日" in "Ally's Daily"
+[2026-03-15T17:03:12.300Z] 🔍 Verifying: "AI 每日總結 - 2026年3月4日" in "Ally's Daily"
+[2026-03-15T17:03:13.006Z] 🔍 Verifying: "AI 每日總結 - 2026年3月3日" in "Ally's Daily"
+[2026-03-15T17:03:13.732Z] 🔍 Verifying: "AI 每日總結 - 2026年3月2日" in "Ally's Daily"
+[2026-03-15T17:03:14.434Z] 🔍 Verifying: "AI 每日總結 - 2026年3月1日" in "Ally's Daily"
+[2026-03-15T17:03:15.142Z] 🔍 Verifying: "AI 每日總結 - 2026年2月28日" in "Ally's Daily"
+[2026-03-15T17:03:15.866Z] 🔍 Verifying: "AI 每日總結 - 2026年2月27日" in "Ally's Daily"
+[2026-03-15T17:03:16.572Z] 🔍 Verifying: "AI 每日總結 - 2026年2月26日" in "Ally's Daily"
+[2026-03-15T17:03:17.277Z] 🔍 Verifying: "AI 每日總結 - 2026年2月25日" in "Ally's Daily"
+[2026-03-15T17:03:18.000Z] 🔍 Verifying: "AI 每日總結 - 2026年2月24日" in "Ally's Daily"
+[2026-03-15T17:03:18.707Z] 🔍 Verifying: "AI 每日總結 - 2026年2月21日" in "Ally's Daily"
+[2026-03-15T17:03:19.412Z] 🔍 Verifying: "AI 每日總結 - 2026年2月20日" in "Ally's Daily"
+[2026-03-15T17:03:20.121Z] 🔍 Verifying: "AI 每日總結 - 2026-02-19" in "Ally's Daily"
+[2026-03-15T17:03:20.801Z] 🔍 Verifying: "AI 每日總結 - 2026年2月17日" in "Ally's Daily"
+[2026-03-15T17:03:21.481Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T17:03:22.218Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T17:03:22.943Z] 🔍 Verifying: "AI 每日總結 - 2026年2月16日" in "Ally's Daily"
+[2026-03-15T17:03:23.682Z] 🔍 Verifying: "AI 每日總結 - 2026年2月15日" in "Ally's Daily"
+[2026-03-15T17:03:24.368Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日" in "Ally's Daily"
+[2026-03-15T17:03:25.079Z] 🔍 Verifying: "AI 每日總結 - 2026年2月14日 (最終版)" in "Ally's Daily"
+[2026-03-15T17:03:25.785Z] 🔍 Verifying: "AI 每日總結 - 2026年2月10日" in "Ally's Daily"
+[2026-03-15T17:03:26.493Z] 🔍 Verifying: "AI 每日總結 - 2026年2月8日" in "Ally's Daily"
+[2026-03-15T17:03:27.200Z] 🔍 Verifying: "AI 每日總結 - 2026年2月7日" in "Ally's Daily"
+[2026-03-15T17:03:27.901Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月5日" in "Ally's Daily"
+[2026-03-15T17:03:28.610Z] 🔍 Verifying: "🤖 AI 每日總結 - 2026年2月4日" in "Ally's Daily"
+[2026-03-15T17:03:29.318Z] 🔍 Verifying: "AI 每日總結 - 2026年2月3日" in "Ally's Daily"
+[2026-03-15T17:03:29.992Z] 🔍 Verifying: "AI 每日總結 - 2026年2月2日" in "Ally's Daily"
+[2026-03-15T17:03:30.678Z] 🔍 Verifying: "AI 每日總結 - 2026-02-01" in "Ally's Daily"
+[2026-03-15T17:03:31.385Z] 
+📊 Results: Total=32, Passed=32, Failed=0

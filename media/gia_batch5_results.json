@@ -1,0 +1,210 @@
+{
+  "batch": "5/5",
+  "analyzedAt": "2026-04-28T20:58:43.234Z",
+  "totalPDFs": 15,
+  "successful": 14,
+  "errors": 1,
+  "errorReportNumbers": ["6234158920"],
+  "results": [
+    {
+      "reportNumber": "6234129129",
+      "shape": "Oval Brilliant",
+      "carat": 7.03,
+      "color": "H",
+      "clarity": "SI2",
+      "clawScore": 63,
+      "verdict": "CAUTION",
+      "verdictEmoji": "🟡",
+      "recommendation": "APPROVE"
+    },
+    {
+      "reportNumber": "6234158920",
+      "shape": "Unknown",
+      "carat": null,
+      "color": null,
+      "clarity": null,
+      "clawScore": null,
+      "verdict": "ERROR",
+      "verdictEmoji": "⚫",
+      "recommendation": "ERROR",
+      "errorDetail": "ratio.toFixed is not a function"
+    },
+    {
+      "reportNumber": "6234175633",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 2.45,
+      "color": "Fancy Light Pink",
+      "clarity": "VS1",
+      "clawScore": 24,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "CONDITIONAL",
+      "isFancyColor": true
+    },
+    {
+      "reportNumber": "6234289441",
+      "shape": "Round Brilliant",
+      "carat": 7.50,
+      "color": "D",
+      "clarity": "FL",
+      "clawScore": 34,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "CONDITIONAL"
+    },
+    {
+      "reportNumber": "6237208621",
+      "shape": "Oval Brilliant",
+      "carat": 5.01,
+      "color": "H",
+      "clarity": "SI1",
+      "clawScore": 19,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT",
+      "isFancyColor": true
+    },
+    {
+      "reportNumber": "6237543868",
+      "shape": "Pear Brilliant",
+      "carat": 7.02,
+      "color": "H",
+      "clarity": "Internally Flawless",
+      "clawScore": 85,
+      "verdict": "BUY",
+      "verdictEmoji": "✅",
+      "recommendation": "APPROVE"
+    },
+    {
+      "reportNumber": "6237791422",
+      "shape": "Modified Kite Step Cut",
+      "carat": 3.03,
+      "color": "H",
+      "clarity": "SI2",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    },
+    {
+      "reportNumber": "6415242848",
+      "shape": "Round Brilliant",
+      "carat": 10.02,
+      "color": "G",
+      "clarity": "SI2",
+      "clawScore": 18,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    },
+    {
+      "reportNumber": "6425007646",
+      "shape": "Heart Brilliant",
+      "carat": 3.01,
+      "color": "G",
+      "clarity": "SI2",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    },
+    {
+      "reportNumber": "6451678836",
+      "shape": "Cushion Brilliant",
+      "carat": 3.01,
+      "color": "F",
+      "clarity": "SI1",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT",
+      "isFancyColor": true
+    },
+    {
+      "reportNumber": "6462156306",
+      "shape": "Oval Brilliant",
+      "carat": 10.04,
+      "color": "H",
+      "clarity": "SI1",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    },
+    {
+      "reportNumber": "6512928723",
+      "shape": "Square Emerald Cut",
+      "carat": 5.02,
+      "color": "D",
+      "clarity": "VVS1",
+      "clawScore": 70,
+      "verdict": "BUY",
+      "verdictEmoji": "✅",
+      "recommendation": "APPROVE"
+    },
+    {
+      "reportNumber": "6522986461",
+      "shape": "Pear Brilliant",
+      "carat": 2.00,
+      "color": "G",
+      "clarity": "SI2",
+      "clawScore": 16,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "CONDITIONAL"
+    },
+    {
+      "reportNumber": "7235047225",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 5.07,
+      "color": "H",
+      "clarity": "VVS2",
+      "clawScore": 64,
+      "verdict": "CAUTION",
+      "verdictEmoji": "🟡",
+      "recommendation": "APPROVE"
+    },
+    {
+      "reportNumber": "7516553492",
+      "shape": "Modified Triangular Step Cut",
+      "carat": 4.45,
+      "color": "K",
+      "clarity": "SI2",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    }
+  ],
+  "summary": {
+    "totalAnalyzed": 14,
+    "verdictBreakdown": {
+      "BUY": 2,
+      "CAUTION": 2,
+      "REJECT": 10
+    },
+    "successRate": "93%",
+    "rejectRate": "71%",
+    "averageScore": 32.64,
+    "buyQualityScores": [85, 70],
+    "topStone": {
+      "reportNumber": "6237543868",
+      "shape": "Pear Brilliant",
+      "carat": 7.02,
+      "color": "H",
+      "clarity": "Internally Flawless",
+      "clawScore": 85,
+      "verdict": "BUY"
+    },
+    "errorAnalysis": {
+      "6234158920": "Script crashed with 'ratio.toFixed is not a function' - AI returned ratio as array/object instead of string/number"
+    },
+    "commonFlags": {
+      "Headlight Effect (太深)": 13,
+      "Hidden Polish Issue": 9,
+      "Very Deep Cut": 9,
+      "Eye-Clean Risk (SI)": 5,
+      "Milky Risk (clouds not shown)": 4
+    }
+  }
+}

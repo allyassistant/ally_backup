@@ -1,0 +1,51 @@
+# Structured Spawn Template
+
+> 比 code_fix.template 更詳細，適用於 🟡 Standard 同 🔶 Pipeline 開頭 phase。
+> 唔啱 🟢 Express（用 code_fix.template 就夠）。
+
+## Model Selection
+- **Default route:** `SPAWN` (MiniMax-M2.7, faster + cheaper) — use unless main agent flagged premium
+- **Premium route:** `SPAWN_QUALITY` (MiniMax-M3, deeper reasoning) — use only if main agent indicated "M3 / quality / 仔細 / premium / critical" in spawn brief
+- **Manifest in brief:** Main agent should echo `route: SPAWN_QUALITY (M3)` or `route: SPAWN (M2.7)` in your prompt so the model choice is auditable
+
+## Goal
+[一句 verifiable outcome — 做完點知 success]
+
+## Scope
+- In scope: [檔案 / 範圍 / 目錄]
+- Out of scope: [唔改嘅]
+- Sources: [資料來源 / 參考文件]
+
+## Phases
+1. **Discover** — read only, map affected area. Do NOT edit yet.
+2. **Plan** — propose approach. If unclear → stop, report to main agent, do not wait
+3. **Implement** — make changes only inside scope
+4. **Verify** — run applicable checks. If verify fails → halt, report failure, do not continue to Report
+5. **Report** — return changed files, results, failures, risks
+
+## Stop Conditions
+- Database changes / auth changes / external writes (unless explicitly asked)
+- Production data access
+- If any stop condition triggered → pause and report, do not continue
+
+## Output Format
+- Files changed: [list with paths]
+- Verification results: [pass/fail per check]
+- Risks introduced: [如果有]
+- Non-scope findings: [如果有]
+- Next action: [suggested next step]
+
+## Definition of Done
+- [ ] All phases completed in order
+- [ ] Output delivered to the right location
+- [ ] Source material cited if applicable
+- [ ] Tests/lint pass
+- [ ] Exceptions flagged
+- [ ] Next action stated
+
+### 🚫 Cannot Do
+- Do NOT modify files outside scope
+- Do NOT add new dependencies unless explicitly asked
+- If scope unclear → report to main agent, do not wait
+- If rules contradict → stop and ask, do not pick a side
+- If stop condition triggered → pause and report

@@ -1,0 +1,16 @@
+[2026-04-19T16:05:24.791Z] [INFO] Starting L1 Overview Generator for 2026-04-19
+[2026-04-19T16:05:24.793Z] [INFO] Found 14 L2 files
+[2026-04-19T16:05:24.795Z] [INFO] Ollama input pre-filtered: 200 → 111 lines
+[2026-04-19T16:05:24.795Z] [INFO] Using last 11461 chars of L2 (window: 20000)
+[2026-04-19T16:05:24.804Z] [INFO] Ollama pre-check passed
+[2026-04-19T16:05:24.804Z] [INFO] Calling Ollama qwen2.5:3b...
+[2026-04-19T16:05:46.959Z] [INFO] Applied OpenCC s2hk conversion (937 → 937 chars)
+[2026-04-19T16:05:46.961Z] [SUCCESS] ✅ SUCCESS: L1 Overview written (1030 chars)
+[2026-04-19T22:04:48.289Z] [INFO] Starting L1 Overview Generator for 2026-04-20
+[2026-04-19T22:04:48.292Z] [INFO] Found 6 L2 files
+[2026-04-19T22:04:48.294Z] [INFO] Ollama input pre-filtered: 285 → 160 lines
+[2026-04-19T22:04:48.294Z] [INFO] Using last 13897 chars of L2 (window: 20000)
+[2026-04-19T22:04:48.303Z] [INFO] Ollama pre-check passed
+[2026-04-19T22:04:48.303Z] [INFO] Calling Ollama qwen2.5:3b...
+[2026-04-19T22:05:07.468Z] [INFO] Applied OpenCC s2hk conversion (2147 → 2147 chars)
+[2026-04-19T22:05:07.469Z] [SUCCESS] ✅ SUCCESS: L1 Overview written (2239 chars)

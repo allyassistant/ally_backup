@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Stock Check</title>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <style>
+        :root {
+            /* iOS System Colors */
+            --ios-bg: #F2F2F7;
+            --ios-card: #FFFFFF;
+            --ios-label: #000000;
+            --ios-secondary-label: #8E8E93;
+            --ios-tertiary-label: #C7C7CC;
+            --ios-separator: #E5E5EA;
+            --ios-blue: #007AFF;
+            --ios-green: #34C759;
+            --ios-orange: #FF9500;
+            --ios-red: #FF3B30;
+            --ios-purple: #AF52DE;
+            --ios-gray: #8E8E93;
+            --ios-gray5: #E5E5EA;
+            --ios-gray6: #F2F2F7;
+            
+            /* Status Colors */
+            --status-available: #34C759;
+            --status-memo: #FF9500;
+            --status-sold: #007AFF;
+            --status-missing: #FF3B30;
+            
+            /* Location Colors */
+            --location-hk: #007AFF;
+            --location-tlv: #AF52DE;
+            --location-ny: #FF9500;
+            
+            /* Shadow System */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.1);
+            --shadow-floating: 0 20px 40px rgba(0, 0, 0, 0.12), 0 12px 24px rgba(0, 0, 0, 0.08);
+            
+            /* Glass Effect */
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --glass-bg-dark: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-highlight: rgba(255, 255, 255, 0.4);
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            background: var(--ios-bg);
+            color: var(--ios-label);
+            min-height: 100vh;
+            padding-bottom: 120px;
+            line-height: 1.4;
+        }
+        
+        /* ============================================
+           GLASS MORPHISM COMPONENTS (NEW)
+           ============================================ */
+        
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, var(--glass-highlight) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        .glass-floating {
+            background: var(--glass-bg-dark);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            box-shadow: var(--shadow-floating);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        
+        /* ============================================
+           ENHANCED BUTTONS (NEW)
+           ============================================ */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        .btn:active {
+            transform: scale(0.96);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #007AFF 0%, #0051D5 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3), var(--shadow-sm);
+        }
+        
+        .btn-primary:active {
+            background: linear-gradient(135deg, #0051D5 0%, #003A9E 100%);
+        }
+        
+        .btn-secondary {
+            background: var(--ios-gray6);
+            color: var(--ios-blue);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-secondary:active {
+            background: var(--ios-gray5);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #34C759 0%, #248A3D 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(52, 199, 89, 0.3), var(--shadow-sm);
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--ios-blue);
+            box-shadow: none;
+        }
+        
+        .btn-ghost::before { display: none; }
+        
+        .btn-ghost:active {
+            background: rgba(0, 122, 255, 0.1);
+        }
+        
+        /* Location Buttons with Glass Effect */
+        .btn-location {
+            width: 48px;
+            height: 36px;
+            padding: 0;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 10px;
+            background: var(--ios-gray6);
+            color: var(--ios-secondary-label);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+            border: 1px solid transparent;
+        }
+        
+        .btn-location.active {
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-location.active::before {
+            background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+        }
+        
+        .btn-location-hk.active {
+            background: linear-gradient(135deg, #007AFF 0%, #0051D5 100%);
+            border-color: rgba(0, 122, 255, 0.3);
+        }
+        
+        .btn-location-tlv.active {
+            background: linear-gradient(135deg, #AF52DE 0%, #7B2CBF 100%);
+            border-color: rgba(175, 82, 222, 0.3);
+        }
+        
+        .btn-location-ny.active {
+            background: linear-gradient(135deg, #FF9500 0%, #CC7700 100%);
+            border-color: rgba(255, 149, 0, 0.3);
+        }
+        
+        /* ============================================
+           TYPOGRAPHY (V6-2 Style)
+           ============================================ */
+        
+        .ios-title {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            margin-bottom: 16px;
+            padding-top: 20px;
+            padding-left: 16px;
+        }
+        
+        .ios-headline {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ios-label);
+        }
+        
+        .ios-subhead {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+        }
+        
+        /* ============================================
+           LAYOUT
+           ============================================ */
+        
+        .tab-page {
+            display: none;
+            padding: 0 16px 120px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .tab-page.active { display: block; }
+        
+        /* ============================================
+           ENHANCED LIST ITEMS with Shadow
+           ============================================ */
+        
+        .ios-list {
+            background: var(--ios-card);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .ios-list-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            background: var(--ios-card);
+            border-bottom: 0.5px solid var(--ios-separator);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .ios-list-item:last-child { border-bottom: none; }
+        
+        .ios-list-item:active { 
+            background: var(--ios-gray5);
+            transform: scale(0.995);
+        }
+        
+        .ios-list-item-content { flex: 1; }
+        
+        .ios-list-item-title {
+            font-size: 17px;
+            font-weight: 400;
+            color: var(--ios-label);
+        }
+        
+        .ios-list-item-subtitle {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ios-secondary-label);
+            margin-top: 2px;
+        }
+        
+        .ios-list-item-badge {
+            background: var(--ios-gray6);
+            color: var(--ios-secondary-label);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-right: 8px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        /* ============================================
+           ENHANCED SEARCH BAR
+           ============================================ */
+        
+        .ios-search {
+            background: var(--ios-gray6);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .ios-search:focus-within {
+            background: var(--ios-card);
+            border-color: var(--ios-blue);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1), var(--shadow-md);
+        }
+        
+        .ios-search input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 17px;
+            background: transparent;
+            color: var(--ios-label);
+        }
+        
+        .ios-search input::placeholder { 
+            color: var(--ios-secondary-label); 
+        }
+        
+        /* ============================================
+           ENHANCED DIAMOND CARD
+           ============================================ */
+        
+        .diamond-card {
+            background: var(--ios-card);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .diamond-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-1px);
+        }
+        
+        .diamond-card:active {
+            transform: scale(0.98);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .diamond-card.selected {
+            border-color: var(--ios-blue);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15), var(--shadow-md);
+        }
+        
+        .diamond-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .diamond-parcel {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--ios-secondary-label);
+        }
+        
+        .diamond-price {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ios-label);
+        }
+        
+        .diamond-specs {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 12px;
+        }
+        
+        .diamond-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .diamond-cert {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--ios-tertiary-label);
+        }
+        
+        .diamond-locations {
+            display: flex;
+            gap: 6px;
+        }
+        
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            background: var(--ios-gray6);
+        }
+        
+        .status-badge.available { 
+            background: rgba(52, 199, 89, 0.15); 
+            color: var(--status-available); 
+        }
+        .status-badge.memo { 
+            background: rgba(255, 149, 0, 0.15); 
+            color: var(--status-memo); 
+        }
+        .status-badge.sold { 
+            background: rgba(0, 122, 255, 0.15); 
+            color: var(--status-sold); 
+        }
+        
+        /* ============================================
+           ENHANCED SUMMARY CARDS
+           ============================================ */
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .summary-card {
+            background: var(--ios-card);
+            border-radius: 16px;
+            padding: 20px 16px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+        
+        .summary-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        .summary-card:active {
+            transform: scale(0.98);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .summary-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--ios-secondary-label);
+            margin-bottom: 8px;
+        }
+        
+        .summary-value {
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--ios-label);
+            letter-spacing: -0.5px;
+        }
+        
+        .summary-card.available .summary-value { color: var(--status-available); }
+        .summary-card.memo .summary-value { color: var(--status-memo); }
+        .summary-card.sold .summary-value { color: var(--status-sold); }
+        .summary-card.missing .summary-value { color: var(--status-missing); }
+        
+        /* ============================================
+           FLOATING SUBMIT BAR (Glass Effect)
+           ============================================ */
+        
+        .submit-bar {
+            position: fixed;
+            bottom: 100px;
+            left: 16px;
+            right: 16px;
+            background: var(--glass-bg-dark);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border-radius: 16px;
+            padding: 14px 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            box-shadow: var(--shadow-floating);
+            border: 1px solid var(--glass-border);
+            z-index: 50;
+        }
+        
+        .submit-info {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ios-label);
+        }
+        
+        /* ============================================
+           TAB BAR (iOS Style with Glass)
+           ============================================ */
+        
+        .tab-bar {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            background: var(--glass-bg-dark);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border-radius: 24px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 68px;
+            padding: 0 8px;
+            box-shadow: var(--shadow-floating);
+            border: 1px solid var(--glass-border);
+            z-index: 100;
+        }
+        
+        .tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 52px;
+            cursor: pointer;
+            border-radius: 14px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 0 4px;
+            background: transparent;
+        }
+        
+        .tab-item:active {
+            transform: scale(0.95);
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .tab-item.active {
+            background: rgba(0, 122, 255, 0.12);
+        }
+        
+        .tab-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ios-secondary-label);
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .tab-item.active .tab-label {
+            color: var(--ios-blue);
+        }
+        
+        /* ============================================
+           TOAST NOTIFICATIONS (Glass)
+           ============================================ */
+        
+        .toast-container {
+            position: fixed;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .toast {
+            background: var(--glass-bg-dark);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            color: var(--ios-label);
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: var(--shadow-floating);
+            border: 1px solid var(--glass-border);
+            animation: slideDown 0.3s ease;
+            pointer-events: auto;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .toast-btn {
+            background: rgba(0, 122, 255, 0.1);
+            color: var(--ios-blue);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .toast-btn:active {
+            background: rgba(0, 122, 255, 0.2);
+            transform: scale(0.96);
+        }
+        
+        /* ============================================
+           LEGEND
+           ============================================ */
+        
+        .legend {
+            display: flex;
+            gap: 16px;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ios-secondary-label);
+        }
+        
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .dot-available { background: var(--status-available); }
+        .dot-memo { background: var(--status-memo); }
+        .dot-sold { background: var(--status-sold); }
+        .dot-missing { background: var(--status-missing); }
+        .dot-gray { background: var(--ios-gray); }
+        
+        /* ============================================
+           EMPTY STATE
+           ============================================ */
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-icon { 
+            font-size: 56px; 
+            margin-bottom: 16px;
+            filter: drop-shadow(var(--shadow-sm));
+        }
+        
+        .empty-title { 
+            font-size: 20px; 
+            font-weight: 600; 
+            color: var(--ios-label); 
+            margin-bottom: 8px;
+        }
+        
+        .empty-subtitle { 
+            font-size: 15px; 
+            font-weight: 400; 
+            color: var(--ios-secondary-label); 
+        }
+        
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            margin-bottom: 12px;
+        }
+        
+        .nav-back {
+            color: var(--ios-blue);
+            font-size: 17px;
+            font-weight: 400;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        
+        .nav-back:active {
+            background: rgba(0, 122, 255, 0.1);
+        }
+        
+        .nav-title {
+            flex: 1;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-right: 80px;
+        }
+        
+        /* Data Source Badge */
+        .data-source {
+            background: var(--ios-card);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .data-source-text { 
+            font-size: 15px; 
+            font-weight: 500; 
+            color: var(--ios-label); 
+        }
+        
+        /* Import Section */
+        .import-section {
+            background: var(--ios-card);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            margin-bottom: 16px;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            border: 2px dashed var(--ios-gray5);
+            transition: all 0.2s;
+        }
+        
+        .import-section:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--ios-blue);
+        }
+        
+        .import-section:active {
+            transform: scale(0.98);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .import-icon { 
+            font-size: 44px; 
+            margin-bottom: 12px;
+        }
+        
+        .import-title { 
+            font-size: 17px; 
+            font-weight: 600; 
+            color: var(--ios-label); 
+            margin-bottom: 4px;
+        }
+        
+        .import-subtitle { 
+            font-size: 14px; 
+            font-weight: 400; 
+            color: var(--ios-secondary-label); 
+        }
+        
+        #fileInput { display: none; }
+    </style>
+</head>
+<body>
+    <div class="toast-container" id="toastContainer"></div>
+    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="app.handleFileSelect(event)">
+
+    <!-- Tab 1: Stock Check -->
+    <div id="availableTab" class="tab-page active">
+        <div id="availableShapePage">
+            <h1 class="ios-title">Stock Check</h1>
+            
+            <div class="data-source" id="dataSourceInfo" style="display: none;">
+                <span class="data-source-text"><span id="dataSourceCount">0</span> diamonds</span>
+                <button class="btn btn-ghost" onclick="app.clearData()">Clear</button>
+            </div>
+            
+            <div class="import-section" id="importSection" onclick="app.triggerImport()" ondrop="app.handleDrop(event)" ondragover="app.handleDragOver(event)" ondragleave="app.handleDragLeave(event)">
+                <div class="import-icon">📁</div>
+                <div class="import-title">Import Excel</div>
+                <div class="import-subtitle">Tap to select or drop file</div>
+            </div>
+            
+            <div class="ios-headline" style="margin-bottom: 12px; padding-left: 4px;">Select Shape</div>
+            
+            <div class="ios-list" id="available-shape-list"></div>
+        </div>
+        
+        <div id="availableCheckPage" style="display: none;">
+            <div class="nav-bar">
+                <span class="nav-back" onclick="app.backToShapes('available')">← Back</span>
+                <span class="nav-title" id="availableCheckTitle">All Shapes</span>
+            </div>
+            
+            <div class="ios-search">
+                <span style="color: var(--ios-secondary-label);">🔍</span>
+                <input type="text" id="availableSearch" placeholder="Search by Parcel, Cert No or Carat..." oninput="app.handleSearch('available')">
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item"><div class="legend-dot dot-gray"></div><span>Unchecked</span></div>
+                <div class="legend-item"><div class="legend-dot dot-available"></div><span>Selected</span></div>
+            </div>
+            
+            <div id="availableCheckList"></div>
+            
+            <div class="submit-bar">
+                <div class="submit-info"><span id="availableSubmitCount">0</span> selected</div>
+                <button class="btn btn-secondary" onclick="app.resetSelection('available')">Reset</button>
+                <button class="btn btn-primary" onclick="app.submitSelection('available')">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 2: Memo Out -->
+    <div id="memoTab" class="tab-page">
+        <div id="memoShapePage">
+            <h1 class="ios-title">Memo Out</h1>
+            <div class="ios-headline" style="margin-bottom: 12px; padding-left: 4px;">Select Shape</div>
+            <div class="ios-list" id="memo-shape-list"></div>
+        </div>
+        
+        <div id="memoCheckPage" style="display: none;">
+            <div class="nav-bar">
+                <span class="nav-back" onclick="app.backToShapes('memo')">← Back</span>
+                <span class="nav-title" id="memoCheckTitle">All Shapes</span>
+            </div>
+            
+            <div class="ios-search">
+                <span style="color: var(--ios-secondary-label);">🔍</span>
+                <input type="text" id="memoSearch" placeholder="Search by Parcel, Cert No or Carat..." oninput="app.handleSearch('memo')">
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item"><div class="legend-dot dot-gray"></div><span>Unchecked</span></div>
+                <div class="legend-item"><div class="legend-dot dot-memo"></div><span>Selected</span></div>
+            </div>
+            
+            <div id="memoCheckList"></div>
+            
+            <div class="submit-bar">
+                <div class="submit-info"><span id="memoSubmitCount">0</span> selected</div>
+                <button class="btn btn-secondary" onclick="app.resetSelection('memo')">Reset</button>
+                <button class="btn btn-primary" onclick="app.submitSelection('memo')">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 3: Sold -->
+    <div id="soldTab" class="tab-page">
+        <div id="soldShapePage">
+            <h1 class="ios-title">Sold</h1>
+            <div class="ios-headline" style="margin-bottom: 12px; padding-left: 4px;">Select Shape</div>
+            <div class="ios-list" id="sold-shape-list"></div>
+        </div>
+        
+        <div id="soldCheckPage" style="display: none;">
+            <div class="nav-bar">
+                <span class="nav-back" onclick="app.backToShapes('sold')">← Back</span>
+                <span class="nav-title" id="soldCheckTitle">All Shapes</span>
+            </div>
+            
+            <div class="ios-search">
+                <span style="color: var(--ios-secondary-label);">🔍</span>
+                <input type="text" id="soldSearch" placeholder="Search by Parcel, Cert No or Carat..." oninput="app.handleSearch('sold')">
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item"><div class="legend-dot dot-gray"></div><span>Unchecked</span></div>
+                <div class="legend-item"><div class="legend-dot dot-sold"></div><span>Selected</span></div>
+            </div>
+            
+            <div id="soldCheckList"></div>
+            
+            <div class="submit-bar">
+                <div class="submit-info"><span id="soldSubmitCount">0</span> selected</div>
+                <button class="btn btn-secondary" onclick="app.resetSelection('sold')">Reset</button>
+                <button class="btn btn-primary" onclick="app.submitSelection('sold')">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 4: Summary -->
+    <div id="summaryTab" class="tab-page">
+        <h1 class="ios-title">Summary</h1>
+        
+        <div class="summary-grid">
+            <div class="summary-card" onclick="app.openModal('all')">
+                <div class="summary-label">Total</div>
+                <div class="summary-value" id="totalSummary">0</div>
+            </div>
+            
+            <div class="summary-card available" onclick="app.openModal('available')">
+                <div class="summary-label">Available</div>
+                <div class="summary-value" id="availableSummary">0</div>
+            </div>
+            
+            <div class="summary-card memo" onclick="app.openModal('memo-out')">
+                <div class="summary-label">Memo Out</div>
+                <div class="summary-value" id="memoOutSummary">0</div>
+            </div>
+            
+            <div class="summary-card sold" onclick="app.openModal('sold')">
+                <div class="summary-label">Sold</div>
+                <div class="summary-value" id="soldSummary">0</div>
+            </div>
+            
+            <div class="summary-card missing" style="grid-column: span 2;" onclick="app.openModal('missing')">
+                <div class="summary-label">Missing</div>
+                <div class="summary-value" id="missingSummary">0</div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot dot-available"></div><span>Available</span></div>
+            <div class="legend-item"><div class="legend-dot dot-memo"></div><span>Memo Out</span></div>
+            <div class="legend-item"><div class="legend-dot dot-sold"></div><span>Sold</span></div>
+            <div class="legend-item"><div class="legend-dot dot-missing"></div><span>Missing</span></div>
+        </div>
+        
+        <div class="ios-list" style="padding: 16px;">
+            <div class="ios-headline" style="margin-bottom: 12px;">Missing Items</div>
+            <div id="missingList"></div>
+        </div>
+        
+        <div style="position: fixed; bottom: 100px; left: 16px; right: 16px; z-index: 50;">
+            <button class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 17px;" onclick="app.generateExcel()">Export Excel Report</button>
+        </div>
+    </div>
+
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+        <div class="tab-item active" onclick="app.switchTab('available')">
+            <span class="tab-label">Stock</span>
+        </div>
+        <div class="tab-item" onclick="app.switchTab('memo')">
+            <span class="tab-label">Memo</span>
+        </div>
+        <div class="tab-item" onclick="app.switchTab('sold')">
+            <span class="tab-label">Sold</span>
+        </div>
+        <div class="tab-item" onclick="app.switchTab('summary')">
+            <span class="tab-label">Summary</span>
+        </div>
+    </div>
+
+    <script>
+        // 保留原有 JavaScript 代碼
+        class StockCheckApp {
+            constructor() {
+                this.allData = [];
+                this.currentShape = { available: 'ALL', memo: 'ALL', sold: 'ALL' };
+                this.searchQuery = { available: '', memo: '', sold: '' };
+                this.undoStack = [];
+                this.modalType = null;
+                this.modalSearchQuery = '';
+                this.originalColumns = [];
+                
+                this.tabConfig = {
+                    'available': { color: 'green', label: 'Available', nextStatus: 'available' },
+                    'memo': { color: 'yellow', label: 'Memo Out', nextStatus: 'memo-out' },
+                    'sold': { color: 'blue', label: 'Sold', nextStatus: 'sold' }
+                };
+                
+                this.shapeNames = {
+                    'ALL': 'All Shapes',
+                    'RBC': 'Round',
+                    'EM': 'Emerald',
+                    'PR': 'Princess',
+                    'PS': 'Pear',
+                    'CU': 'Cushion',
+                    'OV': 'Oval',
+                    'RAD': 'Radiant',
+                    'HS': 'Heart',
+                    'MQ': 'Marquise',
+                    'SEM': 'Square Emerald'
+                };
+                
+                this.locations = ['HK', 'TLV', 'NY'];
+                this.locationNames = { 'HK': 'Hong Kong', 'TLV': 'Tel Aviv', 'NY': 'New York' };
+                
+                this.init();
+            }
+            
+            init() {
+                this.loadFromStorage();
+                this.updateDataSourceInfo();
+                this.renderDynamicShapeLists();
+            }
+            
+            saveToStorage() {
+                try {
+                    localStorage.setItem('stockCheckV62_enhanced_data', JSON.stringify(this.allData));
+                    localStorage.setItem('stockCheckV62_enhanced_timestamp', new Date().toISOString());
+                    localStorage.setItem('stockCheckV62_enhanced_columns', JSON.stringify(this.originalColumns));
+                } catch (e) {
+                    console.error('Save failed:', e);
+                }
+            }
+            
+            loadFromStorage() {
+                try {
+                    const saved = localStorage.getItem('stockCheckV62_enhanced_data');
+                    const savedCols = localStorage.getItem('stockCheckV62_enhanced_columns');
+                    if (saved) {
+                        this.allData = JSON.parse(saved);
+                        if (savedCols) this.originalColumns = JSON.parse(savedCols);
+                        const timestamp = localStorage.getItem('stockCheckV62_enhanced_timestamp');
+                        if (timestamp) {
+                            const date = new Date(timestamp);
+                            this.showToast(`Restored ${this.allData.length} diamonds (${date.toLocaleDateString()})`);
+                        }
+                    }
+                } catch (e) {
+                    console.error('Load failed:', e);
+                    this.allData = [];
+                }
+            }
+            
+            clearData() {
+                if (confirm('Clear all data? This cannot be undone.')) {
+                    this.allData = [];
+                    this.originalColumns = [];
+                    localStorage.removeItem('stockCheckV62_enhanced_data');
+                    localStorage.removeItem('stockCheckV62_enhanced_timestamp');
+                    localStorage.removeItem('stockCheckV62_enhanced_columns');
+                    this.updateDataSourceInfo();
+                    this.renderDynamicShapeLists();
+                    this.showToast('Data cleared');
+                }
+            }
+            
+            triggerImport() {
+                document.getElementById('fileInput').click();
+            }
+            
+            handleDragOver(e) {
+                e.preventDefault();
+                e.currentTarget.style.borderColor = 'var(--ios-blue)';
+            }
+            
+            handleDragLeave(e) {
+                e.currentTarget.style.borderColor = 'var(--ios-gray5)';
+            }
+            
+            handleDrop(e) {
+                e.preventDefault();
+                e.currentTarget.style.borderColor = 'var(--ios-gray5)';
+                const files = e.dataTransfer.files;
+                if (files.length > 0) this.processFile(files[0]);
+            }
+            
+            handleFileSelect(e) {
+                const file = e.target.files[0];
+                if (file) this.processFile(file);
+            }
+            
+            processFile(file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                        const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+                        this.importDataWithOrder(jsonData);
+                    } catch (err) {
+                        this.showToast('❌ Import failed: ' + err.message);
+                    }
+                };
+                reader.readAsArrayBuffer(file);
+            }
+            
+            importDataWithOrder(jsonData) {
+                if (jsonData.length < 2) {
+                    this.showToast('❌ Invalid Excel format');
+                    return;
+                }
+                
+                this.originalColumns = jsonData[0];
+                const headers = jsonData[0].map(h => String(h).toLowerCase().trim());
+                
+                const findIndex = (names) => {
+                    for (const name of names) {
+                        const idx = headers.findIndex(h => h.includes(name.toLowerCase()));
+                        if (idx >= 0) return idx;
+                    }
+                    return -1;
+                };
+                
+                const colMap = {
+                    parcel: findIndex(['parcel', 'name']),
+                    shape: findIndex(['shape', 'rapnet']),
+                    carat: findIndex(['carat', 'crt']),
+                    color: findIndex(['color']),
+                    clarity: findIndex(['clarity']),
+                    fluor: findIndex(['fluor', 'fluorescence']),
+                    price: findIndex(['price', 'memo']),
+                    certNo: findIndex(['cert', 'gia']),
+                    location: findIndex(['location', 'loc', 'office'])
+                };
+                
+                const newData = [];
+                for (let i = 1; i < jsonData.length; i++) {
+                    const row = jsonData[i];
+                    if (!row[0]) continue;
+                    
+                    let location = 'NY';
+                    if (colMap.location >= 0 && row[colMap.location]) {
+                        const loc = String(row[colMap.location]).toUpperCase().trim();
+                        if (this.locations.includes(loc)) location = loc;
+                    }
+                    
+                    newData.push({
+                        parcel: String(row[colMap.parcel] || `ROW-${i}`).trim(),
+                        shape: String(row[colMap.shape] || 'RBC').toUpperCase().trim(),
+                        carat: parseFloat(row[colMap.carat]) || 0,
+                        color: String(row[colMap.color] || '').toUpperCase().trim(),
+                        clarity: String(row[colMap.clarity] || '').toUpperCase().trim(),
+                        fluor: String(row[colMap.fluor] || 'None').trim(),
+                        price: parseFloat(row[colMap.price]) || 0,
+                        certNo: String(row[colMap.certNo] || '').trim(),
+                        location: location,
+                        confirmedStatus: null,
+                        selection: { available: false, memo: false, sold: false },
+                        _originalRow: row
+                    });
+                }
+                
+                if (this.allData.length > 0) {
+                    if (confirm(`Merge with existing ${this.allData.length} diamonds?\nOK = Merge\nCancel = Replace`)) {
+                        this.allData = [...this.allData, ...newData];
+                    } else {
+                        this.allData = newData;
+                    }
+                } else {
+                    this.allData = newData;
+                }
+                
+                this.saveToStorage();
+                this.updateDataSourceInfo();
+                this.renderDynamicShapeLists();
+                this.showToast(`✅ Imported ${newData.length} diamonds`);
+            }
+            
+            updateDataSourceInfo() {
+                const infoEl = document.getElementById('dataSourceInfo');
+                const countEl = document.getElementById('dataSourceCount');
+                const importSection = document.getElementById('importSection');
+                if (this.allData.length > 0) {
+                    infoEl.style.display = 'flex';
+                    countEl.textContent = this.allData.length;
+                    if (importSection) importSection.style.display = 'none';
+                } else {
+                    infoEl.style.display = 'none';
+                    if (importSection) importSection.style.display = 'block';
+                }
+            }
+            
+            getUniqueShapes() {
+                const shapeMap = new Map();
+                shapeMap.set('ALL', { code: 'ALL', name: 'All Shapes', count: this.allData.filter(d => !d.confirmedStatus).length });
+                
+                this.allData.forEach(d => {
+                    const code = d.shape?.toUpperCase() || 'RBC';
+                    if (!shapeMap.has(code)) {
+                        const name = this.shapeNames[code] || code;
+                        shapeMap.set(code, { code, name: `${name} (${code})`, count: 0 });
+                    }
+                });
+                
+                this.allData.filter(d => !d.confirmedStatus).forEach(d => {
+                    const code = d.shape?.toUpperCase() || 'RBC';
+                    if (shapeMap.has(code)) shapeMap.get(code).count++;
+                });
+                
+                return Array.from(shapeMap.values());
+            }
+            
+            renderDynamicShapeLists() {
+                const shapes = this.getUniqueShapes();
+                ['available', 'memo', 'sold'].forEach(type => {
+                    const container = document.getElementById(`${type}-shape-list`);
+                    if (!container) return;
+                    
+                    container.innerHTML = shapes.map(s => `
+                        <div class="ios-list-item" onclick="app.enterCheck('${type}', '${s.code}')">
+                            <div class="ios-list-item-content">
+                                <div class="ios-list-item-title">${s.name}</div>
+                            </div>
+                            <span class="ios-list-item-badge">${s.count}</span>
+                            <span class="ios-list-item-arrow">›</span>
+                        </div>
+                    `).join('');
+                });
+            }
+            
+            switchTab(tabName) {
+                document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                document.getElementById(tabName + 'Tab').classList.add('active');
+                const tabIndex = tabName === 'available' ? 0 : tabName === 'memo' ? 1 : tabName === 'sold' ? 2 : 3;
+                document.querySelectorAll('.tab-item')[tabIndex].classList.add('active');
+                if (tabName === 'summary') this.renderSummary();
+            }
+            
+            enterCheck(type, shape) {
+                this.currentShape[type] = shape;
+                const shapeName = shape === 'ALL' ? 'All Shapes' : this.shapeNames[shape] || shape;
+                document.getElementById(`${type}CheckTitle`).textContent = shapeName;
+                document.getElementById(`${type}ShapePage`).style.display = 'none';
+                document.getElementById(`${type}CheckPage`).style.display = 'block';
+                this.searchQuery[type] = '';
+                document.getElementById(`${type}Search`).value = '';
+                this.renderCheckList(type);
+            }
+            
+            backToShapes(type) {
+                document.getElementById(`${type}ShapePage`).style.display = 'block';
+                document.getElementById(`${type}CheckPage`).style.display = 'none';
+                this.renderDynamicShapeLists();
+            }
+            
+            handleSearch(type) {
+                this.searchQuery[type] = document.getElementById(`${type}Search`).value.toLowerCase().trim();
+                this.renderCheckList(type);
+            }
+            
+            renderCheckList(type) {
+                const listEl = document.getElementById(`${type}CheckList`);
+                const config = this.tabConfig[type];
+                const query = this.searchQuery[type];
+                
+                let items = this.allData.filter(d => !d.confirmedStatus);
+                if (this.currentShape[type] !== 'ALL') {
+                    items = items.filter(d => d.shape === this.currentShape[type]);
+                }
+                
+                if (query) {
+                    items = items.filter(d => {
+                        const caratStr = String(d.carat);
+                        return d.parcel.toLowerCase().includes(query) ||
+                               d.certNo.toLowerCase().includes(query) ||
+                               caratStr.includes(query);
+                    });
+                }
+                
+                if (items.length === 0) {
+                    listEl.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">🔍</div>
+                            <div class="empty-title">${query ? 'No matches found' : 'No diamonds to check'}</div>
+                        </div>`;
+                    document.getElementById(`${type}SubmitCount`).textContent = '0';
+                    return;
+                }
+                
+                listEl.innerHTML = items.map(d => {
+                    const isSelected = d.selection[type];
+                    const badge = isSelected ? `<span class="status-badge ${config.color}">Selected</span>` : '';
+                    
+                    return `
+                        <div class="diamond-card ${isSelected ? 'selected' : ''}" 
+                             onclick="app.toggleSelection('${type}', '${d.parcel}')">
+                            <div class="diamond-header">
+                                <span class="diamond-parcel">${d.parcel}</span>
+                                <span class="diamond-price">$${d.price.toLocaleString()}</span>
+                            </div>
+                            <div class="diamond-specs">
+                                ${d.shape} ${d.carat}ct ${d.color} ${d.clarity}
+                            </div>
+                            <div class="diamond-footer">
+                                <div class="diamond-locations">
+                                    <button class="btn-location btn-location-hk ${d.location === 'HK' ? 'active' : ''}" 
+                                            onclick="event.stopPropagation(); app.setLocation('${type}', '${d.parcel}', 'HK')">HK</button>
+                                    <button class="btn-location btn-location-tlv ${d.location === 'TLV' ? 'active' : ''}" 
+                                            onclick="event.stopPropagation(); app.setLocation('${type}', '${d.parcel}', 'TLV')">TLV</button>
+                                    <button class="btn-location btn-location-ny ${d.location === 'NY' ? 'active' : ''}" 
+                                            onclick="event.stopPropagation(); app.setLocation('${type}', '${d.parcel}', 'NY')">NY</button>
+                                </div>
+                                <span class="diamond-cert">${d.certNo || 'No Cert'}${badge}</span>
+                            </div>
+                        </div>`;
+                }).join('');
+                
+                const selectedCount = this.allData.filter(d => d.selection[type]).length;
+                document.getElementById(`${type}SubmitCount`).textContent = selectedCount;
+            }
+            
+            setLocation(type, parcel, location) {
+                const item = this.allData.find(d => d.parcel === parcel);
+                if (!item) return;
+                
+                if (item.location === location) {
+                    item.location = '';
+                } else {
+                    item.location = location;
+                    item.selection[type] = true;
+                }
+                
+                this.saveToStorage();
+                this.renderCheckList(type);
+            }
+            
+            toggleSelection(type, parcel) {
+                const item = this.allData.find(d => d.parcel === parcel);
+                if (!item) return;
+                item.selection[type] = !item.selection[type];
+                this.renderCheckList(type);
+            }
+            
+            resetSelection(type) {
+                const selectedItems = this.allData.filter(d => d.selection[type]);
+                if (selectedItems.length === 0) {
+                    this.showToast('No items selected');
+                    return;
+                }
+                if (confirm(`Reset ${selectedItems.length} selections?`)) {
+                    selectedItems.forEach(d => d.selection[type] = false);
+                    this.renderCheckList(type);
+                    this.showToast(`Reset ${selectedItems.length} items`);
+                }
+            }
+            
+            submitSelection(type) {
+                const config = this.tabConfig[type];
+                const selectedItems = this.allData.filter(d => d.selection[type]);
+                
+                if (selectedItems.length === 0) {
+                    this.showToast('Please select items first');
+                    return;
+                }
+                
+                this.undoStack.push({
+                    type: type,
+                    parcels: selectedItems.map(d => d.parcel),
+                    timestamp: Date.now()
+                });
+                
+                selectedItems.forEach(d => {
+                    d.confirmedStatus = config.nextStatus;
+                    d.selection[type] = false;
+                });
+                
+                this.saveToStorage();
+                this.renderCheckList(type);
+                this.renderDynamicShapeLists();
+                this.showUndoToast(`✅ ${selectedItems.length} marked as ${config.label}`, type);
+            }
+            
+            showUndoToast(message, type) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `
+                    <span>${message}</span>
+                    <button class="toast-btn" onclick="app.undoLastAction(); this.parentElement.remove();">Undo</button>
+                `;
+                container.appendChild(toast);
+                setTimeout(() => {
+                    if (toast.parentElement) {
+                        toast.style.opacity = '0';
+                        setTimeout(() => toast.remove(), 300);
+                    }
+                }, 5000);
+            }
+            
+            undoLastAction() {
+                const lastAction = this.undoStack.pop();
+                if (!lastAction || !lastAction.parcels) {
+                    this.showToast('Nothing to undo');
+                    return;
+                }
+                
+                lastAction.parcels.forEach(parcel => {
+                    const item = this.allData.find(d => d.parcel === parcel);
+                    if (item) item.confirmedStatus = null;
+                });
+                
+                this.saveToStorage();
+                this.renderCheckList(lastAction.type);
+                this.renderDynamicShapeLists();
+                this.showToast('↩️ Undo successful');
+            }
+            
+            renderSummary() {
+                const total = this.allData.length;
+                const available = this.allData.filter(d => d.confirmedStatus === 'available').length;
+                const memoOut = this.allData.filter(d => d.confirmedStatus === 'memo-out').length;
+                const sold = this.allData.filter(d => d.confirmedStatus === 'sold').length;
+                const missing = this.allData.filter(d => !d.confirmedStatus).length;
+                
+                document.getElementById('totalSummary').textContent = total;
+                document.getElementById('availableSummary').textContent = available;
+                document.getElementById('memoOutSummary').textContent = memoOut;
+                document.getElementById('soldSummary').textContent = sold;
+                document.getElementById('missingSummary').textContent = missing;
+                
+                const missingItems = this.allData.filter(d => !d.confirmedStatus);
+                const missingListEl = document.getElementById('missingList');
+                
+                missingListEl.innerHTML = missingItems.map(d => `
+                    <div class="ios-list-item" style="margin-bottom: 8px;">
+                        <div class="ios-list-item-content">
+                            <div class="ios-list-item-title">${d.parcel}</div>
+                            <div class="ios-list-item-subtitle">${d.shape} ${d.carat}ct ${d.color} ${d.clarity} · ${d.location}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            showToast(message) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<span>${message}</span>`;
+                container.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+            
+            generateExcel() {
+                if (this.allData.length === 0) {
+                    this.showToast('No data to export');
+                    return;
+                }
+                
+                const statusEmoji = {
+                    'available': '🟢 AVAILABLE',
+                    'memo-out': '🟡 MEMO OUT',
+                    'sold': '🔵 SOLD',
+                    'missing': '🔴 MISSING'
+                };
+                
+                let headers = this.originalColumns.length > 0 
+                    ? ['STATUS', 'LOCATION', ...this.originalColumns.filter(c => !['STATUS', 'LOCATION'].includes(c.toUpperCase()))]
+                    : ['STATUS', 'LOCATION', 'PARCEL', 'SHAPE', 'CARAT', 'COLOR', 'CLARITY', 'FLUOR', 'PRICE', 'CERT_NO'];
+                
+                const rows = [headers.join(',')];
+                
+                this.allData.forEach(d => {
+                    const row = [];
+                    const status = statusEmoji[d.confirmedStatus || 'missing'];
+                    
+                    row.push(status);
+                    row.push(d.location);
+                    
+                    if (this.originalColumns.length > 0 && d._originalRow) {
+                        this.originalColumns.forEach((col, idx) => {
+                            const colUpper = col.toUpperCase();
+                            if (colUpper !== 'STATUS' && colUpper !== 'LOCATION') {
+                                const val = d._originalRow[idx] || '';
+                                row.push(this.escapeCsv(String(val)));
+                            }
+                        });
+                    } else {
+                        row.push(
+                            this.escapeCsv(d.parcel),
+                            this.escapeCsv(d.shape),
+                            d.carat,
+                            this.escapeCsv(d.color),
+                            this.escapeCsv(d.clarity),
+                            this.escapeCsv(d.fluor),
+                            d.price,
+                            this.escapeCsv(d.certNo)
+                        );
+                    }
+                    rows.push(row.join(','));
+                });
+                
+                rows.push('');
+                rows.push('SUMMARY,');
+                rows.push('TOTAL,' + this.allData.length);
+                rows.push(statusEmoji['available'] + ',' + this.allData.filter(d => d.confirmedStatus === 'available').length);
+                rows.push(statusEmoji['memo-out'] + ',' + this.allData.filter(d => d.confirmedStatus === 'memo-out').length);
+                rows.push(statusEmoji['sold'] + ',' + this.allData.filter(d => d.confirmedStatus === 'sold').length);
+                rows.push(statusEmoji['missing'] + ',' + this.allData.filter(d => !d.confirmedStatus).length);
+                
+                rows.push('');
+                rows.push('LOCATION SUMMARY,');
+                ['HK', 'TLV', 'NY'].forEach(loc => {
+                    const count = this.allData.filter(d => d.location === loc).length;
+                    rows.push(`${loc} (${this.locationNames[loc]}),${count}`);
+                });
+                
+                const csv = '\uFEFF' + rows.join('\n');
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `Stock_Check_${new Date().toISOString().split('T')[0]}.csv`;
+                link.click();
+                
+                this.showToast(`📊 Exported ${this.allData.length} diamonds`);
+            }
+            
+            escapeCsv(val) {
+                if (val.includes(',') || val.includes('"') || val.includes('\n')) {
+                    return '"' + val.replace(/"/g, '""') + '"';
+                }
+                return val;
+            }
+        }
+        
+        const app = new StockCheckApp();
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "date": "2026-06-07",
+  "period": {
+    "start": "2026-06-07T00:00:00.000Z",
+    "end": "2026-06-07T23:59:59.999Z"
+  },
+  "totals": {
+    "decisionCount": 194,
+    "successCount": 194,
+    "failureCount": 0,
+    "totalCostUsd": 29.4,
+    "avgLatencyMs": 471
+  },
+  "routeDistribution": {
+    "SPAWN": 30,
+    "NONE": 101,
+    "CODE": 11,
+    "DIRECT_ANSWER": 41,
+    "SOP": 2,
+    "BROWSER": 8,
+    "FDQ": 1
+  },
+  "providerDistribution": {
+    "minimax-portal": 51,
+    "deepseek": 143
+  },
+  "fallbackStats": {
+    "primaryHitCount": 194,
+    "fallbackCount": 0,
+    "fallbackRate": 0,
+    "fallbackDepthAvg": 0
+  },
+  "topFailingRoutes": [],
+  "topFallingBackProviders": [],
+  "hourlyDistribution": {
+    "10": 12,
+    "11": 9,
+    "12": 19,
+    "13": 2,
+    "14": 5,
+    "15": 23,
+    "16": 0,
+    "17": 0,
+    "18": 0,
+    "19": 0,
+    "20": 0,
+    "21": 0,
+    "22": 0,
+    "23": 0,
+    "00": 0,
+    "01": 2,
+    "02": 0,
+    "03": 13,
+    "04": 22,
+    "05": 28,
+    "06": 9,
+    "07": 12,
+    "08": 25,
+    "09": 13
+  },
+  "schemaVersion": "1.0",
+  "collectorVersion": "1.0"
+}

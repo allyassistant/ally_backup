@@ -1,0 +1,20 @@
+{
+  "sourceFile": "/Users/ally/.openclaw/media/inbound/b2bfe38c-7cde-4cbf-9aa0-15a7fd6c232d.pdf",
+  "processedAt": "2026-04-28, 15:56:41",
+  "rawText": "GIA Report Number: 1234567890\nShape and Cutting Style: Round Brilliant\nMeasurements: 6.50 - 6.53 x 3.97 mm\nCarat Weight: 1.00 carat\nColor Grade: G\nClarity Grade: VS1\nCut Grade: Excellent\nPolish: Excellent\nSymmetry: Excellent\nFluorescence: None\nInscription(s): GIA 1234567890\nComments: None",
+  "extractedData": {
+    "comments": "None"
+  },
+  "validation": {
+    "isValid": false,
+    "errors": [
+      "Missing required field: reportNumber",
+      "Missing required field: shape",
+      "Missing required field: carat",
+      "Missing required field: colorGrade",
+      "Missing required field: clarityGrade"
+    ],
+    "warnings": []
+  },
+  "confidence": 0
+}

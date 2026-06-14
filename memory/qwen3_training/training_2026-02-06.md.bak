@@ -1,0 +1,75 @@
+# Qwen3 Excel 學習日誌 - Day 1
+
+**日期：** 2026年2月6日  
+**時間：** 18:11 (手動觸發)  
+**模塊：** Module 1 - Advanced Formulas  
+**主題：** XLOOKUP
+
+---
+
+## 📚 學習內容
+
+### XLOOKUP 語法
+```excel
+=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])
+```
+
+### 參數解釋
+| 參數 | 必需 | 說明 |
+|------|------|------|
+| lookup_value | ✅ | 要查找嘅值 |
+| lookup_array | ✅ | 查找範圍 |
+| return_array | ✅ | 返回範圍 |
+| if_not_found | ❌ | 搵唔到時顯示咩 |
+| match_mode | ❌ | 0=精確, -1=小於, 1=大於, 2=萬用字元 |
+| search_mode | ❌ | 1=頭到尾, -1=尾到頭 |
+
+### 練習題目同答案
+
+**題目 1：基本查找**
+```excel
+=XLOOKUP("Product A", A:A, B:B)
+```
+喺 A 欄查找 "Product A"，返回 B 欄對應價格。
+
+**題目 2：模糊匹配**
+```excel
+=XLOOKUP(85, C:C, D:D, "唔合格", -1)
+```
+喺 C 欄查找小於或等於 85 嘅最大數值，返回 D 欄評級。如果搵唔到就顯示「唔合格」。
+
+**題目 3：反向查找**
+```excel
+=XLOOKUP("最新", E:E, F:F,,,-1)
+```
+從尾到頭查找，搵最後一個標記為「最新」嘅記錄。
+
+---
+
+## ✅ 完成項目
+
+- [x] 理解 XLOOKUP 語法
+- [x] 掌握 6 個參數用途
+- [x] 完成 3 個練習題目
+- [x] 對比 VLOOKUP 優勢
+
+---
+
+## 🎯 學習心得
+
+**XLOOKUP vs VLOOKUP：**
+1. ✅ 唔使數 column index（唔會因插入 column 而出錯）
+2. ✅ 可以向左查找（VLOOKUP 只能向右）
+3. ✅ 預設精確匹配（VLOOKUP 預設模糊，成日出錯）
+4. ✅ 支援從尾查找（VLOOKUP 只能從頭）
+
+---
+
+## 📅 明日預告
+
+**Module 1 - Day 2：** INDEX + MATCH 組合
+
+---
+
+*學習完成時間：18:15*  
+*Qwen3 Excel Training System*

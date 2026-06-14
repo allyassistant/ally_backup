@@ -1,0 +1,69 @@
+{
+  "alerts": [
+    {
+      "type": "new_error_pattern",
+      "severity": "info",
+      "message": "發現新 error type：Warning",
+      "suggestion": "出現 5 次，建議分析根本原因",
+      "data": {
+        "error_type": "Warning",
+        "count": 5,
+        "first_seen": "2026-05-29"
+      }
+    },
+    {
+      "type": "new_error_pattern",
+      "severity": "info",
+      "message": "發現新 error type：Discord error",
+      "suggestion": "出現 3 次，建議分析根本原因",
+      "data": {
+        "error_type": "Discord error",
+        "count": 3,
+        "first_seen": "2026-05-29"
+      }
+    },
+    {
+      "type": "new_error_pattern",
+      "severity": "info",
+      "message": "發現新 error type：Syntax error",
+      "suggestion": "出現 3 次，建議分析根本原因",
+      "data": {
+        "error_type": "Syntax error",
+        "count": 3,
+        "first_seen": "2026-05-29"
+      }
+    },
+    {
+      "type": "new_error_pattern",
+      "severity": "info",
+      "message": "發現新 error type：API error",
+      "suggestion": "出現 2 次，建議分析根本原因",
+      "data": {
+        "error_type": "API error",
+        "count": 2,
+        "first_seen": "2026-05-28"
+      }
+    },
+    {
+      "type": "new_error_pattern",
+      "severity": "info",
+      "message": "發現新 error type：Cron Error: Wiki Daily Ingest",
+      "suggestion": "出現 2 次，建議分析根本原因",
+      "data": {
+        "error_type": "Cron Error: Wiki Daily Ingest",
+        "count": 2,
+        "first_seen": "2026-06-01"
+      }
+    }
+  ],
+  "generated_at": "2026-06-01T20:00:11.140Z",
+  "summary": {
+    "total": 5,
+    "by_type": {
+      "new_error_pattern": 5
+    },
+    "by_severity": {
+      "info": 5
+    }
+  }
+}

@@ -1,0 +1,741 @@
+{
+  "source": "GIA Batch Analysis (75 certificates)",
+  "generatedAt": "2026-04-29T09:10:00+08:00",
+  "pending_batch4": true,
+  "batch1": [
+    {
+      "reportNumber": "1206091556",
+      "shape": "Round Brilliant",
+      "carat": 58.14,
+      "color": "F",
+      "clarity": "VS1",
+      "verdict": "STRONG_BUY",
+      "verdictEmoji": "✅",
+      "clawScore": 100,
+      "recommendation": "APPROVE",
+      "status": "analyzed"
+    },
+    {
+      "reportNumber": "1216850404",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 5.22,
+      "color": "M",
+      "clarity": "SI2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 0,
+      "recommendation": "REJECT",
+      "status": "analyzed",
+      "flags": [
+        "Milky Risk",
+        "Headlight Effect"
+      ]
+    },
+    {
+      "reportNumber": "1232576292",
+      "filename": "1232576292.pdf",
+      "score": 10,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "shape": "Modified Pear Step Cut",
+      "carat": 5.01,
+      "color": "D",
+      "clarity": "SI1",
+      "depthPct": 42.8,
+      "tablePct": 68,
+      "ratio": 1.72,
+      "polish": "Very Good",
+      "symmetry": "Very Good",
+      "fluorescence": "None",
+      "depthDiagnosis": "CRITICAL: Severe Windowing",
+      "ratioDiagnosis": "Ideal",
+      "criticalFlags": 3,
+      "keyIssues": [
+        "Severe Windowing (42.8%)",
+        "Bow-tie Risk",
+        "Cavity Risk"
+      ],
+      "recommendation": "REJECT"
+    },
+    {
+      "reportNumber": "1232839795",
+      "shape": "Square Modified Brilliant",
+      "carat": 2.05,
+      "color": "H",
+      "clarity": "VVS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 24,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": [
+        "Too Deep",
+        "Headlight Effect"
+      ]
+    },
+    {
+      "reportNumber": "1236047100",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 5.24,
+      "color": "F",
+      "clarity": "VS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 34,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": [
+        "Milky Risk",
+        "Headlight Effect"
+      ]
+    },
+    {
+      "reportNumber": "1236049381",
+      "filename": "1236049381.pdf",
+      "score": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "shape": "Pear Modified Brilliant",
+      "carat": 1.17,
+      "color": "Fancy Pinkish Purple",
+      "clarity": "SI1",
+      "depthPct": 68.6,
+      "tablePct": 69,
+      "ratio": 1.42,
+      "polish": "Excellent",
+      "symmetry": "Very Good",
+      "fluorescence": "None",
+      "depthDiagnosis": "CRITICAL: Too Deep",
+      "ratioDiagnosis": "Stubby",
+      "criticalFlags": 2,
+      "keyIssues": [
+        "Too Deep (68.6%)",
+        "Bow-tie Risk",
+        "Table Too Large"
+      ],
+      "recommendation": "REJECT",
+      "isFancyColor": true
+    },
+    {
+      "reportNumber": "1236123142",
+      "shape": "Oval Brilliant",
+      "carat": 2.03,
+      "color": "E",
+      "clarity": "SI1",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 6,
+      "recommendation": "REJECT",
+      "status": "analyzed",
+      "flags": [
+        "Milky Risk",
+        "Too Deep",
+        "Headlight Effect"
+      ]
+    },
+    {
+      "reportNumber": "1493072496",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 3.01,
+      "color": "I",
+      "clarity": "SI1",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 7,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": [
+        "Milky Risk",
+        "Medium Yellow Fluorescence",
+        "Headlight Effect"
+      ]
+    },
+    {
+      "reportNumber": "1508164661",
+      "shape": "Square Emerald Cut",
+      "carat": 10.88,
+      "color": "D",
+      "clarity": "VVS2",
+      "verdict": "BUY",
+      "verdictEmoji": "✅",
+      "clawScore": 85,
+      "recommendation": "APPROVE",
+      "status": "analyzed"
+    },
+    {
+      "reportNumber": "1513039628",
+      "shape": "Emerald Cut",
+      "carat": 9.02,
+      "color": "H",
+      "clarity": "VS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 35,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": [
+        "Milky Risk",
+        "Oily Look Risk",
+        "Headlight Effect"
+      ]
+    },
+    {
+      "reportNumber": "1543136295",
+      "filename": "1543136295.pdf",
+      "score": 85,
+      "verdict": "BUY",
+      "verdictEmoji": "✅",
+      "shape": "Pear Brilliant",
+      "carat": 6.5,
+      "color": "Fancy Brown-Yellow",
+      "clarity": "VVS1",
+      "depthPct": 55.5,
+      "tablePct": 60,
+      "ratio": 1.65,
+      "polish": "Excellent",
+      "symmetry": "Excellent",
+      "fluorescence": "None",
+      "depthDiagnosis": "Normal Depth",
+      "ratioDiagnosis": "Ideal",
+      "criticalFlags": 0,
+      "keyIssues": [
+        "Bow-tie Risk (minor)"
+      ],
+      "recommendation": "CONDITIONAL",
+      "isFancyColor": true,
+      "originCountry": "Botswana"
+    },
+    {
+      "reportNumber": "1548402190",
+      "shape": "Emerald Cut",
+      "carat": 8.68,
+      "color": "D",
+      "clarity": "VVS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 34,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": [
+        "Milky Risk",
+        "Headlight Effect"
+      ]
+    },
+    {
+      "reportNumber": "16148135",
+      "shape": "Briolette",
+      "carat": 3.54,
+      "color": "I",
+      "clarity": "VS2",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 0,
+      "recommendation": "REJECT",
+      "status": "analyzed",
+      "flags": [
+        "Too Deep",
+        "Very Strong Blue Fluorescence"
+      ]
+    },
+    {
+      "reportNumber": "17465731",
+      "shape": "Briolette",
+      "carat": 3.96,
+      "color": "K",
+      "clarity": "Internally Flawless",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 2,
+      "recommendation": "REJECT",
+      "status": "analyzed",
+      "flags": [
+        "Too Deep"
+      ]
+    },
+    {
+      "reportNumber": "2213934868",
+      "shape": "Cushion Modified Brilliant",
+      "carat": 1.71,
+      "color": "Fancy Vivid Pink",
+      "clarity": "VS1",
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "clawScore": 24,
+      "recommendation": "CONDITIONAL",
+      "status": "analyzed",
+      "flags": [
+        "Milky Risk",
+        "Oily Look Risk"
+      ]
+    }
+  ],
+  "batch2": [
+    {
+      "reportNumber": "2215594329",
+      "verdict": "REJECT",
+      "score": 34,
+      "color": "F",
+      "clarity": "VVS1",
+      "carat": 8.08,
+      "shape": "Heart Brilliant"
+    },
+    {
+      "reportNumber": "2225343116",
+      "verdict": "REJECT",
+      "score": 2,
+      "color": "K",
+      "clarity": "SI1",
+      "carat": 10.21,
+      "shape": "Cut-Cornered Rectangular Modified Brilliant"
+    },
+    {
+      "reportNumber": "2225839631",
+      "verdict": "CAUTION",
+      "score": 59,
+      "color": "Fancy Vivid Yellow",
+      "clarity": "VVS2",
+      "carat": 30.03,
+      "shape": "Cut-Cornered Rectangular Modified Brilliant"
+    },
+    {
+      "reportNumber": "2225867090",
+      "verdict": "REJECT",
+      "score": 0,
+      "color": "F",
+      "clarity": "SI1",
+      "carat": 3.12,
+      "shape": "Modified Triangular Brilliant"
+    },
+    {
+      "reportNumber": "2231477950",
+      "verdict": "REJECT",
+      "score": 23,
+      "color": "G",
+      "clarity": "VS1",
+      "carat": 8.05,
+      "shape": "Cushion Modified Brilliant"
+    },
+    {
+      "reportNumber": "2231640454",
+      "verdict": "CAUTION",
+      "score": 53,
+      "color": "F",
+      "clarity": "VVS2",
+      "carat": 25.28,
+      "shape": "Cushion Modified Brilliant"
+    },
+    {
+      "reportNumber": "2231756427",
+      "verdict": "BUY",
+      "score": 85,
+      "color": "E",
+      "clarity": "VVS2",
+      "carat": 16.3,
+      "shape": "Square Emerald Cut"
+    },
+    {
+      "reportNumber": "2231839208",
+      "verdict": "REJECT",
+      "score": 30,
+      "color": "D",
+      "clarity": "VVS1",
+      "carat": 2.09,
+      "shape": "Cut-Cornered Rectangular Modified Brilliant"
+    },
+    {
+      "reportNumber": "2235028246",
+      "verdict": "REJECT",
+      "score": 11,
+      "color": "E",
+      "clarity": "SI1",
+      "carat": 5.21,
+      "shape": "Emerald Cut"
+    },
+    {
+      "reportNumber": "2235046535",
+      "verdict": "CAUTION",
+      "score": 42,
+      "color": "F",
+      "clarity": "SI2",
+      "carat": 12.02,
+      "shape": "Cut-Cornered Square Modified Brilliant"
+    },
+    {
+      "reportNumber": "2235047260",
+      "verdict": "REJECT",
+      "score": 0,
+      "color": "K",
+      "clarity": "SI1",
+      "carat": 8.08,
+      "shape": "Square Modified Brilliant"
+    },
+    {
+      "reportNumber": "2235048895",
+      "verdict": "REJECT",
+      "score": 0,
+      "color": "Fancy Vivid Yellow",
+      "clarity": "SI1",
+      "carat": 1.03,
+      "shape": "Modified Triangular Brilliant"
+    },
+    {
+      "reportNumber": "2235179945",
+      "verdict": "BUY",
+      "score": 72,
+      "color": "D",
+      "clarity": "Internally Flawless",
+      "carat": 2.25,
+      "shape": "Emerald Cut"
+    },
+    {
+      "reportNumber": "2235474565",
+      "verdict": "BUY",
+      "score": 85,
+      "color": "Fancy Brownish Yellow",
+      "clarity": "VS2",
+      "carat": 15.92,
+      "shape": "Pear Modified Brilliant"
+    },
+    {
+      "reportNumber": "2235510763",
+      "verdict": "CAUTION",
+      "score": 49,
+      "color": "F",
+      "clarity": "VVS2",
+      "carat": 5.21,
+      "shape": "Round Brilliant"
+    }
+  ],
+  "batch3": [
+    {
+      "reportNumber": "2235608555",
+      "carat": 25.52,
+      "color": "Fancy Intense Yellow",
+      "clarity": "VS1",
+      "shape": "Cushion Modified Brilliant",
+      "clawScore": 59,
+      "verdict": "CAUTION",
+      "verdictEmoji": "🟡"
+    },
+    {
+      "reportNumber": "2235815380",
+      "carat": 7.01,
+      "color": "D",
+      "clarity": "VVS1",
+      "shape": "Oval Brilliant",
+      "clawScore": 8,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "2235838929",
+      "carat": 5.21,
+      "color": "E",
+      "clarity": "VS2",
+      "shape": "Heart Brilliant",
+      "clawScore": 67,
+      "verdict": "CAUTION",
+      "verdictEmoji": "🟡"
+    },
+    {
+      "reportNumber": "2454851318",
+      "carat": 2.01,
+      "color": "D",
+      "clarity": "SI2",
+      "shape": "Cut-Cornered Triangular Step Cut",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "2497242927",
+      "carat": 3.3,
+      "color": "E",
+      "clarity": "VS2",
+      "shape": "Square Modified Brilliant",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "2517547075",
+      "carat": 3.06,
+      "color": "G",
+      "clarity": "SI1",
+      "shape": "Cut-Cornered Triangular Step Cut",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "2524520170",
+      "carat": 3.47,
+      "color": "I",
+      "clarity": "SI2",
+      "shape": "Cut-Cornered Triangular Step Cut",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "2547118445",
+      "carat": 2.02,
+      "color": "J",
+      "clarity": "SI2",
+      "shape": "Marquise Brilliant",
+      "clawScore": 24,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "2547261015",
+      "carat": 4.03,
+      "color": "F",
+      "clarity": "SI2",
+      "shape": "Marquise Brilliant",
+      "clawScore": 22,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "5221447582",
+      "carat": 6.01,
+      "color": "J",
+      "clarity": "VS2",
+      "shape": "Cushion Modified Brilliant",
+      "clawScore": 12,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "5221657767",
+      "carat": 10.04,
+      "color": "D",
+      "clarity": "SI1",
+      "shape": "Pear Brilliant",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "5222767185",
+      "carat": 8.46,
+      "color": "D",
+      "clarity": "Fl",
+      "shape": "Marquise Brilliant",
+      "clawScore": 34,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    },
+    {
+      "reportNumber": "5231096959",
+      "carat": 1.7,
+      "color": "I",
+      "clarity": "VVS2",
+      "shape": "Round Brilliant",
+      "clawScore": 100,
+      "verdict": "STRONG_BUY",
+      "verdictEmoji": "✅"
+    },
+    {
+      "reportNumber": "5231283332",
+      "carat": 35.11,
+      "color": "F",
+      "clarity": "VS2",
+      "shape": "Cushion Modified Brilliant",
+      "clawScore": 59,
+      "verdict": "CAUTION",
+      "verdictEmoji": "🟡"
+    },
+    {
+      "reportNumber": "5231560125",
+      "carat": 3.29,
+      "color": "F",
+      "clarity": "SI1",
+      "shape": "Cut-Cornered Triangular Step Cut",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴"
+    }
+  ],
+  "batch5": [
+    {
+      "reportNumber": "6234129129",
+      "shape": "Oval Brilliant",
+      "carat": 7.03,
+      "color": "H",
+      "clarity": "SI2",
+      "clawScore": 63,
+      "verdict": "CAUTION",
+      "verdictEmoji": "🟡",
+      "recommendation": "APPROVE"
+    },
+    {
+      "reportNumber": "6234158920",
+      "shape": "Unknown",
+      "carat": null,
+      "color": null,
+      "clarity": null,
+      "clawScore": null,
+      "verdict": "ERROR",
+      "verdictEmoji": "⚫",
+      "recommendation": "ERROR",
+      "errorDetail": "ratio.toFixed is not a function"
+    },
+    {
+      "reportNumber": "6234175633",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 2.45,
+      "color": "Fancy Light Pink",
+      "clarity": "VS1",
+      "clawScore": 24,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "CONDITIONAL",
+      "isFancyColor": true
+    },
+    {
+      "reportNumber": "6234289441",
+      "shape": "Round Brilliant",
+      "carat": 7.5,
+      "color": "D",
+      "clarity": "FL",
+      "clawScore": 34,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "CONDITIONAL"
+    },
+    {
+      "reportNumber": "6237208621",
+      "shape": "Oval Brilliant",
+      "carat": 5.01,
+      "color": "H",
+      "clarity": "SI1",
+      "clawScore": 19,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT",
+      "isFancyColor": true
+    },
+    {
+      "reportNumber": "6237543868",
+      "shape": "Pear Brilliant",
+      "carat": 7.02,
+      "color": "H",
+      "clarity": "Internally Flawless",
+      "clawScore": 85,
+      "verdict": "BUY",
+      "verdictEmoji": "✅",
+      "recommendation": "APPROVE"
+    },
+    {
+      "reportNumber": "6237791422",
+      "shape": "Modified Kite Step Cut",
+      "carat": 3.03,
+      "color": "H",
+      "clarity": "SI2",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    },
+    {
+      "reportNumber": "6415242848",
+      "shape": "Round Brilliant",
+      "carat": 10.02,
+      "color": "G",
+      "clarity": "SI2",
+      "clawScore": 18,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    },
+    {
+      "reportNumber": "6425007646",
+      "shape": "Heart Brilliant",
+      "carat": 3.01,
+      "color": "G",
+      "clarity": "SI2",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    },
+    {
+      "reportNumber": "6451678836",
+      "shape": "Cushion Brilliant",
+      "carat": 3.01,
+      "color": "F",
+      "clarity": "SI1",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT",
+      "isFancyColor": true
+    },
+    {
+      "reportNumber": "6462156306",
+      "shape": "Oval Brilliant",
+      "carat": 10.04,
+      "color": "H",
+      "clarity": "SI1",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    },
+    {
+      "reportNumber": "6512928723",
+      "shape": "Square Emerald Cut",
+      "carat": 5.02,
+      "color": "D",
+      "clarity": "VVS1",
+      "clawScore": 70,
+      "verdict": "BUY",
+      "verdictEmoji": "✅",
+      "recommendation": "APPROVE"
+    },
+    {
+      "reportNumber": "6522986461",
+      "shape": "Pear Brilliant",
+      "carat": 2.0,
+      "color": "G",
+      "clarity": "SI2",
+      "clawScore": 16,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "CONDITIONAL"
+    },
+    {
+      "reportNumber": "7235047225",
+      "shape": "Cut-Cornered Rectangular Modified Brilliant",
+      "carat": 5.07,
+      "color": "H",
+      "clarity": "VVS2",
+      "clawScore": 64,
+      "verdict": "CAUTION",
+      "verdictEmoji": "🟡",
+      "recommendation": "APPROVE"
+    },
+    {
+      "reportNumber": "7516553492",
+      "shape": "Modified Triangular Step Cut",
+      "carat": 4.45,
+      "color": "K",
+      "clarity": "SI2",
+      "clawScore": 0,
+      "verdict": "REJECT",
+      "verdictEmoji": "🔴",
+      "recommendation": "REJECT"
+    }
+  ],
+  "summary": {
+    "BUY": 7,
+    "REJECT": 41,
+    "CAUTION": 9,
+    "STRONG_BUY": 2,
+    "total": 60,
+    "average_score": 30.0,
+    "score_range": "0-100"
+  }
+}

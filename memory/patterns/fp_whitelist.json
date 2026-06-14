@@ -1,0 +1,137 @@
+{
+  "patterns": [
+    {
+      "id": "fp_magic_numbers_1777576248551",
+      "pattern_key": "scripts/analyze_magic_numbers.js:39:magic_numbers",
+      "pattern": "scripts/analyze_magic_numbers.js:L39:magic_numbers:Hardcoded_magic_number",
+      "rule": "magic_numbers",
+      "learned_at": "2026-04-30",
+      "last_seen": "2026-04-30",
+      "confidence": 100,
+      "count": 11,
+      "source": "local",
+      "examples": [
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字為 `ollamaPorts` 白名單正則中的已知端口\n。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字為 `ollamaPorts` 白名單正則中的已知端口。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字為 `ollamaPorts` 白名單正則中的已知端口。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index \n1，此數字為 `ollamaPorts` 白名單正則中的已知端口。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字\n為 `ollamaPorts` 白名單正則中的已知端口。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字為 `ollamaP\norts` 白名單正則中的已知端口。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字為 `ollamaPorts` 白名\n單正則中的已知端口。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字為 `ollamaPorts` 白名單正則中的\n已知端口。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字為 `ollamaPorts` 白名單正則中的已知端口\n。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字為 `ollamaPorts` 白名單正則中的已知端口。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 39,
+          "reasoning": "同 index 1，此數字為 `ollamaPorts` 白名單正則中的已知端口。",
+          "learned_at": "2026-04-30"
+        }
+      ]
+    },
+    {
+      "id": "fp_magic_numbers_1777576248552",
+      "pattern_key": "scripts/analyze_magic_numbers.js:40:magic_numbers",
+      "pattern": "scripts/analyze_magic_numbers.js:L40:magic_numbers:Hardcoded_magic_number",
+      "rule": "magic_numbers",
+      "learned_at": "2026-04-30",
+      "last_seen": "2026-04-30",
+      "confidence": 100,
+      "count": 2,
+      "source": "local",
+      "examples": [
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 40,
+          "reasoning": "此數字\n為 `memorySize` 白名單正則的一部分，用於標記常見的 token 記憶體大小（如 4K token\ns）。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 40,
+          "reasoning": "同 index 13，此數字為 `memorySize` 白名單正則中的已知記憶體大小（8\nK tokens）。",
+          "learned_at": "2026-04-30"
+        }
+      ]
+    },
+    {
+      "id": "fp_magic_numbers_1777576248552",
+      "pattern_key": "scripts/analyze_magic_numbers.js:41:magic_numbers",
+      "pattern": "scripts/analyze_magic_numbers.js:L41:magic_numbers:Hardcoded_magic_number",
+      "rule": "magic_numbers",
+      "learned_at": "2026-04-30",
+      "last_seen": "2026-04-30",
+      "confidence": 100,
+      "count": 2,
+      "source": "local",
+      "examples": [
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 41,
+          "reasoning": "此數字為 `pdfMagic` 白名單正則中的 PDF/GIF 檔案魔術位元組\n（Magic Bytes），是檔案格式識別的標準常量。",
+          "learned_at": "2026-04-30"
+        },
+        {
+          "file": "scripts/analyze_magic_numbers.js",
+          "line": 41,
+          "reasoning": "同 index 15，此數字為 GIF\n檔案的魔術位元組（47494638 = \\'GIF8\\'），屬於標準檔案簽名。",
+          "learned_at": "2026-04-30"
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "total_learned": 3,
+    "last_updated": "2026-04-30"
+  }
+}

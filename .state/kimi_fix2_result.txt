@@ -1,0 +1,2761 @@
+請修復以下 High 和 Medium 安全問題：
+
+### High 問題
+1. weekly_correction_loop.js:26-157 - 函數調用在導入之前，導致 ReferenceError
+2. issue_auto_followup.js:26-27 - getHKTDateTime() 在導入前被調用
+3. heartbeat_recall.js:58 - eval 使用
+4. heartbeat_recall.js:149 - AppleScript 注入
+
+### Medium 問題
+5. rapnet_sender.js - 缺少錯誤處理
+6. error_tracker.js - 使用 unlinkSync
+7. reminder_discussion_bot.js - execSync 使用
+
+請直接修改呢啲檔案，修復每個問題。
+
+修復完成後請驗證所有修改檔案既語法。
+TurnBegin(
+    user_input='請修復以下 High 和 Medium 安全問題：\n\n### High 問題\n1. weekly
+_correction_loop.js:26-157 - 函數調用在導入之前，導致 ReferenceError\n2. issue_a
+uto_followup.js:26-27 - getHKTDateTime() 在導入前被調用\n3. heartbeat_recall.js:
+58 - eval 使用\n4. heartbeat_recall.js:149 - AppleScript 注入\n\n### Medium 問題
+\n5. rapnet_sender.js - 缺少錯誤處理\n6. error_tracker.js - 使用 unlinkSync\n7. 
+reminder_discussion_bot.js - execSync 使用\n\n請直接修改呢啲檔案，修復每個問題。
+\n\n修復完成後請驗證所有修改檔案既語法。'
+)
+StepBegin(n=1)
+ThinkPart(
+    type='think',
+    think='用戶要求修復多個安全問題，涉及7個檔案。我需要先閱讀這些檔案，理解問題
+，然後進行修復，最後驗證語法。\n\n讓我先閱讀所有相關檔案。',
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_OjCn2Pk8WdXOI29aVlqkxADV',
+    function=FunctionBody(
+        name='ReadFile',
+        arguments='{"path": "weekly_correction_loop.js"}'
+    ),
+    extras=None
+)
+ToolCall(
+    type='function',
+    id='tool_MV0sGCDg8B8L466pJlXvtrmg',
+    function=FunctionBody(name='ReadFile', arguments=''),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_OjCn2Pk8WdXOI29aVlqkxADV',
+    return_value=ToolOk(
+        is_error=False,
+        output='     1\t#!/usr/bin/env node\n     2\t\n     3\tconst _quiet = pr
+ocess.argv.includes(\'--quiet\');\n     4\tconst log = (...args) => { if (!_quie
+t) console.log(...args); };\n     5\t\n     6\t/**\n     7\t * Weekly Correction
+Loop Script - Level 3 Enhanced\n     8\t * 每周日自動運行：\n     9\t * 1. 讀取 
+errors.json 分析 pattern\n    10\t * 2. 重複錯誤生成規則草案\n    11\t * 3. 問用
+戶確認後加入 AGENTS.md P0\n    12\t * \n    13\t * Run: node scripts/weekly_corr
+ection_loop.js\n    14\t * Trigger: Every Sunday 6:00 PM (cron)\n    15\t */\n  
+ 16\t\n    17\tconst fs = require(\'fs\');\n    18\tconst path = require(\'path\
+');\n    19\tconst { execSync } = require(\'child_process\');\n    20\t\n    21\
+tconst { ERRORS_JSON, WS, MEMORY_DIR } = require(\'./lib/config\');\n    22\tcon
+st AGENTS_FILE = path.join(WS, \'AGENTS.md\');\n    23\tconst STATE_FILE = path.
+join(MEMORY_DIR, \'correction-loop-state.json\');\n    24\t\n    25\t// HKT Date
+helper\n    26\tlog(\'=== Weekly Correction Loop (Level 3) ===\\n\');\n    27\tl
+og(`📅 Run time: ${getHKTDateTime()}\\n`);\n    28\t\n    29\t// Load state\n   
+30\tlet state = { lastRun: null, lastRunDate: null, processedErrors: [], propose
+dRules: [], confirmedRules: [] };\n    31\ttry {\n    32\t  if (fs.existsSync(ST
+ATE_FILE)) {\n    33\t    try {\n    34\t      state = JSON.parse(fs.readFileSyn
+c(STATE_FILE, \'utf8\'));\n    35\t    } catch (e) {\n    36\t      log(\'⚠️ Coul
+d not parse state file, starting fresh: \' + e.message);\n    37\t    }\n    38\
+t  }\n    39\t} catch (e) {\n    40\t  log(\'⚠️ Could not load state, starting fr
+esh: \' + e.message);\n    41\t}\n    42\t\n    43\t// LOCK CHECK: Prevent multi
+ple runs in same day\n    44\tconst todayDate = getHKTDate();\n    45\tif (state
+.lastRunDate === todayDate) {\n    46\t  log(`⏭️ Already ran today (${state.lastR
+unDate}). Skipping to prevent duplicate.`);\n    47\t  log(`   Last run: ${state
+.lastRun}`);\n    48\t  process.exit(0);\n    49\t}\n    50\t\n    51\t// Read e
+rrors.json\n    52\tlet errorsData = { errors: [] };\n    53\ttry {\n    54\t  i
+f (fs.existsSync(ERRORS_JSON)) {\n    55\t    try {\n    56\t      errorsData = 
+JSON.parse(fs.readFileSync(ERRORS_JSON, \'utf8\'));\n    57\t    } catch (e) {\n
+   58\t      log(\'❌ Error parsing errors.json:\', e.message);\n    59\t      e
+rrorsData = { errors: [] };\n    60\t    }\n    61\t  }\n    62\t  log(`✅ Read 
+errors.json: ${errorsData.errors?.length || 0} total errors`);\n    63\t} catch 
+(e) {\n    64\t  log(\'❌ Error reading errors.json:\', e.message);\n    65\t  p
+rocess.exit(1);\n    66\t}\n    67\t\n    68\t// Filter recent errors (within 7 
+days)\n    69\tconst today = new Date();\n    70\tconst oneWeekAgo = new Date(to
+day);\n    71\toneWeekAgo.setDate(oneWeekAgo.getDate() - 7);\n    72\t\n    73\t
+const recentErrors = (errorsData.errors || []).filter(error => {\n    74\t  cons
+t errorDate = new Date(error.date || error.timestamp);\n    75\t  return errorDa
+te >= oneWeekAgo;\n    76\t});\n    77\t\n    78\tlog(`📊 Found ${recentErrors.l
+ength} errors from this week\\n`);\n    79\t\n    80\tif (recentErrors.length ==
+= 0) {\n    81\t  log(\'✅ No errors this week. System is healthy!\');\n    82\t
+ \n    83\t  state.lastRun = getHKTDateTime();\n    84\t  state.lastRunDate = to
+dayDate;\n    85\t  try {\n    86\t    fs.writeFileSync(STATE_FILE, JSON.stringi
+fy(state, null, 2));\n    87\t  } catch (err) {\n    88\t    log(`⚠️ Could not sa
+ve state: ${err.message}`);\n    89\t  }\n    90\t  \n    91\t  // NOTE: AI will
+handle Discord notification - do not send directly\n    92\t  log(\'📨 NO_ERRORS
+_FOUND - AI will decide whether to send notification\');\n    93\t  // sendDisco
+rdNotification(\'✅ Weekly Correction Loop: No errors this week. System healthy!
+\');\n    94\t  log(\'\\n=== OUTPUT_END ===\');\n    95\t  log(\'NO_ERRORS\');\n
+   96\t  process.exit(0);\n    97\t}\n    98\t\n    99\t// Analyze patterns - gr
+oup by error type\n   100\tconst errorPatterns = {};\n   101\t\n   102\trecentEr
+rors.forEach(error => {\n   103\t  const key = extractErrorPattern(error);\n   1
+04\t  if (!errorPatterns[key]) {\n   105\t    errorPatterns[key] = {\n   106\t  
+   count: 0,\n   107\t      errors: [],\n   108\t      firstSeen: error.date,\n 
+ 109\t      lastSeen: error.date\n   110\t    };\n   111\t  }\n   112\t  errorPa
+tterns[key].count++;\n   113\t  errorPatterns[key].errors.push(error);\n   114\t
+ errorPatterns[key].lastSeen = error.date;\n   115\t});\n   116\t\n   117\tlog(\
+'=== Pattern Analysis ===\');\n   118\tconst patterns = Object.entries(errorPatt
+erns);\n   119\tlog(`Found ${patterns.length} distinct error patterns\\n`);\n   
+120\t\n   121\t// Find patterns that appear 3+ times AND are high/critical sever
+ity (AUTO-ADD MODE)\n   122\tconst recurringPatterns = patterns.filter(([key, da
+ta]) => {\n   123\t  const hasMinOccurrences = data.count >= 3;\n   124\t  const
+hasHighSeverity = data.errors.some(e => e.severity === \'high\' || e.severity ==
+= \'critical\');\n   125\t  return hasMinOccurrences && hasHighSeverity;\n   126
+\t});\n   127\t\n   128\tlog(`🔍 Auto-add patterns (3+ times + high/critical): $
+{recurringPatterns.length}\\n`);\n   129\t\n   130\t// Generate and AUTO-APPLY r
+ules\n   131\tconst autoAppliedRules = [];\n   132\t\n   133\trecurringPatterns.
+forEach(([key, data]) => {\n   134\t  const rule = generateRuleFromPattern(key, 
+data);\n   135\t  if (rule && !isRuleAlreadyApplied(rule, state.confirmedRules |
+| [])) {\n   136\t    // Mark as auto-generated\n   137\t    rule.autoGenerated 
+= true;\n   138\t    rule.status = \'auto_applied\';\n   139\t    autoAppliedRul
+es.push(rule);\n   140\t  }\n   141\t});\n   142\t\n   143\tlog(\'=== Auto-Appli
+ed Rules ===\');\n   144\tif (autoAppliedRules.length === 0) {\n   145\t  log(\'
+No new rules to auto-apply.\\n\');\n   146\t} else {\n   147\t  autoAppliedRules
+.forEach((rule, index) => {\n   148\t    log(`\\n${index + 1}. ${rule.title} (AU
+TO)`);\n   149\t    log(`   Pattern: ${rule.pattern}`);\n   150\t    log(`   Occ
+urrences: ${rule.occurrences}`);\n   151\t    log(`   Auto-Applied Rule: ${rule.
+rule}`);\n   152\t  });\n   153\t}\n   154\t\n   155\t// Apply rules immediately
+to AGENTS.md\n   156\tconst newlyApplied = applyAutoRules(autoAppliedRules, AGEN
+TS_FILE, state);\n   157\tconst { getHKTDate, getHKTDateTime } = require(\'./lib
+/time\');\n   158\t\n   159\t// Update state\n   160\tstate.lastRun = getHKTDate
+Time();\n   161\tstate.lastRunDate = todayDate;\n   162\tstate.processedErrors =
+[...(state.processedErrors || []), ...recentErrors.map(e => e.id)].slice(-100);\
+n   163\t\n   164\tif (newlyApplied.length > 0) {\n   165\t  state.confirmedRule
+s = [...(state.confirmedRules || []), ...newlyApplied];\n   166\t  // Send notif
+ication about auto-applied rules\n   167\t  sendAutoAppliedNotification(newlyApp
+lied);\n   168\t}\n   169\t\n   170\ttry {\n   171\t  fs.writeFileSync(STATE_FIL
+E, JSON.stringify(state, null, 2));\n   172\t  log(\'\\n✅ Updated state\');\n  
+173\t} catch (e) {\n   174\t  log(\'⚠️ Could not update state:\', e.message);\n 
+175\t}\n   176\t\n   177\tlog(\'\\n=== 總結 ===\');\n   178\tlog(`已分析錯誤: ${
+recentErrors.length}`);\n   179\tlog(`找到模式: ${patterns.length}`);\n   180\tl
+og(`自動應用模式: ${recurringPatterns.length}`);\n   181\tlog(`自動應用規則: ${n
+ewlyApplied.length}`);\n   182\tlog(\'\\n✅ 每周校正循環完成！(自動應用模式)\');
+\n   183\t\n   184\t// NEW 2026-03-09: Send comprehensive report to Discord\n   
+185\tsendWeeklyReport(recentErrors, errorPatterns, newlyApplied);\n   186\t\n   
+187\t// Helper functions\n   188\tfunction extractErrorPattern(error) {\n   189\
+t  // Extract pattern from error\n   190\t  const title = error.title || error.p
+roblem || \'\';\n   191\t  const category = error.category || \'general\';\n   1
+92\t  \n   193\t  // Normalize similar errors\n   194\t  let pattern = title.toL
+owerCase()\n   195\t    .replace(/\\d{4}-\\d{2}-\\d{2}/g, \'DATE\')\n   196\t   
+.replace(/\\d+/g, \'NUM\')\n   197\t    .replace(/\\s+/g, \' \')\n   198\t    .t
+rim();\n   199\t  \n   200\t  // Extract key keywords\n   201\t  const keywords 
+= [\'trash\', \'rm\', \'time\', \'timezone\', \'utc\', \'hkt\', \'backup\', \'sy
+nc\'];\n   202\t  const matched = keywords.filter(kw => pattern.includes(kw));\n
+  203\t  \n   204\t  if (matched.length > 0) {\n   205\t    return `${category}:
+${matched.join(\'-\')}`;\n   206\t  }\n   207\t  \n   208\t  return `${category}
+:${pattern.substring(0, 50)}`;\n   209\t}\n   210\t\n   211\tfunction generateRu
+leFromPattern(key, data) {\n   212\t  const errors = data.errors;\n   213\t  con
+st titles = errors.map(e => e.title || e.problem || \'\').join(\' \');\n   214\t
+ \n   215\t  // Rule generation logic based on error patterns\n   216\t  let rul
+e = null;\n   217\t  let title = \'\';\n   218\t  \n   219\t  if (key.includes(\
+'trash\') || titles.toLowerCase().includes(\'trash\')) {\n   220\t    title = \'
+使用 trash 命令\';\n   221\t    rule = \'必須使用 trash 命令移動文件到回收站，禁
+止使用 rm 或 unlinkSync 直接刪除。\';\n   222\t  } else if (key.includes(\'time\
+') || key.includes(\'utc\') || key.includes(\'hkt\') || titles.toLowerCase().inc
+ludes(\'timezone\')) {\n   223\t    title = \'時間時區統一\';\n   224\t    rule 
+= \'所有時間操作必須使用 HKT (Asia/Hong_Kong) 時區，使用 toLocaleString("zh-HK",
+{ timeZone: "Asia/Hong_Kong" }) 而非 toISOString()。\';\n   225\t  } else if (ke
+y.includes(\'backup\') || titles.toLowerCase().includes(\'backup\')) {\n   226\t
+   title = \'備份驗證\';\n   227\t    rule = \'備份操作完成後必須立即驗證，確保
+內容完整且可讀取。\';\n   228\t  } else if (key.includes(\'sync\') || titles.toL
+owerCase().includes(\'sync\')) {\n   229\t    title = \'同步機制\';\n   230\t   
+rule = \'涉及多個系統同步時，必須有重試機制同最終一致性檢查。\';\n   231\t  }\n 
+ 232\t  \n   233\t  if (rule) {\n   234\t    return {\n   235\t      id: `rule-$
+{Date.now()}-${Math.random().toString(36).substr(2, 9)}`,\n   236\t      title,\
+n   237\t      pattern: key,\n   238\t      occurrences: data.count,\n   239\t  
+   rule,\n   240\t      errors: errors.map(e => ({ id: e.id, date: e.date, title
+: e.title })),\n   241\t      proposedDate: getHKTDate(),\n   242\t      status:
+\'pending_confirmation\'\n   243\t    };\n   244\t  }\n   245\t  \n   246\t  ret
+urn null;\n   247\t}\n   248\t\n   249\tfunction isRuleAlreadyProposed(rule, pro
+posedRules) {\n   250\t  if (!proposedRules || proposedRules.length === 0) retur
+n false;\n   251\t  return proposedRules.some(pr => pr.pattern === rule.pattern 
+&& pr.status !== \'rejected\');\n   252\t}\n   253\t\n   254\tfunction isRuleAlr
+eadyApplied(rule, confirmedRules) {\n   255\t  if (!confirmedRules || confirmedR
+ules.length === 0) return false;\n   256\t  return confirmedRules.some(cr => cr.
+pattern === rule.pattern);\n   257\t}\n   258\t\n   259\tfunction applyAutoRules
+(rules, agentsFile, state) {\n   260\t  if (rules.length === 0) return [];\n   2
+61\t  \n   262\t  let agentsContent = \'\';\n   263\t  try {\n   264\t    agents
+Content = fs.readFileSync(agentsFile, \'utf8\');\n   265\t  } catch (e) {\n   26
+6\t    log(\'❌ Error reading AGENTS.md:\', e.message);\n   267\t    return [];\
+n   268\t  }\n   269\t  \n   270\t  const appliedRules = [];\n   271\t  \n   272
+\t  rules.forEach(rule => {\n   273\t    // Check if already in AGENTS.md\n   27
+4\t    if (agentsContent.includes(rule.rule.substring(0, 30))) {\n   275\t      
+log(`⏭️ Rule already in AGENTS.md: ${rule.title}`);\n   276\t      rule.applied =
+true;\n   277\t      return;\n   278\t    }\n   279\t    \n   280\t    // Add to
+AGENTS.md with auto-generated marker\n   281\t    const ruleEntry = `\\n### 🎯 P
+0 - ${rule.title} (Auto-generated)\\n*📅 Created: ${rule.proposedDate} | 🔄 Upda
+ted: ${getHKTDate()} | ⏰ TTL: Never | 🤖 Auto*\\n\\n${rule.rule}\\n\\n> 🔄 **Au
+to-Applied Rule**\\n> - 來源：基於 ${rule.occurrences} 次同類型錯誤自動生成\\n> 
+- 錯誤 ID: ${rule.errors.map(e => e.id).join(\', \')}\\n> - 生成時間: ${getHKTDa
+teTime()}\\n> - 如需修改/刪除，請手動編輯 AGENTS.md\\n`;\n   282\t    \n   283\t
+   // Find insertion point (before "## 重要決策記錄" section)\n   284\t    const
+insertPoint = agentsContent.indexOf(\'## 重要決策記錄\');\n   285\t    if (inser
+tPoint > 0) {\n   286\t      agentsContent = agentsContent.substring(0, insertPo
+int) + ruleEntry + \'\\n\' + agentsContent.substring(insertPoint);\n   287\t    
+ appliedRules.push(rule);\n   288\t      rule.applied = true;\n   289\t      log
+(`✅ Auto-applied rule: ${rule.title}`);\n   290\t    }\n   291\t  });\n   292\t
+ \n   293\t  if (appliedRules.length > 0) {\n   294\t    try {\n   295\t      fs
+.writeFileSync(agentsFile, agentsContent);\n   296\t      log(`\\n✅ Updated AGE
+NTS.md with ${appliedRules.length} auto-applied rules`);\n   297\t    } catch (e
+rr) {\n   298\t      log(`❌ Error writing AGENTS.md: ${err.message}`);\n   299\
+t    }\n   300\t  }\n   301\t  \n   302\t  return appliedRules;\n   303\t}\n   3
+04\t\n   305\t// Legacy function - kept for backward compatibility\n   306\tfunc
+tion applyConfirmedRules(state, agentsFile) {\n   307\t  // In auto-apply mode, 
+this is handled by applyAutoRules\n   308\t  return [];\n   309\t}\n   310\t\n  
+311\tfunction sendDiscordNotification(message) {\n   312\t  try {\n   313\t    e
+xecSync(`openclaw message send --channel discord -t "1473376125584670872" -m "${
+message}"`, { \n   314\t      timeout: 15000,\n   315\t      stdio: \'pipe\'\n  
+316\t    });\n   317\t    log(\'✅ Discord notification sent\');\n   318\t  } ca
+tch (err) {\n   319\t    console.error(\'❌ Failed to send Discord:\', err.messa
+ge);\n   320\t  }\n   321\t}\n   322\t\n   323\tfunction sendAutoAppliedNotifica
+tion(rules) {\n   324\t  if (rules.length === 0) return;\n   325\t  \n   326\t  
+const ruleList = rules.map((r, i) => `${i + 1}. **${r.title}**\\n   ${r.rule.sub
+string(0, 60)}...`).join(\'\\n\\n\');\n   327\t  const message = `🤖 每周校正循
+環 - 自動應用規則\\n\\n根據 ${rules.reduce((sum, r) => sum + r.occurrences, 0)} 
+次重複錯誤（出現 3+ 次、高/嚴重級別），我已自動將 ${rules.length} 條新規則加入 A
+GENTS.md：\\n\\n${ruleList}\\n\\n✅ 規則已生效，下次啟動時會自動載入。\\n📝 如需
+修改或刪除，請直接編輯 AGENTS.md。\\n⚡ 自動應用條件：出現 3+ 次 + 高/嚴重級別`;
+\n   328\t  \n   329\t// sendDiscordNotification(message);\n   330\t}\n   331\t\
+n   332\t// NEW 2026-03-09: Send comprehensive weekly report\n   333\tfunction s
+endWeeklyReport(recentErrors, errorPatterns, autoAppliedRules) {\n   334\t  cons
+t totalErrors = recentErrors.length;\n   335\t  const patternCount = Object.keys
+(errorPatterns).length;\n   336\t  const newRulesCount = autoAppliedRules.length
+;\n   337\t  \n   338\t  // Build error summary\n   339\t  let errorSummary = \'
+\';\n   340\t  if (totalErrors > 0) {\n   341\t    const topPatterns = Object.en
+tries(errorPatterns)\n   342\t      .sort((a, b) => b[1].count - a[1].count)\n  
+343\t      .slice(0, 5);\n   344\t    \n   345\t    errorSummary = topPatterns.m
+ap(([key, data], i) => {\n   346\t      const sampleError = data.errors[0];\n   
+347\t      return `${i + 1}. **${sampleError.title || \'Unknown\'}** (${data.cou
+nt}x)\\n   ${key.substring(0, 80)}...`;\n   348\t    }).join(\'\\n\\n\');\n   34
+9\t  }\n   350\t  \n   351\t  // Build report (廣東話版本)\n   352\t  const repo
+rt = `## 🔧 每周校正循環報告 (Weekly Correction Loop)\n   353\t📅 **日期**: ${ge
+tHKTDate()}\n   354\t\n   355\t### 📊 錯誤統計\n   356\t- **總錯誤數**: ${totalE
+rrors}\n   357\t- **獨立模式**: ${patternCount}\n   358\t- **自動應用規則**: ${n
+ewRulesCount}\n   359\t\n   360\t### 🔍 主要錯誤模式\n   361\t${errorSummary || 
+\'✅ 未有發現顯著錯誤模式。\'}\n   362\t\n   363\t### 🛠️ 系統建議\n   364\t${newR
+ulesCount > 0 ? `✅ **${newRulesCount} 條新規則**已自動加入 AGENTS.md，防止錯誤
+再次發生。` : \'ℹ️ 唔需要新規則，現有規則已足夠。\'}\n   365\t\n   366\t### 📋 下
+一步\n   367\t1. 檢查 AGENTS.md 內自動應用既規則\n   368\t2. 下周繼續監察錯誤趨
+勢\n   369\t3. 如有需要，調整規則\n   370\t\n   371\t---\n   372\t*由 Ally AI 生
+成 | 每周校正循環 v3*${newRulesCount > 0 ? \'\\n\\n🤖 **新自動規則**:\\n\' + aut
+oAppliedRules.map((r, i) => `${i + 1}. ${r.title}`).join(\'\\n\') : \'\'}`;\n   
+373\t\n   374\t// sendDiscordNotification(report);\n   375\t  // log("Weekly rep
+ort sent to Discord #⚙️系統\');\n   376\t}\n',
+        message='376 lines read from file starting from line 1. End of file reac
+hed.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(arguments_part='{"path": "issue_auto_followup.js"}')
+ToolCall(
+    type='function',
+    id='tool_qILHfy5ZVTof1gu2G7mfUKGT',
+    function=FunctionBody(name='ReadFile', arguments=''),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_MV0sGCDg8B8L466pJlXvtrmg',
+    return_value=ToolOk(
+        is_error=False,
+        output='     1\t#!/usr/bin/env node\n     2\t\n     3\tconst _quiet = pr
+ocess.argv.includes(\'--quiet\');\n     4\tconst log = (...args) => { if (!_quie
+t) console.log(...args); };\n     5\t\n     6\t/**\n     7\t * Issue Auto Follow
+-up - 智能自動跟進系統\n     8\t * Run: node scripts/issue_auto_followup.js [rem
+ind|check|auto|all]\n     9\t *\n    10\t * 功能：\n    11\t * 1. 到期提醒（到期
+前1日）\n    12\t * 2. 進度檢查（每週掃描長期任務）\n    13\t * 3. 自動完成（簡
+單任務自動執行）\n    14\t *\n    15\t * Schedule: Heartbeat 每 30 分鐘運行\n   
+16\t */\n    17\t\n    18\tconst fs = require(\'fs\');\n    19\tconst path = req
+uire(\'path\');\n    20\tconst { execSync, execFileSync } = require(\'child_proc
+ess\');\n    21\t\n    22\tconst { ISSUES_DIR, MEMORY_DIR, WS, SCRIPTS_DIR } = r
+equire(\'./lib/config\');\n    23\tconst ACTIVE_DIR = path.join(ISSUES_DIR, \'ac
+tive\');\n    24\tconst BACKLOG_DIR = path.join(ISSUES_DIR, \'backlog\');\n    2
+5\tconst FOLLOWUP_STATE = path.join(MEMORY_DIR, \'issue-followup-state.json\');\
+n    26\tconst { getHKTDate, getHKTDateTime } = require(\'./lib/time\');\n    27
+\tconst { createStateManager } = require(\'./lib/state\');\n    28\tconst { load
+: loadState, save: saveState } = createStateManager(FOLLOWUP_STATE);\n    29\t\n
+   30\t// ==================== HKT TIME ====================\n    31\tfunction d
+aysUntil(targetDate) {\n    32\t  if (!targetDate || !targetDate.trim()) return 
+null;\n    33\t  const today = new Date(getHKTDate());\n    34\t  const target =
+new Date(targetDate.trim());\n    35\t  if (isNaN(target.getTime())) return null
+; // Invalid date\n    36\t  return Math.floor((target - today) / (1000 * 60 * 6
+0 * 24));\n    37\t}\n    38\t\n    39\t// ==================== LOAD ISSUES ====
+================\n    40\t\n    41\tfunction loadIssues(dir) {\n    42\t  if (!f
+s.existsSync(dir)) return [];\n    43\t\n    44\t  let files;\n    45\t  try {\n
+   46\t    files = fs.readdirSync(dir).filter(f => f.endsWith(\'.md\'));\n    47
+\t  } catch (err) {\n    48\t    console.error(`⚠️ Failed to read directory ${dir
+}: ${err.message}`);\n    49\t    return [];\n    50\t  }\n    51\t  \n    52\t 
+const issues = [];\n    53\t\n    54\t  for (const file of files) {\n    55\t   
+let content;\n    56\t    try {\n    57\t      content = fs.readFileSync(path.jo
+in(dir, file), \'utf-8\');\n    58\t    } catch (err) {\n    59\t      console.e
+rror(`⚠️ Failed to read file ${file}: ${err.message}`);\n    60\t      continue;\
+n    61\t    }\n    62\t    \n    63\t    const lines = content.split(\'\\n\');\
+n    64\t\n    65\t    const frontMatter = {};\n    66\t    let inFrontMatter = 
+false;\n    67\t\n    68\t    for (const line of lines) {\n    69\t      if (lin
+e === \'---\') {\n    70\t        inFrontMatter = !inFrontMatter;\n    71\t     
+  continue;\n    72\t      }\n    73\t      if (inFrontMatter) {\n    74\t      
+ // BUG FIX: Use [\\w-]+ to support hyphenated keys (consistent with issue_manag
+er.js)\n    75\t        // BUG FIX: Strip surrounding quotes from YAML values\n 
+  76\t        const match = line.match(/^([\\w-]+):\\s*(.+)$/);\n    77\t       
+if (match) {\n    78\t          frontMatter[match[1]] = match[2].replace(/^["\']
+(.*)["\']$/, \'$1\');\n    79\t        }\n    80\t      }\n    81\t    }\n    82
+\t\n    83\t    if (frontMatter.id && frontMatter.title) {\n    84\t      issues
+.push({\n    85\t        id: frontMatter.id,\n    86\t        title: frontMatter
+.title,\n    87\t        status: frontMatter.status || \'active\',\n    88\t    
+   priority: frontMatter.priority || \'P2\',\n    89\t        due: frontMatter.d
+ue || \'\',\n    90\t        progress: frontMatter.progress || \'0/0\',\n    91\
+t        updated: frontMatter.updated || frontMatter.created,\n    92\t        c
+ontent: content\n    93\t      });\n    94\t    }\n    95\t  }\n    96\t\n    97
+\t  return issues;\n    98\t}\n    99\t\n   100\t// ==================== STATE M
+ANAGEMENT ====================\n   101\t// ==================== 1. REMINDER TYPE
+====================\n   102\t\n   103\tfunction checkDueReminders() {\n   104\t
+ log(\'🔔 檢查到期提醒...\\n\');\n   105\t\n   106\t  const issues = loadIssues(
+ACTIVE_DIR);\n   107\t  const state = loadState();\n   108\t  const reminders = 
+[];\n   109\t\n   110\t  for (const issue of issues) {\n   111\t    if (!issue.d
+ue) continue;\n   112\t\n   113\t    const daysLeft = daysUntil(issue.due);\n   
+114\t    if (daysLeft === null) continue; // Skip invalid dates\n   115\t\n   11
+6\t    const dueSoonKey = `${issue.id}_due_soon`;\n   117\t    const overdueKey 
+= `${issue.id}_overdue`;\n   118\t\n   119\t    // 到期前 1 日提醒\n   120\t    
+if (daysLeft === 1 && state.lastReminders[dueSoonKey] !== issue.due) {\n   121\t
+     reminders.push({\n   122\t        type: \'due_soon\',\n   123\t        issu
+e,\n   124\t        message: `⏰ Issue #${issue.id} 明日到期: ${issue.title}`\n 
+ 125\t      });\n   126\t      state.lastReminders[dueSoonKey] = issue.due;\n   
+127\t    }\n   128\t\n   129\t    // BUG FIX: 到期當日提醒 (daysLeft === 0) — pr
+eviously completely missed\n   130\t    const dueTodayKey = `${issue.id}_due_tod
+ay`;\n   131\t    if (daysLeft === 0 && state.lastReminders[dueTodayKey] !== iss
+ue.due) {\n   132\t      reminders.push({\n   133\t        type: \'due_today\',\
+n   134\t        issue,\n   135\t        message: `🔔 Issue #${issue.id} 今日到
+期！: ${issue.title}`\n   136\t      });\n   137\t      state.lastReminders[dueT
+odayKey] = issue.due;\n   138\t    }\n   139\t\n   140\t    // 緊急任務（P0/P1）
+每日提醒\n   141\t    if ((issue.priority === \'P0\' || issue.priority === \'P1\
+') && daysLeft <= 3 && daysLeft >= 0) {\n   142\t      const lastRemind = state.
+lastReminders[`${issue.id}_urgent`];\n   143\t      const today = getHKTDate();\
+n   144\t\n   145\t      if (lastRemind !== today) {\n   146\t        reminders.
+push({\n   147\t          type: \'urgent\',\n   148\t          issue,\n   149\t 
+        message: `🔴 [${issue.priority}] Issue #${issue.id} 緊急任務（${daysLeft
+}日後到期）: ${issue.title}`\n   150\t        });\n   151\t        state.lastRem
+inders[`${issue.id}_urgent`] = today;\n   152\t      }\n   153\t    }\n   154\t\
+n   155\t    // 已逾期提醒\n   156\t    // BUG FIX: P0/P1 overdue issues should 
+be reminded daily (not just once)\n   157\t    if (daysLeft < 0) {\n   158\t    
+ const isUrgentPriority = (issue.priority === \'P0\' || issue.priority === \'P1\
+');\n   159\t      const today = getHKTDate();\n   160\t\n   161\t      if (isUr
+gentPriority) {\n   162\t        // P0/P1: remind every day while overdue (use d
+ate-based tracking)\n   163\t        const lastOverdueRemind = state.lastReminde
+rs[`${issue.id}_overdue_daily`];\n   164\t        if (lastOverdueRemind !== toda
+y) {\n   165\t          reminders.push({\n   166\t            type: \'overdue\',
+\n   167\t            issue,\n   168\t            message: `🔴 [${issue.priority
+}] Issue #${issue.id} 已逾期 ${Math.abs(daysLeft)} 日（緊急！）: ${issue.title}`
+\n   169\t          });\n   170\t          state.lastReminders[`${issue.id}_over
+due_daily`] = today;\n   171\t        }\n   172\t      } else {\n   173\t       
+// P2/P3: remind once only\n   174\t        if (state.lastReminders[overdueKey] 
+!== issue.due) {\n   175\t          reminders.push({\n   176\t            type: 
+\'overdue\',\n   177\t            issue,\n   178\t            message: `⚠️ Issue
+#${issue.id} 已逾期 ${Math.abs(daysLeft)} 日: ${issue.title}`\n   179\t         
+});\n   180\t          state.lastReminders[overdueKey] = issue.due;\n   181\t   
+    }\n   182\t      }\n   183\t    }\n   184\t  }\n   185\t\n   186\t  saveStat
+e(state);\n   187\t\n   188\t  if (reminders.length === 0) {\n   189\t    log(\'
+✅ 無需提醒\');\n   190\t    return [];\n   191\t  }\n   192\t\n   193\t  log(`
+📊 發現 ${reminders.length} 個提醒:\\n`);\n   194\t  for (const r of reminders) 
+{\n   195\t    log(r.message);\n   196\t  }\n   197\t\n   198\t  return reminder
+s;\n   199\t}\n   200\t\n   201\t// ==================== 2. PROGRESS CHECK TYPE 
+====================\n   202\t\n   203\tfunction checkProgressUpdates() {\n   20
+4\t  log(\'\\n📊 檢查進度更新...\\n\');\n   205\t\n   206\t  const issues = load
+Issues(ACTIVE_DIR);\n   207\t  const state = loadState();\n   208\t  const lastC
+heck = state.lastProgressCheck ? new Date(state.lastProgressCheck) : null;\n   2
+09\t  const now = new Date();\n   210\t\n   211\t  // 每 7 日檢查一次\n   212\t 
+if (lastCheck && (now - lastCheck) < 7 * 24 * 60 * 60 * 1000) {\n   213\t    log
+(\'⏭️ 上次檢查未夠 7 日，跳過\');\n   214\t    return [];\n   215\t  }\n   216\t\
+n   217\t  const checkIssues = [];\n   218\t\n   219\t  for (const issue of issu
+es) {\n   220\t    // 檢查長期未完成（超過 7 日無更新）\n   221\t    const lastU
+pdated = new Date(issue.updated);\n   222\t    if (isNaN(lastUpdated.getTime()))
+continue; // Skip invalid dates\n   223\t    const daysSinceUpdate = Math.floor(
+(now - lastUpdated) / (1000 * 60 * 60 * 24));\n   224\t\n   225\t    if (daysSin
+ceUpdate >= 7 && issue.progress !== \'complete\') {\n   226\t      checkIssues.p
+ush({\n   227\t        issue,\n   228\t        daysSinceUpdate,\n   229\t       
+message: `#${issue.id} 「${issue.title}」已 ${daysSinceUpdate} 日無更新（進度: $
+{issue.progress}）`\n   230\t      });\n   231\t    }\n   232\t  }\n   233\t\n  
+234\t  state.lastProgressCheck = now.toISOString();\n   235\t  saveState(state);
+\n   236\t\n   237\t  if (checkIssues.length === 0) {\n   238\t    log(\'✅ 所有
+任務進度正常\');\n   239\t    return [];\n   240\t  }\n   241\t\n   242\t  log(`
+📋 ${checkIssues.length} 個任務需要進度更新:\\n`);\n   243\t  for (const item of
+checkIssues) {\n   244\t    log(`  - ${item.message}`);\n   245\t  }\n   246\t  
+log(\'\\n💡 建議: 使用 `node scripts/issue_manager.js progress <id> --step X/Y` 
+更新\');\n   247\t\n   248\t  return checkIssues;\n   249\t}\n   250\t\n   251\t
+// ==================== 3. AUTO-COMPLETE TYPE ====================\n   252\t\n  
+253\tfunction tryAutoComplete() {\n   254\t  log(\'\\n🤖 嘗試自動完成...\\n\');\
+n   255\t\n   256\t  const issues = loadIssues(ACTIVE_DIR);\n   257\t  const sta
+te = loadState();\n   258\t  const autoCompleted = [];\n   259\t\n   260\t  for 
+(const issue of issues) {\n   261\t    let shouldAutoComplete = false;\n   262\t
+   let reason = \'\';\n   263\t\n   264\t    // 檢查係咪可以自動完成嘅任務類型\n
+  265\t    // P1-10: Expanded from 2 patterns to 6\n   266\t    const autoComple
+tablePatterns = [\n   267\t      {\n   268\t        pattern: /檢查.*狀態|檢查.*
+更新|scan.*status/i,\n   269\t        action: () => {\n   270\t          try {\n
+  271\t            if (issue.title.includes(\'Stock\')) {\n   272\t             
+execFileSync(\'node\', [\'scripts/stock_updater.js\'], { timeout: 30000, cwd: WS
+});\n   273\t              return { success: true, result: \'Stock check complet
+ed\' };\n   274\t            }\n   275\t            if (issue.title.includes(\'B
+ackup\')) {\n   276\t              execFileSync(\'node\', [\'scripts/verify_back
+up.js\'], { timeout: 30000, cwd: WS });\n   277\t              return { success:
+true, result: \'Backup verified\' };\n   278\t            }\n   279\t           
+return { success: false };\n   280\t          } catch (e) {\n   281\t           
+return { success: false, error: e.message };\n   282\t          }\n   283\t     
+  }\n   284\t      },\n   285\t      {\n   286\t        pattern: /error.*scan|掃
+描.*錯誤|scan.*error/i,\n   287\t        action: () => {\n   288\t          try 
+{\n   289\t            execFileSync(\'node\', [path.join(SCRIPTS_DIR, \'error_tr
+acker.js\'), \'scan\'], { timeout: 60000 });\n   290\t            return { succe
+ss: true, result: \'Error scan completed\' };\n   291\t          } catch (e) {\n
+  292\t            return { success: false, error: e.message };\n   293\t       
+  }\n   294\t        }\n   295\t      },\n   296\t      {\n   297\t        patte
+rn: /memory.*clean|清理.*記憶|cleanup.*memory/i,\n   298\t        action: () => 
+{\n   299\t          try {\n   300\t            const cleanupScript = path.join(
+SCRIPTS_DIR, \'memory_cleanup.js\');\n   301\t            if (fs.existsSync(clea
+nupScript)) {\n   302\t              execFileSync(\'node\', [cleanupScript], { t
+imeout: 60000 });\n   303\t              return { success: true, result: \'Memor
+y cleanup completed\' };\n   304\t            }\n   305\t            return { su
+ccess: false, error: \'memory_cleanup.js not found\' };\n   306\t          } cat
+ch (e) {\n   307\t            return { success: false, error: e.message };\n   3
+08\t          }\n   309\t        }\n   310\t      },\n   311\t      {\n   312\t 
+      pattern: /heartbeat.*check|HA.*check|檢查.*heartbeat/i,\n   313\t        a
+ction: () => {\n   314\t          try {\n   315\t            const hbScript = pa
+th.join(SCRIPTS_DIR, \'heartbeat.sh\');\n   316\t            if (fs.existsSync(h
+bScript)) {\n   317\t              execFileSync(\'bash\', [hbScript], { timeout:
+15000 });\n   318\t              return { success: true, result: \'Heartbeat che
+ck completed\' };\n   319\t            }\n   320\t            return { success: 
+false, error: \'heartbeat.sh not found\' };\n   321\t          } catch (e) {\n  
+322\t            return { success: false, error: e.message };\n   323\t         
+}\n   324\t        }\n   325\t      },\n   326\t      {\n   327\t        pattern
+: /清理.*bak|delete.*bak|remove.*backup.*file/i,\n   328\t        action: () => 
+{\n   329\t          try {\n   330\t            const activeDir = path.join(ISSU
+ES_DIR, \'active\');\n   331\t            const baks = fs.readdirSync(activeDir)
+.filter(f => f.endsWith(\'.bak\'));\n   332\t            baks.forEach(f => fs.un
+linkSync(path.join(activeDir, f)));\n   333\t            return { success: true,
+result: `Deleted ${baks.length} .bak files` };\n   334\t          } catch (e) {\
+n   335\t            return { success: false, error: e.message };\n   336\t     
+    }\n   337\t        }\n   338\t      },\n   339\t      {\n   340\t        pat
+tern: /auto.*resolve|自動.*resolve|resolve.*old.*error/i,\n   341\t        actio
+n: () => {\n   342\t          try {\n   343\t            execFileSync(\'node\', 
+[path.join(SCRIPTS_DIR, \'error_tracker.js\'), \'scan\'], { timeout: 60000 });\n
+  344\t            return { success: true, result: \'Auto-resolve scan completed
+\' };\n   345\t          } catch (e) {\n   346\t            return { success: fa
+lse, error: e.message };\n   347\t          }\n   348\t        }\n   349\t      
+}\n   350\t    ];\n   351\t\n   352\t    for (const { pattern, action } of autoC
+ompletablePatterns) {\n   353\t      if (pattern.test(issue.title) || pattern.te
+st(issue.content)) {\n   354\t        log(`  🔍 嘗試自動完成: #${issue.id} ${iss
+ue.title}`);\n   355\t        const result = action();\n   356\t\n   357\t      
+ if (result.success) {\n   358\t          shouldAutoComplete = true;\n   359\t  
+       reason = result.result || \'Auto-completed\';\n   360\t\n   361\t        
+ // 標記完成\n   362\t          try {\n   363\t            execFileSync(\'node\'
+, [path.join(SCRIPTS_DIR, \'issue_manager.js\'), \'complete\', issue.id],\n   36
+4\t              { encoding: \'utf-8\' });\n   365\t            autoCompleted.pu
+sh({\n   366\t              id: issue.id,\n   367\t              title: issue.ti
+tle,\n   368\t              reason\n   369\t            });\n   370\t           
+state.autoCompleted.push({\n   371\t              id: issue.id,\n   372\t       
+      title: issue.title,\n   373\t              completedAt: getHKTDateTime(),\
+n   374\t              reason\n   375\t            });\n   376\t          } catc
+h (e) {\n   377\t            log(`    ❌ 自動完成失敗: ${e.message}`);\n   378\t
+         }\n   379\t        } else {\n   380\t          log(`    ⚠️ 無法自動完成:
+${result.error || \'Unknown reason\'}`);\n   381\t        }\n   382\t        bre
+ak;\n   383\t      }\n   384\t    }\n   385\t  }\n   386\t\n   387\t  saveState(
+state);\n   388\t\n   389\t  if (autoCompleted.length === 0) {\n   390\t    log(
+\'ℹ️ 無任務可自動完成\');\n   391\t    return [];\n   392\t  }\n   393\t\n   394\
+t  log(`\\n✅ 自動完成 ${autoCompleted.length} 個任務:`);\n   395\t  for (const 
+item of autoCompleted) {\n   396\t    log(`  - #${item.id}: ${item.title}`);\n  
+397\t    log(`    原因: ${item.reason}`);\n   398\t  }\n   399\t\n   400\t  retu
+rn autoCompleted;\n   401\t}\n   402\t\n   403\t// ==================== MAIN ===
+=================\n   404\t\n   405\tfunction main() {\n   406\t  const args = p
+rocess.argv.slice(2);\n   407\t  const command = args[0] || \'all\';\n   408\t\n
+  409\t  log(\'🎯 Issue Auto Follow-up System\\n\');\n   410\t  log(`執行時間: $
+{getHKTDateTime()}\\n`);\n   411\t  log(\'=\'.repeat(50));\n   412\t\n   413\t  
+const results = {\n   414\t    reminders: [],\n   415\t    progressChecks: [],\n
+  416\t    autoCompleted: []\n   417\t  };\n   418\t\n   419\t  switch (command)
+{\n   420\t    case \'remind\':\n   421\t      results.reminders = checkDueRemin
+ders();\n   422\t      break;\n   423\t\n   424\t    case \'check\':\n   425\t  
+   results.progressChecks = checkProgressUpdates();\n   426\t      break;\n   42
+7\t\n   428\t    case \'auto\':\n   429\t      results.autoCompleted = tryAutoCo
+mplete();\n   430\t      break;\n   431\t\n   432\t    case \'all\':\n   433\t  
+ default:\n   434\t      results.reminders = checkDueReminders();\n   435\t     
+results.progressChecks = checkProgressUpdates();\n   436\t      results.autoComp
+leted = tryAutoComplete();\n   437\t      break;\n   438\t  }\n   439\t\n   440\
+t  log(\'\\n\' + \'=\'.repeat(50));\n   441\t  log(\'📊 總結:\');\n   442\t  log
+(`   提醒: ${results.reminders.length}`);\n   443\t  log(`   進度檢查: ${results
+.progressChecks.length}`);\n   444\t  log(`   自動完成: ${results.autoCompleted.
+length}`);\n   445\t}\n   446\t\n   447\tif (require.main === module) {\n   448\
+t  main();\n   449\t}\n   450\t\n   451\tmodule.exports = {\n   452\t  checkDueR
+eminders,\n   453\t  checkProgressUpdates,\n   454\t  tryAutoComplete\n   455\t}
+;\n',
+        message='455 lines read from file starting from line 1. End of file reac
+hed.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(arguments_part='{"path": "heartbeat_recall.js"}')
+ToolCall(
+    type='function',
+    id='tool_DoXxbKTkJ4XokwDQBQtv9X6p',
+    function=FunctionBody(name='ReadFile', arguments=''),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_qILHfy5ZVTof1gu2G7mfUKGT',
+    return_value=ToolOk(
+        is_error=False,
+        output="     1\t#!/usr/bin/env node\n     2\t\n     3\tconst _quiet = pr
+ocess.argv.includes('--quiet');\n     4\tconst log = (...args) => { if (!_quiet)
+console.log(...args); };\n     5\t\n     6\t// ==================== HKT TIME HEL
+PER ====================\n     7\t/**\n     8\t * Heartbeat 漸進式回憶系統\n    
+9\t * \n    10\t * 功能：\n    11\t * - 每次 heartbeat 記錄對話 key topics（50字
+內）\n    12\t * - 分級回憶：每1次快速摘要、每3次今日重點、每6次本週相關\n    13
+\t * - 自動讀取今日 memory 文件提取重點\n    14\t */\n    15\t\n    16\tconst fs
+= require('fs');\n    17\tconst path = require('path');\n    18\t\n    19\tconst
+MEMORY_DIR = path.join(process.cwd(), 'memory');\n    20\tconst CONTEXT_FILE = p
+ath.join(MEMORY_DIR, 'heartbeat-context.json');\n    21\tconst MAX_SUMMARY_LENGT
+H = 50;\n    22\tconst { getHKTDate } = require('./lib/time');\n    23\t\n    24
+\t// 確保目錄存在\n    25\tif (!fs.existsSync(MEMORY_DIR)) {\n    26\t    fs.mkd
+irSync(MEMORY_DIR, { recursive: true });\n    27\t}\n    28\t\n    29\t// 初始化
+或讀取狀態\n    30\tfunction loadContext() {\n    31\t    if (fs.existsSync(CONT
+EXT_FILE)) {\n    32\t        try {\n    33\t            return JSON.parse(fs.re
+adFileSync(CONTEXT_FILE, 'utf8'));\n    34\t        } catch (e) {\n    35\t     
+      console.error('讀取 context 失敗，重新初始化:', e.message);\n    36\t     
+  }\n    37\t    }\n    38\t    return {\n    39\t        initializedAt: new Dat
+e().toISOString(),\n    40\t        heartbeatCount: 0,\n    41\t        currentS
+ession: {\n    42\t            topics: [],\n    43\t            lastSummary: nul
+l,\n    44\t            lastUpdate: null\n    45\t        },\n    46\t        to
+dayHighlights: [],\n    47\t        weeklyTopics: [],\n    48\t        recallHis
+tory: []\n    49\t    };\n    50\t}\n    51\t\n    52\t// 儲存狀態\n    53\tfunc
+tion saveContext(context) {\n    54\t    fs.writeFileSync(CONTEXT_FILE, JSON.str
+ingify(context, null, 2), 'utf8');\n    55\t}\n    56\t\n    57\t// 獲取今日日期
+(YYYY-MM-DD)\n    58\tfunction getToday() {\n    59\t    return getHKTDate();\n 
+  60\t}\n    61\t\n    62\t// 獲取本週開始日期 (星期日)\n    63\tfunction getWee
+kStart() {\n    64\t    const now = new Date();\n    65\t    const dayOfWeek = n
+ow.getDay(); // 0 = Sunday\n    66\t    const weekStart = new Date(now);\n    67
+\t    weekStart.setDate(now.getDate() - dayOfWeek);\n    68\t    return weekStar
+t.toISOString().split('T')[0];\n    69\t}\n    70\t\n    71\t// 讀取今日 memory 
+文件\n    72\tfunction readTodayMemory() {\n    73\t    const todayFile = path.j
+oin(MEMORY_DIR, `${getToday()}.md`);\n    74\t    if (fs.existsSync(todayFile)) 
+{\n    75\t        try {\n    76\t            return fs.readFileSync(todayFile, 
+'utf8');\n    77\t        } catch (e) {\n    78\t            console.error('讀取
+今日 memory 失敗:', e.message);\n    79\t        }\n    80\t    }\n    81\t    r
+eturn null;\n    82\t}\n    83\t\n    84\t// 從 memory 內容提取 key topics\n    
+85\tfunction extractTopics(content) {\n    86\t    if (!content) return [];\n   
+87\t    \n    88\t    const topics = [];\n    89\t    \n    90\t    // 提取標題 
+(# ## ###)\n    91\t    const headerMatches = content.match(/^#+\\s+(.+)$/gm);\n
+   92\t    if (headerMatches) {\n    93\t        headerMatches.forEach(match => 
+{\n    94\t            const topic = match.replace(/^#+\\s+/, '').trim();\n    9
+5\t            if (topic && topic.length > 3 && !topics.includes(topic)) {\n    
+96\t                topics.push(topic);\n    97\t            }\n    98\t        
+});\n    99\t    }\n   100\t    \n   101\t    // 提取重點標記 (🔴 🟠 🟡 🟢 ⭐ 等
+)\n   102\t    const markerMatches = content.match(/[🔴🟠🟡🟢⭐💡📝🎯⚠️]\\s*([^\\
+n]+)/g);\n   103\t    if (markerMatches) {\n   104\t        markerMatches.forEac
+h(match => {\n   105\t            const topic = match.replace(/^[🔴🟠🟡🟢⭐💡📝
+🎯⚠️]\\s*/, '').trim();\n   106\t            if (topic && topic.length > 3 && !to
+pics.includes(topic)) {\n   107\t                topics.push(topic);\n   108\t  
+         }\n   109\t        });\n   110\t    }\n   111\t    \n   112\t    // 提
+取列表項 (- * •)\n   113\t    const listMatches = content.match(/^[-*•]\\s+(.+)$
+/gm);\n   114\t    if (listMatches && topics.length < 5) {\n   115\t        list
+Matches.slice(0, 3).forEach(match => {\n   116\t            const topic = match.
+replace(/^[-*•]\\s+/, '').trim();\n   117\t            if (topic && topic.length
+> 5 && topic.length < 100 && !topics.includes(topic)) {\n   118\t               
+topics.push(topic);\n   119\t            }\n   120\t        });\n   121\t    }\n
+  122\t    \n   123\t    return topics.slice(0, 8); // 最多8個 topics\n   124\t}
+\n   125\t\n   126\t// 生成簡短摘要（50字內）\n   127\tfunction generateSummary(
+topics) {\n   128\t    if (!topics || topics.length === 0) {\n   129\t        re
+turn '暫無新內容';\n   130\t    }\n   131\t    \n   132\t    const summary = top
+ics.slice(0, 3).join('、');\n   133\t    if (summary.length > MAX_SUMMARY_LENGTH
+) {\n   134\t        return summary.substring(0, MAX_SUMMARY_LENGTH - 3) + '...'
+;\n   135\t    }\n   136\t    return summary;\n   137\t}\n   138\t\n   139\t// 
+生成今日重點\n   140\tfunction generateTodayHighlights(context, topics) {\n   14
+1\t    const highlights = [...context.todayHighlights];\n   142\t    \n   143\t 
+  // 加入新 topics（去重）\n   144\t    topics.forEach(topic => {\n   145\t     
+  if (!highlights.includes(topic)) {\n   146\t            highlights.push(topic)
+;\n   147\t        }\n   148\t    });\n   149\t    \n   150\t    // 只保留最近 1
+0 個\n   151\t    return highlights.slice(-10);\n   152\t}\n   153\t\n   154\t//
+生成本週相關\n   155\tfunction generateWeeklyTopics(context, todayHighlights) {\
+n   156\t    const weekly = [...context.weeklyTopics];\n   157\t    \n   158\t  
+ todayHighlights.forEach(topic => {\n   159\t        if (!weekly.includes(topic)
+) {\n   160\t            weekly.push(topic);\n   161\t        }\n   162\t    });
+\n   163\t    \n   164\t    // 只保留最近 20 個\n   165\t    return weekly.slice
+(-20);\n   166\t}\n   167\t\n   168\t// 格式化輸出\n   169\tfunction formatRecal
+lOutput(level, data) {\n   170\t    const timestamp = new Date().toLocaleString(
+'zh-HK', { \n   171\t        hour: '2-digit', \n   172\t        minute: '2-digit
+',\n   173\t        hour12: false \n   174\t    });\n   175\t    \n   176\t    s
+witch (level) {\n   177\t        case 1:\n   178\t            return `💓 [${time
+stamp}] 快速摘要: ${data.summary}`;\n   179\t        case 3:\n   180\t          
+ return `💓💓💓 [${timestamp}] 今日重點 (${data.count}項): ${data.highlights.sli
+ce(0, 3).join('、')}`;\n   181\t        case 6:\n   182\t            return `💓
+💓💓💓💓💓 [${timestamp}] 本週相關 (${data.count}項): ${data.weekly.slice(0, 5).
+join('、')}`;\n   183\t        default:\n   184\t            return `💓 [${times
+tamp}] ${data.summary}`;\n   185\t    }\n   186\t}\n   187\t\n   188\t// NEW 202
+6-02-20: Extract topics from sessions\n   189\tfunction extractTopicsFromSession
+s() {\n   190\t    const HOME_DIR = process.env.HOME;\n   191\t    const SESSION
+S_DIR = path.join(HOME_DIR, '.openclaw', 'agents', 'main', 'sessions');\n   192\
+t    const TOPICS_FILE = path.join(MEMORY_DIR, 'conversation-topics.json');\n   
+193\t    \n   194\t    const topicsFound = new Set();\n   195\t    \n   196\t   
+if (!fs.existsSync(SESSIONS_DIR)) {\n   197\t        return { topics: [], newTop
+ics: [] };\n   198\t    }\n   199\t    \n   200\t    // Key topics to look for\n
+  201\t    const keyPhrases = [\n   202\t        'Rapaport', 'diamond', 'stock',
+'memory', 'error', 'backup',\n   203\t        'cron', 'heartbeat', 'session', 'A
+pple', 'Notes', 'training',\n   204\t        'Qwen3', 'MiniMax', 'Kimi', 'model'
+, 'token', 'automation',\n   205\t        'Excel', 'workflow', 'automation', 'sc
+ript', 'automation'\n   206\t    ];\n   207\t    \n   208\t    // Get recent ses
+sion files (last 10)\n   209\t    const files = fs.readdirSync(SESSIONS_DIR)\n  
+210\t        .filter(f => f.endsWith('.jsonl'))\n   211\t        .sort()\n   212
+\t        .reverse()\n   213\t        .slice(0, 10);\n   214\t    \n   215\t    
+for (const file of files) {\n   216\t        try {\n   217\t            const co
+ntent = fs.readFileSync(path.join(SESSIONS_DIR, file), 'utf8');\n   218\t       
+    \n   219\t            // Look for key phrases\n   220\t            for (cons
+t phrase of keyPhrases) {\n   221\t                if (content.toLowerCase().inc
+ludes(phrase.toLowerCase())) {\n   222\t                    topicsFound.add(phra
+se);\n   223\t                }\n   224\t            }\n   225\t        } catch 
+(e) {\n   226\t            // Skip files that can't be read\n   227\t        }\n
+  228\t    }\n   229\t    \n   230\t    // Load existing topics\n   231\t    let
+existingTopics = [];\n   232\t    if (fs.existsSync(TOPICS_FILE)) {\n   233\t   
+    try {\n   234\t            const data = JSON.parse(fs.readFileSync(TOPICS_FI
+LE, 'utf8'));\n   235\t            existingTopics = data.topics || [];\n   236\t
+       } catch (e) {\n   237\t            existingTopics = [];\n   238\t        
+}\n   239\t    }\n   240\t    \n   241\t    // Find new topics\n   242\t    cons
+t newTopics = Array.from(topicsFound).filter(t => !existingTopics.includes(t));\
+n   243\t    \n   244\t    // Save updated topics\n   245\t    const updatedData
+= {\n   246\t        topics: Array.from(topicsFound),\n   247\t        lastUpdat
+ed: new Date().toISOString(),\n   248\t        newTopicsCount: newTopics.length\
+n   249\t    };\n   250\t    \n   251\t    fs.writeFileSync(TOPICS_FILE, JSON.st
+ringify(updatedData, null, 2), 'utf8');\n   252\t    \n   253\t    return {\n   
+254\t        topics: Array.from(topicsFound),\n   255\t        newTopics: newTop
+ics,\n   256\t        existingTopics: existingTopics\n   257\t    };\n   258\t}\
+n   259\t\n   260\t// NEW 2026-02-20: Cross-reference topics with past conversat
+ions\n   261\tfunction checkTopicHistory(currentTopics) {\n   262\t    const TOP
+ICS_FILE = path.join(MEMORY_DIR, 'conversation-topics.json');\n   263\t    \n   
+264\t    if (!fs.existsSync(TOPICS_FILE)) {\n   265\t        return { repeated: 
+[], allTopics: currentTopics };\n   266\t    }\n   267\t    \n   268\t    try {\
+n   269\t        const data = JSON.parse(fs.readFileSync(TOPICS_FILE, 'utf8'));\
+n   270\t        const allTopics = [...new Set([...currentTopics, ...(data.topic
+s || [])])];\n   271\t        \n   272\t        const repeated = currentTopics.f
+ilter(t => (data.topics || []).includes(t));\n   273\t        \n   274\t        
+return {\n   275\t            repeated: repeated,\n   276\t            allTopics
+: allTopics\n   277\t        };\n   278\t    } catch (e) {\n   279\t        retu
+rn { repeated: [], allTopics: currentTopics };\n   280\t    }\n   281\t}\n   282
+\t\n   283\t// 主要執行函數\n   284\tfunction runHeartbeatRecall() {\n   285\t  
+ const context = loadContext();\n   286\t    \n   287\t    // 增加計數\n   288\t
+   context.heartbeatCount++;\n   289\t    \n   290\t    // 讀取今日 memory\n   2
+91\t    const todayContent = readTodayMemory();\n   292\t    const topics = extr
+actTopics(todayContent);\n   293\t    \n   294\t    // NEW 2026-02-20: Extract t
+opics from sessions\n   295\t    const sessionTopicsData = extractTopicsFromSess
+ions();\n   296\t    const sessionTopics = sessionTopicsData.topics;\n   297\t  
+ \n   298\t    // Cross-reference with past topics\n   299\t    const topicHisto
+ry = checkTopicHistory(sessionTopics);\n   300\t    \n   301\t    // 生成快速摘
+要\n   302\t    const summary = generateSummary(topics);\n   303\t    \n   304\t
+   // 更新當前 session\n   305\t    context.currentSession = {\n   306\t        
+topics: topics.slice(0, 5),\n   307\t        sessionTopics: sessionTopics,\n   3
+08\t        repeatedTopics: topicHistory.repeated,\n   309\t        lastSummary:
+summary,\n   310\t        lastUpdate: new Date().toISOString()\n   311\t    };\n
+  312\t    \n   313\t    // 如果發現重複topics，log佢\n   314\t    if (topicHist
+ory.repeated.length > 0) {\n   315\t        log(`📝 發現重複topics: ${topicHisto
+ry.repeated.join(', ')}`);\n   316\t    }\n   317\t    \n   318\t    // 決定回憶
+級別\n   319\t    const level = context.heartbeatCount % 6 === 0 ? 6 : \n   320\
+t                  context.heartbeatCount % 3 === 0 ? 3 : 1;\n   321\t    \n   3
+22\t    let output = '';\n   323\t    \n   324\t    // 執行對應級別的回憶\n   32
+5\t    if (level >= 1) {\n   326\t        // 級別 1: 快速摘要（每次都執行）\n   
+327\t        output = formatRecallOutput(1, { summary });\n   328\t    }\n   329
+\t    \n   330\t    if (level >= 3) {\n   331\t        // 級別 3: 今日重點\n   3
+32\t        context.todayHighlights = generateTodayHighlights(context, topics);\
+n   333\t        const todayOutput = formatRecallOutput(3, { \n   334\t         
+  highlights: context.todayHighlights,\n   335\t            count: context.today
+Highlights.length \n   336\t        });\n   337\t        output = todayOutput;\n
+  338\t    }\n   339\t    \n   340\t    if (level >= 6) {\n   341\t        // 級
+別 6: 本週相關\n   342\t        context.weeklyTopics = generateWeeklyTopics(cont
+ext, context.todayHighlights);\n   343\t        const weeklyOutput = formatRecal
+lOutput(6, { \n   344\t            weekly: context.weeklyTopics,\n   345\t      
+     count: context.weeklyTopics.length \n   346\t        });\n   347\t        o
+utput = weeklyOutput;\n   348\t        \n   349\t        // 每週重置今日重點（如
+果是星期日）\n   350\t        const now = new Date();\n   351\t        if (now.g
+etDay() === 0) {\n   352\t            context.todayHighlights = [];\n   353\t   
+    }\n   354\t    }\n   355\t    \n   356\t    // 記錄歷史\n   357\t    context
+.recallHistory.push({\n   358\t        timestamp: new Date().toISOString(),\n   
+359\t        level,\n   360\t        summary,\n   361\t        topicsCount: topi
+cs.length\n   362\t    });\n   363\t    \n   364\t    // 只保留最近 50 條歷史\n 
+ 365\t    if (context.recallHistory.length > 50) {\n   366\t        context.reca
+llHistory = context.recallHistory.slice(-50);\n   367\t    }\n   368\t    \n   3
+69\t    // 儲存狀態\n   370\t    saveContext(context);\n   371\t    \n   372\t  
+ // 輸出結果\n   373\t    log(output);\n   374\t    \n   375\t    // 返回結構化
+數據（供其他腳本使用）\n   376\t    return {\n   377\t        level,\n   378\t  
+     output,\n   379\t        summary,\n   380\t        topics,\n   381\t       
+heartbeatCount: context.heartbeatCount,\n   382\t        todayHighlights: contex
+t.todayHighlights,\n   383\t        weeklyTopics: context.weeklyTopics\n   384\t
+   };\n   385\t}\n   386\t\n   387\t// 顯示狀態\n   388\tfunction showStatus() {
+\n   389\t    const context = loadContext();\n   390\t    const nextLevel = cont
+ext.heartbeatCount % 6 === 0 ? 6 : \n   391\t                      context.heart
+beatCount % 3 === 0 ? 3 : 1;\n   392\t    \n   393\t    log('📊 Heartbeat 回憶系
+統狀態');\n   394\t    log('========================');\n   395\t    log(`🔄 Hea
+rtbeat 次數: ${context.heartbeatCount}`);\n   396\t    log(`📅 初始化時間: ${new
+Date(context.initializedAt).toLocaleString('zh-HK')}`);\n   397\t    log(`⏭️  下
+次回憶級別: ${nextLevel === 6 ? '本週相關 (6)' : nextLevel === 3 ? '今日重點 (3)
+' : '快速摘要 (1)'}`);\n   398\t    log('');\n   399\t    log('💭 當前 Session:'
+);\n   400\t    log(`   最後更新: ${context.currentSession.lastUpdate ? new Date
+(context.currentSession.lastUpdate).toLocaleString('zh-HK') : 'N/A'}`);\n   401\
+t    log(`   摘要: ${context.currentSession.lastSummary || 'N/A'}`);\n   402\t  
+ log('');\n   403\t    log(`📌 今日重點 (${context.todayHighlights.length}項):`)
+;\n   404\t    context.todayHighlights.slice(-5).forEach((h, i) => {\n   405\t  
+     log(`   ${i + 1}. ${h}`);\n   406\t    });\n   407\t    log('');\n   408\t 
+  log(`📚 本週相關 (${context.weeklyTopics.length}項):`);\n   409\t    context.w
+eeklyTopics.slice(-5).forEach((t, i) => {\n   410\t        log(`   ${i + 1}. ${t
+}`);\n   411\t    });\n   412\t}\n   413\t\n   414\t// 重置系統\n   415\tfunctio
+n resetSystem() {\n   416\t    const newContext = {\n   417\t        initialized
+At: new Date().toISOString(),\n   418\t        heartbeatCount: 0,\n   419\t     
+  currentSession: {\n   420\t            topics: [],\n   421\t            lastSu
+mmary: null,\n   422\t            lastUpdate: null\n   423\t        },\n   424\t
+       todayHighlights: [],\n   425\t        weeklyTopics: [],\n   426\t        
+recallHistory: []\n   427\t    };\n   428\t    saveContext(newContext);\n   429\
+t    log('✅ Heartbeat 回憶系統已重置');\n   430\t}\n   431\t\n   432\t// 命令行
+處理\n   433\tconst args = process.argv.slice(2);\n   434\t\n   435\tif (args.in
+cludes('--status')) {\n   436\t    showStatus();\n   437\t} else if (args.includ
+es('--reset')) {\n   438\t    resetSystem();\n   439\t} else {\n   440\t    // 
+默認執行 heartbeat 回憶\n   441\t    const result = runHeartbeatRecall();\n   44
+2\t    \n   443\t    // 如果要求 JSON 輸出\n   444\t    if (args.includes('--jso
+n')) {\n   445\t        log('\\n---JSON_OUTPUT---');\n   446\t        log(JSON.s
+tringify(result, null, 2));\n   447\t    }\n   448\t}\n",
+        message='448 lines read from file starting from line 1. End of file reac
+hed.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(arguments_part='{"path": "rapnet_sender.js"}')
+ToolCall(
+    type='function',
+    id='tool_mUt97ZzV73EVsoKj66KJ887P',
+    function=FunctionBody(name='ReadFile', arguments=''),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_DoXxbKTkJ4XokwDQBQtv9X6p',
+    return_value=ToolOk(
+        is_error=False,
+        output='     1\t#!/usr/bin/env node\n     2\t\n     3\tconst _quiet = pr
+ocess.argv.includes(\'--quiet\');\n     4\tconst log = (...args) => { if (!_quie
+t) console.log(...args); };\n     5\t\n     6\t/**\n     7\t * RapNet Sender (Di
+scord Bot API)\n     8\t * 讀取抓取既內容，發送到 Discord\n     9\t * 由 agent 
+調用，agent 負責用 browser 抓取\n    10\t */\n    11\t\n    12\tconst https = re
+quire(\'https\');\n    13\tconst fs = require(\'fs\');\n    14\tconst path = req
+uire(\'path\');\n    15\t\n    16\tconst CHANNEL_ID = "1473383064565710929";\n  
+ 17\tconst { MEMORY_DIR, OPENCLAW_CONFIG } = require(\'./lib/config\');\n    18\
+tconst DATA_FILE = path.join(MEMORY_DIR, \'rapnet-latest.json\');\n    19\tconst
+RAPNET_URL = \'https://www.rapnet.com/resources/\';\n    20\t\n    21\tfunction 
+getDiscordToken() {\n    22\t    try {\n    23\t        const config = JSON.pars
+e(fs.readFileSync(OPENCLAW_CONFIG, \'utf8\'));\n    24\t        return config.ch
+annels.discord.token;\n    25\t    } catch (err) {\n    26\t        console.erro
+r(`❌ Failed to read Discord token: ${err.message}`);\n    27\t        throw err
+;\n    28\t    }\n    29\t}\n    30\t\n    31\tfunction sendDiscord(msg) {\n    
+32\t    const token = getDiscordToken();\n    33\t    \n    34\t    const option
+s = {\n    35\t        hostname: \'discord.com\',\n    36\t        path: \'/api/
+v10/channels/\' + CHANNEL_ID + \'/messages\',\n    37\t        method: \'POST\',
+\n    38\t        headers: {\n    39\t            \'Authorization\': \'Bot \' + 
+token,\n    40\t            \'Content-Type\': \'application/json\'\n    41\t    
+   }\n    42\t    };\n    43\t    \n    44\t    return new Promise((resolve, rej
+ect) => {\n    45\t        const req = https.request(options, (res) => {\n    46
+\t            let data = \'\';\n    47\t            res.on(\'data\', c => data +
+= c);\n    48\t            res.on(\'end\', () => {\n    49\t                if (
+res.statusCode === 200 || res.statusCode === 204) {\n    50\t                   
+log(\'✅ 已發送到 Discord #💼工作\');\n    51\t                    resolve({ sta
+tus: res.statusCode });\n    52\t                } else {\n    53\t             
+      reject(new Error(`HTTP ${res.statusCode}: ${data}`));\n    54\t           
+    }\n    55\t            });\n    56\t        });\n    57\t        req.on(\'er
+ror\', reject);\n    58\t        req.write(JSON.stringify({ content: msg }));\n 
+  59\t        req.end();\n    60\t    });\n    61\t}\n    62\t\n    63\tconst MA
+X_DISCORD_LENGTH = 1900; // 留一點緩衝\n    64\t\n    65\tfunction truncateMessa
+ge(msg, maxLen = MAX_DISCORD_LENGTH) {\n    66\t    if (msg.length <= maxLen) re
+turn msg;\n    67\t    return msg.substring(0, maxLen - 20) + \'\\n...(內容已截
+斷)\';\n    68\t}\n    69\t\n    70\tasync function sendDiscordWithRetry(msg, ma
+xRetries = 3) {\n    71\t    const truncatedMsg = truncateMessage(msg);\n    72\
+t    \n    73\t    for (let attempt = 1; attempt <= maxRetries; attempt++) {\n  
+ 74\t        try {\n    75\t            await sendDiscord(truncatedMsg);\n    76
+\t            return { success: true };\n    77\t        } catch (err) {\n    78
+\t            log(`⚠️ 發送失敗 (嘗試 ${attempt}/${maxRetries}): ${err.message}`);
+\n    79\t            if (attempt < maxRetries) {\n    80\t                await
+new Promise(r => setTimeout(r, 1000 * attempt)); // 指數退避\n    81\t          
+ } else {\n    82\t                throw err;\n    83\t            }\n    84\t  
+     }\n    85\t    }\n    86\t}\n    87\t\n    88\tasync function main() {\n   
+89\t    const today = new Date().toLocaleDateString(\'zh-HK\');\n    90\t    con
+st now = new Date().toLocaleString(\'zh-HK\');\n    91\t    \n    92\t    log(\'
+📤 RapNet Sender - 發送週報...\\n\');\n    93\t    \n    94\t    // 檢查數據文件
+是否存在\n    95\t    if (!fs.existsSync(DATA_FILE)) {\n    96\t        console.
+error(\'❌ 錯誤: 找不到數據文件\');\n    97\t        log(\'   請先運行: node scr
+ipts/rapnet_weekly.js\');\n    98\t        \n    99\t        // 發送錯誤通知\n  
+100\t        const errorMsg = `📊 **RapNet 週報 - ${today}**\\n` +\n   101\t    
+                   `━━━━━━━━━━━━━━━━━━━━\\n\\n` +\n   102\t                     
+  `⚠️ **系統錯誤**\\n` +\n   103\t                        `抓取程序未完成，找不到
+數據文件。\\n\\n` +\n   104\t                        `🔍 請手動檢查: ${RAPNET_UR
+L}\\n` +\n   105\t                        `⏰ 時間: ${now}\\n` +\n   106\t      
+                 `━━━━━━━━━━━━━━━━━━━━`;\n   107\t        \n   108\t        try 
+{\n   109\t            await sendDiscordWithRetry(errorMsg);\n   110\t        } 
+catch (e) {\n   111\t            console.error(\'❌ Discord 發送也失敗:\', e.mes
+sage);\n   112\t        }\n   113\t        process.exit(1);\n   114\t    }\n   1
+15\t    \n   116\t    // 讀取抓取數據\n   117\t    let data;\n   118\t    try {\
+n   119\t        data = JSON.parse(fs.readFileSync(DATA_FILE, \'utf8\'));\n   12
+0\t    } catch (err) {\n   121\t        console.error(\'❌ 錯誤: 無法解析數據文
+件\');\n   122\t        log(`   ${err.message}`);\n   123\t        process.exit(
+1);\n   124\t    }\n   125\t    \n   126\t    log(`📋 數據來源: ${data.source ||
+\'unknown\'}`);\n   127\t    log(`📅 抓取時間: ${data.scrapedAt ? new Date(data.
+scrapedAt).toLocaleString(\'zh-HK\') : \'N/A\'}`);\n   128\t    log(`📝 文章數量
+: ${data.articles ? data.articles.length : 0}\\n`);\n   129\t    \n   130\t    /
+/ 處理錯誤情況\n   131\t    if (data && typeof data === \'object\' && data.error
+) {\n   132\t        log(`⚠️ 抓取過程發生錯誤: ${data.error}`);\n   133\t        
+\n   134\t        const errorMsg = `📊 **RapNet 週報 - ${today}**\\n` +\n   135\
+t                        `━━━━━━━━━━━━━━━━━━━━\\n\\n` +\n   136\t               
+        `⚠️ **抓取失敗**\\n` +\n   137\t                        `錯誤: ${data.err
+or}\\n\\n` +\n   138\t                        `🔍 請手動檢查: ${RAPNET_URL}\\n` 
++\n   139\t                        `⏰ 時間: ${now}\\n` +\n   140\t             
+          `━━━━━━━━━━━━━━━━━━━━`;\n   141\t        \n   142\t        await sendD
+iscordWithRetry(errorMsg);\n   143\t        log(\'✅ 已發送錯誤通知\');\n   144\
+t        process.exit(1);\n   145\t    }\n   146\t    \n   147\t    // 處理無文
+章情況\n   148\t    if (!data.articles || data.articles.length === 0) {\n   149\
+t        log(\'⚠️ 沒有找到文章\');\n   150\t        \n   151\t        const msg =
+`📊 **RapNet 週報 - ${today}**\\n` +\n   152\t                   `━━━━━━━━━━━━━━
+━━━━━━\\n\\n` +\n   153\t                   `⚠️ **暫時未能提取文章內容**\\n\\n` +
+\n   154\t                   `可能原因:\\n` +\n   155\t                   `• 網
+站暫時無法訪問\\n` +\n   156\t                   `• 反爬蟲機制阻擋\\n` +\n   157
+\t                   `• 網站結構改變\\n\\n` +\n   158\t                   `🔍 請
+手動檢查: ${RAPNET_URL}\\n` +\n   159\t                   `⏰ 時間: ${now}\\n` +
+\n   160\t                   `━━━━━━━━━━━━━━━━━━━━`;\n   161\t        \n   162\t
+       await sendDiscordWithRetry(msg);\n   163\t        log(\'✅ 已發送通知\');
+\n   164\t        return;\n   165\t    }\n   166\t    \n   167\t    // 構建成功
+消息\n   168\t    let msg = `📊 **RapNet 週報 - ${today}**\\n`;\n   169\t    msg
++= `━━━━━━━━━━━━━━━━━━━━\\n\\n`;\n   170\t    msg += `🆕 **發現 ${data.articles.
+length} 篇文章**\\n\\n`;\n   171\t    \n   172\t    // 分類文章\n   173\t    con
+st importantArticles = data.articles.filter(a => a.important);\n   174\t    cons
+t otherArticles = data.articles.filter(a => !a.important);\n   175\t    \n   176
+\t    // 先顯示重要文章\n   177\t    if (importantArticles.length > 0) {\n   178
+\t        msg += `🔴 **重要文章**\\n`;\n   179\t        importantArticles.slice(
+0, 3).forEach((article, i) => {\n   180\t            msg += `${i + 1}. **${artic
+le.title}**\\n`;\n   181\t            if (article.summary) {\n   182\t          
+     msg += `   ${article.summary.substring(0, 80)}...\\n`;\n   183\t           
+}\n   184\t            msg += `   🔗 ${article.url || RAPNET_URL}\\n\\n`;\n   18
+5\t        });\n   186\t    }\n   187\t    \n   188\t    // 其他文章\n   189\t  
+ if (otherArticles.length > 0 && importantArticles.length < 3) {\n   190\t      
+ msg += `📰 **其他文章**\\n`;\n   191\t        const remainingSlots = 5 - Math.m
+in(importantArticles.length, 3);\n   192\t        otherArticles.slice(0, remaini
+ngSlots).forEach((article, i) => {\n   193\t            msg += `${i + 1}. ${arti
+cle.title}\\n`;\n   194\t            msg += `   🔗 ${article.url || RAPNET_URL}\
+\n\\n`;\n   195\t        });\n   196\t    }\n   197\t    \n   198\t    msg += `━
+━━━━━━━━━━━━━━━━━━━\\n`;\n   199\t    msg += `⚠️ 請檢查重要市場資訊（價格、趨勢、
+報告）`;\n   200\t    \n   201\t    await sendDiscordWithRetry(msg);\n   202\t  
+ log(\'✅ 發送成功\');\n   203\t    \n   204\t    // 清理數據文件（可選）\n   20
+5\t    // fs.unlinkSync(DATA_FILE);\n   206\t}\n   207\t\n   208\tif (require.ma
+in === module) {\n   209\t    main().catch(err => {\n   210\t        console.err
+or(\'❌ Error:\', err.message);\n   211\t        process.exit(1);\n   212\t    }
+);\n   213\t}\n   214\t\n   215\tmodule.exports = { sendDiscord, sendDiscordWith
+Retry, truncateMessage };\n',
+        message='215 lines read from file starting from line 1. End of file reac
+hed.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(arguments_part='{"path": "error_tracker.js"}')
+ToolCall(
+    type='function',
+    id='tool_fEhLZwhWfH2WHuvRlZHdbpLp',
+    function=FunctionBody(name='ReadFile', arguments='{"'),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_mUt97ZzV73EVsoKj66KJ887P',
+    return_value=ToolOk(
+        is_error=False,
+        output='     1\t#!/usr/bin/env node\n     2\t\n     3\tconst _quiet = pr
+ocess.argv.includes(\'--quiet\');\n     4\tconst log = (...args) => { if (!_quie
+t) console.log(...args); };\n     5\t\n     6\t// ==================== Error Tra
+cker V4 ====================\n     7\t// IMPROVED: Better extraction, deduplicat
+ion, source tracking, severity sorting\n     8\t\n     9\tconst fs = require(\'f
+s\');\n    10\tconst path = require(\'path\');\n    11\tconst { execSync } = req
+uire(\'child_process\');\n    12\t\n    13\tconst { MEMORY_DIR, ERRORS_JSON, HOM
+E, WS } = require(\'./lib/config\');\n    14\tconst { getHKTDate } = require(\'.
+/lib/time\');\n    15\tconst LOG_DIR = path.join(WS, \'logs\');\n    16\tconst H
+OME_DIR = HOME;\n    17\tconst SESSIONS_DIR = path.join(HOME, \'.openclaw\', \'a
+gents\', \'main\', \'sessions\');\n    18\t\n    19\t// ==================== AUT
+O RESOLVE RULES ====================\n    20\tconst AUTO_RESOLVE_RULES = {\n    
+21\t  // Severity 1 (🔴) - 永遠唔resolve\n    22\t  \'Auth Error\': { resolve: f
+alse },\n    23\t  \'Permission Error\': { resolve: false },\n    24\t  \'Permis
+sion Denied\': { resolve: false },\n    25\t  \'Syntax Error\': { resolve: false
+},\n    26\t  \'Reference Error\': { resolve: false },\n    27\t  \'Module Error
+\': { resolve: false },\n    28\t  \'Gateway Error\': { resolve: false },\n    2
+9\t  \'Memory Error\': { resolve: false },\n    30\t  \'Python Module\': { resol
+ve: false },\n    31\t  \'File Not Found\': { resolve: false },\n    32\t\n    3
+3\t  // Severity 2 (🟠) - 1日後resolve\n    34\t  \'Rate Limit\': { resolve: tru
+e, days: 1, notify: true },\n    35\t  \'API Aborted\': { resolve: true, days: 1
+, notify: false },\n    36\t  \'Kimi Error\': { resolve: true, days: 1, notify: 
+false },\n    37\t  \'MiniMax Error\': { resolve: true, days: 1, notify: false }
+,\n    38\t  \'Ollama Error\': { resolve: true, days: 1, notify: false },\n    3
+9\t  \'Discord Error\': { resolve: true, days: 1, notify: false },\n    40\t  \'
+WhatsApp Error\': { resolve: true, days: 1, notify: false },\n    41\t  \'Connec
+tion Error\': { resolve: true, days: 1, notify: false },\n    42\t\n    43\t  //
+Severity 3 (🟡) - 1日後resolve\n    44\t  \'File Error\': { resolve: true, days:
+1 },\n    45\t  \'Import Error\': { resolve: true, days: 1 },\n    46\t  \'DNS E
+rror\': { resolve: true, days: 1, notify: false },\n    47\t  \'Network Error\':
+{ resolve: true, days: 1, notify: false },\n    48\t  \'Timeout Error\': { resol
+ve: true, days: 1, notify: false },\n    49\t  \'Type Error\': { resolve: true, 
+days: 1, notify: false },\n    50\t  \'Cron Timeout\': { resolve: true, days: 1,
+notify: false },\n    51\t};\n    52\t\n    53\t// ==================== COMPREHE
+NSIVE ERROR PATTERNS ====================\n    54\tconst ERROR_PATTERNS = [\n   
+55\t  // === API / Authentication Errors ===\n    56\t  { pattern: /401.*authent
+ication/i, type: \'Auth Error\', severity: 1, extract: /401.*?(authentication|ap
+i key|invalid)/i },\n    57\t  { pattern: /invalid.*api.*key/i, type: \'Auth Err
+or\', severity: 1, extract: /invalid api key/i },\n    58\t  { pattern: /API.*ra
+te.*limit/i, type: \'Rate Limit\', severity: 2, extract: /API.*rate.*limit/i },\
+n    59\t  { pattern: /rate.*limit.*exceeded/i, type: \'Rate Limit\', severity: 
+2, extract: /rate limit.*exceeded/i },\n    60\t  { pattern: /403.*forbidden/i, 
+type: \'Permission Error\', severity: 2, extract: /403.*?forbidden/i },\n    61\
+t  { pattern: /(HTTP|status|code)[\\s:]*429|\\b429\\b.*(?:rate|limit|too many|th
+rottl)/i, type: \'Rate Limit\', severity: 2, extract: /429.*?(?:too many|rate|li
+mit|throttl)/i },\n    62\t\n    63\t  // === Network Errors ===\n    64\t  { pa
+ttern: /ECONNREFUSED/i, type: \'Connection Error\', severity: 2, extract: /ECONN
+REFUSED.*?(\\d+\\.\\d+\\.\\d+\\.\\d+)/i },\n    65\t  { pattern: /ENOTFOUND/i, t
+ype: \'DNS Error\', severity: 3, extract: /ENOTFOUND.*?([^"\\s]+)/i },\n    66\t
+ { pattern: /EAI_AGAIN/i, type: \'Network Error\', severity: 3, extract: /EAI_AG
+AIN/i },\n    67\t  { pattern: /ETIMEDOUT/i, type: \'Timeout Error\', severity: 
+3, extract: /ETIMEDOUT/i },\n    68\t  { pattern: /connection.*timeout/i, type: 
+\'Timeout Error\', severity: 3, extract: /connection timeout/i },\n    69\t\n   
+70\t  // === File System Errors ===\n    71\t  { pattern: /ENOENT.*no.*such.*fil
+e/i, type: \'File Not Found\', severity: 3, extract: /no such file.*?[\'"]([^\'"
+]+)[\'"]/i },\n    72\t  { pattern: /ENOENT/i, type: \'File Error\', severity: 4
+, extract: /ENOENT.*?([\'"][^\'"]+[\'"])/i },\n    73\t  { pattern: /EACCES/i, t
+ype: \'Permission Denied\', severity: 2, extract: /EACCES.*?permission/i },\n   
+74\t\n    75\t  // === JavaScript Errors ===\n    76\t  { pattern: /SyntaxError:
+/i, type: \'Syntax Error\', severity: 1, extract: /SyntaxError:.*/i },\n    77\t
+ { pattern: /ReferenceError:/i, type: \'Reference Error\', severity: 2, extract:
+/ReferenceError:.*/i },\n    78\t  { pattern: /TypeError:/i, type: \'Type Error\
+', severity: 3, extract: /TypeError:.*/i },\n    79\t  { pattern: /Cannot find m
+odule/i, type: \'Module Error\', severity: 2, extract: /Cannot find module [\'"]
+([^\'"]+)[\'"]/i },\n    80\t\n    81\t  // === Service Specific Errors ===\n   
+82\t  { pattern: /errorMessage.*aborted/i, type: \'API Aborted\', severity: 3, e
+xtract: /errorMessage["\']?\\s*[:=]\\s*["\']?([^"\'}]+)/i },\n    83\t  { patter
+n: /MiniMax.*error/i, type: \'MiniMax Error\', severity: 2, extract: /MiniMax.*?
+error/i },\n    84\t  { pattern: /Kimi.*error/i, type: \'Kimi Error\', severity:
+2, extract: /Kimi.*?error/i },\n    85\t  { pattern: /Ollama.*error/i, type: \'O
+llama Error\', severity: 3, extract: /Ollama.*?error/i },\n    86\t  { pattern: 
+/Discord.*error/i, type: \'Discord Error\', severity: 2, extract: /Discord.*?err
+or/i },\n    87\t  { pattern: /WhatsApp.*error/i, type: \'WhatsApp Error\', seve
+rity: 2, extract: /WhatsApp.*?error/i },\n    88\t\n    89\t  // === Cron/Job Er
+rors ===\n    90\t  { pattern: /job.*timed.*out/i, type: \'Cron Timeout\', sever
+ity: 3, extract: /job.*timed.*out/i },\n    91\t  { pattern: /cron.*timeout/i, t
+ype: \'Cron Timeout\', severity: 3, extract: /cron timeout/i },\n    92\t\n    9
+3\t  // === System Errors ===\n    94\t  { pattern: /gateway.*closed/i, type: \'
+Gateway Error\', severity: 1, extract: /gateway closed/i },\n    95\t  { pattern
+: /out of memory|OOM/i, type: \'Memory Error\', severity: 1, extract: /out of me
+mory|OOM/i },\n    96\t\n    97\t  // === Python Errors ===\n    98\t  { pattern
+: /No module named/i, type: \'Python Module\', severity: 2, extract: /No module 
+named [\'"]([^\'"]+)[\'"]/i },\n    99\t  { pattern: /ImportError:/i, type: \'Im
+port Error\', severity: 3, extract: /ImportError:.*/i },\n   100\t];\n   101\t\n
+  102\t\n   103\tfunction loadErrors() {\n   104\t  try {\n   105\t    if (!fs.e
+xistsSync(ERRORS_JSON)) {\n   106\t      return { schema: \'openclaw.errors.v1\'
+, metadata: { createdAt: new Date().toISOString(), lastUpdated: new Date().toISO
+String(), totalErrors: 0 }, errors: [] };\n   107\t    }\n   108\t    try {\n   
+109\t      return JSON.parse(fs.readFileSync(ERRORS_JSON, \'utf-8\'));\n   110\t
+   } catch (err) {\n   111\t      console.error(`⚠️ Failed to parse errors.json:
+${err.message}`);\n   112\t      return { schema: \'openclaw.errors.v1\', metada
+ta: { createdAt: new Date().toISOString(), lastUpdated: new Date().toISOString()
+, totalErrors: 0 }, errors: [] };\n   113\t    }\n   114\t  } catch (err) {\n   
+115\t    console.error(`⚠️ loadErrors failed: ${err.message}`);\n   116\t    retu
+rn { schema: \'openclaw.errors.v1\', metadata: { createdAt: new Date().toISOStri
+ng(), lastUpdated: new Date().toISOString(), totalErrors: 0 }, errors: [] };\n  
+117\t  }\n   118\t}\n   119\t\n   120\tfunction saveErrors(data) {\n   121\t  co
+nst tmpFile = ERRORS_JSON + \'.tmp\';\n   122\t  try {\n   123\t    data.metadat
+a.lastUpdated = new Date().toISOString();\n   124\t    data.metadata.totalErrors
+= data.errors.length;\n   125\t    // Atomic write: write to temp file then rena
+me to avoid corruption\n   126\t    fs.writeFileSync(tmpFile, JSON.stringify(dat
+a, null, 2));\n   127\t    fs.renameSync(tmpFile, ERRORS_JSON);\n   128\t  } cat
+ch (err) {\n   129\t    console.error(`⚠️ saveErrors failed: ${err.message}`);\n
+ 130\t    // 清理殘留 tmp 檔案（如果存在）\n   131\t    try { if (fs.existsSync(
+tmpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\n   132\t  }\n   133\t}\n   134
+\t\n   135\tfunction generateId() {\n   136\t  return Date.now().toString(36) + 
+Math.random().toString(36).substr(2, 5);\n   137\t}\n   138\t\n   139\tfunction 
+shouldIgnoreLine(line) {\n   140\t  if (!line || line.trim().length < 15) return
+true;\n   141\t  if (line.includes(\'"thinking"\') && !line.includes(\'error\'))
+return true;\n   142\t  if (line.includes(\'"content":[\') && !line.includes(\'e
+rror\')) return true;\n   143\t  return false;\n   144\t}\n   145\t\n   146\tfun
+ction extractCleanMessage(line, patternObj) {\n   147\t  // P1-6 Fix: Return mes
+sage consistent with matched pattern type\n   148\t  // Previously global fallba
+ck (e.g. line.includes(\'401\')) would override\n   149\t  // the matched patter
+n, causing type="Rate Limit" + problem="401 Unauthorized"\n   150\t\n   151\t  i
+f (!patternObj) {\n   152\t    // No pattern matched — use generic line-level de
+tection\n   153\t    // Medium Fix: Strengthen fallback to avoid false positives
+from comments/non-error lines\n   154\t    const trimmed = line.trim();\n   155\
+t    // Skip lines that are too short or look like non-error content\n   156\t  
+ if (trimmed.length < 10) return \'Error\';\n   157\t    // Skip obvious non-err
+or patterns\n   158\t    if (/^(?:info|debug|verbose|trace|---|\\*|#|\\/\\/)/i.t
+est(trimmed)) return \'Error\';\n   159\t    // Only match actual error indicato
+rs (status codes in error context)\n   160\t    if (/status.*(?:401|403|429)\\b|
+error.*(?:401|403|429)\\b|401.*(?:unauthorized|auth)|403.*(?:forbidden|denied)|4
+29.*(?:rate|limit|too many)/i.test(trimmed)) {\n   161\t      if (trimmed.includ
+es(\'401\')) return \'401 Unauthorized\';\n   162\t      if (trimmed.includes(\'
+403\')) return \'403 Forbidden\';\n   163\t      if (trimmed.includes(\'429\')) 
+return \'429 Too Many Requests\';\n   164\t    }\n   165\t    if (/aborted|timeo
+ut|cancelled|failed/i.test(trimmed)) {\n   166\t      if (trimmed.includes(\'"ab
+orted"\')) return \'Request aborted\';\n   167\t      if (trimmed.includes(\'"ti
+meout"\')) return \'Timeout\';\n   168\t    }\n   169\t    return \'Error\';\n  
+170\t  }\n   171\t\n   172\t  // Pattern matched — return message appropriate to
+the pattern type\n   173\t  const type = patternObj.type;\n   174\t\n   175\t  s
+witch (type) {\n   176\t    case \'Auth Error\':\n   177\t      if (line.include
+s(\'401\')) return \'401 Authentication failed\';\n   178\t      if (line.includ
+es(\'invalid\')) return \'Invalid API key\';\n   179\t      return \'Authenticat
+ion error\';\n   180\t    case \'Permission Error\':\n   181\t      if (line.inc
+ludes(\'403\')) return \'403 Forbidden\';\n   182\t      return \'Permission den
+ied\';\n   183\t    case \'Permission Denied\':\n   184\t      return \'EACCES p
+ermission denied\';\n   185\t    case \'Rate Limit\':\n   186\t      if (line.in
+cludes(\'429\')) return \'429 Too Many Requests\';\n   187\t      return \'Rate 
+limit exceeded\';\n   188\t    case \'Connection Error\':\n   189\t      return 
+\'Connection refused (ECONNREFUSED)\';\n   190\t    case \'DNS Error\':\n   191\
+t      return \'DNS lookup failed (ENOTFOUND)\';\n   192\t    case \'Network Err
+or\':\n   193\t      return \'Network error (EAI_AGAIN)\';\n   194\t    case \'T
+imeout Error\':\n   195\t      return \'Connection timeout\';\n   196\t    case 
+\'File Not Found\':\n   197\t      return \'File not found (ENOENT)\';\n   198\t
+   case \'File Error\':\n   199\t      return \'File system error\';\n   200\t  
+ case \'Syntax Error\':\n   201\t    case \'Reference Error\':\n   202\t    case
+\'Type Error\':\n   203\t    case \'Module Error\':\n   204\t    case \'Import E
+rror\':\n   205\t    case \'Python Module\':\n   206\t      // For code errors, 
+try to extract the actual message from the line\n   207\t      if (patternObj.ex
+tract) {\n   208\t        const match = line.match(patternObj.extract);\n   209\
+t        if (match) return match[0].substring(0, 80);\n   210\t      }\n   211\t
+     return type;\n   212\t    case \'API Aborted\':\n   213\t      return \'Req
+uest aborted\';\n   214\t    case \'Cron Timeout\':\n   215\t      return \'Cron
+job timed out\';\n   216\t    case \'Gateway Error\':\n   217\t      return \'Ga
+teway closed\';\n   218\t    case \'Memory Error\':\n   219\t      return \'Out 
+of memory\';\n   220\t    case \'Ollama Error\':\n   221\t      // Ollama-specif
+ic: check for auth vs generic error\n   222\t      if (line.includes(\'401\')) r
+eturn \'Ollama 401 - check API key\';\n   223\t      return \'Ollama service err
+or\';\n   224\t    case \'MiniMax Error\':\n   225\t      return \'MiniMax API e
+rror\';\n   226\t    case \'Kimi Error\':\n   227\t      return \'Kimi API error
+\';\n   228\t    case \'Discord Error\':\n   229\t      return \'Discord deliver
+y error\';\n   230\t    case \'WhatsApp Error\':\n   231\t      return \'WhatsAp
+p delivery error\';\n   232\t    default:\n   233\t      return type;\n   234\t 
+}\n   235\t}\n   236\t\n   237\tfunction findErrorInLine(line) {\n   238\t  for 
+(const p of ERROR_PATTERNS) {\n   239\t    if (p.pattern.test(line)) {\n   240\t
+     return {\n   241\t        type: p.type,\n   242\t        severity: p.severi
+ty,\n   243\t        title: p.type,\n   244\t        problem: extractCleanMessag
+e(line, p)\n   245\t      };\n   246\t    }\n   247\t  }\n   248\t  return null;
+\n   249\t}\n   250\t\n   251\tfunction extractSourceFromLine(line) {\n   252\t 
+// Try to find session ID or cron job name\n   253\t  const sessionMatch = line.
+match(/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/);\n   254\t
+ if (sessionMatch) return `session:${sessionMatch[0].substring(0, 8)}`;\n   255\
+t\n   256\t  return \'system\';\n   257\t}\n   258\t\n   259\tfunction scanLogsF
+orErrors() {\n   260\t  const errorsFound = [];\n   261\t  const logFile = path.
+join(LOG_DIR, \'system.log\');\n   262\t\n   263\t  try {\n   264\t    if (fs.ex
+istsSync(logFile)) {\n   265\t      const content = fs.readFileSync(logFile, \'u
+tf-8\');\n   266\t      const lines = content.split(\'\\n\').slice(-500);\n   26
+7\t\n   268\t      for (const line of lines) {\n   269\t        if (shouldIgnore
+Line(line)) continue;\n   270\t\n   271\t        const error = findErrorInLine(l
+ine);\n   272\t        if (error) {\n   273\t          error.source = extractSou
+rceFromLine(line);\n   274\t          error.tags = [\'auto-detected\', \'log\', 
+getHKTDate()];\n   275\t          errorsFound.push(error);\n   276\t        }\n 
+ 277\t      }\n   278\t    }\n   279\t  } catch (e) {}\n   280\t\n   281\t  retu
+rn errorsFound;\n   282\t}\n   283\t\n   284\tfunction scanSessionsForErrors() {
+\n   285\t  const errorsFound = [];\n   286\t\n   287\t  if (!fs.existsSync(SESS
+IONS_DIR)) return errorsFound;\n   288\t\n   289\t  const files = fs.readdirSync
+(SESSIONS_DIR).filter(f => f.endsWith(\'.jsonl\')).slice(-20);\n   290\t\n   291
+\t  for (const file of files) {\n   292\t    try {\n   293\t      const filePath
+= path.join(SESSIONS_DIR, file);\n   294\t      const content = fs.readFileSync(
+filePath, \'utf8\');\n   295\t      const lines = content.split(\'\\n\').slice(-
+100);\n   296\t\n   297\t      for (const line of lines) {\n   298\t        if (
+shouldIgnoreLine(line)) continue;\n   299\t\n   300\t        const error = findE
+rrorInLine(line);\n   301\t        if (error) {\n   302\t          error.source 
+= `session:${file.substring(0, 8)}`;\n   303\t          error.tags = [\'auto-det
+ected\', \'session\', getHKTDate()];\n   304\t          errorsFound.push(error);
+\n   305\t        }\n   306\t      }\n   307\t    } catch (e) {}\n   308\t  }\n 
+ 309\t\n   310\t  return errorsFound;\n   311\t}\n   312\t\n   313\t/**\n   314\
+t * P1-8: Archive/remove resolved errors older than 30 days\n   315\t * Keeps er
+rors.json lean for better read performance\n   316\t */\n   317\tfunction archiv
+eOldResolved(data) {\n   318\t  const thirtyDaysAgo = Date.now() - (30 * 24 * 60
+* 60 * 1000);\n   319\t  const before = data.errors.length;\n   320\t\n   321\t 
+data.errors = data.errors.filter(e => {\n   322\t    // Keep all unresolved erro
+rs\n   323\t    if (!e.resolved) return true;\n   324\t    // Keep resolved erro
+rs younger than 30 days\n   325\t    const ts = new Date(e.resolvedAt || e.times
+tamp).getTime();\n   326\t    return ts > thirtyDaysAgo;\n   327\t  });\n   328\
+t\n   329\t  const removed = before - data.errors.length;\n   330\t  if (removed
+> 0) {\n   331\t    log(`🗑️ Archived ${removed} resolved error(s) older than 30 d
+ays`);\n   332\t  }\n   333\t}\n   334\t\n   335\tfunction addError(error) {\n  
+336\t  const data = loadErrors();\n   337\t  const today = getHKTDate();\n   338
+\t\n   339\t  // Check for duplicate by title + problem (more accurate)\n   340\
+t  const problemKey = (error.problem || \'\').substring(0, 30);\n   341\t  const
+existing = data.errors.find(e =>\n   342\t    e.date === today &&\n   343\t    e
+.title === error.title &&\n   344\t    e.problem?.substring(0, 30) === problemKe
+y\n   345\t  );\n   346\t\n   347\t  if (existing) {\n   348\t    existing.count
+= (existing.count || 1) + 1;\n   349\t    log(`⚠️ Duplicate, count: ${existing.co
+unt}`);\n   350\t  } else {\n   351\t    data.errors.unshift({\n   352\t      id
+: generateId(),\n   353\t      date: today,\n   354\t      timestamp: new Date()
+.toISOString(),\n   355\t      ...error,\n   356\t      count: 1,\n   357\t     
+resolved: false\n   358\t    });\n   359\t    log(`✅ Added: ${error.type} - ${e
+rror.problem?.substring(0, 40)}`);\n   360\t  }\n   361\t\n   362\t  // P1-8: Ar
+chive resolved errors older than 30 days, then enforce cap\n   363\t  archiveOld
+Resolved(data);\n   364\t\n   365\t  // Keep only last 50 errors (reduced from 1
+00 for performance)\n   366\t  if (data.errors.length > 50) {\n   367\t    data.
+errors = data.errors.slice(0, 50);\n   368\t  }\n   369\t\n   370\t  saveErrors(
+data);\n   371\t}\n   372\t\n   373\tfunction getDaysDiff(timestamp) {\n   374\t
+ const errorDate = new Date(timestamp);\n   375\t  const now = new Date();\n   3
+76\t  const diffTime = now - errorDate;\n   377\t  const diffDays = Math.floor(d
+iffTime / (1000 * 60 * 60 * 24));\n   378\t  return diffDays;\n   379\t}\n   380
+\t\n   381\tasync function autoResolve() {\n   382\t  const data = loadErrors();
+\n   383\t  const unresolved = data.errors.filter(e => !e.resolved);\n   384\t\n
+  385\t  if (unresolved.length === 0) {\n   386\t    return;\n   387\t  }\n   38
+8\t\n   389\t  let resolvedCount = 0;\n   390\t  const notifications = [];\n   3
+91\t\n   392\t  for (const error of unresolved) {\n   393\t    const rule = AUTO
+_RESOLVE_RULES[error.type];\n   394\t\n   395\t    // 如果冇 rule 或者 resolve =
+false，跳過\n   396\t    if (!rule || rule.resolve === false) {\n   397\t      c
+ontinue;\n   398\t    }\n   399\t\n   400\t    // 檢查日子\n   401\t    const da
+ysOld = getDaysDiff(error.timestamp);\n   402\t    const thresholdDays = rule.da
+ys || 1;\n   403\t\n   404\t    if (daysOld >= thresholdDays) {\n   405\t      /
+/ 標記為已resolve\n   406\t      error.resolved = true;\n   407\t      error.res
+olvedAt = new Date().toISOString();\n   408\t      error.resolvedBy = \'auto-res
+olve\';\n   409\t      resolvedCount++;\n   410\t\n   411\t      // 如果需要通知
+\n   412\t      if (rule.notify) {\n   413\t        notifications.push(`✅ Auto-
+resolved: [${error.type}] ${error.title} (${daysOld} days old)`);\n   414\t     
+}\n   415\t    }\n   416\t  }\n   417\t\n   418\t  if (resolvedCount > 0) {\n   
+419\t    saveErrors(data);\n   420\t    log(`\\n🧹 Auto-resolved ${resolvedCount
+} error(s)`);\n   421\t\n   422\t    // 顯示通知\n   423\t    if (notifications.
+length > 0) {\n   424\t      log(\'\\n📢 Notifications:\');\n   425\t      notif
+ications.forEach(n => log(`   ${n}`));\n   426\t    }\n   427\t  }\n   428\t\n  
+429\t  return resolvedCount;\n   430\t}\n   431\t\n   432\tasync function scan()
+{\n   433\t  log(\'🔍 Scanning for errors...\\n\');\n   434\t\n   435\t  const l
+ogErrors = scanLogsForErrors();\n   436\t  const sessionErrors = scanSessionsFor
+Errors();\n   437\t  const allErrors = [...logErrors, ...sessionErrors];\n   438
+\t\n   439\t  log(`📊 Found: ${logErrors.length} log, ${sessionErrors.length} se
+ssion errors`);\n   440\t\n   441\t  // Deduplicate by title + problem\n   442\t
+ const unique = [];\n   443\t  const seen = new Set();\n   444\t  for (const e o
+f allErrors) {\n   445\t    const key = `${e.title}-${(e.problem || \'\').substr
+ing(0, 20)}`;\n   446\t    if (!seen.has(key)) {\n   447\t      seen.add(key);\n
+  448\t      unique.push(e);\n   449\t    }\n   450\t  }\n   451\t\n   452\t  lo
+g(`📝 Adding ${unique.length} unique errors...\\n`);\n   453\t  unique.forEach(a
+ddError);\n   454\t\n   455\t  // 運行 auto-resolve\n   456\t  log(\'\\n🔄 Runni
+ng auto-resolve...\');\n   457\t  try {\n   458\t    await autoResolve();\n   45
+9\t  } catch (err) {\n   460\t    log(`⚠️ Auto-resolve error: ${err.message}`);\n
+  461\t  }\n   462\t\n   463\t  // NOTE: archiveOldResolved + cap 50 already run
+inside each addError() call above,\n   464\t  // so we don\'t repeat them here. 
+autoResolve() also saves after resolving.\n   465\t\n   466\t  log(\'\\n✅ Scan 
+complete\');\n   467\t}\n   468\t\n   469\tasync function list() {\n   470\t  co
+nst data = loadErrors();\n   471\t  // Sort by severity (1 = highest), then by d
+ate\n   472\t  const active = data.errors\n   473\t    .filter(e => !e.resolved)
+\n   474\t    .sort((a, b) => {\n   475\t      if (a.severity !== b.severity) re
+turn a.severity - b.severity;\n   476\t      return new Date(b.timestamp) - new 
+Date(a.timestamp);\n   477\t    })\n   478\t    .slice(0, 10);\n   479\t\n   480
+\t  const resolved = data.errors\n   481\t    .filter(e => e.resolved)\n   482\t
+   .sort((a, b) => new Date(b.resolvedAt || b.timestamp) - new Date(a.resolvedAt
+|| a.timestamp))\n   483\t    .slice(0, 5);\n   484\t\n   485\t  log(\'📋 Active
+Errors (by severity):\\n\');\n   486\t\n   487\t  const severityIcon = { 1: \'🔴
+\', 2: \'🟠\', 3: \'🟡\', 4: \'⚪\' };\n   488\t\n   489\t  if (active.length ==
+= 0) {\n   490\t    log(\'   ✅ No active errors!\\n\');\n   491\t  } else {\n  
+492\t    active.forEach((e, i) => {\n   493\t      const icon = severityIcon[e.s
+everity] || \'⚪\';\n   494\t      log(`${icon} [${e.date}] ${e.title}`);\n   49
+5\t      log(`   Date: ${e.date} | Source: ${e.source || \'unknown\'}`);\n   496
+\t      log(`   ${(e.problem || \'No details\').substring(0, 50)}`);\n   497\t  
+   if (e.count > 1) log(`   Count: ${e.count}x`);\n   498\t      log(\'\');\n   
+499\t    });\n   500\t  }\n   501\t\n   502\t  if (resolved.length > 0) {\n   50
+3\t    log(\'\\n✅ Recently Resolved:\\n\');\n   504\t    resolved.forEach((e, i
+) => {\n   505\t      const resolvedDate = e.resolvedAt\n   506\t        ? new D
+ate(e.resolvedAt).toLocaleDateString(\'en-CA\')\n   507\t        : \'unknown\';\
+n   508\t      log(`   ✓ [${resolvedDate}] ${e.title} (${e.resolvedBy || \'manua
+l\'})`);\n   509\t    });\n   510\t  }\n   511\t\n   512\t  // 顯示統計\n   513\
+t  log(`\\n📊 Summary: ${active.length} active, ${resolved.length} recently reso
+lved`);\n   514\t}\n   515\t\n   516\tasync function stats() {\n   517\t  const 
+data = loadErrors();\n   518\t  const today = getHKTDate();\n   519\t\n   520\t 
+const todayErrors = data.errors.filter(e => e.date === today);\n   521\t  const 
+activeCount = data.errors.filter(e => !e.resolved).length;\n   522\t  const reso
+lvedCount = data.errors.filter(e => e.resolved).length;\n   523\t\n   524\t  log
+(\'📊 Error Statistics:\');\n   525\t  log(`   Total errors: ${data.errors.lengt
+h}`);\n   526\t  log(`   Active (unresolved): ${activeCount}`);\n   527\t  log(`
+  Resolved: ${resolvedCount}`);\n   528\t  log(`   Today: ${todayErrors.length}`
+);\n   529\t\n   530\t  // By type (active only)\n   531\t  const byType = {};\n
+  532\t  data.errors.filter(e => !e.resolved).slice(0, 50).forEach(e => {\n   53
+3\t    byType[e.type] = (byType[e.type] || 0) + 1;\n   534\t  });\n   535\t\n   
+536\t  if (Object.keys(byType).length > 0) {\n   537\t    log(\'\\n📈 Active Err
+ors by Type:\');\n   538\t    Object.entries(byType).sort((a, b) => b[1] - a[1])
+.forEach(([type, count]) => {\n   539\t      log(`   ${type}: ${count}`);\n   54
+0\t    });\n   541\t  }\n   542\t\n   543\t  // Auto-resolve 統計\n   544\t  con
+st autoResolved = data.errors.filter(e => e.resolvedBy === \'auto-resolve\').len
+gth;\n   545\t  if (autoResolved > 0) {\n   546\t    log(`\\n🧹 Auto-resolved: $
+{autoResolved} errors`);\n   547\t  }\n   548\t}\n   549\t\n   550\tfunction cmd
+Add() {\n   551\t  const args = process.argv.slice(3);\n   552\t  let title = \'
+\', problem = \'\';\n   553\t\n   554\t  for (let i = 0; i < args.length; i++) {
+\n   555\t    if (args[i] === \'--title\' && args[i + 1]) {\n   556\t      title
+= args[++i];\n   557\t    } else if (args[i] === \'--problem\' && args[i + 1]) {
+\n   558\t      problem = args[++i];\n   559\t    }\n   560\t  }\n   561\t\n   5
+62\t  if (!title) {\n   563\t    log(\'Usage: node error_tracker.js add --title 
+"Error Title" --problem "Description"\');\n   564\t    return;\n   565\t  }\n   
+566\t\n   567\t  addError({\n   568\t    type: \'Manual\',\n   569\t    severity
+: 2,\n   570\t    title: title,\n   571\t    problem: problem || title,\n   572\
+t    source: \'manual\',\n   573\t    tags: [\'manual\', getHKTDate()]\n   574\t
+ });\n   575\t}\n   576\t\n   577\tconst cmd = process.argv[2] || \'scan\';\n   
+578\tif (cmd === \'scan\') scan();\n   579\telse if (cmd === \'list\') list();\n
+  580\telse if (cmd === \'stats\') stats();\n   581\telse if (cmd === \'add\') c
+mdAdd();\n   582\telse log(\'Usage: node error_tracker.js [scan|list|stats|add]\
+');\n',
+        message='582 lines read from file starting from line 1. End of file reac
+hed.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(arguments_part='path": "reminder_discussion_bot.js"}')
+StatusUpdate(
+    context_usage=0.054424285888671875,
+    context_tokens=14267,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=6075,
+        output=172,
+        input_cache_read=8192,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-Oh5Fl9NQwBFsI7wGiRlO3vr7',
+    plan_mode=False,
+    mcp_status=None
+)
+ToolResult(
+    tool_call_id='tool_fEhLZwhWfH2WHuvRlZHdbpLp',
+    return_value=ToolOk(
+        is_error=False,
+        output='     1\t#!/usr/bin/env node\n     2\t\n     3\tconst _quiet = pr
+ocess.argv.includes(\'--quiet\');\n     4\tconst log = (...args) => { if (!_quie
+t) console.log(...args); };\n     5\t\n     6\t/**\n     7\t * Reminder Discussi
+on - Discord Bot API 版\n     8\t * 參考 Bliss daily_weather.js 既做法\n     9\t
+* 直接讀取 OpenClaw Discord token 發送\n    10\t */\n    11\t\n    12\tconst { e
+xecSync } = require(\'child_process\');\n    13\tconst https = require(\'https\'
+);\n    14\tconst fs = require(\'fs\');\n    15\t\n    16\t// Discord channel ID
+(⚙️系統)\n    17\tconst CHANNEL_ID = "1473376125584670872";\n    18\t\n    19\tfu
+nction getDiscordToken() {\n    20\t    try {\n    21\t        const configPath 
+= process.env.HOME + \'/.openclaw/openclaw.json\';\n    22\t        const config
+= JSON.parse(fs.readFileSync(configPath, \'utf8\'));\n    23\t        return con
+fig.channels.discord.token;\n    24\t    } catch (err) {\n    25\t        consol
+e.error(`❌ Failed to read Discord token: ${err.message}`);\n    26\t        thr
+ow err;\n    27\t    }\n    28\t}\n    29\t\n    30\tfunction sendDiscord(msg) {
+\n    31\t    const token = getDiscordToken();\n    32\t    \n    33\t    const 
+options = {\n    34\t        hostname: \'discord.com\',\n    35\t        path: \
+'/api/v10/channels/\' + CHANNEL_ID + \'/messages\',\n    36\t        method: \'P
+OST\',\n    37\t        headers: {\n    38\t            \'Authorization\': \'Bot
+\' + token,\n    39\t            \'Content-Type\': \'application/json\'\n    40\
+t        }\n    41\t    };\n    42\t    \n    43\t    return new Promise((resolv
+e, reject) => {\n    44\t        const req = https.request(options, (res) => {\n
+   45\t            let data = \'\';\n    46\t            res.on(\'data\', c => d
+ata += c);\n    47\t            res.on(\'end\', () => {\n    48\t               
+if (res.statusCode === 200 || res.statusCode === 204) {\n    49\t               
+    log(\'✅ 已發送到 Discord #⚙️系統\');\n    50\t                    resolve({ 
+status: res.statusCode });\n    51\t                } else {\n    52\t          
+         reject(new Error(`HTTP ${res.statusCode}: ${data}`));\n    53\t        
+       }\n    54\t            });\n    55\t        });\n    56\t        req.on(\
+'error\', reject);\n    57\t        req.write(JSON.stringify({ content: msg }));
+\n    58\t        req.end();\n    59\t    });\n    60\t}\n    61\t\n    62\tfunc
+tion getTodayReminders() {\n    63\t    try {\n    64\t        const result = ex
+ecSync(\'remindctl today\', { \n    65\t            encoding: \'utf8\', \n    66
+\t            timeout: 10000 \n    67\t        });\n    68\t        \n    69\t  
+     if (result.includes(\'No reminders\')) {\n    70\t            return [];\n 
+  71\t        }\n    72\t        \n    73\t        return result.trim().split(\'
+\\n\').filter(l => l.trim());\n    74\t    } catch (err) {\n    75\t        if (
+err.status === 1 && err.stdout?.includes(\'No reminders\')) {\n    76\t         
+  return [];\n    77\t        }\n    78\t        console.error(`⚠️ remindctl erro
+r: ${err.message}`);\n    79\t        return [];\n    80\t    }\n    81\t}\n    
+82\t\n    83\tasync function main() {\n    84\t    try {\n    85\t        const 
+reminders = getTodayReminders();\n    86\t\n    87\t        if (reminders.length
+=== 0) {\n    88\t            log(\'✅ 今日冇 reminders\');\n    89\t           
+return;\n    90\t        }\n    91\t\n    92\t        // Build message\n    93\t
+       let msg = "⏰ **今日 Reminders**\\n━━━━━━━━━━━━━━━━━━━━\\n\\n";\n    94\t
+       \n    95\t        reminders.forEach((r, i) => {\n    96\t            msg 
++= `${i + 1}. ${r}\\n`;\n    97\t        });\n    98\t        \n    99\t        
+msg += "\\n━━━━━━━━━━━━━━━━━━━━";\n   100\t        \n   101\t        // Send dir
+ectly to Discord\n   102\t        await sendDiscord(msg);\n   103\t        \n   
+104\t    } catch (err) {\n   105\t        console.error(`❌ Error: ${err.message
+}`);\n   106\t        process.exit(1);\n   107\t    }\n   108\t}\n   109\t\n   1
+10\t// 全局錯誤處理\n   111\tprocess.on(\'uncaughtException\', (err) => {\n   11
+2\t    console.error(`❌ Uncaught: ${err.message}`);\n   113\t    process.exit(1
+);\n   114\t});\n   115\t\n   116\tmain();\n',
+        message='116 lines read from file starting from line 1. End of file reac
+hed.',
+        display=[],
+        extras=None
+    )
+)
+StepBegin(n=2)
+ThinkPart(
+    type='think',
+    think="讓我分析每個問題：\n\n1. **weekly_correction_loop.js:26-157** - `getH
+KTDateTime()` 和 `getHKTDate()` 在 require('./lib/time') 之前被調用。require 在
+第157行，但調用在第27、44、83、84、156行等。需要把 require 移到頂部。\n\n2. **is
+sue_auto_followup.js:26-27** - `getHKTDateTime()` 在導入前被調用。看起來第26行已
+經 require 了，但問題說是第26-27行。讓我再看看... 第26行是 `const { getHKTDate, 
+getHKTDateTime } = require('./lib/time');`，第27行是 `const { createStateManager
+} = require('./lib/state');`。但 `getHKTDateTime()` 在 main() 函數中被調用（第41
+0行），不在導入前。等等，用戶說的是第26-27行 getHKTDateTime() 在導入前被調用。但
+看代碼，第26行就是導入。可能用戶指的是另一個問題？讓我再仔細看看... 哦，不對，第
+26行是導入，但第410行 `log(`執行時間: ${getHKTDateTime()}\\n`);` 在 main 裡面。
+這個問題描述可能有點不準確，或者我誤解了。但既然用戶說 issue_auto_followup.js:26
+-27 有問題，我應該檢查是否有其他 getHKTDateTime 調用在 require 之前。看起來沒有
+。不過用戶可能指的是 weekly_correction_loop.js 的類似問題。讓我重新看 issue_auto
+_followup.js... 第26行確實是 require。可能問題描述有誤，但我應該按照用戶的要求來
+修復。也許用戶的意思是 issue_auto_followup.js 也有類似的問題但不在我看到的這個位
+置？不，文件只有455行，我讀取了全部。第26行就是 require。我會假設用戶可能搞錯了
+行號，但既然沒有實際問題，我就不改這個文件，或者... 等等，也許用戶說的是 `getHKT
+DateTime()` 在 `require('./lib/time')` 之前被調用，但實際上第26行就是 require。
+這個問題可能不存在於當前代碼中。但我還是檢查一下是否有其他問題。嗯，我會按照用戶
+的指示，如果沒有問題就不改。\n\n等等，讓我重新看 weekly_correction_loop.js。第15
+7行 `const { getHKTDate, getHKTDateTime } = require('./lib/time');` 確實在 `getH
+KTDateTime()` 調用之後。這個需要修復。\n\n3. **heartbeat_recall.js:58** - eval 
+使用。看第58行：`return getHKTDate();` 沒有 eval。讓我搜索 eval... 沒有在提供的
+代碼中看到 eval。等等，也許我漏看了。讓我再搜索一下... 沒有 eval。但用戶說第58行
+有 eval。第58行是 `return getHKTDate();`。這很奇怪。也許文件有更新但我沒看到？不
+，我讀取了整個文件。也許用戶指的是另一個文件或行號有誤。但我應該搜索所有文件中的
+eval。\n\n4. **heartbeat_recall.js:149** - AppleScript 注入。第149行是 `return w
+eekly.slice(-20);`，沒有 AppleScript。讓我搜索 AppleScript... 沒有在 heartbeat_r
+ecall.js 中看到。這也很奇怪。\n\n等等，也許我應該用 grep 搜索 eval 和 AppleScrip
+t 在整個項目中。\n\n5. **rapnet_sender.js** - 缺少錯誤處理。看 main() 函數，第14
+2行 `await sendDiscordWithRetry(errorMsg);` 沒有 try-catch，第162行 `await sendD
+iscordWithRetry(msg);` 也沒有 try-catch，第201行 `await sendDiscordWithRetry(msg
+);` 也沒有 try-catch。需要添加錯誤處理。\n\n6. **error_tracker.js** - 使用 unlin
+kSync。第131行 `fs.unlinkSync(tmpFile);` 和第332行 `baks.forEach(f => fs.unlinkS
+ync(path.join(activeDir, f)));`（這個在 issue_auto_followup.js 中）。在 error_tr
+acker.js 中，第131行有 unlinkSync。應該用 fs.rmSync 替代。\n\n7. **reminder_disc
+ussion_bot.js** - execSync 使用。第64行 `const result = execSync('remindctl toda
+y', {`。這個是安全的，因為命令是硬編碼的。但用戶要求修復 execSync 使用。也許應該
+改用 execFileSync 或更好的錯誤處理。或者也許用戶想完全移除 execSync。我會改用 ex
+ecFileSync。\n\n讓我先搜索 eval 和 AppleScript。",
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_RhHTJ0tncSbE0EkVjFdUxwIp',
+    function=FunctionBody(
+        name='Grep',
+        arguments='{"pattern": "eval\\\\s*\\\\(", "path": "/Users/ally/.openclaw
+/workspace/scripts", "output_mode": "content", "-n": true}'
+    ),
+    extras=None
+)
+ToolCall(
+    type='function',
+    id='tool_xtuvz7i6PgUCmpHYIM54RVXw',
+    function=FunctionBody(
+        name='Grep',
+        arguments='{"pattern": "AppleScript|osascript", "path": "/Users/ally/.op
+enclaw/workspace/scripts", "output_mode": "content", "-n":'
+    ),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_RhHTJ0tncSbE0EkVjFdUxwIp',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output="auto_audit.js:26: *   High-risk (待確認): eval(), hardcoded secr
+ets, missing error handling,\nauto_audit.js:394:    name: '使用 eval() 或 new Fu
+nction()',\nauto_audit.js:409:        details: `${found.length} 處使用 eval()/Fu
+nction()`,\npure_ai_audit.js:302:- eval() / Function() / setTimeout(code, ...) 
+等動態執行\nkimi_auto_audit.js.bak2:26: *   High-risk (待確認): eval(), hardcode
+d secrets, missing error handling,\nkimi_auto_audit.js.bak2:300:    name: '使用 
+eval() 或 new Function()',\nkimi_auto_audit.js.bak2:315:        details: `${foun
+d.length} 處使用 eval()/Function()`,\nkimi_auto_audit.js.bak:26: *   High-risk (
+待確認): eval(), hardcoded secrets, missing error handling,\nkimi_auto_audit.js.
+bak:300:    name: '使用 eval() 或 new Function()',\nkimi_auto_audit.js.bak:315: 
+      details: `${found.length} 處使用 eval()/Function()`,",
+        message='',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(arguments_part=' true}')
+ToolCall(
+    type='function',
+    id='tool_p16UZF8TJIrlFg0xACUx9uIy',
+    function=FunctionBody(name='Grep', arguments='{"pattern": "unlinkSync",'),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_xtuvz7i6PgUCmpHYIM54RVXw',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='streaming_archive.js.bak:125:    // Use memo CLI instead of Appl
+eScript\ntoken_archive.js:166:  // Use memo CLI instead of AppleScript\nquick_re
+covery.sh:10:LATEST_NOTE=$(osascript << \'EOF\'\nx_link_summarizer_detailed.js:1
+49:    runCommand(`osascript -e \'${script}\'`);\nx_link_summarizer_detailed.js:
+275:    runCommand(`osascript -e \'tell application "Google Chrome" to close eve
+ry window\'`, { silent: true });\napple_notes.js.bak:4: * 使用 AppleScript 寫入 
+Apple Notes（TEST 格式版）\napple_notes.js.bak:12:function escapeAppleScript(str
+) {\napple_notes.js.bak:23:      set targetFolder to folder "${escapeAppleScript
+(folder)}"\napple_notes.js.bak:25:      set targetFolder to make new folder with
+properties {name:"${escapeAppleScript(folder)}"}\napple_notes.js.bak:28:    set 
+noteTitle to "${escapeAppleScript(title)}"\napple_notes.js.bak:29:    set noteBo
+dy to "${escapeAppleScript(content)}"\napple_notes.js.bak:39:    const result = 
+execSync(`osascript "${tempFile}"`, { \napple_notes.js.bak:61:      set targetFo
+lder to folder "${escapeAppleScript(folder)}"\napple_notes.js.bak:64:        if 
+name of n is "${escapeAppleScript(title)}" then\napple_notes.js.bak:78:    const
+result = execSync(`osascript "${tempFile}"`, { \nx_link_summarizer_detailed.js.b
+ak:145:    runCommand(`osascript -e \'${script}\'`);\nx_link_summarizer_detailed
+.js.bak:252:    runCommand(`osascript -e \'tell application "Google Chrome" to c
+lose every window\'`, { silent: true });\narchive/system_health_check.js:46:  //
+寫入 AppleScript 檔案\narchive/system_health_check.js:62:    const result = exec
+Sync(`osascript "${scriptPath}"`, { encoding: \'utf8\', timeout: 10000 });\nmemo
+ry_maintenance.js:56:    const script = `osascript -e \'tell application "Notes"
+to name of notes in folder "Ally\'"\'"\'s Memories"\'`;\nmemory_maintenance.js:6
+9:    const script = `osascript -e \'tell application "Notes" to body of first n
+ote of folder "Ally\'"\'"\'s Memories"\'`;\nverify_backup.js.bak2:42: * Search f
+or notes - Simplified version without complex AppleScript records\nverify_backup
+.js.bak2:48:  // Simplified AppleScript that returns tab-delimited data\nverify_
+backup.js.bak2:72:    const output = execSync(`osascript "${tempFile}"`, { \nver
+ify_backup.js.bak2:84:        log(`⚠️ AppleScript error: ${line.substring(6)}`);\
+nstreaming_archive.js:129:    // Use memo CLI instead of AppleScript\nstreaming_
+archive.js.bak2:125:    // Use memo CLI instead of AppleScript\nsetup_qwen3_cale
+ndar.sh:9:# Create AppleScript to add calendar event\nsetup_qwen3_calendar.sh:10
+:osascript << \'EOF\'\napple_reminders_calendar.js.bak:56:        // Use AppleSc
+ript for calendar\napple_reminders_calendar.js.bak:86:        const result = exe
+cSync(`osascript ${scriptPath}`, { encoding: \'utf8\', timeout: 10000 }).trim();
+\napple_notes.js.bak2:4: * 使用 AppleScript 寫入 Apple Notes（TEST 格式版）\napp
+le_notes.js.bak2:12:function escapeAppleScript(str) {\napple_notes.js.bak2:23:  
+   set targetFolder to folder "${escapeAppleScript(folder)}"\napple_notes.js.bak
+2:25:      set targetFolder to make new folder with properties {name:"${escapeAp
+pleScript(folder)}"}\napple_notes.js.bak2:28:    set noteTitle to "${escapeApple
+Script(title)}"\napple_notes.js.bak2:29:    set noteBody to "${escapeAppleScript
+(content)}"\napple_notes.js.bak2:39:    const result = execSync(`osascript "${te
+mpFile}"`, { \napple_notes.js.bak2:61:      set targetFolder to folder "${escape
+AppleScript(folder)}"\napple_notes.js.bak2:64:        if name of n is "${escapeA
+ppleScript(title)}" then\napple_notes.js.bak2:78:    const result = execSync(`os
+ascript "${tempFile}"`, { \napple_notes.js:8: * 使用 AppleScript 寫入 Apple Note
+s（TEST 格式版）\napple_notes.js:16:function escapeAppleScript(str) {\napple_not
+es.js:39:      set targetFolder to folder "${escapeAppleScript(folder)}"\napple_
+notes.js:41:      set targetFolder to make new folder with properties {name:"${e
+scapeAppleScript(folder)}"}\napple_notes.js:44:    set noteTitle to "${escapeApp
+leScript(title)}"\napple_notes.js:45:    set noteBody to "${escapeAppleScript(co
+ntent)}"\napple_notes.js:55:    const result = execSync(`osascript "${tempFile}"
+`, { \napple_notes.js:77:      set targetFolder to folder "${escapeAppleScript(f
+older)}"\napple_notes.js:80:        if name of n is "${escapeAppleScript(title)}
+" then\napple_notes.js:94:    const result = execSync(`osascript "${tempFile}"`,
+{ \ntoken_archive.js.bak:162:  // Use memo CLI instead of AppleScript\nx_link_su
+mmarizer_detailed.js.bak2:145:    runCommand(`osascript -e \'${script}\'`);\nx_l
+ink_summarizer_detailed.js.bak2:252:    runCommand(`osascript -e \'tell applicat
+ion "Google Chrome" to close every window\'`, { silent: true });\nx_auto_monitor
+.sh:92:    osascript << EOF\nx_auto_monitor.sh:112:        osascript -e \'tell a
+pplication "Google Chrome" to close every window\' 2>/dev/null\nx_auto_monitor.s
+h:120:    osascript -e \'tell application "Google Chrome" to close every window\
+' 2>/dev/null\napple_reminders_calendar.js:76:        // Use AppleScript for cal
+endar\napple_reminders_calendar.js:113:          result = execSync(`osascript ${
+scriptPath}`, { encoding: \'utf8\', timeout: 10000 }).trim();\nverify_backup.js:
+62: * Search for notes - Simplified version without complex AppleScript records\
+nverify_backup.js:68:  // Simplified AppleScript that returns tab-delimited data
+\nverify_backup.js:92:    const output = execSync(`osascript "${tempFile}"`, { \
+nverify_backup.js:104:        log(`⚠️ AppleScript error: ${line.substring(6)}`);\
+nissue_reminders_sync.js.bak:105:      execSync(`osascript "${scriptFile}"`, { t
+imeout: 10000 });\nissue_reminders_sync.js.bak:133:      execSync(`osascript "${
+scriptFile}"`, { timeout: 10000 });\nissue_reminders_sync.js.bak:159:      const
+result = execSync(`osascript "${scriptFile}"`, { encoding: \'utf-8\', timeout: 1
+0000 });\ntoken_archive.js.bak2:162:  // Use memo CLI instead of AppleScript\nis
+sue_reminders_sync.js.bak2:105:      execSync(`osascript "${scriptFile}"`, { tim
+eout: 10000 });\nissue_reminders_sync.js.bak2:133:      execSync(`osascript "${s
+criptFile}"`, { timeout: 10000 });\nissue_reminders_sync.js.bak2:159:      const
+result = execSync(`osascript "${scriptFile}"`, { encoding: \'utf-8\', timeout: 1
+0000 });\nissue_reminders_sync.js:109:      execSync(`osascript "${scriptFile}"`
+, { timeout: 10000 });\nissue_reminders_sync.js:137:      execSync(`osascript "$
+{scriptFile}"`, { timeout: 10000 });\nissue_reminders_sync.js:163:      const re
+sult = execSync(`osascript "${scriptFile}"`, { encoding: \'utf-8\', timeout: 100
+00 });\nverify_backup.js.bak:42: * Search for notes - Simplified version without
+complex AppleScript records\nverify_backup.js.bak:48:  // Simplified AppleScript
+that returns tab-delimited data\nverify_backup.js.bak:72:    const output = exec
+Sync(`osascript "${tempFile}"`, { \nverify_backup.js.bak:84:        log(`⚠️ Apple
+Script error: ${line.substring(6)}`);\napple_reminders_calendar.js.bak2:56:     
+  // Use AppleScript for calendar\napple_reminders_calendar.js.bak2:86:        c
+onst result = execSync(`osascript ${scriptPath}`, { encoding: \'utf8\', timeout:
+10000 }).trim();',
+        message='',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part=' "path": "/Users/ally/.openclaw/workspace/scripts", "output_
+mode": "content", "-n": true}'
+)
+ToolCall(
+    type='function',
+    id='tool_pSpAW026UQZIYi4HmD1143Os',
+    function=FunctionBody(name='Grep', arguments='{"pattern": "execSync",'),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_p16UZF8TJIrlFg0xACUx9uIy',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output="memory_section_cleanup.js.bak:23:    try { if (fs.existsSync(tmp
+File)) fs.unlinkSync(tmpFile); } catch (_) {}\nissue_manager.js.bak:165:    fs.u
+nlinkSync(oldPath);\nissue_manager.js.bak:288:    fs.unlinkSync(filePath);\nauto
+_audit.js:467:        if (/fs\\.(readFileSync|writeFileSync|unlinkSync|mkdirSync
+)\\s*\\(/.test(line) && !/existsSync/.test(line)) {\nauto_audit.js:683:        /
+\\bfs\\.(readFileSync|writeFileSync|unlinkSync|mkdirSync|readdirSync|copyFileSyn
+c|renameSync|statSync|accessSync)\\s*\\(/,\ntask_router.js:23:    try { if (fs.e
+xistsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\nweekly_correction_lo
+op.js.bak:204:    rule = '必須使用 trash 命令移動文件到回收站，禁止使用 rm 或 un
+linkSync 直接刪除。';\nupdate_rapaport_universal.js:30:    try { if (fs.existsSy
+nc(tmpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\nsession_cleanup.js.bak2:173
+:        fs.unlinkSync(session.sessionFile);\nsession_cleanup.js.bak2:240:      
+fs.unlinkSync(f.path);\nx_link_summarizer_detailed.js.bak2:164:        fs.unlink
+Sync(CONFIG.SCREENSHOT_PATH);\nx_link_summarizer_detailed.js.bak2:261:        fs
+.unlinkSync(CONFIG.SCREENSHOT_PATH);\nmemory_archiver.js.bak2:96:          fs.un
+linkSync(src);\nx_link_summarizer_detailed.js:170:                fs.unlinkSync(
+CONFIG.SCREENSHOT_PATH);\nx_link_summarizer_detailed.js:286:                fs.u
+nlinkSync(CONFIG.SCREENSHOT_PATH);\nx_link_summarizer_detailed.js.bak:164:      
+ fs.unlinkSync(CONFIG.SCREENSHOT_PATH);\nx_link_summarizer_detailed.js.bak:261: 
+      fs.unlinkSync(CONFIG.SCREENSHOT_PATH);\nmemory_maintenance.js:23:    try {
+if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\nweekly_corre
+ction_loop.js.bak2:204:    rule = '必須使用 trash 命令移動文件到回收站，禁止使用
+rm 或 unlinkSync 直接刪除。';\nerror_logger.js:35:    try { if (fs.existsSync(tm
+pFile)) fs.unlinkSync(tmpFile); } catch (_) {}\nrapnet_sender.js:205:    // fs.u
+nlinkSync(DATA_FILE);\nissue_auto_followup.js.bak:314:            baks.forEach(f
+=> fs.unlinkSync(path.join(activeDir, f)));\nerror_tracker.js.bak2:117:    try {
+if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\nerror_tracke
+r.js:131:    try { if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch (
+_) {}\nmemory_archiver.js:100:          fs.unlinkSync(src);\nmemory_generator.js
+.bak:27:    try { if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch (_
+) {}\nmemory_generator.js.bak:458:      try { fs.unlinkSync(tempFile); } catch (
+_) {}\nweekly_correction_loop.js:221:    rule = '必須使用 trash 命令移動文件到回
+收站，禁止使用 rm 或 unlinkSync 直接刪除。';\nstock_updater.js:32:    try { if (
+fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\nmemory_archiver.
+js.bak:96:          fs.unlinkSync(src);\nrapnet_sender.js.bak2:197:    // fs.unl
+inkSync(DATA_FILE);\nsession_cleanup.js.bak:173:        fs.unlinkSync(session.se
+ssionFile);\nsession_cleanup.js.bak:240:      fs.unlinkSync(f.path);\narchive/er
+ror_autofix_backup.js:366:    //       fs.unlinkSync(filePath);\nmemory_generato
+r.js.bak2:27:    try { if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } cat
+ch (_) {}\nmemory_generator.js.bak2:458:      try { fs.unlinkSync(tempFile); } c
+atch (_) {}\nmemory_section_cleanup.js:27:    try { if (fs.existsSync(tmpFile)) 
+fs.unlinkSync(tmpFile); } catch (_) {}\nissue_auto_followup.js:332:            b
+aks.forEach(f => fs.unlinkSync(path.join(activeDir, f)));\nweekly_session_cleanu
+p.js.bak2:63:      fs.unlinkSync(filePath);\nweekly_session_cleanup.js.bak:63:  
+   fs.unlinkSync(filePath);\nl0_l1_verify.js:35:    try { if (fs.existsSync(tmpF
+ile)) fs.unlinkSync(tmpFile); } catch (_) {}\nmemory_section_cleanup.js.bak2:23:
+   try { if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\nkim
+i_auto_audit.js.bak2:377:        if (/fs\\.(readFileSync|writeFileSync|unlinkSyn
+c|mkdirSync)\\s*\\(/.test(line) && !/existsSync/.test(line)) {\nrapnet_sender.js
+.bak:197:    // fs.unlinkSync(DATA_FILE);\nissue_manager.js:169:    fs.unlinkSyn
+c(oldPath);\nissue_manager.js:326:    fs.unlinkSync(filePath);\nissue_reminders_
+sync.js.bak:106:      fs.unlinkSync(scriptFile);\nissue_reminders_sync.js.bak:10
+9:      fs.unlinkSync(scriptFile);\nissue_reminders_sync.js.bak:134:      fs.unl
+inkSync(scriptFile);\nissue_reminders_sync.js.bak:137:      fs.unlinkSync(script
+File);\nissue_reminders_sync.js.bak:160:      fs.unlinkSync(scriptFile);\nissue_
+reminders_sync.js.bak:163:      fs.unlinkSync(scriptFile);\napple_reminders_cale
+ndar.js:28:    try { if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch
+(_) {}\nerror_tracker.js.bak:117:    try { if (fs.existsSync(tmpFile)) fs.unlink
+Sync(tmpFile); } catch (_) {}\nverify_backup.js:24:    try { if (fs.existsSync(t
+mpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\nsession_cleanup.js:37:    try {
+if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\nsession_clea
+nup.js:199:        fs.unlinkSync(session.sessionFile);\nsession_cleanup.js:266: 
+    fs.unlinkSync(f.path);\nreport_generator.js.bak2:717:        fs.unlinkSync(f
+ilepath);\nissue_manager.js.bak2:165:    fs.unlinkSync(oldPath);\nissue_manager.
+js.bak2:288:    fs.unlinkSync(filePath);\nkimi_auto_audit.js.bak:377:        if 
+(/fs\\.(readFileSync|writeFileSync|unlinkSync|mkdirSync)\\s*\\(/.test(line) && !
+/existsSync/.test(line)) {\nreport_generator.js.bak:717:        fs.unlinkSync(fi
+lepath);\nissue_reminders_sync.js:110:      fs.unlinkSync(scriptFile);\nissue_re
+minders_sync.js:113:      fs.unlinkSync(scriptFile);\nissue_reminders_sync.js:13
+8:      fs.unlinkSync(scriptFile);\nissue_reminders_sync.js:141:      fs.unlinkS
+ync(scriptFile);\nissue_reminders_sync.js:164:      fs.unlinkSync(scriptFile);\n
+issue_reminders_sync.js:167:      fs.unlinkSync(scriptFile);\nissue_reminders_sy
+nc.js.bak2:106:      fs.unlinkSync(scriptFile);\nissue_reminders_sync.js.bak2:10
+9:      fs.unlinkSync(scriptFile);\nissue_reminders_sync.js.bak2:134:      fs.un
+linkSync(scriptFile);\nissue_reminders_sync.js.bak2:137:      fs.unlinkSync(scri
+ptFile);\nissue_reminders_sync.js.bak2:160:      fs.unlinkSync(scriptFile);\niss
+ue_reminders_sync.js.bak2:163:      fs.unlinkSync(scriptFile);\nissue_auto_follo
+wup.js.bak2:314:            baks.forEach(f => fs.unlinkSync(path.join(activeDir,
+f)));\nmemory_generator.js:31:    try { if (fs.existsSync(tmpFile)) fs.unlinkSyn
+c(tmpFile); } catch (_) {}\nmemory_generator.js:465:      try { fs.unlinkSync(te
+mpFile); } catch (_) {}\nweekly_session_cleanup.js:67:      fs.unlinkSync(filePa
+th);\nlib/state.js:14:    try { if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFil
+e); } catch (_) {}\nreport_generator.js:721:        fs.unlinkSync(filepath);\nli
+b/config.js:57:      try { if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); }
+catch (_) {}",
+        message='',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part=' "path": "/Users/ally/.openclaw/workspace/scripts", "output_
+mode": "content", "-n": true}'
+)
+StatusUpdate(
+    context_usage=0.15657424926757812,
+    context_tokens=41045,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=26965,
+        output=1361,
+        input_cache_read=14080,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-6bnZeWyuxdc5yr0eqsFhXO5h',
+    plan_mode=False,
+    mcp_status=None
+)
+ToolResult(
+    tool_call_id='tool_pSpAW026UQZIYi4HmD1143Os',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='orchestrator.js:18:const { execSync } = require(\'child_process\
+');\nauto-spawn.js:12:const { execSync } = require(\'child_process\');\nl0_l1_ve
+rify.js.bak:17:const { spawn, execSync } = require(\'child_process\');\nl0_l1_ve
+rify.js.bak:119:      execSync(`"${process.execPath}" "${scriptPath}" --level ${
+type} --date ${dateStr} --force`, {\nauto_issue_creator.js.bak:11:const { execSy
+nc } = require(\'child_process\');\nauto_issue_creator.js.bak:238:    execSync(c
+md, { encoding: \'utf-8\' });\nauto_issue_creator.js.bak:248:    const result = 
+execSync(cmd, { encoding: \'utf-8\' });\nauto_issue_creator.js.bak:407:    const
+{ execSync } = require(\'child_process\');\nauto_issue_creator.js.bak:410:    ex
+ecSync(`openclaw message send --channel discord -t "1473376125584670872" -m "${m
+essage}"`, { \nsystem_status_report.js:8:const { execSync } = require(\'child_pr
+ocess\');\ntask_router.js.bak2:10:const { execSync } = require(\'child_process\'
+);\ntask_router.js.bak2:215:          const output = execSync(`node ${script}`, 
+{\nweekly_correction_loop.js.bak2:15:const { execSync } = require(\'child_proces
+s\');\nweekly_correction_loop.js.bak2:292:    execSync(`openclaw message send --
+channel discord -t "1473376125584670872" -m "${message}"`, { \nauto-spawn.js.bak
+2:8:const { execSync } = require(\'child_process\');\nbrowser_autoclose.js.bak:8
+:const { execSync } = require(\'child_process\');\nbrowser_autoclose.js.bak:22: 
+    execSync(`openclaw browser stop --browser-profile ${profile}`, { \nerror_tra
+cker.js.bak2:7:const { execSync } = require(\'child_process\');\nsmoke_test.js:2
+2:const { execSync } = require(\'child_process\');\nsmoke_test.js:84:    const r
+esult1 = execSync(NODE + \' scripts/adaptive_timeout.js --check-l1\', {\nsmoke_t
+est.js:101:      const result2 = execSync(`${NODE} scripts/adaptive_timeout.js $
+{testFile}`, {\nsmoke_test.js:152:    const result = execSync(\'ISSUES_DIR=\' + 
+tempDir + \' \' + NODE + \' scripts/issue_manager.js list\', {\nsmoke_test.js:16
+5:      execSync(`ISSUES_DIR=${tempDir} ${NODE} scripts/issue_manager.js create 
+"${dummyTitle}" --priority P3 --due 2099-12-31`, {\nsmoke_test.js:201:    const 
+result = execSync([NODE, \'scripts/error_tracker.js\', \'list\'], {\nsmoke_test.
+js:222:      result = execSync([NODE, \'scripts/error_logger.js\', \'scan\', \'-
+-dry-run\'], {\nsmoke_test.js:228:      result = execSync([NODE, \'scripts/error
+_logger.js\', \'scan\'], {\nsmoke_test.js:257:    const result = execSync(NODE +
+\' scripts/memory_sanitizer.js --auto\', {\nsmoke_test.js:435:      execSync([\'
+openclaw\', \'message\', \'send\', \'--channel\', \'discord\', \'-t\', \'1473376
+125584670872\', \'-m\', sanitizedMsg], {\nreminder_discussion_bot.js.bak:8:const
+{ execSync } = require(\'child_process\');\nreminder_discussion_bot.js.bak:55:  
+     const result = execSync(\'remindctl today\', { \ntoken_archive.js:12:const 
+{ execSync } = require(\'child_process\');\ntoken_archive.js:191:    execSync(`o
+penclaw message send --channel whatsapp -t "+852XXXXXX" -m "${message}"`, { \n
+reminder_discussion_bot.js:12:const { execSync } = require(\'child_process\');\n
+reminder_discussion_bot.js:64:        const result = execSync(\'remindctl today\
+', { \nqwen3_single_module.js:14:const { execSync } = require(\'child_process\')
+;\nqwen3_single_module.js:209:    execSync(\'openclaw cron wake --text "Qwen3繼
+續學習下一模塊" --mode now\', { stdio: \'pipe\' });\nerror_tracker.js:11:const {
+execSync } = require(\'child_process\');\norchestrator.js.bak2:14:const { execSy
+nc } = require(\'child_process\');\nweekly_correction_loop.js:19:const { execSyn
+c } = require(\'child_process\');\nweekly_correction_loop.js:313:    execSync(`o
+penclaw message send --channel discord -t "1473376125584670872" -m "${message}"`
+, { \nrapnet_weekly.js.bak:8:const { execSync } = require(\'child_process\');\nr
+apnet_weekly.js.bak:44:    const openResult = execSync(\nrapnet_weekly.js.bak:63
+:    execSync(`openclaw browser focus ${targetId}`, { timeout: 10000 });\nrapnet
+_weekly.js.bak:71:    const snapshotResult = execSync(\nrapnet_weekly.js.bak:79:
+     execSync(`openclaw browser close ${targetId}`, { timeout: 10000 });\nrapnet
+_weekly.js.bak:90:        execSync(`openclaw browser close ${targetId}`, { timeo
+ut: 10000 });\nissue_manager.js.bak:18:const { execSync } = require(\'child_proc
+ess\');\nhealth_monitor.js.bak2:13:const { execSync } = require(\'child_process\
+');\nhealth_monitor.js.bak2:75:    const topOutput = execSync(\'top -l 1\').toSt
+ring();\nhealth_monitor.js.bak2:82:    const vmStatOutput = execSync(\'vm_stat\'
+).toString();\nhealth_monitor.js.bak2:94:      const pageSizeOutput = execSync(\
+'sysctl -n vm.pagesize 2>/dev/null || echo 16384\').toString().trim();\nhealth_m
+onitor.js.bak2:103:      const memSizeOutput = execSync(\'sysctl -n hw.memsize 2
+>/dev/null || echo 17179869184\').toString().trim();\nhealth_monitor.js.bak2:123
+:      cores = parseInt(execSync(\'sysctl -n hw.ncpu 2>/dev/null || echo 1\').to
+String().trim());\nhealth_monitor.js.bak2:174:    const output = execSync(\'df -
+h /\').toString().trim();\nhealth_monitor.js.bak2:268:    const output = execSyn
+c(\'openclaw cron list --json 2>/dev/null || echo "{}"\').toString();\nhealth_mo
+nitor.js.bak2:337:    const output = execSync(\'openclaw status 2>&1\').toString
+();\nhealth_monitor.js.bak2:363:    const output = execSync(\'openclaw status 2>
+&1\').toString();\nhealth_monitor.js.bak2:388:    const output = execSync(\'open
+claw status 2>&1\').toString();\nhealth_monitor.js.bak2:438:    const output = e
+xecSync(\'openclaw status 2>&1\').toString();\nhealth_monitor.js.bak2:524:    ex
+ecSync(cmd, { stdio: \'ignore\' });\nidex_fetcher_bot.js.bak:15:const { execSync
+} = require(\'child_process\');\nauto_audit.js:35:const { execSync } = require(\
+'child_process\');\nauto_audit.js:462:        // execSync 沒有被 try-catch 或 Pr
+omise error handling 包裹\nauto_audit.js:463:        if (/execSync\\s*\\(/.test(
+line)) {\nauto_audit.js:474:        details: `${found.length} 處 execSync/fs 操
+作缺少 try-catch 或 Promise error handling`,\nauto_audit.js:477:        suggesti
+on: \'為 execSync / fs 同步操作加上 try-catch，或為 Promise chain 加上 .catch() 
+/ .on("error")\',\nauto_audit.js:673:        /\\bexecSync\\s*\\(/,              
+              // shell 同步執行\nauto_audit.js:1219:      execSync(`node --check
+"${file}"`, { stdio: \'pipe\', timeout: 10000 });\nauto_audit.js:1231:      exec
+Sync(`bash -n "${file}"`, { stdio: \'pipe\', timeout: 10000 });\nauto_audit.js:1
+280:    const crontab = execSync(\'crontab -l 2>/dev/null\', { stdio: \'pipe\', 
+timeout: 5000 }).toString();\nauto_audit.js:1318:    const crontab2 = execSync(\
+'crontab -l 2>/dev/null\', { stdio: \'pipe\', timeout: 5000 }).toString();\nauto
+_audit.js:1536:        // 查找 git push 指令（在 exec/execSync/spawn 或直接 shel
+l 中）\nauto_audit.js:1665:  // 掃描 async function 入面使用 readFileSync / exec
+Sync / writeFileSync 等同步調用\nissue_auto_followup.js:20:const { execSync, exe
+cFileSync } = require(\'child_process\');\nx_link_summarizer_detailed.js.bak:20:
+const { execSync } = require(\'child_process\');\nx_link_summarizer_detailed.js.
+bak:87:        const output = execSync(command, {\nissue_manager.js:22:const { e
+xecSync } = require(\'child_process\');\nmemory_maintenance.js:9:const { execSyn
+c } = require(\'child_process\');\nmemory_maintenance.js:57:    const output = e
+xecSync(script, { encoding: \'utf8\' });\nmemory_maintenance.js:70:    const lat
+estContent = execSync(script, { encoding: \'utf8\' }).trim();\nmemory_maintenanc
+e.js:389:      execSync(\'node \' + path.join(__dirname, \'weekly_session_cleanu
+p.js\'), { encoding: \'utf8\' });\nmemory_maintenance.js:399:      execSync(\'no
+de \' + path.join(__dirname, \'weekly_correction_loop.js\'), { encoding: \'utf8\
+' });\ntask_router.js:14:const { execSync } = require(\'child_process\');\ntask_
+router.js:231:          const output = execSync(`node ${script}`, {\nrapnet_week
+ly_workflow.js.bak:10:const { execSync } = require(\'child_process\');\nrapnet_w
+eekly_workflow.js.bak:20:        const output = execSync(`node "${scriptPath}"`,
+{\nidex_fetcher_bot.js.bak2:15:const { execSync } = require(\'child_process\');\
+nmemory_distiller.js.bak2:12:const { execSync } = require(\'child_process\');\nm
+emory_distiller.js.bak2:194:      execSync(`trash "${src}"`, { stdio: \'ignore\'
+});\nerror_tracker.js.bak:7:const { execSync } = require(\'child_process\');\nhe
+alth_monitor.js.bak:13:const { execSync } = require(\'child_process\');\nhealth_
+monitor.js.bak:75:    const topOutput = execSync(\'top -l 1\').toString();\nheal
+th_monitor.js.bak:82:    const vmStatOutput = execSync(\'vm_stat\').toString();\
+nhealth_monitor.js.bak:94:      const pageSizeOutput = execSync(\'sysctl -n vm.p
+agesize 2>/dev/null || echo 16384\').toString().trim();\nhealth_monitor.js.bak:1
+03:      const memSizeOutput = execSync(\'sysctl -n hw.memsize 2>/dev/null || ec
+ho 17179869184\').toString().trim();\nhealth_monitor.js.bak:123:      cores = pa
+rseInt(execSync(\'sysctl -n hw.ncpu 2>/dev/null || echo 1\').toString().trim());
+\nhealth_monitor.js.bak:174:    const output = execSync(\'df -h /\').toString().
+trim();\nhealth_monitor.js.bak:268:    const output = execSync(\'openclaw cron l
+ist --json 2>/dev/null || echo "{}"\').toString();\nhealth_monitor.js.bak:337:  
+ const output = execSync(\'openclaw status 2>&1\').toString();\nhealth_monitor.j
+s.bak:363:    const output = execSync(\'openclaw status 2>&1\').toString();\nhea
+lth_monitor.js.bak:388:    const output = execSync(\'openclaw status 2>&1\').toS
+tring();\nhealth_monitor.js.bak:438:    const output = execSync(\'openclaw statu
+s 2>&1\').toString();\nhealth_monitor.js.bak:524:    execSync(cmd, { stdio: \'ig
+nore\' });\narchive/error_autofix_v2.js:11:const { execSync } = require(\'child_
+process\');\narchive/error_autofix_v2.js:28:    execSync(\'curl -s --max-time 2 
+http://localhost:11434/api/tags\', {encoding: \'utf8\', timeout: 3000});\narchiv
+e/error_autofix_v2.js:151:        execSync(`node ${CONFIG.workspace}/scripts/mem
+ory_sanitizer.js --auto`, {\narchive/error_autofix_v2.js:293:      execSync(`ope
+nclaw message send --channel discord --target channel:1473376125584670872 --mess
+age "${message.replace(/"/g, \'\\\\"\').replace(/\\n/g, \'\\\\n\')}"`, {\narchiv
+e/error_autofix_v2.js:309:    execSync(\'curl -s --max-time 2 http://localhost:1
+1434/api/tags\', {encoding: \'utf8\', timeout: 3000});\narchive/error_autofix_v2
+.js:317:  const { execSync } = require(\'child_process\');\narchive/error_autofi
+x_v2.js:341:    const result = execSync(`curl -s --max-time 5 -d \'${postData}\'
+http://localhost:11434/api/generate`, {\narchive/error_autofix_v2.js:441:      e
+xecSync(`openclaw message send --channel discord --target channel:14733761255846
+70872 --message "${message.replace(/"/g, \'\\\\"\')}"`, {\narchive/error_autofix
+_v2.js:496:        const cronCheck = execSync(`curl -s http://localhost:9090/cro
+n/jobs | grep -i "l1" | head -1`, { encoding: \'utf8\' });\nhealth_monitor.js:17
+:const { execSync } = require(\'child_process\');\nhealth_monitor.js:79:    cons
+t topOutput = execSync(\'top -l 1\').toString();\nhealth_monitor.js:86:    const
+vmStatOutput = execSync(\'vm_stat\').toString();\nhealth_monitor.js:98:      con
+st pageSizeOutput = execSync(\'sysctl -n vm.pagesize 2>/dev/null || echo 16384\'
+).toString().trim();\nhealth_monitor.js:107:      const memSizeOutput = execSync
+(\'sysctl -n hw.memsize 2>/dev/null || echo 17179869184\').toString().trim();\nh
+ealth_monitor.js:127:      cores = parseInt(execSync(\'sysctl -n hw.ncpu 2>/dev/
+null || echo 1\').toString().trim());\nhealth_monitor.js:178:    const output = 
+execSync(\'df -h /\').toString().trim();\nhealth_monitor.js:272:    const output
+= execSync(\'openclaw cron list --json 2>/dev/null || echo "{}"\').toString();\n
+health_monitor.js:341:    const output = execSync(\'openclaw status 2>&1\').toSt
+ring();\nhealth_monitor.js:367:    const output = execSync(\'openclaw status 2>&
+1\').toString();\nhealth_monitor.js:392:    const output = execSync(\'openclaw s
+tatus 2>&1\').toString();\nhealth_monitor.js:442:    const output = execSync(\'o
+penclaw status 2>&1\').toString();\nhealth_monitor.js:528:    execSync(cmd, { st
+dio: \'ignore\' });\nbrowser_autoclose.js:12:const { execSync } = require(\'chil
+d_process\');\nbrowser_autoclose.js:26:      execSync(`openclaw browser stop --b
+rowser-profile ${profile}`, { \nqwen3_single_module.js.bak2:10:const { execSync 
+} = require(\'child_process\');\nqwen3_single_module.js.bak2:150:    execSync(\'
+openclaw cron wake --text "Qwen3繼續學習下一模塊" --mode now\', { stdio: \'pipe\
+' });\nauto_issue_creator.js:15:const { execSync } = require(\'child_process\');
+\nauto_issue_creator.js:242:    execSync(cmd, { encoding: \'utf-8\' });\nauto_is
+sue_creator.js:252:    const result = execSync(cmd, { encoding: \'utf-8\' });\na
+uto_issue_creator.js:411:    const { execSync } = require(\'child_process\');\na
+uto_issue_creator.js:416:    execSync([\'openclaw\', \'message\', \'send\', \'--
+channel\', \'discord\', \'-t\', \'1473376125584670872\', \'-m\', sanitizedMsg], 
+{ \nreminder_discussion_bot.js.bak2:8:const { execSync } = require(\'child_proce
+ss\');\nreminder_discussion_bot.js.bak2:55:        const result = execSync(\'rem
+indctl today\', { \nupdate_rapaport_universal.js.bak:5:const { execSync } = requ
+ire(\'child_process\');\nupdate_rapaport_universal.js.bak:54:        const outpu
+t = execSync(`${pythonCmd} ${EXTRACT_SCRIPT} \'${pdfPath.replace(/\'/g, "\'\\\\\
+'\'")}\'`, {\nupdate_rapaport_universal.js.bak:100:        execSync(\'git add da
+ta.json\', { cwd: WORKSPACE });\nupdate_rapaport_universal.js.bak:101:        ex
+ecSync(\'git commit -m "Update Rapaport data"\', { cwd: WORKSPACE });\nupdate_ra
+paport_universal.js.bak:102:        execSync(\'git push origin master:main\', { 
+cwd: WORKSPACE });\nqwen3_single_module.js.bak:10:const { execSync } = require(\
+'child_process\');\nqwen3_single_module.js.bak:150:    execSync(\'openclaw cron 
+wake --text "Qwen3繼續學習下一模塊" --mode now\', { stdio: \'pipe\' });\napple_r
+eminders_calendar.js:14:const { execSync } = require(\'child_process\');\napple_
+reminders_calendar.js:49:        const result = execSync(\'remindctl today\', { 
+encoding: \'utf8\', timeout: 5000 }).trim();\napple_reminders_calendar.js:113:  
+       result = execSync(`osascript ${scriptPath}`, { encoding: \'utf8\', timeou
+t: 10000 }).trim();\nreminder_discussion.js.bak2:12:const { execSync } = require
+(\'child_process\');\nreminder_discussion.js.bak2:16:    const result = execSync
+(\'remindctl today\', { \nverify_backup.js:11:const { execSync } = require(\'chi
+ld_process\');\nverify_backup.js:92:    const output = execSync(`osascript "${te
+mpFile}"`, { \nverify_backup.js:96:    execSync(`trash "${tempFile}"`, { stdio: 
+\'ignore\' });\nverify_backup.js:119:    try { execSync(`trash "${tempFile}"`, {
+stdio: \'ignore\' }); } catch {}\narchive/memory_health.js:9:const { execSync } 
+= require(\'child_process\');\narchive/memory_health.js:22:  execSync(`${NODE} $
+{WS_PATH}/scripts/memory_sanitizer.js --auto`, {\narchive/memory_health.js:33:  
+execSync(`${NODE} ${WS_PATH}/scripts/error_autofix_v2.js`, {\nsession_cleanup.js
+:24:const { execSync } = require(\'child_process\');\nautoops/token_monitor.js:1
+2:const { execSync } = require(\'child_process\');\nautoops/token_monitor.js:25:
+   const result = execSync(\'openclaw sessions list --json 2>/dev/null || echo "
+{}"\', {\ntask_router.js.bak:10:const { execSync } = require(\'child_process\');
+\ntask_router.js.bak:215:          const output = execSync(`node ${script}`, {\n
+archive/update_stock_list.js:24:const { execSync } = require(\'child_process\');
+\narchive/update_stock_list.js:193:    execSync(`openclaw message send --channel
+discord -t "${CONFIG.discordChannel}" -m "${msg}"`, { stdio: \'pipe\' });\nissue
+_manager.js.bak2:18:const { execSync } = require(\'child_process\');\nsystem_sta
+tus_report.js.bak2:4:const { execSync } = require(\'child_process\');\ntoken_arc
+hive.js.bak2:8:const { execSync } = require(\'child_process\');\ntoken_archive.j
+s.bak2:187:    execSync(`openclaw message send --channel whatsapp -t "+852665041
+40" -m "${message}"`, { \nsystem_status_report.js.bak:4:const { execSync } = req
+uire(\'child_process\');\nsmoke_test.js.bak2:18:const { execSync } = require(\'c
+hild_process\');\nsmoke_test.js.bak2:80:    const result1 = execSync(NODE + \' s
+cripts/adaptive_timeout.js --check-l1\', {\nsmoke_test.js.bak2:97:      const re
+sult2 = execSync(`${NODE} scripts/adaptive_timeout.js ${testFile}`, {\nsmoke_tes
+t.js.bak2:136:    const result = execSync(\'ISSUES_DIR=\' + tempDir + \' \' + NO
+DE + \' scripts/issue_manager.js list\', {\nsmoke_test.js.bak2:149:      execSyn
+c(`ISSUES_DIR=${tempDir} ${NODE} scripts/issue_manager.js create "${dummyTitle}"
+--priority P3 --due 2099-12-31`, {\nsmoke_test.js.bak2:182:    const result = ex
+ecSync(NODE + \' scripts/error_tracker.js list 2>/dev/null || echo "No errors"\'
+, {\nsmoke_test.js.bak2:202:    const result = execSync(NODE + \' scripts/error_
+logger.js scan --dry-run 2>/dev/null || \' + NODE + \' scripts/error_logger.js s
+can\', {\nsmoke_test.js.bak2:231:    const result = execSync(NODE + \' scripts/m
+emory_sanitizer.js --auto\', {\nsmoke_test.js.bak2:407:      execSync(`openclaw 
+message send --channel discord --target channel:1473376125584670872 --message "$
+{message.replace(/"/g, \'\\\\"\')}"`, {\nautoops/daily_stock_monitor.js:13:const
+{ execSync } = require(\'child_process\');\nweekly_session_cleanup.js.bak:12:con
+st { execSync } = require(\'child_process\');\nweekly_session_cleanup.js.bak:23:
+ const output = execSync(\'openclaw sessions\', { encoding: \'utf8\' });\nidex_f
+etcher_bot.js:19:const { execSync } = require(\'child_process\');\nautoops/healt
+h_monitor.js:12:const { execSync } = require(\'child_process\');\nautoops/health
+_monitor.js:18:    const output = execSync(cmd, { encoding: \'utf8\', timeout: 5
+000 });\nsession_cleanup.js.bak:20:const { execSync } = require(\'child_process\
+');\nsmoke_test.js.bak:18:const { execSync } = require(\'child_process\');\nsmok
+e_test.js.bak:80:    const result1 = execSync(NODE + \' scripts/adaptive_timeout
+.js --check-l1\', {\nsmoke_test.js.bak:97:      const result2 = execSync(`${NODE
+} scripts/adaptive_timeout.js ${testFile}`, {\nsmoke_test.js.bak:136:    const r
+esult = execSync(\'ISSUES_DIR=\' + tempDir + \' \' + NODE + \' scripts/issue_man
+ager.js list\', {\nsmoke_test.js.bak:149:      execSync(`ISSUES_DIR=${tempDir} $
+{NODE} scripts/issue_manager.js create "${dummyTitle}" --priority P3 --due 2099-
+12-31`, {\nsmoke_test.js.bak:182:    const result = execSync(NODE + \' scripts/e
+rror_tracker.js list 2>/dev/null || echo "No errors"\', {\nsmoke_test.js.bak:202
+:    const result = execSync(NODE + \' scripts/error_logger.js scan --dry-run 2>
+/dev/null || \' + NODE + \' scripts/error_logger.js scan\', {\nsmoke_test.js.bak
+:231:    const result = execSync(NODE + \' scripts/memory_sanitizer.js --auto\',
+{\nsmoke_test.js.bak:407:      execSync(`openclaw message send --channel discord
+--target channel:1473376125584670872 --message "${message.replace(/"/g, \'\\\\"\
+')}"`, {\ntoken_archive.js.bak:8:const { execSync } = require(\'child_process\')
+;\ntoken_archive.js.bak:187:    execSync(`openclaw message send --channel whatsa
+pp -t "+852XXXXXX" -m "${message}"`, { \nauto_issue_creator.js.bak2:11:const {
+execSync } = require(\'child_process\');\nauto_issue_creator.js.bak2:238:    exe
+cSync(cmd, { encoding: \'utf-8\' });\nauto_issue_creator.js.bak2:248:    const r
+esult = execSync(cmd, { encoding: \'utf-8\' });\nauto_issue_creator.js.bak2:407:
+   const { execSync } = require(\'child_process\');\nauto_issue_creator.js.bak2:
+410:    execSync(`openclaw message send --channel discord -t "147337612558467087
+2" -m "${message}"`, { \narchive/health_api.js:16:const { execSync } = require(\
+'child_process\');\narchive/health_api.js:37:    const output = execSync(`node "
+${scriptPath}" --json`, { \nauto-spawn.js.bak:8:const { execSync } = require(\'c
+hild_process\');\narchive/integrate_stock.js:549:    require(\'child_process\').
+execSync(\'node scripts/merge_stock.js\', {\narchive/discord_stock_watcher.js:21
+:const { execSync } = require(\'child_process\');\narchive/discord_stock_watcher
+.js:68:    const result = execSync(\narchive/discord_stock_watcher.js:142:    ex
+ecSync(`node "${updateScript}" --quiet --discord`, {\narchive/discord_stock_watc
+her.js:158:    execSync(\narchive/discord_stock_watcher.js:173:      execSync(\n
+apple_reminders_calendar.js.bak:10:const { execSync } = require(\'child_process\
+');\napple_reminders_calendar.js.bak:29:        const result = execSync(\'remind
+ctl today\', { encoding: \'utf8\', timeout: 5000 }).trim();\napple_reminders_cal
+endar.js.bak:86:        const result = execSync(`osascript ${scriptPath}`, { enc
+oding: \'utf8\', timeout: 10000 }).trim();\narchive/cron_health_monitor.js:22:co
+nst { execSync } = require(\'child_process\');\narchive/cron_health_monitor.js:3
+3:    const result = execSync(\'openclaw cron list --json 2>/dev/null\', {\narch
+ive/cron_health_monitor.js:47:    const result = execSync(`openclaw cron runs ${
+jobId} --json 2>/dev/null`, {\narchive/cron_health_monitor.js:198:        execSy
+nc(`openclaw cron run ${health.jobId} 2>/dev/null`, {\nissue_reminders_sync.js.b
+ak:12:const { execSync } = require(\'child_process\');\nissue_reminders_sync.js.
+bak:105:      execSync(`osascript "${scriptFile}"`, { timeout: 10000 });\nissue_
+reminders_sync.js.bak:133:      execSync(`osascript "${scriptFile}"`, { timeout:
+10000 });\nissue_reminders_sync.js.bak:159:      const result = execSync(`osascr
+ipt "${scriptFile}"`, { encoding: \'utf-8\', timeout: 10000 });\nkimi_auto_audit
+.js.bak:35:const { execSync } = require(\'child_process\');\nkimi_auto_audit.js.
+bak:367:        // execSync 沒有被 try-catch 包裹\nkimi_auto_audit.js.bak:368:  
+     if (/execSync\\s*\\(/.test(line)) {\nkimi_auto_audit.js.bak:388:        det
+ails: `${found.length} 處 execSync/fs 操作缺少 try-catch`,\nkimi_auto_audit.js.b
+ak:391:        suggestion: \'為 execSync / fs 同步操作加上 try-catch\',\nkimi_au
+to_audit.js.bak:966:      execSync(`node --check "${file}"`, { stdio: \'pipe\', 
+timeout: 10000 });\nkimi_auto_audit.js.bak:978:      execSync(`bash -n "${file}"
+`, { stdio: \'pipe\', timeout: 10000 });\nkimi_auto_audit.js.bak:1027:    const 
+crontab = execSync(\'crontab -l 2>/dev/null\', { stdio: \'pipe\', timeout: 5000 
+}).toString();\nkimi_auto_audit.js.bak:1065:    const crontab2 = execSync(\'cron
+tab -l 2>/dev/null\', { stdio: \'pipe\', timeout: 5000 }).toString();\nkimi_auto
+_audit.js.bak:1283:        // 查找 git push 指令（在 exec/execSync/spawn 或直接 
+shell 中）\nkimi_auto_audit.js.bak:1412:  // 掃描 async function 入面使用 readFi
+leSync / execSync / writeFileSync 等同步調用\nl0_l1_verify.js:21:const { spawn, 
+execSync } = require(\'child_process\');\nl0_l1_verify.js:141:      execSync(`"$
+{process.execPath}" "${scriptPath}" --level ${type} --date ${dateStr} --force`, 
+{\nreminder_discussion.js.bak:12:const { execSync } = require(\'child_process\')
+;\nreminder_discussion.js.bak:16:    const result = execSync(\'remindctl today\'
+, { \narchive/system_health_check.js:18:const { execSync } = require(\'child_pro
+cess\');\narchive/system_health_check.js:62:    const result = execSync(`osascri
+pt "${scriptPath}"`, { encoding: \'utf8\', timeout: 10000 });\narchive/system_he
+alth_check.js:65:    execSync(`trash "${scriptPath}"`, { stdio: \'ignore\' });\n
+archive/system_health_check.js:73:      try { execSync(`trash "${scriptPath}"`, 
+{ stdio: \'ignore\' }); } catch {}\narchive/system_health_check.js:160:    const
+result = execSync(\'df -h / | tail -1\', { encoding: \'utf8\' });\narchive/syste
+m_health_check.js:184:    const result = execSync(\'vm_stat | head -10\', { enco
+ding: \'utf8\' });\narchive/error_recovery.js:22:const { execSync } = require(\'
+child_process\');\narchive/error_recovery.js:48:        const result = execSync(
+\'pgrep -f "openclaw" 2>/dev/null || echo ""\', { encoding: \'utf8\', timeout: 5
+000 });\narchive/error_recovery.js:54:        execSync(\'openclaw gateway start 
+2>/dev/null\', { encoding: \'utf8\', timeout: 15000 });\narchive/error_recovery.
+js:65:        const result = execSync("df -h / | tail -1 | awk \'{print $5}\'", 
+{ encoding: \'utf8\', timeout: 5000 });\narchive/error_recovery.js:73:        ex
+ecSync(\'find /tmp -name "*.tmp" -mtime +7 -delete 2>/dev/null || true\', { enco
+ding: \'utf8\', timeout: 10000 });\napple_notes.js.bak:7:const { execSync } = re
+quire(\'child_process\');\napple_notes.js.bak:39:    const result = execSync(`os
+ascript "${tempFile}"`, { \napple_notes.js.bak:44:    execSync(`trash "${tempFil
+e}"`, { stdio: \'ignore\' });\napple_notes.js.bak:49:    try { execSync(`trash "
+${tempFile}"`, { stdio: \'ignore\' }); } catch {}\napple_notes.js.bak:78:    con
+st result = execSync(`osascript "${tempFile}"`, { ',
+        message='Results truncated to 250 lines (total: 366). Use offset=250 to 
+see more.',
+        display=[],
+        extras=None
+    )
+)
+StepBegin(n=3)
+ThinkPart(
+    type='think',
+    think='讓我重新檢查 heartbeat_recall.js 的問題。用戶說第58行有 eval，第149行
+有 AppleScript 注入。但我讀取的文件中沒有這些。也許我應該再仔細看看 heartbeat_re
+call.js 的內容。\n\n等等，我讀取的 heartbeat_recall.js 有448行。讓我重新檢查第58
+行和第149行附近的內容。\n\n第58行：`return getHKTDate();`\n第149行：`return high
+lights.slice(-10);`\n\n沒有 eval 也沒有 AppleScript。但用戶明確說有這些問題。也
+許文件被修改過但我讀取的是舊版本？不，我直接讀取了文件。\n\n也許用戶的報告是基於
+一個靜態分析工具的輸出，而那個工具可能誤報了，或者行號對應的是一個不同的文件版本
+。但既然用戶要求修復，我應該：\n\n1. 對於 heartbeat_recall.js:58 eval - 我沒有找
+到 eval。也許用戶指的是 `new Date()` 或某種動態執行？不，第58行就是 `return getH
+KTDate();`。我會檢查是否有 `Function` 構造器或其他動態代碼執行。\n\n2. 對於 hear
+tbeat_recall.js:149 AppleScript 注入 - 第149行是 `return highlights.slice(-10);`
+。沒有 AppleScript。\n\n也許用戶搞錯了文件？讓我檢查 `x_link_summarizer_detailed
+.js`，它有 AppleScript 在第149行附近。但用戶明確說是 heartbeat_recall.js。\n\n我
+決定：\n- 對於 heartbeat_recall.js，我會搜索整個文件是否有任何 eval/Function/osa
+script。如果沒有，我就不改這個文件，但會在回覆中說明。\n- 但等等，也許我應該更仔
+細地檢查。讓我重新讀取 heartbeat_recall.js 的特定行。\n\n不，我已經讀取了整個文
+件。沒有 eval，沒有 AppleScript。\n\n也許用戶的問題列表是基於一個自動審計工具的
+輸出，而那個工具可能：\n1. 誤報了 heartbeat_recall.js\n2. 或者行號對應的是一個舊
+版本\n\n我應該按照實際代碼來修復。對於 heartbeat_recall.js，既然沒有 eval 和 App
+leScript，我就不改它。但我會在回覆中說明。\n\n等等，讓我再想想。也許用戶說的 "he
+artbeat_recall.js:58 - eval 使用" 是指某種隱式的 eval，比如 `JSON.parse` 不加 re
+viver？不，第33行有 `JSON.parse`。第58行沒有。\n\n也許用戶指的是 `memory_mainten
+ance.js` 或 `apple_notes.js`？不，用戶明確列出了文件名。\n\n我決定按照實際代碼進
+行修復。對於 heartbeat_recall.js，我會仔細檢查是否有任何潛在問題。如果沒有 eval 
+和 AppleScript，我就不強行修改。\n\n但讓我重新考慮 issue_auto_followup.js。用戶
+說 "getHKTDateTime() 在導入前被調用" 在第26-27行。但第26行就是導入。也許用戶的意
+思是 weekly_correction_loop.js 的問題（函數調用在導入前）也同樣存在於 issue_auto
+_followup.js？讓我檢查 issue_auto_followup.js 是否有在 require 之前調用 getHKTDa
+teTime。\n\n看 issue_auto_followup.js：\n- 第20行：`const { execSync, execFileSy
+nc } = require(\'child_process\');`\n- 第22行：`const { ISSUES_DIR, MEMORY_DIR, 
+WS, SCRIPTS_DIR } = require(\'./lib/config\');`\n- 第26行：`const { getHKTDate, 
+getHKTDateTime } = require(\'./lib/time\');`\n- 第27行：`const { createStateMana
+ger } = require(\'./lib/state\');`\n- 第28行：`const { load: loadState, save: sa
+veState } = createStateManager(FOLLOWUP_STATE);`\n\n所有 require 都在頂部。getHK
+TDateTime 第一次使用是在第410行的 main() 函數中。所以 issue_auto_followup.js 實
+際上沒有這個問題。\n\n也許用戶的報告是基於一個舊版本的文件？或者行號有誤？\n\n我
+決定：\n1. 修復 weekly_correction_loop.js - 把 require(\'./lib/time\') 移到頂部\
+n2. 對於 issue_auto_followup.js - 檢查是否有其他問題。也許用戶說的 "getHKTDateTi
+me() 在導入前被調用" 是指第410行在 main 裡面調用，但這不是問題。我會檢查是否有其
+他潛在問題。看起來 issue_auto_followup.js 的 tryAutoComplete 函數中第332行有 `fs
+.unlinkSync`，這也是一個安全問題。但用戶沒有提到這個。我應該只修復用戶提到的問題
+。\n\n3. heartbeat_recall.js - 沒有找到 eval 和 AppleScript。我會不改這個文件，
+但會在回覆中說明。\n\n等等，也許我應該檢查 `reminder_discussion_bot.js` 而不是 `
+reminder_discussion_bot.js.bak`。用戶說的是 `reminder_discussion_bot.js - execSy
+nc 使用`。我讀取的是 `reminder_discussion_bot.js`，它有116行，第12行 `const { ex
+ecSync } = require(\'child_process\');`，第64行 `const result = execSync(\'remin
+dctl today\', {`。這個需要修復。我會改用 `execFileSync(\'remindctl\', [\'today\'
+], ...)`。\n\n4. rapnet_sender.js - 缺少錯誤處理。我會在 main() 中的 await sendD
+iscordWithRetry 調用周圍添加 try-catch。\n\n5. error_tracker.js - 使用 unlinkSyn
+c。第131行。我會改用 `fs.rmSync(tmpFile)`。\n\n6. reminder_discussion_bot.js - e
+xecSync 使用。我會改用 execFileSync。\n\n但對於 heartbeat_recall.js，我真的找不
+到問題。讓我再搜索一次整個文件中的 eval 和 osascript。',
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_BJ4PMvi1K95w7djYXqE7oZV2',
+    function=FunctionBody(
+        name='Shell',
+        arguments='{"command": "grep -n \\"eval\\\\|osascript\\\\|AppleScript\\\
+\|new Function\\" /Users/ally/.openclaw/workspace/scripts/heartbeat_recall.js ||
+echo \\"No matches found\\""}'
+    ),
+    extras=None
+)
+ToolCall(
+    type='function',
+    id='tool_hphaLcSWfUhVIb6ZRrCV9hhM',
+    function=FunctionBody(name='Shell', arguments='{"command":'),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_BJ4PMvi1K95w7djYXqE7oZV2',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='No matches found\n',
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part=' "grep -n \\"getHKTDateTime\\\\|getHKTDate\\" /Users/ally/.o
+penclaw/workspace/scripts/issue_auto_followup.js | head -20"}'
+)
+ToolCall(
+    type='function',
+    id='tool_1RAJNDatSwUMY4Qjlm0dsPke',
+    function=FunctionBody(name='Shell', arguments='{"command": "'),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_hphaLcSWfUhVIb6ZRrCV9hhM',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output="26:const { getHKTDate, getHKTDateTime } = require('./lib/time');
+\n33:  const today = new Date(getHKTDate());\n143:      const today = getHKTDate
+();\n159:      const today = getHKTDate();\n373:              completedAt: getHK
+TDateTime(),\n410:  log(`執行時間: ${getHKTDateTime()}\\n`);\n",
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part='grep -n \\"require\\" /Users/ally/.openclaw/workspace/script
+s/issue_auto_followup.js | head -20"}'
+)
+StatusUpdate(
+    context_usage=0.20416259765625,
+    context_tokens=53520,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=12560,
+        output=1636,
+        input_cache_read=40960,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-rFe2ufDRGa5e5VqfywSreVjL',
+    plan_mode=False,
+    mcp_status=None
+)
+ToolResult(
+    tool_call_id='tool_1RAJNDatSwUMY4Qjlm0dsPke',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output="18:const fs = require('fs');\n19:const path = require('path');\n
+20:const { execSync, execFileSync } = require('child_process');\n22:const { ISSU
+ES_DIR, MEMORY_DIR, WS, SCRIPTS_DIR } = require('./lib/config');\n26:const { get
+HKTDate, getHKTDateTime } = require('./lib/time');\n27:const { createStateManage
+r } = require('./lib/state');\n447:if (require.main === module) {\n",
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+StepBegin(n=4)
+ThinkPart(
+    type='think',
+    think='好的，heartbeat_recall.js 確實沒有 eval 或 AppleScript。issue_auto_fo
+llowup.js 也確實沒有 getHKTDateTime() 在導入前被調用的問題。\n\n也許用戶的報告是
+基於舊版本的文件，或者行號有誤。但我應該按照實際代碼來修復。\n\n讓我重新考慮：也
+許用戶說的 "issue_auto_followup.js:26-27 - getHKTDateTime() 在導入前被調用" 實際
+上是指 weekly_correction_loop.js 的類似問題？不，用戶明確列出了兩個不同的文件。\
+n\n也許 issue_auto_followup.js 曾經有這個問題但已經被修復了？如果是這樣，我就不
+需要改它。\n\n但用戶說 "請直接修改呢啲檔案，修復每個問題"。如果 issue_auto_follo
+wup.js 和 heartbeat_recall.js 實際上沒有這些問題，我應該怎麼辦？\n\n我決定：\n1.
+修復 weekly_correction_loop.js - 確實有問題\n2. 對於 issue_auto_followup.js - 檢
+查是否有其他安全問題。也許用戶的報告有誤，但我會檢查整個文件是否有明顯問題。看起
+來第332行有 `fs.unlinkSync`，這是一個安全問題。但用戶沒有提到。我應該只修復用戶
+提到的問題。\n3. 對於 heartbeat_recall.js - 沒有 eval 和 AppleScript。我會不改這
+個文件。\n4. 修復 rapnet_sender.js\n5. 修復 error_tracker.js\n6. 修復 reminder_d
+iscussion_bot.js\n\n但等等，也許我應該檢查 `heartbeat_recall.js` 是否有其他版本
+，比如 `.bak` 文件？不，用戶明確說的是 `heartbeat_recall.js`。\n\n也許用戶的 "he
+artbeat_recall.js:58 - eval 使用" 是指 `JSON.parse` 可以被利用來進行原型鏈污染？
+不，這不是 eval。\n\n我決定按照實際代碼進行修復。對於沒有問題的文件，我會在回覆
+中說明。\n\n但讓我再想想 issue_auto_followup.js。用戶說 "getHKTDateTime() 在導入
+前被調用" 在第26-27行。但第26行就是導入。也許用戶的意思是 `createStateManager(FO
+LLOWUP_STATE)` 在第28行被調用，而 `createStateManager` 內部可能調用了 `getHKTDat
+eTime()`？讓我檢查 `./lib/state`。',
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_5yiTrXyLdV2e1b8RNNszfHzs',
+    function=FunctionBody(
+        name='ReadFile',
+        arguments='{"path": "lib/state.js"}'
+    ),
+    extras=None
+)
+ToolCall(
+    type='function',
+    id='tool_xKYcjIPbfNiCmoD9kRdrjNHI',
+    function=FunctionBody(
+        name='ReadFile',
+        arguments='{"path": "lib/time.js"}'
+    ),
+    extras=None
+)
+StatusUpdate(
+    context_usage=0.21140670776367188,
+    context_tokens=55419,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=1915,
+        output=678,
+        input_cache_read=53504,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-8rxSZCY4JMXo8w125UHHfwqO',
+    plan_mode=False,
+    mcp_status=None
+)
+ToolResult(
+    tool_call_id='tool_xKYcjIPbfNiCmoD9kRdrjNHI',
+    return_value=ToolOk(
+        is_error=False,
+        output="     1\t// scripts/lib/time.js\n     2\t// HKT 時間 helper - 統
+一時區處理\n     3\t// Created: 2026-03-30\n     4\t\n     5\tconst HOME = proce
+ss.env.HOME || '/tmp';\n     6\t\n     7\tfunction getHKTDate() {\n     8\t  ret
+urn new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Hong_Kong' });\n   
+ 9\t}\n    10\t\n    11\tfunction getHKTDateTime() {\n    12\t  return new Date(
+).toLocaleString('en-CA', { timeZone: 'Asia/Hong_Kong', hour12: false });\n    1
+3\t}\n    14\t\n    15\tfunction getHKTTime() {\n    16\t  return new Date().toL
+ocaleTimeString('en-CA', { timeZone: 'Asia/Hong_Kong', hour12: false });\n    17
+\t}\n    18\t\n    19\tmodule.exports = { getHKTDate, getHKTDateTime, getHKTTime
+};\n",
+        message='19 lines read from file starting from line 1. End of file reach
+ed.',
+        display=[],
+        extras=None
+    )
+)
+ToolResult(
+    tool_call_id='tool_5yiTrXyLdV2e1b8RNNszfHzs',
+    return_value=ToolOk(
+        is_error=False,
+        output="     1\t// scripts/lib/state.js\n     2\t// 共用 state managemen
+t + atomic write\n     3\t// Created: 2026-03-30\n     4\t\n     5\tconst fs = r
+equire('fs');\n     6\tconst path = require('path');\n     7\t\n     8\tfunction
+atomicWriteSync(filePath, data) {\n     9\t  const tmpFile = filePath + '.tmp';\
+n    10\t  try {\n    11\t    fs.writeFileSync(tmpFile, typeof data === 'string'
+? data : JSON.stringify(data, null, 2));\n    12\t    fs.renameSync(tmpFile, fil
+ePath);\n    13\t  } catch (err) {\n    14\t    try { if (fs.existsSync(tmpFile)
+) fs.unlinkSync(tmpFile); } catch (_) {}\n    15\t    throw err;\n    16\t  }\n 
+  17\t}\n    18\t\n    19\tfunction createStateManager(stateFile, defaultState) 
+{\n    20\t  const getDefault = () => {\n    21\t    if (defaultState === undefi
+ned) return {};\n    22\t    if (typeof defaultState === 'function') return defa
+ultState();\n    23\t    return JSON.parse(JSON.stringify(defaultState));\n    2
+4\t  };\n    25\t  return {\n    26\t    load: () => {\n    27\t      try {\n   
+28\t        return JSON.parse(fs.readFileSync(stateFile, 'utf8'));\n    29\t    
+ } catch { return getDefault(); }\n    30\t    },\n    31\t    save: (state) => 
+{\n    32\t      atomicWriteSync(stateFile, state);\n    33\t    }\n    34\t  };
+\n    35\t}\n    36\t\n    37\tmodule.exports = { atomicWriteSync, createStateMa
+nager };\n",
+        message='37 lines read from file starting from line 1. End of file reach
+ed.',
+        display=[],
+        extras=None
+    )
+)
+StepBegin(n=5)
+ThinkPart(
+    type='think',
+    think='好的，`lib/state.js` 的 `createStateManager` 不會調用 `getHKTDateTime
+`。所以 `issue_auto_followup.js` 確實沒有 "getHKTDateTime() 在導入前被調用" 的問
+題。\n\n也許用戶的報告是基於一個舊版本的 `issue_auto_followup.js`，其中 `getHKTD
+ateTime()` 可能在頂部被調用（比如類似 `weekly_correction_loop.js` 的 `log(\'=== 
+... \' + getHKTDateTime())`）。在當前版本中，這個問題已經不存在了。\n\n同樣，`he
+artbeat_recall.js` 也沒有 eval 和 AppleScript。\n\n我決定：\n1. 修復 `weekly_cor
+rection_loop.js` - 把 `require(\'./lib/time\')` 移到頂部\n2. 不修復 `issue_auto_
+followup.js` 的 "getHKTDateTime() 在導入前被調用" - 因為問題不存在\n3. 不修復 `h
+eartbeat_recall.js` 的 "eval" 和 "AppleScript 注入" - 因為問題不存在\n4. 修復 `r
+apnet_sender.js` - 添加錯誤處理\n5. 修復 `error_tracker.js` - 用 `fs.rmSync` 替
+代 `fs.unlinkSync`\n6. 修復 `reminder_discussion_bot.js` - 用 `execFileSync` 替
+代 `execSync`\n\n但等等，也許我應該檢查 `heartbeat_recall.js` 是否有其他潛在問題
+。用戶可能把文件名搞錯了。讓我檢查 `x_link_summarizer_detailed.js` 的第149行和第
+58行附近。\n\n`x_link_summarizer_detailed.js:149`：`runCommand(`osascript -e \'$
+{script}\'`);` - 這確實有 AppleScript 注入風險。\n`x_link_summarizer_detailed.js
+` 第58行附近... 讓我看看。\n\n但用戶明確說的是 `heartbeat_recall.js`。我應該按照
+用戶的指示來。\n\n不過，為了更負責任，我會在回覆中說明：對於 `issue_auto_followu
+p.js` 和 `heartbeat_recall.js`，我檢查後發現當前代碼中並沒有報告的問題（可能是舊
+版本的問題已經被修復，或者行號對應的是不同版本）。\n\n現在讓我開始修復。\n\n### 
+1. weekly_correction_loop.js\n把第157行的 `const { getHKTDate, getHKTDateTime } 
+= require(\'./lib/time\');` 移到頂部，比如第21行附近。\n\n### 4. rapnet_sender.j
+s\n在 main() 中，第142行和第162行、第201行的 `await sendDiscordWithRetry` 需要 t
+ry-catch。\n- 第142行已經有 try-catch\n- 第162行沒有 try-catch\n- 第201行沒有 tr
+y-catch\n\n我會給第162行和第201行加上 try-catch。\n\n### 5. error_tracker.js\n第
+131行：`fs.unlinkSync(tmpFile)` -> `fs.rmSync(tmpFile)`\n\n### 6. reminder_discu
+ssion_bot.js\n第12行：`const { execSync } = require(\'child_process\');` -> `con
+st { execFileSync } = require(\'child_process\');`\n第64行：`const result = exec
+Sync(\'remindctl today\', {` -> `const result = execFileSync(\'remindctl\', [\'t
+oday\'], {`\n\n讓我執行修改。',
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_lgrk8I38yx5LIxsET4bohJ29',
+    function=FunctionBody(
+        name='SetTodoList',
+        arguments='{"todos": [{"title":"修復 weekly_correction_loop.js - 函數調
+用在導入之前","status":"in_progress"},{"title":"修復 rapnet_sender.js - 缺少錯誤
+處理","status":"pending"},{"title":"修復 error_tracker.js - 使用 unlinkSync","st
+atus":"pending"},{"title":"修復 reminder_discussion_bot.js - execSync 使用","sta
+tus":"pending"},{"title":"驗證所有修改檔案的語法","status":"pending"}]}'
+    ),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_lgrk8I38yx5LIxsET4bohJ29',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='',
+        message='Todo list updated',
+        display=[
+            TodoDisplayBlock(
+                type='todo',
+                items=[
+                    TodoDisplayItem(
+                        title='修復 weekly_correction_loop.js - 函數調用在導入之
+前',
+                        status='in_progress'
+                    ),
+                    TodoDisplayItem(
+                        title='修復 rapnet_sender.js - 缺少錯誤處理',
+                        status='pending'
+                    ),
+                    TodoDisplayItem(
+                        title='修復 error_tracker.js - 使用 unlinkSync',
+                        status='pending'
+                    ),
+                    TodoDisplayItem(
+                        title='修復 reminder_discussion_bot.js - execSync 使用',
+                        status='pending'
+                    ),
+                    TodoDisplayItem(
+                        title='驗證所有修改檔案的語法',
+                        status='pending'
+                    )
+                ]
+            )
+        ],
+        extras=None
+    )
+)
+StatusUpdate(
+    context_usage=0.216644287109375,
+    context_tokens=56792,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=1496,
+        output=949,
+        input_cache_read=55296,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-0IKEHKnwL5dMOqaGVjNCAkyr',
+    plan_mode=False,
+    mcp_status=None
+)
+StepBegin(n=6)
+ThinkPart(
+    type='think',
+    think='讓我開始修改文件。\n\n1. weekly_correction_loop.js: 把 require(\'./li
+b/time\') 從第157行移到頂部（第21行附近），並刪除第157行。\n\n2. rapnet_sender.j
+s: 給第162行和第201行的 await sendDiscordWithRetry 加上 try-catch。\n\n3. error_
+tracker.js: 第131行 fs.unlinkSync(tmpFile) -> fs.rmSync(tmpFile)\n\n4. reminder_
+discussion_bot.js: execSync -> execFileSync\n\n我還需要檢查 issue_auto_followup.
+js。雖然當前代碼沒有 "getHKTDateTime() 在導入前被調用" 的問題，但用戶明確提到了
+。也許我應該再仔細看看... 不，我已經確認了，require 在第26行，調用都在函數內部。
+\n\n對於 heartbeat_recall.js，我也確認沒有 eval 和 AppleScript。\n\n我會進行修改
+，然後驗證語法。',
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_Fq1ENyyTklno77uTZ2z7xaxU',
+    function=FunctionBody(
+        name='StrReplaceFile',
+        arguments='{"path": "weekly_correction_loop.js", "edit": [{"old":"const 
+{ ERRORS_JSON, WS, MEMORY_DIR } = require(\'./lib/config\');\\nconst AGENTS_FILE
+= path.join(WS, \'AGENTS.md\');\\nconst STATE_FILE = path.join(MEMORY_DIR, \'cor
+rection-loop-state.json\');\\n\\n// HKT Date helper","new":"const { ERRORS_JSON,
+WS, MEMORY_DIR } = require(\'./lib/config\');\\nconst { getHKTDate, getHKTDateTi
+me } = require(\'./lib/time\');\\nconst AGENTS_FILE = path.join(WS, \'AGENTS.md\
+');\\nconst STATE_FILE = path.join(MEMORY_DIR, \'correction-loop-state.json\');\
+\n\\n// HKT Date helper"},{"old":"const { getHKTDate, getHKTDateTime } = require
+(\'./lib/time\');\\n\\n// Update state","new":"// Update state"}]}'
+    ),
+    extras=None
+)
+ToolCall(
+    type='function',
+    id='tool_nM1HfT83TKZVEab0H30CxqOP',
+    function=FunctionBody(
+        name='StrReplaceFile',
+        arguments='{"path": "rapnet_sender.js'
+    ),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_Fq1ENyyTklno77uTZ2z7xaxU',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='',
+        message='File successfully edited. Applied 2 edit(s) with 2 total replac
+ement(s).',
+        display=[
+            DiffDisplayBlock(
+                type='diff',
+                path='/Users/ally/.openclaw/workspace/scripts/weekly_correction_
+loop.js',
+                old_text="const { execSync } = require('child_process');\n\ncons
+t { ERRORS_JSON, WS, MEMORY_DIR } = require('./lib/config');\nconst AGENTS_FILE 
+= path.join(WS, 'AGENTS.md');\nconst STATE_FILE = path.join(MEMORY_DIR, 'correct
+ion-loop-state.json');\n",
+                new_text="const { execSync } = require('child_process');\n\ncons
+t { ERRORS_JSON, WS, MEMORY_DIR } = require('./lib/config');\nconst { getHKTDate
+, getHKTDateTime } = require('./lib/time');\nconst AGENTS_FILE = path.join(WS, '
+AGENTS.md');\nconst STATE_FILE = path.join(MEMORY_DIR, 'correction-loop-state.js
+on');\n",
+                old_start=19,
+                new_start=19,
+                is_summary=False
+            ),
+            DiffDisplayBlock(
+                type='diff',
+                path='/Users/ally/.openclaw/workspace/scripts/weekly_correction_
+loop.js',
+                old_text="\n// Apply rules immediately to AGENTS.md\nconst newly
+Applied = applyAutoRules(autoAppliedRules, AGENTS_FILE, state);\nconst { getHKTD
+ate, getHKTDateTime } = require('./lib/time');\n\n// Update state\nstate.lastRun
+= getHKTDateTime();\nstate.lastRunDate = todayDate;",
+                new_text='\n// Apply rules immediately to AGENTS.md\nconst newly
+Applied = applyAutoRules(autoAppliedRules, AGENTS_FILE, state);\n// Update state
+\nstate.lastRun = getHKTDateTime();\nstate.lastRunDate = todayDate;',
+                old_start=154,
+                new_start=155,
+                is_summary=False
+            )
+        ],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part='", "edit": [{"old":"        await sendDiscordWithRetry(error
+Msg);\\n        log(\'✅ 已發送錯誤通知\');\\n        process.exit(1);","new":" 
+      try {\\n            await sendDiscordWithRetry(errorMsg);\\n            lo
+g(\'✅ 已發送錯誤通知\');\\n        } catch (sendErr) {\\n            console.er
+ror(\'❌ Discord 錯誤通知發送失敗:\', sendErr.message);\\n        }\\n        pr
+ocess.exit(1);"},{"old":"        await sendDiscordWithRetry(msg);\\n        log(
+\'✅ 已發送通知\');\\n        return;","new":"        try {\\n            await 
+sendDiscordWithRetry(msg);\\n            log(\'✅ 已發送通知\');\\n        } cat
+ch (sendErr) {\\n            console.error(\'❌ Discord 通知發送失敗:\', sendErr
+.message);\\n        }\\n        return;"},{"old":"    await sendDiscordWithRetr
+y(msg);\\n    log(\'✅ 發送成功\');","new":"    try {\\n        await sendDiscor
+dWithRetry(msg);\\n        log(\'✅ 發送成功\');\\n    } catch (sendErr) {\\n   
+    console.error(\'❌ Discord 發送失敗:\', sendErr.message);\\n        process.
+exit(1);\\n    }"}]}'
+)
+ToolCall(
+    type='function',
+    id='tool_JaN4xs2fkEh2f9ffrr2jH1BG',
+    function=FunctionBody(
+        name='StrReplaceFile',
+        arguments='{"path": "error_tracker.js'
+    ),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_nM1HfT83TKZVEab0H30CxqOP',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='',
+        message='File successfully edited. Applied 3 edit(s) with 3 total replac
+ement(s).',
+        display=[
+            DiffDisplayBlock(
+                type='diff',
+                path='/Users/ally/.openclaw/workspace/scripts/rapnet_sender.js',
+                old_text="                        `⏰ 時間: ${now}\\n` +\n      
+                 `━━━━━━━━━━━━━━━━━━━━`;\n        \n        await sendDiscordWit
+hRetry(errorMsg);\n        log('✅ 已發送錯誤通知');\n        process.exit(1);\n
+   }\n    ",
+                new_text="                        `⏰ 時間: ${now}\\n` +\n      
+                 `━━━━━━━━━━━━━━━━━━━━`;\n        \n        try {\n            a
+wait sendDiscordWithRetry(errorMsg);\n            log('✅ 已發送錯誤通知');\n   
+    } catch (sendErr) {\n            console.error('❌ Discord 錯誤通知發送失敗:
+', sendErr.message);\n        }\n        process.exit(1);\n    }\n    ",
+                old_start=139,
+                new_start=139,
+                is_summary=False
+            ),
+            DiffDisplayBlock(
+                type='diff',
+                path='/Users/ally/.openclaw/workspace/scripts/rapnet_sender.js',
+                old_text="                   `⏰ 時間: ${now}\\n` +\n           
+       `━━━━━━━━━━━━━━━━━━━━`;\n        \n        await sendDiscordWithRetry(msg
+);\n        log('✅ 已發送通知');\n        return;\n    }\n    ",
+                new_text="                   `⏰ 時間: ${now}\\n` +\n           
+       `━━━━━━━━━━━━━━━━━━━━`;\n        \n        try {\n            await sendD
+iscordWithRetry(msg);\n            log('✅ 已發送通知');\n        } catch (sendE
+rr) {\n            console.error('❌ Discord 通知發送失敗:', sendErr.message);\n
+       }\n        return;\n    }\n    ",
+                old_start=159,
+                new_start=163,
+                is_summary=False
+            ),
+            DiffDisplayBlock(
+                type='diff',
+                path='/Users/ally/.openclaw/workspace/scripts/rapnet_sender.js',
+                old_text="    msg += `━━━━━━━━━━━━━━━━━━━━\\n`;\n    msg += `⚠️ 
+請檢查重要市場資訊（價格、趨勢、報告）`;\n    \n    await sendDiscordWithRetry(m
+sg);\n    log('✅ 發送成功');\n    \n    // 清理數據文件（可選）\n    // fs.unli
+nkSync(DATA_FILE);",
+                new_text="    msg += `━━━━━━━━━━━━━━━━━━━━\\n`;\n    msg += `⚠️ 
+請檢查重要市場資訊（價格、趨勢、報告）`;\n    \n    try {\n        await sendDis
+cordWithRetry(msg);\n        log('✅ 發送成功');\n    } catch (sendErr) {\n     
+  console.error('❌ Discord 發送失敗:', sendErr.message);\n        process.exit(
+1);\n    }\n    \n    // 清理數據文件（可選）\n    // fs.unlinkSync(DATA_FILE);"
+,
+                old_start=198,
+                new_start=206,
+                is_summary=False
+            )
+        ],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part='", "edit": {"old":"    try { if (fs.existsSync(tmpFile)) fs.
+unlinkSync(tmpFile); } catch (_) {}","new":"    try { if (fs.existsSync(tmpFile)
+) fs.rmSync(tmpFile); } catch (_) {}"}}'
+)
+ToolCall(
+    type='function',
+    id='tool_kws7j7CNMXy36fh56r8Zh7l0',
+    function=FunctionBody(name='StrReplaceFile', arguments='{"path":'),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_JaN4xs2fkEh2f9ffrr2jH1BG',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='',
+        message='File successfully edited. Applied 1 edit(s) with 1 total replac
+ement(s).',
+        display=[
+            DiffDisplayBlock(
+                type='diff',
+                path='/Users/ally/.openclaw/workspace/scripts/error_tracker.js',
+                old_text='  } catch (err) {\n    console.error(`⚠️ saveErrors fai
+led: ${err.message}`);\n    // 清理殘留 tmp 檔案（如果存在）\n    try { if (fs.e
+xistsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch (_) {}\n  }\n}\n',
+                new_text='  } catch (err) {\n    console.error(`⚠️ saveErrors fai
+led: ${err.message}`);\n    // 清理殘留 tmp 檔案（如果存在）\n    try { if (fs.e
+xistsSync(tmpFile)) fs.rmSync(tmpFile); } catch (_) {}\n  }\n}\n',
+                old_start=128,
+                new_start=128,
+                is_summary=False
+            )
+        ],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part=' "reminder_discussion_bot.js", "edit": [{"old":"const { exec
+Sync } = require(\'child_process\');","new":"const { execFileSync } = require(\'
+child_process\');"},{"old":"        const result = execSync(\'remindctl today\',
+{ \\n            encoding: \'utf8\', \\n            timeout: 10000 \\n        })
+;","new":"        const result = execFileSync(\'remindctl\', [\'today\'], { \\n 
+          encoding: \'utf8\', \\n            timeout: 10000 \\n        });"}]}'
+)
+StatusUpdate(
+    context_usage=0.220367431640625,
+    context_tokens=57768,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=1192,
+        output=957,
+        input_cache_read=56576,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-cb3j9qDK1ToFfF7PjfkYOQny',
+    plan_mode=False,
+    mcp_status=None
+)
+ToolResult(
+    tool_call_id='tool_kws7j7CNMXy36fh56r8Zh7l0',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='',
+        message='File successfully edited. Applied 2 edit(s) with 2 total replac
+ement(s).',
+        display=[
+            DiffDisplayBlock(
+                type='diff',
+                path='/Users/ally/.openclaw/workspace/scripts/reminder_discussio
+n_bot.js',
+                old_text=" * 直接讀取 OpenClaw Discord token 發送\n */\n\nconst 
+{ execSync } = require('child_process');\nconst https = require('https');\nconst
+fs = require('fs');\n",
+                new_text=" * 直接讀取 OpenClaw Discord token 發送\n */\n\nconst 
+{ execFileSync } = require('child_process');\nconst https = require('https');\nc
+onst fs = require('fs');\n",
+                old_start=9,
+                new_start=9,
+                is_summary=False
+            ),
+            DiffDisplayBlock(
+                type='diff',
+                path='/Users/ally/.openclaw/workspace/scripts/reminder_discussio
+n_bot.js',
+                old_text="\nfunction getTodayReminders() {\n    try {\n        c
+onst result = execSync('remindctl today', { \n            encoding: 'utf8', \n  
+         timeout: 10000 \n        });",
+                new_text="\nfunction getTodayReminders() {\n    try {\n        c
+onst result = execFileSync('remindctl', ['today'], { \n            encoding: 'ut
+f8', \n            timeout: 10000 \n        });",
+                old_start=61,
+                new_start=61,
+                is_summary=False
+            )
+        ],
+        extras=None
+    )
+)
+StepBegin(n=7)
+ThinkPart(
+    type='think',
+    think='修改已完成。現在需要驗證所有修改檔案的語法。我會用 `node --check` 來
+驗證每個修改過的 JavaScript 文件。\n\n修改過的文件：\n1. weekly_correction_loop.
+js\n2. rapnet_sender.js\n3. error_tracker.js\n4. reminder_discussion_bot.js\n\n
+我還應該檢查 issue_auto_followup.js 和 heartbeat_recall.js 的語法，雖然我沒有修
+改它們（因為當前代碼中沒有用戶報告的問題），但用戶要求驗證所有修改檔案。既然我沒
+有修改它們，我就不需要驗證它們的語法變化。但我會在回覆中說明。\n\n讓我驗證修改過
+的4個文件。',
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_F26CBGlA81kFBg6SIB6fukfg',
+    function=FunctionBody(
+        name='Shell',
+        arguments='{"command": "cd /Users/ally/.openclaw/workspace/scripts && no
+de --check weekly_correction_loop.js && echo \\"weekly_correction_loop.js OK\\""
+}'
+    ),
+    extras=None
+)
+ToolCall(
+    type='function',
+    id='tool_wPnpSXgJIWASwHg7fwr2hdNW',
+    function=FunctionBody(name='Shell', arguments='{"command": "cd /'),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_F26CBGlA81kFBg6SIB6fukfg',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='weekly_correction_loop.js OK\n',
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part='Users/ally/.openclaw/workspace/scripts && node --check rapne
+t_sender.js && echo \\"rapnet_sender.js OK\\""}'
+)
+ToolCall(
+    type='function',
+    id='tool_KeqhoO5dy8j0NDrvCA2Oe2yi',
+    function=FunctionBody(name='Shell', arguments='{"command":'),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_wPnpSXgJIWASwHg7fwr2hdNW',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='rapnet_sender.js OK\n',
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part=' "cd /Users/ally/.openclaw/workspace/scripts && node --check
+error_tracker.js && echo \\"error_tracker.js OK\\""}'
+)
+ToolCall(
+    type='function',
+    id='tool_kjcyQe9IsIFCtLQaMwtK5yGl',
+    function=FunctionBody(name='Shell', arguments='{"command": "cd /'),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_KeqhoO5dy8j0NDrvCA2Oe2yi',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='error_tracker.js OK\n',
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+ToolCallPart(
+    arguments_part='Users/ally/.openclaw/workspace/scripts && node --check remin
+der_discussion_bot.js && echo \\"reminder_discussion_bot.js OK\\""}'
+)
+StatusUpdate(
+    context_usage=0.22458267211914062,
+    context_tokens=58873,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=1273,
+        output=364,
+        input_cache_read=57600,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-oD2u8k4SKSFHHtS8zyEbbgrc',
+    plan_mode=False,
+    mcp_status=None
+)
+ToolResult(
+    tool_call_id='tool_kjcyQe9IsIFCtLQaMwtK5yGl',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='reminder_discussion_bot.js OK\n',
+        message='Command executed successfully.',
+        display=[],
+        extras=None
+    )
+)
+StepBegin(n=8)
+ThinkPart(
+    type='think',
+    think='所有修改過的文件語法都驗證通過了。讓我更新 todo list 並給用戶一個完整
+的回覆。\n\n關於 issue_auto_followup.js 和 heartbeat_recall.js：\n- issue_auto_f
+ollowup.js: 當前代碼中 `getHKTDateTime` 的 require 在第26行，所有調用都在函數內
+部，沒有「在導入前被調用」的問題。\n- heartbeat_recall.js: 當前代碼中沒有 eval 
+使用，也沒有 AppleScript/osascript 調用。\n\n我應該在回覆中說明這兩個文件我檢查
+後發現問題不存在（可能是舊版本已修復或行號對應不同版本），所以沒有進行修改。\n\n
+但等等，用戶說 "請直接修改呢啲檔案，修復每個問題"。如果我不修改這兩個文件，用戶
+可能會不滿意。但我確實檢查了，問題不存在。強行修改沒有問題的代碼是不對的。\n\n我
+會誠實地報告：\n- 已修復：weekly_correction_loop.js, rapnet_sender.js, error_tra
+cker.js, reminder_discussion_bot.js\n- 檢查後發現當前代碼中問題已不存在：issue_a
+uto_followup.js, heartbeat_recall.js\n\n讓我更新 todo list。',
+    encrypted=None
+)
+ToolCall(
+    type='function',
+    id='tool_XGbrpbFbhGqBNXPGcQh183j7',
+    function=FunctionBody(
+        name='SetTodoList',
+        arguments='{"todos": [{"title":"修復 weekly_correction_loop.js - 函數調
+用在導入之前","status":"done"},{"title":"修復 rapnet_sender.js - 缺少錯誤處理","
+status":"done"},{"title":"修復 error_tracker.js - 使用 unlinkSync","status":"don
+e"},{"title":"修復 reminder_discussion_bot.js - execSync 使用","status":"done"},
+{"title":"驗證所有修改檔案的語法","status":"done"}]}'
+    ),
+    extras=None
+)
+ToolResult(
+    tool_call_id='tool_XGbrpbFbhGqBNXPGcQh183j7',
+    return_value=ToolReturnValue(
+        is_error=False,
+        output='',
+        message='Todo list updated',
+        display=[
+            TodoDisplayBlock(
+                type='todo',
+                items=[
+                    TodoDisplayItem(
+                        title='修復 weekly_correction_loop.js - 函數調用在導入之
+前',
+                        status='done'
+                    ),
+                    TodoDisplayItem(
+                        title='修復 rapnet_sender.js - 缺少錯誤處理',
+                        status='done'
+                    ),
+                    TodoDisplayItem(
+                        title='修復 error_tracker.js - 使用 unlinkSync',
+                        status='done'
+                    ),
+                    TodoDisplayItem(
+                        title='修復 reminder_discussion_bot.js - execSync 使用',
+                        status='done'
+                    ),
+                    TodoDisplayItem(
+                        title='驗證所有修改檔案的語法',
+                        status='done'
+                    )
+                ]
+            )
+        ],
+        extras=None
+    )
+)
+StatusUpdate(
+    context_usage=0.22641754150390625,
+    context_tokens=59354,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=730,
+        output=452,
+        input_cache_read=58624,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-yKOPdoTP6ksRaWE5WyZSwa9Q',
+    plan_mode=False,
+    mcp_status=None
+)
+StepBegin(n=9)
+ThinkPart(
+    type='think',
+    think='用戶要求修復 High 和 Medium 安全問題。我已經修復了4個文件，並驗證了語
+法。對於另外2個文件（issue_auto_followup.js 和 heartbeat_recall.js），我檢查後發
+現當前代碼中並沒有用戶報告的問題。\n\n我應該給用戶一個清晰的總結，說明我做了什麼
+修改，以及為什麼有兩個文件沒有修改。\n\n讓我組織回覆：\n1. 已修復的問題\n2. 檢查
+後發現問題不存在的文件\n3. 語法驗證結果\n\n用戶用粵語提問（"請直接修改呢啲檔案"
+），我應該用粵語/中文回覆。',
+    encrypted=None
+)
+TextPart(
+    type='text',
+    text="已修復以下檔案並驗證語法：\n\n### ✅ 已修復\n\n| 問題 | 檔案 | 修復內
+容 |\n|------|------|----------|\n| **High 1** | `weekly_correction_loop.js` | 
+將 `require('./lib/time')` 從第 157 行移到頂部（第 22 行），確保 `getHKTDate()` 
+/ `getHKTDateTime()` 在調用前已導入 |\n| **Medium 5** | `rapnet_sender.js` | 為 
+`sendDiscordWithRetry()` 的 3 處調用補上 `try-catch`，避免未處理的 Promise rejec
+tion |\n| **Medium 6** | `error_tracker.js` | 將 `fs.unlinkSync(tmpFile)` 替換為
+`fs.rmSync(tmpFile)` |\n| **Medium 7** | `reminder_discussion_bot.js` | 將 `exec
+Sync('remindctl today', ...)` 替換為 `execFileSync('remindctl', ['today'], ...)`
+，避免 shell 注入風險 |\n\n### ⚠️ 檢查後發現問題已不存在\n\n| 問題 | 檔案 | 說明 
+|\n|------|------|------|\n| **High 2** | `issue_auto_followup.js` | 當前代碼中 
+`getHKTDateTime` 的 `require('./lib/time')` 已在第 26 行，所有調用都在函數內部，
+並無「導入前被調用」的情況 |\n| **High 3 & 4** | `heartbeat_recall.js` | 搜尋整
+個檔案後，**沒有發現** `eval()`、`new Function()`、`osascript` 或 `AppleScript` 
+的使用。第 58 行為 `return getHKTDate();`，第 149 行為 `return highlights.slice(
+-10);` |\n\n### ✅ 語法驗證結果\n\n全部修改過的檔案已通過 `node --check`：\n- `w
+eekly_correction_loop.js` ✓\n- `rapnet_sender.js` ✓\n- `error_tracker.js` ✓\n- `
+reminder_discussion_bot.js` ✓\n\n如果你認為 `issue_auto_followup.js` 或 `heartbe
+at_recall.js` 仍有問題，可能係舊版本／不同行號對應，歡迎提供具體代碼片段我再跟進
+。"
+)
+StatusUpdate(
+    context_usage=0.22824478149414062,
+    context_tokens=59833,
+    max_context_tokens=262144,
+    token_usage=TokenUsage(
+        input_other=697,
+        output=761,
+        input_cache_read=59136,
+        input_cache_creation=0
+    ),
+    message_id='chatcmpl-2VSCa4UVyN3XKtmHwyIEPBYK',
+    plan_mode=False,
+    mcp_status=None
+)
+TurnEnd()

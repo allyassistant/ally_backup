@@ -1,0 +1,11 @@
+# L0 Abstract - 2026-02-24
+
+## Today's Key Topics
+• **Stock List 更新**：處理咗 `Stock_List(02-24-26).xlsx`，發現filename pattern問題（underscore vs space），最終成功merge 1171粒鑽石（+14粒新鑽石）
+• **Template 清理**：幫手清咗 `Stock list Template.xlsx`，移除晒data rows，只保留header，方便Josh填寫新資料
+• **Stock List 教學**：答咗點整stock list，包括點用template、填咩field、save啲咩filename
+• **Excel處理**：處理咗WhatsApp傳來嘅Excel file
+
+---
+*Last updated: 2026-02-25 00:05*
+*Source: memory/2026-02-24-0852.md*

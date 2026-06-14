@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "source": "git",
+  "spec": "git:https://github.com/DenisSergeevitch/agents-best-practices.git",
+  "slug": "agents-best-practices",
+  "installedAt": 1780404947124,
+  "git": {
+    "url": "https://github.com/DenisSergeevitch/agents-best-practices.git",
+    "commit": "b1c95103262bcc7aa2d0a8b295a1ffbc3694a256",
+    "resolvedAt": "2026-06-02T12:55:47.101Z"
+  }
+}

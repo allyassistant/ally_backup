@@ -1,0 +1,8 @@
+[
+  {
+    "icon": "📊",
+    "title": "Error Count Anomaly",
+    "message": "Active errors: 47 (baseline 22.2 ±11.49)",
+    "detail": "2.2σ above normal"
+  }
+]

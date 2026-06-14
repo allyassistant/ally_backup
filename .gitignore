@@ -1,0 +1,10 @@
+# Sensitive files - never commit these
+openclaw.json
+*.json.backup
+*.backup
+SECURITY_AUDIT_REPORT.md
+QUICK_FIX_CHECKLIST.md
+
+# Node modules (if needed)
+node_modules/
+.worktrees/

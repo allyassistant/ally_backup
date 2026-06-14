@@ -1,0 +1,2047 @@
+{
+  "timestamp": "2026-06-14T02:00:09.632Z",
+  "timestampHKT": "2026-06-14, 10:00:09",
+  "mode": "fix",
+  "summary": {
+    "filesScanned": 50,
+    "filesWithIssues": 27,
+    "lowRiskFixed": 1,
+    "lowRiskTotal": 17,
+    "highRiskTotal": 22,
+    "errorsUnresolved": 56,
+    "errorsRecurring": 0,
+    "systemAuditIssues": 155
+  },
+  "fixed": [
+    {
+      "file": "scripts/skill_reviewer_bot.js",
+      "fixed": 1,
+      "details": [
+        "✅ fs.*Sync / execSync 自動加 try-catch"
+      ]
+    }
+  ],
+  "highRisk": [
+    {
+      "id": "HR-001",
+      "file": "scripts/connection_surface.js",
+      "rule": "duplicate-load-save-state",
+      "name": "重複 loadState/saveState 定義",
+      "category": "code-duplication",
+      "details": "L35: 本地定義 loadState，應使用 lib/state.js\n    L46: 本地定義 saveState，應使用 lib/state.js",
+      "lines": [
+        35,
+        46
+      ],
+      "severity": "high",
+      "suggestion": "刪除本地定義，改為 require('./lib/state')"
+    },
+    {
+      "id": "HR-002",
+      "file": "scripts/test_junk_pause.js",
+      "rule": "missing-atomic-write",
+      "name": "檔案寫入缺少 atomic write 保護",
+      "category": "logic",
+      "details": "L126: fs.writeFileSync(PAUSE_FILE, JSON.stringify(expiredPause, nu\n    L127: fs.writeFileSync(JUNK_RATE_FILE, entries2.map(e => JSON.stri",
+      "lines": [
+        126,
+        127
+      ],
+      "severity": "medium",
+      "suggestion": "重要檔案寫入應使用 atomic write（先寫 .tmp 再 rename）防止 crash 時據據損壞"
+    },
+    {
+      "id": "HR-003",
+      "file": "scripts/skill_reviewer.js",
+      "rule": "todo-fixme",
+      "name": "未完成的 TODO/FIXME",
+      "category": "maintenance",
+      "details": "L732: - For any shell command in the workflow steps (e.g., \\`openclaw xxx\\`, \\`node sc",
+      "lines": [
+        732
+      ],
+      "severity": "low",
+      "suggestion": "清理 TODO/FIXME 標記"
+    },
+    {
+      "id": "HR-004",
+      "file": "scripts/daily_synthesis.js",
+      "rule": "todo-fixme",
+      "name": "未完成的 TODO/FIXME",
+      "category": "maintenance",
+      "details": "L566: ## 明日TODO",
+      "lines": [
+        566
+      ],
+      "severity": "low",
+      "suggestion": "清理 TODO/FIXME 標記"
+    },
+    {
+      "id": "HR-005",
+      "file": "scripts/daily_synthesis.js",
+      "rule": "duplicate-hkt-date-helper",
+      "name": "重複 HKT 時間 Helper 定義",
+      "category": "code-duplication",
+      "details": "L145: 本地定義 getHKTDate，應使用 lib/time.js",
+      "lines": [
+        145
+      ],
+      "severity": "high",
+      "suggestion": "刪除本地定義，改為 require('./lib/time')"
+    },
+    {
+      "id": "HR-006",
+      "file": "scripts/daily_synthesis.js",
+      "rule": "duplicate-load-save-state",
+      "name": "重複 loadState/saveState 定義",
+      "category": "code-duplication",
+      "details": "L321: 本地定義 loadState，應使用 lib/state.js\n    L331: 本地定義 saveState，應使用 lib/state.js",
+      "lines": [
+        321,
+        331
+      ],
+      "severity": "high",
+      "suggestion": "刪除本地定義，改為 require('./lib/state')"
+    },
+    {
+      "id": "HR-007",
+      "file": "scripts/failover_detector.sh",
+      "rule": "magic-string-in-function",
+      "name": "Function 內 hardcoded 魔術據值/字串",
+      "category": "logic",
+      "details": "L40: PEER_IP=\"${PEER_IP:-[TAILSCALE_ALLY_IP]}\"\n    L46: PEER_IP=\"${PEER_IP:-[TAILSCALE_BLISS_IP]}\"",
+      "lines": [
+        40,
+        46
+      ],
+      "severity": "warning",
+      "suggestion": "魔術據值/字串應提升到 CONFIG 區域作為常量"
+    },
+    {
+      "id": "HR-008",
+      "file": "scripts/ai_hot_push.js",
+      "rule": "missing-atomic-write",
+      "name": "檔案寫入缺少 atomic write 保護",
+      "category": "logic",
+      "details": "L319: fs.writeFileSync(SEEN_FILE, JSON.stringify({ guids: trimmed ",
+      "lines": [
+        319
+      ],
+      "severity": "medium",
+      "suggestion": "重要檔案寫入應使用 atomic write（先寫 .tmp 再 rename）防止 crash 時據據損壞"
+    },
+    {
+      "id": "HR-009",
+      "file": "scripts/code_quality_manager.js",
+      "rule": "missing-atomic-write",
+      "name": "檔案寫入缺少 atomic write 保護",
+      "category": "logic",
+      "details": "L1061: fs.writeFileSync(flagFile, JSON.stringify(calledData, null, ",
+      "lines": [
+        1061
+      ],
+      "severity": "medium",
+      "suggestion": "重要檔案寫入應使用 atomic write（先寫 .tmp 再 rename）防止 crash 時據據損壞"
+    },
+    {
+      "id": "HR-010",
+      "file": "scripts/knowledge_ingester.js",
+      "rule": "missing-atomic-write",
+      "name": "檔案寫入缺少 atomic write 保護",
+      "category": "logic",
+      "details": "L577: fs.writeFileSync(memoryPath, existing + entry);\n    L579: fs.writeFileSync(memoryPath, header + entry);",
+      "lines": [
+        577,
+        579
+      ],
+      "severity": "medium",
+      "suggestion": "重要檔案寫入應使用 atomic write（先寫 .tmp 再 rename）防止 crash 時據據損壞"
+    },
+    {
+      "id": "HR-011",
+      "file": "scripts/error_auto_issue.js",
+      "rule": "duplicate-load-save-state",
+      "name": "重複 loadState/saveState 定義",
+      "category": "code-duplication",
+      "details": "L106: 本地定義 loadState，應使用 lib/state.js\n    L122: 本地定義 saveState，應使用 lib/state.js",
+      "lines": [
+        106,
+        122
+      ],
+      "severity": "high",
+      "suggestion": "刪除本地定義，改為 require('./lib/state')"
+    },
+    {
+      "id": "HR-012",
+      "file": "scripts/cron_health_triage.js",
+      "rule": "duplicate-load-save-state",
+      "name": "重複 loadState/saveState 定義",
+      "category": "code-duplication",
+      "details": "L62: 本地定義 loadState，應使用 lib/state.js\n    L79: 本地定義 saveState，應使用 lib/state.js",
+      "lines": [
+        62,
+        79
+      ],
+      "severity": "high",
+      "suggestion": "刪除本地定義，改為 require('./lib/state')"
+    },
+    {
+      "id": "HR-013",
+      "file": "scripts/anomaly_proactive_push.js",
+      "rule": "duplicate-load-save-state",
+      "name": "重複 loadState/saveState 定義",
+      "category": "code-duplication",
+      "details": "L90: 本地定義 loadState，應使用 lib/state.js\n    L106: 本地定義 saveState，應使用 lib/state.js",
+      "lines": [
+        90,
+        106
+      ],
+      "severity": "high",
+      "suggestion": "刪除本地定義，改為 require('./lib/state')"
+    },
+    {
+      "id": "HR-014",
+      "file": "scripts/lib/system_check_generator.js",
+      "rule": "missing-atomic-write",
+      "name": "檔案寫入缺少 atomic write 保護",
+      "category": "logic",
+      "details": "L796: fs.writeFileSync(statePath, JSON.stringify(state, null, 2));",
+      "lines": [
+        796
+      ],
+      "severity": "medium",
+      "suggestion": "重要檔案寫入應使用 atomic write（先寫 .tmp 再 rename）防止 crash 時據據損壞"
+    },
+    {
+      "id": "HR-015",
+      "file": "scripts/lib/system_check_templates.js",
+      "rule": "duplicate-hkt-date-helper",
+      "name": "重複 HKT 時間 Helper 定義",
+      "category": "code-duplication",
+      "details": "L319: 本地定義 getHKTTime，應使用 lib/time.js",
+      "lines": [
+        319
+      ],
+      "severity": "high",
+      "suggestion": "刪除本地定義，改為 require('./lib/time')"
+    },
+    {
+      "id": "HR-016",
+      "file": "scripts/weekly_correction_loop.js",
+      "rule": "missing-atomic-write",
+      "name": "檔案寫入缺少 atomic write 保護",
+      "category": "logic",
+      "details": "L483: fs.writeFileSync(proposalFile, proposal, 'utf8');\n    L1147: fs.writeFileSync(skillFilePath, content, 'utf8');\n    L1290: fs.writeFileSync(skillFile, newContent, 'utf8');",
+      "lines": [
+        483,
+        1147,
+        1290
+      ],
+      "severity": "medium",
+      "suggestion": "重要檔案寫入應使用 atomic write（先寫 .tmp 再 rename）防止 crash 時據據損壞"
+    },
+    {
+      "id": "HR-017",
+      "file": "scripts/daily_summary_bot.js",
+      "rule": "todo-fixme",
+      "name": "未完成的 TODO/FIXME",
+      "category": "maintenance",
+      "details": "L259: const planKeywords = ['計劃', 'plan', '聽日', '明天', '下次', 'todo', '跟進', 'follow'];",
+      "lines": [
+        259
+      ],
+      "severity": "low",
+      "suggestion": "清理 TODO/FIXME 標記"
+    },
+    {
+      "id": "HR-018",
+      "file": "scripts/memory_generator.js",
+      "rule": "inconsistent-return-value",
+      "name": "條件分支中返回值不一致",
+      "category": "reliability",
+      "details": "L446: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L447: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L448: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L450: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L451: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L453: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L455: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L456: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L457: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L460: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)\n    L462: isNoiseLine() — if block 內 return true (L444 亦有 return true，語義可能不一致)",
+      "lines": [
+        446,
+        447,
+        448,
+        450,
+        451,
+        453,
+        455,
+        456,
+        457,
+        460,
+        462
+      ],
+      "severity": "high",
+      "suggestion": "確保不同條件分支的返回值能區分「成功」與「跳過」，建議返回 { success, skipped, reason } 或用不同值"
+    },
+    {
+      "id": "HR-019",
+      "file": "scripts/lib/disk_guard.js",
+      "rule": "missing-atomic-write",
+      "name": "檔案寫入缺少 atomic write 保護",
+      "category": "logic",
+      "details": "L56: () => writeFileSync(filepath, data, options),",
+      "lines": [
+        56
+      ],
+      "severity": "medium",
+      "suggestion": "重要檔案寫入應使用 atomic write（先寫 .tmp 再 rename）防止 crash 時據據損壞"
+    },
+    {
+      "id": "HR-020",
+      "file": "scripts/lib/qualitative_signals.js",
+      "rule": "todo-fixme",
+      "name": "未完成的 TODO/FIXME",
+      "category": "maintenance",
+      "details": "L40: /\\b(?:the\\s+trick|hack|shortcut|pro\\s+tip|here'?s\\s+how)\\b/i,",
+      "lines": [
+        40
+      ],
+      "severity": "low",
+      "suggestion": "清理 TODO/FIXME 標記"
+    },
+    {
+      "id": "HR-021",
+      "file": "scripts/lib/umbrella_consolidation.js",
+      "rule": "missing-atomic-write",
+      "name": "檔案寫入缺少 atomic write 保護",
+      "category": "logic",
+      "details": "L505: fs.writeFileSync(filepath, yamlLines.join('\\n'), 'utf8');",
+      "lines": [
+        505
+      ],
+      "severity": "medium",
+      "suggestion": "重要檔案寫入應使用 atomic write（先寫 .tmp 再 rename）防止 crash 時據據損壞"
+    },
+    {
+      "id": "HR-022",
+      "file": "scripts/rapnet_sender.js",
+      "rule": "missing-atomic-write",
+      "name": "檔案寫入缺少 atomic write 保護",
+      "category": "logic",
+      "details": "L100: fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2))",
+      "lines": [
+        100
+      ],
+      "severity": "medium",
+      "suggestion": "重要檔案寫入應使用 atomic write（先寫 .tmp 再 rename）防止 crash 時據據損壞"
+    }
+  ],
+  "errors": {
+    "recentNew": [],
+    "recurring": []
+  },
+  "errorAnalysis": {
+    "totalAnalyzed": 66,
+    "types": [
+      {
+        "type": "Rate Limit",
+        "occurrences": 23,
+        "totalCount": 29,
+        "unresolvedCount": 16,
+        "recentCount": 0,
+        "rootCause": "API 調用頻率超過限制（429 Too Many Requests），常見於密集 cron job 或 burst 請求",
+        "fixSuggestion": "增加請求間隔、實現 exponential backoff、或減少 cron 頻率",
+        "needsHuman": false,
+        "humanReason": null,
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42mdw1puf",
+            "problem": "Rate limit exceeded",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mq5p42mb5h4gi",
+            "problem": "429 Too Many Requests",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261l1626r",
+            "problem": "429 Too Many Requests",
+            "date": "2026-06-05",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Timeout Error",
+        "occurrences": 12,
+        "totalCount": 15,
+        "unresolvedCount": 11,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42mcuq9ut",
+            "problem": "Connection timeout",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261mnbsl7",
+            "problem": "Connection timeout",
+            "date": "2026-06-05",
+            "count": 1
+          },
+          {
+            "id": "mpx7pos8ksm2w",
+            "problem": "Connection timeout",
+            "date": "2026-06-03",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Cron Error",
+        "occurrences": 9,
+        "totalCount": 11,
+        "unresolvedCount": 9,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq6lij5zmdv08",
+            "problem": "[2026-06-09T12:01:01.017Z] Unknown error",
+            "date": "2026-06-09",
+            "count": 1
+          },
+          {
+            "id": "mq5p42lkhy6jz",
+            "problem": "[2026-06-07T19:42:18.736Z] ⚠️ ⏰ Cron failed",
+            "date": "2026-06-09",
+            "count": 1
+          },
+          {
+            "id": "mq5p42ljjuy0g",
+            "problem": "[2026-06-08T02:00:00.028Z] LLM request failed.",
+            "date": "2026-06-09",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Cron Timeout",
+        "occurrences": 6,
+        "totalCount": 8,
+        "unresolvedCount": 6,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42mcoln4d",
+            "problem": "Cron job timed out",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261j2ql3a",
+            "problem": "Cron job timed out",
+            "date": "2026-06-05",
+            "count": 1
+          },
+          {
+            "id": "mpx7pos80qh8f",
+            "problem": "Cron job timed out",
+            "date": "2026-06-03",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Auth Error",
+        "occurrences": 5,
+        "totalCount": 7,
+        "unresolvedCount": 4,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42mf7edzh",
+            "problem": "Invalid API key",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mq5p42meofi0s",
+            "problem": "401 Authentication failed",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261oiwlsv",
+            "problem": "Invalid API key",
+            "date": "2026-06-05",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "MiniMax Error",
+        "occurrences": 3,
+        "totalCount": 5,
+        "unresolvedCount": 3,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42md9pru1",
+            "problem": "MiniMax API error",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261nw02r0",
+            "problem": "MiniMax API error",
+            "date": "2026-06-05",
+            "count": 1
+          },
+          {
+            "id": "mpumibag76l1s",
+            "problem": "MiniMax API error",
+            "date": "2026-06-01",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "type": "DNS Error",
+        "occurrences": 4,
+        "totalCount": 4,
+        "unresolvedCount": 4,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mpzv261n31zke",
+            "problem": "DNS lookup failed (ENOTFOUND)",
+            "date": "2026-06-05",
+            "count": 1
+          },
+          {
+            "id": "mpk7bxmmrc54g",
+            "problem": "DNS lookup failed (ENOTFOUND)",
+            "date": "2026-05-25",
+            "count": 1
+          },
+          {
+            "id": "mphcg6yojiq0l",
+            "problem": "DNS lookup failed (ENOTFOUND)",
+            "date": "2026-05-23",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "API Aborted",
+        "occurrences": 1,
+        "totalCount": 2,
+        "unresolvedCount": 1,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42maji5w9",
+            "problem": "Request aborted",
+            "date": "2026-06-09",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "type": "Kimi Error",
+        "occurrences": 1,
+        "totalCount": 1,
+        "unresolvedCount": 1,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mpzv261obh4bl",
+            "problem": "Kimi API error",
+            "date": "2026-06-05",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Manual",
+        "occurrences": 1,
+        "totalCount": 1,
+        "unresolvedCount": 1,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mo2ncyfcxs43m",
+            "problem": "記住上次merge_stock.js崩潰係因為OOM",
+            "date": "2026-04-17",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Code Quality / Pipeline Bug",
+        "occurrences": 1,
+        "totalCount": 1,
+        "unresolvedCount": 0,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "skill_stub_symlinks_p0_20260608",
+            "problem": "skill_reviewer_bot.js promoted 2 truncated/stub SKILL.md files to active skills/ symlinks, causing b",
+            "date": "2026-06-08",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "needsHumanIntervention": [
+      {
+        "type": "Cron Error",
+        "occurrences": 9,
+        "totalCount": 11,
+        "unresolvedCount": 9,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq6lij5zmdv08",
+            "problem": "[2026-06-09T12:01:01.017Z] Unknown error",
+            "date": "2026-06-09",
+            "count": 1
+          },
+          {
+            "id": "mq5p42lkhy6jz",
+            "problem": "[2026-06-07T19:42:18.736Z] ⚠️ ⏰ Cron failed",
+            "date": "2026-06-09",
+            "count": 1
+          },
+          {
+            "id": "mq5p42ljjuy0g",
+            "problem": "[2026-06-08T02:00:00.028Z] LLM request failed.",
+            "date": "2026-06-09",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Auth Error",
+        "occurrences": 5,
+        "totalCount": 7,
+        "unresolvedCount": 4,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42mf7edzh",
+            "problem": "Invalid API key",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mq5p42meofi0s",
+            "problem": "401 Authentication failed",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261oiwlsv",
+            "problem": "Invalid API key",
+            "date": "2026-06-05",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "MiniMax Error",
+        "occurrences": 3,
+        "totalCount": 5,
+        "unresolvedCount": 3,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42md9pru1",
+            "problem": "MiniMax API error",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261nw02r0",
+            "problem": "MiniMax API error",
+            "date": "2026-06-05",
+            "count": 1
+          },
+          {
+            "id": "mpumibag76l1s",
+            "problem": "MiniMax API error",
+            "date": "2026-06-01",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "type": "Timeout Error",
+        "occurrences": 12,
+        "totalCount": 15,
+        "unresolvedCount": 11,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42mcuq9ut",
+            "problem": "Connection timeout",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261mnbsl7",
+            "problem": "Connection timeout",
+            "date": "2026-06-05",
+            "count": 1
+          },
+          {
+            "id": "mpx7pos8ksm2w",
+            "problem": "Connection timeout",
+            "date": "2026-06-03",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Cron Timeout",
+        "occurrences": 6,
+        "totalCount": 8,
+        "unresolvedCount": 6,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42mcoln4d",
+            "problem": "Cron job timed out",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261j2ql3a",
+            "problem": "Cron job timed out",
+            "date": "2026-06-05",
+            "count": 1
+          },
+          {
+            "id": "mpx7pos80qh8f",
+            "problem": "Cron job timed out",
+            "date": "2026-06-03",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "API Aborted",
+        "occurrences": 1,
+        "totalCount": 2,
+        "unresolvedCount": 1,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42maji5w9",
+            "problem": "Request aborted",
+            "date": "2026-06-09",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "type": "Kimi Error",
+        "occurrences": 1,
+        "totalCount": 1,
+        "unresolvedCount": 1,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mpzv261obh4bl",
+            "problem": "Kimi API error",
+            "date": "2026-06-05",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "DNS Error",
+        "occurrences": 4,
+        "totalCount": 4,
+        "unresolvedCount": 4,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mpzv261n31zke",
+            "problem": "DNS lookup failed (ENOTFOUND)",
+            "date": "2026-06-05",
+            "count": 1
+          },
+          {
+            "id": "mpk7bxmmrc54g",
+            "problem": "DNS lookup failed (ENOTFOUND)",
+            "date": "2026-05-25",
+            "count": 1
+          },
+          {
+            "id": "mphcg6yojiq0l",
+            "problem": "DNS lookup failed (ENOTFOUND)",
+            "date": "2026-05-23",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Manual",
+        "occurrences": 1,
+        "totalCount": 1,
+        "unresolvedCount": 1,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mo2ncyfcxs43m",
+            "problem": "記住上次merge_stock.js崩潰係因為OOM",
+            "date": "2026-04-17",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "type": "Code Quality / Pipeline Bug",
+        "occurrences": 1,
+        "totalCount": 1,
+        "unresolvedCount": 0,
+        "recentCount": 0,
+        "rootCause": "未知錯誤類型 — 需要進一步調查",
+        "fixSuggestion": "檢查 error log 中的完整錯誤訊息，手動分析根本原因",
+        "needsHuman": true,
+        "humanReason": "未有已知的自動化解法",
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "skill_stub_symlinks_p0_20260608",
+            "problem": "skill_reviewer_bot.js promoted 2 truncated/stub SKILL.md files to active skills/ symlinks, causing b",
+            "date": "2026-06-08",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "autoResolvable": [
+      {
+        "type": "Rate Limit",
+        "occurrences": 23,
+        "totalCount": 29,
+        "unresolvedCount": 16,
+        "recentCount": 0,
+        "rootCause": "API 調用頻率超過限制（429 Too Many Requests），常見於密集 cron job 或 burst 請求",
+        "fixSuggestion": "增加請求間隔、實現 exponential backoff、或減少 cron 頻率",
+        "needsHuman": false,
+        "humanReason": null,
+        "trend": "stable",
+        "sampleErrors": [
+          {
+            "id": "mq5p42mdw1puf",
+            "problem": "Rate limit exceeded",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mq5p42mb5h4gi",
+            "problem": "429 Too Many Requests",
+            "date": "2026-06-09",
+            "count": 2
+          },
+          {
+            "id": "mpzv261l1626r",
+            "problem": "429 Too Many Requests",
+            "date": "2026-06-05",
+            "count": 1
+          }
+        ]
+      }
+    ]
+  },
+  "systemAudit": {
+    "syntax": {
+      "js": [
+        {
+          "file": "scripts/migrate_skills_to_subdir.js",
+          "error": "/Users/ally/.openclaw/workspace/scripts/migrate_skills_to_subdir.js:248\n      } catch (e) {\n        ^^^^^"
+        },
+        {
+          "file": "scripts/test_skill_reviewer_safety_nets.js",
+          "error": "/Users/ally/.openclaw/workspace/scripts/test_skill_reviewer_safety_nets.js:200\n    const r3 = runHelperScript(`\n"
+        }
+      ],
+      "sh": [],
+      "ok": false
+    },
+    "hardcodedPaths": [
+      {
+        "file": "scripts/backup_to_bliss.sh",
+        "line": 18,
+        "content": "BACKUP_BASE=\"/Users/bliss/Backups/Ally\"",
+        "suggestion": "改用 $HOME"
+      }
+    ],
+    "cronMissing": [
+      {
+        "cronLine": "*/1 * * * * export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && export NODE_ID=ally && ~/.openclaw/workspace/scripts/failover_detector.sh >>",
+        "scriptPath": "/.openclaw/workspace/scripts/failover_detector.sh",
+        "expandedPath": "/.openclaw/workspace/scripts/failover_detector.sh"
+      },
+      {
+        "cronLine": "* * * * * export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && cd /Users/ally/.openclaw/workspace && node scripts/mail_monitor.js >> /tmp/mai",
+        "scriptPath": "/mail_monitor.js",
+        "expandedPath": "/mail_monitor.js"
+      },
+      {
+        "cronLine": "*/5 * * * * export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && cd /Users/ally/.openclaw/workspace && bash scripts/deepseek_health_monitor.s",
+        "scriptPath": "/deepseek_health_monitor.sh",
+        "expandedPath": "/deepseek_health_monitor.sh"
+      }
+    ],
+    "cronHardcodedDates": [],
+    "danglingRefs": [
+      {
+        "file": "scripts/_legacy/audit_scanner.js",
+        "line": 19,
+        "ref": "auto-spawn.js",
+        "resolvedPath": "scripts/auto-spawn.js (不存在)"
+      },
+      {
+        "file": "scripts/_legacy/audit_scanner.js",
+        "line": 20,
+        "ref": "auto_issue_creator.js",
+        "resolvedPath": "scripts/auto_issue_creator.js (不存在)"
+      },
+      {
+        "file": "scripts/_legacy/audit_scanner.js",
+        "line": 22,
+        "ref": "check-router-decision.js",
+        "resolvedPath": "scripts/check-router-decision.js (不存在)"
+      },
+      {
+        "file": "scripts/_legacy/audit_scanner.js",
+        "line": 30,
+        "ref": "gia_batch_processor.js",
+        "resolvedPath": "scripts/gia_batch_processor.js (不存在)"
+      },
+      {
+        "file": "scripts/_legacy/audit_scanner.js",
+        "line": 39,
+        "ref": "l0_generator.js",
+        "resolvedPath": "scripts/l0_generator.js (不存在)"
+      },
+      {
+        "file": "scripts/_legacy/audit_scanner.js",
+        "line": 39,
+        "ref": "l1_generator.js",
+        "resolvedPath": "scripts/l1_generator.js (不存在)"
+      },
+      {
+        "file": "scripts/_legacy/audit_scanner.js",
+        "line": 63,
+        "ref": "smart_memory_router.js",
+        "resolvedPath": "scripts/smart_memory_router.js (不存在)"
+      },
+      {
+        "file": "scripts/_legacy/auto_skill_router.js",
+        "line": 17,
+        "ref": "config.js",
+        "resolvedPath": "scripts/_legacy/lib/config.js"
+      },
+      {
+        "file": "scripts/_legacy/pure_ai_audit.js",
+        "line": 25,
+        "ref": "config.js",
+        "resolvedPath": "scripts/_legacy/lib/config.js"
+      },
+      {
+        "file": "scripts/_legacy/pure_ai_audit.js",
+        "line": 35,
+        "ref": "pure_ai_audit_v2.js",
+        "resolvedPath": "scripts/pure_ai_audit_v2.js (不存在)"
+      },
+      {
+        "file": "scripts/_legacy/skills_manager.js",
+        "line": 19,
+        "ref": "config.js",
+        "resolvedPath": "scripts/_legacy/lib/config.js"
+      },
+      {
+        "file": "scripts/_legacy/skills_manager.js",
+        "line": 64,
+        "ref": "perplexity_search.js",
+        "resolvedPath": "scripts/perplexity_search.js (不存在)"
+      },
+      {
+        "file": "scripts/generate_symbols.js",
+        "line": 285,
+        "ref": "discord_bot.js",
+        "resolvedPath": "scripts/discord_bot.js (不存在)"
+      },
+      {
+        "file": "scripts/generate_symbols.js",
+        "line": 286,
+        "ref": "whatsapp_handler.js",
+        "resolvedPath": "scripts/whatsapp_handler.js (不存在)"
+      },
+      {
+        "file": "scripts/kimi_cli_runner.js",
+        "line": 393,
+        "ref": "spawn_kimi_agent.js",
+        "resolvedPath": "scripts/spawn_kimi_agent.js (不存在)"
+      },
+      {
+        "file": "scripts/lib/analyzers/file-analyzer.js",
+        "line": 31,
+        "ref": "rules.js",
+        "resolvedPath": "scripts/lib/rules.js"
+      },
+      {
+        "file": "scripts/lib/rules/high-risk.js",
+        "line": 44,
+        "ref": "helpers.js",
+        "resolvedPath": "scripts/lib/helpers.js"
+      },
+      {
+        "file": "scripts/lib/rules/high-risk.js",
+        "line": 78,
+        "ref": "rules-index.js",
+        "resolvedPath": "scripts/rules-index.js (不存在)"
+      },
+      {
+        "file": "scripts/lib/rules/high-risk.js",
+        "line": 107,
+        "ref": "l1_generator.js",
+        "resolvedPath": "scripts/l1_generator.js (不存在)"
+      },
+      {
+        "file": "scripts/lib/rules/high-risk.js",
+        "line": 108,
+        "ref": "l0_abstract_generator.js",
+        "resolvedPath": "scripts/l0_abstract_generator.js (不存在)"
+      },
+      {
+        "file": "scripts/router/_archive/auto_corrector.js",
+        "line": 24,
+        "ref": "classifier.js",
+        "resolvedPath": "scripts/router/_archive/classifier.js"
+      },
+      {
+        "file": "scripts/router/_archive/decision_logger.js",
+        "line": 16,
+        "ref": "classifier.js",
+        "resolvedPath": "scripts/router/_archive/classifier.js"
+      },
+      {
+        "file": "scripts/router/_archive/decision_logger.js",
+        "line": 59,
+        "ref": "config.js",
+        "resolvedPath": "scripts/router/_archive/config.js"
+      },
+      {
+        "file": "scripts/router/_archive/feedback_collector.js",
+        "line": 24,
+        "ref": "config.js",
+        "resolvedPath": "scripts/router/_archive/config.js"
+      },
+      {
+        "file": "scripts/router/_archive/model_router.js",
+        "line": 13,
+        "ref": "config.js",
+        "resolvedPath": "scripts/router/_archive/config.js"
+      },
+      {
+        "file": "scripts/router/_archive/rule_adjuster.js",
+        "line": 25,
+        "ref": "classifier.js",
+        "resolvedPath": "scripts/router/_archive/classifier.js"
+      }
+    ],
+    "moduleNotFound": [
+      {
+        "file": "scripts/_legacy/auto_skill_router.js",
+        "line": 17,
+        "require": "./lib/config",
+        "resolvedPath": "scripts/_legacy/lib/config.js",
+        "suggestion": "確認模組路徑正確，或移除無用的 require 引用"
+      },
+      {
+        "file": "scripts/_legacy/pure_ai_audit.js",
+        "line": 25,
+        "require": "./lib/config",
+        "resolvedPath": "scripts/_legacy/lib/config.js",
+        "suggestion": "確認模組路徑正確，或移除無用的 require 引用"
+      },
+      {
+        "file": "scripts/_legacy/skills_manager.js",
+        "line": 19,
+        "require": "./lib/config",
+        "resolvedPath": "scripts/_legacy/lib/config.js",
+        "suggestion": "確認模組路徑正確，或移除無用的 require 引用"
+      },
+      {
+        "file": "scripts/router/_archive/auto_corrector.js",
+        "line": 24,
+        "require": "./classifier",
+        "resolvedPath": "scripts/router/_archive/classifier.js",
+        "suggestion": "確認模組路徑正確，或移除無用的 require 引用"
+      },
+      {
+        "file": "scripts/router/_archive/decision_logger.js",
+        "line": 16,
+        "require": "./classifier",
+        "resolvedPath": "scripts/router/_archive/classifier.js",
+        "suggestion": "確認模組路徑正確，或移除無用的 require 引用"
+      },
+      {
+        "file": "scripts/router/_archive/decision_logger.js",
+        "line": 59,
+        "require": "./config",
+        "resolvedPath": "scripts/router/_archive/config.js",
+        "suggestion": "確認模組路徑正確，或移除無用的 require 引用"
+      },
+      {
+        "file": "scripts/router/_archive/feedback_collector.js",
+        "line": 24,
+        "require": "./config",
+        "resolvedPath": "scripts/router/_archive/config.js",
+        "suggestion": "確認模組路徑正確，或移除無用的 require 引用"
+      },
+      {
+        "file": "scripts/router/_archive/model_router.js",
+        "line": 13,
+        "require": "./config",
+        "resolvedPath": "scripts/router/_archive/config.js",
+        "suggestion": "確認模組路徑正確，或移除無用的 require 引用"
+      },
+      {
+        "file": "scripts/router/_archive/rule_adjuster.js",
+        "line": 25,
+        "require": "./classifier",
+        "resolvedPath": "scripts/router/_archive/classifier.js",
+        "suggestion": "確認模組路徑正確，或移除無用的 require 引用"
+      }
+    ],
+    "filenamePatternMismatch": [
+      {
+        "file": "scripts/cross_session_bootstrap.js",
+        "line": 411,
+        "content": "const datePattern = /^\\d{4}-\\d{2}-\\d{2}\\.md$/;",
+        "suggestion": "Filename pattern 可能漏了 timestamp，考慮用 YYYY-MM-DD-HHMM.md"
+      },
+      {
+        "file": "scripts/lib/rules/system-audit.js",
+        "line": 393,
+        "content": "/\\d{4}-\\d{2}-\\d{2}\\.md['\"`)\\]]/,",
+        "suggestion": "Filename pattern 可能漏了 timestamp，考慮用 YYYY-MM-DD-HHMM.md"
+      }
+    ],
+    "gitPushWithoutApproval": [
+      {
+        "file": "scripts/update_rapaport_universal.js",
+        "line": 198,
+        "content": "execSync('git push origin master:main', { cwd: WORKSPACE });",
+        "suggestion": "Git push 可能未經批準，建議加入確認邏輯（confirm/approve）"
+      },
+      {
+        "file": "scripts/update_rapaport_universal.js",
+        "line": 207,
+        "content": "log('💡 You can manually upload with: git push origin master:main');",
+        "suggestion": "Git push 可能未經批準，建議加入確認邏輯（confirm/approve）"
+      }
+    ],
+    "diskCheckPathError": [
+      {
+        "file": "scripts/lib/rules/system-audit.js",
+        "line": 459,
+        "content": "suggestion: 'Disk check 路徑可能錯誤，df -h ~ 只檢查 home directory，應該用 df -h / 檢查根分區',",
+        "suggestion": "Disk check 路徑可能錯誤，df -h ~ 只檢查 home directory，應該用 df -h / 檢查根分區"
+      }
+    ],
+    "missingHelper": [
+      {
+        "file": "scripts/churn_predictor.js",
+        "line": 97,
+        "funcName": "getRecommendedAction",
+        "content": "getRecommendedAction(riskLevel, factors) {",
+        "suggestion": "確認 getRecommendedAction() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/churn_predictor.js",
+        "line": 119,
+        "funcName": "getAllAtRiskProfiles",
+        "content": "getAllAtRiskProfiles(threshold = 'medium') {",
+        "suggestion": "確認 getAllAtRiskProfiles() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/code_quality_manager.js",
+        "line": 360,
+        "funcName": "getIssues",
+        "content": "getIssues(options = {}) {",
+        "suggestion": "確認 getIssues() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/code_quality_manager.js",
+        "line": 449,
+        "funcName": "getSummary",
+        "content": "getSummary() {",
+        "suggestion": "確認 getSummary() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/code_quality_manager.js",
+        "line": 522,
+        "funcName": "getCacheStats",
+        "content": "getCacheStats() {",
+        "suggestion": "確認 getCacheStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/code_quality_manager.js",
+        "line": 632,
+        "funcName": "parseArgs",
+        "content": "parseArgs(args) {",
+        "suggestion": "確認 parseArgs() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/customer360.js",
+        "line": 21,
+        "funcName": "buildProfile",
+        "content": "buildProfile(customerId, data = {}) {",
+        "suggestion": "確認 buildProfile() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/customer360.js",
+        "line": 177,
+        "funcName": "getProfile",
+        "content": "getProfile(customerId) {",
+        "suggestion": "確認 getProfile() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/customer360.js",
+        "line": 208,
+        "funcName": "getAllProfiles",
+        "content": "getAllProfiles() {",
+        "suggestion": "確認 getAllProfiles() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/customer_analyzer.js",
+        "line": 63,
+        "funcName": "getCaratRange",
+        "content": "getCaratRange(carat) {",
+        "suggestion": "確認 getCaratRange() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/customer_analyzer.js",
+        "line": 71,
+        "funcName": "getPriceRange",
+        "content": "getPriceRange(prices) {",
+        "suggestion": "確認 getPriceRange() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/document_template_engine.js",
+        "line": 27,
+        "funcName": "getHKTDateTime",
+        "content": "date: getHKTDateTime(),",
+        "suggestion": "確認 getHKTDateTime() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/document_template_engine.js",
+        "line": 46,
+        "funcName": "getHKTDateTime",
+        "content": "date: getHKTDateTime(),",
+        "suggestion": "確認 getHKTDateTime() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/document_template_engine.js",
+        "line": 64,
+        "funcName": "getHKTDateTime",
+        "content": "date: getHKTDateTime(),",
+        "suggestion": "確認 getHKTDateTime() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/document_template_engine.js",
+        "line": 79,
+        "funcName": "getHKTDateTime",
+        "content": "verifiedDate: getHKTDateTime(),",
+        "suggestion": "確認 getHKTDateTime() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/document_template_engine.js",
+        "line": 107,
+        "funcName": "getHKTDateTime",
+        "content": "return getHKTDateTime();",
+        "suggestion": "確認 getHKTDateTime() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/email_generator.js",
+        "line": 90,
+        "funcName": "formatDiamondsList",
+        "content": "formatDiamondsList(diamonds, lang) {",
+        "suggestion": "確認 formatDiamondsList() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/error_generator.js",
+        "line": 249,
+        "funcName": "getStats",
+        "content": "getStats(report = null) {",
+        "suggestion": "確認 getStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_refactored_v17.1.0.js",
+        "line": 97,
+        "funcName": "getFancyColorName",
+        "content": "getFancyColorName(color) {",
+        "suggestion": "確認 getFancyColorName() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_refactored_v17.1.0.js",
+        "line": 155,
+        "funcName": "getTier",
+        "content": "getTier(carat) {",
+        "suggestion": "確認 getTier() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_refactored_v17.1.0.js",
+        "line": 166,
+        "funcName": "getTierLabel",
+        "content": "getTierLabel(carat) {",
+        "suggestion": "確認 getTierLabel() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_refactored_v17.1.0.js",
+        "line": 191,
+        "funcName": "getRatingScore",
+        "content": "getRatingScore(rating) { if (!rating) return null; return this.RANK_MAP[rating] ?? null; },",
+        "suggestion": "確認 getRatingScore() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_refactored_v17.1.0.js",
+        "line": 207,
+        "funcName": "getCombinedText",
+        "content": "getCombinedText(data) { return [data.description, data.comments, data.additionalComments, data.reportNumber].join(' ').t",
+        "suggestion": "確認 getCombinedText() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_refactored_v17.1.0.js",
+        "line": 212,
+        "funcName": "getIndex",
+        "content": "getIndex(clarity) { if (!clarity) return -1; return this.RANKS.indexOf(clarity.toUpperCase().trim()); },",
+        "suggestion": "確認 getIndex() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_v17.2.0.js",
+        "line": 97,
+        "funcName": "getFancyColorName",
+        "content": "getFancyColorName(color) {",
+        "suggestion": "確認 getFancyColorName() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_v17.2.0.js",
+        "line": 155,
+        "funcName": "getTier",
+        "content": "getTier(carat) {",
+        "suggestion": "確認 getTier() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_v17.2.0.js",
+        "line": 166,
+        "funcName": "getTierLabel",
+        "content": "getTierLabel(carat) {",
+        "suggestion": "確認 getTierLabel() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_v17.2.0.js",
+        "line": 191,
+        "funcName": "getRatingScore",
+        "content": "getRatingScore(rating) { if (!rating) return null; return this.RANK_MAP[rating] ?? null; },",
+        "suggestion": "確認 getRatingScore() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_v17.2.0.js",
+        "line": 207,
+        "funcName": "getCombinedText",
+        "content": "getCombinedText(data) { return [data.description, data.comments, data.additionalComments, data.reportNumber].join(' ').t",
+        "suggestion": "確認 getCombinedText() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer_v17.2.0.js",
+        "line": 212,
+        "funcName": "getIndex",
+        "content": "getIndex(clarity) { if (!clarity) return -1; return this.RANKS.indexOf(clarity.toUpperCase().trim()); },",
+        "suggestion": "確認 getIndex() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_certificate_ocr.js",
+        "line": 101,
+        "funcName": "parseFields",
+        "content": "parseFields(text) {",
+        "suggestion": "確認 parseFields() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_database.js",
+        "line": 95,
+        "funcName": "getStats",
+        "content": "getStats() {",
+        "suggestion": "確認 getStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_ocr.js",
+        "line": 30,
+        "funcName": "parseFromImage",
+        "content": "parseFromImage(imagePath) {",
+        "suggestion": "確認 parseFromImage() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/gia_ocr.js",
+        "line": 43,
+        "funcName": "parseFromPDF",
+        "content": "parseFromPDF(pdfPath) {",
+        "suggestion": "確認 parseFromPDF() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/health_generator.js",
+        "line": 332,
+        "funcName": "getSummary",
+        "content": "getSummary() {",
+        "suggestion": "確認 getSummary() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/invoice_generator.js",
+        "line": 74,
+        "funcName": "formatItemDescription",
+        "content": "formatItemDescription(item) {",
+        "suggestion": "確認 formatItemDescription() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/auditOrchestrator.js",
+        "line": 487,
+        "funcName": "getIssues",
+        "content": "getIssues() {",
+        "suggestion": "確認 getIssues() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/auditOrchestrator.js",
+        "line": 564,
+        "funcName": "getIssues",
+        "content": "getIssues() {",
+        "suggestion": "確認 getIssues() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/auditOrchestrator.js",
+        "line": 623,
+        "funcName": "getIssues",
+        "content": "getIssues() {",
+        "suggestion": "確認 getIssues() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/auditOrchestrator.js",
+        "line": 812,
+        "funcName": "getResults",
+        "content": "getResults() {",
+        "suggestion": "確認 getResults() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/auto_repair.js",
+        "line": 828,
+        "funcName": "getResults",
+        "content": "getResults() {",
+        "suggestion": "確認 getResults() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/baseline_store.js",
+        "line": 70,
+        "funcName": "getBaseline",
+        "content": "getBaseline(key) {",
+        "suggestion": "確認 getBaseline() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/baseline_store.js",
+        "line": 95,
+        "funcName": "getKeys",
+        "content": "getKeys() {",
+        "suggestion": "確認 getKeys() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/baseline_store.js",
+        "line": 102,
+        "funcName": "getSamples",
+        "content": "getSamples(key, count = 5) {",
+        "suggestion": "確認 getSamples() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/baseline_store.js",
+        "line": 111,
+        "funcName": "getAnomalies",
+        "content": "getAnomalies() {",
+        "suggestion": "確認 getAnomalies() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/batch_verifier.js",
+        "line": 104,
+        "funcName": "buildBatchPrompt",
+        "content": "buildBatchPrompt(candidates) {",
+        "suggestion": "確認 buildBatchPrompt() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/batch_verifier.js",
+        "line": 285,
+        "funcName": "parseBatchResponse",
+        "content": "parseBatchResponse(response) {",
+        "suggestion": "確認 parseBatchResponse() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/batch_verifier.js",
+        "line": 853,
+        "funcName": "getResults",
+        "content": "getResults() {",
+        "suggestion": "確認 getResults() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/batch_verifier.js",
+        "line": 910,
+        "funcName": "getStats",
+        "content": "getStats() {",
+        "suggestion": "確認 getStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/fileDiscovery.js",
+        "line": 73,
+        "funcName": "getStats",
+        "content": "getStats() {",
+        "suggestion": "確認 getStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/fileDiscovery.js",
+        "line": 337,
+        "funcName": "getCacheStats",
+        "content": "getCacheStats() {",
+        "suggestion": "確認 getCacheStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/issueAggregator.js",
+        "line": 188,
+        "funcName": "getDedupKey",
+        "content": "getDedupKey(issue) {",
+        "suggestion": "確認 getDedupKey() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/issueAggregator.js",
+        "line": 283,
+        "funcName": "getAll",
+        "content": "getAll(options = {}) {",
+        "suggestion": "確認 getAll() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/issueAggregator.js",
+        "line": 394,
+        "funcName": "getStats",
+        "content": "getStats() {",
+        "suggestion": "確認 getStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/issueAggregator.js",
+        "line": 428,
+        "funcName": "getSummary",
+        "content": "getSummary() {",
+        "suggestion": "確認 getSummary() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/pattern_learner.js",
+        "line": 334,
+        "funcName": "getPatterns",
+        "content": "getPatterns() {",
+        "suggestion": "確認 getPatterns() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/pattern_learner.js",
+        "line": 349,
+        "funcName": "getWhitelist",
+        "content": "getWhitelist() {",
+        "suggestion": "確認 getWhitelist() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/pattern_learner.js",
+        "line": 841,
+        "funcName": "getStats",
+        "content": "getStats() {",
+        "suggestion": "確認 getStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/semantic_matcher.js",
+        "line": 302,
+        "funcName": "getPatterns",
+        "content": "getPatterns() {",
+        "suggestion": "確認 getPatterns() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/semantic_matcher.js",
+        "line": 451,
+        "funcName": "getStats",
+        "content": "getStats() {",
+        "suggestion": "確認 getStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/skip-list.js",
+        "line": 169,
+        "funcName": "getSkipPatterns",
+        "content": "getSkipPatterns() {",
+        "suggestion": "確認 getSkipPatterns() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 114,
+        "funcName": "getTotalActiveIssues",
+        "content": "getTotalActiveIssues() {",
+        "suggestion": "確認 getTotalActiveIssues() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 130,
+        "funcName": "getActiveIssues",
+        "content": "getActiveIssues() {",
+        "suggestion": "確認 getActiveIssues() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 203,
+        "funcName": "getIssueAutoFollowup",
+        "content": "getIssueAutoFollowup() {",
+        "suggestion": "確認 getIssueAutoFollowup() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 258,
+        "funcName": "getActiveErrors",
+        "content": "getActiveErrors() {",
+        "suggestion": "確認 getActiveErrors() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 295,
+        "funcName": "getSystemResources",
+        "content": "getSystemResources() {",
+        "suggestion": "確認 getSystemResources() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 348,
+        "funcName": "getScriptsStatus",
+        "content": "getScriptsStatus() {",
+        "suggestion": "確認 getScriptsStatus() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 398,
+        "funcName": "getCronStatus",
+        "content": "getCronStatus() {",
+        "suggestion": "確認 getCronStatus() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 520,
+        "funcName": "getMemoryHealth",
+        "content": "getMemoryHealth() {",
+        "suggestion": "確認 getMemoryHealth() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 572,
+        "funcName": "getAutoFixStatus",
+        "content": "getAutoFixStatus() {",
+        "suggestion": "確認 getAutoFixStatus() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 596,
+        "funcName": "getVerifyFixStatus",
+        "content": "getVerifyFixStatus() {",
+        "suggestion": "確認 getVerifyFixStatus() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 686,
+        "funcName": "getPureAIAuditResults",
+        "content": "async getPureAIAuditResults() {",
+        "suggestion": "確認 getPureAIAuditResults() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 811,
+        "funcName": "buildComparison",
+        "content": "buildComparison(prev) {",
+        "suggestion": "確認 buildComparison() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 871,
+        "funcName": "buildLowSeverityFix",
+        "content": "buildLowSeverityFix(details) {",
+        "suggestion": "確認 buildLowSeverityFix() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/lib/system_check_generator.js",
+        "line": 904,
+        "funcName": "buildEmbed",
+        "content": "buildEmbed() {",
+        "suggestion": "確認 buildEmbed() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/llm_judge.js",
+        "line": 108,
+        "funcName": "getDefaults",
+        "content": "static getDefaults(type) {",
+        "suggestion": "確認 getDefaults() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/llm_judge.js",
+        "line": 127,
+        "funcName": "getVerdictByScore",
+        "content": "static getVerdictByScore(avgScore) {",
+        "suggestion": "確認 getVerdictByScore() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/llm_judge.js",
+        "line": 358,
+        "funcName": "getHistory",
+        "content": "getHistory(options = {}) {",
+        "suggestion": "確認 getHistory() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/llm_judge.js",
+        "line": 437,
+        "funcName": "parseArgs",
+        "content": "parseArgs(args) {",
+        "suggestion": "確認 parseArgs() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/orchestrator.js",
+        "line": 120,
+        "funcName": "getBiasForTaskType",
+        "content": "getBiasForTaskType(taskType) {",
+        "suggestion": "確認 getBiasForTaskType() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/price_alert_system.js",
+        "line": 108,
+        "funcName": "getActiveAlerts",
+        "content": "getActiveAlerts() {",
+        "suggestion": "確認 getActiveAlerts() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/price_predictor.js",
+        "line": 51,
+        "funcName": "getRapaportTrend",
+        "content": "getRapaportTrend(rapaportData, diamond) {",
+        "suggestion": "確認 getRapaportTrend() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/price_predictor.js",
+        "line": 62,
+        "funcName": "getMarketSentiment",
+        "content": "getMarketSentiment(marketData) {",
+        "suggestion": "確認 getMarketSentiment() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/price_predictor.js",
+        "line": 72,
+        "funcName": "getSeasonalFactor",
+        "content": "getSeasonalFactor() {",
+        "suggestion": "確認 getSeasonalFactor() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/quotation_generator.js",
+        "line": 46,
+        "funcName": "getValidUntil",
+        "content": "getValidUntil() {",
+        "suggestion": "確認 getValidUntil() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/rapaport_extractor.js",
+        "line": 22,
+        "funcName": "parsePriceTable",
+        "content": "parsePriceTable(text, shape) {",
+        "suggestion": "確認 parsePriceTable() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/report_generator.js",
+        "line": 224,
+        "funcName": "formatContent",
+        "content": "formatContent(data, format, sectionName) {",
+        "suggestion": "確認 formatContent() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/report_generator.js",
+        "line": 290,
+        "funcName": "formatValue",
+        "content": "formatValue(value) {",
+        "suggestion": "確認 formatValue() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/report_generator.js",
+        "line": 387,
+        "funcName": "getTemplateInfo",
+        "content": "getTemplateInfo(templateName) {",
+        "suggestion": "確認 getTemplateInfo() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/smart_followup.js",
+        "line": 45,
+        "funcName": "getDueFollowUps",
+        "content": "getDueFollowUps(date = new Date()) {",
+        "suggestion": "確認 getDueFollowUps() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/smart_followup.js",
+        "line": 157,
+        "funcName": "getFollowUp",
+        "content": "getFollowUp(id) {",
+        "suggestion": "確認 getFollowUp() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/smart_followup.js",
+        "line": 179,
+        "funcName": "getAllFollowUps",
+        "content": "getAllFollowUps() {",
+        "suggestion": "確認 getAllFollowUps() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/task_router.js",
+        "line": 510,
+        "funcName": "getStats",
+        "content": "getStats() {",
+        "suggestion": "確認 getStats() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/terminology_manager.js",
+        "line": 62,
+        "funcName": "getAllTerms",
+        "content": "getAllTerms(category) {",
+        "suggestion": "確認 getAllTerms() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/tesseract_gia_ocr.js",
+        "line": 85,
+        "funcName": "parseGIAFields",
+        "content": "parseGIAFields(text) {",
+        "suggestion": "確認 parseGIAFields() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/timezone_fixer.js",
+        "line": 35,
+        "funcName": "getHKTDate",
+        "content": "replacement: \"getHKTDate()\"",
+        "suggestion": "確認 getHKTDate() 已定義或正確引入，否則會 ReferenceError"
+      },
+      {
+        "file": "scripts/watermark_manager.js",
+        "line": 32,
+        "funcName": "getPositions",
+        "content": "getPositions() {",
+        "suggestion": "確認 getPositions() 已定義或正確引入，否則會 ReferenceError"
+      }
+    ],
+    "syncInAsync": [
+      {
+        "file": "scripts/closed_loop_v11_runner.js",
+        "line": 150,
+        "asyncFunc": "runIntegrationTest",
+        "syncCall": "execSync",
+        "content": "execSync(`node --check \"${CODE_FILE}\"`, { timeout: 30000 });",
+        "severity": "info",
+        "suggestion": "在 async function runIntegrationTest() 中用 exec (async 版本) 代替 execSync（如需要並發）"
+      },
+      {
+        "file": "scripts/daily_maintenance.js",
+        "line": 142,
+        "asyncFunc": "moveBakFilesToBackup",
+        "syncCall": "mkdirSync",
+        "content": "fs.mkdirSync(backupDir, { recursive: true, mode: CONFIG.DIR_MODE });",
+        "severity": "info",
+        "suggestion": "在 async function moveBakFilesToBackup() 中用 mkdir (async 版本) 代替 mkdirSync（如需要並發）"
+      },
+      {
+        "file": "scripts/daily_summary_bot.js",
+        "line": 47,
+        "asyncFunc": "getDiscordToken",
+        "syncCall": "readFileSync",
+        "content": "const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));",
+        "severity": "info",
+        "suggestion": "在 async function getDiscordToken() 中用 readFile (async 版本) 代替 readFileSync（如需要並發）"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer.js",
+        "line": 6057,
+        "asyncFunc": "sendToDiscord",
+        "syncCall": "readFileSync",
+        "content": "config = JSON.parse(fs.readFileSync(configPath, \"utf8\"));",
+        "severity": "info",
+        "suggestion": "在 async function sendToDiscord() 中用 readFile (async 版本) 代替 readFileSync（如需要並發）"
+      },
+      {
+        "file": "scripts/gia_cert_analyzer.js",
+        "line": 6276,
+        "asyncFunc": "describeImageWithMinimaxVLM",
+        "syncCall": "readFileSync",
+        "content": "imageBuffer = fs.readFileSync(imagePath);",
+        "severity": "info",
+        "suggestion": "在 async function describeImageWithMinimaxVLM() 中用 readFile (async 版本) 代替 readFileSync（如需要並發）"
+      },
+      {
+        "file": "scripts/issue_manager.js",
+        "line": 297,
+        "asyncFunc": "withCreateLock",
+        "syncCall": "mkdirSync",
+        "content": "fs.mkdirSync(LOCK_DIR, { recursive: false });",
+        "severity": "info",
+        "suggestion": "在 async function withCreateLock() 中用 mkdir (async 版本) 代替 mkdirSync（如需要並發）"
+      },
+      {
+        "file": "scripts/knowledge_ingester.js",
+        "line": 290,
+        "asyncFunc": "tryWikiIngestSpawn",
+        "syncCall": "writeFileSync",
+        "content": "fs.writeFileSync(tmpFile, content, 'utf8');",
+        "severity": "info",
+        "suggestion": "在 async function tryWikiIngestSpawn() 中用 writeFile (async 版本) 代替 writeFileSync（如需要並發）"
+      },
+      {
+        "file": "scripts/rapnet_ai_summary.js",
+        "line": 28,
+        "asyncFunc": "main",
+        "syncCall": "readFileSync",
+        "content": "data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));",
+        "severity": "info",
+        "suggestion": "在 async function main() 中用 readFile (async 版本) 代替 readFileSync（如需要並發）"
+      },
+      {
+        "file": "scripts/rapnet_sender.js",
+        "line": 181,
+        "asyncFunc": "main",
+        "syncCall": "readFileSync",
+        "content": "data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));",
+        "severity": "info",
+        "suggestion": "在 async function main() 中用 readFile (async 版本) 代替 readFileSync（如需要並發）"
+      },
+      {
+        "file": "scripts/skill_reviewer_bot.js",
+        "line": 901,
+        "asyncFunc": "main",
+        "syncCall": "mkdirSync",
+        "content": "fs.mkdirSync(LOCK_DIR, { recursive: false });",
+        "severity": "info",
+        "suggestion": "在 async function main() 中用 mkdir (async 版本) 代替 mkdirSync（如需要並發）"
+      },
+      {
+        "file": "scripts/test_smart_routing.js",
+        "line": 33,
+        "asyncFunc": "run",
+        "syncCall": "classifySync",
+        "content": "const cls = classifySync(t.text);",
+        "severity": "info",
+        "suggestion": "在 async function run() 中用 classify (async 版本) 代替 classifySync（如需要並發）"
+      },
+      {
+        "file": "scripts/wiki_vectorizer.js",
+        "line": 75,
+        "asyncFunc": "getDB",
+        "syncCall": "mkdirSync",
+        "content": "fs.mkdirSync(dbPath, { recursive: true });",
+        "severity": "info",
+        "suggestion": "在 async function getDB() 中用 mkdir (async 版本) 代替 mkdirSync（如需要並發）"
+      }
+    ],
+    "infiniteLoopRisk": [],
+    "otherIssues": []
+  }
+}

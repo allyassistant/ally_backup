@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DN Memorandum</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <style>
+        :root {
+            --ios-bg: #F2F2F7;
+            --ios-card: #FFFFFF;
+            --ios-label: #000000;
+            --ios-secondary-label: #8E8E93;
+            --ios-blue: #007AFF;
+            --ios-green: #34C759;
+            --ios-orange: #FF9500;
+            --ios-red: #FF3B30;
+            --ios-gray: #8E8E93;
+            --ios-gray5: #E5E5EA;
+            --tab-available: #34C759;
+            --tab-memo: #FF9500;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--ios-bg); color: #000; min-height: 100vh; padding: 20px; }
+        
+        .basic-info { margin-bottom: 20px; padding: 15px; background: var(--ios-card); border-radius: 12px; }
+        .info-row { display: flex; gap: 15px; margin-bottom: 10px; }
+        .info-field { flex: 1; }
+        .info-field label { display: block; font-size: 12px; color: #000; margin-bottom: 4px; }
+        .info-field input { width: 100%; padding: 8px 10px; border: 1px solid var(--ios-gray5); border-radius: 8px; font-size: 14px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; }
+        h1 { text-align: center; color: #333; margin-bottom: 15px; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+        th { background: #d3d3d3; }
+        input, select { padding: 5px; border: 1px solid #ccc; border-radius: 6px; }
+        
+        /* iOS Glass Button */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #000;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        .btn:active { transform: scale(0.96); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+        
+        .btn-primary { background: linear-gradient(135deg, rgba(0,122,255,0.85) 0%, rgba(0,81,213,0.85) 100%); color: white; border-color: rgba(0, 122, 255, 0.4); }
+        .btn-secondary { background: linear-gradient(135deg, rgba(142,142,147,0.4) 0%, rgba(142,142,147,0.2) 100%); color: #000; border-color: rgba(142,142,147,0.3); }
+        .btn-success { background: linear-gradient(135deg, rgba(52,199,89,0.85) 0%, rgba(48,160,63,0.85) 100%); color: white; border-color: rgba(52,199,89,0.4); }
+        .btn-warning { background: linear-gradient(135deg, rgba(255,149,0,0.85) 0%, rgba(255,124,0,0.85) 100%); color: white; border-color: rgba(255,149,0,0.4); }
+        
+        .btn-upload { background: linear-gradient(135deg, rgba(255,149,0,0.85) 0%, rgba(255,124,0,0.85) 100%); color: white; border-color: rgba(255,149,0,0.4); }
+        .btn-select { background: linear-gradient(135deg, rgba(52,199,89,0.85) 0%, rgba(48,160,63,0.85) 100%); color: white; border-color: rgba(52,199,89,0.4); }
+        
+        .action-bar { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; overflow: auto; }
+        .modal-overlay.active { display: block; }
+        .modal-content { background: var(--ios-bg); margin: 20px auto; max-width: 480px; max-height: 80vh; overflow: auto; border-radius: 16px; padding: 0; }
+        
+        /* Nav Bar */
+        .nav-bar { display: flex; align-items: center; padding: 12px 0; margin-bottom: 12px; }
+        
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-back::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+            pointer-events: none;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .nav-back:active { transform: scale(0.96); }
+        
+        .nav-title { flex: 1; text-align: center; font-size: 17px; font-weight: 600; color: #000; }
+        .nav-close { font-size: 24px; cursor: pointer; color: #8e8e93; padding: 5px 10px; }
+        .nav-close { font-size: 24px; cursor: pointer; color: #8e8e93; padding: 5px 10px; }
+        .nav-close { font-size: 24px; cursor: pointer; color: #8e8e93; padding: 5px 10px; }
+        
+        /* Page */
+        .page { display: none; padding: 0 20px 120px; }
+        .page.active { display: block; }
+        
+        /* iOS List */
+        .ios-list {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .shape-list { display: flex; flex-direction: column; gap: 0; }
+        
+        .shape-name { font-size: 17px; font-weight: 400; color: #000; }
+        .ios-list-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            background: linear-gradient(135deg, rgba(230,230,230,0.7) 0%, rgba(210,210,210,0.5) 100%);
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: all 0.2s;
+            justify-content: space-between;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .ios-list-item:last-child { border-bottom: none; }
+        .ios-list-item:active { background: rgba(255, 255, 255, 0.5); }
+        
+        .ios-list-item-title { font-size: 17px; font-weight: 400; color: #000; }
+        
+        .ios-list-item-badge {
+            background: linear-gradient(135deg, rgba(142,142,147,0.2) 0%, rgba(142,142,147,0.1) 100%);
+            color: #8e8e93;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-right: 8px;
+        }
+        
+        /* Search */
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 12px; }
+        .filter-btn { flex: 1; padding: 10px 16px; font-size: 14px; font-weight: 600; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.3); cursor: pointer; transition: all 0.2s; background: linear-gradient(135deg, rgba(230,230,230,0.7) 0%, rgba(210,210,210,0.5) 100%); color: #8e8e93; }
+        .filter-btn.active { background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%); color: #000; border-color: rgba(255, 255, 255, 0.6); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+        .search-bar { 
+            background: var(--ios-card);
+            padding: 12px; border-radius: 12px; margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .search-bar input { width: 100%; border: none; font-size: 16px; background: transparent; }
+        
+        /* Legend */
+        .legend { display: flex; gap: 16px; margin: 16px 0; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: #8e8e93; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-selected { background: var(--tab-available); }
+        .dot-gray { background: var(--ios-gray); }
+        
+        /* Item List */
+        .item-list { display: flex; flex-direction: column; gap: 8px; }
+        .item-card { 
+            background: var(--ios-card);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .item-card:active { transform: scale(0.98); }
+        
+        .item-card.selected { 
+            border-color: var(--tab-available); 
+            box-shadow: 0 0 0 4px rgba(52, 199, 89, 0.1), 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .item-card input[type="checkbox"] { width: 24px; height: 24px; }
+        
+        .item-info { flex: 1; }
+        
+        .item-info .name { 
+            font-size: 15px; 
+            font-weight: 500; 
+            color: #8e8e93;
+            margin-bottom: 4px;
+        }
+        
+        .item-info .detail { 
+            font-size: 17px; 
+            font-weight: 600; 
+            color: #000; 
+        }
+        
+        /* Summary */
+        .selected-summary { 
+            background: var(--ios-card);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        .selected-summary .title { font-weight: 600; margin-bottom: 8px; }
+        .selected-summary .item { font-size: 14px; color: #8e8e93; margin: 4px 0; }
+        
+        /* Submit Bar */
+        .submit-bar { 
+            position: fixed; bottom: 90px; left: 20px; right: 20px; 
+            display: flex; gap: 12px; z-index: 50;
+        }
+        .submit-bar .btn { flex: 1; padding: 14px 20px; font-size: 16px; }
+        
+        .item-count-bar { padding: 8px 16px; background: var(--ios-card); font-size: 14px; color: #8e8e93; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DN MEMORANDUM</h1>
+        <div class="basic-info">
+            <div class="info-row">
+                <div class="info-field"><label>To</label><input type="text" id="memoTo"></div>
+                <div class="info-field"><label>Date</label><input type="date" id="memoDate"></div>
+                <div class="info-field"><label>Memo No.</label><input type="text" id="memoNo"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-field"><label>Address</label><input type="text" id="memoAddress"></div>
+                <div class="info-field"><label>Tel</label><input type="text" id="memoTel"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-field"><label>Dealer</label><input type="text" id="memoDealer"></div>
+                <div class="info-field"><label>Details</label><input type="text" id="memoDetails"></div>
+            </div>
+        </div>
+        <div class="action-bar">
+            <button id="importStockBtn" class="btn" onclick="document.getElementById('excelInput').click()">Import Stock List</button>
+            <button id="clearStockBtn" class="btn" style="display:none;" onclick="clearStockData()">Clear Stock</button>
+            <input type="file" id="excelInput" accept=".xlsx,.xls" style="display:none" onchange="loadStockExcel(this)">
+            <button class="btn" onclick="openSelectModal()">Select Items</button>
+        </div>
+        
+        <table id="itemsTable">
+            <thead>
+                <tr>
+                    <th>No</th><th>Parcel</th><th>Shape</th><th>Carat</th><th>Color</th><th>Clarity</th><th>Cert</th><th>Price/Ct</th><th>Disc%</th><th>Amount</th><th></th>
+                </tr>
+            </thead>
+            <tbody id="itemsBody">
+            </tbody>
+        </table>
+        
+        <div class="action-bar">
+            <button class="btn" onclick="addRow()">+ Add Row</button>
+            <button class="btn"  onclick="clearAllRows()">Clear All</button>
+        </div>
+        
+        <div style="margin-top:15px;">
+            Total Carat: <input id="totalCarat" readonly size="10">
+            Total Amount: <input id="totalAmount" readonly size="10">
+        </div>
+        <br>
+        <button class="btn btn-primary" onclick="downloadPDF()">Download PDF</button>
+        <div id="rapaportDate" style="text-align:center;margin-top:10px;color:#8e8e93;font-size:12px;"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="selectModal">
+        <div class="modal-content">
+            <!-- Page 1: Select Shape -->
+            <div id="shapePage" class="page active">
+                <div class="nav-bar">
+                    <span class="nav-back" style="visibility:hidden;">←</span><span class="nav-title">Select Shape</span>
+                    <span style="visibility:hidden;">×</span><span class="nav-close" onclick="closeSelectModal()">×</span>
+                </div>
+                
+                <div class="selected-summary" id="selectedSummary" style="display:none;">
+                    <div class="title">Selected: <span id="totalSelected">0</span> items</div>
+                    <div id="selectedDetails"></div>
+                </div>
+                
+                <div class="shape-list" id="shapeList" class="ios-list"></div>
+                
+                <div class="submit-bar">
+                    <button class="btn btn-secondary" onclick="resetAllSelections()">Reset</button>
+                    <button class="btn btn-primary" onclick="submitAllItems()">Submit (<span id="shapePageCount">0</span>)</button>
+                </div>
+            </div>
+            
+            <!-- Page 2: Select Items -->
+            <div id="itemsPage" class="page">
+                <div class="nav-bar">
+                    <span class="nav-back" onclick="backToShapes()">←</span>
+                    <span class="nav-title" id="itemsPageTitle">Select Items</span>
+                    <span class="nav-close" onclick="closeSelectModal()">×</span>
+                </div>
+                
+                
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-dot dot-gray"></div><span>Unchecked</span></div>
+                    <div class="legend-item"><div class="legend-dot dot-selected"></div><span>Selected</span></div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="itemSearch" placeholder="Search..." oninput="filterItems()">
+                </div>
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all" onclick="setItemFilter('all')"><span id="filterAll">All</span></button>
+                    <button class="filter-btn" data-filter="white" onclick="setItemFilter('white')"><span id="filterWhite">White</span></button>
+                    <button class="filter-btn" data-filter="color" onclick="setItemFilter('color')"><span id="filterColor">Color</span></button>
+                </div>
+                
+                
+                
+                <div class="item-list" id="itemList"></div>
+                
+                <div class="submit-bar">
+                    <button class="btn btn-secondary" onclick="resetCurrentShape()">Reset</button>
+                    <button class="btn btn-primary" onclick="submitCurrentShape()">Submit (<span id="itemsPageCount">0</span>)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    var RAPAPORT = {"version": "2026-02-06", "date": "02/20/26", "round": {".90-.99": {"D": {"IF": 104, "VVS1": 89, "VVS2": 67, "VS1": 57, "VS2": 49, "SI1": 40, "SI2": 32, "SI3": 28, "I1": 27, "I2": 22, "I3": 15}, "E": {"IF": 90, "VVS1": 77, "VVS2": 62, "VS1": 52, "VS2": 45, "SI1": 36, "SI2": 29, "SI3": 26, "I1": 25, "I2": 21, "I3": 14}, "F": {"IF": 82, "VVS1": 71, "VVS2": 57, "VS1": 48, "VS2": 42, "SI1": 34, "SI2": 26, "SI3": 24, "I1": 23, "I2": 20, "I3": 13}, "G": {"IF": 65, "VVS1": 57, "VVS2": 49, "VS1": 43, "VS2": 39, "SI1": 31, "SI2": 25, "SI3": 23, "I1": 22, "I2": 19, "I3": 12}, "H": {"IF": 50, "VVS1": 46, "VVS2": 42, "VS1": 37, "VS2": 34, "SI1": 29, "SI2": 24, "SI3": 23, "I1": 22, "I2": 18, "I3": 12}, "I": {"IF": 45, "VVS1": 41, "VVS2": 37, "VS1": 33, "VS2": 30, "SI1": 26, "SI2": 22, "SI3": 21, "I1": 20, "I2": 17, "I3": 11}, "J": {"IF": 37, "VVS1": 34, "VVS2": 31, "VS1": 28, "VS2": 26, "SI1": 23, "SI2": 21, "SI3": 20, "I1": 19, "I2": 16, "I3": 10}, "K": {"IF": 32, "VVS1": 30, "VVS2": 28, "VS1": 25, "VS2": 23, "SI1": 21, "SI2": 19, "SI3": 18, "I1": 17, "I2": 15, "I3": 9}, "L": {"IF": 27, "VVS1": 25, "VVS2": 23, "VS1": 21, "VS2": 19, "SI1": 18, "SI2": 17, "SI3": 17, "I1": 16, "I2": 13, "I3": 8}, "M": {"IF": 24, "VVS1": 22, "VVS2": 20, "VS1": 19, "VS2": 17, "SI1": 16, "SI2": 15, "SI3": 15, "I1": 14, "I2": 11, "I3": 7}}, "1.00-1.49": {"D": {"IF": 160, "VVS1": 128, "VVS2": 97, "VS1": 83, "VS2": 69, "SI1": 52, "SI2": 41, "SI3": 36, "I1": 33, "I2": 25, "I3": 16}, "E": {"IF": 125, "VVS1": 111, "VVS2": 88, "VS1": 75, "VS2": 62, "SI1": 48, "SI2": 38, "SI3": 33, "I1": 31, "I2": 24, "I3": 15}, "F": {"IF": 107, "VVS1": 97, "VVS2": 80, "VS1": 68, "VS2": 56, "SI1": 45, "SI2": 35, "SI3": 31, "I1": 29, "I2": 23, "I3": 14}, "G": {"IF": 82, "VVS1": 74, "VVS2": 67, "VS1": 59, "VS2": 51, "SI1": 41, "SI2": 33, "SI3": 29, "I1": 27, "I2": 22, "I3": 13}, "H": {"IF": 61, "VVS1": 56, "VVS2": 52, "VS1": 49, "VS2": 46, "SI1": 38, "SI2": 31, "SI3": 28, "I1": 26, "I2": 21, "I3": 13}, "I": {"IF": 52, "VVS1": 47, "VVS2": 44, "VS1": 41, "VS2": 38, "SI1": 34, "SI2": 29, "SI3": 26, "I1": 24, "I2": 20, "I3": 12}, "J": {"IF": 43, "VVS1": 39, "VVS2": 36, "VS1": 33, "VS2": 31, "SI1": 28, "SI2": 25, "SI3": 23, "I1": 22, "I2": 19, "I3": 12}, "K": {"IF": 36, "VVS1": 33, "VVS2": 31, "VS1": 29, "VS2": 27, "SI1": 25, "SI2": 23, "SI3": 22, "I1": 21, "I2": 18, "I3": 11}, "L": {"IF": 31, "VVS1": 28, "VVS2": 26, "VS1": 25, "VS2": 23, "SI1": 21, "SI2": 20, "SI3": 19, "I1": 18, "I2": 17, "I3": 10}, "M": {"IF": 27, "VVS1": 25, "VVS2": 24, "VS1": 23, "VS2": 21, "SI1": 19, "SI2": 18, "SI3": 17, "I1": 16, "I2": 16, "I3": 10}}, "1.50-1.99": {"D": {"IF": 210, "VVS1": 187, "VVS2": 154, "VS1": 134, "VS2": 120, "SI1": 93, "SI2": 75, "SI3": 66, "I1": 55, "I2": 35, "I3": 18}, "E": {"IF": 188, "VVS1": 173, "VVS2": 143, "VS1": 122, "VS2": 110, "SI1": 86, "SI2": 68, "SI3": 60, "I1": 52, "I2": 33, "I3": 17}, "F": {"IF": 164, "VVS1": 153, "VVS2": 132, "VS1": 114, "VS2": 103, "SI1": 81, "SI2": 64, "SI3": 57, "I1": 49, "I2": 32, "I3": 16}, "G": {"IF": 136, "VVS1": 126, "VVS2": 114, "VS1": 99, "VS2": 89, "SI1": 75, "SI2": 60, "SI3": 54, "I1": 46, "I2": 30, "I3": 15}, "H": {"IF": 108, "VVS1": 100, "VVS2": 91, "VS1": 81, "VS2": 74, "SI1": 66, "SI2": 55, "SI3": 50, "I1": 42, "I2": 29, "I3": 15}, "I": {"IF": 87, "VVS1": 81, "VVS2": 73, "VS1": 68, "VS2": 63, "SI1": 56, "SI2": 51, "SI3": 46, "I1": 39, "I2": 27, "I3": 14}, "J": {"IF": 74, "VVS1": 67, "VVS2": 61, "VS1": 57, "VS2": 53, "SI1": 48, "SI2": 43, "SI3": 39, "I1": 35, "I2": 26, "I3": 14}, "K": {"IF": 63, "VVS1": 56, "VVS2": 51, "VS1": 47, "VS2": 44, "SI1": 40, "SI2": 37, "SI3": 34, "I1": 31, "I2": 24, "I3": 13}, "L": {"IF": 53, "VVS1": 47, "VVS2": 43, "VS1": 40, "VS2": 38, "SI1": 35, "SI2": 33, "SI3": 31, "I1": 29, "I2": 23, "I3": 12}, "M": {"IF": 46, "VVS1": 41, "VVS2": 39, "VS1": 36, "VS2": 34, "SI1": 32, "SI2": 30, "SI3": 28, "I1": 27, "I2": 22, "I3": 12}}, "2.00-2.99": {"D": {"IF": 330, "VVS1": 275, "VVS2": 235, "VS1": 205, "VS2": 175, "SI1": 141, "SI2": 113, "SI3": 95, "I1": 80, "I2": 41, "I3": 19}, "E": {"IF": 270, "VVS1": 245, "VVS2": 210, "VS1": 190, "VS2": 160, "SI1": 132, "SI2": 105, "SI3": 88, "I1": 76, "I2": 39, "I3": 18}, "F": {"IF": 245, "VVS1": 220, "VVS2": 195, "VS1": 175, "VS2": 150, "SI1": 123, "SI2": 98, "SI3": 83, "I1": 72, "I2": 37, "I3": 17}, "G": {"IF": 205, "VVS1": 185, "VVS2": 165, "VS1": 150, "VS2": 135, "SI1": 112, "SI2": 92, "SI3": 77, "I1": 68, "I2": 35, "I3": 16}, "H": {"IF": 165, "VVS1": 150, "VVS2": 135, "VS1": 125, "VS2": 115, "SI1": 104, "SI2": 86, "SI3": 71, "I1": 65, "I2": 33, "I3": 15}, "I": {"IF": 135, "VVS1": 120, "VVS2": 110, "VS1": 100, "VS2": 93, "SI1": 86, "SI2": 78, "SI3": 66, "I1": 61, "I2": 31, "I3": 15}, "J": {"IF": 109, "VVS1": 99, "VVS2": 91, "VS1": 84, "VS2": 76, "SI1": 69, "SI2": 63, "SI3": 57, "I1": 54, "I2": 29, "I3": 14}, "K": {"IF": 91, "VVS1": 83, "VVS2": 76, "VS1": 70, "VS2": 63, "SI1": 57, "SI2": 53, "SI3": 50, "I1": 47, "I2": 28, "I3": 14}, "L": {"IF": 78, "VVS1": 71, "VVS2": 66, "VS1": 61, "VS2": 54, "SI1": 50, "SI2": 46, "SI3": 43, "I1": 40, "I2": 27, "I3": 13}, "M": {"IF": 68, "VVS1": 63, "VVS2": 57, "VS1": 54, "VS2": 48, "SI1": 45, "SI2": 42, "SI3": 40, "I1": 38, "I2": 26, "I3": 13}}, "3.00-3.99": {"D": {"IF": 550, "VVS1": 460, "VVS2": 410, "VS1": 350, "VS2": 295, "SI1": 235, "SI2": 200, "SI3": 139, "I1": 103, "I2": 49, "I3": 21}, "E": {"IF": 450, "VVS1": 420, "VVS2": 370, "VS1": 320, "VS2": 265, "SI1": 210, "SI2": 185, "SI3": 131, "I1": 98, "I2": 47, "I3": 20}, "F": {"IF": 405, "VVS1": 375, "VVS2": 335, "VS1": 295, "VS2": 245, "SI1": 195, "SI2": 170, "SI3": 124, "I1": 93, "I2": 45, "I3": 19}, "G": {"IF": 335, "VVS1": 315, "VVS2": 280, "VS1": 245, "VS2": 210, "SI1": 180, "SI2": 155, "SI3": 112, "I1": 87, "I2": 43, "I3": 18}, "H": {"IF": 270, "VVS1": 250, "VVS2": 225, "VS1": 205, "VS2": 185, "SI1": 160, "SI2": 135, "SI3": 101, "I1": 82, "I2": 41, "I3": 17}, "I": {"IF": 220, "VVS1": 205, "VVS2": 190, "VS1": 175, "VS2": 160, "SI1": 140, "SI2": 120, "SI3": 92, "I1": 77, "I2": 38, "I3": 16}, "J": {"IF": 175, "VVS1": 165, "VVS2": 150, "VS1": 140, "VS2": 130, "SI1": 120, "SI2": 110, "SI3": 84, "I1": 71, "I2": 35, "I3": 15}, "K": {"IF": 145, "VVS1": 135, "VVS2": 125, "VS1": 120, "VS2": 110, "SI1": 103, "SI2": 97, "SI3": 76, "I1": 62, "I2": 33, "I3": 15}, "L": {"IF": 117, "VVS1": 111, "VVS2": 107, "VS1": 103, "VS2": 95, "SI1": 90, "SI2": 82, "SI3": 65, "I1": 55, "I2": 31, "I3": 14}, "M": {"IF": 95, "VVS1": 91, "VVS2": 87, "VS1": 83, "VS2": 79, "SI1": 75, "SI2": 67, "SI3": 58, "I1": 47, "I2": 30, "I3": 14}}, "4.00-4.99": {"D": {"IF": 745, "VVS1": 645, "VVS2": 585, "VS1": 495, "VS2": 415, "SI1": 315, "SI2": 255, "SI3": 155, "I1": 111, "I2": 54, "I3": 23}, "E": {"IF": 625, "VVS1": 585, "VVS2": 525, "VS1": 450, "VS2": 390, "SI1": 295, "SI2": 240, "SI3": 145, "I1": 106, "I2": 52, "I3": 22}, "F": {"IF": 565, "VVS1": 520, "VVS2": 475, "VS1": 410, "VS2": 355, "SI1": 275, "SI2": 225, "SI3": 138, "I1": 101, "I2": 50, "I3": 21}, "G": {"IF": 465, "VVS1": 430, "VVS2": 395, "VS1": 360, "VS2": 315, "SI1": 245, "SI2": 200, "SI3": 127, "I1": 95, "I2": 47, "I3": 20}, "H": {"IF": 360, "VVS1": 335, "VVS2": 315, "VS1": 295, "VS2": 260, "SI1": 215, "SI2": 180, "SI3": 114, "I1": 90, "I2": 44, "I3": 19}, "I": {"IF": 280, "VVS1": 260, "VVS2": 245, "VS1": 230, "VS2": 210, "SI1": 190, "SI2": 160, "SI3": 105, "I1": 86, "I2": 41, "I3": 18}, "J": {"IF": 225, "VVS1": 210, "VVS2": 195, "VS1": 185, "VS2": 170, "SI1": 155, "SI2": 140, "SI3": 95, "I1": 75, "I2": 39, "I3": 17}, "K": {"IF": 185, "VVS1": 175, "VVS2": 160, "VS1": 150, "VS2": 140, "SI1": 130, "SI2": 120, "SI3": 83, "I1": 66, "I2": 36, "I3": 17}, "L": {"IF": 150, "VVS1": 140, "VVS2": 130, "VS1": 120, "VS2": 115, "SI1": 105, "SI2": 100, "SI3": 73, "I1": 59, "I2": 34, "I3": 16}, "M": {"IF": 125, "VVS1": 115, "VVS2": 105, "VS1": 100, "VS2": 95, "SI1": 90, "SI2": 80, "SI3": 65, "I1": 50, "I2": 32, "I3": 16}}, "5.00-5.99": {"D": {"IF": 1000, "VVS1": 855, "VVS2": 770, "VS1": 690, "VS2": 580, "SI1": 430, "SI2": 315, "SI3": 175, "I1": 125, "I2": 60, "I3": 25}, "E": {"IF": 835, "VVS1": 750, "VVS2": 670, "VS1": 595, "VS2": 520, "SI1": 395, "SI2": 295, "SI3": 170, "I1": 120, "I2": 57, "I3": 23}, "F": {"IF": 730, "VVS1": 670, "VVS2": 595, "VS1": 540, "VS2": 465, "SI1": 360, "SI2": 280, "SI3": 160, "I1": 115, "I2": 54, "I3": 22}, "G": {"IF": 605, "VVS1": 555, "VVS2": 505, "VS1": 460, "VS2": 395, "SI1": 320, "SI2": 260, "SI3": 150, "I1": 110, "I2": 51, "I3": 21}, "H": {"IF": 480, "VVS1": 445, "VVS2": 400, "VS1": 360, "VS2": 325, "SI1": 265, "SI2": 225, "SI3": 140, "I1": 100, "I2": 48, "I3": 21}, "I": {"IF": 365, "VVS1": 345, "VVS2": 315, "VS1": 290, "VS2": 255, "SI1": 225, "SI2": 195, "SI3": 130, "I1": 95, "I2": 46, "I3": 20}, "J": {"IF": 280, "VVS1": 260, "VVS2": 240, "VS1": 220, "VS2": 205, "SI1": 195, "SI2": 170, "SI3": 120, "I1": 88, "I2": 43, "I3": 19}, "K": {"IF": 220, "VVS1": 210, "VVS2": 195, "VS1": 180, "VS2": 170, "SI1": 165, "SI2": 150, "SI3": 110, "I1": 81, "I2": 41, "I3": 18}, "L": {"IF": 180, "VVS1": 165, "VVS2": 155, "VS1": 150, "VS2": 140, "SI1": 135, "SI2": 125, "SI3": 100, "I1": 69, "I2": 37, "I3": 17}, "M": {"IF": 150, "VVS1": 140, "VVS2": 130, "VS1": 125, "VS2": 120, "SI1": 110, "SI2": 100, "SI3": 80, "I1": 60, "I2": 34, "I3": 16}}, "10.00-10.99": {"D": {"IF": 1400, "VVS1": 1300, "VVS2": 1200, "VS1": 1070, "VS2": 900, "SI1": 635, "SI2": 465, "SI3": 250, "I1": 140, "I2": 66, "I3": 27}, "E": {"IF": 1270, "VVS1": 1160, "VVS2": 1030, "VS1": 930, "VS2": 820, "SI1": 585, "SI2": 430, "SI3": 235, "I1": 135, "I2": 63, "I3": 26}, "F": {"IF": 1110, "VVS1": 1040, "VVS2": 930, "VS1": 835, "VS2": 715, "SI1": 535, "SI2": 400, "SI3": 220, "I1": 130, "I2": 60, "I3": 25}, "G": {"IF": 930, "VVS1": 865, "VVS2": 785, "VS1": 715, "VS2": 610, "SI1": 485, "SI2": 370, "SI3": 205, "I1": 125, "I2": 57, "I3": 24}, "H": {"IF": 750, "VVS1": 695, "VVS2": 630, "VS1": 565, "VS2": 500, "SI1": 405, "SI2": 325, "SI3": 185, "I1": 120, "I2": 55, "I3": 23}, "I": {"IF": 570, "VVS1": 535, "VVS2": 495, "VS1": 460, "VS2": 405, "SI1": 340, "SI2": 275, "SI3": 170, "I1": 115, "I2": 52, "I3": 22}, "J": {"IF": 440, "VVS1": 405, "VVS2": 375, "VS1": 350, "VS2": 325, "SI1": 285, "SI2": 235, "SI3": 150, "I1": 110, "I2": 49, "I3": 21}, "K": {"IF": 345, "VVS1": 325, "VVS2": 300, "VS1": 275, "VS2": 255, "SI1": 235, "SI2": 200, "SI3": 135, "I1": 100, "I2": 47, "I3": 20}, "L": {"IF": 270, "VVS1": 255, "VVS2": 240, "VS1": 225, "VS2": 210, "SI1": 195, "SI2": 165, "SI3": 120, "I1": 85, "I2": 45, "I3": 19}, "M": {"IF": 225, "VVS1": 210, "VVS2": 195, "VS1": 185, "VS2": 175, "SI1": 165, "SI2": 140, "SI3": 105, "I1": 75, "I2": 43, "I3": 18}}}, "pear": {".90-.99": {"D": {"IF": 67, "VVS1": 63, "VVS2": 56, "VS1": 52, "VS2": 44, "SI1": 37, "SI2": 33, "SI3": 30, "I1": 24, "I2": 18, "I3": 11}, "E": {"IF": 62, "VVS1": 57, "VVS2": 52, "VS1": 49, "VS2": 42, "SI1": 35, "SI2": 31, "SI3": 28, "I1": 23, "I2": 17, "I3": 10}, "F": {"IF": 55, "VVS1": 52, "VVS2": 49, "VS1": 46, "VS2": 40, "SI1": 33, "SI2": 29, "SI3": 26, "I1": 22, "I2": 16, "I3": 10}, "G": {"IF": 52, "VVS1": 49, "VVS2": 46, "VS1": 43, "VS2": 38, "SI1": 32, "SI2": 27, "SI3": 24, "I1": 21, "I2": 16, "I3": 9}, "H": {"IF": 48, "VVS1": 45, "VVS2": 42, "VS1": 39, "VS2": 35, "SI1": 30, "SI2": 25, "SI3": 22, "I1": 20, "I2": 15, "I3": 9}, "I": {"IF": 41, "VVS1": 39, "VVS2": 37, "VS1": 34, "VS2": 31, "SI1": 27, "SI2": 23, "SI3": 21, "I1": 19, "I2": 14, "I3": 9}, "J": {"IF": 36, "VVS1": 34, "VVS2": 32, "VS1": 30, "VS2": 27, "SI1": 24, "SI2": 21, "SI3": 19, "I1": 17, "I2": 13, "I3": 8}, "K": {"IF": 30, "VVS1": 28, "VVS2": 26, "VS1": 25, "VS2": 23, "SI1": 21, "SI2": 19, "SI3": 17, "I1": 15, "I2": 12, "I3": 8}, "L": {"IF": 24, "VVS1": 23, "VVS2": 22, "VS1": 20, "VS2": 19, "SI1": 18, "SI2": 16, "SI3": 15, "I1": 13, "I2": 10, "I3": 7}, "M": {"IF": 20, "VVS1": 19, "VVS2": 18, "VS1": 17, "VS2": 16, "SI1": 15, "SI2": 14, "SI3": 13, "I1": 11, "I2": 9, "I3": 7}}, "1.00-1.49": {"D": {"IF": 93, "VVS1": 82, "VVS2": 76, "VS1": 67, "VS2": 57, "SI1": 46, "SI2": 39, "SI3": 35, "I1": 31, "I2": 21, "I3": 13}, "E": {"IF": 82, "VVS1": 75, "VVS2": 69, "VS1": 62, "VS2": 54, "SI1": 43, "SI2": 37, "SI3": 33, "I1": 29, "I2": 20, "I3": 12}, "F": {"IF": 74, "VVS1": 68, "VVS2": 64, "VS1": 58, "VS2": 51, "SI1": 40, "SI2": 35, "SI3": 31, "I1": 28, "I2": 20, "I3": 11}, "G": {"IF": 66, "VVS1": 62, "VVS2": 58, "VS1": 54, "VS2": 48, "SI1": 38, "SI2": 33, "SI3": 29, "I1": 26, "I2": 19, "I3": 10}, "H": {"IF": 56, "VVS1": 52, "VVS2": 49, "VS1": 46, "VS2": 42, "SI1": 36, "SI2": 31, "SI3": 27, "I1": 24, "I2": 18, "I3": 10}, "I": {"IF": 47, "VVS1": 44, "VVS2": 42, "VS1": 39, "VS2": 37, "SI1": 32, "SI2": 28, "SI3": 24, "I1": 22, "I2": 17, "I3": 10}, "J": {"IF": 40, "VVS1": 38, "VVS2": 36, "VS1": 34, "VS2": 32, "SI1": 29, "SI2": 25, "SI3": 22, "I1": 19, "I2": 15, "I3": 9}, "K": {"IF": 34, "VVS1": 32, "VVS2": 30, "VS1": 28, "VS2": 26, "SI1": 24, "SI2": 22, "SI3": 19, "I1": 17, "I2": 14, "I3": 9}, "L": {"IF": 29, "VVS1": 27, "VVS2": 25, "VS1": 23, "VS2": 22, "SI1": 20, "SI2": 19, "SI3": 18, "I1": 16, "I2": 12, "I3": 9}, "M": {"IF": 25, "VVS1": 23, "VVS2": 21, "VS1": 20, "VS2": 19, "SI1": 18, "SI2": 17, "SI3": 16, "I1": 13, "I2": 10, "I3": 8}}, "1.50-1.99": {"D": {"IF": 141, "VVS1": 132, "VVS2": 125, "VS1": 116, "VS2": 99, "SI1": 81, "SI2": 67, "SI3": 59, "I1": 51, "I2": 27, "I3": 15}, "E": {"IF": 132, "VVS1": 124, "VVS2": 116, "VS1": 108, "VS2": 93, "SI1": 76, "SI2": 63, "SI3": 55, "I1": 48, "I2": 26, "I3": 14}, "F": {"IF": 123, "VVS1": 115, "VVS2": 108, "VS1": 102, "VS2": 88, "SI1": 72, "SI2": 60, "SI3": 51, "I1": 45, "I2": 25, "I3": 13}, "G": {"IF": 109, "VVS1": 105, "VVS2": 100, "VS1": 93, "VS2": 82, "SI1": 67, "SI2": 56, "SI3": 48, "I1": 42, "I2": 24, "I3": 12}, "H": {"IF": 92, "VVS1": 88, "VVS2": 84, "VS1": 79, "VS2": 71, "SI1": 62, "SI2": 52, "SI3": 45, "I1": 39, "I2": 23, "I3": 11}, "I": {"IF": 79, "VVS1": 75, "VVS2": 72, "VS1": 68, "VS2": 63, "SI1": 56, "SI2": 48, "SI3": 42, "I1": 36, "I2": 22, "I3": 11}, "J": {"IF": 64, "VVS1": 61, "VVS2": 58, "VS1": 55, "VS2": 52, "SI1": 48, "SI2": 44, "SI3": 38, "I1": 33, "I2": 20, "I3": 11}, "K": {"IF": 49, "VVS1": 47, "VVS2": 45, "VS1": 43, "VS2": 41, "SI1": 39, "SI2": 37, "SI3": 33, "I1": 29, "I2": 18, "I3": 10}, "L": {"IF": 41, "VVS1": 39, "VVS2": 37, "VS1": 36, "VS2": 34, "SI1": 32, "SI2": 30, "SI3": 28, "I1": 26, "I2": 16, "I3": 10}, "M": {"IF": 35, "VVS1": 33, "VVS2": 32, "VS1": 31, "VS2": 29, "SI1": 27, "SI2": 25, "SI3": 24, "I1": 22, "I2": 15, "I3": 10}}, "2.00-2.99": {"D": {"IF": 215, "VVS1": 200, "VVS2": 185, "VS1": 175, "VS2": 160, "SI1": 135, "SI2": 103, "SI3": 82, "I1": 69, "I2": 30, "I3": 16}, "E": {"IF": 200, "VVS1": 185, "VVS2": 170, "VS1": 160, "VS2": 150, "SI1": 125, "SI2": 96, "SI3": 78, "I1": 64, "I2": 29, "I3": 15}, "F": {"IF": 185, "VVS1": 170, "VVS2": 160, "VS1": 150, "VS2": 140, "SI1": 117, "SI2": 91, "SI3": 74, "I1": 59, "I2": 28, "I3": 14}, "G": {"IF": 170, "VVS1": 160, "VVS2": 150, "VS1": 140, "VS2": 130, "SI1": 107, "SI2": 86, "SI3": 70, "I1": 55, "I2": 27, "I3": 13}, "H": {"IF": 135, "VVS1": 125, "VVS2": 120, "VS1": 115, "VS2": 110, "SI1": 99, "SI2": 82, "SI3": 64, "I1": 51, "I2": 25, "I3": 12}, "I": {"IF": 108, "VVS1": 104, "VVS2": 99, "VS1": 95, "VS2": 90, "SI1": 85, "SI2": 75, "SI3": 57, "I1": 48, "I2": 24, "I3": 12}, "J": {"IF": 88, "VVS1": 84, "VVS2": 81, "VS1": 77, "VS2": 74, "SI1": 70, "SI2": 63, "SI3": 51, "I1": 45, "I2": 22, "I3": 12}, "K": {"IF": 70, "VVS1": 66, "VVS2": 63, "VS1": 60, "VS2": 58, "SI1": 55, "SI2": 51, "SI3": 43, "I1": 37, "I2": 21, "I3": 11}, "L": {"IF": 54, "VVS1": 51, "VVS2": 49, "VS1": 47, "VS2": 45, "SI1": 43, "SI2": 41, "SI3": 36, "I1": 33, "I2": 19, "I3": 11}, "M": {"IF": 45, "VVS1": 42, "VVS2": 40, "VS1": 38, "VS2": 36, "SI1": 35, "SI2": 33, "SI3": 29, "I1": 27, "I2": 18, "I3": 10}}, "3.00-3.99": {"D": {"IF": 420, "VVS1": 355, "VVS2": 325, "VS1": 300, "VS2": 270, "SI1": 230, "SI2": 180, "SI3": 122, "I1": 86, "I2": 36, "I3": 17}, "E": {"IF": 365, "VVS1": 325, "VVS2": 295, "VS1": 275, "VS2": 250, "SI1": 215, "SI2": 170, "SI3": 112, "I1": 80, "I2": 33, "I3": 16}, "F": {"IF": 325, "VVS1": 295, "VVS2": 270, "VS1": 250, "VS2": 230, "SI1": 200, "SI2": 160, "SI3": 104, "I1": 74, "I2": 30, "I3": 15}, "G": {"IF": 290, "VVS1": 265, "VVS2": 245, "VS1": 225, "VS2": 210, "SI1": 185, "SI2": 150, "SI3": 95, "I1": 67, "I2": 29, "I3": 15}, "H": {"IF": 240, "VVS1": 225, "VVS2": 210, "VS1": 195, "VS2": 185, "SI1": 165, "SI2": 140, "SI3": 88, "I1": 62, "I2": 27, "I3": 14}, "I": {"IF": 195, "VVS1": 185, "VVS2": 175, "VS1": 165, "VS2": 155, "SI1": 145, "SI2": 125, "SI3": 81, "I1": 57, "I2": 26, "I3": 14}, "J": {"IF": 154, "VVS1": 142, "VVS2": 135, "VS1": 127, "VS2": 121, "SI1": 111, "SI2": 102, "SI3": 71, "I1": 54, "I2": 25, "I3": 13}, "K": {"IF": 119, "VVS1": 111, "VVS2": 105, "VS1": 100, "VS2": 94, "SI1": 88, "SI2": 82, "SI3": 61, "I1": 50, "I2": 24, "I3": 13}, "L": {"IF": 89, "VVS1": 83, "VVS2": 79, "VS1": 75, "VS2": 71, "SI1": 66, "SI2": 62, "SI3": 53, "I1": 44, "I2": 23, "I3": 12}, "M": {"IF": 67, "VVS1": 63, "VVS2": 60, "VS1": 57, "VS2": 54, "SI1": 49, "SI2": 46, "SI3": 41, "I1": 36, "I2": 21, "I3": 11}}, "4.00-4.99": {"D": {"IF": 535, "VVS1": 460, "VVS2": 435, "VS1": 405, "VS2": 375, "SI1": 280, "SI2": 210, "SI3": 137, "I1": 92, "I2": 39, "I3": 19}, "E": {"IF": 460, "VVS1": 420, "VVS2": 400, "VS1": 375, "VS2": 345, "SI1": 265, "SI2": 200, "SI3": 129, "I1": 88, "I2": 37, "I3": 17}, "F": {"IF": 420, "VVS1": 390, "VVS2": 370, "VS1": 345, "VS2": 315, "SI1": 250, "SI2": 190, "SI3": 119, "I1": 82, "I2": 35, "I3": 16}, "G": {"IF": 375, "VVS1": 340, "VVS2": 320, "VS1": 300, "VS2": 275, "SI1": 235, "SI2": 180, "SI3": 109, "I1": 77, "I2": 32, "I3": 16}, "H": {"IF": 305, "VVS1": 285, "VVS2": 270, "VS1": 255, "VS2": 235, "SI1": 205, "SI2": 170, "SI3": 103, "I1": 72, "I2": 29, "I3": 15}, "I": {"IF": 250, "VVS1": 235, "VVS2": 220, "VS1": 205, "VS2": 190, "SI1": 175, "SI2": 150, "SI3": 95, "I1": 66, "I2": 28, "I3": 15}, "J": {"IF": 195, "VVS1": 185, "VVS2": 175, "VS1": 165, "VS2": 155, "SI1": 145, "SI2": 125, "SI3": 81, "I1": 61, "I2": 26, "I3": 14}, "K": {"IF": 158, "VVS1": 148, "VVS2": 139, "VS1": 132, "VS2": 123, "SI1": 115, "SI2": 105, "SI3": 70, "I1": 56, "I2": 25, "I3": 14}, "L": {"IF": 113, "VVS1": 106, "VVS2": 100, "VS1": 95, "VS2": 90, "SI1": 84, "SI2": 77, "SI3": 58, "I1": 48, "I2": 24, "I3": 13}, "M": {"IF": 81, "VVS1": 77, "VVS2": 74, "VS1": 71, "VS2": 68, "SI1": 64, "SI2": 61, "SI3": 47, "I1": 39, "I2": 22, "I3": 12}}, "5.00-5.99": {"D": {"IF": 750, "VVS1": 635, "VVS2": 600, "VS1": 570, "VS2": 490, "SI1": 375, "SI2": 270, "SI3": 146, "I1": 105, "I2": 43, "I3": 20}, "E": {"IF": 630, "VVS1": 580, "VVS2": 550, "VS1": 525, "VS2": 455, "SI1": 350, "SI2": 250, "SI3": 139, "I1": 95, "I2": 40, "I3": 18}, "F": {"IF": 565, "VVS1": 535, "VVS2": 510, "VS1": 485, "VS2": 430, "SI1": 320, "SI2": 235, "SI3": 129, "I1": 89, "I2": 38, "I3": 17}, "G": {"IF": 500, "VVS1": 470, "VVS2": 445, "VS1": 425, "VS2": 365, "SI1": 295, "SI2": 220, "SI3": 124, "I1": 84, "I2": 36, "I3": 17}, "H": {"IF": 420, "VVS1": 385, "VVS2": 365, "VS1": 335, "VS2": 300, "SI1": 250, "SI2": 205, "SI3": 118, "I1": 81, "I2": 33, "I3": 16}, "I": {"IF": 325, "VVS1": 300, "VVS2": 275, "VS1": 255, "VS2": 235, "SI1": 210, "SI2": 180, "SI3": 107, "I1": 77, "I2": 30, "I3": 16}, "J": {"IF": 250, "VVS1": 230, "VVS2": 215, "VS1": 200, "VS2": 185, "SI1": 175, "SI2": 160, "SI3": 97, "I1": 70, "I2": 28, "I3": 15}, "K": {"IF": 195, "VVS1": 185, "VVS2": 175, "VS1": 165, "VS2": 155, "SI1": 145, "SI2": 135, "SI3": 88, "I1": 65, "I2": 27, "I3": 15}, "L": {"IF": 150, "VVS1": 140, "VVS2": 135, "VS1": 130, "VS2": 125, "SI1": 120, "SI2": 110, "SI3": 71, "I1": 56, "I2": 24, "I3": 14}, "M": {"IF": 115, "VVS1": 110, "VVS2": 105, "VS1": 95, "VS2": 90, "SI1": 85, "SI2": 80, "SI3": 61, "I1": 46, "I2": 23, "I3": 13}}, "10.00-10.99": {"D": {"IF": 1320, "VVS1": 1075, "VVS2": 990, "VS1": 920, "VS2": 795, "SI1": 575, "SI2": 410, "SI3": 205, "I1": 124, "I2": 53, "I3": 23}, "E": {"IF": 1070, "VVS1": 965, "VVS2": 905, "VS1": 835, "VS2": 725, "SI1": 535, "SI2": 390, "SI3": 195, "I1": 117, "I2": 50, "I3": 22}, "F": {"IF": 945, "VVS1": 885, "VVS2": 835, "VS1": 765, "VS2": 665, "SI1": 495, "SI2": 365, "SI3": 185, "I1": 111, "I2": 48, "I3": 21}, "G": {"IF": 790, "VVS1": 745, "VVS2": 695, "VS1": 650, "VS2": 575, "SI1": 460, "SI2": 340, "SI3": 170, "I1": 106, "I2": 46, "I3": 20}, "H": {"IF": 655, "VVS1": 610, "VVS2": 570, "VS1": 530, "VS2": 465, "SI1": 395, "SI2": 305, "SI3": 160, "I1": 101, "I2": 44, "I3": 19}, "I": {"IF": 510, "VVS1": 475, "VVS2": 440, "VS1": 405, "VS2": 370, "SI1": 330, "SI2": 260, "SI3": 150, "I1": 97, "I2": 42, "I3": 18}, "J": {"IF": 395, "VVS1": 370, "VVS2": 345, "VS1": 315, "VS2": 285, "SI1": 255, "SI2": 220, "SI3": 135, "I1": 91, "I2": 40, "I3": 17}, "K": {"IF": 315, "VVS1": 295, "VVS2": 275, "VS1": 250, "VS2": 230, "SI1": 210, "SI2": 185, "SI3": 120, "I1": 86, "I2": 38, "I3": 16}, "L": {"IF": 230, "VVS1": 215, "VVS2": 205, "VS1": 190, "VS2": 175, "SI1": 160, "SI2": 140, "SI3": 105, "I1": 77, "I2": 36, "I3": 16}, "M": {"IF": 175, "VVS1": 165, "VVS2": 155, "VS1": 145, "VS2": 135, "SI1": 125, "SI2": 115, "SI3": 90, "I1": 64, "I2": 33, "I3": 15}}}};
+    // Load from localStorage on page load
+    window.onload = function() {
+        var savedStock = localStorage.getItem('dn_memo_stock');
+        console.log("Found stock:", savedStock ? "yes (" + savedStock.length + " chars)" : "no");
+        if(savedStock) {
+            try {
+                stockData = JSON.parse(savedStock);
+                var shapeCounts = {};
+                stockData.forEach(function(item) {
+                    shapeCounts[item.shape] = (shapeCounts[item.shape] || 0) + 1;
+                });
+                if(stockData.length > 0) {
+                    renderShapeList(shapeCounts);
+                    document.getElementById('importStockBtn').style.display = 'none';
+                document.getElementById('importStockBtn').style.display = 'none';
+                    document.getElementById('clearStockBtn').style.display = 'inline-block';
+                }
+            } catch(e) { alert("Error: " + e.message); console.log('Error loading stock:', e); }
+        }
+    };
+    
+    var stockData = [];
+    var currentShape = "";
+    var tempSelections = {};
+    var manualEdits = {};
+        submittedItems = []; // Clear submitted items too
+    var submittedItems = [];
+    var currentItemFilter = "all"; // Track submitted items // Track if user manually edited price/amount
+    
+    function getRange(carat) {
+        carat = parseFloat(carat);
+        if(carat < 1) return ".90-.99";
+        if(carat < 1.5) return "1.00-1.49";
+        if(carat < 2) return "1.50-1.99";
+        if(carat < 3) return "2.00-2.99";
+        if(carat < 4) return "3.00-3.99";
+        if(carat < 5) return "4.00-4.99";
+        return "5.00-5.99";
+    }
+    
+    function lookup(shape, carat, color, clarity) {
+        var tableKey = (shape == "RBC") ? "round" : "pear";
+        var range = getRange(carat);
+        var table = RAPAPORT[tableKey];
+        if(!table || !table[range] || !table[range][color] || !table[range][color][clarity]) return null;
+        return table[range][color][clarity];
+    }
+    
+    function formatCurrency(input) {
+        var val = parseFloat(input.value.replace(/,/g, ''));
+        if(!isNaN(val)) {
+            input.value = val.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+    }
+    
+    function manualAmount(input) {
+        var n = input.id.replace('amount', '');
+        manualEdits['amount'+n] = true;
+        var val = parseFloat(input.value.replace(/,/g, '')) || 0;
+        input.value = val.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        calcTotals();
+    }
+    
+    function manualPrice(input) {
+        var n = input.id.replace('price', '');
+        manualEdits['price'+n] = true;
+        var price = parseFloat(input.value.replace(/,/g, '')) || 0;
+        input.value = price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        var carat = parseFloat(document.getElementById('carat'+n).value) || 0;
+        var disc = parseFloat(document.getElementById('disc'+n).value) || 0;
+        var amount = price * carat * (1 + disc/100);
+        document.getElementById('amount'+n).value = amount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        manualEdits['amount'+n] = true;
+        calcTotals();
+    }
+    
+    function calculate(n) {
+        var shape = document.getElementById("shape"+n).value;
+        var carat = parseFloat(document.getElementById("carat"+n).value) || 0;
+        var color = document.getElementById("color"+n).value.toUpperCase();
+        var clarity = document.getElementById("clarity"+n).value.toUpperCase();
+        if(clarity == "FL") clarity = "IF";
+        var discount = parseFloat(document.getElementById("disc"+n).value) || 0;
+        if(!carat || !color || !clarity) return;
+        
+        var rap = lookup(shape, carat, color, clarity);
+        if(rap) {
+            var pricePerCarat = rap * 100;
+            var total = pricePerCarat * carat * (1 + discount/100);
+            // Only auto-calculate if not manually edited
+            if (!manualEdits['price'+n]) {
+                document.getElementById("price"+n).value = pricePerCarat.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
+            if (!manualEdits['amount'+n]) {
+                document.getElementById("amount"+n).value = total.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
+        }
+        calcTotals();
+    }
+    
+    function calcTotals() {
+        var tc = 0, ta = 0;
+        for(var i=1; i<=20; i++) {
+            var c = document.getElementById("carat"+i);
+            var a = document.getElementById("amount"+i);
+            if(c && c.value) tc += parseFloat(c.value.replace(/,/g, "")) || 0;
+            if(a && a.value) ta += parseFloat(a.value.replace(/,/g, "")) || 0;
+        }
+        document.getElementById("totalCarat").value = tc.toFixed(2);
+        document.getElementById("totalAmount").value = ta.toFixed(2);
+    }
+    
+
+    function getCurrentMemoNo() {
+        var today = new Date();
+        var yy = String(today.getFullYear()).slice(-2);
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var dd = String(today.getDate()).padStart(2, '0');
+        var dateKey = yy + mm + dd;
+        
+        var storageKey = 'dn_memo_count_' + dateKey;
+        var count = parseInt(localStorage.getItem(storageKey) || '0');
+        
+        return dateKey + String(count).padStart(2, '0');
+    }
+    
+    function generateMemoNo() {
+        var today = new Date();
+        var yy = String(today.getFullYear()).slice(-2);
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var dd = String(today.getDate()).padStart(2, '0');
+        var dateKey = yy + mm + dd;
+        
+        var storageKey = 'dn_memo_count_' + dateKey;
+        var count = parseInt(localStorage.getItem(storageKey) || '0') + 1;
+        localStorage.setItem(storageKey, count);
+        
+        return dateKey + String(count).padStart(2, '0');
+    }
+    
+    function initMemoNo() {
+        document.getElementById('memoNo').value = getCurrentMemoNo();
+    }
+
+    
+    function addRow() {
+        var tbody = document.getElementById("itemsBody");
+        var n = tbody.rows.length + 1;
+        var tr = document.createElement("tr");
+        tr.innerHTML = '<td>'+n+'</td><td><input id="parcel'+n+'" size="10"></td><td><input id="shape'+n+'" size="6" onchange="calculate('+n+')"></td><td><input id="carat'+n+'" size="5" onchange="calculate('+n+')"></td><td><input id="color'+n+'" size="4" onchange="calculate('+n+')"></td><td><select id="clarity'+n+'" onchange="calculate('+n+')"><option value="">-</option><option value="FL">FL</option><option value="IF">IF</option><option value="VVS1">VVS1</option><option value="VVS2">VVS2</option><option value="VS1">VS1</option><option value="VS2">VS2</option><option value="SI1">SI1</option><option value="SI2">SI2</option></select></td><td><input id="cert'+n+'" size="8"></td><td><input id="price'+n+'" size="7" onchange="manualPrice(this)" onblur="formatCurrency(this)"></td><td><input id="disc'+n+'" size="4" value="0" onchange="calculate('+n+')"></td><td><input id="amount'+n+'" size="8" onchange="manualAmount(this)" onblur="formatCurrency(this)"></td><td><button onclick="clearRow(this)" style="padding:4px 8px;background:#ff3b30;color:white;border:none;border-radius:4px;cursor:pointer;">X</button></td>';
+        tbody.appendChild(tr);
+    }
+    
+function clearRow(btn) {
+        var row = btn.closest('tr');
+        var tbody = document.getElementById('itemsBody');
+        
+        if(tbody.rows.length <= 1) {
+            row.querySelectorAll('input').forEach(function(input) {
+                input.value = input.id.match(/disc/) ? '0' : '';
+            });
+            row.querySelectorAll('select').forEach(function(select) {
+                select.value = '';
+            });
+            calcTotals();
+            return;
+        }
+        
+        var rowIndex = row.rowIndex;
+        row.remove();
+        
+        Array.from(tbody.rows).forEach(function(r, i) {
+            r.cells[0].textContent = i + 1;
+            r.querySelectorAll('input, select').forEach(function(input) {
+                var oldId = input.id;
+                var newId = oldId.replace(/\d+$/, String(i + 1));
+                input.id = newId;
+            });
+            r.querySelectorAll('button').forEach(function(btn) {
+                btn.onclick = function() { clearRow(this); };
+            });
+        });
+        
+        calcTotals();
+    }
+    function clearAllRows() {
+        if(!confirm('Clear all items?')) return;
+        document.getElementById('itemsBody').innerHTML = '';
+        tempSelections = {};
+        manualEdits = {};
+        submittedItems = []; // Clear submitted items too
+        addRow();
+    
+    // Load external Rapaport data (overrides embedded)
+    fetch("rapaport-calculator/data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;console.log("External Rapaport loaded")}).catch(e=>console.log("Using embedded"));
+        calcTotals();
+    }
+    
+    function clearStockData() {
+        if(!confirm('Clear all stock data?')) return;
+        stockData = [];
+        localStorage.removeItem('dn_memo_stock');
+        document.getElementById('shapeList').innerHTML = '';
+        document.getElementById('importStockBtn').style.display = 'inline-block';
+                document.getElementById('clearStockBtn').style.display = 'none';
+        alert('Stock cleared!');
+    }
+    
+    function loadStockExcel(input) {
+        var file = input.files[0];
+        if(!file) return;
+        
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                var data = new Uint8Array(e.target.result);
+                var workbook = XLSX.read(data, {type: 'array'});
+                var sheet = workbook.Sheets[workbook.SheetNames[0]];
+                var jsonData = XLSX.utils.sheet_to_json(sheet, {header: 1, defval: ""});
+                
+                var headerIdx = 0;
+                for(var h=0; h<Math.min(5, jsonData.length); h++) {
+                    var row = jsonData[h];
+                    if(row && row.length > 0) {
+                        for(var c=0; c<row.length; c++) {
+                            var v = String(row[c] || "").toLowerCase();
+                            if(v.indexOf("parcel") >= 0 || v.indexOf("carat") >= 0) { headerIdx = h; break; }
+                        }
+                    }
+                }
+                
+                var headers = jsonData[headerIdx] || [];
+                var colMap = {parcel:-1, shape:-1, carat:-1, color:-1, clarity:-1, cert:-1};
+                for(var c=0; c<headers.length; c++) {
+                    var h = String(headers[c] || "").toLowerCase();
+                    if(h.indexOf("parcel") >= 0 || h.indexOf("name") >= 0) colMap.parcel = c;
+                    else if(h.indexOf("shape") >= 0) colMap.shape = c;
+                    else if(h.indexOf("carat") >= 0 || h.indexOf("crt") >= 0) colMap.carat = c;
+                    else if(h.indexOf("color") >= 0) colMap.color = c;
+                    else if(h.indexOf("clarit") >= 0) colMap.clarity = c;
+                    else if(h.indexOf("cert") >= 0 || h.indexOf("gia") >= 0) colMap.cert = c;
+                }
+                
+                stockData = [];
+                var shapeCounts = {};
+                
+                for(var r=headerIdx+1; r<jsonData.length; r++) {
+                    var row = jsonData[r];
+                    if(!row || row.length === 0) continue;
+                    
+                    var getVal = function(idx) { if(idx < 0) return ""; var v = row[idx]; return v ? String(v).trim() : ""; };
+                    
+                    var shape = getVal(colMap.shape);
+                    if(!shape) shape = "RBC";
+                    if(shape.toUpperCase().indexOf("ROUND") >= 0 || shape.toUpperCase() == "RBC") shape = "RBC";
+                    else if(shape.toUpperCase().indexOf("PEAR") >= 0 || shape.toUpperCase().indexOf("DROP") >= 0) shape = "Pear";
+                    
+                    var item = { parcel: getVal(colMap.parcel), shape: shape, carat: getVal(colMap.carat), color: getVal(colMap.color), clarity: getVal(colMap.clarity), cert: getVal(colMap.cert) };
+                    
+                    if(item.parcel || item.carat) {
+                        stockData.push(item);
+                        shapeCounts[shape] = (shapeCounts[shape] || 0) + 1;
+                    }
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('dn_memo_stock', JSON.stringify(stockData));
+                
+                renderShapeList(shapeCounts);
+                document.getElementById('importStockBtn').style.display = 'none';
+                document.getElementById('importStockBtn').style.display = 'none';
+                    document.getElementById('clearStockBtn').style.display = 'inline-block';
+                alert("Loaded " + stockData.length + " items!");
+            } catch(err) { alert("Error: " + err.message); }
+        };
+        reader.readAsArrayBuffer(file);
+    }
+    
+    function getShapeCounts() {
+        var counts = {};
+        stockData.forEach(function(item) {
+            counts[item.shape] = (counts[item.shape] || 0) + 1;
+        });
+        return counts;
+    }
+    
+    function renderShapeList(shapeCounts) {
+        var list = document.getElementById('shapeList');
+        list.innerHTML = '';
+        
+        var shapes = ["ALL"].concat(Object.keys(shapeCounts).sort(function(a, b) { if(a === "RBC") return -1; if(b === "RBC") return 1; return a.localeCompare(b); }));
+        
+        shapes.forEach(function(shape) {
+            var div = document.createElement('div');
+            div.className = 'ios-list-item';
+            div.onclick = function() { selectShape(shape === "ALL" ? null : shape); };
+            
+            var totalSelected = 0;
+            for(var s in tempSelections) { totalSelected += tempSelections[s].length; }
+            var selectedCount = (shape === "ALL") ? totalSelected : (tempSelections[shape] ? tempSelections[shape].length : 0);
+            
+            var count = (shape === "ALL") ? stockData.length : shapeCounts[shape];
+            div.innerHTML = '<span class="shape-name">' + (shape === "ALL" ? "All Shapes" : shape) + '</span><span class="ios-list-item-badge">' + count + (selectedCount > 0 ? ' (' + selectedCount + ')' : '') + '</span>';
+            list.appendChild(div);
+        });
+        
+        updateSelectedSummary();
+        updateSubmitCounts();
+    }
+    
+    
+    function updateSubmitCounts() {
+        var total = 0;
+        for(var shape in tempSelections) {
+            total += (tempSelections[shape] || []).length;
+        }
+        var shapePageCount = document.getElementById('shapePageCount');
+        if(shapePageCount) shapePageCount.innerText = total;
+        var itemsPageCount = document.getElementById('itemsPageCount');
+        if(itemsPageCount) itemsPageCount.innerText = total;
+    }
+
+    function updateSelectedSummary() {
+        var total = 0;
+        var details = document.getElementById('selectedDetails');
+        details.innerHTML = '';
+        
+        for(var shape in tempSelections) {
+            var items = tempSelections[shape];
+            if(items && items.length > 0) {
+                total += items.length;
+                items.forEach(function(item) {
+                    details.innerHTML += '<div class="item">' + item.parcel + ' - ' + item.shape + ' ' + item.carat + ' ' + item.color + ' ' + item.clarity + '</div>';
+                });
+            }
+        }
+        
+        document.getElementById('totalSelected').innerText = total;
+        document.getElementById('selectedSummary').style.display = total > 0 ? 'block' : 'none';
+        updateSubmitCounts();
+    }
+    
+    function openSelectModal() {
+        if(stockData.length === 0) { alert("Please import stock list first!"); return; }
+        document.getElementById('selectModal').classList.add('active');
+        document.getElementById('shapePage').classList.add('active');
+        document.getElementById('itemsPage').classList.remove('active');
+        renderShapeList(getShapeCounts());
+        updateSubmitCounts();
+    }
+    
+    function closeSelectModal() { 
+        document.getElementById('selectModal').classList.remove('active'); 
+    }
+    
+    function selectShape(shape) {
+        currentShape = shape; // shape can be null for ALL
+        document.getElementById('shapePage').classList.remove('active');
+        document.getElementById('itemsPage').classList.add('active');
+        document.getElementById('itemsPageTitle').innerText = shape ? shape : 'All Shapes';
+        document.getElementById('itemSearch').value = '';
+        
+        if(!tempSelections[shape]) tempSelections[shape] = [];
+        
+        renderItemList();
+    }
+    
+    function backToShapes() {
+        document.getElementById('itemsPage').classList.remove('active');
+        document.getElementById('shapePage').classList.add('active');
+        renderShapeList(getShapeCounts());
+        updateSubmitCounts();
+    }
+    
+    function renderItemList() {
+        var list = document.getElementById('itemList');
+        list.innerHTML = '';
+        
+        var searchQ = document.getElementById('itemSearch').value.toLowerCase();
+        
+        var items = stockData.filter(function(item) {
+            // Filter by color
+            if(currentItemFilter === 'white') {
+                var color = String(item.color || '').trim().toUpperCase();
+                if(color.startsWith('F') && color.length >= 2) return false;
+            } else if(currentItemFilter === 'color') {
+                var color = String(item.color || '').trim().toUpperCase();
+                if(!(color.startsWith('F') && color.length >= 2)) return false;
+            }
+            
+            // Filter out already submitted items
+            var isSubmitted = submittedItems.some(function(s) { 
+                return s.parcel === item.parcel && s.carat === item.carat; 
+            });
+            if(isSubmitted) return false;
+            if(currentShape && item.shape !== currentShape) return false;
+            if(searchQ) {
+                return item.parcel.toLowerCase().indexOf(searchQ) >= 0 ||
+                       item.carat.toLowerCase().indexOf(searchQ) >= 0 ||
+                       item.color.toLowerCase().indexOf(searchQ) >= 0 ||
+                       item.clarity.toLowerCase().indexOf(searchQ) >= 0 ||
+                       item.cert.toLowerCase().indexOf(searchQ) >= 0;
+            }
+            return true;
+        });
+        
+        // Calculate filter counts
+        var allCount = stockData.filter(function(item) {
+            var isSubmitted = submittedItems.some(function(s) { return s.parcel === item.parcel && s.carat === item.carat; });
+            if(isSubmitted) return false;
+            if(currentShape && item.shape !== currentShape) return false;
+            return true;
+        }).length;
+        
+        var whiteCount = stockData.filter(function(item) {
+            var isSubmitted = submittedItems.some(function(s) { return s.parcel === item.parcel && s.carat === item.carat; });
+            if(isSubmitted) return false;
+            if(currentShape && item.shape !== currentShape) return false;
+            var color = String(item.color || '').trim().toUpperCase();
+            if(color.startsWith('F') && color.length >= 2) return false;
+            return true;
+        }).length;
+        
+        var colorCount = stockData.filter(function(item) {
+            var isSubmitted = submittedItems.some(function(s) { return s.parcel === item.parcel && s.carat === item.carat; });
+            if(isSubmitted) return false;
+            if(currentShape && item.shape !== currentShape) return false;
+            var color = String(item.color || '').trim().toUpperCase();
+            if(!(color.startsWith('F') && color.length >= 2)) return false;
+            return true;
+        }).length;
+        
+        document.getElementById('filterAll').innerText = 'All (' + allCount + ')';
+        document.getElementById('filterWhite').innerText = 'White (' + whiteCount + ')';
+        document.getElementById('filterColor').innerText = 'Color (' + colorCount + ')';
+        
+        
+        
+        var selectedItems = tempSelections[currentShape] || [];
+        
+        items.forEach(function(item) {
+            var div = document.createElement('div');
+            var isSelected = selectedItems.some(function(s) { return s.parcel === item.parcel && s.carat === item.carat; });
+            div.className = 'item-card' + (isSelected ? ' selected' : '');
+            div.onclick = function(e) {
+                if(e.target.type !== "checkbox") {
+                    var cb = this.querySelector('input');
+                    cb.checked = !cb.checked;
+                    this.classList.toggle('selected', cb.checked);
+                    toggleItemSelection(item, cb.checked);
+                }
+            };
+            
+            div.innerHTML = '<input type="checkbox"' + (isSelected ? ' checked' : '') + ' style="width:24px;height:24px;"><div class="item-info"><div class="name">' + item.parcel + '</div><div class="detail">' + item.shape + ' ' + item.carat + 'ct ' + item.color + ' ' + item.clarity + '</div></div>';
+            list.appendChild(div);
+        });
+    }
+    
+    function filterItems() { renderItemList(); }
+    
+    function setItemFilter(filter) {
+        currentItemFilter = filter;
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            btn.classList.toggle('active', btn.dataset.filter === filter);
+        });
+        renderItemList();
+    }
+
+    function selectAllItems() {
+        document.querySelectorAll('.item-card input').forEach(function(cb) { cb.checked = true; });
+        document.querySelectorAll('.item-card').forEach(function(div) { div.classList.add('selected'); });
+        stockData.filter(function(item) { return item.shape === currentShape; }).forEach(function(item) { toggleItemSelection(item, true); });
+        updateSubmitCounts();
+    }
+    
+    function deselectAllItems() {
+        document.querySelectorAll('.item-card input').forEach(function(cb) { cb.checked = false; });
+        document.querySelectorAll('.item-card').forEach(function(div) { div.classList.remove('selected'); });
+        if(tempSelections[currentShape]) tempSelections[currentShape] = [];
+        updateSubmitCounts();
+    }
+
+    
+    function toggleItemSelection(item, selected) {
+        if(!tempSelections[currentShape]) tempSelections[currentShape] = [];
+        
+        if(selected) {
+            if(!tempSelections[currentShape].some(function(i) { return i.parcel === item.parcel && i.carat === item.carat; })) {
+                tempSelections[currentShape].push(item);
+        updateSubmitCounts();
+            }
+        } else {
+            tempSelections[currentShape] = tempSelections[currentShape].filter(function(i) { return !(i.parcel === item.parcel && i.carat === item.carat); });
+        updateSubmitCounts();
+        }
+    }
+    
+    function resetCurrentShape() {
+        tempSelections[currentShape] = [];
+        document.querySelectorAll('.item-card input').forEach(function(cb) { cb.checked = false; });
+        document.querySelectorAll('.item-card').forEach(function(div) { div.classList.remove('selected'); });
+        renderShapeList(getShapeCounts());
+        updateSubmitCounts();
+    }
+    
+    function submitCurrentShape() {
+        // Add ALL selected items across all shapes
+        var allItems = [];
+        for(var shape in tempSelections) {
+            allItems = allItems.concat(tempSelections[shape] || []);
+        }
+        
+        if(allItems.length === 0) {
+            alert('No items selected!');
+            return;
+        }
+        
+        // Append items to table (keep existing items)
+        var tbody = document.getElementById("itemsBody");
+        var startN = tbody.rows.length;
+        manualEdits = {};
+        submittedItems = []; // Clear submitted items too // Clear manual edits for new submission
+        
+        allItems.forEach(function(item, i) {
+            addRow();
+    
+    // Load external Rapaport data (overrides embedded)
+    fetch("rapaport-calculator/data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;console.log("External Rapaport loaded")}).catch(e=>console.log("Using embedded"));
+            var n = startN + i;
+            document.getElementById("parcel"+n).value = item.parcel;
+            document.getElementById("shape"+n).value = item.shape;
+            document.getElementById("carat"+n).value = item.carat;
+            document.getElementById("color"+n).value = item.color;
+            document.getElementById("clarity"+n).value = item.clarity;
+            document.getElementById("cert"+n).value = item.cert;
+            submittedItems.push({parcel: item.parcel, carat: item.carat});
+            calculate(n);
+        });
+        
+        // Clear all selections and close modal
+        tempSelections = {};
+        renderShapeList(getShapeCounts());
+        updateSubmitCounts();
+        closeSelectModal();
+    }
+    
+    function resetAllSelections() {
+        if(!confirm("Reset all selections?")) return;
+        tempSelections = {};
+        submittedItems = [];
+        renderShapeList(getShapeCounts());
+        updateSubmitCounts();
+    }
+    
+    function submitAllItems() {
+        var allItems = [];
+        for(var shape in tempSelections) {
+            allItems = allItems.concat(tempSelections[shape] || []);
+        }
+        
+        if(allItems.length === 0) {
+            alert("Please select at least one item!");
+            return;
+        }
+        
+        var tbody = document.getElementById("itemsBody");
+        var startN = tbody.rows.length;
+        manualEdits = {};
+        submittedItems = []; // Clear submitted items too // Clear manual edits for new submission
+        
+        allItems.forEach(function(item, i) {
+            addRow();
+    
+    // Load external Rapaport data (overrides embedded)
+    fetch("rapaport-calculator/data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;console.log("External Rapaport loaded")}).catch(e=>console.log("Using embedded"));
+            var n = startN + i;
+            document.getElementById("parcel"+n).value = item.parcel;
+            document.getElementById("shape"+n).value = item.shape;
+            document.getElementById("carat"+n).value = item.carat;
+            document.getElementById("color"+n).value = item.color;
+            document.getElementById("clarity"+n).value = item.clarity;
+            document.getElementById("cert"+n).value = item.cert;
+            submittedItems.push({parcel: item.parcel, carat: item.carat});
+            calculate(n);
+        });
+        
+        // Clear all selections and close modal
+        tempSelections = {};
+        renderShapeList(getShapeCounts());
+        updateSubmitCounts();
+        closeSelectModal();
+    }
+    
+    async function downloadPDF() {
+    var memoNum = getCurrentMemoNo(); // Use current without increment
+    generateMemoNo(); // Increment for next time
+    initMemoNo(); // Update display to show next number
+    
+    // Load PDF template
+    var getVal = function(id) { var el = document.getElementById(id); return el ? el.value : ""; };
+    var templateUrl = "memo_template.pdf";
+    var existingPdfBytes = await fetch(templateUrl).then(res => res.arrayBuffer());
+    var pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes);
+    var form = pdfDoc.getForm();
+    
+    // Fill basic fields
+    form.getTextField("Memo Number").setText(memoNum);
+    form.getTextField("Date").setText(getVal("memoDate"));
+    form.getTextField("To").setText(getVal("memoTo"));
+    form.getTextField("Address").setText(getVal("memoAddress"));
+    form.getTextField("Tel").setText(getVal("memoTel"));
+    form.getTextField("Dealer").setText(getVal("memoDealer"));
+    form.getTextField("Details").setText(getVal("memoDetails"));
+    
+    // Get table data
+    var tbody = document.getElementById("itemsBody");
+    var totalCarat = 0;
+    var totalAmount = 0;
+    var rowCount = Math.min(tbody.rows.length, 10);
+    
+    for (var i = 1; i <= rowCount; i++) {
+        var parcel = getVal("parcel" + i);
+        var shape = getVal("shape" + i);
+        var carat = getVal("carat" + i);
+        var color = getVal("color" + i);
+        var clarity = getVal("clarity" + i);
+        var cert = getVal("cert" + i);
+        var price = getVal("price" + i);
+        var disc = getVal("disc" + i);
+        var amount = getVal("amount" + i);
+        
+        if (parcel || shape || carat) {
+            var idx = i;
+            try { form.getTextField("Parcel Name " + idx).setText(parcel || ""); } catch(e) {}
+            try { form.getTextField("Shape " + idx).setText(shape || ""); } catch(e) {}
+            try { form.getTextField("Carat " + idx).setText(carat || ""); } catch(e) {}
+            try { form.getTextField("Color " + idx).setText(color || ""); } catch(e) {}
+            try { form.getTextField("Clarity " + idx).setText(clarity || ""); } catch(e) {}
+            try { form.getTextField("Cert Number " + idx).setText(cert || ""); } catch(e) {}
+            try { form.getTextField("Discount " + idx).setText(disc || "0"); } catch(e) {}
+            try { form.getTextField("Price Per Carat " + idx).setText(price || ""); } catch(e) {}
+            try { form.getTextField("Amount " + idx).setText(amount || ""); } catch(e) {}
+            
+            if (carat) totalCarat += parseFloat(carat) || 0;
+            if (amount) totalAmount += parseFloat(amount.replace(/,/g, "")) || 0;
+        }
+    }
+    
+    try { form.getTextField("Total Carat").setText(totalCarat.toFixed(2)); } catch(e) {}
+    try { form.getTextField("Total Amount").setText(totalAmount.toLocaleString("en-US", {minimumFractionDigits: 2})); } catch(e) {}
+    
+    var pdfBytes = await pdfDoc.save();
+    var blob = new Blob([pdfBytes], { type: "application/pdf" });
+    var link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "dn_memorandum.pdf";
+    link.click();
+        y = 50;
+        doc.setFillColor(211,211,211); 
+        doc.rect(20, y, 170, 8, "F");
+        
+        doc.setFontSize(9);
+        var cols = ["No", "Parcel", "Shape", "Carat", "Color", "Clarity", "Cert", "Price", "Disc%", "Amount"];
+        var xs = [25, 40, 70, 100, 120, 140, 160, 175, 188, 200];
+        for(var i=0; i<cols.length; i++) { doc.text(cols[i], xs[i], y+5, { align: "center" }); }
+        y += 10;
+        
+        for(var i=1; i<=20; i++) {
+            var caratEl = document.getElementById("carat"+i);
+            if(caratEl && caratEl.value) {
+                doc.text(String(i), xs[0], y, { align: "center" });
+                var el;
+                el = document.getElementById("parcel"+i); doc.text(el ? el.value : "", xs[1], y);
+                el = document.getElementById("shape"+i); doc.text(el ? el.value : "", xs[2], y);
+                el = document.getElementById("carat"+i); doc.text(el ? el.value : "", xs[3], y, { align: "center" });
+                el = document.getElementById("color"+i); doc.text(el ? el.value : "", xs[4], y, { align: "center" });
+                el = document.getElementById("clarity"+i); doc.text(el ? el.value : "", xs[5], y, { align: "center" });
+                el = document.getElementById("cert"+i); doc.text(el ? el.value : "", xs[6], y);
+                el = document.getElementById("price"+i); doc.text(el ? el.value : "", xs[7], y, { align: "center" });
+                el = document.getElementById("disc"+i); doc.text(el ? el.value : "", xs[8], y, { align: "center" });
+                el = document.getElementById("amount"+i); doc.text(el ? el.value : "", xs[9], y, { align: "center" });
+                y += 7;
+            }
+        }
+        
+        y += 5;
+        var totalAmt = document.getElementById("totalAmount");
+        doc.text("Total:", 160, y);
+        doc.text((totalAmt && totalAmt.value) ? totalAmt.value : "0", xs[9], y, { align: "center" });
+        
+        doc.save("dn_memorandum.pdf");
+    }
+    
+    addRow();
+    initMemoNo();
+    document.getElementById("rapaportDate").textContent = "Rapaport Data: " + RAPAPORT.date;
+    
+    // Load external Rapaport data (overrides embedded)
+    fetch("rapaport-calculator/data.json").then(r=>r.json()).then(d=>{RAPAPORT=d;document.getElementById("rapaportDate").textContent="Rapaport Data: "+RAPAPORT.date}).catch(e=>console.log("Using embedded"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "batch": 3,
+  "totalFiles": 15,
+  "processedAt": "2026-04-29T05:26:00.000Z",
+  "analysisMode": "Standard resolution (200dpi) for 12 files, Hi-resolution (300dpi) for 3 files (5221657767, 5222767185, 2235815380)",
+  "summary": {
+    reject: 11,
+    caution: 3,
+    strongBuy: 1,
+    averageScore": 25.9
+  },
+  "results": [
+    {"reportNumber": "2235608555", "carat": 25.52, "color": "Fancy Intense Yellow", "clarity": "VS1", "shape": "Cushion Modified Brilliant", "clawScore": 59, "verdict": "CAUTION", "verdictEmoji": "🟡"},
+    {"reportNumber": "2235815380", "carat": 7.01, "color": "D", "clarity": "VVS1", "shape": "Oval Brilliant", "clawScore": 8, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "2235838929", "carat": 5.21, "color": "E", "clarity": "VS2", "shape": "Heart Brilliant", "clawScore": 67, "verdict": "CAUTION", "verdictEmoji": "🟡"},
+    {"reportNumber": "2454851318", "carat": 2.01, "color": "D", "clarity": "SI2", "shape": "Cut-Cornered Triangular Step Cut", "clawScore": 0, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "2497242927", "carat": 3.3, "color": "E", "clarity": "VS2", "shape": "Square Modified Brilliant", "clawScore": 0, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "2517547075", "carat": 3.06, "color": "G", "clarity": "SI1", "shape": "Cut-Cornered Triangular Step Cut", "clawScore": 0, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "2524520170", "carat": 3.47, "color": "I", "clarity": "SI2", "shape": "Cut-Cornered Triangular Step Cut", "clawScore": 0, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "2547118445", "carat": 2.02, "color": "J", "clarity": "SI2", "shape": "Marquise Brilliant", "clawScore": 24, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "2547261015", "carat": 4.03, "color": "F", "clarity": "SI2", "shape": "Marquise Brilliant", "clawScore": 22, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "5221447582", "carat": 6.01, "color": "J", "clarity": "VS2", "shape": "Cushion Modified Brilliant", "clawScore": 12, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "5221657767", "carat": 10.04, "color": "D", "clarity": "SI1", "shape": "Pear Brilliant", "clawScore": 0, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "5222767185", "carat": 8.46, "color": "D", "clarity": "Fl", "shape": "Marquise Brilliant", "clawScore": 34, "verdict": "REJECT", "verdictEmoji": "🔴"},
+    {"reportNumber": "5231096959", "carat": 1.7, "color": "I", "clarity": "VVS2", "shape": "Round Brilliant", "clawScore": 100, "verdict": "STRONG_BUY", "verdictEmoji": "✅"},
+    {"reportNumber": "5231283332", "carat": 35.11, "color": "F", "clarity": "VS2", "shape": "Cushion Modified Brilliant", "clawScore": 59, "verdict": "CAUTION", "verdictEmoji": "🟡"},
+    {"reportNumber": "5231560125", "carat": 3.29, "color": "F", "clarity": "SI1", "shape": "Cut-Cornered Triangular Step Cut", "clawScore": 0, "verdict": "REJECT", "verdictEmoji": "🔴"}
+  ],
+  "bugFixed": {
+    "issue": "ratio.toFixed is not a function on files 2235815380, 5221657767, 5222767185",
+    "rootCause": "parseGIACertificateText() sets ratio as string via .toFixed(2), but checkBowTieRiskEnhanced() called data.ratio.toFixed(2) without parseFloat",
+    "fix": "Changed const ratio = data.ratio || 0 to const ratio = parseFloat(data.ratio) || 0 in checkBowTieRiskEnhanced() (line 1975) and checkBrioletteRisks() (line 3272). Also added ratio = parseFloat(ratio) in evaluateOvalMoval() (line 389)"
+  }
+}
