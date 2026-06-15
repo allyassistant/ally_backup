@@ -644,7 +644,7 @@ Rehydration checklist（session start 或 compaction trigger 後執行）：
 
 創建任何 tracking-type issue 之前：
 
-- [ ] **掃描 skills**：檢查 `<suggested_skills>` 或 `<available_skills>` 有冇 matching skill
+- [ ] **查看系統注入嘅 skill 建議**：檢查 `<suggested_skills>` 或 `<available_skills>` 有冇 matching skill
 - [ ] **已讀 skill**：若有 matching skill，先 `read` 相關 SKILL.md，再決定係沿用、更新定開新 issue
 - [ ] **避免 duplicate**：搜尋 `.issues/active/` 同 `.issues/archive/` 確認冇重複 issue
 
