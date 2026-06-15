@@ -42,7 +42,8 @@ function tokenize(text) {
   const lower = text.toLowerCase();
   // ASCII word (2+) OR single CJK unified ideograph / hiragana / katakana / hangul
   const raw = lower.match(/[a-z0-9]{2,}|[\u4e00-\u9fff\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/g) || [];
-  const tokens = raw.filter(t => t.length > 2 || !STOP_WORDS.has(t));
+  // Drop stop words. ASCII tokens must be 2+ chars; single CJK characters are kept.
+  const tokens = raw.filter(t => !STOP_WORDS.has(t) && (t.length > 1 || /[\u4e00-\u9fff\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/.test(t)));
   return [...new Set(tokens)];
 }
 
@@ -60,9 +61,13 @@ export function parseSegments(description) {
   // Split on canonical 3-segment markers using a lookahead so abbreviations
   // like "e.g." / "i.e." inside a segment do not cause premature truncation.
   // Each segment runs until the next "<marker>:" or end of string.
-  const useWhenMatch = text.match(/Use when:?\s*(.+?)(?=\.\s*(?:Key capabilities|Key tasks|Tasks):|$)/is);
-  const capabilitiesMatch = text.match(/Key capabilities:?\s*(.+?)(?=\.\s*(?:Key tasks|Tasks):|$)/is);
-  const keyTasksMatch = text.match(/(?:Key tasks|Tasks):?\s*(.+?)(?=\.\s*$|$)/is);
+
+
+  // Require a literal colon after each marker so words like "tasks" inside
+  // normal prose are not mistaken for segment boundaries.
+  const useWhenMatch = text.match(/Use when:\s*(.+?)(?=\.\s*(?:Key capabilities|Key tasks|Tasks):|$)/is);
+  const capabilitiesMatch = text.match(/Key capabilities:\s*(.+?)(?=\.\s*(?:Key tasks|Tasks):|$)/is);
+  const keyTasksMatch = text.match(/(?:Key tasks|Tasks):\s*(.+?)(?=\.\s*$|$)/is);
 
   if (useWhenMatch) segments.useWhen = useWhenMatch[1].trim();
   if (capabilitiesMatch) segments.capabilities = capabilitiesMatch[1].trim();
@@ -78,12 +83,33 @@ export function parseSegments(description) {
 /**
  * Count how many task words appear in segmentText (overlap).
  */
+/**
+ * Simple heuristic stemmer. Returns the word plus likely root forms.
+ * Keeps the original word so exact matches are always counted.
+ */
+function stemVariants(word) {
+  const variants = new Set([word]);
+  if (word.length > 4 && word.endsWith("ing")) variants.add(word.slice(0, -3));
+  if (word.length > 4 && word.endsWith("ed")) variants.add(word.slice(0, -2));
+  if (word.length > 3 && word.endsWith("s")) variants.add(word.slice(0, -1));
+  if (word.length > 4 && word.endsWith("es")) variants.add(word.slice(0, -2));
+  return [...variants];
+}
+
+/**
+ * Count how many task words appear in segmentText (overlap).
+ * Uses light stemming on both sides so "failing" matches "fails" / "fail".
+ */
 function countOverlap(taskWords, segmentText) {
   if (!segmentText || taskWords.length === 0) return 0;
-  const segmentWords = new Set(tokenize(segmentText));
+  const segmentTokens = tokenize(segmentText);
+  const segmentRoots = new Set();
+  for (const s of segmentTokens) {
+    for (const v of stemVariants(s)) segmentRoots.add(v);
+  }
   let overlap = 0;
   for (const w of taskWords) {
-    if (segmentWords.has(w)) overlap++;
+    if (stemVariants(w).some(v => segmentRoots.has(v))) overlap++;
   }
   return overlap;
 }

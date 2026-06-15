@@ -19,13 +19,13 @@ const { extractField } = require("../../scripts/lib/frontmatter.js");
 const HOME = os.homedir();
 const SKILLS_DIR = path.join(HOME, ".openclaw", "workspace", "skills");
 const TOP_N = 3;
-const MIN_SCORE = 0.1;        // discard weak matches
+const MIN_SCORE = 0.25;       // discard weak matches (raised from 0.1 after calibration)
 const CACHE_TTL_MS = 60_000;  // refresh skill metadata every 60s
 const TELEMETRY_FILE = path.join(HOME, ".openclaw", "workspace", ".skill_auto_suggest_telemetry.jsonl");
 const TELEMETRY_TASK_MAX_LEN = 200;
 const USAGE_LOG_FILE = path.join(HOME, ".openclaw", "workspace", ".skill_usage_log.jsonl");
 const EMBEDDINGS_CACHE_FILE = path.join(HOME, ".openclaw", "workspace", ".skill_auto_suggest_embeddings.json");
-const DEFAULT_VECTOR_WEIGHT = 0.7;
+const DEFAULT_VECTOR_WEIGHT = 0.3; // reduced from 0.7; nomic-embed-text inflates unrelated tasks
 
 // ── Helpers ──
 
