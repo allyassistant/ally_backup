@@ -42,6 +42,7 @@ let embeddingsCache = null;
 function parseFrontmatter(content) {
   const disableRaw = extractField(content, "disable-model-invocation");
   const meta = {
+    name: extractField(content, "name"),
     description: extractField(content, "description"),
     status: extractField(content, "status"),
     disableModelInvocation: /^(true|yes|1)$/i.test(disableRaw || ""),
@@ -105,7 +106,8 @@ function cacheMtimesMatch(current) {
 /**
  * Load all skill metadata from SKILLS_DIR.
  * Returns array of { name, description, disableModelInvocation }.
- * Silently skips broken symlinks, unparseable files, and non-active skills.
+ * Silently skips broken symlinks, unparseable files, non-active skills,
+ * and skills with disable-model-invocation: true.
  */
 async function loadSkills() {
   const now = Date.now();
@@ -143,8 +145,11 @@ async function loadSkills() {
     const statusLower = (meta.status || "").toLowerCase();
     if (statusLower === "draft" || statusLower === "archived") continue;
 
-    // Normalize name: strip the _learned_ prefix to match display convention.
-    const name = entryName.replace(/^_learned_/, "");
+    // AGENTS.md rule: never recall skills marked disable-model-invocation.
+    if (meta.disableModelInvocation) continue;
+
+    // Use frontmatter name as the authoritative skill name; fall back to dir name.
+    const name = meta.name || entryName.replace(/^_learned_/, "");
 
     skills.push({
       name,
