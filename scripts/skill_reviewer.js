@@ -24,6 +24,7 @@ const os = require('os');
 const crypto = require('crypto');
 const { safeWriteFileSync, safeRenameSync, atomicWriteJsonSafe } = require('./lib/disk_guard');
 const { listSkillMetadata } = require('./lib/skill_discovery');
+const { extractField } = require('./lib/frontmatter');
 const {
   WS: WORKSPACE,
   SKILL_REVIEW_QUEUE: QUEUE_FILE,
@@ -62,9 +63,9 @@ function readQueue() {
 
 function listExistingSkills() {
   const skills = listSkillMetadata(SKILLS_DIR);
-  // Reformat: listSkillMetadata uses 'dir' + flat fields, this function uses 'file' prefix
+  // listSkillMetadata returns 'dir'; keep downstream field name as 'file' for compatibility.
   return skills.map(s => ({
-    file: s.file,
+    file: s.dir,
     description: s.description === '(no description)' ? '(no description)' : s.description,
     status: s.status === '(no status)' ? 'unknown' : s.status,
     category: s.category === '(no category)' ? 'uncategorized' : s.category,
@@ -103,7 +104,7 @@ function buildSkillCatalog() {
     if (!fs.existsSync(sk)) continue;
     try {
       const content = fs.readFileSync(sk, 'utf-8');
-      const desc = (content.match(/^description:\s*(.+)/m) || [])[1] || '*no description*';
+      const desc = extractField(content, 'description') || '*no description*';
       // Strip frontmatter to measure body length only
       const bodyLength = content.replace(/^---[\s\S]*?---\n/, '').trim().length;
       // Escape pipe characters in description to keep markdown table valid
@@ -850,7 +851,7 @@ function main() {
     for (const cat of sortedCats) {
       prompt += `\n  📁 **${cat}** (${byCategory[cat].length}):\n`;
       for (const s of byCategory[cat]) {
-        prompt += `    - ${s.file} (${s.status}): ${s.description}\n`;
+        prompt += `    - ${s.file || 'unnamed'} (${s.status}): ${s.description}\n`;
       }
     }
   }

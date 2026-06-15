@@ -16,6 +16,10 @@
  *   const { fields, body } = parseFrontmatter(content);
  *   const desc = extractField(content, 'description');
  *   const newContent = serializeFrontmatter({ name, description, status }, body);
+ *
+ * Limitation: this parser only supports single-line key:value pairs. It does not
+ * handle YAML block scalars (`|`, `>`), escape sequences (e.g. `\n`), or nested
+ * objects. Descriptions in SKILL.md should stay single-line to remain compatible.
  */
 
 'use strict';

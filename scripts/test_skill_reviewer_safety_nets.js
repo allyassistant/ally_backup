@@ -55,7 +55,7 @@ function backup(file) {
   try {
     if (fs.existsSync(file)) return fs.readFileSync(file, 'utf8');
   } catch (e) {
-    console.error(`File read failed: ${e.message}`);
+    console.error('File read failed: ' + e.message);
   }
   return null;
 }
@@ -166,11 +166,12 @@ function runTests() {
     // Re-run with env
     let r2c;
     try {
-      r2c = execFileSync('node', ['-e', `
-        const env = process.env.SKILL_REVIEWER_AUTO_APPLY;
-        const autoApplyDefault = env === 'false' ? false : true;
-        console.log(JSON.stringify({ env, autoApplyDefault }));
-      `], {
+      const r2Script = `
+const env = process.env.SKILL_REVIEWER_AUTO_APPLY;
+const autoApplyDefault = env === 'false' ? false : true;
+console.log(JSON.stringify({ env, autoApplyDefault }));
+`.trim();
+      r2c = execFileSync('node', ['-e', r2Script], {
         encoding: 'utf8',
         env: Object.assign({}, process.env, r2_env),
         stdio: ['pipe', 'pipe', 'pipe'],
@@ -202,7 +203,7 @@ function runTests() {
       try {
         pauseState = JSON.parse(fs.readFileSync(path.join(WS, '.skill_reviewer_pause.json'), 'utf8'));
       } catch (e) {
-        console.error(`File read failed: ${e.message}`);
+        console.error('File read failed: ' + e.message);
       }
       const isActive = Date.now() < pauseState.until;
       console.log(JSON.stringify({ isActive, until: pauseState.until, junkRateAtPause: pauseState.junkRateAtPause }));
@@ -218,25 +219,25 @@ function runTests() {
       try {
         botSrc = fs.readFileSync(path.join(WS, 'scripts/skill_reviewer_bot.js'), 'utf8');
       } catch (e) {
-        console.error(`File read failed: ${e.message}`);
+        console.error('File read failed: ' + e.message);
       }
       let pauseSrc;
       try {
         pauseSrc = fs.readFileSync(path.join(WS, 'scripts/skill_junk_pause.js'), 'utf8');
       } catch (e) {
-        console.error(`File read failed: ${e.message}`);
+        console.error('File read failed: ' + e.message);
       }
       let dailySrc;
       try {
         dailySrc = fs.readFileSync(path.join(WS, 'scripts/skill_reviewer_daily_report.js'), 'utf8');
       } catch (e) {
-        console.error(`File read failed: ${e.message}`);
+        console.error('File read failed: ' + e.message);
       }
       let resumeSrc;
       try {
         resumeSrc = fs.readFileSync(path.join(WS, 'scripts/skill_reviewer_resume.js'), 'utf8');
       } catch (e) {
-        console.error(`File read failed: ${e.message}`);
+        console.error('File read failed: ' + e.message);
       }
       const expected = '.skill_reviewer_pause.json';
       const botMatch = botSrc.indexOf(expected) !== -1;
@@ -258,7 +259,7 @@ function runTests() {
       try {
         src = fs.readFileSync(path.join(WS, 'scripts/skill_reviewer_bot.js'), 'utf8');
       } catch (e) {
-        console.error(`File read failed: ${e.message}`);
+        console.error('File read failed: ' + e.message);
       }
       const checks = {
         checksPauseFile: /fs\\.existsSync\\(CONFIG\\.PAUSE_FILE\\)/.test(src),

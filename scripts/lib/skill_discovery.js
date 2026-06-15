@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { extractField } = require('./frontmatter');
 
 /**
  * Discover skill directories in baseDir.
@@ -30,6 +31,10 @@ const listSkillDirs = discoverSkillDirs;
 /**
  * List skill metadata from skills-learned/ directory.
  * Returns array of { dir, description, status, category } objects.
+ *
+ * Uses shared frontmatter parser (Issue #133 DRY cleanup) instead of inline
+ * regex so skill discovery stays in sync with skill-auto-suggest and the
+ * skill reviewer pipeline.
  */
 function listSkillMetadata(skillsDir) {
   const dirs = discoverSkillDirs(skillsDir);
@@ -39,12 +44,12 @@ function listSkillMetadata(skillsDir) {
     try {
       if (fs.existsSync(sklPath)) {
         const content = fs.readFileSync(sklPath, 'utf8');
-        const descMatch = content.match(/description:\s*["']([^"']+)["']/i);
-        const statMatch = content.match(/status:\s*["']([^"']+)["']/i);
-        const catMatch  = content.match(/category:\s*["']([^"']+)["']/i);
-        if (descMatch) meta.description = descMatch[1];
-        if (statMatch) meta.status = statMatch[1];
-        if (catMatch)  meta.category  = catMatch[1];
+        const description = extractField(content, 'description');
+        const status = extractField(content, 'status');
+        const category = extractField(content, 'category');
+        if (description) meta.description = description;
+        if (status) meta.status = status;
+        if (category) meta.category = category;
       }
     } catch {}
     return meta;
@@ -52,32 +57,51 @@ function listSkillMetadata(skillsDir) {
 }
 
 /**
+ * Check whether a frontmatter field is set to a truthy value (true/yes/1).
+ * Uses shared frontmatter parser to stay consistent with the rest of the
+ * skill pipeline.
+ */
+function isFrontmatterFieldTruthy(content, fieldName) {
+  const value = extractField(content, fieldName);
+  if (!value) return false;
+  return /^(true|yes|1)$/i.test(value.trim());
+}
+
+/**
  * List all skills from multiple base directories, grouped by category.
- * Skips duplicates (same dir name already seen).
+ * Skips duplicates (same dir name already seen), draft/archived skills,
+ * and skills with disable-model-invocation: true.
  * Returns object: { "Category": [{ name, description }, ...], ... }
  */
 function listCategorizedSkills(baseDirs) {
   const categorized = {};
-  const seen = new Set();  // deduplicate skills by dir name
+  const seen = new Set();  // deduplicate skills by canonical name
   for (const baseDir of baseDirs) {
     const dirs = discoverSkillDirs(baseDir);
     for (const dir of dirs) {
-      if (seen.has(dir)) continue;
-      seen.add(dir);
+      // Normalize learned-skill symlinks: skills/_learned_foo -> foo
+      const name = dir.replace(/^_learned_/, '');
+      if (seen.has(name)) continue;
+      seen.add(name);
 
       const sklPath = path.join(baseDir, dir, 'SKILL.md');
-      let name = dir;
       let description = '(no description)';
       let category = 'General';
+      let skip = false;
       try {
         if (fs.existsSync(sklPath)) {
           const content = fs.readFileSync(sklPath, 'utf8');
-          const descMatch = content.match(/description:\s*['"]?([^'"\n]+)['"]?/i);
-          const catMatch  = content.match(/category:\s*['"]?([^'"\n]+)['"]?/i);
-          if (descMatch) description = descMatch[1].trim();
-          if (catMatch)  category  = catMatch[1].trim();
+          const descriptionField = extractField(content, 'description');
+          const categoryField = extractField(content, 'category');
+          const statusField = extractField(content, 'status');
+          if (descriptionField) description = descriptionField.trim();
+          if (categoryField) category = categoryField.trim();
+          const status = statusField ? statusField.trim().toLowerCase() : 'active';
+          if (status === 'draft' || status === 'archived') skip = true;
+          if (!skip && isFrontmatterFieldTruthy(content, 'disable-model-invocation')) skip = true;
         }
       } catch {}
+      if (skip) continue;
       if (!categorized[category]) categorized[category] = [];
       categorized[category].push({ name, description });
     }
@@ -85,4 +109,10 @@ function listCategorizedSkills(baseDirs) {
   return categorized;
 }
 
-module.exports = { discoverSkillDirs, listSkillDirs, listSkillMetadata, listCategorizedSkills };
+module.exports = {
+  discoverSkillDirs,
+  listSkillDirs,
+  listSkillMetadata,
+  listCategorizedSkills,
+  isFrontmatterFieldTruthy,
+};

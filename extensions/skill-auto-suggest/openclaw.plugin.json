@@ -1,0 +1,30 @@
+{
+  "id": "skill-auto-suggest",
+  "name": "Skill Auto-Suggest",
+  "description": "before_prompt_build hook: matches user task to top-3 relevant skills and injects a <suggested_skills> block.",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "embeddingProvider": {
+        "type": "string",
+        "enum": ["ollama", "disabled"],
+        "default": "ollama"
+      },
+      "ollamaBaseUrl": {
+        "type": "string",
+        "default": "http://localhost:11434"
+      },
+      "ollamaModel": {
+        "type": "string",
+        "default": "nomic-embed-text"
+      },
+      "vectorWeight": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.7
+      }
+    },
+    "additionalProperties": false
+  }
+}
