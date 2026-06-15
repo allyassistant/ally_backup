@@ -12,6 +12,7 @@ import {
   parseFrontmatter,
   recordSuggestion,
   recordSkillUsage,
+  recordSkillFeedback,
   invalidateSkillsCache,
   TELEMETRY_FILE,
   USAGE_LOG_FILE,
@@ -289,6 +290,26 @@ console.log("\n=== Test 11: Usage log ===");
   const hasRecallEvents = parsed.every(e => e.event === "recall_trigger" && e.skill && typeof e.score === "number");
   logResult("usage log wrote 2 recall_trigger events", delta === 2 && hasRecallEvents,
     `delta=${delta}, events=${parsed.map(e => e.skill).join(", ") || "(none)"}`);
+}
+
+// ── Test 12: Feedback events correlate by taskHash ──
+console.log("\n=== Test 12: Skill feedback ===");
+{
+  const task = "feedback correlation task";
+  const before = fs.existsSync(USAGE_LOG_FILE) ? fs.readFileSync(USAGE_LOG_FILE, "utf8").trim().split("\n").filter(Boolean).length : 0;
+  await recordSkillUsage(task, [{ name: "feedback-test-skill", score: 0.5 }]);
+  await recordSkillFeedback({ event: "used", skill: "feedback-test-skill", task });
+  const after = fs.existsSync(USAGE_LOG_FILE) ? fs.readFileSync(USAGE_LOG_FILE, "utf8").trim().split("\n").filter(Boolean).length : 0;
+  const delta = after - before;
+  const lastLines = fs.existsSync(USAGE_LOG_FILE)
+    ? fs.readFileSync(USAGE_LOG_FILE, "utf8").trim().split("\n").filter(Boolean).slice(-2)
+    : [];
+  const parsed = lastLines.map(line => { try { return JSON.parse(line); } catch { return null; } }).filter(Boolean);
+  const trigger = parsed.find(e => e.event === "recall_trigger");
+  const used = parsed.find(e => e.event === "used");
+  const correlated = trigger && used && trigger.taskHash && trigger.taskHash === used.taskHash && used.skill === "feedback-test-skill";
+  logResult("feedback event correlates with recall_trigger by taskHash", delta === 2 && correlated,
+    `delta=${delta}, correlated=${correlated}`);
 }
 
 // ── Summary ──

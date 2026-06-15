@@ -521,7 +521,15 @@ Rehydration checklist（session start 或 compaction trigger 後執行）：
    - 自動型 skill → 直接 read `SKILL.md` 並執行。
    - 手動型 skill → 若 user 冇明確要求，先問：「你想我用 X skill 處理？」；除非 task 特徵同 description 高度吻合。
 5. **Verify 檔案**：read 前確認 `SKILL.md` 存在且路徑正確；唔存在 → 記錄 error，唔好靠估。
-6. **執行後回饋**：若 skill 內容過期 / 無用，記錄畀 `memory/correction_suggestions.json` 或 `.skill_description_audit.jsonl`。
+6. **執行後回饋**：
+   - 若 skill 內容過期 / 無用，記錄畀 `memory/correction_suggestions.json` 或 `.skill_description_audit.jsonl`。
+   - 無論有冇使用 `<suggested_skills>` 嘅建議，都要記錄 feedback：
+     ```bash
+     node scripts/skill_feedback.js --skill <skill-name> --event <used|skipped|rejected> --task "<task>" [--reason "<why>"]
+     ```
+     - `used`：read 咗 skill 並跟從執行
+     - `skipped`：suggest 咗但冇用（可選 `--reason`）
+     - `rejected`：suggest 咗但發現唔啱（必須 `--reason`）
 
 > **Note：** `skill_discovery.js` 已經過濾 `status: draft/archived` 同 `disable-model-invocation: true`。`skill-auto-suggest` 再喺載入階段排除 disabled skills，並將建議寫入 `.skill_usage_log.jsonl` 作 usage telemetry。若 `<available_skills>` 仲見到呢類 skill，代表 OpenClaw 同步未生效，要 report bug。
 

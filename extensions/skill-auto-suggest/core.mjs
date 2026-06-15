@@ -8,6 +8,7 @@
 import { readdir, readFile, stat, appendFile, writeFile, rename, unlink } from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
+import crypto from "node:crypto";
 import { createRequire } from "node:module";
 import { scoreSkill, scoreSkillVector } from "./matcher.mjs";
 
@@ -25,6 +26,17 @@ const TELEMETRY_TASK_MAX_LEN = 200;
 const USAGE_LOG_FILE = path.join(HOME, ".openclaw", "workspace", ".skill_usage_log.jsonl");
 const EMBEDDINGS_CACHE_FILE = path.join(HOME, ".openclaw", "workspace", ".skill_auto_suggest_embeddings.json");
 const DEFAULT_VECTOR_WEIGHT = 0.7;
+
+// ── Helpers ──
+
+/**
+ * Stable short hash of a task string. Used to correlate recall_trigger
+ * events with subsequent used/skipped/rejected feedback without logging
+ * the full task content.
+ */
+function hashTask(task) {
+  return crypto.createHash("sha256").update(task || "").digest("hex").slice(0, 16);
+}
 
 // ── Cache ──
 let skillsCache = null;
@@ -409,6 +421,7 @@ async function recordSuggestion(task, matches) {
 async function recordSkillUsage(task, matches) {
   try {
     const ts = new Date().toISOString();
+    const taskHash = hashTask(task);
     const lines = (matches || [])
       .filter(m => m && m.name)
       .map(m => JSON.stringify({
@@ -416,11 +429,33 @@ async function recordSkillUsage(task, matches) {
         event: "recall_trigger",
         skill: m.name,
         score: Number(m.score.toFixed(4)),
+        taskHash,
       }));
     if (lines.length === 0) return;
     await appendFile(USAGE_LOG_FILE, lines.join("\n") + "\n", "utf8");
   } catch (err) {
     console.error("[skill-auto-suggest] usage log write failed:", err.message);
+  }
+}
+
+/**
+ * Record explicit feedback for a suggested skill.
+ * Events: 'used' (read & followed), 'skipped' (ignored), 'rejected' (wrong).
+ * Correlates to the matching recall_trigger via taskHash.
+ * Fail-open: any error is logged to stderr but never thrown.
+ */
+async function recordSkillFeedback({ event, skill, task, reason }) {
+  try {
+    const entry = {
+      ts: new Date().toISOString(),
+      event,
+      skill,
+      taskHash: hashTask(task),
+    };
+    if (reason) entry.reason = (reason || "").slice(0, 200);
+    await appendFile(USAGE_LOG_FILE, JSON.stringify(entry) + "\n", "utf8");
+  } catch (err) {
+    console.error("[skill-auto-suggest] feedback write failed:", err.message);
   }
 }
 
@@ -442,4 +477,6 @@ export {
   invalidateSkillsCache,
   recordSuggestion,
   recordSkillUsage,
+  recordSkillFeedback,
+  hashTask,
 };
