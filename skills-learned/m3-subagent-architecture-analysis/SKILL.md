@@ -1,6 +1,6 @@
 ---
 name: m3-subagent-architecture-analysis
-description: Spawn MiniMax M3 sub-agent 執行架構/系統分析，配合 adaptive thinking fallback 並收集結構化結果
+description: "Spawn MiniMax M3 sub-agent for architecture and system analysis with adaptive thinking fallback and structured result collection. Use when: architecture analysis needed, system analysis with fallback required, structured result collection needed. Key capabilities: M3 sub-agent spawn for architecture, adaptive thinking fallback, structured result collection."
 status: draft
 source: skill-reviewer
 provenance: agent

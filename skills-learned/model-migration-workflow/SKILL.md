@@ -1,10 +1,12 @@
 ---
 name: model-migration-workflow
-description: 系統性遷移模型引用——包括 router configs、cron jobs、scripts、spawn config、env vars、test files——並包含 rate limit recovery 和 fallback 配置
+description: "Migrate model references across configs, cron, scripts, and env. Use when: migration needed, references stale, rate limits hit. Key capabilities: config migration, cron updates, spawn fallback."
 status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-11T15:33:40.785Z
+disable-model-invocation: true
+activationReason: "batch cron model swap affects 19+ jobs"
 ---
 
 ## Workflow

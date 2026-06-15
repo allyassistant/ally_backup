@@ -1,6 +1,6 @@
 ---
 name: parallel-subagent-implementation
-description: Spawn multiple parallel M3 sub-agents to implement multi-track changes simultaneously, coordinate their outputs, and merge into a unified result.
+description: "Spawn parallel M3 sub-agents for multi-track changes. Use when: changes needed, dispatch required, outputs merged. Key capabilities: parallel spawn, multi-track coordination, result merging."
 status: active
 source: skill-reviewer
 provenance: agent

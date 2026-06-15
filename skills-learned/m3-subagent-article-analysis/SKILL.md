@@ -1,6 +1,6 @@
 ---
 name: m3-subagent-article-analysis
-description: Spawn M3 sub-agent 分析外部文章，評估架構適用性，寫入 Obsidian 並回傳摘要
+description: "Spawn M3 sub-agent to analyze articles and write Obsidian. Use when: analysis needed, fit assessed, notes required. Key capabilities: article analysis, architecture assessment, Obsidian notes."
 status: active
 source: skill-reviewer
 provenance: agent

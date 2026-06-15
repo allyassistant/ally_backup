@@ -1,6 +1,6 @@
 ---
 name: pipeline-llm-call-timeout-debugging
-description: 診斷 pipeline 阻塞喺 LLM call 階段而超時嘅工作流，包括空 queue pre-check guard pattern
+description: "Diagnose LLM call timeouts with empty queue guard pattern. Use when: pipeline times out, queue blocks, guard needed. Key capabilities: timeout tracing, queue pre-check, guard enforcement."
 status: active
 source: skill-reviewer
 provenance: agent

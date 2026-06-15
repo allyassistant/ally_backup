@@ -1,6 +1,6 @@
 ---
 name: issue-duplicate-prevention-workflow
-description: 建立新追蹤項目前，先系統性檢查現有相關 issues，避免重複監控同一問題
+description: "Prevent duplicate issues by checking existing items first. Use when: creating issues, monitoring starts, duplicates suspected. Key capabilities: issue search, cross-reference, duplicate merging."
 status: active
 source: skill-reviewer
 provenance: agent

@@ -1,6 +1,6 @@
 ---
 name: openclaw-no-reply-chain-debugging
-description: 系統性追蹤 OpenClaw NO_REPLY silent delivery 機制的源代碼 chain，診斷訊息傳遞異常
+description: "Trace silent no-reply delivery through source code. Use when: messages undelivered, no-reply suspected, tracing needed. Key capabilities: source tracing, no-reply analysis, delivery diagnosis."
 status: active
 source: skill-reviewer
 provenance: agent

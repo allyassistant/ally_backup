@@ -1,10 +1,12 @@
 ---
 name: systemevent-main-session-isolation
-description: 將 systemEvent cron 從 main session 遷移至 isolated session，並清理殘留 sessionKey
-status: draft
+description: "Migrate systemEvent cron to isolated session and clean stale keys. Use when: cron runs in main, isolation needed, keys stale. Key capabilities: session migration, stale key cleanup, config isolation."
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-13T01:35:00.000Z
+disable-model-invocation: true
+activationReason: "session key cleanup can crash main session"
 ---
 
 ## Workflow

@@ -1,6 +1,6 @@
 ---
 name: system-code-debug-triage
-description: Verify reported bugs → systematic fix → defense layers → cross-file review. Triggered by "檢查 bugs 是否確實存在然後修復".
+description: "Verify bugs via systematic fix workflow with defenses. Use when: bug reports arrive, fix workflow needed, defenses required. Key capabilities: bug verification, fix application, defense addition."
 status: active
 source: skill-reviewer
 provenance: agent

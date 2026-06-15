@@ -1,6 +1,6 @@
 ---
 name: architecture-review-external-audit
-description: Spawn external sub-agent to challenge internal plans with fresh perspective, surfacing blind spots before commitment
+description: "Spawn sub-agent to challenge plans and find blind spots. Use when: review needed, plans need challenge, blind spots exist. Key capabilities: external spawn, plan challenge, blind spot detection."
 status: active
 source: skill-reviewer
 provenance: agent

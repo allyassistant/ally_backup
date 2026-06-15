@@ -1,6 +1,6 @@
 ---
 name: heartbeat-maintenance
-description: 定期清理 HEARTBEAT.md 同心跳狀態檔案，檢測 stale artifact、修剪冗餘 detail、保留核心 overview tables
+description: "Clean heartbeat files and preserve core overview tables. Use when: files grow, stale artifacts accumulate, tables need pruning. Key capabilities: stale scanning, section trimming, table validation."
 status: active
 source: skill-reviewer
 provenance: agent

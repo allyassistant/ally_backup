@@ -1,7 +1,6 @@
-```skills-learned/skills-audit-workflow/SKILL.md
 ---
 name: skills-audit-workflow
-description: Skill-reviewer agent 的完整操作循環：讀取佇列、詮釋訊號、應用決策樹、派發批次子代理、驗證狀態、清理記憶
+description: "Full operational cycle for skill-reviewer agent: reading queue, interpreting signals, applying decision tree, dispatching batch sub-agents, verifying state, cleaning memory. Use when: skill-reviewer cron triggers, new bugs found in skill pipeline, full audit cycle needed. Key capabilities: queue reading with decision tree logic, parallel M3 sub-agent dispatch, state verification and cleanup."
 status: draft
 source: skill-reviewer
 provenance: agent
@@ -94,4 +93,3 @@ Retry 只處理 429 rate limit，但不處理 5xx 服務端錯誤、ETIMEDOUT、
 
 ### Archive 操作的副作用
 Archive skill 時要同步清理 `_learned_` symlink，並確認 archive 後 active skills count 與 symlinks count 仍然一致。
-```

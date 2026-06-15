@@ -1,6 +1,6 @@
 ---
 name: error-auto-issue
-description: 每日 22:00 掃描 memory/errors.json，搵到 7 日內重複 ≥3 次嘅 error pattern，自動建 P1 issue 連完整 trace — 冇 LLM 嘅 thin executor
+description: "Scan errors nightly and create P1 issues for repeating patterns. Use when: scans run, patterns repeat, executor lacks LLM. Key capabilities: error scanning, repeat detection, P1 issue creation."
 status: active
 source: p0-skill-audit-2026-06-09
 provenance: agent

@@ -1,6 +1,6 @@
 ---
 name: llm-call-execfile-migration
-description: 如何將 Node.js 脚本中的 execSync shell-string LLM 調用安全地遷移到 execFileSync + args array，並驗證 thin executor cron 没有殘留漏洞
+description: "Migrate scripts from execSync to execFileSync args arrays. Use when: migration needed, shell strings used, executor verified. Key capabilities: execFileSync migration, args arrays, vulnerability scan."
 status: active
 source: skill-reviewer
 provenance: agent

@@ -1,6 +1,6 @@
 ---
 name: x-article-login-wall-fallback
-description: Workflow for bypassing X.com article login walls with 6-layer fallback chain, then saving to Obsidian and posting Discord summary
+description: "Bypass X login walls with fallback, save to Obsidian/Discord. Use when: wall blocks, links fail, Obsidian/Discord needed. Key capabilities: browser extraction, search fallback, Obsidian/Discord save."
 status: active
 source: skill-reviewer
 provenance: agent

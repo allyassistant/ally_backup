@@ -1,6 +1,6 @@
 ---
 name: anomaly-proactive-push
-description: 每 30 分鐘讀 .proactive_alerts.json，將新 warning/critical 異常推 Discord #⚙️系統，critical 仲可以 auto-degrade 受影響 cron — 冇 LLM 嘅 thin executor
+description: "Scan alert files and push anomalies to Discord with auto-degradation. Use when: scans trigger, alerts appear, cron impact grows. Key capabilities: alert scanning, Discord push, cron mitigation."
 status: active
 source: p0-skill-audit-2026-06-09
 provenance: agent

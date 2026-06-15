@@ -1,6 +1,6 @@
 ---
 name: cron-troubleshooting
-description: 診斷 cron job failure — 建 timeline、區分 provider/script/session 問題、手動 rerun 驗證、LLM failure mitigation
+description: "Diagnose cron failures via timeline and issue isolation. Use when: cron fails, timeline needed, root cause unclear. Key capabilities: timeline construction, issue isolation, rerun verification."
 status: active
 source: skill-reviewer
 provenance: agent

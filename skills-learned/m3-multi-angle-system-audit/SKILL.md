@@ -1,6 +1,6 @@
 ---
 name: m3-multi-angle-system-audit
-description: Spawn MiniMax M3 sub-agent 執行多角度系統健康審計，收集結果並 informing 下一步行動決策
+description: "Spawn M3 sub-agent for multi-angle health audit. Use when: health audit needed, multi-angle analysis required, decisions pending. Key capabilities: M3 spawn, multi-angle analysis, decision support."
 status: active
 source: skill-reviewer
 provenance: agent

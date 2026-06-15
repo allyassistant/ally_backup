@@ -1,22 +1,28 @@
 ---
 name: main-session-execution-loop-recovery
-description: 當主 session 無法執行用戶任務而只係不斷回 HEARTBEAT_OK 時，診斷並恢復正常執行流程。
-status: draft
+description: Detect and recover from HEARTBEAT_OK loops where the session stops executing user tasks. Break the loop, identify the pending request, execute it manually, and restore normal flow.
+status: active
 source: skill-reviewer
 provenance: agent
-generatedAt: 2025-12-05T12:00:00.000Z
+generatedAt: 2026-06-15T02:31:01.228Z
 ---
 
 ## Workflow
 
-1. **Detect the loop** — 連續 2+ 次收到 HEARTBEAT_OK 而冇任何實質回覆，即係進入 heartbeat loop
-2. **中斷自動心跳** — 停止依賴系統自動心跳，直接輸出用戶要求嘅任務結果
-3. **清理內部狀態** — 清除任何殘留嘅 execution queue 或 pending state
-4. **重試用戶任務** — 用簡潔、聚焦嘅方式重新執行原本任務
-5. **驗證恢復** — 確認下一個回覆包含實質內容，唔再係 HEARTBEAT_OK
+1. **Detect the loop** — Count consecutive `HEARTBEAT_OK` responses. If a session produces 3 or more consecutive `HEARTBEAT_OK` tool-call results without any substantive assistant reply, the session is in a loop. A second signal: the tool-call count is disproportionately high relative to the conversation turns (e.g., 125 calls across 534 turns with no output = loop).
+
+2. **Break the loop explicitly** — Send a direct, non-HEARTBEAT tool call to interrupt the cycle. Use `exec` with a simple command (`echo "loop broken"`) or a `read` of a known file to force a non-heartbeat response. Do not send another HEARTBEAT — that re-triggers the loop.
+
+3. **Identify the pending user request** — Read the last user message from the conversation transcript. The request is still in context; the session never consumed it. Common patterns: email summarization, file analysis, code generation.
+
+4. **Execute the task manually** — Fulfill the user's original request directly. The session was stalled, not failed — context is still valid. Produce the answer, summary, or output the user asked for.
+
+5. **Confirm and resume** — After producing the output, wait for the next user message. Normal flow is restored once a non-HEARTBEAT tool-call result appears.
 
 ## Pitfalls
 
-- ⚠️ 唔斷重試 HEARTBEAT_OK — 如果你繼續跟隨同一個 Thought/Action 模式，你只係會重複同一個 loop，唔會有進展
-- ⚠️ 假設系統正常 — HEARTBEAT_OK 係系統告訴你「我仲運作緊」，但唔代表佢喺做你想要嘅嘢
-- ⚠️ 忽略用戶急切嘅需求 — 當用戶明確要求一個任務，而你只係不斷回 heartbeat，佢會覺得你冇回應
+- ⚠️ Continuing to send HEARTBEAT probes after detecting the loop — each probe increments the call count and deepens the loop; you must break with a non-heartbeat tool call.
+- ⚠️ Assuming the user request was already answered — in a HEARTBEAT_OK loop, the session produced no output; the request is still pending and must be fulfilled manually.
+- ⚠️ Treating the loop as a model timeout or rate-limit issue — HEARTBEAT_OK loops are execution-layer stalls, not API failures; retrying the same tool call will not resolve it.
+- ⚠️ Running tool calls without reading conversation context first — you may miss the user's actual request and produce a generic or irrelevant response.
+- ⚠️ Not counting tool calls — a small number of HEARTBEAT_OK responses are normal; the threshold for a loop is ≥3 consecutive without output, or a call-count-to-turn ratio >0.2.

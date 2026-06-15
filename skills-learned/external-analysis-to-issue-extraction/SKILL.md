@@ -1,6 +1,6 @@
 ---
 name: external-analysis-to-issue-extraction
-description: Convert external article/tweet analysis into concrete system improvement issues with actionable steps and staged implementation phases
+description: "Convert external analysis into improvement issues with stages. Use when: insights emerge, issues needed, staged rollout. Key capabilities: conversion, extraction, staged plans."
 status: active
 source: skill-reviewer
 provenance: agent

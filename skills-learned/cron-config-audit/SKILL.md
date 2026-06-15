@@ -1,10 +1,12 @@
 ---
 name: cron-config-audit
-description: 審計 cron job 配置與 script 內部 model config，驗證一致性並診斷 drift
+description: "Audit cron configs against script settings and detect drift. Use when: cron acts up, mismatch suspected, drift checks run. Key capabilities: cross-reference entries, detect mismatch, generate report."
 status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-12T10:31:11.738Z
+disable-model-invocation: true
+activationReason: "bulk cron model config drift detection + modification"
 ---
 
 ## Workflow

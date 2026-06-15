@@ -1,10 +1,12 @@
 ---
 name: openclaw-managed-upgrade
-description: 透過 managed service API 升級 OpenClaw 並驗證 gateway 重啟成功的流程
+description: "Upgrade OpenClaw via managed API with gateway verification. Use when: version update needed, upgrade required, gateway verified. Key capabilities: managed upgrade, gateway validation, version check."
 status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-12T02:07:36.138Z
+disable-model-invocation: true
+activationReason: "irreversible (gateway restart, can break all plugins) + cross-system impact"
 ---
 
 ## Workflow

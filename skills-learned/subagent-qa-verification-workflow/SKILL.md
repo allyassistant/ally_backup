@@ -1,34 +1,31 @@
 ---
 name: subagent-qa-verification-workflow
-description: Spawn M3 subagent for comprehensive multi-bug QA verification, collect annotated results, and coordinate related bug discovery and fixes in a single coordinated pass.
+description: Spawn M3 sub-agent for structured QA verification, yield for completion, read results, and post a concise summary to Discord. Use when QA pass is needed, deliverables must be confirmed, or discovery results require pass/fail judgment.
 status: active
 source: skill-reviewer
 provenance: agent
-generatedAt: 2026-06-10T16:07:49.216Z
+generatedAt: 2026-06-14T07:10:00.000Z
 ---
 
 ## Workflow
 
-1. **Prepare verification brief** — Compile the full bug list (bugs + affected files + specific things to verify). For each bug include: location, expected behavior, edge cases to test. Format as a structured list the subagent can tick off.
+1. **Define the verification scope** — Write a sub-agent task prompt that specifies exactly what to verify (e.g., M1.1–M1.9 deliverables, smoke tests, sampling criteria). Include pass/fail thresholds and expected output format.
 
-2. **Spawn M3 subagent** — Use `sessions_spawn` with M3 model. Include in the task prompt: the full bug list, file paths, verification criteria per bug, and instruction to report per-bug PASS/FAIL verdict with evidence. Tell the subagent not to busy-poll — results auto-announce.
+2. **Spawn M3 sub-agent via `sessions_spawn`** — Dispatch the sub-agent with the full scope. Use a descriptive `task_label` (e.g., `M1-completion-audit`) so results are identifiable. Announce to the user that the agent is running.
 
-3. **Collect annotated results** — The subagent will return a table with columns: Bug #, Location, Verdict (✅ PASS / ❌ FAIL / ⚠️ PARTIAL), Notes. Review the verdict table. If any PASS with "⚠️ PARTIAL", those are additional bugs to fix.
+3. **Yield and wait** — Call `sessions_yield` to wait for the sub-agent to complete. Do not busy-poll. The sub-agent auto-announces results to the requester.
 
-4. **Identify related bugs from verification** — M3 QA often discovers **additional bugs** from the same root cause not in the original list (e.g., regex updated in one place but not synchronized in related telemetry counters). Extract these as P2/P3 items.
+4. **Read the results** — After yield returns, read the sub-agent's output file (typically `.spawn/reports/<task_label>-<date>.md`). Verify the report contains all expected sections and a clear overall verdict.
 
-5. **Coordinate fix for discovered related bugs** — If ≥1 related bugs found, spawn a second subagent or fix inline. Key root cause patterns in the skill validation pipeline:
-   - H-3 regex (`/(?:^|\n)(#{1,3}\s+)- .+` for pitfalls) not propagated to `pitfallsCount`, `numSteps`, or `workflowSteps` telemetry
-   - `extractFileBlocks` outer loop using wrong index advancement (`indexOf('\n', open)` vs `match.index + match[0].length`)
+5. **Post summary to Discord** — Construct a concise pass/fail summary (≤150 chars per line, key metrics only). Use `exec` to call `openclaw message send` to the target channel. If the sub-agent reports it has no `message` tool, forward the message text via the main agent's exec channel.
 
-6. **Run integrated smoke test** — After all fixes, run a test that exercises the full pipeline path. Verify no new P0/P1 introduced at changed lines. Run `eslint` or equivalent lint check on modified lines only.
-
-7. **Update tracking artifacts** — Update HEARTBEAT.md Skills Health section with: new bug count, affected files and line numbers, fix status. If the fixes relate to a tracked issue (e.g., #148), update the issue progress.
+6. **Present to user** — Deliver the full verdict table (task-by-task status) with the Discord confirmation. Ask whether any findings need follow-up issues.
 
 ## Pitfalls
 
-- **Spawning M3 without edge case criteria** — If the brief only says "verify Bug #1", M3 won't test edge cases (symlink already gone, permission errors, empty input). Always list edge cases explicitly per bug.
-- **Missing regex synchronization in telemetry** — When updating H-3 regex for `pitfallsCount`, remember that `numSteps` and `workflowSteps` telemetry also use similar patterns and must be updated together. A verification that only checks the primary fix will miss the telemetry variants.
-- **Running lint on whole file instead of changed lines** — Full-file lint may surface 20 pre-existing warnings unrelated to the fix. Run lint only on the specific lines changed (e.g., `eslint --quiet file.js:224-238`) to avoid noise.
-- **Not updating HEARTBEAT after pipeline fixes** — When 7 bugs are fixed across 2 files, future sessions won't know which bugs were fixed. Always add a "Recent Fixes" row to the Skills Health section with file:line references.
-- **Accepting PARTIAL PASS as done** — A PARTIAL PASS means the primary fix works but edge cases fail. Always track the remaining edge cases and address them before closing.
+- ⚠️ Sub-agent output file not found after yield — the sub-agent may still be running or the filename may differ. Always read the directory listing first (`ls .spawn/reports/`) before assuming the path.
+- ⚠️ Sub-agent lacks `message` tool — M3 sub-agents typically do not have the `message` tool. If the sub-agent says "I don't have a message tool", extract the message text from its output and forward it via the main agent's `exec` → `openclaw message send` channel.
+- ⚠️ Discord push skipped when sub-agent finishes late — if the sub-agent completes while the main session is idle, the Discord notification may be forgotten. Always include the Discord step explicitly in the workflow, not as an optional add-on.
+- ⚠️ Verification scope too vague — "QA needed" without specific deliverables, thresholds, or sampling criteria produces unactionable reports. The task prompt must enumerate each check item explicitly.
+- ⚠️ Yield called before sub-agent finishes — calling `sessions_yield` prematurely returns an empty result. Confirm the sub-agent has actually completed (check `.spawn/reports/` or the yield response payload).
+- ⚠️ Summary omitted from Discord — posting only "QA complete" with no metrics is not actionable for absent reviewers. Always include at minimum: total items checked, pass count, fail count, and any blocking issues.

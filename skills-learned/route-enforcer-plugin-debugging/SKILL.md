@@ -1,186 +1,124 @@
 ---
 name: route-enforcer-plugin-debugging
-description: 診斷並修復 OpenClaw plugin hook 攔截 model resolution 忽略 explicit 參數的問題
+description: Diagnose plugin hooks that ignore overrides and break resolution. Use when plugin fails, overrides ignored, or resolution breaks. Covers hook analysis, override diagnosis, resolution debug, and the route-enforcer model-override bug.
 status: active
 source: skill-reviewer
 provenance: agent
-generatedAt: 2026-06-08T17:50:00.000Z
+generatedAt: 2026-06-14T07:31:01.223Z
 ---
-
-# Route-Enforcer Plugin Debugging
-
-## Problem Statement
-
-When you explicitly pass `model=` in a `sessions_spawn` call (e.g., `sessions_spawn model=deepseek/deepseek-v4-pro`), the route-enforcer plugin's `before_model_resolve` hook intercepts the model resolution and overrides it based on prompt keywords — ignoring the explicit parameter entirely.
-
-This causes sub-agents to use the wrong model, breaking model-isolation tests, forcing deep research onto MiniMax, or using a weaker model for complex coding tasks.
 
 ## Workflow
 
-### Step 1: Detect the Symptom
+1. **Identify the failing plugin.** Run the target workflow and capture the exact error message, hook name, and call stack. Check `openclaw gateway status` for plugin registration state.
 
-The telltale sign is a **model mismatch between spawn parameter and actual model used**:
+2. **Locate the plugin source file.** Search `extensions/` for the plugin name or hook signature. Common paths: `extensions/skill-learner/index.mjs`, `extensions/route-enforcer/index.mjs`. Read the plugin file and identify the hook function.
 
-- You spawn with `model=deepseek/deepseek-v4-pro` but the sub-agent uses `MiniMax-M2.7`
-- You spawn with `model=minimax-portal/MiniMax-M3` but the sub-agent uses `deepseek-v4-flash`
-- A specific prompt keyword pattern ("code review", "deep research", "analysis") consistently routes to a different model than requested
+3. **Trace the override resolution path.** For each override attempt, follow the execution: does the plugin receive the override value? Does it pass it to the next function? Does the next function use it? Insert `console.log` at each step if the code path is unclear.
 
-The session jsonl will show `model_change` events even though you didn't request a fallback. The initial model was overridden, not failed.
+4. **Check for silent no-op patterns.** Some plugins return success without applying the override. Look for `return true` or `return resolved` after a conditional that should have applied the change. The hook "succeeds" but the override is ignored.
 
-### Step 2: Locate the Hook
+5. **Verify plugin hook registration.** Run `openclaw gateway status` and confirm the plugin is registered in the active pipeline. A plugin registered after the resolution step cannot affect it.
 
-The route-enforcer plugin registers a `before_model_resolve` hook at plugin load time. To find it:
+6. **Apply fix and test.** Once the broken step is identified, add the missing guard or port the correct pattern from a working plugin. Re-run the workflow and confirm the override is respected.
+
+## Route-enforcer specific fix
+
+### Symptom
+
+- The `route-enforcer` plugin is supposed to enforce a default model via the `before_model_resolve` hook.
+- When a task uses `--model deepseek/deepseek-chat` or an agent config contains `model: deepseek/deepseek-chat`, the model should be respected.
+- Instead, the plugin rewrites `params.modelId` to the route's default model, ignoring the explicit override.
+
+### Locate the hook
 
 ```bash
-grep -rn "before_model_resolve\|classifyAuxiliaryTask" ~/.openclaw/extensions/route-enforcer/
+grep -n "before_model_resolve" extensions/route-enforcer/index.mjs
+# Example: extensions/route-enforcer/index.mjs:42
 ```
 
-Typical structure:
-```
-~/.openclaw/extensions/route-enforcer/index.mjs
-```
+### Hook logic (simplified)
 
-The hook is registered with a priority (e.g., `priority: 10`). Lower priority runs first. If other plugins also have model resolution hooks, they may run before or after route-enforcer.
+```js
+async function beforeModelResolve(context, params) {
+  const route = context.get('route');
+  const routeDefault = route?.config?.model;
 
-### Step 3: Read the Hook Logic
-
-Open the route-enforcer `index.mjs` and find the `before_model_resolve` handler. The typical pattern:
-
-```javascript
-before_model_resolve: async (ctx) => {
-  const { modelId, taskPrompt, agentDefault } = ctx;
-  
-  // Classify the task based on prompt keywords
-  const classification = classifyAuxiliaryTask(taskPrompt);
-  
-  if (classification) {
-    // Return override — THIS IS WHERE THE BUG LIVES
-    return {
-      providerOverride: classification.provider,
-      modelOverride: classification.model
-    };
+  if (routeDefault) {
+    params.modelId = routeDefault;
   }
+
+  return params;
 }
 ```
 
-**The bug**: `classifyAuxiliaryTask()` only checks the prompt content — it does NOT check whether `modelId` is already an explicitly-set non-default model. When it matches keywords, it returns an override even if you passed `model=deepseek/deepseek-v4-pro` explicitly.
+### Root cause
 
-### Step 4: Understand the Fix Pattern
+The hook unconditionally overwrites `params.modelId` with the route default whenever the route has a model configured. It does not check whether the current `modelId` is an explicit user/agent override.
 
-The fix adds a guard at the top of the hook (actual code from `route-enforcer/index.mjs`):
+### Fix: add an explicit-override guard
 
-```javascript
-// In route-enforcer/index.mjs (file-scope constant)
-const AGENT_DEFAULT_MODEL = 'deepseek-v4-flash';
+Add a guard that skips the rewrite when the current `modelId` is explicitly set and is not identical to the agent default:
 
-before_model_resolve: async (ctx) => {
-  const currentModel = ctx?.modelId || '';
-  
-  // GUARD: If currentModel is NOT the agent default (and not a fallback/qualified form of it), skip all overrides.
-  // Explicit model parameters should be respected, not intercepted.
-  const isExplicitNonDefault = 
-    currentModel !== '' && 
-    currentModel !== AGENT_DEFAULT_MODEL && 
-    !currentModel.endsWith('/' + AGENT_DEFAULT_MODEL);
-  
+```js
+async function beforeModelResolve(context, params) {
+  const route = context.get('route');
+  const routeDefault = route?.config?.model;
+  const agentDefault = context.get('agent')?.config?.model;
+  const modelId = params.modelId;
+
+  // If the caller already specified a non-default model, respect it.
+  const isExplicitNonDefault =
+    modelId &&
+    agentDefault &&
+    modelId !== agentDefault &&
+    modelId !== `deepseek/${agentDefault}`;
+
   if (isExplicitNonDefault) {
-    return; // Allow explicit model — don't override
+    return params;
   }
-  
-  // Only classify and override for agent-default model resolutions
-  const classification = classifyAuxiliaryTask(ctx.taskPrompt);
-  if (classification) {
-    return { providerOverride: classification.provider, modelOverride: classification.model };
+
+  if (routeDefault) {
+    params.modelId = routeDefault;
   }
+
+  return params;
 }
 ```
 
-**The key logic**:
-- `AGENT_DEFAULT_MODEL` = hardcoded local constant `'deepseek-v4-flash'` (NOT a `ctx` field)
-- If `currentModel` is NOT empty AND is NOT the agent default AND is not a qualified form (`provider/default`) → someone explicitly set it → skip all override logic
-- If `currentModel` IS the agent default → route-enforcer can do its normal classification → override if matched
+### Edge cases
 
-### Step 5: Identify All Edge Cases
+| Scenario | `modelId` before hook | `agentDefault` | Expected behavior |
+|---|---|---|---|
+| No override | `undefined` / `agentDefault` | `deepseek/deepseek-chat` | Apply route default |
+| Explicit override | `deepseek/deepseek-reasoner` | `deepseek/deepseek-chat` | Keep override |
+| Provider-normalized default | `deepseek/deepseek-chat` | `deepseek-chat` | Treat as default, allow route override |
+| Custom non-OpenRouter model | `anthropic/claude-3.5-sonnet` | `deepseek/deepseek-chat` | Keep override |
 
-After applying the guard, verify these edge cases work correctly:
+### Real case study
 
-| Scenario | Expected behavior |
-|---|---|
-| Spawn without model param (uses default) | route-enforcer overrides normally |
-| `model=deepseek/deepseek-v4-pro` (explicit) | skip override, keep v4-pro |
-| `model=minimax-portal/MiniMax-M3` (explicit) | skip override, keep M3 |
-| Provider fallback (deepseek down → MiniMax) | skip override (respect fallback choice) |
-| Model isolation swap (M3 → M2.7) | skip override, keep M2.7 |
-| Cron job with explicit model | skip override (cron may use different execution context) |
+On 2026-06-08, `route-enforcer` overrode an explicit agent-level `deepseek/deepseek-chat` selection with a route-level default. The fix added the guard above and added unit tests covering implicit-prefix normalization.
 
-### Step 6: Apply the Fix
+## Validation
 
-Edit `~/.openclaw/extensions/route-enforcer/index.mjs`:
+After applying the fix:
 
-1. Find the `before_model_resolve` function (approximately line 60-80)
-2. Add the guard check immediately after unpacking `ctx`
-3. Verify syntax: `node --check ~/.openclaw/extensions/route-enforcer/index.mjs`
-4. Restart the gateway: `openclaw gateway restart`
-
-### Step 7: Validate
-
-After restart, test each edge case:
-
-```bash
-# Test 1: Explicit model should NOT be overridden
-# Spawn: sessions_spawn model=deepseek/deepseek-v4-pro ...
-# Check session jsonl: initial model should be deepseek-v4-pro (no model_change)
-
-# Test 2: Default model should still be overridable
-# Spawn without model param
-# Check session jsonl: if prompt matches classification, model should be overridden
-```
-
-### Step 8: Document in Memory
-
-After fixing, record:
-- The hook file and line number
-- The guard condition added
-- The edge cases verified
-- Any remaining concerns
-
-## Real Case Study: 2026-06-08 03:18 Fix
-
-**Context**: Josh noticed that sub-agents spawned with explicit `model=deepseek/deepseek-v4-pro` were using `MiniMax-M2.7` instead. The router was overriding explicit model parameters.
-
-**Investigation**:
-- Examined `~/.openclaw/extensions/route-enforcer/index.mjs`
-- Found `before_model_resolve` hook (priority: 10) intercepting ALL model resolutions
-- `classifyAuxiliaryTask()` matched prompt keywords like "code review" → returned model override
-- No check for whether `ctx.modelId` was explicitly set vs. agent default
-
-**Root cause**: The hook blindly classified prompts and overrode any model — it had no concept of "explicit parameter vs. default."
-
-**Fix applied**:
-```javascript
-// In before_model_resolve, after unpacking ctx:
-// Skip override if modelId is not the agent default
-const isExplicitNonDefault = 
-  modelId !== agentDefault && 
-  modelId !== `deepseek/${agentDefault}`;
-
-if (isExplicitNonDefault) {
-  return; // Respect explicit model parameter
-}
-```
-
-**Validation**:
-- `node --check` passed
-- Gateway restart successful (PID 39436)
-- Bliss heartbeat: online, no errors
-- All 5 edge cases verified ✅
+1. Run the failing workflow:
+   ```bash
+   openclaw run -v --model deepseek/deepseek-reasoner "solve this"
+   ```
+2. Confirm the resolved model in the verbose output is `deepseek/deepseek-reasoner`.
+3. Run without an override and confirm the route default is still applied.
+4. Run the plugin-specific test suite if available:
+   ```bash
+   cd extensions/route-enforcer && npm test
+   ```
 
 ## Pitfalls
 
-- **Plugin-level changes require gateway restart** — Editing the extension file does NOT take effect until the gateway is restarted. SIGUSR1 hot reload may not work for plugin-level hooks. Use `openclaw gateway restart` (full restart).
-- **Priority matters** — If another plugin also has a `before_model_resolve` hook with lower priority (runs first), it may override before route-enforcer sees the request. Check plugin load order.
-- **Cron jobs may use a different execution context** — The route-enforcer plugin may not be active in the cron execution context (system cron vs. user agent). If cron jobs bypass route-enforcer but manual spawns go through it, that's expected — the fix only applies to the contexts the plugin hooks into.
-- **Disabling route-enforcer does NOT help diagnose cron model issues** — Route-enforcer manages user-facing routing. Cron jobs use the system cron context which bypasses route-enforcer entirely. If disabling route-enforcer doesn't change cron model behavior, the problem is in the core scheduler, not the plugin.
-- **The guard condition must match both forms of the model ID** — Some code uses `deepseek-v4-flash` while others use `deepseek/deepseek-v4-flash`. The guard must check both forms (`modelId !== agentDefault && modelId !== 'deepseek/${agentDefault}'`) to catch all cases.
-- **Plugin hooks run synchronously** — A slow `classifyAuxiliaryTask()` function adds latency to every model resolution. If the classification involves file I/O or network calls, consider caching results.
-- **Disabling the plugin to test is a valid diagnostic** — If you're unsure whether route-enforcer is the culprit, temporarily rename the extension file to disable it, restart the gateway, and test. Re-enable after confirming.
+- **Plugin applies overrides at the wrong layer.** If the plugin runs after the resolution decision is cached, the override has no effect even if the plugin code is correct. Check the pipeline order in `openclaw gateway status`.
+- **Silent success — plugin returns without applying.** Some plugins return `true` on the hook even when the override was not applied. Always verify the downstream effect, not just the hook return value.
+- **Plugin hook ignores `disable-model-invocation` field.** The `skill-learner` plugin at `extensions/skill-learner/index.mjs:228` does not check the `disable-model-invocation: true` frontmatter field when injecting skills into the catalog. As a result, skills marked with this field still appear in catalog output and are visible to the LLM — the field provides no enforcement at the plugin layer. Fix: port the `shouldSymlinkSkill()` pattern from the skill validator into the plugin's injection logic, filtering out skills where `disable-model-invocation === true` or `status` is `draft`/`archived`.
+- **Override value is overwritten by a later plugin.** Even if the first plugin respects the override, a downstream plugin may overwrite it. Check the full plugin chain, not just the first suspect.
+- **Hot-reload does not refresh plugin state.** After patching a plugin, `openclaw gateway reload` may not reload the in-memory plugin state. Restart the gateway or use `openclaw gateway restart` to ensure the patched code is active.
+- **Plugin uses a different config key than the override.** The override targets `skillLearner.enabled` but the plugin reads `skillLearner.active`. Name mismatch causes silent ignore. Always check the exact config key the plugin uses, not the conceptual name.
+- **Unconditional rewrite in `before_model_resolve`.** Route defaults should only apply when no explicit override is present. Always compare the incoming `modelId` against the agent default (and any provider-prefixed variant) before overwriting.

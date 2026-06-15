@@ -1,54 +1,26 @@
 ---
 name: subagent-context-overflow-recovery
-description: 當 M3 sub-agent 因 token 限制崩潰時，手動直接執行而不依賴 sub-agent 的 fallback 工作流
-status: active
+description: Recover from M3 sub-agent token overflow by detecting the failure, reading partial output, reconstructing meaning, and communicating results to the user. Use when sub-agent yields with token limit errors.
+status: draft
 source: skill-reviewer
 provenance: agent
-generatedAt: 2026-06-13T05:32:25.236Z
+generatedAt: 2026-06-14T09:31:01.000Z
 ---
 
 ## Workflow
 
-1. **Detect the overflow**: M3 sub-agent session returns truncated output, ends mid-thought, or session history shows cut-off message. Common indicator: output ends mid-sentence or mid-table with no closing fence.
-
-2. **Check if results were saved**: Before doing anything else, check for an intermediate results file:
-   ```bash
-   ls -t ~/.*.json ~/.*.txt ~/.*.md 2>/dev/null | head -5
-   ```
-   If a recent file matches the sub-agent's task, read it directly.
-
-3. **Read the truncated message**: Pull the inter-session message that sub-agent auto-announced:
-   ```bash
-   sessions history <session-id> --last 2
-   ```
-   Identify where the truncation occurred (mid-Q1, mid-analysis, etc.).
-
-4. **Assess recovery strategy**:
-   - **Results file exists** → read it, integrate findings, done.
-   - **Results file missing + partial visible** → use truncated content + your own domain knowledge to fill gaps. Do NOT re-spawn unless you genuinely lack the domain context.
-   - **Both missing** → re-spawn with tighter scope (split the task).
-
-5. **For deep-analysis sub-agents** (multi-section reports, multi-question analysis):  
-   ⚠️ **This step must be in the sub-agent prompt** — add it explicitly when spawning:
-   > "After each major section (Q1, Q2, etc.), write your partial findings to `~/.phase3_partial_<section>.json` before continuing. The main agent will read this if you hit output limits."
-   
-   This prevents total loss when truncation hits mid-output.
-
-6. **Fallback execution**: If the sub-agent failed entirely, execute the task directly in the main session:
-   - Read the source files yourself
-   - Perform the analysis
-   - Report conclusions directly to the user
-
-7. **Post-recovery**: Update the relevant issue or status file with findings. If the sub-agent failed to save a status update, do it manually.
+1. Detect token overflow: when `sessions_yield` returns with a truncated result or the M3 fails to send its final message, suspect token limit hit. The M3 may have written part of its report before crashing.
+2. Check for partially written files: use `exec` with `ls` or `cat` on the expected output path (e.g., `.spawn/reports/` or the file the M3 was writing). The M3 may have written a report up to the point where it hit the limit.
+3. Read the partial file: use `read` to view what was successfully written. If the file is large, read the last 50-100 lines to see where it stopped.
+4. Reconstruct the missing content: based on the partial report's structure (headings, incomplete sentences, missing sections), infer what the M3 intended to output. Key questions: Did it finish the analysis? Did it propose next steps? Did it include the structured output it was asked for?
+5. Manually communicate the results: send the recovered content to the user or Discord channel with a note that the M3 hit its token limit mid-output. Summarize what was recovered and what might be missing.
+6. If the recovered content is sufficient to complete the task, paraphrase the key findings and any action items the M3 was delivering. The user doesn't need to know every detail — just the decision-relevant output.
+7. Close the sub-agent session properly: the overflowed M3 session is still active. Mark it as done via `sessions_done` or clean up if the system handles it automatically.
 
 ## Pitfalls
 
-- ⚠️ **Deep-analysis sub-agents hit output limits before saving** — M3 output token limit (~8K chars) is easily exceeded by multi-section reports. Sub-agents doing Q1/Q2/Q3 analysis MUST write partial results to disk after each section, or the main agent has no recovery path when truncation hits mid-output. Always include the save-step instruction in the spawn prompt for analysis tasks.
-
-- ⚠️ **Inter-session message truncation** — `sessions_history` shows only the truncated final message, not the full analysis. If the sub-agent didn't save results to disk, you cannot reconstruct the full output from session history alone. Always check for results files first.
-
-- ⚠️ **Main agent domain knowledge can fill gaps** — after truncation, the main agent often knows enough to complete Q2/Q3/Q4 from context (e.g., Phase 3 decision analysis). Do NOT reflexively re-spawn; first assess whether you can fill the gap with existing knowledge. Re-spawning burns another M3 quota and risks the same truncation.
-
-- ⚠️ **Same task re-spawned without tighter scope** — if a sub-agent fails because the task is too broad, re-spawning with the identical prompt will fail the same way. Split the task: spawn one sub-agent per question/angle, keep each scope narrow enough to complete within output limits.
-
-- ⚠️ **Sub-agent output parsing assumes complete JSON** — if the sub-agent was outputting a JSON summary block and got truncated mid-block, the partial JSON is unparseable. Always write structured results to a separate file (not stdout) for analysis tasks.
+- ⚠️ Assuming token overflow means total data loss — M3 often writes partial reports before crashing. The partial output is frequently salvageable and contains the core analysis.
+- ⚠️ Re-spawning the full M3 task from scratch — token overflow will likely recur with the same input. Instead, work with the partial output and finish manually or with a narrower sub-task.
+- ⚠️ Ignoring the partial file path — the M3 was writing to a specific file (e.g., `.spawn/reports/*.md`). If you don't know the path, check `ls .spawn/reports/` or look at the spawn instruction for file output targets.
+- ⚠️ Not communicating the overflow to the user — the user sees the yield return with no visible output. A quick "M3 hit token limit, salvaging partial report" prevents confusion and preserves trust.
+- ⚠️ Sending raw partial content to Discord without summarizing — the partial file may contain broken markdown or mid-sentence text. Summarize the key points and note the truncation.

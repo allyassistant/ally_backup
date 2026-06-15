@@ -1,10 +1,12 @@
 ---
 name: cron-migration
-description: 系統性 cron job migration 工作流 — 包括舊 kind → command kind 遷移、CLI bypass、thin executor 轉換與 model swap 上下文窗口陷阱
+description: "Migrate cron jobs to command thin executor. Use when: no LLM dependency, CLI bypass needed, thin executor required. Key capabilities: cron listing, dependency screening, command conversion."
 status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-13T15:31:01.228Z
+disable-model-invocation: true
+activationReason: "cron kind swap agentTurn->command can silently fail if LLM dependency mis-classified"
 ---
 
 ## Workflow

@@ -1,6 +1,6 @@
 ---
 name: loop-engineering-implementation
-description: Workflow for analyzing, planning, and implementing Loop Engineering phases — from Phase 1 termination manifest to quality verification and multi-session coordination
+description: "Implement Loop Engineering phases with quality checks. Use when: implementation needed, manifests needed, multi-session sync. Key capabilities: phase analysis, manifest handling, quality checks."
 status: active
 source: skill-reviewer
 provenance: agent

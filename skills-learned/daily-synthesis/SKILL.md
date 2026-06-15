@@ -1,6 +1,6 @@
 ---
 name: daily-synthesis
-description: 每日跨系統學習合成 — 掃描 L2 memory + Obsidian 新 content，highlight 新 patterns/connections/contradictions，輸出 note + Discord message。
+description: "Synthesize daily learning across memory and Obsidian. Use when: synthesis triggers, patterns needed, connections required. Key capabilities: memory scan, Obsidian, highlighting."
 status: active
 source: skill-reviewer
 provenance: agent

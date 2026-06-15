@@ -1,6 +1,6 @@
 ---
 name: intent-based-spawn-model-selection
-description: 為 SPAWN route 添加 intent-based 品質分層——默認用 M2.7（平快），明確要求時用 M3（高質量），並確保 fallback chain 不降級到不符合品質預期的模型
+description: "Apply intent-based quality tiering to the SPAWN route: default to M2.7 for cost-effective speed, M3 when high quality is explicitly requested, with fallback chains preserving quality expectations. Use when: routing spawn requests, selecting between M2.7 and M3 model tiers, configuring non-degrading fallback chains. Key capabilities: parse user intent for quality keywords, route via spawn_config.js to appropriate tier, enforce quality-preserving fallback rules."
 status: draft
 source: skill-reviewer
 provenance: agent

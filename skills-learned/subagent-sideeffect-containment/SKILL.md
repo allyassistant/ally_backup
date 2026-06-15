@@ -1,6 +1,6 @@
 ---
 name: subagent-sideeffect-containment
-description: Pattern for designing shared utilities with safe defaults when sub-agents may call them — opt-in side effects, call graph tracing, and surgical fixes
+description: "Designs safe shared scripts for sub-agent calls. Use when sub-agents need shared access, side effects must be contained, or call graph tracing is needed. Covers opt-in design."
 status: active
 source: skill-reviewer
 provenance: agent

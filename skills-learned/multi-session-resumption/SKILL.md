@@ -1,6 +1,6 @@
 ---
 name: multi-session-resumption
-description: Resume multi-session work when user asks "記唔記得我地做到邊到" — rebuild context from issues + memory + history, output compact status.
+description: "Resume work by rebuilding context from issues and memory. Use when: resuming, rebuilding context, restoring checkpoints. Key capabilities: context rebuilding, history analysis, status generation."
 status: active
 source: skill-reviewer
 provenance: agent

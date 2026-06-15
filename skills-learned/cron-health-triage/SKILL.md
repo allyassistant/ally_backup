@@ -1,6 +1,6 @@
 ---
 name: cron-health-triage
-description: 每小時掃描所有 cron jobs，分類健康狀態 (ok/warning/error/stale)，有異常就推 Discord #⚙️系統 — 冇 LLM 嘅 thin executor
+description: "Scan cron jobs hourly and push anomalies to Discord. Use when: hourly scans run, status needs classifying, anomalies appear. Key capabilities: cron scanning, health classification, Discord push."
 status: active
 source: p0-skill-audit-2026-06-09
 provenance: agent

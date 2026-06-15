@@ -1,6 +1,6 @@
 ---
 name: node-fs-enoent-debugging
-description: 診斷 Node.js 腳本中 fs 操作隱性失敗（ENOENT → exit code 1 無拋錯）的工作流，包括路徑驗證、smoke test 驗收。
+description: "Diagnose Node.js fs silent file-not-found failures. Use when: fs fails silently, file-not-found exits, paths need validation. Key capabilities: failure diagnosis, path validation, smoke tests."
 status: active
 source: skill-reviewer
 provenance: agent

@@ -1,6 +1,6 @@
 ---
 name: code-review-checklist
-description: Workflow for auditing newly-created or patched skill files — verifies frontmatter, command syntax, wikilinks, and cross-references before promoting to active status.
+description: "Audit skill files for frontmatter, syntax, and wikilinks. Use when: drafts arrive, patches apply, promotion gates open. Key capabilities: frontmatter validation, syntax check, wikilink resolution."
 status: active
 source: skill-reviewer
 provenance: agent

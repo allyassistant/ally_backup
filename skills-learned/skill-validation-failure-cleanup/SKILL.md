@@ -1,6 +1,6 @@
 ---
 name: skill-validation-failure-cleanup
-description: 當 skill validation fail 時，清理 stale symlink、archive 失效 content、加入 pre-write fence detection，防止 Invalid skill 繼續污染 available skills catalog
+description: "Clean stale symlinks, archive invalid content on failure. Use when: validation fails, symlinks stale, fences needed. Key capabilities: cleanup, archiving, detection."
 status: active
 source: skill-reviewer
 provenance: agent

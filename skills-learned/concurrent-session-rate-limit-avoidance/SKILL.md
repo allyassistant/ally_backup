@@ -1,7 +1,6 @@
-```skills-learned/concurrent-session-rate-limit-avoidance/SKILL.md
 ---
 name: concurrent-session-rate-limit-avoidance
-description: Diagnosing and avoiding same-model rate limit collisions when main session and cron isolated/turn sessions run simultaneously with the same LLM provider
+description: "Diagnose and avoid same-model rate limit collisions between main session and cron agents. Use when: cron timeouts correlate with main session activity, same provider/model is used by multiple sessions, model-call-started hangs without completion. Key capabilities: openclaw cron runs, openclaw cron update, provider fallback planning, timeout adjustment."
 status: draft
 source: skill-reviewer
 provenance: agent
@@ -44,5 +43,12 @@ generatedAt: 2026-06-09T07:52:38.794Z
    
    # Optionally increase timeout for slower models
    openclaw cron update <cron-id> --timeout 360
+   ```
+
 ## Pitfalls
-- (none yet — add pitfalls as discovered)
+
+- ⚠️ **Mistaking transient timeout for provider collision** — A single 300s timeout does not prove collision. Confirm by checking `openclaw cron runs <cron-id>` for repeated timeouts in the same minute window as main-session activity before changing models.
+- ⚠️ **Swapping model without adjusting timeout** — Moving from MiniMax to DeepSeek may require different `timeoutSeconds`. If the new model is slower, a 120s cron timeout can still fail even after the swap.
+- ⚠️ **Choosing same-provider different model family** — `deepseek-v4-flash` and `deepseek-v4-pro` may share the same API quota or rate limit. Prefer a different provider entirely for true isolation.
+- ⚠️ **Not logging the fallback decision** — Without recording original provider, fallback provider, and timestamp, future debugging cannot distinguish a successful fix from coincidence. Append a one-line note to the session log or memory.
+- ⚠️ **Retrying the exhausted provider** — Quota exhaustion is not transient. Re-running the cron with the same model immediately will hit the same limit. Always route to the confirmed fallback provider first.

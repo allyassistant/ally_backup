@@ -1,6 +1,6 @@
 ---
 name: subagent-code-tuning-workflow
-description: 透過 sub-agent 有序地對 script 做 surgical 修改，配合測試 flag 驗證並 restore state
+description: "Use sub-agents for surgical script edits with test flags. Use when: edits needed, test flags required, rollback possible. Key capabilities: scoped edits, test verification, state restoration."
 status: active
 source: skill-reviewer
 provenance: agent

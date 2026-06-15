@@ -1,6 +1,6 @@
 ---
 name: aliveness-noise-reduction
-description: 辨識系統活躍度測試/Heartbeat ping，用最簡潔回覆確認正常狀態，避免產生無意義分析。
+description: "Detect system aliveness tests and heartbeat pings with minimal-noise responses. Use when: system sends HEARTBEAT_OK pings, aliveness probes arrive, noisy analysis is generated for trivial signals. Key capabilities: identify heartbeat patterns, suppress verbose analysis, return concise acknowledgment only."
 status: draft
 source: skill-reviewer
 provenance: agent
