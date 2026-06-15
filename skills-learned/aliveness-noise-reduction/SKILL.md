@@ -1,10 +1,10 @@
 ---
 name: aliveness-noise-reduction
 description: "Detect system aliveness tests and heartbeat pings with minimal-noise responses. Use when: system sends HEARTBEAT_OK pings, aliveness probes arrive, noisy analysis is generated for trivial signals. Key capabilities: identify heartbeat patterns, suppress verbose analysis, return concise acknowledgment only."
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
-generatedAt: 2026-06-13T12:30:00.000+08:00
+generatedAt: 2026-06-15T07:17:51.495Z
 ---
 
 ## Workflow
