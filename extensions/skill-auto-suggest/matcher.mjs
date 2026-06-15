@@ -122,10 +122,25 @@ function countOverlap(taskWords, segmentText) {
  * @returns {number} — score in [0, 1]
  */
 export function scoreSkill(task, skill) {
-  if (!task || typeof task !== 'string' || !skill || !skill.description) return 0;
+  return scoreSkillDetailed(task, skill).score;
+}
+
+/**
+ * Compute match score plus keyword-match statistics for one skill.
+ *
+ * @param {string} task — the user task / message
+ * @param {{description: string}} skill — skill with description field
+ * @returns {{score: number, keywordMatches: number, taskWordCount: number}}
+ */
+export function scoreSkillDetailed(task, skill) {
+  if (!task || typeof task !== 'string' || !skill || !skill.description) {
+    return { score: 0, keywordMatches: 0, taskWordCount: 0 };
+  }
 
   const taskWords = tokenize(task);
-  if (taskWords.length === 0) return 0;
+  if (taskWords.length === 0) {
+    return { score: 0, keywordMatches: 0, taskWordCount: 0 };
+  }
 
   // For mixed CJK/ASCII tasks, only ASCII tokens (the ones that can match
   // English skill descriptions) are used for normalization. Pure-CJK tasks
@@ -135,15 +150,23 @@ export function scoreSkill(task, skill) {
 
   const segments = parseSegments(skill.description);
 
-  const useWhenScore     = countOverlap(taskWords, segments.useWhen);
+  const useWhenScore = countOverlap(taskWords, segments.useWhen);
   const capabilitiesScore = countOverlap(taskWords, segments.capabilities);
-  const keyTasksScore    = countOverlap(taskWords, segments.keyTasks);
+  const keyTasksScore = countOverlap(taskWords, segments.keyTasks);
 
   // Weighted sum, normalized by max possible (all task words matching USE WHEN)
   const total = (useWhenScore * 1.0) + (capabilitiesScore * 0.7) + (keyTasksScore * 0.5);
   const maxPossible = denominatorWords.length * 1.0;
 
-  return Math.min(total / maxPossible, 1.0);
+  // keywordMatches is the unweighted unique task words that hit any segment.
+  // We approximate it from the weighted components (best-effort integer).
+  const keywordMatches = useWhenScore + capabilitiesScore + keyTasksScore;
+
+  return {
+    score: Math.min(total / maxPossible, 1.0),
+    keywordMatches,
+    taskWordCount: denominatorWords.length,
+  };
 }
 
 /**

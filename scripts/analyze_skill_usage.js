@@ -45,11 +45,14 @@ function analyze(events) {
   for (const e of events) {
     if (!e.skill) continue;
     if (!bySkill[e.skill]) {
-      bySkill[e.skill] = { recall: 0, used: 0, skipped: 0, rejected: 0, scores: [] };
+      bySkill[e.skill] = { recall: 0, used: 0, skipped: 0, rejected: 0, scores: [], matchRatios: [] };
     }
     if (e.event === 'recall_trigger') {
       bySkill[e.skill].recall++;
       if (typeof e.score === 'number') bySkill[e.skill].scores.push(e.score);
+      if (typeof e.keywordMatches === 'number' && typeof e.taskWordCount === 'number' && e.taskWordCount > 0) {
+        bySkill[e.skill].matchRatios.push(e.keywordMatches / e.taskWordCount);
+      }
     } else if (e.event === 'used') {
       bySkill[e.skill].used++;
     } else if (e.event === 'skipped') {
@@ -65,6 +68,9 @@ function analyze(events) {
     const avgScore = s.scores.length > 0
       ? s.scores.reduce((a, b) => a + b, 0) / s.scores.length
       : 0;
+    const avgMatchRatio = s.matchRatios.length > 0
+      ? s.matchRatios.reduce((a, b) => a + b, 0) / s.matchRatios.length
+      : 0;
     return {
       skill,
       recall: s.recall,
@@ -73,6 +79,7 @@ function analyze(events) {
       rejected: s.rejected,
       usageRate,
       avgScore,
+      avgMatchRatio,
     };
   });
 
@@ -84,12 +91,13 @@ function printReport(rows) {
   console.log('═══ Skill Usage Analysis ═══\n');
   console.log(`Total skills with recall events: ${rows.length}\n`);
 
-  console.log('| Skill | Recall | Used | Skipped | Rejected | Usage Rate | Avg Score |');
-  console.log('|-------|--------|------|---------|----------|------------|-----------|');
+  console.log('| Skill | Recall | Used | Skipped | Rejected | Usage Rate | Avg Score | Avg Keyword Match |');
+  console.log('|-------|--------|------|---------|----------|------------|-----------|-------------------|');
   for (const r of rows) {
     const rate = (r.usageRate * 100).toFixed(1);
     const score = r.avgScore.toFixed(3);
-    console.log(`| ${r.skill} | ${r.recall} | ${r.used} | ${r.skipped} | ${r.rejected} | ${rate}% | ${score} |`);
+    const match = (r.avgMatchRatio * 100).toFixed(1);
+    console.log(`| ${r.skill} | ${r.recall} | ${r.used} | ${r.skipped} | ${r.rejected} | ${rate}% | ${score} | ${match}% |`);
   }
 
   const highRecallLowUsage = rows.filter(r => r.recall >= 3 && r.usageRate < 0.34);

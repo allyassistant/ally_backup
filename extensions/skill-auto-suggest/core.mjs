@@ -10,7 +10,7 @@ import path from "node:path";
 import os from "node:os";
 import crypto from "node:crypto";
 import { createRequire } from "node:module";
-import { scoreSkill, scoreSkillVector } from "./matcher.mjs";
+import { scoreSkill, scoreSkillDetailed, scoreSkillVector } from "./matcher.mjs";
 
 const require = createRequire(import.meta.url);
 const { extractField } = require("../../scripts/lib/frontmatter.js");
@@ -346,7 +346,7 @@ async function computeTopMatches(task, skills, options = {}) {
   const candidates = skills
     .filter(s => !s.disableModelInvocation)
     .map(s => {
-      const keywordScore = scoreSkill(task, s);
+      const { score: keywordScore, keywordMatches, taskWordCount } = scoreSkillDetailed(task, s);
       let vectorScore = 0;
       if (taskEmbedding && skillEmbeddings?.has(s.name)) {
         vectorScore = scoreSkillVector(taskEmbedding, skillEmbeddings.get(s.name));
@@ -361,7 +361,14 @@ async function computeTopMatches(task, skills, options = {}) {
         finalScore = keywordScore;
       }
 
-      return { ...s, score: finalScore, keywordScore, vectorScore };
+      return {
+        ...s,
+        score: finalScore,
+        keywordScore,
+        vectorScore,
+        keywordMatches,
+        taskWordCount,
+      };
     })
     .filter(s => s.score >= MIN_SCORE)
     .sort((a, b) => b.score - a.score)
@@ -429,6 +436,8 @@ async function recordSkillUsage(task, matches) {
         event: "recall_trigger",
         skill: m.name,
         score: Number(m.score.toFixed(4)),
+        keywordMatches: typeof m.keywordMatches === "number" ? m.keywordMatches : undefined,
+        taskWordCount: typeof m.taskWordCount === "number" ? m.taskWordCount : undefined,
         taskHash,
       }));
     if (lines.length === 0) return;
