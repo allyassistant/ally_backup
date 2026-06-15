@@ -242,7 +242,7 @@ node scripts/pattern_proactive_trigger.js           # 主動提醒
 ```bash
 # 拎 spawn config（每次 spawn 前必行）
 node scripts/spawn_config.js --route SPAWN --task "分析 report"
-# Output: {"model":"minimax-portal/MiniMax-M3","thinking":"high","provider":"minimax-portal","decisionId":"..."}
+# Output: {"model":"minimax-portal/MiniMax-M3","thinking":"adaptive","provider":"minimax-portal","decisionId":"..."}
 
 # 完整 spawn 流程（3 步）：
 # 1️⃣ exec spawn_config
@@ -254,9 +254,9 @@ thinking=$(echo $cfg | python3 -c "import sys,json; j=json.load(sys.stdin); prin
 # sessions_spawn model=$model thinking=$thinking task="..."
 
 # Route → 對應 config 一覽
-# SPAWN = MiniMax M3 + thinking:high
-# SOP   = MiniMax M3 + thinking:high
-# CODE  = MiniMax M3 + thinking:high
+# SPAWN = MiniMax M3 + thinking:adaptive
+# SOP   = MiniMax M3 + thinking:adaptive
+# CODE  = MiniMax M3 + thinking:adaptive
 # FDQ   = deepseek-v4-flash + thinking:high
 # 其他  = deepseek-v4-flash + 唔開 thinking
 ```

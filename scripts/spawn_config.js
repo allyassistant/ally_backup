@@ -9,11 +9,11 @@
  * Usage:
  *   # Default SPAWN → MiniMax-M2.7
  *   node scripts/spawn_config.js --route SPAWN --task "分析 report"
- *   # → { "model": "minimax-portal/MiniMax-M2.7", "thinking": "high", "provider": "minimax-portal" }
+ *   # → { "model": "minimax-portal/MiniMax-M2.7", "thinking": "adaptive", "provider": "minimax-portal" }
  *
  *   # Explicit M3 premium (when Josh 講 "spawn MiniMax M3 sub agent")
  *   node scripts/spawn_config.js --route SPAWN_QUALITY --task "深入分析"
- *   # → { "model": "minimax-portal/MiniMax-M3", "thinking": "high", "provider": "minimax-portal" }
+ *   # → { "model": "minimax-portal/MiniMax-M3", "thinking": "adaptive", "provider": "minimax-portal" }
  *
  * Integration workflow (from AGENTS.md):
  *   1. exec: cfg=$(node scripts/spawn_config.js --route SPAWN --task "...")
@@ -47,19 +47,28 @@ const ROUTE_DEFAULT_FALLBACK = {
   'spawn_quality': 'deepseek-v4-pro',   // M3 fallback → pro (maintain premium quality)
 };
 
-// Default thinking preference per provider (when no extra_body reasoning set)
-const DEFAULT_THINKING = {
-  'minimax-portal': 'high',   // M3 reasoning cap
-  'deepseek': undefined,       // flash reasoning too slow for spawn tasks
-};
+// ─── Thinking parameter resolver ───────────────────────────────────────────
 
-// ─── Reasoning level → thinking parameter mapping ──────────────────────────
-
-function extraBodyToThinking(extraBody) {
-  if (!extraBody || typeof extraBody !== 'object') return undefined;
-  const r = extraBody.reasoning;
-  if (r === 'high' || r === 'medium' || r === 'low') return r;
-  if (r === true) return 'high';
+/**
+ * Map router reasoning intent to the exact `thinking` value accepted by the
+ * runtime provider.
+ *
+ * MiniMax runtime (M2.7 and M3) rejects the literal levels 'high'/'medium'/'low'
+ * and only accepts 'adaptive'. Without this mapping every spawn to MiniMax
+ * fails and has to be respawned manually.
+ *
+ * DeepSeek spawn tasks default to no reasoning because flash models are too
+ * slow; route_model.yaml already encodes reasoning intent for non-spawn routes.
+ */
+function resolveThinking(provider, extraBody) {
+  if (provider === 'minimax-portal') {
+    // MiniMax only accepts 'adaptive'. If route_model.yaml requests reasoning,
+    // we translate it rather than pass the unsupported level through.
+    return 'adaptive';
+  }
+  if (provider === 'deepseek') {
+    return undefined;
+  }
   return undefined;
 }
 
@@ -99,8 +108,8 @@ async function main() {
   // Model: use resolved model, or route-specific fallback, or provider default
   const model = cfg.model || ROUTE_DEFAULT_FALLBACK[route] || DEFAULT_MODELS[cfg.provider] || 'deepseek-v4-flash';
 
-  // Thinking: from extra_body reasoning, or provider default
-  const thinking = extraBodyToThinking(cfg.extraBody) ?? DEFAULT_THINKING[cfg.provider];
+  // Thinking: map router reasoning intent to runtime-accepted value
+  const thinking = resolveThinking(cfg.provider, cfg.extraBody);
 
   const output = {
     model,
@@ -118,3 +127,10 @@ if (require.main === module) {
     process.exit(1);
   });
 }
+
+module.exports = {
+  resolveThinking,
+  DEFAULT_MODELS,
+  ROUTE_DEFAULT_FALLBACK,
+  normalizeRoute,
+};
