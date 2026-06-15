@@ -1,5 +1,0 @@
-[2026-03-21T08:36:08.372Z] Error: Command failed: openclaw sessions spawn --model "kimi" --label "coder-kimi"
-error: unknown option '--model'
-
-Command: openclaw sessions spawn --model "kimi" --label "coder-kimi"
-

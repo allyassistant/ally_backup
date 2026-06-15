@@ -1,8 +1,0 @@
-[2026-04-12T16:04:42.691Z] [INFO] Starting L0 Abstract Generator for 2026-04-13
-[2026-04-12T16:04:42.693Z] [INFO] Found 2 L2 files
-[2026-04-12T16:04:42.693Z] [INFO] Using last 2000 chars of L2
-[2026-04-12T16:04:42.712Z] [INFO] Ollama pre-check passed
-[2026-04-12T16:04:42.712Z] [INFO] Calling Ollama gemma4:e2b...
-[2026-04-12T16:05:11.655Z] [ERROR] Error: Ollama returned invalid response: null
-[2026-04-12T16:05:11.656Z] [WARN] Trying enhanced extraction fallback...
-[2026-04-12T16:05:11.659Z] [SUCCESS] ✅ SUCCESS: L0 Abstract written (fallback, 622 chars)

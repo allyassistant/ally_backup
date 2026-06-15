@@ -1,8 +1,0 @@
-[2026-04-26T16:35:12.602Z] [INFO] [CRON] Starting L1 Overview Generator for 2026-04-26
-[2026-04-26T16:35:12.611Z] [INFO] [CRON] Found 14 L2 files
-[2026-04-26T16:35:12.612Z] [INFO] [CRON] Ollama input pre-filtered: 93 → 63 lines
-[2026-04-26T16:35:12.612Z] [INFO] [CRON] Using last 6969 chars of L2 (window: 20000)
-[2026-04-26T16:35:12.621Z] [INFO] [CRON] Ollama pre-check passed
-[2026-04-26T16:35:12.621Z] [INFO] [CRON] Calling Ollama qwen2.5:3b...
-[2026-04-26T16:35:32.830Z] [INFO] [CRON] Applied OpenCC s2hk conversion (771 → 771 chars)
-[2026-04-26T16:35:32.832Z] [SUCCESS] [CRON] ✅ SUCCESS: L1 Overview written (864 chars)

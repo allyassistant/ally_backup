@@ -1,9 +1,0 @@
-[2026-03-28T18:00:22.498Z] [INFO] Starting L0/L1 verification for 2026-03-28
-[2026-03-28T18:00:22.499Z] [OK] L0 exists (1132 bytes)
-[2026-03-28T18:00:22.499Z] [WARN] L1 MISSING, regenerating...
-[2026-03-28T18:00:22.499Z] [INFO] Running L1 generator: l1_generator.js
-[2026-03-28T18:00:22.579Z] [WARN] ⚠️ L1 generator did not create file
-[2026-03-28T18:00:22.579Z] [INFO] Running L1 inline fallback extraction...
-[2026-03-28T18:00:22.580Z] [INFO] ✅ L1 inline fallback success (551 bytes)
-[2026-03-28T18:00:22.580Z] [SUCCESS] L1 regenerated successfully
-[2026-03-28T18:00:22.580Z] [SUCCESS] ✅ All verifications passed

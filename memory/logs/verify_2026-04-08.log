@@ -1,7 +1,0 @@
-[2026-04-07T18:00:25.302Z] [INFO] Starting L0/L1 verification for 2026-04-07
-[2026-04-07T18:00:25.304Z] [OK] L0 exists (828 bytes)
-[2026-04-07T18:00:25.304Z] [WARN] L1 MISSING, regenerating...
-[2026-04-07T18:00:25.304Z] [INFO] Running L1 generator: memory_generator.js --level L1 --date 2026-04-07 --force
-[2026-04-07T18:01:06.055Z] [INFO] ✅ L1 generator success (1025 bytes)
-[2026-04-07T18:01:06.057Z] [SUCCESS] L1 regenerated successfully
-[2026-04-07T18:01:06.058Z] [SUCCESS] ✅ All verifications passed

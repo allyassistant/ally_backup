@@ -1,7 +1,0 @@
-[2026-04-14T16:05:42.278Z] [INFO] Starting L1 Overview Generator for 2026-04-15
-[2026-04-14T16:05:42.280Z] [INFO] Found 2 L2 files
-[2026-04-14T16:05:42.280Z] [INFO] Using last 1880 chars of L2
-[2026-04-14T16:05:42.292Z] [INFO] Ollama pre-check passed
-[2026-04-14T16:05:42.292Z] [INFO] Calling Ollama gemma4:e2b...
-[2026-04-14T16:06:02.609Z] [INFO] Applied OpenCC s2hk conversion (402 → 402 chars)
-[2026-04-14T16:06:02.610Z] [SUCCESS] ✅ SUCCESS: L1 Overview written (494 chars)

@@ -1,9 +1,0 @@
-[2026-05-26T16:05:03.060Z] [INFO] [CRON] Starting L0 Abstract Generator for 2026-05-26
-[2026-05-26T16:05:03.061Z] [INFO] [CRON] Found 12 L2 files
-[2026-05-26T16:05:03.062Z] [INFO] [CRON] MiniMax input pre-filtered + dedup: 96 → 52 lines (unique)
-[2026-05-26T16:05:03.062Z] [INFO] [CRON] Using last 7904 chars of L2 (window: 12000)
-[2026-05-26T16:05:03.069Z] [INFO] [CRON] OpenClaw CLI available
-[2026-05-26T16:05:03.069Z] [INFO] [CRON] Calling minimax/MiniMax-M2.5 via OpenClaw CLI...
-[2026-05-26T16:05:11.351Z] [SUCCESS] [CRON] OpenClaw CLI responded in 8.3s
-[2026-05-26T16:05:11.352Z] [INFO] [CRON] Applied OpenCC s2hk conversion (445 → 445 chars)
-[2026-05-26T16:05:11.352Z] [SUCCESS] [CRON] ✅ SUCCESS: L0 Abstract written (538 chars)

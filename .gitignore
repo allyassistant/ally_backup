@@ -8,3 +8,37 @@ QUICK_FIX_CHECKLIST.md
 # Node modules (if needed)
 node_modules/
 .worktrees/
+
+# Runtime state, cache, and generated data
+.ai_hot_seen.json
+.baseline_store.json
+.cache/
+.daily_synthesis_state.json
+.diagnostics/
+.knowledge_ingester_state.json
+.last_curator_run.json
+.llm_judge_*
+.session_handoff.md
+.cross_session_context.md
+.skill_*
+.spawn/reports/
+.state/
+.vector-db/
+.wiki_vectorizer_state.json
+
+# Runtime memory and metrics
+memory/
+metrics/
+ha-state/
+
+# Logs and generated reports
+*.log
+wiki/main/sources/auto-*.md
+
+# Local test / comparison artifacts
+extensions/skill-auto-suggest/embedding_comparison.json
+
+# Submodules managed elsewhere
+mission-control-html/
+rapaport-calculator/
+
