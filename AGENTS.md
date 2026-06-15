@@ -489,12 +489,50 @@ Rehydration checklist（session start 或 compaction trigger 後執行）：
 
 > 如果以上 6 樣全部來自 `.cross_session_context.md`（已注入），rehydration 自動完成。
 
+### 🎯 Skill Recall Trigger（Skill 召回規則）
+
+> **原則：Recall 係 quality gate，唔係數量遊戲。**
+> Skill 描述要同當前 task 有強烈關聯先好 load；寧願漏一個 skill，都唔好 recall 錯 skill。
+
+#### 來源優先級
+
+| 優先級 | 來源 | 處理 |
+|--------|------|------|
+| 1（最高）| **System `<suggested_skills>` section** | `skill-auto-suggest` plugin 自動計算當前 task 同 active skills 嘅匹配度，注入 top-3 建議 |
+| 2 | **System `<available_skills>` section** | OpenClaw 自動注入完整 active skill catalog，內容經 `skill_discovery.js` 過濾 |
+| 3 | **直接 user request** | 用戶明確講「用 X skill / 跟 Y 流程」 |
+| 4 | **AGENTS.md SOP 索引** | 行為級 trigger，只限 active skills |
+
+#### Skill 狀態同啟動條件
+
+| 狀態 / 標記 | 可以 recall？ | 條件 |
+|-------------|--------------|------|
+| `status: active`（或缺省）+ 無 `disable-model-invocation` | ✅ 自動 | `<available_skills>` match 即 load |
+| `disable-model-invocation: true` 或 `activation: manual` | ⚠️ 手動 | 必須 task 特徵強烈匹配 description 首 8 個關鍵詞，或用戶明確要求 |
+| `status: draft` / `status: archived` | ❌ 禁止 | 絕對唔 recall，即使 user request 都要先問 Josh |
+| 無 `description` 或無有效 trigger | ❌ 禁止 | report 畀 Josh 並跳過 |
+
+#### Load 流程
+
+1. **優先看 `<suggested_skills>`**：`skill-auto-suggest` plugin 已經根據當前 task 計算咗 top 匹配。若建議清單有合適 skill，直接 read 並執行。
+2. **其次掃 `<available_skills>`**：若自動建議冇命中，再主動掃完整 active skill catalog。
+3. **檢查狀態**：只考慮 active skills；draft / archived 直接忽略。
+4. **檢查 invocation 權限**：
+   - 自動型 skill → 直接 read `SKILL.md` 並執行。
+   - 手動型 skill → 若 user 冇明確要求，先問：「你想我用 X skill 處理？」；除非 task 特徵同 description 高度吻合。
+5. **Verify 檔案**：read 前確認 `SKILL.md` 存在且路徑正確；唔存在 → 記錄 error，唔好靠估。
+6. **執行後回饋**：若 skill 內容過期 / 無用，記錄畀 `memory/correction_suggestions.json` 或 `.skill_description_audit.jsonl`。
+
+> **Note：** `skill_discovery.js` 已經過濾 `status: draft/archived` 同 `disable-model-invocation: true`。`skill-auto-suggest` 再喺載入階段排除 disabled skills，並將建議寫入 `.skill_usage_log.jsonl` 作 usage telemetry。若 `<available_skills>` 仲見到呢類 skill，代表 OpenClaw 同步未生效，要 report bug。
+
 ### 🚨 Security 規範
 
 | 類別 | 規則 |
 |------|------|
 | **Shell Injection** | User Input 唔可以直接放入 Shell Command |
 | **敏感資訊** | API Keys / Tokens 用 `process.env.XXX`，唔寫入 code |
+
+> QW skill pipeline architecture → `HEARTBEAT.md > 🏗️ QW Pipeline Architecture`
 
 ## 背景設定（Setup / Reference）
 
@@ -509,7 +547,7 @@ Rehydration checklist（session start 或 compaction trigger 後執行）：
 | **Kimi Deep Research** | browser open → login Google → pre-flight check → prompt → clarify Qs → validation → `write_to_obsidian` + `wiki_apply` → close tab；phase stuck→partial write；scope 太大→split（詳見 `skills/kimi-deep-research/SKILL.md`） | SOP：需要多 sources 綜合研究 / 數據可視化 / multi-phase auto research |
 | **Sub-agent Response** | spawn → 先覆用戶「分析緊...」 → sub-agent 完成 → 俾完整 result | spawn 任務時 |
 | **Smart Spawn** | `exec spawn_config.js` → parse JSON → `sessions_spawn` 用對應 model + thinking | 所有 spawn sub-agent 嘅情況 |
-| **Skill 匹配** | Hermes 風格：每個 turn 檢查 `<available_skills>` 系統 prompt section，如果有 skill 嘅 `description` 匹配當前 task，load 相對應 SKILL.md 再執行 | 每個 turn 開始時 |
+| **Skill 匹配** | 1. 先睇 `<suggested_skills>`（`skill-auto-suggest` plugin 自動注入 top-3 匹配）<br>2. 再掃 `<available_skills>` 完整 catalog<br>3. 有 matching skill → read SKILL.md → 執行。詳見 🎯 Skill Recall Trigger（禁止 recall draft / archived / disable-model-invocation skills） | 每個 turn 開始時 |
 | **Mini-Curator** | `weekly_correction_loop.js --inactivity-trigger` → 讀 `.last_curator_run.json` → 如果 ≥3 日且 ≥1 新 skill → 做 lightweight validation → 更新 tracker + metrics | daily cron 02:00（或手動觸發）|
 | **Issue Quality** | 創建後填詳細 F/D/Q、Progress checklist、Closing criteria、Rollback plan、Cross-references、Metrics sources | 創建 tracking-type issue（fix、observation、SOP、research）時 |
 
@@ -601,6 +639,14 @@ Rehydration checklist（session start 或 compaction trigger 後執行）：
 | **Q - Questions** | ❓ 核心問題 + 🔍 蘇格拉底追問 |
 | **Progress** | `[x]` done + `[ ]` pending checklist（人/AI/時間） |
 | **Notes** | 補充 context、源 doc、cross-references |
+
+#### ①.5 創建前檢查（Pre-flight）
+
+創建任何 tracking-type issue 之前：
+
+- [ ] **掃描 skills**：檢查 `<suggested_skills>` 或 `<available_skills>` 有冇 matching skill
+- [ ] **已讀 skill**：若有 matching skill，先 `read` 相關 SKILL.md，再決定係沿用、更新定開新 issue
+- [ ] **避免 duplicate**：搜尋 `.issues/active/` 同 `.issues/archive/` 確認冇重複 issue
 
 #### ② Tracking-type issue 加強 sections（強烈建議）
 

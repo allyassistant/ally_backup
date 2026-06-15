@@ -22,6 +22,7 @@ const MIN_SCORE = 0.1;        // discard weak matches
 const CACHE_TTL_MS = 60_000;  // refresh skill metadata every 60s
 const TELEMETRY_FILE = path.join(HOME, ".openclaw", "workspace", ".skill_auto_suggest_telemetry.jsonl");
 const TELEMETRY_TASK_MAX_LEN = 200;
+const USAGE_LOG_FILE = path.join(HOME, ".openclaw", "workspace", ".skill_usage_log.jsonl");
 const EMBEDDINGS_CACHE_FILE = path.join(HOME, ".openclaw", "workspace", ".skill_auto_suggest_embeddings.json");
 const DEFAULT_VECTOR_WEIGHT = 0.7;
 
@@ -397,12 +398,39 @@ async function recordSuggestion(task, matches) {
   }
 }
 
+/**
+ * Record per-skill usage/recall events to the usage log.
+ * One line per suggested skill so downstream analytics can compute
+ * usage rate, most/least used skills, and recall coverage.
+ * Fail-open: any error is logged to stderr but never thrown.
+ *
+ * Privacy: does NOT log task content, only skill name + score + event type.
+ */
+async function recordSkillUsage(task, matches) {
+  try {
+    const ts = new Date().toISOString();
+    const lines = (matches || [])
+      .filter(m => m && m.name)
+      .map(m => JSON.stringify({
+        ts,
+        event: "recall_trigger",
+        skill: m.name,
+        score: Number(m.score.toFixed(4)),
+      }));
+    if (lines.length === 0) return;
+    await appendFile(USAGE_LOG_FILE, lines.join("\n") + "\n", "utf8");
+  } catch (err) {
+    console.error("[skill-auto-suggest] usage log write failed:", err.message);
+  }
+}
+
 export {
   SKILLS_DIR,
   TOP_N,
   MIN_SCORE,
   CACHE_TTL_MS,
   TELEMETRY_FILE,
+  USAGE_LOG_FILE,
   EMBEDDINGS_CACHE_FILE,
   loadSkills,
   loadSkillsWithEmbeddings,
@@ -413,4 +441,5 @@ export {
   extractTask,
   invalidateSkillsCache,
   recordSuggestion,
+  recordSkillUsage,
 };

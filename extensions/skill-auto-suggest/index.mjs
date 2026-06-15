@@ -22,6 +22,7 @@ import {
   formatSuggestions,
   extractTask,
   recordSuggestion,
+  recordSkillUsage,
   ensureSkillEmbeddings,
 } from "./core.mjs";
 import { createProviderFromConfig } from "./embedding.mjs";
@@ -78,6 +79,7 @@ export default definePluginEntry({
 
         // Fire-and-forget telemetry; never block the model.
         recordSuggestion(task, matches).catch(() => {});
+        recordSkillUsage(task, matches).catch(() => {});
 
         if (!block) return {};
 

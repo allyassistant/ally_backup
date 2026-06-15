@@ -11,8 +11,10 @@ import {
   formatSuggestions,
   parseFrontmatter,
   recordSuggestion,
+  recordSkillUsage,
   invalidateSkillsCache,
   TELEMETRY_FILE,
+  USAGE_LOG_FILE,
 } from "./core.mjs";
 import { scoreSkill, parseSegments } from "./matcher.mjs";
 import { createOllamaProvider } from "./embedding.mjs";
@@ -267,6 +269,26 @@ console.log("\n=== Test 10: Vector similarity ===");
     logResult("vector similarity ranks email skill first", topIsEmail && usedVector,
       `top: ${names.join(", ") || "(empty)"}, vector=${usedVector}`);
   }
+}
+
+// ── Test 11: Usage log writes one line per suggested skill ──
+console.log("\n=== Test 11: Usage log ===");
+{
+  const before = fs.existsSync(USAGE_LOG_FILE) ? fs.readFileSync(USAGE_LOG_FILE, "utf8").trim().split("\n").filter(Boolean).length : 0;
+  const mockMatches = [
+    { name: "cron-troubleshooting", score: 0.25 },
+    { name: "email-drafting", score: 0.18 },
+  ];
+  await recordSkillUsage("test usage log task", mockMatches);
+  const after = fs.existsSync(USAGE_LOG_FILE) ? fs.readFileSync(USAGE_LOG_FILE, "utf8").trim().split("\n").filter(Boolean).length : 0;
+  const delta = after - before;
+  const lastLines = fs.existsSync(USAGE_LOG_FILE)
+    ? fs.readFileSync(USAGE_LOG_FILE, "utf8").trim().split("\n").filter(Boolean).slice(-2)
+    : [];
+  const parsed = lastLines.map(line => { try { return JSON.parse(line); } catch { return null; } }).filter(Boolean);
+  const hasRecallEvents = parsed.every(e => e.event === "recall_trigger" && e.skill && typeof e.score === "number");
+  logResult("usage log wrote 2 recall_trigger events", delta === 2 && hasRecallEvents,
+    `delta=${delta}, events=${parsed.map(e => e.skill).join(", ") || "(none)"}`);
 }
 
 // ── Summary ──
