@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Show Stock Check V5</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        :root {
+            /* 中性灰白配色 */
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            
+            /* 強調色 - 中性藍灰 */
+            --accent: #64748B;
+            --accent-light: #94A3B8;
+            --accent-dark: #475569;
+            
+            /* 狀態色 - 柔和版 */
+            --green: #10B981;
+            --green-soft: #D1FAE5;
+            --yellow: #F59E0B;
+            --yellow-soft: #FEF3C7;
+            --blue: #3B82F6;
+            --blue-soft: #DBEAFE;
+            --red: #EF4444;
+            --red-soft: #FEE2E2;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%);
+            color: var(--gray-800);
+            min-height: 100vh;
+            padding-bottom: 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* ===== Liquid Glass 效果 ===== */
+        .glass {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px) saturate(160%);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.02),
+                0 4px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+        
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* ===== Toast 通知 ===== */
+        .toast-container {
+            position: fixed;
+            top: 60px;
+            left: 16px;
+            right: 16px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        
+        .toast {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .toast-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .toast-content {
+            flex: 1;
+        }
+        
+        .toast-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+        
+        .toast-message {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .toast-close {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            padding: 4px;
+        }
+        
+        /* ===== 頁面結構 ===== */
+        .tab-page {
+            display: none;
+            padding: 16px;
+            max-width: 480px;
+            margin: 0 auto;
+            padding-bottom: 100px;
+        }
+        
+        .tab-page.active { display: block; }
+        
+        /* ===== 頂部標題區 ===== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px;
+            margin: -16px -16px 20px -16px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.02em;
+        }
+        
+        .last-update {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+        
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .back-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--gray-700);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .back-btn:active { transform: scale(0.95); background: rgba(255, 255, 255, 0.8); }
+        
+        /* ===== Import 區域 ===== */
+        .import-section {
+            border-radius: 16px;
+            padding: 40px 24px;
+            text-align: center;
+            margin-bottom: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .import-section:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .import-section:active { transform: translateY(0); }
+        
+        .import-icon { 
+            font-size: 44px; 
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+        
+        .import-text { 
+            font-size: 16px; 
+            font-weight: 600;
+            color: var(--gray-800); 
+            margin-bottom: 6px;
+        }
+        
+        .import-hint { 
+            font-size: 13px; 
+            color: var(--gray-500); 
+        }
+        
+        /* ===== Shape Grid ===== */
+        .shape-grid { display: grid; gap: 10px; }
+        
+        .shape-card {
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .shape-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .shape-card:active { transform: scale(0.98); }
+        
+        .shape-info h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+        
+        .shape-info p { 
+            font-size: 14px; 
+            color: var(--gray-500); 
+        }
+        
+        .shape-arrow { 
+            font-size: 22px; 
+            color: var(--gray-400);
+            opacity: 0.6;
+        }
+        
+        /* ===== 鑽石卡片 ===== */
+        .diamond-list { display: flex; flex-direction: column; gap: 10px; }
+        
+        .diamond-card {
+            border-radius: 16px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .diamond-card:active { transform: scale(0.985); }
+        
+        /* 未選狀態 */
+        .diamond-card.unchecked {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        
+        /* 綠色選取 */
+        .diamond-card.selected-green {
+            background: var(--green-soft);
+            border: 1.5px solid var(--green);
+        }
+        
+        .diamond-card.selected-green .diamond-title,
+        .diamond-card.selected-green .diamond-price {
+            color: var(--green);
+        }
+        
+        /* 黃色選取 */
+        .diamond-card.selected-yellow {
+            background: var(--yellow-soft);
+            border: 1.5px solid var(--yellow);
+        }
+        
+        .diamond-card.selected-yellow .diamond-title,
+        .diamond-card.selected-yellow .diamond-price {
+            color: var(--yellow);
+        }
+        
+        /* 藍色選取 */
+        .diamond-card.selected-blue {
+            background: var(--blue-soft);
+            border: 1.5px solid var(--blue);
+        }
+        
+        .diamond-card.selected-blue .diamond-title,
+        .diamond-card.selected-blue .diamond-price {
+            color: var(--blue);
+        }
+        
+        .diamond-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .diamond-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--gray-800);
+            transition: color 0.2s;
+            letter-spacing: -0.01em;
+        }
+        
+        .diamond-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-700);
+            transition: color 0.2s;
+        }
+        
+        .diamond-specs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .spec-tag {
+            font-size: 14px;
+            color: var(--gray-500);
+            transition: color 0.2s;
+        }
+        
+        .spec-tag:not(:last-child)::after {
+            content: "·";
+            margin-left: 10px;
+            color: var(--gray-300);
+        }
+        
+        .diamond-cert { 
+            font-size: 12px; 
+            color: var(--gray-400);
+            font-family: 'SF Mono', monospace;
+            letter-spacing: 0.02em;
+        }
+        
+        /* ===== 狀態標籤 ===== */
+        .status-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        
+        .status-badge.green {
+            background: var(--green);
+            color: var(--white);
+        }
+        
+        .status-badge.yellow {
+            background: var(--yellow);
+            color: var(--white);
+        }
+        
+        .status-badge.blue {
+            background: var(--blue);
+            color: var(--white);
+        }
+        
+        /* ===== Submit 欄 ===== */
+        .submit-bar {
+            position: fixed;
+            bottom: 84px;
+            left: 12px;
+            right: 12px;
+            border-radius: 16px;
+            padding: 12px 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            z-index: 50;
+        }
+        
+        .submit-info {
+            flex: 1;
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+        
+        .submit-info span {
+            font-weight: 700;
+            color: var(--green);
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--gray-800);
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+        
+        .btn-primary:hover { 
+            background: var(--gray-900);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.6);
+            color: var(--gray-600);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.9); }
+        
+        /* ===== 底部 Tab 導航 (Liquid Glass) ===== */
+        .tab-bar {
+            position: fixed;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 64px;
+            z-index: 100;
+            padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+        
+        .tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            cursor: pointer;
+            transition: all 0.2s;
+            gap: 4px;
+            border-radius: 12px;
+            margin: 6px;
+        }
+        
+        .tab-item:active { background: rgba(0, 0, 0, 0.04); }
+        
+        .tab-icon {
+            font-size: 22px;
+            color: var(--gray-400);
+            transition: all 0.2s;
+        }
+        
+        .tab-label {
+            font-size: 10px;
+            color: var(--gray-500);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .tab-item.active .tab-icon { color: var(--gray-800); }
+        .tab-item.active .tab-label { color: var(--gray-800); font-weight: 600; }
+        
+        /* ===== 總覽頁 ===== */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .summary-card {
+            border-radius: 16px;
+            padding: 18px 14px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        
+        .summary-card.missing {
+            border: 1.5px solid var(--red);
+            background: var(--red-soft);
+        }
+        
+        .summary-card.available { background: var(--green-soft); }
+        .summary-card.memo-out { background: var(--yellow-soft); }
+        .summary-card.sold { background: var(--blue-soft); }
+        
+        .summary-label {
+            font-size: 12px;
+            color: var(--gray-600);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        
+        .summary-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gray-800);
+            letter-spacing: -0.02em;
+        }
+        
+        .summary-card.missing .summary-value { color: var(--red); }
+        .summary-card.available .summary-value { color: var(--green); }
+        .summary-card.memo-out .summary-value { color: var(--yellow); }
+        .summary-card.sold .summary-value { color: var(--blue); }
+        
+        /* ===== 缺失欄 ===== */
+        .missing-section {
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            background: var(--red-soft);
+            border: 1.5px solid var(--red);
+        }
+        
+        .missing-section h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--red);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .missing-item {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 8px;
+            color: var(--red);
+            font-weight: 500;
+            font-size: 14px;
+            border: 1px solid rgba(239, 68, 68, 0.1);
+        }
+        
+        .missing-item:last-child { margin-bottom: 0; }
+        
+        /* ===== 圖例 ===== */
+        .legend {
+            display: flex;
+            gap: 16px;
+            margin: 16px 0;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.4);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .dot-green { background: var(--green); }
+        .dot-yellow { background: var(--yellow); }
+        .dot-blue { background: var(--blue); }
+        .dot-gray { background: var(--gray-400); }
+        .dot-red { background: var(--red); }
+        
+        /* ===== 空狀態 ===== */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray-500);
+        }
+        
+        .empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.6; }
+        .empty-text { font-size: 15px; }
+        
+        /* ===== 載入動畫 ===== */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(248, 250, 252, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .loading-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gray-200);
+            border-top-color: var(--gray-800);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 15px;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+        
+        /* ===== 自動刷新指示器 ===== */
+        .refresh-indicator {
+            position: fixed;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-40px);
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 1500;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .refresh-indicator.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .refresh-indicator.spinning::before {
+            content: "";
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- 自動刷新指示器 -->
+    <div id="refreshIndicator" class="refresh-indicator spinning">
+        <span>🔄</span> 正在同步數據...
+    </div>
+    
+    <!-- Toast 容器 -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- 載入覆蓋層 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">載入中...</div>
+    </div>
+
+    <!-- ===== Tab 1: 點貨（綠色 Available） ===== -->
+    <div id="availableTab" class="tab-page active">
+        <div class="header glass">
+            <div class="header-content">
+                <div>
+                    <h1>點貨</h1>
+                    <div class="last-update" id="lastUpdate">最後更新: 載入中...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="availableShapePage">
+            <div class="import-section glass-card" onclick="importExcel()">
+                <div class="import-icon">📁</div>
+                <div class="import-text">匯入 Excel 清單</div>
+                <div class="import-hint">支援 .xlsx, .csv 格式</div>
+            </div>
+            
+            <h2>選擇 Shape</h2>
+            <div class="shape-grid">
+                <div class="shape-card glass-card" onclick="enterCheck('available', 'ALL')">
+                    <div class="shape-info">
+                        <h3>ALL SHAPES</h3>
+                        <p id="available-count-all">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card glass-card" onclick="enterCheck('available', 'RBC')">
+                    <div class="shape-info">
+                        <h3>ROUND (RBC)</h3>
+                        <p id="available-count-rbc">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card glass-card" onclick="enterCheck('available', 'EM')">
+                    <div class="shape-info">
+                        <h3>EMERALD (EM)</h3>
+                        <p id="available-count-em">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card glass-card" onclick="enterCheck('available', 'PR')">
+                    <div class="shape-info">
+                        <h3>PRINCESS (PR)</h3>
+                        <p id="available-count-pr">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="availableCheckPage" style="display: none;">
+            <h2>
+                <span class="back-btn" onclick="backToShapes('available')">←</span>
+                <span id="availableCheckTitle">ALL SHAPES</span>
+            </h2>
+            
+            <div class="legend glass-card">
+                <div class="legend-item">
+                    <div class="legend-dot dot-gray"></div>
+                    <span>未選</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-green"></div>
+                    <span>單點 = 選取 Available</span>
+                </div>
+            </div>
+            
+            <div class="diamond-list" id="availableCheckList"></div>
+            
+            <div class="submit-bar glass">
+                <div class="submit-info">
+                    已選 <span id="availableSubmitCount">0</span> 粒
+                </div>
+                <button class="btn btn-secondary" onclick="resetSelection('available')">重置</button>
+                <button class="btn btn-primary" onclick="submitSelection('available')">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab 2: Memo Out（黃色） ===== -->
+    <div id="memoTab" class="tab-page">
+        <div class="header glass">
+            <div class="header-content">
+                <div>
+                    <h1>Memo Out</h1>
+                    <div class="last-update">最後更新: 載入中...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="memoShapePage">
+            <h2>選擇 Shape</h2>
+            <div class="shape-grid">
+                <div class="shape-card glass-card" onclick="enterCheck('memo', 'ALL')">
+                    <div class="shape-info">
+                        <h3>ALL SHAPES</h3>
+                        <p id="memo-count-all">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card glass-card" onclick="enterCheck('memo', 'RBC')">
+                    <div class="shape-info">
+                        <h3>ROUND (RBC)</h3>
+                        <p id="memo-count-rbc">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card glass-card" onclick="enterCheck('memo', 'EM')">
+                    <div class="shape-info">
+                        <h3>EMERALD (EM)</h3>
+                        <p id="memo-count-em">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card glass-card" onclick="enterCheck('memo', 'PR')">
+                    <div class="shape-info">
+                        <h3>PRINCESS (PR)</h3>
+                        <p id="memo-count-pr">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="memoCheckPage" style="display: none;">
+            <h2>
+                <span class="back-btn" onclick="backToShapes('memo')">←</span>
+                <span id="memoCheckTitle">ALL SHAPES</span>
+            </h2>
+            
+            <div class="legend glass-card">
+                <div class="legend-item">
+                    <div class="legend-dot dot-gray"></div>
+                    <span>未選</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-yellow"></div>
+                    <span>單點 = 選取 Memo Out</span>
+                </div>
+            </div>
+            
+            <div class="diamond-list" id="memoCheckList"></div>
+            
+            <div class="submit-bar glass">
+                <div class="submit-info">
+                    已選 <span id="memoSubmitCount">0</span> 粒
+                </div>
+                <button class="btn btn-secondary" onclick="resetSelection('memo')">重置</button>
+                <button class="btn btn-primary" onclick="submitSelection('memo')">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab 3: Sold（藍色） ===== -->
+    <div id="soldTab" class="tab-page">
+        <div class="header glass">
+            <div class="header-content">
+                <div>
+                    <h1>Sold</h1>
+                    <div class="last-update">最後更新: 載入中...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="soldShapePage">
+            <h2>選擇 Shape</h2>
+            <div class="shape-grid">
+                <div class="shape-card glass-card" onclick="enterCheck('sold', 'ALL')">
+                    <div class="shape-info">
+                        <h3>ALL SHAPES</h3>
+                        <p id="sold-count-all">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card glass-card" onclick="enterCheck('sold', 'RBC')">
+                    <div class="shape-info">
+                        <h3>ROUND (RBC)</h3>
+                        <p id="sold-count-rbc">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card glass-card" onclick="enterCheck('sold', 'EM')">
+                    <div class="shape-info">
+                        <h3>EMERALD (EM)</h3>
+                        <p id="sold-count-em">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+                <div class="shape-card glass-card" onclick="enterCheck('sold', 'PR')">
+                    <div class="shape-info">
+                        <h3>PRINCESS (PR)</h3>
+                        <p id="sold-count-pr">0 粒</p>
+                    </div>
+                    <div class="shape-arrow">›</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="soldCheckPage" style="display: none;">
+            <h2>
+                <span class="back-btn" onclick="backToShapes('sold')">←</span>
+                <span id="soldCheckTitle">ALL SHAPES</span>
+            </h2>
+            
+            <div class="legend glass-card">
+                <div class="legend-item">
+                    <div class="legend-dot dot-gray"></div>
+                    <span>未選</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-blue"></div>
+                    <span>單點 = 選取 Sold</span>
+                </div>
+            </div>
+            
+            <div class="diamond-list" id="soldCheckList"></div>
+            
+            <div class="submit-bar glass">
+                <div class="submit-info">
+                    已選 <span id="soldSubmitCount">0</span> 粒
+                </div>
+                <button class="btn btn-secondary" onclick="resetSelection('sold')">重置</button>
+                <button class="btn btn-primary" onclick="submitSelection('sold')">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Tab 4: 總覽 ===== -->
+    <div id="summaryTab" class="tab-page">
+        <div class="header glass">
+            <div class="header-content">
+                <div>
+                    <h1>盤點總覽</h1>
+                    <div class="last-update" id="summaryLastUpdate">最後更新: 載入中...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="summary-grid">
+            <div class="summary-card glass-card">
+                <div class="summary-label">總數</div>
+                <div class="summary-value" id="totalSummary">0</div>
+            </div>
+            <div class="summary-card glass-card available">
+                <div class="summary-label">Available</div>
+                <div class="summary-value" id="availableSummary">0</div>
+            </div>
+            <div class="summary-card glass-card memo-out">
+                <div class="summary-label">Memo Out</div>
+                <div class="summary-value" id="memoOutSummary">0</div>
+            </div>
+            <div class="summary-card glass-card sold">
+                <div class="summary-label">Sold</div>
+                <div class="summary-value" id="soldSummary">0</div>
+            </div>
+            <div class="summary-card missing" style="grid-column: span 2;">
+                <div class="summary-label">❌ 缺失</div>
+                <div class="summary-value" id="missingSummary">0</div>
+            </div>
+        </div>
+        
+        <div class="legend glass-card">
+            <div class="legend-item"><div class="legend-dot dot-green"></div><span>Available</span></div>
+            <div class="legend-item"><div class="legend-dot dot-yellow"></div><span>Memo Out</span></div>
+            <div class="legend-item"><div class="legend-dot dot-blue"></div><span>Sold</span></div>
+            <div class="legend-item"><div class="legend-dot dot-red"></div><span>缺失</span></div>
+        </div>
+        
+        <div class="missing-section" id="missingSection">
+            <h3>❌ 缺失清單</h3>
+            <div id="missingList"></div>
+        </div>
+        
+        <div style="position: fixed; bottom: 90px; left: 16px; right: 16px; z-index: 50;">
+            <button class="btn btn-primary" style="width: 100%; padding: 16px;" onclick="generateExcel()">
+                📊 生成 Excel 報告
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== 底部 Tab 導航（Liquid Glass） ===== -->
+    <div class="tab-bar glass">
+        <div class="tab-item active" onclick="switchTab('available')">
+            <span class="tab-icon">✅</span>
+            <span class="tab-label">點貨</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('memo')">
+            <span class="tab-icon">📋</span>
+            <span class="tab-label">Memo Out</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('sold')">
+            <span class="tab-icon">💰</span>
+            <span class="tab-label">Sold</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('summary')">
+            <span class="tab-icon">📊</span>
+            <span class="tab-label">總覽</span>
+        </div>
+    </div>
+
+    <script>
+        // Mock 數據
+        const mockData = [
+            { parcel: 'EM-001', shape: 'EM', carat: 8.68, color: 'D', clarity: 'VVS2', fluor: 'Faint', price: 641625, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-002', shape: 'EM', carat: 8.56, color: 'K', clarity: 'VVS2', fluor: 'None', price: 150850, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-003', shape: 'EM', carat: 11.52, color: 'H', clarity: 'VVS2', fluor: 'None', price: 485200, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-004', shape: 'EM', carat: 7.63, color: 'G', clarity: 'VVS2', fluor: 'None', price: 225400, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-005', shape: 'EM', carat: 7.62, color: 'I', clarity: 'VVS1', fluor: 'Faint', price: 185600, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'EM-006', shape: 'EM', carat: 7.57, color: 'I', clarity: 'VVS2', fluor: 'None', price: 168400, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'RBC-001', shape: 'RBC', carat: 10.13, color: 'D', clarity: 'VVS1', fluor: 'None', price: 667481, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'RBC-002', shape: 'RBC', carat: 10.02, color: 'I', clarity: 'SI2', fluor: 'None', price: 228606, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'PR-001', shape: 'PR', carat: 5.23, color: 'G', clarity: 'VS1', fluor: 'None', price: 125000, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+            { parcel: 'PR-002', shape: 'PR', carat: 4.18, color: 'H', clarity: 'VS2', fluor: 'Faint', price: 98000, confirmedStatus: null, selection: { available: false, memo: false, sold: false } },
+        ];
+        
+        let allData = [...mockData];
+        let currentShape = { available: 'ALL', memo: 'ALL', sold: 'ALL' };
+        let lastRefreshTime = null;
+        
+        const shapeNames = { 'ALL': 'ALL SHAPES', 'RBC': 'ROUND', 'EM': 'EMERALD', 'PR': 'PRINCESS' };
+        
+        const tabConfig = {
+            'available': { color: 'green', label: 'Available', nextStatus: 'available' },
+            'memo': { color: 'yellow', label: 'Memo Out', nextStatus: 'memo-out' },
+            'sold': { color: 'blue', label: 'Sold', nextStatus: 'sold' }
+        };
+        
+        // ===== 初始化：自動刷新 =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // 顯示刷新指示器
+            const indicator = document.getElementById('refreshIndicator');
+            indicator.classList.add('show');
+            
+            // 模擬自動刷新
+            setTimeout(() => {
+                autoRefresh();
+            }, 800);
+        });
+        
+        // ===== 自動刷新功能 =====
+        function autoRefresh() {
+            const indicator = document.getElementById('refreshIndicator');
+            
+            // 模擬刷新過程
+            setTimeout(() => {
+                // 更新時間
+                lastRefreshTime = new Date();
+                updateLastRefreshTime();
+                
+                // 隱藏指示器
+                indicator.classList.remove('show');
+                
+                // 顯示成功 Toast
+                showToast({
+                    icon: '✅',
+                    title: '數據已同步',
+                    message: `已更新 ${allData.length} 粒鑽石數據`,
+                    duration: 3000
+                });
+                
+                // 初始化顯示
+                updateShapeCounts('available');
+                updateShapeCounts('memo');
+                updateShapeCounts('sold');
+                
+            }, 1200);
+        }
+        
+        // ===== 更新最後刷新時間 =====
+        function updateLastRefreshTime() {
+            const timeStr = lastRefreshTime ? lastRefreshTime.toLocaleString('zh-HK', { 
+                month: 'short', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            }) : '載入中...';
+            
+            document.querySelectorAll('.last-update').forEach(el => {
+                el.textContent = `最後更新: ${timeStr}`;
+            });
+            document.getElementById('summaryLastUpdate').textContent = `最後更新: ${timeStr}`;
+        }
+        
+        // ===== Toast 通知系統 =====
+        function showToast({ icon, title, message, duration = 4000 }) {
+            const container = document.getElementById('toastContainer');
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <span class="toast-icon">${icon}</span>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <span class="toast-close" onclick="this.parentElement.remove()">×</span>
+            `;
+            
+            container.appendChild(toast);
+            
+            // 觸發動畫
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+            
+            // 自動移除
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 350);
+            }, duration);
+        }
+        
+        // ===== Tab 切換 =====
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            const tabIndex = tabName === 'available' ? 0 : tabName === 'memo' ? 1 : tabName === 'sold' ? 2 : 3;
+            document.querySelectorAll('.tab-item')[tabIndex].classList.add('active');
+            
+            if (tabName === 'summary') {
+                renderSummary();
+            } else {
+                updateShapeCounts(tabName);
+            }
+        }
+        
+        // ===== 更新 Shape 計數 =====
+        function updateShapeCounts(type) {
+            const shapes = ['ALL', 'RBC', 'EM', 'PR'];
+            shapes.forEach(shape => {
+                const count = shape === 'ALL'
+                    ? allData.filter(d => !d.confirmedStatus).length
+                    : allData.filter(d => d.shape === shape && !d.confirmedStatus).length;
+                const el = document.getElementById(`${type}-count-${shape.toLowerCase()}`);
+                if (el) el.textContent = `${count} 粒`;
+            });
+        }
+        
+        // ===== 進入盤點頁 =====
+        function enterCheck(type, shape) {
+            currentShape[type] = shape;
+            document.getElementById(`${type}CheckTitle`).textContent = shapeNames[shape];
+            
+            document.getElementById(`${type}ShapePage`).style.display = 'none';
+            document.getElementById(`${type}CheckPage`).style.display = 'block';
+            
+            renderCheckList(type);
+        }
+        
+        // ===== 返回 Shape 頁 =====
+        function backToShapes(type) {
+            document.getElementById(`${type}ShapePage`).style.display = 'block';
+            document.getElementById(`${type}CheckPage`).style.display = 'none';
+            updateShapeCounts(type);
+        }
+        
+        // ===== 渲染盤點列表 =====
+        function renderCheckList(type) {
+            const listEl = document.getElementById(`${type}CheckList`);
+            const config = tabConfig[type];
+            
+            // 只顯示未 confirmed 的貨品
+            let items = allData.filter(d => !d.confirmedStatus);
+            if (currentShape[type] !== 'ALL') {
+                items = items.filter(d => d.shape === currentShape[type]);
+            }
+            
+            listEl.innerHTML = items.map((d) => {
+                const isSelected = d.selection[type];
+                const cardClass = isSelected ? `selected-${config.color}` : 'unchecked glass-card';
+                const badge = isSelected ? `<span class="status-badge ${config.color}">已選 ${config.label}</span>` : '';
+                
+                return `
+                    <div class="diamond-card ${cardClass}" 
+                         onclick="toggleSelection('${type}', '${d.parcel}')">
+                        <div class="diamond-header">
+                            <div class="diamond-title">
+                                ${d.shape} ${d.carat.toFixed(2)}ct
+                                ${badge}
+                            </div>
+                            <div class="diamond-price">USD ${d.price.toLocaleString()}</div>
+                        </div>
+                        <div class="diamond-specs">
+                            <span class="spec-tag">${d.color}</span>
+                            <span class="spec-tag">${d.clarity}</span>
+                            <span class="spec-tag">${d.fluor}</span>
+                        </div>
+                        <div class="diamond-cert">${d.parcel}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            // 更新 Submit 計數
+            const selectedCount = allData.filter(d => d.selection[type]).length;
+            document.getElementById(`${type}SubmitCount`).textContent = selectedCount;
+        }
+        
+        // ===== 切換選取狀態 =====
+        function toggleSelection(type, parcel) {
+            const item = allData.find(d => d.parcel === parcel);
+            if (!item) return;
+            
+            // 切換選取狀態
+            item.selection[type] = !item.selection[type];
+            renderCheckList(type);
+        }
+        
+        // ===== 重置選取 =====
+        function resetSelection(type) {
+            const config = tabConfig[type];
+            
+            showToast({
+                icon: '🔄',
+                title: '重置選取',
+                message: `${shapeNames[currentShape[type]]} 的 ${config.label} 選取已重置`,
+                duration: 2000
+            });
+            
+            if (currentShape[type] === 'ALL') {
+                allData.forEach(d => d.selection[type] = false);
+            } else {
+                allData.filter(d => d.shape === currentShape[type]).forEach(d => d.selection[type] = false);
+            }
+            renderCheckList(type);
+        }
+        
+        // ===== 提交選取 =====
+        function submitSelection(type) {
+            const config = tabConfig[type];
+            const selectedCount = allData.filter(d => d.selection[type]).length;
+            
+            if (selectedCount === 0) {
+                showToast({
+                    icon: '⚠️',
+                    title: '請先選取貨品',
+                    message: '點擊鑽石卡片來選取',
+                    duration: 2500
+                });
+                return;
+            }
+            
+            // 將選取狀態確認
+            allData.forEach(d => {
+                if (d.selection[type]) {
+                    d.confirmedStatus = config.nextStatus;
+                    d.selection[type] = false;
+                }
+            });
+            
+            showToast({
+                icon: '✅',
+                title: '提交成功',
+                message: `已確認 ${selectedCount} 粒為 ${config.label}`,
+                duration: 3000
+            });
+            
+            renderCheckList(type);
+            updateShapeCounts(type);
+        }
+        
+        // ===== 總覽頁 =====
+        function renderSummary() {
+            const total = allData.length;
+            const available = allData.filter(d => d.confirmedStatus === 'available').length;
+            const memoOut = allData.filter(d => d.confirmedStatus === 'memo-out').length;
+            const sold = allData.filter(d => d.confirmedStatus === 'sold').length;
+            const missing = allData.filter(d => !d.confirmedStatus).length;
+            
+            document.getElementById('totalSummary').textContent = total;
+            document.getElementById('availableSummary').textContent = available;
+            document.getElementById('memoOutSummary').textContent = memoOut;
+            document.getElementById('soldSummary').textContent = sold;
+            document.getElementById('missingSummary').textContent = missing;
+            
+            // 渲染缺失清單
+            const missingItems = allData.filter(d => !d.confirmedStatus);
+            const missingListEl = document.getElementById('missingList');
+            const missingSectionEl = document.getElementById('missingSection');
+            
+            if (missingItems.length === 0) {
+                missingSectionEl.style.display = 'none';
+            } else {
+                missingSectionEl.style.display = 'block';
+                missingListEl.innerHTML = missingItems.map(d => `
+                    <div class="missing-item">
+                        ${d.shape} ${d.carat.toFixed(2)}ct ${d.color} ${d.clarity} - ${d.parcel}
+                    </div>
+                `).join('');
+            }
+        }
+        
+        // ===== 生成 Excel =====
+        function generateExcel() {
+            const total = allData.length;
+            const available = allData.filter(d => d.confirmedStatus === 'available').length;
+            const memoOut = allData.filter(d => d.confirmedStatus === 'memo-out').length;
+            const sold = allData.filter(d => d.confirmedStatus === 'sold').length;
+            const missing = allData.filter(d => !d.confirmedStatus).length;
+            
+            let csv = 'Parcel,Shape,Carat,Color,Clarity,Fluor,Price,Status\n';
+            allData.forEach(d => {
+                const status = d.confirmedStatus || 'Missing';
+                csv += `${d.parcel},${d.shape},${d.carat},${d.color},${d.clarity},${d.fluor},${d.price},${status}\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Stock_Check_Report_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+            
+            showToast({
+                icon: '📊',
+                title: 'Excel 報告已生成',
+                message: `總數: ${total} | Available: ${available} | Memo Out: ${memoOut} | Sold: ${sold} | 缺失: ${missing}`,
+                duration: 4000
+            });
+        }
+        
+        // ===== 匯入 Excel =====
+        function importExcel() {
+            showToast({
+                icon: '📁',
+                title: '匯入功能',
+                message: '請選擇 Excel 或 CSV 文件',
+                duration: 3000
+            });
+        }
+    </script>
+</body>
+</html>
