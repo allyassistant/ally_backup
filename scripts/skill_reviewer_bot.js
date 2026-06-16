@@ -25,6 +25,8 @@ const path = require('path');
 const https = require('https');
 const { execSync, execFileSync } = require('child_process');
 const { WS, OPENCLAW_CONFIG, SKILLS_ACTIVE } = require('./lib/config');
+const { extractField } = require('./lib/frontmatter');
+const { isFrontmatterFieldTruthy } = require('./lib/skill_discovery');
 
 // ── Config ──
 const MODEL = 'minimax-portal/MiniMax-M2.7';
@@ -71,6 +73,9 @@ const CONFIG = {
   JUNK_RATE_FILE: path.join(WS, '.skill_junk_rate.jsonl'),
 };
 
+// Track dedup outcome per file path (set in writeSkillFiles, read in recordSkillCreated)
+var lastWriteDedup = new Map();
+
 // ── Helpers ──
 
 function log() {
@@ -107,6 +112,63 @@ function recordLlmJudgeShadow(event) {
   } catch (e) {
     err('llm_judge_shadow write failed: ' + e.message);
     return false;
+  }
+}
+
+/**
+ * Determine whether a skill should be promoted to an active symlink.
+ * Skips: status draft/archived, disable-model-invocation: true, activation: manual.
+ *
+ * Uses shared frontmatter parser so symlink gating stays in sync with
+ * skill_discovery.js and skill-auto-suggest (Issue #133 / M1.7).
+ */
+function shouldSymlinkSkill(content) {
+  const status = extractField(content, 'status');
+  if (status && (status.toLowerCase() === 'draft' || status.toLowerCase() === 'archived')) {
+    return false;
+  }
+  if (isFrontmatterFieldTruthy(content, 'disable-model-invocation')) {
+    return false;
+  }
+  const activation = extractField(content, 'activation');
+  if (activation && activation.toLowerCase() === 'manual') {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Normalize SKILL.md content for content-hash dedup comparison.
+ * Strips timestamp-like frontmatter fields that legitimately change every run,
+ * plus trailing whitespace, so two equivalent contents hash to the same value.
+ */
+function normalizeForDedup(content) {
+  if (typeof content !== 'string') return '';
+  return content
+    .replace(/^generatedAt:.*$/gm, '')
+    .replace(/^updated:.*$/gm, '')
+    .replace(/^lastReviewed:.*$/gm, '')
+    .replace(/^reviewedAt:.*$/gm, '')
+    .replace(/\s+$/g, '');
+}
+
+/**
+ * Decide whether we actually need to write `newContent` to `targetPath`.
+ * Returns true (rewrite needed) on first write OR when normalized content differs.
+ * Returns false (skip rewrite) when content is semantically equivalent.
+ * Fails open: any error → return true (write, don't risk losing content).
+ */
+function shouldRewrite(targetPath, newContent) {
+  try {
+    if (!fs.existsSync(targetPath)) return true;
+    var existing = fs.readFileSync(targetPath, 'utf8');
+    var crypto = require('crypto');
+    var h1 = crypto.createHash('sha256').update(normalizeForDedup(existing)).digest('hex');
+    var h2 = crypto.createHash('sha256').update(normalizeForDedup(newContent)).digest('hex');
+    return h1 !== h2;
+  } catch (e) {
+    err('shouldRewrite: fail-open on error: ' + e.message);
+    return true;
   }
 }
 
@@ -202,6 +264,26 @@ function buildReviewPrompt() {
     '## \u26a0\ufe0f BATCH MODE \u2014 TOOLS NOT AVAILABLE\n\n' +
     'IMPORTANT: You are running in batch mode. You do NOT have write/edit/message tools.\n' +
     'Output skill file content directly in your response, not tool calls.\n\n' +
+    '### \ud83c\udfaf Description Specification (HARD GATE)\n\n' +
+    'The `description` field is the ONLY signal the agent sees when deciding whether\n' +
+    'to load this skill. It must be searchable, concise, and label-less.\n\n' +
+    '**Formula:** `Action verb + when/if trigger + payoff/output` in ONE sentence.\n\n' +
+    '**Rules:**\n' +
+    '- Length: 50\u2013250 characters (hard gate); 80\u2013200 ideal.\n' +
+    '- MUST start with an action verb. Safe choices: Diagnose, Route, Audit, Migrate,\n' +
+    '  Detect, Verify, Spawn, Scan, Convert, Build, Analyze, Review, Update, Clean.\n' +
+    '- Prefer label-less: `Do X when Y happens or Z is needed, producing W.`\n' +
+    '- If you must label, use at most ONE plain `Use when` (no colon) \u2014 never combine\n' +
+    '  it with `Key capabilities:`.\n' +
+    '- Banned: XML/angle brackets, ALL CAPS words, exclamation marks, vague words\n' +
+    '  (`helper`, `utility`, `stuff`, `various`), more than one quality keyword\n' +
+    '  (`systematic`, `structured`, `comprehensive`).\n\n' +
+    '**Good (label-less, ~145 chars):**\n' +
+    '> Route spawn requests to M2.7 by default and M3 only when high-quality analysis\n' +
+    '> is explicitly requested, preserving quality through the fallback chain.\n\n' +
+    '**Bad (labeled spam):**\n' +
+    '> Apply intent-based quality tiering to the SPAWN route... Use when: routing spawn\n' +
+    '> requests... Key capabilities: parse user intent...\n\n' +
     '### \u26a0\ufe0f MANDATORY: Pitfalls Section\n\n' +
     'Every skill file MUST include a `## Pitfalls` section. Skills missing this section\n' +
     'will FAIL post-write validation (`validate_skill_file.js`) and be auto-quarantined\n' +
@@ -219,22 +301,25 @@ function buildReviewPrompt() {
     'with the RELATIVE file path as the language tag.\n\n' +
     'IMPORTANT: Do NOT wrap your output blocks in an extra ``` wrapper.\n' +
     'Start DIRECTLY with the skill fence. Example format:\n\n' +
-    '  ```skills-learned/my-skill/SKILL.md\n' +
+    '  ```skills-learned/cron-failure-diagnosis/SKILL.md\n' +
     '  ---\n' +
-    '  name: my-skill\n' +
-    '  description: Workflow for doing X\n' +
+    '  name: cron-failure-diagnosis\n' +
+    '  description: Diagnose cron failures by building a timeline and isolating the root cause when cron jobs fail, outputs stall, or timeouts repeat.\n' +
     '  status: draft\n' +
     '  source: skill-reviewer\n' +
     '  provenance: agent\n' +
     '  generatedAt: ' + new Date().toISOString() + '\n' +
     '  ---\n\n' +
     '  ## Workflow\n' +
-    '  1. Step one\n' +
-    '  2. Step two\n\n' +
+    '  1. Run `openclaw cron runs <id>` and collect the exact error message + timestamp.\n' +
+    '  2. Compare `payload.model` against the cron script\'s `MODEL` constant.\n' +
+    '  3. Re-run the command outside cron with `node` to confirm reproducibility.\n' +
+    '  4. Check `timeoutSeconds` against the model\'s typical response time.\n' +
+    '  5. Update the cron payload or script and re-verify with `openclaw cron run <id>`.\n\n' +
     '  ## Pitfalls\n' +
-    '  - \u26a0\ufe0f <concrete failure mode you observed or can anticipate> \u2014 <consequence>\n' +
-    '  - \u26a0\ufe0f <another concrete failure mode> \u2014 <consequence>\n' +
-    '  - \u26a0\ufe0f <a third concrete failure mode> \u2014 <consequence>\n' +
+    '  - \u26a0\ufe0f Swapping cron model without adjusting timeoutSeconds \u2014 120s timeout remains after moving to slower DeepSeek \u2014 still times out despite model change.\n' +
+    '  - \u26a0\ufe0f Treating cron isolated-session PATH as same as interactive shell \u2014 `openclaw` binary not found in cron \u2014 ENOENT errors.\n' +
+    '  - \u26a0\ufe0f Editing the cron payload without refreshing `openclaw cron list` \u2014 stale job metadata hides the change \u2014 appears to have no effect.\n' +
     '  ```\n\n' +
     'NOTE: The `## Pitfalls` block in the example above is NOT optional. It is a hard\n' +
     'requirement \u2014 the post-write validator (`validate_skill_file.js`, line ~131) checks\n' +
@@ -243,9 +328,9 @@ function buildReviewPrompt() {
     'After ALL file blocks, output a summary JSON block as the LAST thing:\n\n' +
     '```json\n' +
     '{\n' +
-    '  "summary": "\uD83D\uDCBE Skill Self-improvement:\\n- \u65b0\u5efa: name \u2014 desc\\n- \u66f4\u65b0: name \u2014 desc\\n- \u968a\u5217: N \u689d\u5df2\u6b78\u6a94\u4e26\u6e05\u7a7a",\n' +
+    '  "summary": "\uD83D\uDCBE Skill Self-improvement:\\n- \u65b0\u5efa: cron-failure-diagnosis \u2014 \u8a3a\u65b7 cron \u5931\u6557\u4e26\u5efa\u7acb\u6642\u9593\u7dda\u9694\u96e2\u6839\u56e0\\n- \u968a\u5217: 1 \u689d\u5df2\u6b78\u6a94\u4e26\u6e05\u7a7a",\n' +
     '  "hasUpdates": true,\n' +
-    '  "filesWritten": ["skills-learned/my-skill/SKILL.md"]\n' +
+    '  "filesWritten": ["skills-learned/cron-failure-diagnosis/SKILL.md"]\n' +
     '}\n' +
     '```\n\n' +
     'If NO updates:\n' +
@@ -269,7 +354,88 @@ function buildReviewPrompt() {
     '   tutorial. Professional tone.\n' +
     '5. **Self-contained** \u2014 A skill should work even if the surrounding conversation is\n' +
     '   gone. Don\'t reference "as discussed above" or "in the context above".\n\n' +
-    'Continue review.\n';
+    '### \u26a0\ufe0f Reverse-Thinking Quality Gates (QW-6)\n\n' +
+    'Before outputting ANY skill file, run this checklist. If the answer is "yes",\n' +
+    'rewrite or output `SKIP` instead of writing the file. These rules are derived\n' +
+    'from actual skills that ended up quarantined in `skills-learned/_archive/`.\n\n' +
+    '#### 1. Description hard constraints\n\n' +
+    'The description is what the agent sees in `<available_skills>`. It MUST be\n' +
+    'searchable, concise, and free of boilerplate. The post-write validator\n' +
+    '(`validate_skill_file.js`) now enforces these as HARD gates \u2014 failure\n' +
+    'blocks symlink promotion.\n\n' +
+    '- Length: HARD gate 50\u2013250 characters; IDEAL 80\u2013200 characters.\n' +
+    '- MUST start with an action verb (e.g. Diagnose, Route, Migrate, Detect,\n' +
+    '  Clean). Do NOT start with nouns like `Workflow for...`, `Full...`,\n' +
+    '  `Systematic...`, or `Sequential...`.\n' +
+    '- Structure: ONE sentence, THREE segments: (a) what it does, (b) concrete\n' +
+    '  trigger scenario, (c) payoff / output. Prefer label-less forms; write\n' +
+    '  "Do X when Y happens, Z occurs, or W is needed" instead of\n' +
+    '  "Use when: Y. Key capabilities: Z."\n' +
+    '- Avoid labels. If you must use a trigger label, use at most ONE plain\n' +
+    '  `Use when` (no colon) and never combine it with `Key capabilities:` or\n' +
+    '  multiple trigger phrases.\n' +
+    '- Banned style: ALL CAPS, XML/angle brackets, exclamation marks, vague words\n' +
+    '  (`helper`, `utility`, `miscellaneous`, `stuff`, `various`).\n' +
+    '- No more than ONE quality keyword (`systematic`, `structured`, `comprehensive`).\n\n' +
+    '**Bad example** (464 chars, real failure \u2014 `intent-based-spawn-model-selection`):\n' +
+    '> Apply intent-based quality tiering to the SPAWN route: default to M2.7 for\n' +
+    '> cost-effective speed, M3 when high quality is explicitly requested, with\n' +
+    '> fallback chains preserving quality expectations. Use when: routing spawn\n' +
+    '> requests, selecting between M2.7 and M3 model tiers, configuring\n' +
+    '> non-degrading fallback chains. Key capabilities: parse user intent for\n' +
+    '> quality keywords, route via spawn_config.js to appropriate tier, enforce\n' +
+    '> quality-preserving fallback rules.\n\n' +
+    '**Good label-less example** (~145 chars):\n' +
+    '> Route spawn requests to M2.7 by default and M3 only when high-quality\n' +
+    '> analysis is explicitly requested, preserving quality through the fallback chain.\n\n' +
+    '**Acceptable labeled example** (~130 chars):\n' +
+    '> Diagnose cron failures via timeline and issue isolation when cron fails,\n' +
+    '> timeline is needed, or root cause is unclear.\n\n' +
+    '#### 2. Pitfall concreteness rule\n\n' +
+    'Every `## Pitfalls` bullet must name a specific failure mode + observable signal\n' +
+    '+ consequence.\n\n' +
+    '- BAD: `- \u26a0\ufe0f Be careful with timeouts` (no failure mode, no signal).\n' +
+    '- BAD: `- \u26a0\ufe0f Make sure to test` (generic instruction).\n' +
+    '- GOOD: `- \u26a0\ufe0f Swapping cron model without adjusting timeoutSeconds \u2014\n' +
+    '  120s timeout remains after moving to slower DeepSeek \u2014 still times out.`\n\n' +
+    '#### 3. Self-referential hard block\n\n' +
+    'DO NOT create skills about the skill pipeline itself. If the conversation is about\n' +
+    '`skill_reviewer_bot.js`, `validate_skill_file.js`, skill quarantine, junk rate,\n' +
+    'symlink management, or improving the reviewer, output `SKIP` and explain why.\n\n' +
+    'Blocked name/description fragments: `skill-reviewer`, `skill reviewer`, `curator`,\n' +
+    '`self-improvement`, `skill-validation`, `skill curation`, `skill quality`,\n' +
+    '`skill audit`, `skill pipeline`, `auto-skill`.\n\n' +
+    'Real failures that should have been SKIPped:\n' +
+    '- `skills-audit-workflow` \u2014 workflow about auditing the skill reviewer.\n' +
+    '- `auto-skill-pipeline-feasibility` \u2014 feasibility study of the auto-skill pipeline.\n' +
+    '- `skill-validation-failure-cleanup` \u2014 cleanup logic for the reviewer validator.\n\n' +
+    '#### 4. Duplication avoidance rule\n\n' +
+    'Before creating, cite the closest existing skill from the catalog. If the topic\n' +
+    'already appears, your action is PATCH, not CREATE. Required analysis sentence:\n' +
+    '> Overlap check: `<existing-skill>` already covers `<topic>`; decision = PATCH / SKIP / CREATE.\n\n' +
+    'Watch for redundant clusters:\n' +
+    '- cron failure modes \u2192 update `cron-troubleshooting`, don\'t create another `cron-*`.\n' +
+    '- M3 sub-agent spawn \u2192 update `subagent-m3-reliability` or `context-gather-subagent-orchestrate`.\n' +
+    '- email/Rapaport summaries \u2192 one skill, not one per email type.\n\n' +
+    '#### 5. Workflow actionability rule\n\n' +
+    '- Target 5\u20138 numbered steps. If >10, move deep-dive material to\n' +
+    '  `references/<topic>.md` and keep the Workflow lean.\n' +
+    '- Each step must start with a verb + concrete object + specific command/file.\n' +
+    '- BAD: `1. Identify the issue.`\n' +
+    '- GOOD: `1. Run openclaw cron runs <id> and flag runs that timeout exactly at timeoutSeconds.`\n\n' +
+    '#### 6. Thin-content rejection\n\n' +
+    'If the body is <150 words AND the workflow is a thin wrapper around an existing\n' +
+    'cron/script, do not create the skill. A skill must add transferable know-how,\n' +
+    'not just describe a cron entry.\n\n' +
+    '#### 7. Final self-audit before output\n\n' +
+    'For every skill, mentally verify:\n' +
+    '- `DESC_LEN=80-200` (hard gate 50-250)\n' +
+    '- `DESC_VERB=action-verb-first` (not `Workflow for...` / `Full...`)\n' +
+    '- `PREFER_NO_LABELS=yes` (avoid `Use when:` / `Key capabilities:`)\n' +
+    '- `SELF_REF=no`\n' +
+    '- `OVERLAP=<existing-skill-or-none>`\n' +
+    '- `PITFALLS_CONCRETE=yes`\n' +
+    'If any is wrong, rewrite before emitting the code block.\n';
 
   return basePrompt + instructions;
 }
@@ -486,8 +652,17 @@ function writeSkillFiles(blocks) {
       // ── BUG-06 fix: atomic write via safeWriteFileSync ──
       // Previously fs.writeFileSync — non-atomic. If bot crashes mid-write, file is
       // left half-written. Now uses tmp + rename for atomic replacement.
-      safeWriteFileSync(absPath, block.content + '\n');
-      log('Wrote: ' + block.filePath);
+      // ── Dedup gate: skip write when content is semantically equivalent ──
+      // Tracks outcome in `lastWriteDedup` so recordSkillCreated can record
+      // 'wrote' vs 'skipped' in the event log for telemetry.
+      if (shouldRewrite(absPath, block.content)) {
+        safeWriteFileSync(absPath, block.content + '\n');
+        log('Wrote: ' + block.filePath);
+        lastWriteDedup.set(absPath, 'wrote');
+      } else {
+        lastWriteDedup.set(absPath, 'skipped');
+        log('DEDUP: ' + block.filePath + ' content unchanged, skipping write');
+      }
       written.push(block.filePath);
 
       // ── P0 Integrity Gate: validate skill before symlinking ──
@@ -556,6 +731,24 @@ function writeSkillFiles(blocks) {
               log('AUTO_APPLY=false: skipping symlink for ' + block.filePath + ' (kept as draft)');
               written.push(block.filePath);
               symlinkedActual = false;  // recorded by unified telemetry below
+            } else if (!shouldSymlinkSkill(block.content)) {
+              // ── M1 recall-quality gate: do not symlink draft/manual skills ──
+              // Filtering only downstream in skill_discovery.js is insufficient;
+              // the filesystem state must also match AGENTS.md recall rules.
+              log('Recall gate: skipping symlink for ' + block.filePath + ' (draft/manual)');
+              // Also remove any pre-existing symlink from a previous active version.
+              try {
+                var recallClassName = path.basename(dir);
+                var recallStaleSymlinkPath = path.join(SKILLS_ACTIVE, '_learned_' + recallClassName);
+                if (fs.existsSync(recallStaleSymlinkPath)) {
+                  fs.unlinkSync(recallStaleSymlinkPath);
+                  log('Removed stale symlink (now draft/manual): ' + recallStaleSymlinkPath.replace(WS, ''));
+                }
+              } catch (recallUnlinkErr) {
+                err('Failed to remove stale symlink for ' + path.basename(dir) + ': ' + recallUnlinkErr.message);
+              }
+              written.push(block.filePath);
+              symlinkedActual = false;
             } else {
               // ── QW3: Symlink instant-create to skills/ (idempotent) ──
               // Solves 7-day latency: new skills in skills-learned/ are immediately
@@ -671,7 +864,8 @@ function writeSkillFiles(blocks) {
             pitfallsCount: pitfallsCount,
             workflowSteps: workflowSteps,
             validationPassed: validationPassed,
-            symlinked: symlinkedActual
+            symlinked: symlinkedActual,
+            dedup: lastWriteDedup.has(absPath) ? lastWriteDedup.get(absPath) : 'wrote'
           });
         } catch (telemetryErr) {
           err('skill_created telemetry failed: ' + telemetryErr.message);
@@ -900,6 +1094,52 @@ function printMarkMismatchHelp() {
 
 // ── Main ──
 
+/**
+ * Startup self-healing: remove active symlinks that point to skills which are
+ * now draft, archived, manual, or disabled. This prevents stale links from
+ * leaking into the recall pool when a skill is demoted outside the normal
+ * write-symlink code path (e.g. manual edit or weekly curation).
+ */
+function cleanupStaleSymlinks() {
+  try {
+    if (!fs.existsSync(SKILLS_ACTIVE)) return;
+    const links = fs.readdirSync(SKILLS_ACTIVE).filter(f => f.startsWith('_learned_'));
+    let removed = 0;
+    for (const link of links) {
+      const symlinkPath = path.join(SKILLS_ACTIVE, link);
+      const target = fs.readlinkSync(symlinkPath);
+      const name = link.replace('_learned_', '');
+      const skillPath = path.join(WS, 'skills-learned', name, 'SKILL.md');
+      let shouldRemove = false;
+      let reason = '';
+      if (!fs.existsSync(skillPath)) {
+        shouldRemove = true;
+        reason = 'target missing';
+      } else {
+        const content = fs.readFileSync(skillPath, 'utf8');
+        if (!shouldSymlinkSkill(content)) {
+          shouldRemove = true;
+          reason = 'shouldSymlinkSkill()=false';
+        }
+      }
+      if (shouldRemove) {
+        try {
+          fs.unlinkSync(symlinkPath);
+          removed++;
+          log('Self-healing: removed stale symlink ' + link + ' (' + reason + ')');
+        } catch (e) {
+          err('Self-healing: failed to remove stale symlink ' + link + ': ' + e.message);
+        }
+      }
+    }
+    if (removed > 0) {
+      log('Self-healing: removed ' + removed + ' stale symlink(s)');
+    }
+  } catch (e) {
+    err('Self-healing symlink cleanup failed: ' + e.message);
+  }
+}
+
 async function main() {
   // Lock (mkdir as mutex — atomic directory creation)
   try {
@@ -912,6 +1152,9 @@ async function main() {
   var cleanup = false;
 
   try {
+    // 0. Self-healing: remove stale active symlinks before processing queue
+    cleanupStaleSymlinks();
+
     // 1. Check queue
     var count = readQueueCount();
     if (count === 0) {
