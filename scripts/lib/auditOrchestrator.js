@@ -189,7 +189,7 @@ class LocalScanner {
             rule: 'file_too_large',
             message: `File size (${(content.length / 1024).toFixed(1)}KB) exceeds limit (${MAX_FILE_SIZE / 1024}KB)`,
             severity: 'medium',
-            source: CONFIG.SCANNER_SOURCES.LOCAL,
+            source: CONFIG?.SCANNER_SOURCES?.LOCAL,
             category: 'maintainability'
           }));
         }
@@ -220,7 +220,7 @@ class LocalScanner {
 
               let foundTry = false;
               // CQM-008: 先檢查當前行是否為 try-catch 單行模式（如 try { fs.readFileSync(...) } catch(e) {}）
-              if (/\btry\s*\{[^}]*fs\.(?:readFileSync|writeFileSync|copyFileSync|mkdirSync|unlinkSync|existsSync)[^}]*\}/.test(lines[i])) {
+              if (/\btry\s*\{[^}]*fs\.(?:readFileSync|writeFileSync|copyFileSync|mkdirSync|unlinkSync|existsSync|statSync|lstatSync|accessSync|readdirSync)[^}]*\}/.test(lines[i])) {
                 foundTry = true;
               } else {
                 let braceCount = 0;
@@ -249,7 +249,7 @@ class LocalScanner {
                 };
                 const fpResult = isFalsePositive(issueForCheck);
                 if (fpResult.isFP) {
-                  if (this.options._logFP) {
+                  if (this?.options?._logFP) {
                     console.log(`  [FP Skip] ${path.relative(process.cwd(), file)}:${i+1} - ${fpResult.reason}`);
                   }
                   continue;
@@ -261,7 +261,7 @@ class LocalScanner {
                   rule: 'fsSync_missing_trycatch',
                   message: `fs.*Sync function found without try-catch protection`,
                   severity: 'high',
-                  source: CONFIG.SCANNER_SOURCES.LOCAL,
+                  source: CONFIG?.SCANNER_SOURCES?.LOCAL,
                   category: 'reliability'
                 }));
               }
@@ -368,7 +368,7 @@ class LocalScanner {
                   rule: 'execSync_missing_trycatch',
                   message: `execSync or execFileSync found without try-catch protection`,
                   severity: 'high',
-                  source: CONFIG.SCANNER_SOURCES.LOCAL,
+                  source: CONFIG?.SCANNER_SOURCES?.LOCAL,
                   category: 'reliability'
                 }));
               }
@@ -403,7 +403,7 @@ class LocalScanner {
             const fpResult = isFalsePositive(issueForCheck);
             if (fpResult.isFP) {
               // Skip this issue - it's a semantic false positive
-              if (this.options._logFP) {
+              if (this?.options?._logFP) {
                 console.log(`  [FP Skip] ${path.relative(process.cwd(), file)}:${lineNum} - ${fpResult.reason}`);
               }
               continue;
@@ -416,7 +416,7 @@ class LocalScanner {
               rule: 'magic_numbers',
               message: `Hardcoded magic number: ${num}. Should be named constant.`,
               severity: 'low',
-              source: CONFIG.SCANNER_SOURCES.LOCAL,
+              source: CONFIG?.SCANNER_SOURCES?.LOCAL,
               category: 'style'
             }));
           }
@@ -459,7 +459,7 @@ class LocalScanner {
             rule: 'simplified-chinese',
             message: `${simplifiedCount} 處簡體中文（線 ${uniqueLines.slice(0, 3).join(',')}${uniqueLines.length > 3 ? '...' : ''}）。建議改為繁體。`,
             severity: 'low',
-            source: CONFIG.SCANNER_SOURCES.LOCAL,
+            source: CONFIG?.SCANNER_SOURCES?.LOCAL,
             category: 'style',
             autoFixable: true,
             confidence: 0.95
@@ -474,7 +474,7 @@ class LocalScanner {
           rule: 'file_read_error',
           message: `Failed to read file: ${err.message}`,
           severity: 'medium',
-          source: CONFIG.SCANNER_SOURCES.LOCAL,
+          source: CONFIG?.SCANNER_SOURCES?.LOCAL,
           category: 'reliability'
         }));
       }
@@ -510,22 +510,15 @@ class AIScanner {
     try {
         canRunAudit = fs.existsSync(auditScript);
     } catch (err) {
-        console.log(`⚠️ 檢查 AI scanner 失敗: ${err.message}`);
+        console.error(`⚠️ 檢查 AI scanner 失敗: ${err.message}`);
     }
     if (!canRunAudit) {
-      console.log('⚠️ pure_ai_audit.js not found, skipping AI scan');
+      console.error('⚠️ pure_ai_audit.js not found, skipping AI scan');
       return issues;
     }
 
         // 實際調用 pure_ai_audit.js
         try {
-          const auditScript = path.join(SCRIPTS_DIR, 'pure_ai_audit.js');
-          if (!fs.existsSync(auditScript)) {
-            console.log('⚠️ pure_ai_audit.js not found, skipping AI scan');
-            this.issues = issues;
-            return issues;
-          }
-
           const result = execFileSync(process.execPath, [auditScript, '--files', files.join(','), '--json'], {
             encoding: 'utf8',
             timeout: AI_AUDIT_TIMEOUT_MS,
@@ -543,18 +536,18 @@ class AIScanner {
                   rule: aiIssue.rule,
                   message: aiIssue.title || aiIssue.message,
                   severity: aiIssue.severity || 'medium',
-                  source: CONFIG.SCANNER_SOURCES.AI,
+                  source: CONFIG?.SCANNER_SOURCES?.AI,
                   category: aiIssue.category || 'reliability',
                   confidence: aiIssue.confidence || 0.7
                 }));
               }
-              console.log(`   Found ${aiResults.issues.length} AI issues`);
+              console.error(`   Found ${aiResults?.issues?.length} AI issues`);
             }
           } catch (parseErr) {
-            console.log(`⚠️ Failed to parse AI scan results: ${parseErr.message}`);
+            console.error(`⚠️ Failed to parse AI scan results: ${parseErr.message}`);
           }
         } catch (err) {
-          console.log(`⚠️ AI scan failed: ${err.message}`);
+          console.error(`⚠️ AI scan failed: ${err.message}`);
         }
 
         this.issues = issues;
@@ -584,7 +577,7 @@ class ErrorScanner {
     try {
         errorsJsonExists = fs.existsSync(ERRORS_JSON);
     } catch (err) {
-        console.log(`⚠️ 檢查 errors.json 失敗: ${err.message}`);
+        console.error(`⚠️ 檢查 errors.json 失敗: ${err.message}`);
     }
     if (!errorsJsonExists) {
       return issues;
@@ -606,7 +599,7 @@ class ErrorScanner {
             rule: 'runtime_error',
             message: error.message || error.problem || 'Runtime error detected',
             severity: error.severity || 'high',
-            source: CONFIG.SCANNER_SOURCES.ERROR,
+            source: CONFIG?.SCANNER_SOURCES?.ERROR,
             category: 'reliability'
           }));
         }
@@ -655,7 +648,7 @@ class AuditOrchestrator {
     const criticalCount = localIssues.filter(i => i.severity === 'critical').length;
     const mediumCount = localIssues.filter(i => i.severity === 'medium').length;
 
-    const threshold = this.options.AI_THRESHOLD;
+    const threshold = this?.options?.AI_THRESHOLD;
 
     // 觸發條件：
     // 1. 有 critical 問題
@@ -666,7 +659,7 @@ class AuditOrchestrator {
       highCount >= threshold.highSeverityCount ||
       mediumCount >= threshold.mediumSeverityCount;
 
-    if (!this.options._quiet) {
+    if (!this?.options?._quiet) {
       console.log(`\n🤔 shouldRunAI decision:`);
       console.log(`   Critical: ${criticalCount}/${threshold.criticalExists}`);
       console.log(`   High: ${highCount}/${threshold.highSeverityCount}`);
@@ -681,17 +674,17 @@ class AuditOrchestrator {
    * run - 執行完整審計流程
    */
   async run(files, options = {}) {
-    if (!this.options._quiet) {
+    if (!this?.options?._quiet) {
       console.log('\n🎯 Audit Orchestrator Starting');
       console.log(`   Files to audit: ${files.length}`);
     }
 
     // Step 1: Local Scanner
-    if (!this.options._quiet) console.log('\n📍 Step 1: Running Local Scanner...');
-    const localIssues = await this.localScanner.run(files);
+    if (!this?.options?._quiet) console.log('\n📍 Step 1: Running Local Scanner...');
+    const localIssues = await this?.localScanner?.run(files);
     this.results.local = localIssues.map(i => i.toJSON());
 
-    if (!this.options._quiet) {
+    if (!this?.options?._quiet) {
       console.log(`   Found ${localIssues.length} local issues`);
     }
 
@@ -699,34 +692,34 @@ class AuditOrchestrator {
     const runAI = this.shouldRunAI(localIssues);
 
     if (runAI) {
-      if (!this.options._quiet) console.log('\n🤖 Step 2: Running AI Scanner...');
-      const aiIssues = await this.aiScanner.run(files);
+      if (!this?.options?._quiet) console.log('\n🤖 Step 2: Running AI Scanner...');
+      const aiIssues = await this?.aiScanner?.run(files);
       this.results.ai = aiIssues.map(i => i.toJSON());
 
-      if (!this.options._quiet) {
+      if (!this?.options?._quiet) {
         console.log(`   Found ${aiIssues.length} AI issues`);
       }
     } else {
-      if (!this.options._quiet) {
+      if (!this?.options?._quiet) {
         console.log('\n⏭️ Step 2: Skipping AI Scanner (threshold not met)');
       }
     }
 
     // Step 3: Error Scanner (always)
-    if (!this.options._quiet) console.log('\n⚠️ Step 3: Running Error Scanner...');
-    const errorIssues = await this.errorScanner.run(files);
+    if (!this?.options?._quiet) console.log('\n⚠️ Step 3: Running Error Scanner...');
+    const errorIssues = await this?.errorScanner?.run(files);
     this.results.error = errorIssues.map(i => i.toJSON());
 
-    if (!this.options._quiet) {
+    if (!this?.options?._quiet) {
       console.log(`   Found ${errorIssues.length} error-related issues`);
     }
 
     // Step 4: Merge results
-    if (!this.options._quiet) console.log('\n🔀 Step 4: Merging results...');
+    if (!this?.options?._quiet) console.log('\n🔀 Step 4: Merging results...');
     this.results.merged = this.merge();
 
-    if (!this.options._quiet) {
-      console.log(`   Merged: ${this.results.merged.length} unique issues`);
+    if (!this?.options?._quiet) {
+      console.log(`   Merged: ${this?.results?.merged?.length} unique issues`);
     }
 
     // Generate summary
@@ -741,9 +734,9 @@ class AuditOrchestrator {
    */
   merge() {
     const allIssues = [
-      ...this.results.local,
-      ...this.results.ai,
-      ...this.results.error
+      ...this?.results?.local,
+      ...this?.results?.ai,
+      ...this?.results?.error
     ];
 
     // CQM-002: 去重：基於完整路徑 file + line + rule + message (避免 key 碰撞)
@@ -781,7 +774,7 @@ class AuditOrchestrator {
    * generateSummary - 生成摘要
    */
   generateSummary() {
-    const issues = this.results.merged;
+    const issues = this?.results?.merged;
     const severityCounts = { critical: 0, high: 0, medium: 0, low: 0 };
     const sourceCounts = { local: 0, ai: 0, error_json: 0 };
     const ruleCounts = {};
@@ -790,7 +783,7 @@ class AuditOrchestrator {
       severityCounts[issue.severity] = (severityCounts[issue.severity] || 0) + 1;
 
       if (issue.source) {
-        issue.source.split(',').forEach(s => {
+        issue?.source?.split(',').forEach(s => {
           sourceCounts[s] = (sourceCounts[s] || 0) + 1;
         });
       }
@@ -817,16 +810,16 @@ class AuditOrchestrator {
    * saveResults - 保存結果到檔案
    */
   saveResults(outputPath = null) {
-    const filePath = outputPath || path.join(SCRIPTS_DIR, '..', this.options.OUTPUT_FILE);
+    const filePath = outputPath || path.join(SCRIPTS_DIR, '..', this?.options?.OUTPUT_FILE);
 
     atomicWriteSync(filePath, {
       results: this.results,
-      summary: this.results.summary,
+      summary: this?.results?.summary,
       config: this.options,
       savedAt: new Date().toISOString()
     });
 
-    if (!this.options._quiet) {
+    if (!this?.options?._quiet) {
       console.log(`\n💾 Results saved to: ${filePath}`);
     }
 
@@ -950,11 +943,11 @@ async function main() {
   if (!options._quiet) {
     console.log('\n📊 Summary');
     console.log('─'.repeat(30));
-    console.log(`   Total: ${orchestrator.results.summary.totalIssues} issues`);
-    console.log(`   Critical: ${orchestrator.results.summary.severityCounts.critical}`);
-    console.log(`   High: ${orchestrator.results.summary.severityCounts.high}`);
-    console.log(`   Medium: ${orchestrator.results.summary.severityCounts.medium}`);
-    console.log(`   Low: ${orchestrator.results.summary.severityCounts.low}`);
+    console.log(`   Total: ${orchestrator?.results?.summary?.totalIssues} issues`);
+    console.log(`   Critical: ${orchestrator?.results?.summary?.severityCounts?.critical}`);
+    console.log(`   High: ${orchestrator?.results?.summary?.severityCounts?.high}`);
+    console.log(`   Medium: ${orchestrator?.results?.summary?.severityCounts?.medium}`);
+    console.log(`   Low: ${orchestrator?.results?.summary?.severityCounts?.low}`);
   }
 }
 
