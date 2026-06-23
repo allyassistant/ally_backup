@@ -47,7 +47,7 @@ class CacheManager {
   }
 
   get(filePath) {
-    return this.cache.files[filePath];
+    return this?.cache?.files[filePath];
   }
 
   set(filePath, entry) {
@@ -60,7 +60,7 @@ class CacheManager {
   }
 
   isValid(filePath, mtime, size) {
-    const cached = this.cache.files[filePath];
+    const cached = this?.cache?.files[filePath];
     if (!cached) return false;
     return cached.mtime === mtime && cached.size === size;
   }
@@ -71,16 +71,18 @@ class CacheManager {
   }
 
   getStats() {
-    const files = Object.keys(this.cache.files);
+    const files = Object.keys(this?.cache?.files);
     return {
       totalCached: files.length,
-      lastScan: this.cache.lastScan,
-      version: this.cache.version
+      lastScan: this?.cache?.lastScan,
+      version: this?.cache?.version
     };
   }
 
   updateLastScan() {
-    this.cache.lastScan = new Date().toISOString();
+    if (this?.cache) {
+      this.cache.lastScan = new Date().toISOString();
+    }
   }
 }
 
@@ -133,16 +135,16 @@ class FileDiscovery {
    * 檢查是否為目標文件
    */
   isTargetFile(fileName) {
-    if (this.excludeFiles.has(fileName)) return false;
+    if (this?.excludeFiles?.has(fileName)) return false;
     const ext = path.extname(fileName).toLowerCase();
-    return this.extensions.includes(ext);
+    return this?.extensions?.includes(ext);
   }
 
   /**
    * 檢查是否應該跳過目錄
    */
   shouldSkipDir(dirName) {
-    return this.excludeDirs.has(dirName);
+    return this?.excludeDirs?.has(dirName);
   }
 
   /**
@@ -164,7 +166,12 @@ class FileDiscovery {
     const unchanged = [];
     const errors = [];
 
-    const recursiveScan = (currentPath, relativePath = '') => {
+    const recursiveScan = (currentPath, relativePath = '', depth = 0) => {
+      // Cap recursion depth (default 10) to prevent infinite loops on symlink
+      // cycles or accidentally-deep trees.
+      const maxDepth = options.maxDepth ?? 10;
+      if (depth > maxDepth) return;
+
       try {
         const entries = fs.readdirSync(currentPath, { withFileTypes: true });
 
@@ -174,12 +181,18 @@ class FileDiscovery {
 
           if (entry.isDirectory()) {
             if (!this.shouldSkipDir(entry.name)) {
-              recursiveScan(fullPath, relPath);
+              // Use lstat (not stat) to detect symlinks — skip them to avoid
+              // following symlink loops
+              try {
+                const lstat = fs.lstatSync(fullPath);
+                if (lstat.isSymbolicLink()) continue;
+              } catch (_) { /* lstat failure: skip the entry defensively */ }
+              recursiveScan(fullPath, relPath, depth + 1);
             }
           } else if (entry.isFile() && this.isTargetFile(entry.name)) {
             try {
               const stat = fs.statSync(fullPath);
-              const mtime = stat.mtime.getTime();
+              const mtime = stat?.mtime?.getTime();
               const size = stat.size;
 
               const fileInfo = {
@@ -189,12 +202,12 @@ class FileDiscovery {
                 ext: path.extname(entry.name).toLowerCase(),
                 size,
                 mtime,
-                mtimeISO: stat.mtime.toISOString()
+                mtimeISO: stat?.mtime?.toISOString()
               };
 
               // 檢查緩存
-              if (this.cache && this.cache.isValid(fullPath, mtime, size)) {
-                const cached = this.cache.get(fullPath);
+              if (this.cache && this?.cache?.isValid(fullPath, mtime, size)) {
+                const cached = this?.cache?.get(fullPath);
                 fileInfo.hash = cached.hash;
                 fileInfo.fromCache = true;
                 unchanged.push(fileInfo);
@@ -204,7 +217,7 @@ class FileDiscovery {
                 fileInfo.fromCache = false;
 
                 if (this.cache) {
-                  this.cache.set(fullPath, fileInfo);
+                  this?.cache?.set(fullPath, fileInfo);
                 }
                 changed.push(fileInfo);
               }
@@ -223,8 +236,8 @@ class FileDiscovery {
     recursiveScan(dirPath);
 
     if (this.cache) {
-      this.cache.updateLastScan();
-      this.cache.save();
+      this?.cache?.updateLastScan();
+      this?.cache?.save();
     }
 
     return {
@@ -273,28 +286,28 @@ class FileDiscovery {
     for (const dirPath of dirPaths) {
       try {
         if (!fs.existsSync(dirPath)) {
-          allResults.errors.push({ path: dirPath, error: 'Directory does not exist' });
+          allResults?.errors?.push({ path: dirPath, error: 'Directory does not exist' });
           continue;
         }
       } catch (e) {
-        allResults.errors.push({ path: dirPath, error: `existsSync failed: ${e.message}` });
+        allResults?.errors?.push({ path: dirPath, error: `existsSync failed: ${e.message}` });
         continue;
       }
 
       const result = this.scanDirectory(dirPath, options);
-      allResults.files.push(...result.files);
-      allResults.changed.push(...result.changed);
-      allResults.unchanged.push(...result.unchanged);
-      allResults.errors.push(...result.errors);
+      allResults?.files?.push(...result.files);
+      allResults?.changed?.push(...result.changed);
+      allResults?.unchanged?.push(...result.unchanged);
+      allResults?.errors?.push(...result.errors);
     }
 
     // 重新計算統計
-    allResults.stats.total = allResults.files.length;
-    allResults.stats.changed = allResults.changed.length;
-    allResults.stats.unchanged = allResults.unchanged.length;
-    allResults.stats.errors = allResults.errors.length;
-    allResults.stats.cacheHitRate = allResults.stats.total > 0
-      ? (allResults.stats.unchanged / allResults.stats.total * 100).toFixed(1)
+    allResults.stats.total = allResults?.files?.length;
+    allResults.stats.changed = allResults?.changed?.length;
+    allResults.stats.unchanged = allResults?.unchanged?.length;
+    allResults.stats.errors = allResults?.errors?.length;
+    allResults.stats.cacheHitRate = allResults?.stats?.total > 0
+      ? (allResults?.stats?.unchanged / allResults.stats.total * 100).toFixed(1)
       : 0;
 
     return allResults;
@@ -335,7 +348,7 @@ class FileDiscovery {
    * 獲取緩存統計
    */
   getCacheStats() {
-    return this.cache ? this.cache.getStats() : null;
+    return this.cache ? this?.cache?.getStats() : null;
   }
 
   /**
@@ -343,7 +356,7 @@ class FileDiscovery {
    */
   clearCache() {
     if (this.cache) {
-      this.cache.clear();
+      this?.cache?.clear();
     }
   }
 }

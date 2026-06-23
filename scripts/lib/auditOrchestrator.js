@@ -682,7 +682,9 @@ class AuditOrchestrator {
     // Step 1: Local Scanner
     if (!this?.options?._quiet) console.log('\n📍 Step 1: Running Local Scanner...');
     const localIssues = await this?.localScanner?.run(files);
-    this.results.local = localIssues.map(i => i.toJSON());
+    if (this?.results) {
+      this.results.local = localIssues.map(i => i.toJSON());
+    }
 
     if (!this?.options?._quiet) {
       console.log(`   Found ${localIssues.length} local issues`);
@@ -694,7 +696,9 @@ class AuditOrchestrator {
     if (runAI) {
       if (!this?.options?._quiet) console.log('\n🤖 Step 2: Running AI Scanner...');
       const aiIssues = await this?.aiScanner?.run(files);
-      this.results.ai = aiIssues.map(i => i.toJSON());
+      if (this?.results) {
+        this.results.ai = aiIssues.map(i => i.toJSON());
+      }
 
       if (!this?.options?._quiet) {
         console.log(`   Found ${aiIssues.length} AI issues`);
@@ -708,7 +712,9 @@ class AuditOrchestrator {
     // Step 3: Error Scanner (always)
     if (!this?.options?._quiet) console.log('\n⚠️ Step 3: Running Error Scanner...');
     const errorIssues = await this?.errorScanner?.run(files);
-    this.results.error = errorIssues.map(i => i.toJSON());
+    if (this?.results) {
+      this.results.error = errorIssues.map(i => i.toJSON());
+    }
 
     if (!this?.options?._quiet) {
       console.log(`   Found ${errorIssues.length} error-related issues`);
@@ -716,14 +722,18 @@ class AuditOrchestrator {
 
     // Step 4: Merge results
     if (!this?.options?._quiet) console.log('\n🔀 Step 4: Merging results...');
-    this.results.merged = this.merge();
+    if (this?.results) {
+      this.results.merged = this.merge();
+    }
 
     if (!this?.options?._quiet) {
       console.log(`   Merged: ${this?.results?.merged?.length} unique issues`);
     }
 
     // Generate summary
-    this.results.summary = this.generateSummary();
+    if (this?.results) {
+      this.results.summary = this.generateSummary();
+    }
 
     return this.results;
   }
