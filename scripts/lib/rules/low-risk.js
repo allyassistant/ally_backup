@@ -384,17 +384,31 @@ const LOW_RISK_RULES = [
 
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        if (!fsRegex.test(line) && !execRegex.test(line)) continue;
+
+        // Find all fs.*Sync / execSync match positions in this line
+        // Use exec() in a loop to avoid needing 'g' flag on the original regex
+        const fsMatches = [];
+        const execMatches = [];
+        const fsRe = /\bfs\.(?:readFileSync|writeFileSync|unlinkSync|rmSync|mkdirSync|copyFileSync|accessSync|statSync|readdirSync|lstatSync)\s*\(/g;
+        const execRe = /\bexec(?:File)?Sync\s*\(/g;
+        let m;
+        fsRe.lastIndex = 0;
+        while ((m = fsRe.exec(line)) !== null) fsMatches.push({ match: m[0], index: m.index });
+        execRe.lastIndex = 0;
+        while ((m = execRe.exec(line)) !== null) execMatches.push({ match: m[0], index: m.index });
+        const allMatches = [...fsMatches, ...execMatches];
+
+        if (allMatches.length === 0) continue;
+
+        // If ALL matches are inside string literals, the whole line is just a
+        // documentation string (e.g. "call fs.writeFileSync here") — skip it.
+        if (allMatches.every(m => isInsideStringLiteral(line, m.index))) continue;
 
         const trimmed = line.trim();
         // Skip comments
         if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('#')) continue;
         // Skip require destructuring: const { execSync } = require(...)
         if (/\{[^}]*(?:execFile)?Sync/i.test(line) && /(?:const|let|var)\s*\{/.test(line)) continue;
-
-        // Skip description fields
-        const descFields = ['desc:', 'reason:', 'pattern:', 'message:', 'suggestion:', 'details:', 'title:'];
-        if (descFields.some(f => line.includes(f) && line.indexOf(f) < line.indexOf('fs.'))) continue;
 
         // Skip single-line try-catch: try { fs.readFileSync(...) } catch(e) {}
         if (/\btry\s*\{[^}]*fs\.\w+Sync\s*\([^)]*\)[^}]*\}/.test(trimmed)) continue;
