@@ -44,6 +44,7 @@ if (!ERRORS_JSON || typeof ERRORS_JSON !== 'string') {
 }
 
 const { getHKTDate, getHKTDateTime } = require('./lib/time');
+const { ONE_DAY_MS } = require('./lib/time_constants');
 
 // Phase B: LLM Umbrella Consolidation (see scripts/lib/umbrella_consolidation.js)
 const umbrellaConsolidation = require('./lib/umbrella_consolidation');
@@ -870,7 +871,7 @@ function handleMiniCurator() {
   const curatorRun = readCuratorRun();
   const now = Date.now();
   const lastRun = curatorRun ? curatorRun.lastRun : 0;
-  const daysSinceLastRun = lastRun > 0 ? (now - lastRun) / 86400000 : 999;
+  const daysSinceLastRun = lastRun > 0 ? (now - lastRun) / ONE_DAY_MS : 999;
 
   // Count new skills since last run
   let newSkillsCount = 0;

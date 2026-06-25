@@ -17,6 +17,10 @@ const SCRIPT = path.join(__dirname, 'skill_junk_pause.js');
 const JUNK_RATE_FILE = path.join(WS, '.skill_junk_rate.jsonl');
 const PAUSE_FILE = path.join(WS, '.skill_reviewer_pause.json');
 
+// Time-to-ms helpers (test-only; mirrors scripts/lib/time_constants.js shape)
+const ONE_HOUR_MS = 3600000;
+const ONE_DAY_MS = 86400000;
+
 let passed = 0;
 let failed = 0;
 
@@ -117,7 +121,7 @@ function runTests() {
   // ── Test 3: expired pause → cleared ──
   console.log('\n── Test 3: expired pause → cleared ──');
   const expiredPause = {
-    pausedAt: new Date(now - 86400000).toISOString(),
+    pausedAt: new Date(now - ONE_DAY_MS).toISOString(),
     until: now - 60000,
     reason: 'old pause',
     junkRateAtPause: 0.22,
@@ -134,8 +138,8 @@ function runTests() {
   // ── Test 4: active pause → untouched ──
   console.log('\n── Test 4: active pause → kept ──');
   const activePause = {
-    pausedAt: new Date(now - 3600000).toISOString(),
-    until: now + 3600000,
+    pausedAt: new Date(now - ONE_HOUR_MS).toISOString(),
+    until: now + ONE_HOUR_MS,
     reason: 'active pause',
     junkRateAtPause: 0.22,
     threshold: 0.15,
