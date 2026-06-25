@@ -33,10 +33,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ── Config ──
+const CONFIG = {
+  SECONDS_PER_HOUR: 3600,
+  MS_PER_HOUR: 3600 * 1000,
+  PERCENT_MULTIPLIER: 100,
+  BOTH_JUDGE_PASS_PCT: 100
+};
 const WS = process.env.OPENCLAW_WS || path.resolve(__dirname, '..');
 const JUDGE_LOG = path.join(WS, '.llm_judge_shadow.jsonl');
+const ACTIVE_FILE = path.join(WS, '.llm_judge_active.json');
 const WINDOW_HOURS = 24;
-const WINDOW_MS = WINDOW_HOURS * 3600 * 1000;
+const WINDOW_MS = WINDOW_HOURS * CONFIG.MS_PER_HOUR;
 
 // ── Parse args ──
 const isQuiet = process.argv.includes('--quiet');
@@ -98,7 +105,7 @@ const THRESHOLDS = {
   // ≥4 pass, 2-3 extend, <2 abort
   validSamples: (v) => (v >= 4 ? 'PASS' : v >= 2 ? 'EXTEND-72h' : 'ABORT'),
   // 100% pass, 75-99% extend, <75% abort
-  bothJudgeSuccess: (v) => (v >= 100 ? 'PASS' : v >= 75 ? 'EXTEND-72h' : 'ABORT'),
+  bothJudgeSuccess: (v) => (v >= CONFIG.BOTH_JUDGE_PASS_PCT ? 'PASS' : v >= 75 ? 'EXTEND-72h' : 'ABORT'),
   // 0 pass, N/A, ≥1 abort
   catastrophicMismatches: (v) => (v === 0 ? 'PASS' : 'ABORT'),
   // ≤25% pass, 26-50% extend, >50% abort
@@ -130,32 +137,32 @@ const validSamples = validEvents.length;
 
 // ── Metric 2: both-judge call success ──
 const bothOkCount = qualifying.filter(
-  (e) => e.judge1 && e.judge2 && e.judge1.ok === true && e.judge2.ok === true
+  (e) => e.judge1 && e.judge2 && e?.judge1?.ok === true && e?.judge2?.ok === true
 ).length;
 const bothJudgeSuccess = qualifyingEvents > 0
-  ? +(bothOkCount / qualifyingEvents * 100).toFixed(1)
+  ? +(bothOkCount / qualifyingEvents * CONFIG.PERCENT_MULTIPLIER).toFixed(1)
   : 0;
 
 // ── Metric 3: catastrophic mismatches (heuristic passed ∧ both judges said junk) ──
 const catastrophicMismatches = qualifying.filter(
   (e) =>
     e.heuristicResult &&
-    e.heuristicResult.validationPassed === true &&
+    e?.heuristicResult?.validationPassed === true &&
     e.consensus === 'both-junk'
 ).length;
 
 // ── Metric 4: split rate (judges disagree) ──
 const splitCount = qualifying.filter((e) => e.consensus === 'split').length;
 const splitRate = qualifyingEvents > 0
-  ? +(splitCount / qualifyingEvents * 100).toFixed(1)
+  ? +(splitCount / qualifyingEvents * CONFIG.PERCENT_MULTIPLIER).toFixed(1)
   : 0;
 
 // ── Metric 5: both-junk rate on heuristic-passed ──
 const heuristicPassedCount = qualifying.filter(
-  (e) => e.heuristicResult && e.heuristicResult.validationPassed === true
+  (e) => e.heuristicResult && e?.heuristicResult?.validationPassed === true
 ).length;
 const bothJunkOnHeuristicPass = heuristicPassedCount > 0
-  ? +((catastrophicMismatches / heuristicPassedCount) * 100).toFixed(1)
+  ? +((catastrophicMismatches / heuristicPassedCount) * CONFIG.PERCENT_MULTIPLIER).toFixed(1)
   : 0;
 
 // ── Metric 6: cost per skill ──
@@ -184,6 +191,21 @@ let verdict;
 let reason;
 let manualActions;
 
+// M3 guard 2026-06-18: track when state-file write was suppressed.
+// Default false; set true inside ABORT block when empty-data condition met.
+let emptyDataAbortSuppressed = false;
+
+function atomicWriteJson(filePath, data) {
+  const tmpFile = filePath + '.tmp.' + process.pid + '.' + Date.now();
+  try {
+    fs.writeFileSync(tmpFile, JSON.stringify(data, null, 2), 'utf8');
+    fs.renameSync(tmpFile, filePath);
+  } catch (e) {
+    try { fs.unlinkSync(tmpFile); } catch (_) { /* ignore */ }
+    throw e;
+  }
+}
+
 if (aborts.length > 0) {
   verdict = 'ABORT';
   reason = `Hard veto on ${aborts.length} metric(s): ${aborts.join(', ')}`;
@@ -192,14 +214,57 @@ if (aborts.length > 0) {
     'Review raw .llm_judge_shadow.jsonl + .llm_judge_failures.jsonl',
     'Re-audit judge prompt / model choice before re-running shadow',
   ];
+  // Surgical guard (M3-verified, 2026-06-18): suppress ABORT state write when
+  // aborts are driven entirely by insufficient data (<4 shadow events) AND only
+  // the "expected" empty-data aborts are present. This prevents ABORT from
+  // clobbering a previously manually-set active:true during early deployment.
+  // Still emit JSON to stdout for log capture.
+  const EMPTY_DATA_ABORTS = ['validSamples', 'bothJudgeSuccess'];
+  const isEmptyDataAbort =
+    qualifyingEvents < 4 &&
+    aborts.length > 0 &&
+    aborts.every((m) => EMPTY_DATA_ABORTS.includes(m));
+  if (isEmptyDataAbort) {
+    emptyDataAbortSuppressed = true;
+    debug(`ABORT-on-empty-data suppressed (qualifyingEvents=${qualifyingEvents}, aborts=[${aborts.join(',')}])`);
+    // skip atomicWriteJson — verdict JSON still emitted via `output` below
+  } else {
+    // On abort, write inactive state (override any previous active file)
+    try {
+      atomicWriteJson(ACTIVE_FILE, {
+        active: false,
+        verdict: 'ABORT',
+        evaluatedAt: new Date(now).toISOString(),
+        reason: reason
+      });
+      debug('Wrote ' + ACTIVE_FILE + ' (ABORT)');
+    } catch (e) {
+      err('Failed to write ' + ACTIVE_FILE + ': ' + e.message);
+    }
+  }
 } else if (extends72h.length === 0 && passes.length === 6) {
   verdict = 'PASS';
   reason = 'All 6 metrics pass thresholds';
   manualActions = [
-    'Set cron env: SKILL_LLM_JUDGE_ACTIVE=true',
+    'SKILL_LLM_JUDGE_ACTIVE auto-set by .llm_judge_active.json (PASS verdict)',
     'Monitor 7-day post-activation junk rate',
   ];
+  // On PASS, write active state — pipeline cron reads this within 30 min
+  try {
+    atomicWriteJson(ACTIVE_FILE, {
+      active: true,
+      verdict: 'PASS',
+      evaluatedAt: new Date(now).toISOString(),
+      activatedAt: new Date(now).toISOString(),
+      expiryDays: 7,
+      reason: reason
+    });
+    debug('Wrote ' + ACTIVE_FILE + ' (PASS)');
+  } catch (e) {
+    err('Failed to write ' + ACTIVE_FILE + ': ' + e.message);
+  }
 } else {
+  // EXTEND-72h: keep existing active state (if any); don't overwrite
   verdict = 'EXTEND-72h';
   const parts = [];
   if (extends72h.length > 0) parts.push(`gray: ${extends72h.join(', ')}`);
@@ -209,6 +274,7 @@ if (aborts.length > 0) {
     'Continue shadow mode for another 24h window',
     `Focus investigation on: ${extends72h.join(', ') || '—'}`,
   ];
+  debug('EXTEND-72h verdict — active state unchanged');
 }
 
 // ── Build output ──
@@ -223,6 +289,7 @@ const output = {
   verdict,
   reason,
   manualActions,
+  emptyDataAbortSuppressed,
 };
 
 if (isBrief) {

@@ -8,7 +8,7 @@
  * Config (env):
  *   SKILL_JUDGE_MODEL_1       (default minimax-portal/MiniMax-M3)
  *   SKILL_JUDGE_MODEL_2       (default deepseek/deepseek-v4-flash)
- *   SKILL_JUDGE_TIMEOUT_MS    (default 30000)
+ *   SKILL_JUDGE_TIMEOUT_MS    (see CONFIG.TIMEOUT_MS_DEFAULT)
  *   SKILL_JUDGE_WORKSPACE     (default parent of __dirname)
  *   OPENCLAW_CLI              (default 'openclaw')
  *
@@ -41,15 +41,29 @@ const SKILL_LEARNED_DIR = path.join(WS, 'skills-learned');
 const SKILL_CREATED_LOG = path.join(WS, '.skill_created.jsonl');
 const JUDGE_MODEL_1 = process.env.SKILL_JUDGE_MODEL_1 || 'minimax-portal/MiniMax-M3';
 const JUDGE_MODEL_2 = process.env.SKILL_JUDGE_MODEL_2 || 'deepseek/deepseek-v4-flash';
-const TIMEOUT_MS = parseInt(process.env.SKILL_JUDGE_TIMEOUT_MS || '45000', 10); // H3: 45s for M3 P95
+const CONFIG = {
+  TIMEOUT_MS_DEFAULT: 45000,
+  WHICH_TIMEOUT_MS: 5000,
+  DESC_LIMIT_BYTES: 160,
+  MAX_BUFFER_BYTES: 1024 * 1024,
+  REASON_SLICE_LEN: 200,
+  COST_DEEPSEEK: 0.005
+};
+const TIMEOUT_MS = parseInt(process.env.SKILL_JUDGE_TIMEOUT_MS || String(CONFIG.TIMEOUT_MS_DEFAULT), 10); // H3: 45s for M3 P95
+
+// M3-only closer mode (Josh opt-in, 2026-06-18).
+// SKILL_JUDGE_SINGLE=true → skip judge2 (deepseek-flash), use M3 verdict directly.
+// SKILL_LLM_JUDGE_ACTIVE=true → write activeMode (not shadow) to event.
+const SINGLE_JUDGE = process.env.SKILL_JUDGE_SINGLE === 'true';
+const ACTIVE_MODE = process.env.SKILL_LLM_JUDGE_ACTIVE === 'true';
 // C1-fix v3 (14:08 HKT 06-13): OPENCLAW_CLI='1' by OpenClaw runtime. 'which' fails in cron isolated session (no PATH).
 // Strategy: known paths first (works in restricted cron env) → which fallback → raw binary name.
 const OPENCLAW = (function() {
   const knownPaths = ['/opt/homebrew/bin/openclaw', '/usr/local/bin/openclaw'];
   for (const p of knownPaths) {
-    try { fs.accessSync(p, fs.constants.X_OK); return p; } catch (_) {}
+    try { fs.accessSync(p, fs?.constants?.X_OK); return p; } catch (_) {}
   }
-  try { return execFileSync('which', ['openclaw'], { encoding: 'utf8', timeout: 5000 }).trim(); }
+  try { return execFileSync('which', ['openclaw'], { encoding: 'utf8', timeout: CONFIG.WHICH_TIMEOUT_MS }).trim(); }
   catch (_) { return 'openclaw'; }
 })();
 
@@ -64,7 +78,12 @@ function err(msg)   { console.error('[judge:ERROR]', msg); }
 function buildJudgePrompt(skillName, skillDir) {
   const skPath = path.join(skillDir, 'SKILL.md');
   if (!fs.existsSync(skPath)) return null;
-  const content = fs.readFileSync(skPath, 'utf8').trim();
+  let content;
+  try {
+    content = fs.readFileSync(skPath, 'utf8').trim();
+  } catch (e) {
+    console.error(`File read failed: ${e.message}`);
+  }
   if (content.length === 0) return null;
 
   return [
@@ -72,7 +91,7 @@ function buildJudgePrompt(skillName, skillDir) {
     '',
     '檢查清單：',
     '1. Frontmatter (name / description / tags) 係唔係完整且合理',
-    '2. Description ≤ 160 bytes (Anthropic 標準)',
+    `2. Description ≤ ${CONFIG.DESC_LIMIT_BYTES} bytes (Anthropic 標準)`,
     '3. Content 係 actionable instruction，定係 stub / placeholder / vague',
     '4. 有冇 meaningful steps (具體可執行嘅步驟)',
     '5. 有冇 pitfalls / warnings (好嘅 skill 通常有)',
@@ -89,9 +108,7 @@ function buildJudgePrompt(skillName, skillDir) {
 // ── Model call (uses openclaw CLI; thin-executor friendly) ──
 function callModel(model, prompt) {
   const start = Date.now();
-  const promptFile = path.join(WS, '.llm_judge_prompt_' + process.pid + '_' + Date.now() + '.txt');
   try {
-    fs.writeFileSync(promptFile, prompt, 'utf8');
     // Use execFileSync with arg array (no shell interpolation; safer).
     // Verified working flags via `openclaw infer model run --help`:
     //   --model <provider/model>  Model override (required)
@@ -99,6 +116,8 @@ function callModel(model, prompt) {
     //   --json                    Wrap output in { outputs: [{ text }] } envelope
     // Previously broken flags (all rejected by CLI):
     //   --prompt-file, --quiet, --max-tokens  → all NOT supported
+    // NOTE: if SKILL.md grows beyond ARG_MAX (~256KB macOS, ~128KB Linux),
+    // switch to stdin pipe or temp-file approach.
     const out = execFileSync(OPENCLAW, [
       'infer', 'model', 'run',
       '--model', model,
@@ -107,7 +126,7 @@ function callModel(model, prompt) {
     ], {
       timeout: TIMEOUT_MS,
       encoding: 'utf8',
-      maxBuffer: 1024 * 1024,
+      maxBuffer: CONFIG.MAX_BUFFER_BYTES,
       stdio: ['pipe', 'pipe', 'pipe']
     });
     // Unwrap --json envelope: CLI returns { outputs: [{ text: "<llm text>" }] }.
@@ -128,8 +147,6 @@ function callModel(model, prompt) {
       latencyMs: Date.now() - start,
       model
     };
-  } finally {
-    try { fs.unlinkSync(promptFile); } catch (_) { /* ignore */ }
   }
 }
 
@@ -162,13 +179,20 @@ function parseVerdict(raw) {
   if (!jsonStr) return { verdict: 'error', confidence: 0, reason: 'no balanced JSON in model output' };
   try {
     var parsed = JSON.parse(jsonStr);
-    var verdict = parsed.verdict === 'pass' ? 'pass'
-      : parsed.verdict === 'junk' ? 'junk'
-      : 'error';
+    // P3-3: Envelope shape check — guard against silent misparse if openclaw CLI
+    // --json output shape changes. Return a clear error rather than masking
+    // a structural mismatch as 'error' verdict.
+    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+      return { verdict: 'error', confidence: 0, reason: 'unexpected envelope shape: not an object' };
+    }
+    if (typeof parsed.verdict !== 'string' || (parsed.verdict !== 'pass' && parsed.verdict !== 'junk')) {
+      return { verdict: 'error', confidence: 0, reason: 'unexpected envelope shape: missing or invalid verdict field (got ' + JSON.stringify(parsed.verdict).slice(0, CONFIG.REASON_SLICE_LEN) + ')' };
+    }
+    var verdict = parsed.verdict;
     var confidence = typeof parsed.confidence === 'number'
       ? Math.max(0, Math.min(1, parsed.confidence))
       : 0;
-    return { verdict: verdict, confidence: confidence, reason: String(parsed.reason || '(no reason)').slice(0, 200) };
+    return { verdict: verdict, confidence: confidence, reason: String(parsed.reason || '(no reason)').slice(0, CONFIG.REASON_SLICE_LEN) };
   } catch (e) {
     return { verdict: 'error', confidence: 0, reason: 'JSON parse failed: ' + e.message };
   }
@@ -176,6 +200,14 @@ function parseVerdict(raw) {
 
 // ── Consensus logic ──
 function computeConsensus(v1, v2) {
+  // Single-judge mode (M3-only): v2.verdict === 'skipped', treat as pure M3 decision.
+  if (v2.verdict === 'skipped') {
+    if (v1.verdict === 'error') return 'skip';
+    if (v1.verdict === 'pass')  return 'both-pass';
+    if (v1.verdict === 'junk')  return 'both-junk';
+    return 'skip';
+  }
+  // Dual-judge mode (original):
   if (v1.verdict === 'error' && v2.verdict === 'error') return 'error';
   if (v1.verdict === 'pass'  && v2.verdict === 'pass')  return 'both-pass';
   if (v1.verdict === 'junk'  && v2.verdict === 'junk')  return 'both-junk';
@@ -232,13 +264,20 @@ function judgeSkill(skillName, skillDir) {
   const r1 = callModel(JUDGE_MODEL_1, prompt);
   const v1 = r1.ok
     ? parseVerdict(r1.output)
-    : { verdict: 'error', confidence: 0, reason: 'call failed: ' + (r1.error || 'unknown').slice(0, 200) };
+    : { verdict: 'error', confidence: 0, reason: 'call failed: ' + (r1.error || 'unknown').slice(0, CONFIG.REASON_SLICE_LEN) };
 
-  // Judge 2 (deepseek-v4-flash)
-  const r2 = callModel(JUDGE_MODEL_2, prompt);
-  const v2 = r2.ok
-    ? parseVerdict(r2.output)
-    : { verdict: 'error', confidence: 0, reason: 'call failed: ' + (r2.error || 'unknown').slice(0, 200) };
+  // Judge 2 (deepseek-v4-flash) — skipped in single-judge (M3-only) mode
+  let r2, v2;
+  if (SINGLE_JUDGE) {
+    // M3-only closer: skip judge2, use judge1 verdict directly.
+    r2 = { ok: false, latencyMs: 0, model: JUDGE_MODEL_2 };
+    v2 = { verdict: 'skipped', confidence: 0, reason: 'single-judge mode: M3-only closer' };
+  } else {
+    r2 = callModel(JUDGE_MODEL_2, prompt);
+    v2 = r2.ok
+      ? parseVerdict(r2.output)
+      : { verdict: 'error', confidence: 0, reason: 'call failed: ' + (r2.error || 'unknown').slice(0, CONFIG.REASON_SLICE_LEN) };
+  }
 
   const consensus = computeConsensus(v1, v2);
   const action = getResolvedAction(consensus);
@@ -266,14 +305,19 @@ function judgeSkill(skillName, skillDir) {
     },
     consensus,
     action,
-    shadowMode: true
+    shadowMode: !ACTIVE_MODE,
+    activeMode: ACTIVE_MODE
   };
 
   const heuristic = findHeuristicResult(skillName);
   if (heuristic) event.heuristicResult = heuristic;
 
-  // Cost estimate (rough): M3 ~$0.02/judge, deepseek-flash ~$0.005/judge
-  event.costUsd = (r1.ok ? 0.02 : 0) + (r2.ok ? 0.005 : 0);
+  // Cost estimate:
+  //   M3 ~$0.02/judge  (single-judge: only judge1)
+  //   deepseek-flash ~$0.005/judge (dual mode)
+  const cost1 = r1.ok ? 0.02 : 0;
+  const cost2 = (r2 && r2.ok && !SINGLE_JUDGE) ? CONFIG.COST_DEEPSEEK : 0;
+  event.costUsd = cost1 + cost2;
 
   return event;
 }

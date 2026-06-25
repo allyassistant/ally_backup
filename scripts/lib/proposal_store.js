@@ -25,6 +25,7 @@ const path = require('path');
 const { STATE_DIR } = require('./config');
 
 const PROPOSALS_FILE = path.join(STATE_DIR, 'repair_proposals.json');
+const LOCK_FILE = PROPOSALS_FILE + '.lock';
 
 /**
  * Load proposals from .state/repair_proposals.json.
@@ -124,13 +125,97 @@ function countByStatus(data) {
   return counts;
 }
 
+/**
+ * Acquire an exclusive process-level lock around a critical section, run fn,
+ * then release. Used by appendAndSave() to make load→check→push→save atomic
+ * across concurrent callers.
+ *
+ * Same pattern as cumulative_approvals.js (Round 5 fix): mkdir(2) as the
+ * atomic create-or-fail primitive, Atomics.wait for synchronous blocking,
+ * 30s stale-lock recovery, try/finally for cleanup. See
+ * cumulative_approvals.js:75-131 for the original implementation.
+ *
+ * Fails closed: if the lock cannot be acquired for any reason other than
+ * a recoverable stale lock, the error propagates and the critical section
+ * does not run. This preserves the invariant that at most one writer
+ * mutates PROPOSALS_FILE at a time.
+ */
+function withExclusiveLock(fn) {
+  try { fs.mkdirSync(path.dirname(LOCK_FILE), { recursive: true }); } catch (_) {}
+
+  const STALE_MS = 30_000;
+  const RETRY_DELAY_MS = 5;
+
+  const waiter = new SharedArrayBuffer(4);
+  const view = new Int32Array(waiter);
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    try {
+      fs.mkdirSync(LOCK_FILE);
+      break;
+    } catch (e) {
+      if (e.code !== 'EEXIST') throw e;
+      try {
+        const stat = fs.statSync(LOCK_FILE);
+        if (stat.isFile()) {
+          if (Date.now() - stat.mtimeMs > STALE_MS) {
+            try { fs.unlinkSync(LOCK_FILE); } catch (_) {}
+            continue;
+          }
+        } else if (Date.now() - stat.mtimeMs > STALE_MS) {
+          try { fs.rmdirSync(LOCK_FILE); } catch (_) {}
+          continue;
+        }
+      } catch (_) {
+        continue;
+      }
+      Atomics.wait(view, 0, 0, RETRY_DELAY_MS);
+    }
+  }
+
+  try {
+    return fn();
+  } finally {
+    try { fs.rmdirSync(LOCK_FILE); } catch (_) {}
+  }
+}
+
+/**
+ * Append a new proposal with dedup AND save the result, atomically.
+ * Combines load + check + push + save under an exclusive lock so two
+ * concurrent callers cannot interleave (lost-update or dedup-bypass race).
+ *
+ * Returns true if appended, false if a non-rejected duplicate already exists.
+ *
+ * Use this INSTEAD of: load() → append(data, p) → save(data).
+ * That three-step pattern has a TOCTOU race when called concurrently from
+ * different processes (e.g., cron 04:45 audit_repair_proposer.js and a
+ * future apply_fix_daemon.js running at the same time). This function
+ * holds an exclusive lock for the entire read-modify-write cycle, so the
+ * dedup invariant and last-writer-wins ordering are both preserved.
+ */
+function appendAndSave(proposal) {
+  return withExclusiveLock(() => {
+    let data = load();
+    if (!data) data = { proposals: [], meta: {} };
+    const appended = append(data, proposal);
+    if (!appended) return false;
+    save(data);
+    return true;
+  });
+}
+
 module.exports = {
   PROPOSALS_FILE,
+  LOCK_FILE,
   load,
   save,
   findById,
   findByRule,
   update,
   append,
+  appendAndSave,
+  withExclusiveLock,
   countByStatus,
 };
