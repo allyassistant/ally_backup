@@ -5,6 +5,7 @@
 
 const path = require('path');
 const fs = require('fs');
+const { buildTryBlockMap } = require('../audit/try-block-map');
 
 let HOME;
 try {
@@ -42,6 +43,90 @@ function isInsideMarkdownCodeBlock(lines, lineIdx) {
     if (hasOpening) depth++;
   }
   return depth % 2 === 1;
+}
+
+/**
+ * Detect "intentional empty" markers in catch body comments.
+ *
+ * Two-tier heuristic:
+ *   Tier 1 — Explicit markers (codebase convention): `/* ignore *\/`,
+ *     `/* noop *\/`, `/* silent *\/`, `/* intentional *\/`, `/* best effort *\/`,
+ *     `/* non-critical *\/`, `// ignore`, `// noop`, `// intentional`. These
+ *     are standardized markers meaning "I know this is empty and I'm OK
+ *     with it".
+ *   Tier 2 — Any explanatory comment: if the developer took the time to
+ *     leave a comment (block or line) inside an empty catch, the catch is
+ *     treated as intentionally documented. This catches Cantonese / mixed
+ *     prose patterns like `/* git 可能不在 WS 根目錄 *\/` or
+ *     `// stat failure handled below` that don't match the explicit markers
+ *     but clearly indicate intent.
+ *
+ * The `no-empty-catch` rule's purpose is to flag SILENT error swallowing —
+ * if there's a comment, it's not silent. So we err on the side of trusting
+ * the developer's documentation.
+ */
+function hasIntentionalEmptyMarker(text) {
+  if (!text) return false;
+
+  // Tier 1: Explicit standardized markers
+  const EXPLICIT_MARKERS = [
+    /\/\*\s*ignore\s*\*\//i,
+    /\/\*\s*ignore\s+errors?\s*\*\//i,
+    /\/\*\s*no-?op\s*\*\//i,
+    /\/\*\s*silent\s*\*\//i,
+    /\/\*\s*intentional(?:ly)?(?:\s+empty)?\s*\*\//i,
+    /\/\*\s*best[\s-]?effort\s*\*\//i,
+    /\/\*\s*non[\s-]?critical\s*\*\//i,
+    /\/\/\s*ignore\b/i,
+    /\/\/\s*no-?op\b/i,
+    /\/\/\s*intentional(?:ly)?(?:\s+empty)?\b/i,
+  ];
+  if (EXPLICIT_MARKERS.some(re => re.test(text))) return true;
+
+  // Tier 2: Any block or line comment in the catch body indicates intent.
+  // Whitespace-only catches fall through; anything with a comment is
+  // considered documented and intentionally empty.
+  if (/\/\*[\s\S]*?\*\//.test(text)) return true;
+  if (/\/\/.*/.test(text)) return true;
+
+  return false;
+}
+
+/**
+ * Globals / constructors / Node.js built-ins that are guaranteed not undefined.
+ * Adding ?. to chains rooted at these is harmless but adds noise, so the
+ * `optional-chaining` rule skips them.
+ */
+const OPTIONAL_CHAINING_SAFE_ROOTS = new Set([
+  // JS globals
+  'Math', 'JSON', 'Number', 'String', 'Boolean', 'Array', 'Object',
+  'Date', 'Promise', 'Buffer', 'console', 'Symbol', 'Error',
+  'Reflect', 'globalThis', 'Intl', 'BigInt', 'Atomics',
+  'SharedArrayBuffer', 'ArrayBuffer', 'DataView',
+  // Browser globals (defensive — server code may still mention them)
+  'window', 'document', 'navigator', 'location', 'history',
+  // Built-in functions
+  'parseInt', 'parseFloat', 'isNaN', 'isFinite',
+  'encodeURIComponent', 'decodeURIComponent', 'encodeURI', 'decodeURI',
+  // Timers / microtasks
+  'setTimeout', 'setInterval', 'clearTimeout', 'clearInterval',
+  'setImmediate', 'clearImmediate', 'queueMicrotask',
+  // Node.js module-level
+  'process', 'require', 'module', 'exports', '__dirname', '__filename',
+  // Common collection constructors
+  'Map', 'Set', 'WeakMap', 'WeakSet', 'RegExp',
+]);
+
+/**
+ * Check if position in line is inside a string literal (single/double/backtick quotes).
+ * Returns true if odd number of quote characters appear before the position.
+ */
+function isInsideStringLiteral(line, pos) {
+  const before = line.slice(0, pos);
+  const sc = (before.match(/'/g) || []).length;
+  const dc = (before.match(/"/g) || []).length;
+  const bt = (before.match(/`/g) || []).length;
+  return sc % 2 === 1 || dc % 2 === 1 || bt % 2 === 1;
 }
 
 const LOW_RISK_RULES = [
@@ -143,6 +228,10 @@ const LOW_RISK_RULES = [
     id: 'magic-numbers-safe',
     name: 'Magic Number → Named Const（安全版）',
     category: 'style',
+    autoFixable: false,  // 2026-06-20: detection-only — manual extraction required (see rule docstring)
+    // Why: extracting magic numbers to named constants requires semantic understanding
+    // of what the number means. Generic name (e.g. NUM_1) wouldn't help. Better to surface
+    // for human review than auto-fix incorrectly. Heuristic will propose instead of auto-fix.
     /**
      * Detect numbers that appear 2+ times in same file
      * and can be safely extracted to a named const.
@@ -279,23 +368,36 @@ const LOW_RISK_RULES = [
         // Skip lines inside markdown code blocks (documentation examples)
         if (isInsideMarkdownCodeBlock(lines, i)) continue;
 
-        // Check if already inside try-catch
-        let foundTry = false;
-        let braceCount = 0;
-        for (let j = i - 1; j >= 0; j--) {
-          const prevLine = lines[j];
-          braceCount += (prevLine.match(/\{/g) || []).length;
-          braceCount -= (prevLine.match(/\}/g) || []).length;
-          if (/\btry\s*\{/.test(prevLine) && braceCount >= 0) {
-            foundTry = true;
-            break;
+        // Check if already inside try-catch.
+        // Primary: AST-based detection via shared buildTryBlockMap (reliable,
+        //   handles nested try-blocks, inline try-catch, shebangs, etc).
+        // Fallback: brace-depth heuristic — only used when acorn can't parse
+        //   the file (e.g. syntax errors). Less robust, but never throws.
+        const tryBlockLines = buildTryBlockMap(content);
+        if (tryBlockLines !== null) {
+          // AST path: reliable detection
+          if (!tryBlockLines.has(i + 1)) {
+            foundLines.push(i + 1);
           }
-          if (braceCount < -1) break;
-          if (i - j > 20) break;
-        }
-
-        if (!foundTry) {
-          foundLines.push(i + 1);
+        } else {
+          // acorn failed to parse — fall back to a simpler brace walker
+          // (same buggy one as before, but only runs on syntax-error files)
+          let foundTry = false;
+          let braceCount = 0;
+          for (let j = i - 1; j >= 0; j--) {
+            const prevLine = lines[j];
+            braceCount += (prevLine.match(/\{/g) || []).length;
+            braceCount -= (prevLine.match(/\}/g) || []).length;
+            if (/\btry\s*\{/.test(prevLine) && braceCount >= 0) {
+              foundTry = true;
+              break;
+            }
+            if (braceCount < -1) break;
+            if (i - j > 20) break;
+          }
+          if (!foundTry) {
+            foundLines.push(i + 1);
+          }
         }
       }
 
@@ -333,23 +435,33 @@ const LOW_RISK_RULES = [
         // Skip lines inside markdown code blocks (documentation examples)
         if (isInsideMarkdownCodeBlock(lines, i)) continue;
 
-        // Check if already inside try-catch
-        let foundTry = false;
-        let braceCount = 0;
-        for (let j = i - 1; j >= 0; j--) {
-          const prevLine = lines[j];
-          braceCount += (prevLine.match(/\{/g) || []).length;
-          braceCount -= (prevLine.match(/\}/g) || []).length;
-          if (/\btry\s*\{/.test(prevLine) && braceCount >= 0) {
-            foundTry = true;
-            break;
+        // Check if already inside try-catch.
+        // Primary: AST-based detection via shared buildTryBlockMap.
+        // Fallback: brace-depth heuristic when acorn can't parse the file.
+        const tryBlockLines = buildTryBlockMap(content);
+        if (tryBlockLines !== null) {
+          // AST path: reliable detection
+          if (!tryBlockLines.has(i + 1)) {
+            toWrap.push(i);
           }
-          if (braceCount < -1) break;
-          if (i - j > 20) break;
-        }
-
-        if (!foundTry) {
-          toWrap.push(i);
+        } else {
+          // acorn failed to parse — fall back to brace walker (syntax-error files only)
+          let foundTry = false;
+          let braceCount = 0;
+          for (let j = i - 1; j >= 0; j--) {
+            const prevLine = lines[j];
+            braceCount += (prevLine.match(/\{/g) || []).length;
+            braceCount -= (prevLine.match(/\}/g) || []).length;
+            if (/\btry\s*\{/.test(prevLine) && braceCount >= 0) {
+              foundTry = true;
+              break;
+            }
+            if (braceCount < -1) break;
+            if (i - j > 20) break;
+          }
+          if (!foundTry) {
+            toWrap.push(i);
+          }
         }
       }
 
@@ -384,14 +496,23 @@ const LOW_RISK_RULES = [
 
         if (assignMatch) {
           // Pattern: const result = execSync(...) 或 let result = fs.readFileSync(...)
+          // Bug 6 (2026-06-22): preserve original declaration keyword where possible.
+          // `let`/`var` can stay as-is since the declaration line is just `let x;`
+          // (no init), and reassignment inside the try block is allowed. `const`
+          // cannot be preserved — reassignment violates const semantics — so we
+          // fall back to `let` for that case (and the safe-assignment try pattern
+          // below ensures the variable is never read with a stale value).
           const keyword = assignMatch[1];
           const varName = assignMatch[2];
           const callContent = trimmed.slice(assignMatch[0].length); // everything after '= '
 
           // Strip trailing semicolon from call content (we add our own)
           const cleanCall = callContent.replace(/;\s*$/, '');
+          // Preserve original keyword. For `const`, must downgrade to `let`
+          // because the new try-block assigns later.
+          const declKeyword = keyword === 'let' || keyword === 'var' ? keyword : 'let';
           // Replace whole line
-          lines[lineIdx] = indent + 'let ' + varName + ';';
+          lines[lineIdx] = indent + declKeyword + ' ' + varName + ';';
           // Add try-catch after
           lines.splice(lineIdx + 1, 0,
             indent + 'try {' + '\n' +
@@ -419,6 +540,186 @@ const LOW_RISK_RULES = [
 
       return lines.join('\n');
     },
+  },
+  {
+    id: 'optional-chaining',
+    name: '深層 member chain 加 optional chaining (防 TypeError)',
+    category: 'reliability',
+    /**
+     * Detect any 3+ level member chain (a.b.c) that isn't already covered
+     * by optional chaining (?.). Roots in OPTIONAL_CHAINING_SAFE_ROOTS
+     * (Math, JSON, process, Buffer, etc.) are skipped — they're never
+     * undefined in practice, so adding ?. would be pure noise.
+     *
+     * Detection intentionally stays conservative:
+     *   - Skips comment lines.
+     *   - Skips lines that already use ?. anywhere (chain is opt-in).
+     *   - Skips destructuring (`const { a } = obj` patterns).
+     */
+    detect(content, filePath) {
+      const lines = content.split('\n');
+      const foundLines = [];
+      const chainRe = /\b([a-zA-Z_$][\w$]*)(?:\.([a-zA-Z_$][\w$]*)){2,}/g;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        // Skip comment lines
+        if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*')) continue;
+        // Skip lines that already use optional chaining anywhere
+        if (line.includes('?.')) continue;
+        // Skip destructuring patterns: const { x } = obj  or  const [x] = arr
+        if (/[{[]\s*[^=]+\s*[}\]]\s*=\s*/.test(line)) continue;
+
+        chainRe.lastIndex = 0;
+        let m;
+        while ((m = chainRe.exec(line)) !== null) {
+          // Skip matches inside string literals (e.g. 'prompt_cache.json.tmp')
+          if (isInsideStringLiteral(line, m.index)) continue;
+
+          const root = m[1];
+          if (OPTIONAL_CHAINING_SAFE_ROOTS.has(root)) continue;
+
+          foundLines.push(i + 1);
+          break; // one hit per line
+        }
+      }
+
+      return {
+        found: foundLines.length > 0,
+        details: `${foundLines.length} 行有 3+ 層 member chain 可加 optional chaining`,
+        lines: foundLines,
+        severity: 'low',
+        suggestion: '深層 member chain 加 ?. 可防止 undefined access 引發 TypeError',
+      };
+    },
+    /**
+     * Rewrite a.b.c → a?.b?.c. Same safe-line rules as detect().
+     * Does NOT touch lines that already have ?. anywhere.
+     */
+    fix(content, filePath) {
+      const lines = content.split('\n');
+      const chainRe = /\b([a-zA-Z_$][\w$]*)(?:\.([a-zA-Z_$][\w$]*)){2,}/g;
+      let totalChanged = 0;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*')) continue;
+        if (line.includes('?.')) continue;
+        if (/[{[]\s*[^=]+\s*[}\]]\s*=\s*/.test(line)) continue;
+
+        let lineChanged = false;
+        const newLine = line.replace(chainRe, (match, root, _last, offset) => {
+          if (OPTIONAL_CHAINING_SAFE_ROOTS.has(root)) return match;
+          if (isInsideStringLiteral(line, offset)) return match;
+          lineChanged = true;
+          return match.split('.').join('?.');
+        });
+
+        if (lineChanged) {
+          lines[i] = newLine;
+          totalChanged++;
+        }
+      }
+
+      return totalChanged > 0 ? lines.join('\n') : content;
+    },
+  },
+  {
+    id: 'no-empty-catch',
+    name: 'Empty catch block (silent error swallowing)',
+    category: 'reliability',
+    // Detection-only rule — no auto-fix. Empty catches might be intentional
+    // (cleanup code that should fail silently, best-effort operations, or
+    // patterns where the absence of error handling is documented). Auto-
+    // rewriting to `console.error(e)` could spam logs; auto-rewriting to
+    // `throw e` could break working code that depends on silent recovery.
+    // The decision is contextual → surface for human review only.
+    /**
+     * Detect empty catch blocks: `catch (e) {}` (single-line) or
+     * `catch (e) { /* only whitespace or comments *\/ }` (multi-line).
+     *
+     * Skips:
+     *   - Whole-line `//` comments (documentation examples mentioning the pattern)
+     *   - Whole-line `/*` block comment / `*` continuation lines
+     *
+     * Returns severity 'medium' — empty catch is a bug pattern but not a crash,
+     * so it ranks below fsSync/execSync without try-catch (high) and
+     * magic_numbers (low). The "without try-catch" wording is intentional —
+     * verify_edit.js suppresses JSDoc false positives on lines that mention
+     * `try` or `catch` (heuristic for rule documentation).
+     */
+    detect(content, filePath) {
+      const lines = content.split('\n');
+      const foundLines = [];
+      // Truly empty single-line: catch (e) {}  (no comment at all)
+      const SINGLE_RE = /catch\s*(\([^)]*\))?\s*\{\s*\}/;
+      // Single-line with optional inline comment only: catch (e) { /* ignore */ }
+      // Captures the comment body so we can check for intentional markers
+      const SINGLE_WITH_COMMENT_RE = /catch\s*(\([^)]*\))?\s*\{\s*((?:\/\/[^\n]*|\/\*[\s\S]*?\*\/))\s*\}/;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        // Skip comment-only lines so doc examples don't trigger false positives
+        if (line.trimStart().startsWith('//')) continue;
+        if (line.trimStart().startsWith('/*') || line.trimStart().startsWith('*')) continue;
+
+        // Case 1: Truly empty single-line catch (no comment) → always flag
+        if (SINGLE_RE.test(line)) {
+          foundLines.push(i + 1);
+          continue;
+        }
+
+        // Case 2: Single-line catch with inline comment only → flag unless
+        // the comment is an intentional-empty marker (e.g. /* ignore */).
+        const inlineMatch = line.match(SINGLE_WITH_COMMENT_RE);
+        if (inlineMatch) {
+          if (!hasIntentionalEmptyMarker(inlineMatch[2])) {
+            foundLines.push(i + 1);
+          }
+          continue;
+        }
+
+        // Case 3: Multi-line catch — the opening { must be at end-of-line
+        // (body on subsequent lines). Single-line catches with content like
+        // `catch (e) { return; }` are correctly skipped — they're handled
+        // by Cases 1 & 2 above (which require empty body OR comment-only body).
+        // Without this guard, `catch (e) { return; }` would be mis-detected
+        // as multi-line with empty body (between = '').
+        if (/catch\s*(\([^)]*\))?\s*\{[ \t]*$/.test(line)) {
+          for (let j = i + 1; j < Math.min(i + 5, lines.length); j++) {
+            if (/^\s*\}\s*$/.test(lines[j])) {
+              // Anything between catch{ and } that's non-comment, non-whitespace?
+              const between = lines.slice(i + 1, j).join('\n');
+              const codeOnly = between
+                .replace(/\/\*[\s\S]*?\*\//g, '')   // strip /* ... */ block comments
+                .replace(/\/\/.*$/gm, '')            // strip // line comments
+                .trim();
+              if (codeOnly === '' && !hasIntentionalEmptyMarker(between)) {
+                foundLines.push(i + 1);
+              }
+              break;
+            }
+          }
+        }
+      }
+
+      if (foundLines.length === 0) {
+        return { found: false, details: '', lines: [] };
+      }
+      return {
+        found: true,
+        details: `Empty catch block(s) at line(s) ${foundLines.join(', ')} — silently swallows errors`,
+        lines: foundLines,
+        severity: 'medium',
+        suggestion: 'Add error logging: console.error(e); or rethrow. Intentional swallows should have a comment explaining why.',
+      };
+    },
+    // NO fix() — see rule docstring above. Empty catches are context-dependent
+    // and require human review.
   },
 ];
 
