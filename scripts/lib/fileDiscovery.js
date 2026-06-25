@@ -80,7 +80,7 @@ class CacheManager {
   }
 
   updateLastScan() {
-    if (this?.cache) {
+    if (this && this.cache) {
       this.cache.lastScan = new Date().toISOString();
     }
   }
