@@ -16,6 +16,10 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const OpenCC = require('opencc-js');
+const { ONE_HOUR_MS } = require('./lib/time_constants');
+
+// Fallback for invalid pubDate — treats item as ~417 days old (recency=0).
+const MAX_AGE_HOURS_FALLBACK = 9999;
 
 // ── Discord direct-post config (v2.0) ──
 const AI_HOT_CHANNEL = '1483099702512713829';  // #AI🔥熱門
@@ -83,11 +87,11 @@ function parseArgs() {
 }
 
 // -------- Discord direct-post (v2.0) --------
+const { getDiscordToken: resolveDiscordToken } = require('./lib/secret_resolver');
+
 function getDiscordToken() {
   try {
-    const configPath = path.join(process.env.HOME || '/home/ally', '.openclaw', 'openclaw.json');
-    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-    return (config.channels && config.channels.discord && config.channels.discord.token) || '';
+    return resolveDiscordToken() || process.env.DISCORD_BOT_TOKEN || '';
   } catch (e) {
     return process.env.DISCORD_BOT_TOKEN || '';
   }
@@ -131,9 +135,9 @@ async function sendToDiscordWithRetry(content, channelId) {
       await sendToDiscord(content, channelId);
       return;
     } catch (err) {
-      const transient = err.message.includes('429') || err.message.includes('rate') ||
+      const transient = err?.message?.includes('429') || err?.message?.includes('rate') ||
                         /\b5\d{2}\b/.test(err.message) ||
-                        err.message.includes('ETIMEDOUT') || err.message.includes('ECONNRESET');
+                        err?.message?.includes('ETIMEDOUT') || err?.message?.includes('ECONNRESET');
       if (transient && attempt < maxAttempts) {
         const delay = 1000 * Math.pow(2, attempt - 1);
         console.error(`Discord send attempt ${attempt}/${maxAttempts} failed (${err.message}) — retrying in ${delay}ms`);
@@ -163,10 +167,10 @@ function fetchUrl(url, redirects = 0) {
         if (
           res.statusCode >= 300 &&
           res.statusCode < 400 &&
-          res.headers.location
+          res?.headers?.location
         ) {
           res.resume();
-          const next = new URL(res.headers.location, url).toString();
+          const next = new URL(res?.headers?.location, url).toString();
           return resolve(fetchUrl(next, redirects + 1));
         }
         if (res.statusCode !== 200) {
@@ -249,7 +253,7 @@ function classifyItem(item) {
 // Recency (decays over ~200h) + source weight (headline authors highest).
 function scoreItem(item) {
   const pubTime = new Date(item.pubDate).getTime();
-  const ageHours = isNaN(pubTime) ? 9999 : (Date.now() - pubTime) / 3600000;
+  const ageHours = isNaN(pubTime) ? MAX_AGE_HOURS_FALLBACK : (Date.now() - pubTime) / ONE_HOUR_MS;
   const recency = Math.max(0, 100 - ageHours * 0.5); // 0-100, decays over 200h
 
   const author = cleanSource(item.author).toLowerCase();
@@ -275,7 +279,7 @@ function categorizeItems(items) {
   const buckets = { headline: [], product: [], research: [], industry: [], developer: [] };
   const promoted = new Set();
   for (let i = 0; i < promoteCount; i++) {
-    buckets.headline.push(byPubDate[i]);
+    buckets?.headline?.push(byPubDate[i]);
     promoted.add(byPubDate[i]);
   }
   for (const item of items) {
@@ -286,8 +290,8 @@ function categorizeItems(items) {
   // then fills with classified items by score. Other buckets: score desc.
   for (const key of Object.keys(buckets)) {
     if (key === 'headline') {
-      const promotedItems = buckets.headline.filter(it => promoted.has(it));
-      const classified = buckets.headline.filter(it => !promoted.has(it));
+      const promotedItems = buckets?.headline?.filter(it => promoted.has(it));
+      const classified = buckets?.headline?.filter(it => !promoted.has(it));
       classified.sort((a, b) => scoreItem(b) - scoreItem(a));
       buckets.headline = [...promotedItems, ...classified];
     } else {
@@ -316,7 +320,11 @@ function saveSeenGuids(guids) {
     const arr = Array.from(guids);
     // FIFO: keep last SEEN_CAP entries
     const trimmed = arr.slice(-SEEN_CAP);
-    fs.writeFileSync(SEEN_FILE, JSON.stringify({ guids: trimmed }, null, 2));
+    // Atomic write via tmp + rename to avoid losing entries on concurrent
+    // cron runs (was: direct write — last writer overwrites others' additions)
+    const tmp = SEEN_FILE + '.tmp';
+    fs.writeFileSync(tmp, JSON.stringify({ guids: trimmed }, null, 2));
+    fs.renameSync(tmp, SEEN_FILE);
   } catch (err) {
     // Don't fail the script on save error
     console.error(`Warning: failed to save seen GUIDs: ${err.message}`);
@@ -419,7 +427,7 @@ function formatForDiscord(items, opts) {
     totalRemaining -= sectionItems.length;
   }
 
-  const totalItems = sections.reduce((sum, s) => sum + s.items.length, 0);
+  const totalItems = sections.reduce((sum, s) => sum + s?.items?.length, 0);
   if (totalItems === 0) {
     return [`${header}\n— 無新內容 — 來源 aihot.virxact.com\n`];
   }
@@ -451,7 +459,7 @@ function formatForDiscord(items, opts) {
   }
 
   for (const section of sections) {
-    const sectionPart = section.header.replace(/\n$/, '');
+    const sectionPart = section?.header?.replace(/\n$/, '');
     const sectionBytes = Buffer.byteLength(sectionPart, 'utf8');
 
     for (const item of section.items) {
