@@ -18,7 +18,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const trend = require('./lib/audit_trend');
+const trend = require('./lib/audit_history');
 
 // Time-to-ms helpers (test-only; mirrors scripts/lib/time_constants.js shape)
 const SECONDS_PER_HOUR = 3600;
