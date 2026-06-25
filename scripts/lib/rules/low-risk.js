@@ -577,6 +577,8 @@ const LOW_RISK_RULES = [
         while ((m = chainRe.exec(line)) !== null) {
           // Skip matches inside string literals (e.g. 'prompt_cache.json.tmp')
           if (isInsideStringLiteral(line, m.index)) continue;
+          // Skip LHS assignment targets (a.b.c = value → SyntaxError in Node v26)
+          if (/^\s*=/.test(line.slice(m.index + m[0].length))) continue;
 
           const root = m[1];
           if (OPTIONAL_CHAINING_SAFE_ROOTS.has(root)) continue;
@@ -615,6 +617,8 @@ const LOW_RISK_RULES = [
         const newLine = line.replace(chainRe, (match, root, _last, offset) => {
           if (OPTIONAL_CHAINING_SAFE_ROOTS.has(root)) return match;
           if (isInsideStringLiteral(line, offset)) return match;
+          // Skip LHS assignment targets (a.b.c = value → SyntaxError in Node v26)
+          if (/^\s*=/.test(line.slice(offset + match.length))) return match;
           lineChanged = true;
           return match.split('.').join('?.');
         });
