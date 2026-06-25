@@ -23,6 +23,7 @@ const path = require('path');
 const os = require('os');
 const crypto = require('crypto');
 const { safeWriteFileSync, safeRenameSync, atomicWriteJsonSafe } = require('./lib/disk_guard');
+const { ONE_DAY_MS } = require('./lib/time_constants');
 const { listSkillMetadata } = require('./lib/skill_discovery');
 const { extractField } = require('./lib/frontmatter');
 const {
@@ -816,7 +817,7 @@ const PROMPT_DEDUP_TELEMETRY = path.join(WORKSPACE, '.skill_reviewer_prompt_dedu
 const PROMPT_DEDUP_DISABLED = process.env.SKILL_REVIEWER_DEDUP_DISABLED === '1';
 const PROMPT_DEDUP_WINDOW_MS = (() => {
   const v = Number(process.env.SKILL_REVIEWER_DEDUP_WINDOW_MS);
-  return Number.isFinite(v) && v > 0 ? v : 86400000; // 24h default
+  return Number.isFinite(v) && v > 0 ? v : ONE_DAY_MS; // 24h default
 })();
 const PROMPT_DEDUP_MAX_NORM_CHARS = 200;
 
@@ -896,12 +897,12 @@ function _logPromptDedupTelemetry(kept, dropped, windowMs) {
         windowMs,
         dropped: dropped.map(d => ({
           hash: d.hash,
-          userPromptSnippet: _normalizeUserPrompt(d.entry && d.entry.userPrompt).slice(0, 80),
+          userPromptSnippet: _normalizeUserPrompt(d.entry && d?.entry?.userPrompt).slice(0, 80),
           keptTs: d.keptTs,
           droppedTs: d.droppedTs,
           reason: d.reason,
-          entryV: d.entry && d.entry.v,
-          entrySource: d.entry && d.entry.source,
+          entryV: d.entry && d?.entry?.v,
+          entrySource: d.entry && d?.entry?.source,
         })),
       }) + '\n',
       'utf8'
@@ -949,11 +950,11 @@ function mainInner() {
   // BEFORE the LLM is invoked). See dedupeQueueByPromptHash() above.
   const dedup = dedupeQueueByPromptHash(rawEntries);
   const entries = dedup.kept;
-  if (dedup.dropped.length > 0) {
+  if (dedup?.dropped?.length > 0) {
     _logPromptDedupTelemetry(dedup.kept, dedup.dropped, PROMPT_DEDUP_WINDOW_MS);
     console.error(
-      `[prompt-dedup] dropped ${dedup.dropped.length} duplicate(s) ` +
-      `(${dedup.kept.length} kept, window=${PROMPT_DEDUP_WINDOW_MS}ms)`
+      `[prompt-dedup] dropped ${dedup?.dropped?.length} duplicate(s) ` +
+      `(${dedup?.kept?.length} kept, window=${PROMPT_DEDUP_WINDOW_MS}ms)`
     );
   }
 
@@ -1114,18 +1115,18 @@ function mainInner() {
       const skillName = ps.name || sigs.proposed_skill_name || '?';
       const skillDesc = ps.description || sigs.proposed_skill_description || '?';
       prompt += `**Source:** audit_to_skill_emitter (rule=${sigs.rule_name || '?'})\n`;
-      prompt += `**Occurrences (7d):** ${sigs.occurrences_7d || (e.pattern && e.pattern.occurrences) || '?'}\n`;
-      prompt += `**Window:** ${(e.pattern && e.pattern.window_days) || 7}d\n`;
+      prompt += `**Occurrences (7d):** ${sigs.occurrences_7d || (e.pattern && e?.pattern?.occurrences) || '?'}\n`;
+      prompt += `**Window:** ${(e.pattern && e?.pattern?.window_days) || 7}d\n`;
       prompt += `**Proposed skill name:** \`${skillName}\`\n`;
       prompt += `**Proposed description:** ${skillDesc}\n`;
-      if (Array.isArray(sigs.files) && sigs.files.length > 0) {
-        prompt += `**Top files where rule fired (${sigs.files.length}):**\n`;
-        for (const f of sigs.files.slice(0, 5)) {
+      if (Array.isArray(sigs.files) && sigs?.files?.length > 0) {
+        prompt += `**Top files where rule fired (${sigs?.files?.length}):**\n`;
+        for (const f of sigs?.files?.slice(0, 5)) {
           prompt += `  - ${f}\n`;
         }
       }
       prompt += `\n**Inferred learning signal:** This rule has fired ${sigs.occurrences_7d || '?'}× in the past 7 days `;
-      prompt += `across ${(sigs.files && sigs.files.length) || '?'} files. `;
+      prompt += `across ${(sigs.files && sigs?.files?.length) || '?'} files. `;
       prompt += `**Generate a SKILL.md that captures the WORKFLOW of how to apply this fix safely** — preconditions (when this rule should trigger), the exact edit pattern, pitfalls (e.g. preserving existing try-catch, syntax constraints), and example before/after. The skill name is already decided: \`${skillName}\`. `;
       prompt += `You MUST write \`skills-learned/${skillName}/SKILL.md\` (or PATCH if it already exists). Do NOT skip — this is a high-confidence recurring pattern, not a one-off.\n\n`;
     }
