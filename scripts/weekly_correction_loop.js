@@ -499,7 +499,11 @@ function handleConsolidation() {
   // LLM pass: analyze each pair and write structured YAML proposals
   const llmProposalsDir = PROPOSALS_DIR;
   if (!fs.existsSync(llmProposalsDir) && !DRY_RUN) {
-    fs.mkdirSync(llmProposalsDir, { recursive: true, mode: 0o700 });
+    try {
+      fs.mkdirSync(llmProposalsDir, { recursive: true, mode: 0o700 });
+    } catch (e) {
+      console.error(`Directory creation failed: ${e.message}`);
+    }
   }
 
   let llmProposalCount = 0;
@@ -618,7 +622,7 @@ function applyConsolidation(proposalFile) {
             log(`   📎 ${name} has ${files.length} support file(s) in ${sub}/ — proceeding with ${flag}`);
           }
         } catch (e) {
-          if (e.message.includes('--i-know-what-im-doing')) throw e;
+          if (e?.message?.includes('--i-know-what-im-doing')) throw e;
         }
       }
     }
@@ -656,7 +660,11 @@ function applyConsolidation(proposalFile) {
 
   // 1. Create umbrella directory
   if (!fs.existsSync(umbrellaDir)) {
-    fs.mkdirSync(umbrellaDir, { recursive: true, mode: 0o700 });
+    try {
+      fs.mkdirSync(umbrellaDir, { recursive: true, mode: 0o700 });
+    } catch (e) {
+      console.error(`Directory creation failed: ${e.message}`);
+    }
   }
 
   // 2. Read source skill SKILL.md contents
@@ -826,9 +834,9 @@ function trackMetrics(run) {
         promoted: run.promoted || 0,
         triggeredBy: run.triggeredBy || 'weekly'
       };
-      metrics.curator_runs.push(entry);
-      if (metrics.curator_runs.length > MAX_METRICS_ENTRIES) {
-        metrics.curator_runs = metrics.curator_runs.slice(-MAX_METRICS_ENTRIES);
+      metrics?.curator_runs?.push(entry);
+      if (metrics?.curator_runs?.length > MAX_METRICS_ENTRIES) {
+        metrics.curator_runs = metrics?.curator_runs?.slice(-MAX_METRICS_ENTRIES);
       }
     }
     atomicWriteJson(METRICS_FILE, metrics);
@@ -1129,7 +1137,11 @@ if (fs.existsSync(SKILLS_DIR)) {
 
   for (const entry of entries) {
     const entryPath = path.join(SKILLS_DIR, entry);
-    if (fs.lstatSync(entryPath).isFile() && entry.endsWith('.md')) {
+    try {
+      if (fs.lstatSync(entryPath).isFile() && entry.endsWith('.md')) {;
+    } catch (e) {
+      console.error(`Operation failed: ${e.message}`);
+    }
       // Migrate flat .md file to subdirectory
       const skillName = entry.slice(0, -3); // remove .md
       const dirPath = path.join(SKILLS_DIR, skillName);
@@ -1237,7 +1249,7 @@ if (fs.existsSync(SKILLS_DIR)) {
       if (bodyLength < MIN_CONTENT_CHARS) {
         // JUNK: minimal or no workflow content
         const support = listSupportFiles(dirPath);
-        const hasSupport = support.references.length + support.templates.length + support.scripts.length > 0;
+        const hasSupport = support?.references?.length + support?.templates?.length + support?.scripts?.length > 0;
         if (hasSupport) {
           // Skill has support files — keep it as draft, don't archive
           skillStats.draft++;
@@ -1274,9 +1286,9 @@ if (fs.existsSync(SKILLS_DIR)) {
 
       // Log support files when promoting (call once, cache)
       const sup = listSupportFiles(dirPath);
-      const supCount = sup.references.length + sup.templates.length + sup.scripts.length;
+      const supCount = sup?.references?.length + sup?.templates?.length + sup?.scripts?.length;
       if (supCount > 0) {
-        log(`   📎 Support files: ${sup.references.length} ref, ${sup.templates.length} tpl, ${sup.scripts.length} scripts`);
+        log(`   📎 Support files: ${sup?.references?.length} ref, ${sup?.templates?.length} tpl, ${sup?.scripts?.length} scripts`);
       }
 
       // Promote draft → active (mtime-based: recently modified = active)
@@ -1453,7 +1465,7 @@ if (decisions.length > 0) {
   for (const d of decisions) {
     byRoute[d.route || d.decision || 'unknown'] = (byRoute[d.route || d.decision || 'unknown'] || 0) + 1;
   }
-  suggestionData.behaviour.routeDistribution = byRoute;
+  suggestionData?.behaviour?.routeDistribution = byRoute;
 }
 
 if (!DRY_RUN) {
