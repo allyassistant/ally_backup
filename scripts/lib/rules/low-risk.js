@@ -113,6 +113,8 @@ const OPTIONAL_CHAINING_SAFE_ROOTS = new Set([
   'setImmediate', 'clearImmediate', 'queueMicrotask',
   // Node.js module-level
   'process', 'require', 'module', 'exports', '__dirname', '__filename',
+  // ESM keywords — import.meta is always safe in ESM context
+  'import',
   // Common collection constructors
   'Map', 'Set', 'WeakMap', 'WeakSet', 'RegExp',
 ]);
