@@ -109,20 +109,24 @@ const presentation = {
 
 const presJson = JSON.stringify(presentation).replace(/"/g, '\\"');
 
-// 4. Send via OpenClaw
+// 4. Send via OpenClaw (use execFileSync to prevent shell injection)
 try {
-  execSync(`${OPENCLAW} message send --channel discord --target channel:${channelId} --presentation '${JSON.stringify(presentation)}'`, {
-    timeout: 15000,
-    encoding: 'utf8'
-  });
+  execFileSync(OPENCLAW, [
+    'message', 'send',
+    '--channel', 'discord',
+    '--target', `channel:${channelId}`,
+    '--presentation', JSON.stringify(presentation)
+  ], { timeout: 15000, encoding: 'utf8' });
   console.log('✅ Sent to Discord');
 } catch (e) {
   // Fallback: send as plain text
   const text = embed.fields.map(f => `**${f.name}**\n${f.value.replace(/\*\*/g, '')}`).join('\n\n');
-  execSync(`${OPENCLAW} message send --channel discord --target channel:${channelId} --message "${text.slice(0, 1900).replace(/"/g, '\\"')}"`, {
-    timeout: 15000,
-    encoding: 'utf8'
-  });
+  execFileSync(OPENCLAW, [
+    'message', 'send',
+    '--channel', 'discord',
+    '--target', `channel:${channelId}`,
+    '--message', text.slice(0, 1900)
+  ], { timeout: 15000, encoding: 'utf8' });
   console.log('✅ Sent as text (presentation fallback)');
 }
 

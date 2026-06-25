@@ -248,6 +248,9 @@ const HIGH_RISK_RULES = [
       }
 
       // Helper: 檢查 match 是否在 string literal 或 regex literal 內
+      // NOTE: 唔好加入 description/title 等 keyword heuristic — 會產生 false
+      // negatives（真正嘅 fs call 被當成喺 string 入面而 skip）。Quote/slash
+      // count 已經足夠判斷是否喺 string/regex literal 內。
       function isInsideString(code, matchStart) {
         const beforeMatch = code.slice(0, matchStart);
 
@@ -258,12 +261,6 @@ const HIGH_RISK_RULES = [
         // 2. 檢查是否在 regex literal 內 (例如 /fs\.readFileSync/)
         const slashes = (beforeMatch.replace(/[^/]/g, '').match(/\//g) || []).length;
         if (slashes % 2 === 1) return true;
-
-        // 3. 檢查是否在 description field 內 (desc:, reason:, pattern:, message: 等)
-        const descriptionFields = ['desc:', 'reason:', 'pattern:', 'message:', 'suggestion:', 'details:', 'title:'];
-        for (const field of descriptionFields) {
-          if (beforeMatch.includes(field)) return true;
-        }
 
         return false;
       }

@@ -123,10 +123,45 @@ const OPTIONAL_CHAINING_SAFE_ROOTS = new Set([
  */
 function isInsideStringLiteral(line, pos) {
   const before = line.slice(0, pos);
-  const sc = (before.match(/'/g) || []).length;
-  const dc = (before.match(/"/g) || []).length;
-  const bt = (before.match(/`/g) || []).length;
-  return sc % 2 === 1 || dc % 2 === 1 || bt % 2 === 1;
+  // Strip escaped quotes so 'it\'s' isn't counted as a closing quote.
+  // Also handle \\. (line continuation, backslash before any char).
+  const cleaned = before.replace(/\\./g, '');
+  const sc = (cleaned.match(/'/g) || []).length;
+  const dc = (cleaned.match(/"/g) || []).length;
+  const bt = (cleaned.match(/`/g) || []).length;
+  // Also treat regex literals as a separate lexical context: an odd number of
+  // unescaped `/` before pos means we're inside a regex literal (e.g. `/foo.bar/`).
+  const slashes = (cleaned.match(/\//g) || []).length;
+  return sc % 2 === 1 || dc % 2 === 1 || bt % 2 === 1 || slashes % 2 === 1;
+}
+
+/**
+ * Check if the match sits on the LHS of an assignment or for-loop binding.
+ * Node v22+ rejects `obj?.a?.b?.c = value`, `+= -=`, `??= ||= &&=`,
+ * and `for (obj?.a?.b?.c of items)` as SyntaxError.
+ *
+ * Heuristic: look at the chars between the END of the match and the next
+ * statement boundary (semicolon / closing brace / end-of-line). If we see any
+ * of these assignment operators or for/of/in keywords, the chain is LHS.
+ *
+ * Simpler check that catches everything: if the line CONTAINS an `=` (not part
+ * of `==`, `===`, `!=`, `!==`, `=>`, `>=`, `<=`, `**=`, etc.) AFTER the match
+ * position, AND there's no other complete statement before, treat as LHS.
+ */
+function isLhsAssignment(line, matchIndex, matchLength) {
+  const tail = line.slice(matchIndex + matchLength);
+  // Plain assignment: `obj.a.b = value`
+  if (/^\s*=[^=]/.test(tail)) return true;
+  // Compound assignment: += -= *= /= %= **= ??= ||= &&=
+  if (/^\s*[+\-*/%][=]/.test(tail)) return true;
+  if (/^\s*\*\*[=]/.test(tail)) return true;
+  if (/^\s*\?\?[=]/.test(tail)) return true;
+  if (/^\s*[|&][|&][=]/.test(tail)) return true;
+  // for-of / for-in LHS: `for (obj.a.b of items)` — needs to detect ` of ` or ` in `
+  // after the closing paren of for(...).
+  if (/^\s+of\s+/.test(tail)) return true;
+  if (/^\s+in\s+/.test(tail)) return true;
+  return false;
 }
 
 const LOW_RISK_RULES = [
@@ -577,8 +612,8 @@ const LOW_RISK_RULES = [
         while ((m = chainRe.exec(line)) !== null) {
           // Skip matches inside string literals (e.g. 'prompt_cache.json.tmp')
           if (isInsideStringLiteral(line, m.index)) continue;
-          // Skip LHS assignment targets (a.b.c = value → SyntaxError in Node v26)
-          if (/^\s*=/.test(line.slice(m.index + m[0].length))) continue;
+          // Skip LHS assignment targets (a.b.c = value, += -=, for-of/in → SyntaxError in Node v22+)
+          if (isLhsAssignment(line, m.index, m[0].length)) continue;
 
           const root = m[1];
           if (OPTIONAL_CHAINING_SAFE_ROOTS.has(root)) continue;
@@ -617,8 +652,8 @@ const LOW_RISK_RULES = [
         const newLine = line.replace(chainRe, (match, root, _last, offset) => {
           if (OPTIONAL_CHAINING_SAFE_ROOTS.has(root)) return match;
           if (isInsideStringLiteral(line, offset)) return match;
-          // Skip LHS assignment targets (a.b.c = value → SyntaxError in Node v26)
-          if (/^\s*=/.test(line.slice(offset + match.length))) return match;
+          // Skip LHS assignment targets (a.b.c = value, += -=, for-of/in → SyntaxError in Node v22+)
+          if (isLhsAssignment(line, offset, match.length)) return match;
           lineChanged = true;
           return match.split('.').join('?.');
         });

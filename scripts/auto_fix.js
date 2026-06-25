@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const ONE_DAY_MS = 86400000; // 24h in ms
+const MAX_FILE_SIZE_BYTES = 100000; // 100KB cap for audit scanner (skip huge files)
 
 /**
  * ==================== Auto-Audit System ====================
@@ -132,6 +133,34 @@ const { LOW_RISK_RULES } = require('./lib/rules/low-risk');
 const { HIGH_RISK_RULES } = require('./lib/rules/high-risk');
 const { runSystemAudit } = require('./lib/rules/system-audit');
 
+// ==================== AUDIT → FIX RULE ID MAP ====================
+// Bug 4 (2026-06-22): audit_just_written.js emits camelCase/snake_case rule
+// IDs (`fsSync_missing_trycatch`, `magic_numbers`, `simplified_chinese`),
+// but LOW_RISK_RULES uses kebab-case (`fs-sync-trycatch`, `magic-numbers-safe`,
+// `simplified-chinese`). Without this map, `autoFixFile()` finds nothing
+// and silently fixes 0 issues — direct cause of the "🛠️ 自動修復: ... —
+// 修復咗 0 個問題" warning.
+//
+// `todo_fixme` is intentionally NOT in the map — low-risk.js has no
+// equivalent auto-fix rule, so it's silently skipped (the || fallback
+// returns the original id, find() returns undefined, loop continues).
+//
+// Do NOT change audit_just_written.js rule IDs (would break audit_realtime_dedup
+// overrides) or low-risk.js rule IDs (other callers depend on them). This map
+// is the SOLE translation layer.
+const AUDIT_TO_FIX_RULE_MAP = {
+  'fsSync_missing_trycatch': 'fs-sync-trycatch',
+  'magic_numbers': 'magic-numbers-safe',
+  'simplified_chinese': 'simplified-chinese',
+  // 'todo_fixme' has no auto-fix equivalent — leave unmapped
+  // 'no_empty_catch' is intentionally NOT mapped — `no-empty-catch` in
+  // low-risk.js has no `fix()` because empty catches might be intentional
+  // (cleanup code, best-effort operations). Detection-only; human review
+  // required. The `|| issue.rule` fallback in autoFixFile() resolves the
+  // audit snake_case id directly, then `find()` returns undefined and the
+  // `if (!rule || !rule.fix) continue;` guard silently skips it.
+};
+
 // ==================== SYSTEM AUDIT ====================
 
 /**
@@ -165,12 +194,12 @@ function loadPureAIResults() {
         const data = JSON.parse(fs.readFileSync(PURE_AI_AUDIT_RESULTS, 'utf-8'));
         // Support both 'issues' and 'findings' field names for compatibility
         return data.findings || data.issues || [];
-      } catch (e) { 
+      } catch (e) {
         console.warn('[loadPureAIResults] Parse error:', e.message);
-        return []; 
+        return [];
       }
     }
-  } catch (e) { 
+  } catch (e) {
     console.warn('[loadPureAIResults] File read error:', e.message);
   }
   return [];
@@ -240,7 +269,7 @@ function findRecentFiles() {
         entries = fs.readdirSync(dir, { withFileTypes: true });
       } catch (e) { return; }
       for (const entry of entries) {
-        if (entry.name.startsWith('.')) continue;
+        if (entry?.name?.startsWith('.')) continue;
         const fullPath = path.join(dir, entry.name);
 
         if (entry.isDirectory()) {
@@ -304,17 +333,17 @@ function scanErrors() {
 
     for (const err of errors) {
       if (err.resolved) continue;
-      result.unresolved.push(err);
+      result?.unresolved?.push(err);
 
       // 最近 24 小時新增
       const ts = new Date(err.timestamp).getTime();
       if (ts > dayAgo) {
-        result.recentNew.push(err);
+        result?.recentNew?.push(err);
       }
 
       // 重複出現（count > 3）
       if ((err.count || 1) > 3) {
-        result.recurring.push(err);
+        result?.recurring?.push(err);
       }
     }
   } catch (e) {
@@ -446,17 +475,17 @@ function analyzeErrorPatterns() {
         })),
       };
 
-      result.types.push(typeAnalysis);
+      result?.types?.push(typeAnalysis);
 
       if (analysis.needsHuman) {
-        result.needsHumanIntervention.push(typeAnalysis);
+        result?.needsHumanIntervention?.push(typeAnalysis);
       } else {
-        result.autoResolvable.push(typeAnalysis);
+        result?.autoResolvable?.push(typeAnalysis);
       }
     }
 
     // 按 occurrences 排序
-    result.types.sort((a, b) => b.totalCount - a.totalCount);
+    result?.types?.sort((a, b) => b.totalCount - a.totalCount);
     result.totalAnalyzed = errors.length;
 
   } catch (e) {
@@ -479,7 +508,7 @@ function analyzeFile(filePath) {
   // 使用 Cache 讀取檔案
   const { content } = helpers.getFileContent(filePath);
   if (!content) {
-    result.highRisk.push({
+    result?.highRisk?.push({
       rule: 'read-error',
       name: '無法讀取檔案',
       details: 'getFileContent returned empty content',
@@ -489,8 +518,8 @@ function analyzeFile(filePath) {
   }
 
   // 跳過超大檔案 (> 100KB)
-  if (content.length > 100000) {
-    result.highRisk.push({
+  if (content.length > MAX_FILE_SIZE_BYTES) {
+    result?.highRisk?.push({
       rule: 'file-too-large',
       name: '檔案過大',
       details: `${(content.length / 1024).toFixed(0)}KB - 跳過詳細分析`,
@@ -505,7 +534,7 @@ function analyzeFile(filePath) {
     try {
       const detection = rule.detect(content, filePath);
       if (detection.found) {
-        result.lowRisk.push({
+        result?.lowRisk?.push({
           rule: rule.id,
           name: rule.name,
           category: rule.category,
@@ -521,7 +550,7 @@ function analyzeFile(filePath) {
     try {
       const detection = rule.detect(content, filePath);
       if (detection.found) {
-        result.highRisk.push({
+        result?.highRisk?.push({
           rule: rule.id,
           name: rule.name,
           category: detection.category || rule.category,
@@ -535,7 +564,7 @@ function analyzeFile(filePath) {
   }
 
   // 過濾 Skip List 中的 false positives
-  result.highRisk = result.highRisk.filter(issue => {
+  result.highRisk = result?.highRisk?.filter(issue => {
     if (helpers.isSkipped(issue, result.file)) {
       return false;
     }
@@ -561,7 +590,13 @@ function autoFixFile(filePath, issues) {
   const fixedDetails = [];
 
   for (const issue of issues) {
-    const rule = LOW_RISK_RULES.find(r => r.id === issue.rule);
+    // Translate audit camelCase/snake_case rule IDs to low-risk kebab-case IDs.
+    // The `||` fallback keeps already-correct kebab-case IDs working untouched
+    // (e.g. when the local scanner pushed `rule.id` directly). Unmapped IDs
+    // (like `todo_fixme`) fall through to find() returning undefined → silently
+    // skipped, preserving the no-error contract.
+    const fixRuleId = AUDIT_TO_FIX_RULE_MAP[issue.rule] || issue.rule;
+    const rule = LOW_RISK_RULES.find(r => r.id === fixRuleId);
     if (!rule || !rule.fix) continue;
 
     try {
@@ -577,7 +612,10 @@ function autoFixFile(filePath, issues) {
 
   // 只在有改動且非 dry-run 時寫入
   if (content !== originalContent && !isDryRun) {
-    const tmpFile = `${filePath}.tmp.${Date.now()}`;
+    // Bug 5 fix: Date.now() has ms resolution — two parallel auto-fix runs on
+    // the same file in the same ms would collide on the tmp filename. Use
+    // pid + crypto.randomBytes for a collision-free unique tmp name.
+    const tmpFile = `${filePath}.tmp.${process.pid}.${crypto.randomBytes(8).toString('hex')}`;
     try {
       fs.writeFileSync(tmpFile, content, 'utf-8');
       fs.renameSync(tmpFile, filePath);
@@ -605,7 +643,7 @@ function annotateWithPureAI(report) {
   const pureIssues = loadPureAIResults();
   if (!pureIssues || pureIssues.length === 0) return report;
 
-  report.highRisk = report.highRisk.map(item => {
+  report.highRisk = report?.highRisk?.map(item => {
     const isHandled = pureIssues.some(p =>
       p.rule === item.rule || (p.type === item.rule && p.file?.endsWith(item.file))
     );
@@ -636,19 +674,19 @@ function generateReport(scanResult) {
       errorsUnresolved: scanResult.errorsUnresolved,
       errorsRecurring: scanResult.errorsRecurring,
       systemAuditIssues: scanResult.systemAudit ? (
-        scanResult.systemAudit.syntax.js.length +
-        scanResult.systemAudit.syntax.sh.length +
-        scanResult.systemAudit.hardcodedPaths.length +
-        scanResult.systemAudit.cronMissing.length +
-        scanResult.systemAudit.cronHardcodedDates.length +
-        scanResult.systemAudit.danglingRefs.length +
-        (scanResult.systemAudit.moduleNotFound || []).length +
-        (scanResult.systemAudit.filenamePatternMismatch || []).length +
-        (scanResult.systemAudit.gitPushWithoutApproval || []).length +
-        (scanResult.systemAudit.diskCheckPathError || []).length +
-        (scanResult.systemAudit.missingHelper || []).length +
-        (scanResult.systemAudit.syncInAsync || []).length +
-        (scanResult.systemAudit.infiniteLoopRisk || []).length
+        scanResult?.systemAudit?.syntax?.js?.length +
+        scanResult?.systemAudit?.syntax?.sh?.length +
+        scanResult?.systemAudit?.hardcodedPaths?.length +
+        scanResult?.systemAudit?.cronMissing?.length +
+        scanResult?.systemAudit?.cronHardcodedDates?.length +
+        scanResult?.systemAudit?.danglingRefs?.length +
+        (scanResult?.systemAudit?.moduleNotFound || []).length +
+        (scanResult?.systemAudit?.filenamePatternMismatch || []).length +
+        (scanResult?.systemAudit?.gitPushWithoutApproval || []).length +
+        (scanResult?.systemAudit?.diskCheckPathError || []).length +
+        (scanResult?.systemAudit?.missingHelper || []).length +
+        (scanResult?.systemAudit?.syncInAsync || []).length +
+        (scanResult?.systemAudit?.infiniteLoopRisk || []).length
       ) : 0,
     },
     fixed: scanResult.fixResults,
@@ -675,14 +713,14 @@ function generateReport(scanResult) {
     // 追加到歷史 (使用 auto_fix_history.js 的新格式)
     const { addFixRecord, readHistory, writeHistory } = require('./auto_fix_history');
     const history = readHistory();
-    
+
     // 添加 audit 記錄作為一個特殊的 fix record
     const auditRecord = {
       id: `AUDIT-${new Date().toISOString().slice(0, 10)}`,
       timestamp: report.timestamp,
       file: 'auto_fix.js',
       issue: 'Audit cycle completed',
-      fix_applied: `Scanned ${report.summary.filesScanned} files, fixed ${report.summary.lowRiskFixed} low-risk issues`,
+      fix_applied: `Scanned ${report?.summary?.filesScanned} files, fixed ${report?.summary?.lowRiskFixed} low-risk issues`,
       expected_effect: 'Code quality improved',
       verified: true,
       success_rate: 100,
@@ -692,7 +730,7 @@ function generateReport(scanResult) {
       isAuditRecord: true,
       auditSummary: report.summary,
     };
-    
+
     // 檢查是否已有今天的 audit 記錄，有的話更新，沒有則添加
     const existingIdx = history.fixes.findIndex(f => f.id === auditRecord.id);
     if (existingIdx >= 0) {
@@ -700,12 +738,12 @@ function generateReport(scanResult) {
     } else {
       history.fixes.push(auditRecord);
     }
-    
+
     // 保留最近 50 條 fix 記錄
     if (history.fixes.length > 50) {
       history.fixes = history.fixes.slice(-50);
     }
-    
+
     if (!writeHistory(history)) {
       console.error(`⚠️ 無法寫入歷史記錄`);
     }
@@ -745,7 +783,7 @@ function generateMarkdownReport(report) {
   lines.push('');
 
   // ✅ 已修復 (Low-Risk)
-  if (report.fixed && report.fixed.length > 0) {
+  if (report.fixed && report?.fixed?.length > 0) {
     lines.push('## ✅ 已自動修復 (Low-Risk)');
     lines.push('');
     for (const item of report.fixed) {
@@ -758,7 +796,7 @@ function generateMarkdownReport(report) {
   }
 
   // ⚠️ High-Risk 問題
-  if (report.highRisk && report.highRisk.length > 0) {
+  if (report.highRisk && report?.highRisk?.length > 0) {
     lines.push('## ⚠️ High-Risk 問題');
     lines.push('');
     for (const item of report.highRisk) {
@@ -773,17 +811,17 @@ function generateMarkdownReport(report) {
       if (item.suggestion) {
         lines.push(`- **建議:** ${item.suggestion}`);
       }
-      if (item.lines && item.lines.length > 0) {
-        lines.push(`- **行號:** ${item.lines.slice(0, 10).join(', ')}${item.lines.length > 10 ? '...' : ''}`);
+      if (item.lines && item?.lines?.length > 0) {
+        lines.push(`- **行號:** ${item?.lines?.slice(0, 10).join(', ')}${item?.lines?.length > 10 ? '...' : ''}`);
       }
-      if (item.context && item.context.length > 0) {
+      if (item.context && item?.context?.length > 0) {
         lines.push(`- **Context:**`);
         for (const ctx of item.context) {
           if (ctx && ctx.before) {
             lines.push('  ```');
-            ctx.before.forEach(l => { if (l.trim()) lines.push(l); });
+            ctx?.before?.forEach(l => { if (l.trim()) lines.push(l); });
             lines.push('> ' + ctx.current);
-            ctx.after.forEach(l => { if (l.trim()) lines.push(l); });
+            ctx?.after?.forEach(l => { if (l.trim()) lines.push(l); });
             lines.push('  ```');
           }
         }
@@ -796,19 +834,19 @@ function generateMarkdownReport(report) {
   }
 
   // 🚨 錯誤摘要
-  if (report.errors && (report.errors.recentNew.length > 0 || report.errors.recurring.length > 0)) {
+  if (report.errors && (report?.errors?.recentNew?.length > 0 || report?.errors?.recurring?.length > 0)) {
     lines.push('## 🚨 錯誤摘要');
     lines.push('');
-    if (report.errors.recentNew.length > 0) {
+    if (report?.errors?.recentNew?.length > 0) {
       lines.push('### 🆕 新錯誤 (24h 內)');
-      for (const err of report.errors.recentNew.slice(0, 5)) {
+      for (const err of report?.errors?.recentNew?.slice(0, 5)) {
         lines.push(`- **[${err.type}]** ${err.problem} (×${err.count || 1})`);
       }
       lines.push('');
     }
-    if (report.errors.recurring.length > 0) {
+    if (report?.errors?.recurring?.length > 0) {
       lines.push('### 🔄 重複錯誤');
-      for (const err of report.errors.recurring.slice(0, 5)) {
+      for (const err of report?.errors?.recurring?.slice(0, 5)) {
         lines.push(`- **[${err.type}]** ${err.problem} (×${err.count || 1})`);
       }
       lines.push('');
@@ -816,11 +854,11 @@ function generateMarkdownReport(report) {
   }
 
   // 🔬 Error Pattern Analysis
-  if (report.errorAnalysis && report.errorAnalysis.types && report.errorAnalysis.types.length > 0) {
+  if (report.errorAnalysis && report?.errorAnalysis?.types && report?.errorAnalysis?.types?.length > 0) {
     const ea = report.errorAnalysis;
     lines.push('## 🔬 Error Pattern Analysis');
     lines.push('');
-    lines.push(`分析咗 ${ea.totalAnalyzed} 個錯誤，識別到 ${ea.types.length} 個錯誤類型`);
+    lines.push(`分析咗 ${ea.totalAnalyzed} 個錯誤，識別到 ${ea?.types?.length} 個錯誤類型`);
     lines.push('');
     for (const t of ea.types) {
       const trendIcon = t.trend === 'increasing' ? '📈' : t.trend === 'active' ? '🔄' : '📉';
@@ -833,11 +871,11 @@ function generateMarkdownReport(report) {
       lines.push(`- ${humanTag}${t.humanReason ? ` — ${t.humanReason}` : ''}`);
       lines.push('');
     }
-    if (ea.needsHumanIntervention.length > 0) {
-      lines.push(`⚠️ **需要人手介入:** ${ea.needsHumanIntervention.map(t => t.type).join(', ')}`);
+    if (ea?.needsHumanIntervention?.length > 0) {
+      lines.push(`⚠️ **需要人手介入:** ${ea?.needsHumanIntervention?.map(t => t.type).join(', ')}`);
     }
-    if (ea.autoResolvable.length > 0) {
-      lines.push(`✅ **可自動處理:** ${ea.autoResolvable.map(t => t.type).join(', ')}`);
+    if (ea?.autoResolvable?.length > 0) {
+      lines.push(`✅ **可自動處理:** ${ea?.autoResolvable?.map(t => t.type).join(', ')}`);
     }
     lines.push('');
   }
@@ -845,9 +883,9 @@ function generateMarkdownReport(report) {
   // 🔧 系統審計
   if (report.systemAudit) {
     const sa = report.systemAudit;
-    const hasIssues = !sa.syntax.ok || sa.hardcodedPaths.length > 0 ||
-                      sa.cronMissing.length > 0 || sa.cronHardcodedDates.length > 0 ||
-                      sa.danglingRefs.length > 0 ||
+    const hasIssues = !sa?.syntax?.ok || sa?.hardcodedPaths?.length > 0 ||
+                      sa?.cronMissing?.length > 0 || sa?.cronHardcodedDates?.length > 0 ||
+                      sa?.danglingRefs?.length > 0 ||
                       (sa.moduleNotFound || []).length > 0 ||
                       (sa.filenamePatternMismatch || []).length > 0 ||
                       (sa.gitPushWithoutApproval || []).length > 0 ||
@@ -861,20 +899,20 @@ function generateMarkdownReport(report) {
       lines.push('');
 
       // 語法錯誤
-      if (sa.syntax.js.length > 0 || sa.syntax.sh.length > 0) {
+      if (sa?.syntax?.js?.length > 0 || sa?.syntax?.sh?.length > 0) {
         lines.push('### ❌ 語法錯誤');
-        for (const item of sa.syntax.js) {
+        for (const item of sa?.syntax?.js) {
           lines.push(`- 📄 **${item.file}** (JS): \`${item.error}\``);
         }
-        for (const item of sa.syntax.sh) {
+        for (const item of sa?.syntax?.sh) {
           lines.push(`- 📄 **${item.file}** (SH): \`${item.error}\``);
         }
         lines.push('');
       }
 
       // 硬編碼路徑
-      if (sa.hardcodedPaths.length > 0) {
-        lines.push(`### ⚠️ 硬編碼路徑 (${sa.hardcodedPaths.length} 處)`);
+      if (sa?.hardcodedPaths?.length > 0) {
+        lines.push(`### ⚠️ 硬編碼路徑 (${sa?.hardcodedPaths?.length} 處)`);
         for (const item of sa.hardcodedPaths) {
           lines.push(`- 📄 **${item.file}:${item.line}**`);
           lines.push(`  \`${item.content}\``);
@@ -884,8 +922,8 @@ function generateMarkdownReport(report) {
       }
 
       // Cron 缺失腳本
-      if (sa.cronMissing.length > 0) {
-        lines.push(`### ❌ Cron Job 引用缺失腳本 (${sa.cronMissing.length} 個)`);
+      if (sa?.cronMissing?.length > 0) {
+        lines.push(`### ❌ Cron Job 引用缺失腳本 (${sa?.cronMissing?.length} 個)`);
         for (const item of sa.cronMissing) {
           lines.push(`- 🕐 \`${item.cronLine}\``);
           lines.push(`  缺失: **${item.scriptPath}**`);
@@ -894,12 +932,12 @@ function generateMarkdownReport(report) {
       }
 
       // Cron 硬編碼日期
-      if (sa.cronHardcodedDates.length > 0) {
-        lines.push(`### ⚠️ Cron Job 硬編碼日期 (${sa.cronHardcodedDates.length} 處)`);
+      if (sa?.cronHardcodedDates?.length > 0) {
+        lines.push(`### ⚠️ Cron Job 硬編碼日期 (${sa?.cronHardcodedDates?.length} 處)`);
         for (const item of sa.cronHardcodedDates) {
           lines.push(`- 📅 **${item.date}** — ${item.source}`);
           if (item.content) {
-            lines.push(`  \`${item.content.substring(0, 120)}\``);
+            lines.push(`  \`${item?.content?.substring(0, 120)}\``);
           } else if (item.cronLine) {
             lines.push(`  \`${item.cronLine}\``);
           }
@@ -909,8 +947,8 @@ function generateMarkdownReport(report) {
       }
 
       // 懸空引用
-      if (sa.danglingRefs.length > 0) {
-        lines.push(`### ⚠️ 懸空引用 (${sa.danglingRefs.length} 個)`);
+      if (sa?.danglingRefs?.length > 0) {
+        lines.push(`### ⚠️ 懸空引用 (${sa?.danglingRefs?.length} 個)`);
         for (const item of sa.danglingRefs) {
           lines.push(`- 📄 **${item.file}:${item.line}** → ${item.ref}`);
           lines.push(`  \`${item.resolvedPath}\``);
@@ -920,7 +958,7 @@ function generateMarkdownReport(report) {
 
       // Module Not Found
       if ((sa.moduleNotFound || []).length > 0) {
-        lines.push(`### ❌ Module Not Found (${sa.moduleNotFound.length} 個)`);
+        lines.push(`### ❌ Module Not Found (${sa?.moduleNotFound?.length} 個)`);
         for (const item of sa.moduleNotFound) {
           lines.push(`- 📄 **${item.file}:${item.line}** → require('${item.require}')`);
           lines.push(`  💡 ${item.suggestion}`);
@@ -930,7 +968,7 @@ function generateMarkdownReport(report) {
 
       // Filename Pattern Mismatch
       if ((sa.filenamePatternMismatch || []).length > 0) {
-        lines.push(`### ⚠️ Filename Pattern 可能漏了 Timestamp (${sa.filenamePatternMismatch.length} 處)`);
+        lines.push(`### ⚠️ Filename Pattern 可能漏了 Timestamp (${sa?.filenamePatternMismatch?.length} 處)`);
         for (const item of sa.filenamePatternMismatch) {
           lines.push(`- 📄 **${item.file}:${item.line}**`);
           lines.push(`  \`${item.content}\``);
@@ -941,7 +979,7 @@ function generateMarkdownReport(report) {
 
       // Git Push Without Approval
       if ((sa.gitPushWithoutApproval || []).length > 0) {
-        lines.push(`### ❌ Git Push 可能未經批準 (${sa.gitPushWithoutApproval.length} 處)`);
+        lines.push(`### ❌ Git Push 可能未經批準 (${sa?.gitPushWithoutApproval?.length} 處)`);
         for (const item of sa.gitPushWithoutApproval) {
           lines.push(`- 📄 **${item.file}:${item.line}**`);
           lines.push(`  \`${item.content}\``);
@@ -952,7 +990,7 @@ function generateMarkdownReport(report) {
 
       // Missing Helper Function
       if ((sa.missingHelper || []).length > 0) {
-        lines.push(`### 🔴 Missing Helper (${sa.missingHelper.length} 處)`);
+        lines.push(`### 🔴 Missing Helper (${sa?.missingHelper?.length} 處)`);
         for (const item of sa.missingHelper) {
           lines.push(`- 📄 **${item.file}:${item.line}** → \`${item.funcName}()\``);
           lines.push(`  \`${item.content}\``);
@@ -963,7 +1001,7 @@ function generateMarkdownReport(report) {
 
       // Sync in Async
       if ((sa.syncInAsync || []).length > 0) {
-        lines.push(`### ⚠️ Sync in Async (${sa.syncInAsync.length} 處)`);
+        lines.push(`### ⚠️ Sync in Async (${sa?.syncInAsync?.length} 處)`);
         for (const item of sa.syncInAsync) {
           lines.push(`- 📄 **${item.file}:${item.line}** — ${item.syncCall} in \`async ${item.asyncFunc}()\``);
           lines.push(`  \`${item.content}\``);
@@ -974,7 +1012,7 @@ function generateMarkdownReport(report) {
 
       // Infinite Loop Risk
       if ((sa.infiniteLoopRisk || []).length > 0) {
-        lines.push(`### 🔴 Infinite Loop Risk (${sa.infiniteLoopRisk.length} 處)`);
+        lines.push(`### 🔴 Infinite Loop Risk (${sa?.infiniteLoopRisk?.length} 處)`);
         for (const item of sa.infiniteLoopRisk) {
           lines.push(`- 📄 **${item.file}:${item.line}**`);
           lines.push(`  \`${item.content}\``);
@@ -1043,7 +1081,7 @@ function printReport(report, format) {
   console.log('');
 
   // Fixed items
-  if (report.fixed && report.fixed.length > 0) {
+  if (report.fixed && report?.fixed?.length > 0) {
     log('green', '✅ 已修復 (Low-Risk)');
     for (const item of report.fixed) {
       console.log(`   📄 ${item.file}`);
@@ -1055,7 +1093,7 @@ function printReport(report, format) {
   }
 
   // High-risk items
-  if (report.highRisk && report.highRisk.length > 0) {
+  if (report.highRisk && report?.highRisk?.length > 0) {
     log('yellow', '⚠️  待確認 (High-Risk)');
     for (const item of report.highRisk) {
       const sev = item.severity === 'critical' ? `${C.red}🔴` :
@@ -1068,25 +1106,25 @@ function printReport(report, format) {
         console.log(`      💡 ${C.dim}${item.suggestion}${C.reset}`);
       }
       // Bug 3 Fix: 顯示 context 而不是靜態 line number
-      if (item.lines && item.lines.length > 0 && item.context) {
-        console.log(`      📍 行號: ${item.lines.slice(0, 5).join(', ')}${item.lines.length > 5 ? '...' : ''}`);
-        if (item.context && item.context.length > 0) {
+      if (item.lines && item?.lines?.length > 0 && item.context) {
+        console.log(`      📍 行號: ${item?.lines?.slice(0, 5).join(', ')}${item?.lines?.length > 5 ? '...' : ''}`);
+        if (item.context && item?.context?.length > 0) {
           for (const ctx of item.context) {
             if (ctx && ctx.before) {
               console.log(`         ${C.dim}--- context ---${C.reset}`);
-              ctx.before.forEach((l, idx) => {
+              ctx?.before?.forEach((l, idx) => {
                 if (l.trim()) console.log(`         ${C.dim}${l}${C.reset}`);
               });
               console.log(`         ${C.cyan}> ${ctx.current}${C.reset}`);
-              ctx.after.forEach((l) => {
+              ctx?.after?.forEach((l) => {
                 if (l.trim()) console.log(`         ${C.dim}${l}${C.reset}`);
               });
               console.log(`         ${C.dim}--- end ---${C.reset}`);
             }
           }
         }
-      } else if (item.lines && item.lines.length > 0) {
-        console.log(`      📍 行號: ${item.lines.slice(0, 5).join(', ')}${item.lines.length > 5 ? '...' : ''}`);
+      } else if (item.lines && item?.lines?.length > 0) {
+        console.log(`      📍 行號: ${item?.lines?.slice(0, 5).join(', ')}${item?.lines?.length > 5 ? '...' : ''}`);
       }
       if (item.id) {
         console.log(`      🔑 ID: ${item.id} (用 \`confirm ${item.id}\` 確認已處理)`);
@@ -1096,17 +1134,17 @@ function printReport(report, format) {
   }
 
   // Error summary
-  if (report.errors && (report.errors.recentNew.length > 0 || report.errors.recurring.length > 0)) {
+  if (report.errors && (report?.errors?.recentNew?.length > 0 || report?.errors?.recurring?.length > 0)) {
     log('red', '🚨 錯誤摘要');
-    if (report.errors.recentNew.length > 0) {
+    if (report?.errors?.recentNew?.length > 0) {
       console.log(`   ${C.red}新錯誤 (24h):${C.reset}`);
-      for (const err of report.errors.recentNew.slice(0, 5)) {
+      for (const err of report?.errors?.recentNew?.slice(0, 5)) {
         console.log(`      • [${err.type}] ${err.problem} (×${err.count || 1})`);
       }
     }
-    if (report.errors.recurring.length > 0) {
+    if (report?.errors?.recurring?.length > 0) {
       console.log(`   ${C.yellow}重複錯誤:${C.reset}`);
-      for (const err of report.errors.recurring.slice(0, 5)) {
+      for (const err of report?.errors?.recurring?.slice(0, 5)) {
         console.log(`      • [${err.type}] ${err.problem} (×${err.count || 1})`);
       }
     }
@@ -1114,10 +1152,10 @@ function printReport(report, format) {
   }
 
   // Error Pattern Analysis
-  if (report.errorAnalysis && report.errorAnalysis.types && report.errorAnalysis.types.length > 0) {
+  if (report.errorAnalysis && report?.errorAnalysis?.types && report?.errorAnalysis?.types?.length > 0) {
     const ea = report.errorAnalysis;
     log('magenta', '🔬 Error Pattern Analysis');
-    console.log(`   分析咗 ${ea.totalAnalyzed} 個錯誤，識別到 ${ea.types.length} 個錯誤類型\n`);
+    console.log(`   分析咗 ${ea.totalAnalyzed} 個錯誤，識別到 ${ea?.types?.length} 個錯誤類型\n`);
 
     for (const t of ea.types) {
       const trendIcon = t.trend === 'increasing' ? '📈' : t.trend === 'active' ? '🔄' : '📉';
@@ -1129,11 +1167,11 @@ function printReport(report, format) {
       console.log('');
     }
 
-    if (ea.needsHumanIntervention.length > 0) {
-      log('yellow', `   ⚠️  ${ea.needsHumanIntervention.length} 個類型需要人手介入: ${ea.needsHumanIntervention.map(t => t.type).join(', ')}`);
+    if (ea?.needsHumanIntervention?.length > 0) {
+      log('yellow', `   ⚠️  ${ea?.needsHumanIntervention?.length} 個類型需要人手介入: ${ea?.needsHumanIntervention?.map(t => t.type).join(', ')}`);
     }
-    if (ea.autoResolvable.length > 0) {
-      log('green', `   ✅ ${ea.autoResolvable.length} 個類型可自動處理: ${ea.autoResolvable.map(t => t.type).join(', ')}`);
+    if (ea?.autoResolvable?.length > 0) {
+      log('green', `   ✅ ${ea?.autoResolvable?.length} 個類型可自動處理: ${ea?.autoResolvable?.map(t => t.type).join(', ')}`);
     }
     console.log('');
   }
@@ -1141,9 +1179,9 @@ function printReport(report, format) {
   // System Audit
   if (report.systemAudit) {
     const sa = report.systemAudit;
-    const hasIssues = !sa.syntax.ok || sa.hardcodedPaths.length > 0 ||
-                      sa.cronMissing.length > 0 || sa.cronHardcodedDates.length > 0 ||
-                      sa.danglingRefs.length > 0 ||
+    const hasIssues = !sa?.syntax?.ok || sa?.hardcodedPaths?.length > 0 ||
+                      sa?.cronMissing?.length > 0 || sa?.cronHardcodedDates?.length > 0 ||
+                      sa?.danglingRefs?.length > 0 ||
                       (sa.moduleNotFound || []).length > 0 ||
                       (sa.filenamePatternMismatch || []).length > 0 ||
                       (sa.gitPushWithoutApproval || []).length > 0 ||
@@ -1156,21 +1194,21 @@ function printReport(report, format) {
       log('cyan', '🔧 系統審計');
 
       // 語法錯誤
-      if (sa.syntax.js.length > 0 || sa.syntax.sh.length > 0) {
+      if (sa?.syntax?.js?.length > 0 || sa?.syntax?.sh?.length > 0) {
         console.log(`\n   ${C.red}❌ 語法錯誤${C.reset}`);
-        for (const item of sa.syntax.js) {
+        for (const item of sa?.syntax?.js) {
           console.log(`      📄 ${item.file} (JS)`);
           console.log(`         ${C.dim}${item.error}${C.reset}`);
         }
-        for (const item of sa.syntax.sh) {
+        for (const item of sa?.syntax?.sh) {
           console.log(`      📄 ${item.file} (SH)`);
           console.log(`         ${C.dim}${item.error}${C.reset}`);
         }
       }
 
       // 硬編碼路徑
-      if (sa.hardcodedPaths.length > 0) {
-        console.log(`\n   ${C.yellow}⚠️ 硬編碼路徑 (${sa.hardcodedPaths.length} 處)${C.reset}`);
+      if (sa?.hardcodedPaths?.length > 0) {
+        console.log(`\n   ${C.yellow}⚠️ 硬編碼路徑 (${sa?.hardcodedPaths?.length} 處)${C.reset}`);
         for (const item of sa.hardcodedPaths) {
           console.log(`      📄 ${item.file}:${item.line}`);
           console.log(`         ${C.dim}${item.content}${C.reset}`);
@@ -1179,8 +1217,8 @@ function printReport(report, format) {
       }
 
       // Cron 缺失腳本
-      if (sa.cronMissing.length > 0) {
-        console.log(`\n   ${C.red}❌ Cron Job 引用缺失腳本 (${sa.cronMissing.length} 個)${C.reset}`);
+      if (sa?.cronMissing?.length > 0) {
+        console.log(`\n   ${C.red}❌ Cron Job 引用缺失腳本 (${sa?.cronMissing?.length} 個)${C.reset}`);
         for (const item of sa.cronMissing) {
           console.log(`      🕐 ${C.dim}${item.cronLine}${C.reset}`);
           console.log(`         缺失: ${C.red}${item.scriptPath}${C.reset}`);
@@ -1188,12 +1226,12 @@ function printReport(report, format) {
       }
 
       // Cron 硬編碼日期
-      if (sa.cronHardcodedDates.length > 0) {
-        console.log(`\n   ${C.yellow}⚠️ Cron Job 硬編碼日期 (${sa.cronHardcodedDates.length} 處)${C.reset}`);
+      if (sa?.cronHardcodedDates?.length > 0) {
+        console.log(`\n   ${C.yellow}⚠️ Cron Job 硬編碼日期 (${sa?.cronHardcodedDates?.length} 處)${C.reset}`);
         for (const item of sa.cronHardcodedDates) {
           console.log(`      📅 ${C.yellow}${item.date}${C.reset} — ${item.source}`);
           if (item.content) {
-            console.log(`         ${C.dim}${item.content.substring(0, 120)}${C.reset}`);
+            console.log(`         ${C.dim}${item?.content?.substring(0, 120)}${C.reset}`);
           } else if (item.cronLine) {
             console.log(`         ${C.dim}${item.cronLine}${C.reset}`);
           }
@@ -1202,8 +1240,8 @@ function printReport(report, format) {
       }
 
       // 懸空引用
-      if (sa.danglingRefs.length > 0) {
-        console.log(`\n   ${C.yellow}⚠️ 懸空引用 (${sa.danglingRefs.length} 個)${C.reset}`);
+      if (sa?.danglingRefs?.length > 0) {
+        console.log(`\n   ${C.yellow}⚠️ 懸空引用 (${sa?.danglingRefs?.length} 個)${C.reset}`);
         for (const item of sa.danglingRefs) {
           console.log(`      📄 ${item.file}:${item.line} → ${C.red}${item.ref}${C.reset}`);
           console.log(`         ${C.dim}${item.resolvedPath}${C.reset}`);
@@ -1212,7 +1250,7 @@ function printReport(report, format) {
 
       // Module Not Found
       if ((sa.moduleNotFound || []).length > 0) {
-        console.log(`\n   ${C.red}❌ Module Not Found (${sa.moduleNotFound.length} 個)${C.reset}`);
+        console.log(`\n   ${C.red}❌ Module Not Found (${sa?.moduleNotFound?.length} 個)${C.reset}`);
         for (const item of sa.moduleNotFound) {
           console.log(`      📄 ${item.file}:${item.line} → ${C.red}require('${item.require}')${C.reset}`);
           console.log(`         ${C.dim}${item.resolvedPath}${C.reset}`);
@@ -1222,7 +1260,7 @@ function printReport(report, format) {
 
       // Filename Pattern Mismatch
       if ((sa.filenamePatternMismatch || []).length > 0) {
-        console.log(`\n   ${C.yellow}⚠️ Filename Pattern 可能漏了 Timestamp (${sa.filenamePatternMismatch.length} 處)${C.reset}`);
+        console.log(`\n   ${C.yellow}⚠️ Filename Pattern 可能漏了 Timestamp (${sa?.filenamePatternMismatch?.length} 處)${C.reset}`);
         for (const item of sa.filenamePatternMismatch) {
           console.log(`      📄 ${item.file}:${item.line}`);
           console.log(`         ${C.dim}${item.content}${C.reset}`);
@@ -1232,7 +1270,7 @@ function printReport(report, format) {
 
       // Git Push Without Approval
       if ((sa.gitPushWithoutApproval || []).length > 0) {
-        console.log(`\n   ${C.red}❌ Git Push 可能未經批準 (${sa.gitPushWithoutApproval.length} 處)${C.reset}`);
+        console.log(`\n   ${C.red}❌ Git Push 可能未經批準 (${sa?.gitPushWithoutApproval?.length} 處)${C.reset}`);
         for (const item of sa.gitPushWithoutApproval) {
           console.log(`      📄 ${item.file}:${item.line}`);
           console.log(`         ${C.dim}${item.content}${C.reset}`);
@@ -1242,7 +1280,7 @@ function printReport(report, format) {
 
       // Disk Check Path Error
       if ((sa.diskCheckPathError || []).length > 0) {
-        console.log(`\n   ${C.yellow}⚠️ Disk Check 路徑可能錯誤 (${sa.diskCheckPathError.length} 處)${C.reset}`);
+        console.log(`\n   ${C.yellow}⚠️ Disk Check 路徑可能錯誤 (${sa?.diskCheckPathError?.length} 處)${C.reset}`);
         for (const item of sa.diskCheckPathError) {
           console.log(`      📄 ${item.file}:${item.line}`);
           console.log(`         ${C.dim}${item.content}${C.reset}`);
@@ -1252,7 +1290,7 @@ function printReport(report, format) {
 
       // Missing Helper Function
       if ((sa.missingHelper || []).length > 0) {
-        console.log(`\n   ${C.red}🔴 Missing Helper: 可能未定義就使用 (${sa.missingHelper.length} 處)${C.reset}`);
+        console.log(`\n   ${C.red}🔴 Missing Helper: 可能未定義就使用 (${sa?.missingHelper?.length} 處)${C.reset}`);
         for (const item of sa.missingHelper) {
           console.log(`      📄 ${item.file}:${item.line} → ${C.red}${item.funcName}()${C.reset}`);
           console.log(`         ${C.dim}${item.content}${C.reset}`);
@@ -1262,7 +1300,7 @@ function printReport(report, format) {
 
       // Sync in Async
       if ((sa.syncInAsync || []).length > 0) {
-        console.log(`\n   ${C.yellow}⚠️ Sync in Async: async function 阻塞等待 (${sa.syncInAsync.length} 處)${C.reset}`);
+        console.log(`\n   ${C.yellow}⚠️ Sync in Async: async function 阻塞等待 (${sa?.syncInAsync?.length} 處)${C.reset}`);
         for (const item of sa.syncInAsync) {
           console.log(`      📄 ${item.file}:${item.line} — ${C.yellow}${item.syncCall}${C.reset} in async ${item.asyncFunc}()`);
           console.log(`         ${C.dim}${item.content}${C.reset}`);
@@ -1272,7 +1310,7 @@ function printReport(report, format) {
 
       // Infinite Loop Risk
       if ((sa.infiniteLoopRisk || []).length > 0) {
-        console.log(`\n   ${C.red}🔴 Infinite Loop Risk: 可能冇 break (${sa.infiniteLoopRisk.length} 處)${C.reset}`);
+        console.log(`\n   ${C.red}🔴 Infinite Loop Risk: 可能冇 break (${sa?.infiniteLoopRisk?.length} 處)${C.reset}`);
         for (const item of sa.infiniteLoopRisk) {
           console.log(`      📄 ${item.file}:${item.line}`);
           console.log(`         ${C.dim}${item.content}${C.reset}`);
@@ -1587,7 +1625,7 @@ function runScanAndFix(autofix = true, quiet = false) {
   // 1. 掃描 errors.json
   log('dim', '📋 掃描 errors.json...');
   const errorResult = scanErrors();
-  log('dim', `   未解決: ${errorResult.unresolved.length}, 新增(24h): ${errorResult.recentNew.length}, 重複: ${errorResult.recurring.length}`);
+  log('dim', `   未解決: ${errorResult?.unresolved?.length}, 新增(24h): ${errorResult?.recentNew?.length}, 重複: ${errorResult?.recurring?.length}`);
 
   // 2. 找到最近修改的檔案
   log('dim', '📂 搜尋最近修改的檔案...');
@@ -1598,22 +1636,22 @@ function runScanAndFix(autofix = true, quiet = false) {
   // 3. Error Pattern Analysis
   log('dim', '🔬 分析 error patterns...');
   const errorAnalysis = analyzeErrorPatterns();
-  log('dim', `   識別到 ${errorAnalysis.types.length} 個錯誤類型`);
+  log('dim', `   識別到 ${errorAnalysis?.types?.length} 個錯誤類型`);
   console.log('');
 
   // 4. 系統審計（語法檢查、硬編碼路徑、Cron、懸空引用）
   log('dim', '🔧 執行系統審計...');
   const systemAudit = runSystemAudit();
   const saSummary = [];
-  if (!systemAudit.syntax.ok) saSummary.push(`語法錯誤: ${systemAudit.syntax.js.length} JS, ${systemAudit.syntax.sh.length} SH`);
-  if (systemAudit.hardcodedPaths.length > 0) saSummary.push(`硬編碼路徑: ${systemAudit.hardcodedPaths.length}`);
-  if (systemAudit.cronMissing.length > 0) saSummary.push(`Cron 缺失腳本: ${systemAudit.cronMissing.length}`);
-  if (systemAudit.cronHardcodedDates.length > 0) saSummary.push(`Cron 硬編碼日期: ${systemAudit.cronHardcodedDates.length}`);
-  if (systemAudit.danglingRefs.length > 0) saSummary.push(`懸空引用: ${systemAudit.danglingRefs.length}`);
-  if ((systemAudit.missingHelper || []).length > 0) saSummary.push(`Missing Helper: ${systemAudit.missingHelper.length}`);
-  if ((systemAudit.syncInAsync || []).length > 0) saSummary.push(`Sync in Async: ${systemAudit.syncInAsync.length}`);
-  if ((systemAudit.infiniteLoopRisk || []).length > 0) saSummary.push(`Infinite Loop: ${systemAudit.infiniteLoopRisk.length}`);
-  if ((systemAudit.otherIssues || []).length > 0) saSummary.push(`其他問題: ${systemAudit.otherIssues.length}`);
+  if (!systemAudit?.syntax?.ok) saSummary.push(`語法錯誤: ${systemAudit?.syntax?.js?.length} JS, ${systemAudit?.syntax?.sh?.length} SH`);
+  if (systemAudit?.hardcodedPaths?.length > 0) saSummary.push(`硬編碼路徑: ${systemAudit?.hardcodedPaths?.length}`);
+  if (systemAudit?.cronMissing?.length > 0) saSummary.push(`Cron 缺失腳本: ${systemAudit?.cronMissing?.length}`);
+  if (systemAudit?.cronHardcodedDates?.length > 0) saSummary.push(`Cron 硬編碼日期: ${systemAudit?.cronHardcodedDates?.length}`);
+  if (systemAudit?.danglingRefs?.length > 0) saSummary.push(`懸空引用: ${systemAudit?.danglingRefs?.length}`);
+  if ((systemAudit.missingHelper || []).length > 0) saSummary.push(`Missing Helper: ${systemAudit?.missingHelper?.length}`);
+  if ((systemAudit.syncInAsync || []).length > 0) saSummary.push(`Sync in Async: ${systemAudit?.syncInAsync?.length}`);
+  if ((systemAudit.infiniteLoopRisk || []).length > 0) saSummary.push(`Infinite Loop: ${systemAudit?.infiniteLoopRisk?.length}`);
+  if ((systemAudit.otherIssues || []).length > 0) saSummary.push(`其他問題: ${systemAudit?.otherIssues?.length}`);
   if (saSummary.length > 0) {
     log('yellow', `   ⚠️ ${saSummary.join(', ')}`);
   } else {
@@ -1630,8 +1668,8 @@ function runScanAndFix(autofix = true, quiet = false) {
       totalLowRisk: 0,
       totalLowRiskFixed: 0,
       totalHighRisk: 0,
-      errorsUnresolved: errorResult.unresolved.length,
-      errorsRecurring: errorResult.recurring.length,
+      errorsUnresolved: errorResult?.unresolved?.length,
+      errorsRecurring: errorResult?.recurring?.length,
       fixResults: [],
       highRiskItems: [],
       errorSummary: {
@@ -1667,17 +1705,17 @@ function runScanAndFix(autofix = true, quiet = false) {
     log('dim', `   🔍 ${file.name}...`);
     const analysis = analyzeFile(file.path);
 
-    const hasIssues = analysis.lowRisk.length > 0 || analysis.highRisk.length > 0;
+    const hasIssues = analysis?.lowRisk?.length > 0 || analysis?.highRisk?.length > 0;
     if (hasIssues) filesWithIssues++;
 
-    totalLowRisk += analysis.lowRisk.length;
-    totalHighRisk += analysis.highRisk.length;
+    totalLowRisk += analysis?.lowRisk?.length;
+    totalHighRisk += analysis?.highRisk?.length;
 
     // Auto-fix low-risk
-    if (autofix && analysis.lowRisk.length > 0) {
+    if (autofix && analysis?.lowRisk?.length > 0) {
       const fixResult = autoFixFile(file.path, analysis.lowRisk);
       totalLowRiskFixed += fixResult.fixed;
-      if (fixResult.details.length > 0) {
+      if (fixResult?.details?.length > 0) {
         fixResults.push({
           file: analysis.file,
           fixed: fixResult.fixed,
@@ -1689,7 +1727,7 @@ function runScanAndFix(autofix = true, quiet = false) {
           if (detail.startsWith('✅ ')) {
             const ruleName = detail.slice(2).trim();
             // Extract issue description from lowRisk issues
-            const matchedIssues = analysis.lowRisk.filter(i => i.name === ruleName);
+            const matchedIssues = analysis?.lowRisk?.filter(i => i.name === ruleName);
             const issueDesc = matchedIssues.length > 0
               ? matchedIssues[0].details || matchedIssues[0].name
               : ruleName;
@@ -1706,19 +1744,19 @@ function runScanAndFix(autofix = true, quiet = false) {
           }
         }
       }
-    } else if (analysis.lowRisk.length > 0) {
+    } else if (analysis?.lowRisk?.length > 0) {
       // scan-only mode: 列出但不修復
       fixResults.push({
         file: analysis.file,
         fixed: 0,
-        details: analysis.lowRisk.map(i => `🔎 ${i.name}: ${i.details}`),
+        details: analysis?.lowRisk?.map(i => `🔎 ${i.name}: ${i.details}`),
       });
     }
 
     // Collect high-risk (with deduplication)
     for (const hr of analysis.highRisk) {
       // 去重 key: rule.id + 最關鍵的行號（取第一行）
-      const firstLine = hr.lines && hr.lines.length > 0 ? hr.lines[0] : 0;
+      const firstLine = hr.lines && hr?.lines?.length > 0 ? hr.lines[0] : 0;
       const dedupKey = `${hr.rule}:${analysis.file}:${firstLine}`;
       if (seenHighRisk.has(dedupKey)) continue;
       seenHighRisk.add(dedupKey);
@@ -1739,15 +1777,15 @@ function runScanAndFix(autofix = true, quiet = false) {
     totalLowRisk,
     totalLowRiskFixed,
     totalHighRisk,
-    errorsUnresolved: errorResult.unresolved.length,
-    errorsRecurring: errorResult.recurring.length,
+    errorsUnresolved: errorResult?.unresolved?.length,
+    errorsRecurring: errorResult?.recurring?.length,
     fixResults,
     highRiskItems,
     errorSummary: {
-      recentNew: errorResult.recentNew.map(e => ({
+      recentNew: errorResult?.recentNew?.map(e => ({
         id: e.id, type: e.type, problem: e.problem, count: e.count,
       })),
-      recurring: errorResult.recurring.map(e => ({
+      recurring: errorResult?.recurring?.map(e => ({
         id: e.id, type: e.type, problem: e.problem, count: e.count,
       })),
     },
@@ -1875,7 +1913,7 @@ function getLightweightImpacts(modifiedFiles) {
     try {
       const entries = fs.readdirSync(dir, { withFileTypes: true });
       for (const entry of entries) {
-        if (entry.name.startsWith('.')) continue;
+        if (entry?.name?.startsWith('.')) continue;
         if (['node_modules', 'archive', 'lib'].includes(entry.name)) continue;
         const fullPath = path.join(dir, entry.name);
         if (entry.isDirectory()) {
@@ -1914,7 +1952,7 @@ function getLightweightImpacts(modifiedFiles) {
       } catch { /* ignore */ }
     }
     for (const job of cronJobs) {
-      if (job.script === targetName || job.script === scriptNameNoExt || job.command.includes(targetName)) {
+      if (job.script === targetName || job.script === scriptNameNoExt || job?.command?.includes(targetName)) {
         cronImpact.push(`${targetName} → ${describeCronSchedule(job.schedule)}`);
       }
     }
@@ -2074,13 +2112,14 @@ function runImpactAnalysis(scriptName) {
 
   // 3. 語法檢查
   const syntaxCheck = checkSyntax(targetPath);
+  const safetyObj = result.safety;
   if (syntaxCheck.ok === true) {
-    result.safety.syntax = '✅ OK';
+    if (safetyObj) safetyObj.syntax = '✅ OK';
   } else if (syntaxCheck.ok === false) {
-    result.safety.syntax = `❌ 語法錯誤: ${syntaxCheck.error}`;
-    result.recommendations.push('🔴 語法錯誤！必須先修復先可以繼續');
+    if (safetyObj) safetyObj.syntax = `❌ 語法錯誤: ${syntaxCheck.error}`;
+    if (result.recommendations) result.recommendations.push('🔴 語法錯誤！必須先修復先可以繼續');
   } else {
-    result.safety.syntax = '⚪ 無法檢查（未知副檔名）';
+    if (safetyObj) safetyObj.syntax = '⚪ 無法檢查（未知副檔名）';
   }
 
   // 4. 找出 requiredBy（邊個 require 呢個 script）
@@ -2096,7 +2135,7 @@ function runImpactAnalysis(scriptName) {
         entries = fs.readdirSync(dir, { withFileTypes: true });
       } catch (e) { return; }
       for (const entry of entries) {
-        if (entry.name.startsWith('.')) continue;
+        if (entry?.name?.startsWith('.')) continue;
         if (entry.name === 'node_modules' || entry.name === 'archive' || entry.name === 'lib') continue;
         const fullPath = path.join(dir, entry.name);
         if (entry.isDirectory()) {
@@ -2133,7 +2172,7 @@ function runImpactAnalysis(scriptName) {
       } catch (e) { continue; }
       for (const pattern of requirePatterns) {
         if (pattern.test(content)) {
-          result.dependencies.requiredBy.push(path.basename(scriptPath));
+          result?.dependencies?.requiredBy?.push(path.basename(scriptPath));
           break;
         }
       }
@@ -2146,10 +2185,10 @@ function runImpactAnalysis(scriptName) {
     const req = m[1];
     // 跳過相對路徑（自己目錄下）
     if (!req.startsWith('.') && !req.startsWith('/')) {
-      result.dependencies.requires.push(req);
+      result?.dependencies?.requires?.push(req);
     }
   }
-  result.dependencies.requires = [...new Set(result.dependencies.requires)];
+  if (result.dependencies) result.dependencies.requires = [...new Set(result?.dependencies?.requires)];
 
   // 6. Safety 檢查 - try-catch
   // 危險操作：fs.writeFileSync, fs.readFileSync, execSync, execFileSync, spawnSync
@@ -2193,7 +2232,7 @@ function runImpactAnalysis(scriptName) {
       const nearbyLines = allLines.slice(Math.max(0, startLine - 3), Math.min(allLines.length, startLine + 2));
       const hasTryCatch = nearbyLines.some(l => /\btry\b|\bcatch\b/.test(l));
       if (!hasTryCatch) {
-        result.safety.tryCatch.push(
+        result?.safety?.tryCatch?.push(
           `⚠️ ${method} at line ${startLine} - missing try-catch`
         );
       }
@@ -2234,7 +2273,7 @@ function runImpactAnalysis(scriptName) {
       const lineNum = targetContent.substring(0, match.index).split('\n').length;
       // 跳過 config.js 自己
       if (targetName === 'config.js') continue;
-      result.safety.hardcodedPaths.push(
+      result?.safety?.hardcodedPaths?.push(
         `⚠️ line ${lineNum}: \`${pathVal}\` — 建議用 process.env 或 lib/config`
       );
     }
@@ -2253,7 +2292,7 @@ function runImpactAnalysis(scriptName) {
     let match;
     while ((match = pattern.exec(targetContent)) !== null) {
       const lineNum = targetContent.substring(0, match.index).split('\n').length;
-      result.safety.shellInjection.push(
+      result?.safety?.shellInjection?.push(
         `⚠️ line ${lineNum}: 可能存在 shell injection — ${match[0].substring(0, 60)}...`
       );
     }
@@ -2263,42 +2302,42 @@ function runImpactAnalysis(scriptName) {
   const cronJobs = parseCrontab();
   const scriptNameNoExt = targetName.replace(/\.(js|sh|mjs|cjs)$/, '');
   for (const job of cronJobs) {
-    if (job.script === targetName || job.script === scriptNameNoExt || job.command.includes(targetName)) {
-      result.cronImpact.push({
-        job: path.basename(job.command.split(' ')[0].replace(/.*scripts\//, '')) || job.script,
+    if (job.script === targetName || job.script === scriptNameNoExt || job?.command?.includes(targetName)) {
+      result?.cronImpact?.push({
+        job: path.basename(job?.command?.split(' ')[0].replace(/.*scripts\//, '')) || job.script,
         schedule: describeCronSchedule(job.schedule),
         rawSchedule: job.schedule,
-        command: job.command.substring(0, 80),
+        command: job?.command?.substring(0, 80),
       });
     }
   }
 
   // 10. 綜合建議
-  if (result.safety.syntax === '✅ OK') {
-    result.recommendations.push('✅ 語法檢查通過');
+  if (result?.safety?.syntax === '✅ OK') {
+    result?.recommendations?.push('✅ 語法檢查通過');
   }
-  if (result.safety.tryCatch.length > 0) {
-    result.recommendations.push(`⚠️ 有 ${result.safety.tryCatch.length} 處危險操作缺少 try-catch`);
+  if (result?.safety?.tryCatch?.length > 0) {
+    result?.recommendations?.push(`⚠️ 有 ${result?.safety?.tryCatch?.length} 處危險操作缺少 try-catch`);
   }
-  if (result.safety.hardcodedPaths.length > 0) {
-    result.recommendations.push(`⚠️ 有 ${result.safety.hardcodedPaths.length} 處 hardcoded paths`);
+  if (result?.safety?.hardcodedPaths?.length > 0) {
+    result?.recommendations?.push(`⚠️ 有 ${result?.safety?.hardcodedPaths?.length} 處 hardcoded paths`);
   }
-  if (result.safety.shellInjection.length > 0) {
-    result.recommendations.push(`🔴 有 ${result.safety.shellInjection.length} 處疑似 shell injection`);
+  if (result?.safety?.shellInjection?.length > 0) {
+    result?.recommendations?.push(`🔴 有 ${result?.safety?.shellInjection?.length} 處疑似 shell injection`);
   }
-  if (result.dependencies.requiredBy.length > 0) {
-    result.recommendations.push(
-      `📝 影響 ${result.dependencies.requiredBy.length} 個 scripts: ${result.dependencies.requiredBy.join(', ')}`
+  if (result?.dependencies?.requiredBy?.length > 0) {
+    result?.recommendations?.push(
+      `📝 影響 ${result?.dependencies?.requiredBy?.length} 個 scripts: ${result?.dependencies?.requiredBy?.join(', ')}`
     );
   } else {
-    result.recommendations.push('✅ 沒有其他 scripts 依賴呢個檔案');
+    result?.recommendations?.push('✅ 沒有其他 scripts 依賴呢個檔案');
   }
-  if (result.cronImpact.length > 0) {
-    result.recommendations.push(`🕐 Cron jobs 影響: ${result.cronImpact.map(j => j.schedule).join(', ')}`);
+  if (result?.cronImpact?.length > 0) {
+    result?.recommendations?.push(`🕐 Cron jobs 影響: ${result?.cronImpact?.map(j => j.schedule).join(', ')}`);
   } else {
-    result.recommendations.push('✅ 沒有 cron jobs 依賴呢個檔案');
+    result?.recommendations?.push('✅ 沒有 cron jobs 依賴呢個檔案');
   }
-  result.recommendations.push('🔧 修改前建議：先做 syntax check (`node --check`)');
+  result?.recommendations?.push('🔧 修改前建議：先做 syntax check (`node --check`)');
 
   // ==================== 輸出報告 ====================
   console.log(`${C.bold}📄 ${targetName}${C.reset}`);
@@ -2307,16 +2346,16 @@ function runImpactAnalysis(scriptName) {
   // Dependencies
   log('cyan', '📦 依賴關係');
   console.log(`   ${C.bold}依賴於 (requires):${C.reset}`);
-  if (result.dependencies.requires.length > 0) {
-    for (const r of result.dependencies.requires.slice(0, 20)) {
+  if (result?.dependencies?.requires?.length > 0) {
+    for (const r of result?.dependencies?.requires?.slice(0, 20)) {
       console.log(`      • ${r}`);
     }
   } else {
     console.log(`      ${C.dim}(冇外部 require)${C.reset}`);
   }
   console.log(`   ${C.bold}被依賴於 (requiredBy):${C.reset}`);
-  if (result.dependencies.requiredBy.length > 0) {
-    for (const r of result.dependencies.requiredBy) {
+  if (result?.dependencies?.requiredBy?.length > 0) {
+    for (const r of result?.dependencies?.requiredBy) {
       console.log(`      ⚠️  ${C.yellow}${r}${C.reset}`);
     }
   } else {
@@ -2326,39 +2365,39 @@ function runImpactAnalysis(scriptName) {
 
   // Safety
   log('cyan', '🔒 安全性檢查');
-  console.log(`   Syntax: ${result.safety.syntax}`);
-  if (result.safety.tryCatch.length > 0) {
-    console.log(`   ${C.yellow}⚠️  Missing try-catch (${result.safety.tryCatch.length}):${C.reset}`);
-    for (const t of result.safety.tryCatch.slice(0, 5)) {
+  console.log(`   Syntax: ${result?.safety?.syntax}`);
+  if (result?.safety?.tryCatch?.length > 0) {
+    console.log(`   ${C.yellow}⚠️  Missing try-catch (${result?.safety?.tryCatch?.length}):${C.reset}`);
+    for (const t of result?.safety?.tryCatch?.slice(0, 5)) {
       console.log(`      ${C.dim}${t}${C.reset}`);
     }
-    if (result.safety.tryCatch.length > 5) {
-      console.log(`      ${C.dim}... 仲有 ${result.safety.tryCatch.length - 5} 處${C.reset}`);
+    if (result?.safety?.tryCatch?.length > 5) {
+      console.log(`      ${C.dim}... 仲有 ${result?.safety?.tryCatch?.length - 5} 處${C.reset}`);
     }
   }
-  if (result.safety.hardcodedPaths.length > 0) {
-    console.log(`   ${C.yellow}⚠️  Hardcoded paths (${result.safety.hardcodedPaths.length}):${C.reset}`);
-    for (const p of result.safety.hardcodedPaths.slice(0, 5)) {
+  if (result?.safety?.hardcodedPaths?.length > 0) {
+    console.log(`   ${C.yellow}⚠️  Hardcoded paths (${result?.safety?.hardcodedPaths?.length}):${C.reset}`);
+    for (const p of result?.safety?.hardcodedPaths?.slice(0, 5)) {
       console.log(`      ${C.dim}${p}${C.reset}`);
     }
-    if (result.safety.hardcodedPaths.length > 5) {
-      console.log(`      ${C.dim}... 仲有 ${result.safety.hardcodedPaths.length - 5} 處${C.reset}`);
+    if (result?.safety?.hardcodedPaths?.length > 5) {
+      console.log(`      ${C.dim}... 仲有 ${result?.safety?.hardcodedPaths?.length - 5} 處${C.reset}`);
     }
   }
-  if (result.safety.shellInjection.length > 0) {
-    console.log(`   ${C.red}🔴 Shell Injection (${result.safety.shellInjection.length}):${C.reset}`);
-    for (const s of result.safety.shellInjection) {
+  if (result?.safety?.shellInjection?.length > 0) {
+    console.log(`   ${C.red}🔴 Shell Injection (${result?.safety?.shellInjection?.length}):${C.reset}`);
+    for (const s of result?.safety?.shellInjection) {
       console.log(`      ${C.dim}${s}${C.reset}`);
     }
   }
-  if (result.safety.tryCatch.length === 0 && result.safety.hardcodedPaths.length === 0 && result.safety.shellInjection.length === 0) {
+  if (result?.safety?.tryCatch?.length === 0 && result?.safety?.hardcodedPaths?.length === 0 && result?.safety?.shellInjection?.length === 0) {
     console.log(`   ${C.green}✅ 冇發現安全問題${C.reset}`);
   }
   console.log('');
 
   // Cron Impact
   log('cyan', '🕐 Cron Jobs 影響');
-  if (result.cronImpact.length > 0) {
+  if (result?.cronImpact?.length > 0) {
     for (const j of result.cronImpact) {
       console.log(`   🕐 ${C.bold}${j.schedule}${C.reset} — ${C.dim}${j.command}${C.reset}`);
     }
@@ -2420,7 +2459,7 @@ function generateAuditBrief(report) {
   lines.push('');
 
   // High-risk items
-  if (report.highRisk && report.highRisk.length > 0) {
+  if (report.highRisk && report?.highRisk?.length > 0) {
     lines.push('## ⚠️ High-Risk 問題');
     for (const item of report.highRisk) {
       lines.push(`### ${item.id} — ${item.file}`);
@@ -2428,8 +2467,8 @@ function generateAuditBrief(report) {
       lines.push(`- **嚴重性:** ${item.severity}`);
       lines.push(`- **詳情:** ${item.details}`);
       if (item.suggestion) lines.push(`- **建議:** ${item.suggestion}`);
-      if (item.lines && item.lines.length > 0) {
-        lines.push(`- **行號:** ${item.lines.slice(0, 10).join(', ')}`);
+      if (item.lines && item?.lines?.length > 0) {
+        lines.push(`- **行號:** ${item?.lines?.slice(0, 10).join(', ')}`);
       }
       lines.push('');
     }
@@ -2440,63 +2479,63 @@ function generateAuditBrief(report) {
     const sa = report.systemAudit;
     const issues = [];
 
-    if (sa.syntax.js.length > 0) {
+    if (sa?.syntax?.js?.length > 0) {
       issues.push('### JS 語法錯誤');
-      for (const item of sa.syntax.js) {
+      for (const item of sa?.syntax?.js) {
         issues.push(`- ${item.file}: ${item.error}`);
       }
     }
-    if (sa.syntax.sh.length > 0) {
+    if (sa?.syntax?.sh?.length > 0) {
       issues.push('### SH 語法錯誤');
-      for (const item of sa.syntax.sh) {
+      for (const item of sa?.syntax?.sh) {
         issues.push(`- ${item.file}: ${item.error}`);
       }
     }
-    if (sa.hardcodedPaths.length > 0) {
-      issues.push(`### 硬編碼路徑 (${sa.hardcodedPaths.length} 處)`);
-      for (const item of sa.hardcodedPaths.slice(0, 10)) {
+    if (sa?.hardcodedPaths?.length > 0) {
+      issues.push(`### 硬編碼路徑 (${sa?.hardcodedPaths?.length} 處)`);
+      for (const item of sa?.hardcodedPaths?.slice(0, 10)) {
         issues.push(`- ${item.file}:${item.line} — ${item.suggestion}`);
       }
     }
-    if (sa.cronMissing.length > 0) {
-      issues.push(`### Cron 引用缺失腳本 (${sa.cronMissing.length} 個)`);
+    if (sa?.cronMissing?.length > 0) {
+      issues.push(`### Cron 引用缺失腳本 (${sa?.cronMissing?.length} 個)`);
       for (const item of sa.cronMissing) {
         issues.push(`- ${item.scriptPath}`);
       }
     }
-    if (sa.cronHardcodedDates.length > 0) {
-      issues.push(`### Cron 硬編碼日期 (${sa.cronHardcodedDates.length} 處)`);
-      for (const item of sa.cronHardcodedDates.slice(0, 5)) {
+    if (sa?.cronHardcodedDates?.length > 0) {
+      issues.push(`### Cron 硬編碼日期 (${sa?.cronHardcodedDates?.length} 處)`);
+      for (const item of sa?.cronHardcodedDates?.slice(0, 5)) {
         issues.push(`- ${item.source}: ${item.date}`);
       }
     }
-    if (sa.danglingRefs.length > 0) {
-      issues.push(`### 懸空引用 (${sa.danglingRefs.length} 個)`);
-      for (const item of sa.danglingRefs.slice(0, 10)) {
+    if (sa?.danglingRefs?.length > 0) {
+      issues.push(`### 懸空引用 (${sa?.danglingRefs?.length} 個)`);
+      for (const item of sa?.danglingRefs?.slice(0, 10)) {
         issues.push(`- ${item.file}:${item.line} → ${item.ref}`);
       }
     }
     if ((sa.moduleNotFound || []).length > 0) {
-      issues.push(`### Module Not Found (${sa.moduleNotFound.length} 個)`);
-      for (const item of sa.moduleNotFound.slice(0, 10)) {
+      issues.push(`### Module Not Found (${sa?.moduleNotFound?.length} 個)`);
+      for (const item of sa?.moduleNotFound?.slice(0, 10)) {
         issues.push(`- ${item.file}:${item.line} → require('${item.require}')`);
       }
     }
     if ((sa.missingHelper || []).length > 0) {
-      issues.push(`### Missing Helper (${sa.missingHelper.length} 處)`);
-      for (const item of sa.missingHelper.slice(0, 10)) {
+      issues.push(`### Missing Helper (${sa?.missingHelper?.length} 處)`);
+      for (const item of sa?.missingHelper?.slice(0, 10)) {
         issues.push(`- ${item.file}:${item.line} → ${item.funcName}()`);
       }
     }
     if ((sa.syncInAsync || []).length > 0) {
-      issues.push(`### Sync in Async (${sa.syncInAsync.length} 處)`);
-      for (const item of sa.syncInAsync.slice(0, 10)) {
+      issues.push(`### Sync in Async (${sa?.syncInAsync?.length} 處)`);
+      for (const item of sa?.syncInAsync?.slice(0, 10)) {
         issues.push(`- ${item.file}:${item.line} — ${item.syncCall} in ${item.asyncFunc}()`);
       }
     }
     if ((sa.infiniteLoopRisk || []).length > 0) {
-      issues.push(`### Infinite Loop Risk (${sa.infiniteLoopRisk.length} 處)`);
-      for (const item of sa.infiniteLoopRisk.slice(0, 5)) {
+      issues.push(`### Infinite Loop Risk (${sa?.infiniteLoopRisk?.length} 處)`);
+      for (const item of sa?.infiniteLoopRisk?.slice(0, 5)) {
         issues.push(`- ${item.file}:${item.line}`);
       }
     }
@@ -2509,9 +2548,9 @@ function generateAuditBrief(report) {
   }
 
   // Error Analysis
-  if (report.errorAnalysis && report.errorAnalysis.types && report.errorAnalysis.types.length > 0) {
+  if (report.errorAnalysis && report?.errorAnalysis?.types && report?.errorAnalysis?.types?.length > 0) {
     lines.push('## 🔬 Error Pattern Analysis');
-    for (const t of report.errorAnalysis.types) {
+    for (const t of report?.errorAnalysis?.types) {
       const trendIcon = t.trend === 'increasing' ? '📈' : t.trend === 'active' ? '🔄' : '📉';
       lines.push(`${trendIcon} **${t.type}** — ${t.occurrences} 次 (${t.unresolvedCount} 未解決)`);
       lines.push(`  根本原因: ${t.rootCause}`);
@@ -2522,10 +2561,10 @@ function generateAuditBrief(report) {
   }
 
   // Fixed items
-  if (report.fixed && report.fixed.length > 0) {
+  if (report.fixed && report?.fixed?.length > 0) {
     lines.push('## ✅ 已自動修復 (Low-Risk)');
     for (const item of report.fixed) {
-      lines.push(`- **${item.file}**: ${item.details.join(', ')}`);
+      lines.push(`- **${item.file}**: ${item?.details?.join(', ')}`);
     }
     lines.push('');
   }
@@ -2827,4 +2866,6 @@ function main() {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
