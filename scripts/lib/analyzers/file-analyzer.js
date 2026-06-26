@@ -18,6 +18,21 @@
 const fs = require('fs');
 const path = require('path');
 
+// Phase 1+3 validation gate — same as auto_fix.js (2026-06-26).
+// autoFixFile() is a bypass entry point for rule.fix() without
+// validation, so we add the gate inline.
+let validation = null;
+function getValidation() {
+  if (!validation) {
+    try {
+      validation = require('../rules/validation');
+    } catch {
+      validation = { validateFix: null, logValidation: () => {} };
+    }
+  }
+  return validation;
+}
+
 // File size limit: 100KB (used to skip large files in analysis)
 const CONFIG = {
   MAX_FILE_SIZE_BYTES: 100000,
@@ -214,8 +229,36 @@ function autoFixFile(filePath, issues, options = {}) {
     try {
       const newContent = rule.fix(content, filePath);
       if (newContent && newContent !== content) {
-        content = newContent;
-        fixedDetails.push(`✅ ${rule.name}`);
+        // Phase 1+3 validation gate (2026-06-26) — reject bad fixes.
+        const { validateFix, logValidation } = getValidation();
+        let validationOk = true;
+        if (validateFix) {
+          const validation = validateFix({
+            oldContent: content,
+            newContent,
+            filePath,
+            rule,
+          });
+          if (!validation.valid) {
+            const failedChecks = validation.checks
+              .filter(c => !c.valid)
+              .map(c => `${c.name}: ${c.details || 'failed'}`)
+              .join('; ');
+            logValidation({
+              ruleId: rule.id,
+              filePath,
+              status: 'SKIPPED',
+              details: failedChecks,
+            });
+            fixedDetails.push(`⚠️ ${rule.name}: skipped (${failedChecks})`);
+            validationOk = false;
+            // Do NOT apply — keep content unchanged for next rule
+          }
+        }
+        if (validationOk) {
+          content = newContent;
+          fixedDetails.push(`✅ ${rule.name}`);
+        }
       }
     } catch (e) {
       fixedDetails.push(`❌ ${rule.name}: ${e.message}`);
