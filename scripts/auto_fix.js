@@ -141,7 +141,19 @@ const SELF_EXCLUDE = ['auto_fix.js'];
 // corrupt string literals used as test data (e.g. /Users/ paths or
 // fs calls inside test fixture strings). Test-scoped exclusions also
 // cover /tmp/ paths (ephemeral fixtures).
-const FILE_EXCLUDE_PATTERNS = [/\/test_[a-z]/i, /^test_[a-z]/i, /\/tmp\//];
+// `debug_` prefix excludes scratch / debug scripts created during
+// troubleshooting — they often contain test fixture strings too.
+// `.bak`, `.broken`, `.tmp` are intermediate artifacts.
+const FILE_EXCLUDE_PATTERNS = [
+  /[\/_]test_/i,
+  /^test_/i,
+  /[\/_]debug_/i,
+  /^debug_/i,
+  /\.bak$/i,
+  /\.broken$/i,
+  /\.tmp$/i,
+  /\/tmp\//,
+];
 
 // Spawn sub-agent 預設 Discord channel (從環境變數讀取，預設為編程頻道)
 const DEFAULT_SPAWN_CHANNEL = process.env.DISCORD_PROGRAMMING_CHANNEL || '1473384999003619500';
