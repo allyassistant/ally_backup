@@ -38,7 +38,9 @@ function backup(file) {
 }
 function restore(file, content) {
   if (content === null) { try { if (fs.existsSync(file)) fs.unlinkSync(file); } catch(e) {} }
-  else { fs.writeFileSync(file, content, 'utf8'); }
+  else { try { fs.writeFileSync(file, content, 'utf8'); } catch (e) {
+    console.error(`File write failed: ${e.message}`);
+  }}
 }
 
 function runScript(args) {
@@ -87,10 +89,15 @@ function runTests() {
   const r1 = runScript(['--threshold', '0.15']);
   assert(r1.ok, 'script exited 0 (got code ' + r1.code + ')');
   assert(fs.existsSync(PAUSE_FILE), 'pause file created');
-  const pause = JSON.parse(fs.readFileSync(PAUSE_FILE, 'utf8'));
+  let pause;
+  try {
+    pause = JSON.parse(fs.readFileSync(PAUSE_FILE, 'utf8'));
+  } catch (e) {
+    console.error(`File read failed: ${e.message}`);
+  }
   assert(typeof pause.until === 'number' && pause.until > Date.now(), 'pause.until is in the future');
   assert(typeof pause.reason === 'string', 'reason field exists');
-  assert(r1.stdout.includes('"action":"pause"'), 'stdout has action:pause');
+  assert(r1?.stdout?.includes('"action":"pause"'), 'stdout has action:pause');
 
   // ── Test 2: rate below threshold → no pause ──
   console.log('\n── Test 2: 5% junk rate → no pause ──');
@@ -116,7 +123,7 @@ function runTests() {
   const r2 = runScript(['--threshold', '0.15']);
   assert(r2.ok, 'script exited 0');
   assert(!fs.existsSync(PAUSE_FILE), 'no pause file created (rate below threshold)');
-  assert(r2.stdout.includes('"action":"no-action"'), 'stdout has action:no-action');
+  assert(r2?.stdout?.includes('"action":"no-action"'), 'stdout has action:no-action');
 
   // ── Test 3: expired pause → cleared ──
   console.log('\n── Test 3: expired pause → cleared ──');
@@ -127,13 +134,21 @@ function runTests() {
     junkRateAtPause: 0.22,
     threshold: 0.15,
   };
-  fs.writeFileSync(PAUSE_FILE, JSON.stringify(expiredPause, null, 2) + '\n', 'utf8');
-  fs.writeFileSync(JUNK_RATE_FILE, entries2.map(e => JSON.stringify(e)).join('\n') + '\n', 'utf8');
+  try {
+    fs.writeFileSync(PAUSE_FILE, JSON.stringify(expiredPause, null, 2) + '\n', 'utf8');
+  } catch (e) {
+    console.error(`File write failed: ${e.message}`);
+  }
+  try {
+    fs.writeFileSync(JUNK_RATE_FILE, entries2.map(e => JSON.stringify(e)).join('\n') + '\n', 'utf8');
+  } catch (e) {
+    console.error(`File write failed: ${e.message}`);
+  }
 
   const r3 = runScript(['--threshold', '0.15']);
   assert(r3.ok, 'script exited 0');
   assert(!fs.existsSync(PAUSE_FILE), 'expired pause file cleared');
-  assert(r3.stdout.includes('"action":"resume"'), 'stdout has action:resume');
+  assert(r3?.stdout?.includes('"action":"resume"'), 'stdout has action:resume');
 
   // ── Test 4: active pause → untouched ──
   console.log('\n── Test 4: active pause → kept ──');
@@ -153,8 +168,8 @@ function runTests() {
   const r4 = runScript(['--threshold', '0.15']);
   assert(r4.ok, 'script exited 0');
   assert(fs.existsSync(PAUSE_FILE), 'active pause file kept');
-  assert(r4.stdout.includes('"action":"keep-paused"'), 'stdout has action:keep-paused');
-  assert(r4.stdout.includes('hoursLeft'), 'stdout shows hours');
+  assert(r4?.stdout?.includes('"action":"keep-paused"'), 'stdout has action:keep-paused');
+  assert(r4?.stdout?.includes('hoursLeft'), 'stdout shows hours');
 
   // ── Cleanup ──
   restore(JUNK_RATE_FILE, junkBackup);

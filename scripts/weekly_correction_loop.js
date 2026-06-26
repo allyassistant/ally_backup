@@ -1237,7 +1237,7 @@ if (fs.existsSync(SKILLS_DIR)) {
       if (bodyLength < MIN_CONTENT_CHARS) {
         // JUNK: minimal or no workflow content
         const support = listSupportFiles(dirPath);
-        const hasSupport = support.references.length + support.templates.length + support.scripts.length > 0;
+        const hasSupport = support?.references?.length + support?.templates?.length + support?.scripts?.length > 0;
         if (hasSupport) {
           // Skill has support files — keep it as draft, don't archive
           skillStats.draft++;

@@ -43,7 +43,7 @@ function buggyRead() {
     try {
       data = fs.readFileSync('/etc/hosts', 'utf8');
     } catch (e) {
-      console.error(`File read failed: ${e.message}`);
+      console.error("File read failed: " + e.message);
     }
   } catch (e) {
     console.error("File read failed: " + e.message);
