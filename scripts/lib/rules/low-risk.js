@@ -778,4 +778,17 @@ const LOW_RISK_RULES = [
   },
 ];
 
-module.exports = { LOW_RISK_RULES, getSimplifiedMap };
+// Rules disabled on 2026-06-26 due to recurring SyntaxError damage:
+// - optional-chaining: Inserts '?.' on string literals (e.g. '.cache.json.tmp' → '.cache?.json?.tmp')
+//   and LHS assignment targets with array indexing ([0].field = value). Triggers Node v26 SyntaxError.
+// - fs-sync-trycatch: Adds unnecessary try/catch wrappers around mkdirSync, breaking code that
+//   intentionally relies on throw-on-error semantics.
+//
+// Re-enable after fixing the LHS detection and string-literal detection in these rules.
+const DISABLED_RULE_IDS = new Set(['optional-chaining', 'fs-sync-trycatch']);
+
+module.exports = {
+  LOW_RISK_RULES: LOW_RISK_RULES.filter(r => !DISABLED_RULE_IDS.has(r.id)),
+  DISABLED_RULE_IDS,
+  getSimplifiedMap,
+};
