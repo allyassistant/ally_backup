@@ -137,6 +137,11 @@ const MAX_SCAN_FILES = 50;        // 單次最多掃描檔案數
 // 自我排除：避免審計自己（規則定義中包含大量 pattern，會造成誤報）
 const SKIP_DIRS = ['archive', '__tests__', 'lib/rules', 'lib/analyzers', 'lib/helpers'];
 const SELF_EXCLUDE = ['auto_fix.js'];
+// Test files are excluded from auto-fix because low-risk rules may
+// corrupt string literals used as test data (e.g. /Users/ paths or
+// fs calls inside test fixture strings). Test-scoped exclusions also
+// cover /tmp/ paths (ephemeral fixtures).
+const FILE_EXCLUDE_PATTERNS = [/\/test_[a-z]/i, /^test_[a-z]/i, /\/tmp\//];
 
 // Spawn sub-agent 預設 Discord channel (從環境變數讀取，預設為編程頻道)
 const DEFAULT_SPAWN_CHANNEL = process.env.DISCORD_PROGRAMMING_CHANNEL || '1473384999003619500';
@@ -342,6 +347,7 @@ function findRecentFiles() {
           const ext = path.extname(entry.name);
           if (!extensions.includes(ext)) continue;
           if (SELF_EXCLUDE.includes(entry.name)) continue;
+          if (FILE_EXCLUDE_PATTERNS.some(p => p.test(fullPath))) continue;
           try {
             const stat = fs.statSync(fullPath);
             if (stat.mtime > sinceDate) {
@@ -644,6 +650,14 @@ function analyzeFile(filePath) {
  */
 function autoFixFile(filePath, issues) {
   if (issues.length === 0) return { fixed: 0, details: [] };
+
+  // Skip test files and /tmp/ fixtures — low-risk rules may corrupt
+  // string literals used as test data (e.g. /Users/ paths, fs calls
+  // inside test fixture strings). This is a safety net even if the
+  // file walker already excludes these.
+  if (FILE_EXCLUDE_PATTERNS.some(p => p.test(filePath))) {
+    return { fixed: 0, details: ['excluded (test/tmp file)'] };
+  }
 
   // 使用 Cache 讀取檔案
   const { content: originalContent } = helpers.getFileContent(filePath);
