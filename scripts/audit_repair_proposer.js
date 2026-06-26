@@ -59,6 +59,20 @@ const sigDetector = require('./lib/script_signature_detector');
 const cumulativeApprovals = require('./lib/cumulative_approvals');
 const proposalStore = require('./lib/proposal_store');
 const fixM3 = require('./fix_m3_advisory');
+// Same exclusion patterns as auto_fix.js — skip test/debug/tmp/bak/etc.
+// files to prevent low-risk rules from corrupting string literals used
+// as test fixture data (e.g. simplified-chinese changing string contents).
+const FILE_EXCLUDE_PATTERNS = [
+  /[\/_]test_/i,
+  /^test_/i,
+  /[\/_]debug_/i,
+  /^debug_/i,
+  /\.bak$/i,
+  /\.broken$/i,
+  /\.tmp$/i,
+  /\/tmp\//,
+];
+
 const ENABLE_LAYER2 = process.env.AUDIT_REPAIR_LAYER2 !== 'false'; // default ON (2026-06-20)
 // Cumulative auto-apply: when a rule has been manually approved N times
 // (default N=3), future production-tier proposals of that rule are
@@ -336,6 +350,13 @@ function decideAction(issue) {
 
 // ----------------- Auto-fix executor -----------------
 async function applyFix(absPath, issue, dryRun, graph) {
+  // Exclusion gate — same patterns as auto_fix.js. Skip files that
+  // contain test fixture data (string literals that rules shouldn't touch).
+  const relPath = path.relative(WS, absPath);
+  if (FILE_EXCLUDE_PATTERNS.some(p => p.test(relPath) || p.test(absPath))) {
+    return { ok: false, error: `file excluded by pattern (test/debug/tmp/bak)`, excluded: true };
+  }
+
   const rule = findLowRiskRule(issue);
   if (!rule) {
     return { ok: false, error: `no LOW_RISK_RULES entry for rule '${issue.rule}'` };
