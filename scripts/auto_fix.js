@@ -132,6 +132,7 @@ function log(color, msg) {
 const { LOW_RISK_RULES } = require('./lib/rules/low-risk');
 const { HIGH_RISK_RULES } = require('./lib/rules/high-risk');
 const { runSystemAudit } = require('./lib/rules/system-audit');
+const { validateFix, logValidation } = require('./lib/rules/validation');
 
 // ==================== AUDIT → FIX RULE ID MAP ====================
 // Bug 4 (2026-06-22): audit_just_written.js emits camelCase/snake_case rule
@@ -602,10 +603,37 @@ function autoFixFile(filePath, issues) {
     try {
       const newContent = rule.fix(content, filePath);
       if (newContent && newContent !== content) {
+        // Phase 1 (2026-06-26): per-rule dry-run validation.
+        // The 4 buggy rules (optional-chaining, fs-sync-trycatch, hardcoded-home-path,
+        // simplified-chinese) produce syntactically valid OR semantically equivalent
+        // output only by luck. This catches bad fixes BEFORE they accumulate.
+        const validation = validateFix({
+          oldContent: content,
+          newContent,
+          filePath,
+          rule,
+        });
+        if (!validation.valid) {
+          const failedChecks = validation.checks
+            .filter(c => !c.valid)
+            .map(c => `${c.name}: ${c.details || 'failed'}`)
+            .join('; ');
+          logValidation({
+            ruleId: rule.id,
+            filePath,
+            status: 'SKIPPED',
+            details: failedChecks,
+          });
+          fixedDetails.push(`⚠️ ${rule.name}: skipped (validation failed: ${failedChecks})`);
+          // Do NOT apply the bad fix — keep `content` unchanged for next rule
+          continue;
+        }
         content = newContent;
+        logValidation({ ruleId: rule.id, filePath, status: 'APPLIED' });
         fixedDetails.push(`✅ ${rule.name}`);
       }
     } catch (e) {
+      logValidation({ ruleId: rule.id, filePath, status: 'ERROR', details: e.message });
       fixedDetails.push(`❌ ${rule.name}: ${e.message}`);
     }
   }
