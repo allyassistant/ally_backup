@@ -7,6 +7,23 @@ const path = require('path');
 const fs = require('fs');
 const { buildTryBlockMap } = require('../audit/try-block-map');
 
+// ====================================================================
+// Phase 2 (2026-06-26): AST-aware rule variants for the 4 buggy rules.
+//
+// These are added as `experimentalAst: { detect, fix }` properties on the
+// rule objects. The legacy `detect`/`fix` are preserved as `legacyDetect`/
+// `legacyFix` for the 2-week comparison period.
+//
+// auto_fix.js's USE_AST_RULES feature flag (default true) selects which
+// implementation runs:
+//   - USE_AST_RULES=true (default): prefer experimentalAst.detect/fix
+//   - USE_AST_RULES=false: fall back to legacyDetect/legacyFix
+// ====================================================================
+const optionalChainingAst = require('./optional-chaining.ast');
+const fsSyncTrycatchAst = require('./fs-sync-trycatch.ast');
+const hardcodedHomePathAst = require('./hardcoded-home-path.ast');
+const simplifiedChineseAst = require('./simplified-chinese.ast');
+
 let HOME;
 try {
   ({ HOME } = require('../config'));
@@ -211,6 +228,12 @@ const LOW_RISK_RULES = [
     id: 'hardcoded-home-path',
     name: '替換硬編碼路徑',
     category: 'bug',
+    // Phase 2: AST-aware variant added. See top-of-file comment.
+    // Set USE_AST_RULES=false to fall back to legacyDetect/legacyFix.
+    experimentalAst: {
+      detect: hardcodedHomePathAst.detect,
+      fix: hardcodedHomePathAst.fix,
+    },
     detect(content, filePath) {
       const ext = path.extname(filePath);
       const isJS = ['.js', '.mjs', '.cjs'].includes(ext);
@@ -326,6 +349,11 @@ const LOW_RISK_RULES = [
     id: 'simplified-chinese',
     name: '簡體→繁體常見字修正',
     category: 'doc',
+    // Phase 2: AST-aware variant added. Preserves identifiers & property keys.
+    experimentalAst: {
+      detect: simplifiedChineseAst.detect,
+      fix: simplifiedChineseAst.fix,
+    },
     detect(content) {
       const simplifiedMap = getSimplifiedMap();
       let count = 0;
@@ -371,6 +399,12 @@ const LOW_RISK_RULES = [
     id: 'fs-sync-trycatch',
     name: 'fs.*Sync / execSync 自動加 try-catch',
     category: 'reliability',
+    // Phase 2: AST-aware variant added. Uses buildTryBlockMap consistently in
+    // BOTH detect and fix (legacy had regex/heuristic divergence).
+    experimentalAst: {
+      detect: fsSyncTrycatchAst.detect,
+      fix: fsSyncTrycatchAst.fix,
+    },
     /**
      * Detect fs.*Sync() / execSync() calls not already inside a try-catch block
      */
@@ -596,6 +630,12 @@ const LOW_RISK_RULES = [
     id: 'optional-chaining',
     name: '深層 member chain 加 optional chaining (防 TypeError)',
     category: 'reliability',
+    // Phase 2: AST-aware variant added. Walks MemberExpression nodes instead
+    // of regex; skips LHS / string literals / comments via ancestor checks.
+    experimentalAst: {
+      detect: optionalChainingAst.detect,
+      fix: optionalChainingAst.fix,
+    },
     /**
      * Detect any 3+ level member chain (a.b.c) that isn't already covered
      * by optional chaining (?.). Roots in OPTIONAL_CHAINING_SAFE_ROOTS

@@ -53,6 +53,68 @@ const { addFixRecord } = require('./auto_fix_history');
 
 // ==================== CONFIG ====================
 const { HOME, WS, SCRIPTS_DIR, ERRORS_JSON, STATE_DIR } = require('./lib/config');
+
+// ====================================================================
+// Phase 2 (2026-06-26): USE_AST_RULES feature flag
+//
+// When true (default post-Phase 1), the 4 buggy low-risk rules
+// (optional-chaining, fs-sync-trycatch, hardcoded-home-path,
+// simplified-chinese) prefer their AST-aware `experimentalAst` detect/fix
+// implementations over the legacy regex-based ones.
+//
+// Rollback: set USE_AST_RULES=false to revert all 4 rules to legacy.
+// Per-rule disable: set USE_AST_RULES=rule_id,false (comma-separated).
+//
+// Legacy detect/fix are preserved as fallback for the 2-week comparison
+// period per the Phase 2 design doc.
+// ====================================================================
+const USE_AST_RULES = (() => {
+  const raw = process.env.USE_AST_RULES;
+  if (raw === undefined || raw === '') return true;  // default ON post-Phase 1
+  if (raw === 'false' || raw === '0') return false;
+  // Allow per-rule override: 'optional-chaining=false,fs-sync-trycatch=true'
+  // Returns true/false for the global default, but per-rule checks use _astEnabledFor().
+  return raw !== 'false';
+})();
+
+function _astEnabledFor(ruleId) {
+  const raw = process.env.USE_AST_RULES;
+  if (raw === undefined || raw === '') return true;
+  if (raw === 'false' || raw === '0') return false;
+  if (raw === 'true' || raw === '1') return true;
+  // Parse comma-separated list: rule_id=true|false
+  const parts = raw.split(',').map(s => s.trim()).filter(Boolean);
+  for (const p of parts) {
+    const [id, val] = p.split('=').map(s => s && s.trim());
+    if (id === ruleId) return val === 'true' || val === '1';
+  }
+  // No per-rule match — use global default
+  return USE_AST_RULES;
+}
+
+/**
+ * Resolve which `detect` function to use for a rule.
+ * AST path is preferred when enabled AND the rule has an experimentalAst.detect.
+ * Falls back to legacy `detect` (or `legacyDetect` if set).
+ */
+function _resolveDetect(rule) {
+  if (!rule) return null;
+  if (_astEnabledFor(rule.id) && rule.experimentalAst && typeof rule.experimentalAst.detect === 'function') {
+    return rule.experimentalAst.detect;
+  }
+  return rule.legacyDetect || rule.detect;
+}
+
+/**
+ * Resolve which `fix` function to use for a rule.
+ */
+function _resolveFix(rule) {
+  if (!rule) return null;
+  if (_astEnabledFor(rule.id) && rule.experimentalAst && typeof rule.experimentalAst.fix === 'function') {
+    return rule.experimentalAst.fix;
+  }
+  return rule.legacyFix || rule.fix;
+}
 const AUDIT_STATE = path.join(STATE_DIR, 'last_audit.json');
 const AUDIT_REPORT = path.join(STATE_DIR, 'auto_fix_report.json');
 const AUDIT_LOG = path.join(STATE_DIR, 'auto_fix_history.json');
@@ -533,7 +595,9 @@ function analyzeFile(filePath) {
   // Low-risk 檢測
   for (const rule of LOW_RISK_RULES) {
     try {
-      const detection = rule.detect(content, filePath);
+      const detectFn = _resolveDetect(rule);
+      if (!detectFn) continue;
+      const detection = detectFn(content, filePath);
       if (detection.found) {
         result?.lowRisk?.push({
           rule: rule.id,
@@ -598,10 +662,13 @@ function autoFixFile(filePath, issues) {
     // skipped, preserving the no-error contract.
     const fixRuleId = AUDIT_TO_FIX_RULE_MAP[issue.rule] || issue.rule;
     const rule = LOW_RISK_RULES.find(r => r.id === fixRuleId);
-    if (!rule || !rule.fix) continue;
+    if (!rule) continue;
+    // Phase 2: prefer AST-aware fix when USE_AST_RULES enables it.
+    const fixFn = _resolveFix(rule);
+    if (!fixFn) continue;
 
     try {
-      const newContent = rule.fix(content, filePath);
+      const newContent = fixFn(content, filePath);
       if (newContent && newContent !== content) {
         // Phase 1 (2026-06-26): per-rule dry-run validation.
         // The 4 buggy rules (optional-chaining, fs-sync-trycatch, hardcoded-home-path,
