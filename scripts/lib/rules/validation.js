@@ -17,6 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { execFileSync } = require('child_process');
+const { parseAst, clearAstCache, collectIdentifiers, countNodes } = require('./ast-helpers');
 
 const VALIDATION_LOG = path.join(
   process.env.HOME || '/Users/ally',
@@ -164,6 +165,114 @@ function validateIdentifiers(oldContent, newContent) {
  * @param {object} params.rule - The rule object {id, name, ...}
  * @returns {{ valid: boolean, checks: Array<{name, valid, details?}> }}
  */
+/**
+ * Check whether semantic validation is enabled.
+ * Evaluated at call time (not module load time) so tests can toggle the env var.
+ *
+ * Env var SEMANTIC_VALIDATION:
+ *   - Unset or 'true' → enabled (default)
+ *   - 'false' → disabled
+ *   - Comma-separated file paths → per-file override parser (future)
+ */
+function isSemanticEnabled() {
+  const raw = process.env.SEMANTIC_VALIDATION;
+  if (raw === undefined || raw === 'true' || raw === '') return true;
+  if (raw === 'false') return false;
+  // raw might be a comma-separated list of files to enable
+  return true;
+}
+
+/**
+ * Phase 3 (2026-06-26): AST-based semantic equivalence check.
+ *
+ * Compares identifier sets and node counts between old and new content.
+ * This catches the `simplified-chinese` and `hardcoded-home-path` bug classes
+ * that Phase 1 regex-based validation cannot detect.
+ *
+ * Returns null when the file can't be parsed (non-JS or syntax error).
+ *
+ * @param {string} oldContent
+ * @param {string} newContent
+ * @param {string} filePath
+ * @returns {{ valid: boolean, details?: string } | null}
+ */
+function semanticEquivalenceCheck(oldContent, newContent, filePath) {
+  const ext = path.extname(filePath);
+  if (!['.js', '.mjs', '.cjs'].includes(ext)) {
+    return null; // skip non-JS files
+  }
+
+  if (!isSemanticEnabled()) {
+    return null; // skip when feature flag is off
+  }
+
+  // Clear cache between parses to avoid stale results
+  clearAstCache();
+  const oldResult = parseAst(oldContent, filePath);
+  clearAstCache();
+  const newResult = parseAst(newContent, filePath);
+  if (!oldResult || !newResult || !oldResult.ast || !newResult.ast) {
+    // If one side doesn't parse, the syntax check will catch it.
+    // We can't do semantic comparison on unparseable code, so skip.
+    return null;
+  }
+
+  const oldAst = oldResult.ast;
+  const newAst = newResult.ast;
+
+  // ---- Check 1: Identifier preservation ----
+  const SAFE = new Set(['Math', 'JSON', 'Number', 'String', 'Boolean',
+    'Array', 'Object', 'Date', 'Promise', 'Buffer', 'console',
+    'Symbol', 'Error', 'Reflect', 'globalThis', 'Intl', 'BigInt',
+    'Atomics', 'parseInt', 'parseFloat', 'isNaN', 'isFinite',
+    'setTimeout', 'setInterval', 'clearTimeout', 'clearInterval',
+    'process', 'require', 'module', 'exports', '__dirname',
+    '__filename', 'Map', 'Set', 'WeakMap', 'WeakSet', 'RegExp',
+    'undefined', 'null', 'true', 'false', 'NaN', 'Infinity']);
+
+  const oldIds = new Set(
+    collectIdentifiers(oldAst)
+      .map(id => id.name)  // extract name string from {name, node, line}
+      .filter(name => !SAFE.has(name) && name.length >= 2)
+  );
+
+  const newIds = new Set(
+    collectIdentifiers(newAst)
+      .map(id => id.name)
+      .filter(name => !SAFE.has(name) && name.length >= 2)
+  );
+
+  const lostIds = [];
+  for (const id of oldIds) {
+    if (!newIds.has(id)) {
+      lostIds.push(id);
+    }
+  }
+
+  // ---- Check 2: Node count structural integrity ----
+  const oldCount = countNodes(oldAst);
+  const newCount = countNodes(newAst);
+  const threshold = Math.floor(oldCount * 0.9); // 90% minimum
+  const nodeCountOk = newCount >= threshold;
+
+  const isSemanticValid = lostIds.length === 0 && nodeCountOk;
+  const details = [];
+  if (lostIds.length > 0) {
+    details.push(`lost ${lostIds.length} identifier(s): ${lostIds.slice(0, 5).join(', ')}${lostIds.length > 5 ? '...' : ''}`);
+  }
+  if (!nodeCountOk) {
+    details.push(`node count dropped from ${oldCount} to ${newCount} (threshold ${threshold})`);
+  }
+
+  return {
+    valid: isSemanticValid,
+    details: details.length > 0 ? details.join('; ') : undefined,
+  };
+}
+
+/**
+ * Main per-rule validator. Runs all checks and returns a single pass/fail.
+ */
 function validateFix({ oldContent, newContent, filePath, rule }) {
   const checks = [];
 
@@ -174,7 +283,7 @@ function validateFix({ oldContent, newContent, filePath, rule }) {
     return { valid: false, checks };
   }
 
-  // Check 2: identifier preservation (catches simplified-chinese bug class)
+  // Check 2: identifier preservation (regex heuristic, Phase 1)
   const idents = validateIdentifiers(oldContent, newContent);
   checks.push({
     name: 'identifiers',
@@ -183,6 +292,16 @@ function validateFix({ oldContent, newContent, filePath, rule }) {
       ? `lost ${idents.lostIdentifiers.length} identifier(s): ${idents.lostIdentifiers.slice(0, 5).join(', ')}${idents.lostIdentifiers.length > 5 ? '...' : ''}`
       : undefined,
   });
+
+  // Check 3: semantic equivalence (AST-based, Phase 3)
+  const semantic = semanticEquivalenceCheck(oldContent, newContent, filePath);
+  if (semantic !== null) {
+    checks.push({
+      name: 'semantic',
+      valid: semantic.valid,
+      details: semantic.details,
+    });
+  }
 
   return {
     valid: checks.every(c => c.valid),
@@ -195,4 +314,5 @@ module.exports = {
   validateSyntax,
   validateIdentifiers,
   logValidation,
+  semanticEquivalenceCheck,
 };
