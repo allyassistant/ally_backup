@@ -14,6 +14,55 @@ const { spawn } = require('child_process');
 const { SCRIPTS_DIR, MEMORY_DIR, STATE_DIR, ERRORS_JSON, atomicWriteSync } = require('./config');
 const { isFalsePositive } = require('./whitelist_patterns');
 const { getSimplifiedMap } = require('./rules/low-risk');
+const { buildTryBlockMap } = require('./audit/try-block-map');
+
+// ==================== Calibration (#182 follow-up #9) ====================
+// Time-constant allowlist for magic_numbers rule. Mirrors analyze_magic_numbers.js
+// categorization (timeMs / timeSec). Skips numbers that are legitimate
+// time-to-unit conversions, not opaque magic numbers.
+//   timeMs: per-second ms (1000), per-minute ms (60000), per-hour ms (3600000),
+//           per-day ms (86400000), and short timer intervals
+//   timeSec: per-minute sec (60), per-hour sec (3600)
+//   timeMin: per-day min (1440)
+// These cannot be replaced by a more descriptive constant without obscuring
+// intent; they are stable, well-known numbers in the codebase.
+const TIME_CONSTANT_WHITELIST = new Set([
+  '1000',      // ms per second
+  '60000',     // ms per minute
+  '120000',    // 2 min
+  '180000',    // 3 min
+  '300000',    // 5 min
+  '3600000',   // ms per hour = ONE_HOUR_MS
+  '86400000',  // ms per day = ONE_DAY_MS
+  '60',        // sec per minute
+  '300',       // sec per 5min
+  '3600',      // sec per hour
+  '1440',      // min per day = ONE_DAY_MINUTES
+  '28800',     // HKT offset seconds (UTC+8 × 3600)
+  '28800000',  // HKT offset ms
+]);
+
+// Fallback: legacy brace-depth walker for files acorn cannot parse.
+// Less robust than AST but never throws. Used only when buildTryBlockMap()
+// returns null (unparseable file).
+function isInsideTryBlockLegacy(lines, lineIdx) {
+  let depth = 0;
+  for (let j = lineIdx - 1; j >= 0; j--) {
+    const line = lines[j];
+    const closes = (line.match(/}/g) || []).length;
+    const opens = (line.match(/{/g) || []).length;
+    const prevDepth = depth;
+    depth += opens - closes;
+    if (prevDepth === 0 && depth > 0 && /try\s*\{/.test(line)) {
+      return true;
+    }
+    if (depth < 0) {
+      if (/try\s*\{/.test(line)) return true;
+      return false;
+    }
+  }
+  return false;
+}
 
 // ==================== 共用常量 ====================
 // CQM-008: 提取 severityOrder 為共用常量
@@ -197,9 +246,17 @@ class LocalScanner {
         // P0: fs.*_sync missing trycatch (fs.writeFileSync, fs.unlinkSync, fs.rmSync, etc.)
         const fsSyncCallRegex = /\bfs\.(?:readFileSync|writeFileSync|unlinkSync|rmSync|mkdirSync|copyFileSync|accessSync|statSync|readdirSync|lstatSync)\s*\(/;
         if (fsSyncCallRegex.test(content)) {
+          // #182 #9: AST-based try-block map replaces broken brace-counting.
+          // buildTryBlockMap() returns Set<lineNum> for every line inside a
+          // try/catch/finally block. Falls back to brace-depth heuristic only
+          // if acorn cannot parse the file (returns null).
+          const fsTryBlockLines = buildTryBlockMap(content);
+          const fsUseAST = fsTryBlockLines !== null;
+
           for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
             const trimmed = line.trim();
+            const lineNum = i + 1;
 
             // Skip single-line comments
             if (trimmed.startsWith('//') || trimmed.startsWith('*')) continue;
@@ -218,27 +275,33 @@ class LocalScanner {
                 }
               }
 
-              let foundTry = false;
-              // CQM-008: 先檢查當前行是否為 try-catch 單行模式（如 try { fs.readFileSync(...) } catch(e) {}）
-              if (/\btry\s*\{[^}]*fs\.(?:readFileSync|writeFileSync|copyFileSync|mkdirSync|unlinkSync|existsSync|statSync|lstatSync|accessSync|readdirSync)[^}]*\}/.test(lines[i])) {
-                foundTry = true;
-              } else {
-                let braceCount = 0;
-                for (let j = i - 1; j >= 0; j--) {
-                  const prevLine = lines[j];
-                  braceCount += (prevLine.match(/\{/g) || []).length;
-                  braceCount -= (prevLine.match(/\}/g) || []).length;
-                  if (/\btry\s*\{/.test(prevLine) && braceCount >= 0) {
-                    foundTry = true;
-                    break;
-                  }
-                  if (braceCount < -1) break;
-                  if (i - j > 20) break;
+              // #182 #9: AST-based try detection (primary). Legacy brace-depth
+              // walker is used only when acorn could not parse the file (returns null).
+              // Inline single-line try-catch regex kept as fast path.
+              // #182 #9 (extended): skip lines where fs.Sync match is ENTIRELY inside
+              // a single string literal (test fixture inputs like
+              //   '    fs.mkdirSync(p, { recursive: true });'
+              // — these are not real call sites).
+              const inTryBlock = fsUseAST
+                ? fsTryBlockLines.has(lineNum)
+                : isInsideTryBlockLegacy(lines, i);
+              const inInlineTry = /\btry\s*\{[^}]*fs\.(?:readFileSync|writeFileSync|copyFileSync|mkdirSync|unlinkSync|existsSync|statSync|lstatSync|accessSync|readdirSync)\b[^}]*\}/.test(line);
+              const isWholeLineString = /^\s*['"`].*['"`]\s*[;,]?\s*$/.test(line);
+              // #182 #9: existsSync-guard pattern. Same defense as
+              // audit_just_written.js — `if (!fs.existsSync(...)) { fs.mkdirSync(...) }`
+              // is a documented safe-pattern; skip flag.
+              let isExistsGuard = false;
+              for (let j = Math.max(0, i - 2); j < i; j++) {
+                if (/\bif\s*\(\s*!?\s*fs\.existsSync\b/.test(lines[j])) {
+                  isExistsGuard = true;
+                  break;
                 }
               }
+              if (inTryBlock || inInlineTry || isWholeLineString || isExistsGuard) {
+                continue;
+              }
 
-
-              if (!foundTry) {
+              {
                 // Check if this is a false positive
                 const issueForCheck = {
                   file: path.relative(process.cwd(), file),
@@ -274,6 +337,9 @@ class LocalScanner {
         const execCallRegex = /\bexec(?:File)?Sync\s*\(/;
         const execSyncMatches = content.match(execCallRegex);
         if (execSyncMatches) {
+          // #182 #9: AST-based try-block map (replaces broken brace counter)
+          const execTryBlockLines = buildTryBlockMap(content);
+
           // Track if we're inside a template string or comment block
           let inTemplateString = false;
           let inBlockComment = false;
@@ -336,42 +402,30 @@ class LocalScanner {
 
             // Check for actual function calls
             if (execCallRegex.test(line)) {
-              // Scan backward to find if there's a try block before this line
-              let foundTry = false;
-              // CQM-008: 先檢查當前行是否為 try-catch 單行模式（如 try { require('child_process').execSync(...) } catch(e) {}）
-              if (/\btry\s*\{[^}]*exec(?:File)?Sync\s*\([^)]*\)[^}]*\}/.test(lines[i])) {
-                foundTry = true;
-              } else {
-                let braceCount = 0;
-                for (let j = i - 1; j >= 0; j--) {
-                  const prevLine = lines[j];
-                  // Count braces
-                  braceCount += (prevLine.match(/\{/g) || []).length;
-                  braceCount -= (prevLine.match(/\}/g) || []).length;
-                  // If we hit a try { before closing any brace, we're in a try block
-                  if (/\btry\s*\{/.test(prevLine) && braceCount >= 0) {
-                    foundTry = true;
-                    break;
-                  }
-                  // If we close more braces than we open (negative braceCount), we've exited the function
-                  if (braceCount < -1) break;
-                  // Don't look too far back (max 20 lines)
-                  if (i - j > 20) break;
-                }
+              // #182 #9: AST-based try detection (same fix as fsSync rule).
+              // execTryBlockLines was computed once per file above. Skip when the
+              // line is inside any try/catch/finally block. Single-line try-catch
+              // regex used as fast path; whole-line-string skip applied too.
+              const lineNum = i + 1;
+              const inTryBlock = execTryBlockLines
+                ? execTryBlockLines.has(lineNum)
+                : isInsideTryBlockLegacy(lines, i);
+              const inInlineTry = /\btry\s*\{[^}]*exec(?:File)?Sync\s*\([^)]*\)[^}]*\}/.test(line);
+              const isWholeLineString = /^\s*['"`].*['"`]\s*[;,]?\s*$/.test(line);
+              if (inTryBlock || inInlineTry || isWholeLineString) {
+                continue;
               }
 
-              if (!foundTry) {
-                // CQM-001: 改用 path.relative 保留路徑信息
-                issues.push(new Issue({
-                  file: path.relative(process.cwd(), file),
-                  line: i + 1,
-                  rule: 'execSync_missing_trycatch',
-                  message: `execSync or execFileSync found without try-catch protection`,
-                  severity: 'high',
-                  source: CONFIG?.SCANNER_SOURCES?.LOCAL,
-                  category: 'reliability'
-                }));
-              }
+              // CQM-001: 改用 path.relative 保留路徑信息
+              issues.push(new Issue({
+                file: path.relative(process.cwd(), file),
+                line: i + 1,
+                rule: 'execSync_missing_trycatch',
+                message: `execSync or execFileSync found without try-catch protection`,
+                severity: 'high',
+                source: CONFIG?.SCANNER_SOURCES?.LOCAL,
+                category: 'reliability'
+              }));
             }
           }
         }
@@ -387,10 +441,19 @@ class LocalScanner {
           // CQM-007: 使用白名單排除常見的合法數字
           const isWhitelisted = MAGIC_NUMBER_WHITELIST.some(pattern => pattern.test(num));
 
+          // #182 #9: Time-constant allowlist (per-hour secs 3600, per-day ms 86400000,
+          // HKT offset 28800/28800000, etc.) — codebase-wide stable numbers that
+          // should not be flagged as magic. Same set used by analyze_magic_numbers.js
+          // (timeMs/timeSec categories).
+          const isTimeConstant = TIME_CONSTANT_WHITELIST.has(num);
+          // Time-multiplication expressions: e.g. `8 * 3600 * 1000` (HKT offset),
+          // `3600 * 1000` (ms-per-hour), `24 * 60 * 60 * 1000` (ms-per-day).
+          const isTimeExpression = /(?:^|[\s=([{])(?:(?:\d+\s*\*\s*)*(?:\d+\s*\*\s*)*24\s*\*\s*60\s*\*\s*60|8\s*\*\s*3600|3600\s*\*\s*1000|24\s*\*\s*3600|24\s*\*\s*60\s*\*\s*60)\b/.test(lineContent);
+
           // Phase 1: Context 檢測 - 跳過常見誤報
           const isContextWhitelisted = WHITELIST_CONTEXTS.some(ctx => ctx.test(lineContent, lines, lineNum - 1));
 
-          if (!isWhitelisted && !isContextWhitelisted && !num.includes('.') && parseInt(num) > 1000) {
+          if (!isWhitelisted && !isContextWhitelisted && !isTimeConstant && !isTimeExpression && !num.includes('.') && parseInt(num) > 1000) {
             // Phase 2: Semantic Pattern Check - 使用 semantic matcher 過濾 false positives
             const issueForCheck = {
               file: path.relative(process.cwd(), file),
