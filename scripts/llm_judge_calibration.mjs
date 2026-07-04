@@ -219,19 +219,22 @@ debug('Report written to: ' + REPORT_PATH);
 
 // ── Discord push (if requested) ──
 if (FORMAT === 'discord') {
+  const tmpFile = path.join(WS, '.llm_judge_calibration_tmp.md');
+  let pushOk = false;
   try {
     // Write report to a temp file (multi-line content needs file input, not argv)
-    const tmpFile = path.join(WS, '.llm_judge_calibration_tmp.md');
     fs.writeFileSync(tmpFile, reportMd, 'utf8');
     execFileSync('openclaw', ['message', 'send', '--channel', DISCORD_CHANNEL, '--file', tmpFile], {
       timeout: 15000,
       encoding: 'utf8',
       stdio: ['pipe', 'pipe', 'pipe']
     });
+    pushOk = true;
     debug('Report pushed to Discord #' + DISCORD_CHANNEL);
-    try { fs.unlinkSync(tmpFile); } catch (_) {}
   } catch (e) {
     err('Discord push failed: ' + e.message);
     console.log('\n[fallback] Manual: cat ' + REPORT_PATH + ' | openclaw message send --channel ' + DISCORD_CHANNEL);
+  } finally {
+    try { fs.unlinkSync(tmpFile); } catch (_) {}
   }
 }
