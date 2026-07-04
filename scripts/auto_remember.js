@@ -13,6 +13,7 @@ const log = (...args) => { if (!_quiet) console.log(...args); };
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const discord = require('./lib/discord_push');
 
 const { HOME, WS, MEMORY_DIR } = require('./lib/config');
 const HOME_DIR = HOME;
@@ -503,23 +504,18 @@ function notifyPreferencePromotion(preference) {
   const RETRY_DELAY_MS = CONFIG.RETRY_DELAY_MS;
 
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-    try {
-      execFileSync('openclaw', ['message', 'send', '--channel', 'discord', '-t', channelId, '-m', sanitizedMsg], {
-        timeout: 15000,
-        stdio: 'ignore'
-      });
-      return; // Success
-    } catch (e) {
-      if (attempt < MAX_RETRIES) {
-        // Retry with delay
-        const start = Date.now();
-        while (Date.now() - start < RETRY_DELAY_MS) {
-          // Busy wait for simplicity (sync function)
-        }
-      } else {
-        // Final attempt failed
-        if (!_quiet) console.error(`⚠️ Preference notification failed after ${MAX_RETRIES} attempts: ${e.message}`);
+    // discord.push is fail-soft: returns { ok, error } instead of throwing.
+    const result = discord.push({ message: sanitizedMsg, target: `channel:${channelId}` });
+    if (result.ok) return; // Success
+    if (attempt < MAX_RETRIES) {
+      // Retry with delay
+      const start = Date.now();
+      while (Date.now() - start < RETRY_DELAY_MS) {
+        // Busy wait for simplicity (sync function)
       }
+    } else {
+      // Final attempt failed
+      if (!_quiet) console.error(`⚠️ Preference notification failed after ${MAX_RETRIES} attempts: ${result.error}`);
     }
   }
 }

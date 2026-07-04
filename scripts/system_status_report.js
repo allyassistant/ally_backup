@@ -3,9 +3,7 @@
 const _quiet = process.argv.includes('--quiet');
 const log = (...args) => { if (!_quiet) console.log(...args); };
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+const safeFs = require('./lib/safe_fs');
 const { getHKTDateTime } = require('./lib/time');
 
 function getSystemStatus() {

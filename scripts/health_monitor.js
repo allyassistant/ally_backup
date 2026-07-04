@@ -18,6 +18,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const { MEMORY_DIR, ERRORS_JSON } = require('./lib/config');
+const discord = require('./lib/discord_push');
 
 const PAGE_SIZE_BYTES = 16384;
 const ONE_HOUR_MS = 3600 * 1000;
@@ -548,15 +549,9 @@ function checkMemoryFiles() {
 
 // 簡化的Discord通知 (使用execFileSync避免命令注入)
 function sendDiscordSimple(text) {
-  try {
-    // 使用 openclaw CLI 發送消息 - 使用數組參數避免 shell 注入
-    const { execFileSync } = require('child_process');
-    execFileSync('openclaw', ['message', 'send', '--channel', CONFIG.discordChannel, text], { stdio: 'ignore' });
-    return true;
-  } catch (error) {
-    // 靜默失敗
-    return false;
-  }
+  // discord.push is fail-soft: returns { ok, error } instead of throwing.
+  const result = discord.push({ message: text, target: `channel:${CONFIG.discordChannel}` });
+  return result.ok;
 }
 
 // 主函數

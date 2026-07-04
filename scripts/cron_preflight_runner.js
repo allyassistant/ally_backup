@@ -31,6 +31,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const discord = require('./lib/discord_push');
 
 const CONFIG = {
   WORKSPACE_DIR: process.env.WORKSPACE_DIR || path.join(process.env.HOME || '/Users/ally', '.openclaw/workspace'),
@@ -143,13 +144,13 @@ function checkProviderHealth(jobId) {
 }
 
 function sendDiscordAlert(embed) {
-  try {
-    const msg = JSON.stringify(embed).replace(/"/g, '\\"');
-    const cmd = `openclaw message send --channel discord --target ${CONFIG.DISCORD_CHANNEL} --message "${msg}"`;
-    execSync(cmd, { encoding: 'utf8', timeout: 30000 });
+  // discord.push is fail-soft: returns { ok, error } instead of throwing.
+  const msg = JSON.stringify(embed);
+  const result = discord.push({ message: msg, target: `channel:${CONFIG.DISCORD_CHANNEL}` });
+  if (result.ok) {
     log('Discord alert sent');
-  } catch (e) {
-    error('Failed to send Discord alert:', e.message);
+  } else {
+    error('Failed to send Discord alert:', result.error);
   }
 }
 

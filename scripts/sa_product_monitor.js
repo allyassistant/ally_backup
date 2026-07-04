@@ -14,6 +14,8 @@ const PRODUCTS = [
 const HOME_PAGE_SHORT = '/';
 const HOME_PAGE_FULL = 'https://www.sagroup.com.hk/';
 
+const discord = require('./lib/discord_push');
+
 async function checkProduct(url) {
   try {
     const { default: fetch } = await import('node-fetch-native');
@@ -66,12 +68,12 @@ async function main() {
       console.log(`   Location: ${result.location}`);
 
       // Send Discord notification
-      const { execSync } = require('child_process');
       const msg = result.isOK
         ? `🚨 產品已經可以訪問！(200 OK)\n${url}`
         : `🚨 產品已經可以訪問！(Redirect)\n${url}`;
-      const notifyCmd = `openclaw message send --channel discord --target 1483875735377805434 --message "${msg.replace(/"/g, '\\"')}"`;
-      try { execSync(notifyCmd); } catch (e) { console.log('Notify error:', e.message); }
+      // discord.push is fail-soft: returns { ok, error } instead of throwing.
+      const result2 = discord.push({ message: msg, target: 'channel:1483875735377805434' });
+      if (!result2.ok) console.log('Notify error:', result2.error);
     } else if (result.error) {
       console.log(`❌ ${url} - Error: ${result.error}`);
     } else {
