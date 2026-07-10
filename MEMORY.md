@@ -143,8 +143,8 @@ node scripts/weekly_correction_loop.js
 
 ## 重要聯絡
 
-- Josh: +852XXXXXX, +852XXXXXX, new@example.com
-- Desanna: +852XXXXXX
+- Josh: (via Discord or Signal)
+
 
 
 *Last Updated: 2026-05-10*

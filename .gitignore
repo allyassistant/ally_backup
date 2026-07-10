@@ -42,3 +42,8 @@ extensions/skill-auto-suggest/embedding_comparison.json
 mission-control-html/
 rapaport-calculator/
 
+
+_legacy/whatsapp-auth/
+DREAMS.md
+*.bak
+.DS_Store

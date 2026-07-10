@@ -13,11 +13,11 @@ const message = `⚠️ Token Alert (50%) - TEST\n\n` +
   `✅ 這是測試訊息 - Ally AI`;
 
 try {
-  execSync(`openclaw message send --channel whatsapp -t "+852XXXXXX" -m "${message}"`, { 
+  execSync(`openclaw message send --channel whatsapp -t process.env.JOSH_NUMBER || "+852XXXXXXXX" -m "${message}"`, { 
     timeout: 15000,
     stdio: 'pipe'
   });
-  console.log('✅ WhatsApp 測試訊息已發送至 +852XXXXXX');
+  console.log('✅ WhatsApp test message sent to +852XXXXXX');
 } catch (err) {
   console.error('❌ 發送失敗:', err.message);
 }

@@ -9,7 +9,7 @@ const client = new Client({
 });
 
 // Josh's WhatsApp number (for reference)
-const JOSH_NUMBER = '+852XXXXXX'; // Josh's primary number
+const JOSH_NUMBER = process.env.JOSH_NUMBER || '+852XXXXXXXX'; // from env
 
 client.on('qr', async (qr) => {
     console.log('📱 QR Code received, generating image...');
