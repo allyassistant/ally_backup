@@ -309,3 +309,51 @@ Route 清單：`FDQ` / `DIRECT_ANSWER` / `SOP` / `SPAWN` / `CODE` / `BROWSER`
 ssh bliss@[TAILSCALE_BLISS_IP] 'cat ~/.openclaw/workspace/ha-state/bliss/heartbeat.json'
 ```
 > SSH 內用 `~` 而唔係 `$HOME`（避免 expansion 做 local path）
+
+---
+
+## GitHub Backup（ally_backup）
+
+**Remote：** `git@github.com:allyassistant/ally_backup.git`
+**Branch：** `master`
+**SSH Key：** `~/.ssh/id_ed25519`（已註冊喺 allyassistant GitHub account）
+
+### 基本操作
+
+```bash
+# Push（全自動 daily backup 用呢個）
+cd ~/.openclaw/workspace
+git add -A
+git commit -m "auto: daily backup $(date +%F)"
+git push origin master
+
+# Force push（**只用喺 history rewrite 後**，e.g. filter-repo、git rm --cached）
+git push origin master --force
+
+# Pull（建議加上 --rebase 避免踩 conflict）
+git pull origin master --rebase
+
+# Check status
+git status
+git remote -v
+```
+
+### Auto-push Cron
+
+- **Job name：** `auto-push-ally-backup`（Gateway cron，唔依賴 session）
+- **時間：** 每日 23:30 HKT
+- **Disable：** `openclaw cron remove auto-push-ally-backup`
+
+### 已知不上線的檔案（.gitignore 已攔截）
+
+| 目錄/檔案 | 原因 |
+|-----------|------|
+| `memory/` | 每日 session logs（私人） |
+| `ha-state/` | HA heartbeat state |
+| `.issues/archive/kb-cleanup-2026-05-30/` | 舊 KB cleanup archive |
+| `.analysis/` | 一次性分析輸出 |
+| `.fix_snapshots/` | CQM fix snapshots |
+| `.kimi*` | Kimi CLI task artifacts |
+| `*.log` | 運行日誌 |
+
+**注意：** 如果新加敏感檔案要手動加入 `.gitignore`，唔好依赖呢個 list。
