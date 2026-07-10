@@ -22,7 +22,7 @@ const { execFileSync } = require('child_process');
 // 默認 LLM model + fallback chain
 const LLM_MODELS = [
   'minimax-portal/MiniMax-M2.7',
-  'deepseek/deepseek-v4-flash'
+  'kimi/kimi-for-coding'
 ];
 const LLM_TIMEOUT_MS = 30000;
 
