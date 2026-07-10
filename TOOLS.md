@@ -318,6 +318,23 @@ ssh bliss@[TAILSCALE_BLISS_IP] 'cat ~/.openclaw/workspace/ha-state/bliss/heartbe
 **Branch：** `master`
 **SSH Key：** `~/.ssh/id_ed25519`（已註冊喺 allyassistant GitHub account）
 
+### Restore Scripts（萬一改壞咗）
+
+```bash
+# Restore 特定 folder 從 GitHub（唔影響 memory/、.issues/）
+git checkout origin/master -- scripts/
+
+# Restore 某個 specific file
+git checkout origin/master -- scripts/xxx.js
+
+# Restore 所有 scripts + wiki + skills
+git checkout origin/master -- scripts/ wiki/ skills/
+```
+
+> **注意：** checkout 會覆寫 local 改動，未 commit 嘅改動會冲走。
+
+---
+
 ### 基本操作
 
 ```bash
