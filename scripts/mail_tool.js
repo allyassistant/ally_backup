@@ -20,7 +20,13 @@ const FOLDER = args.find(a => a.startsWith('--folder='))?.split('=')[1] ||
 const AS_RS = '\r';
 
 // Email signature
-const SIGNATURE = `\n\nBest Regards,\n\nJoshua Chan\n\nD.N. Group (HK) Ltd.\nRoom 1004, 10th Floor, Yu To Sang Building\n37 Queen's Road, Central HK\nTel: +852 2537-7500 | Fax: +852 2530-4300\nE-mail: joshua@dndiamonds.com`;
+const SIGNATURE = process.env.MAIL_SIGNATURE || `
+
+Best Regards,
+
+Joshua Chan
+
+D.N. Group (HK) Ltd.`;
 
 function flag(n) {
   const v = args.find(a => a.startsWith(n + '='))?.split('=').slice(1).join('=');
