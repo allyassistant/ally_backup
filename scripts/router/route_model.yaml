@@ -50,7 +50,7 @@ routes:
 
   spawn_quality:
     primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M3, extra_body: { reasoning: high } }
-    fallback_chain: [deepseek, none]
+    fallback_chain: [kimi/kimi-for-coding, deepseek, none]
     cooldown_seconds: 60
     cost_weight: 0.5
 
