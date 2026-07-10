@@ -5,7 +5,7 @@
  * No test framework — pure Node + assert module, hand-rolled runner.
  *
  * Run:
- *   cd /Users/ally/.openclaw/workspace/scripts/router/tests
+ *   cd ./scripts/router/tests
  *   node spawn_config_tests.js
  */
 

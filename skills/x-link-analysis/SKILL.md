@@ -167,8 +167,8 @@ After writing to Obsidian, verify:
 ## Example Output
 
 See memory records for real examples:
-- `/Users/ally/.openclaw/workspace/memory/2026-05-02.md` (郭宇 AI 員工模式)
-- `/Users/ally/.openclaw/workspace/memory/2026-05-06.md` (Khairallah AI Agents)
+- `./memory/2026-05-02.md` (郭宇 AI 員工模式)
+- `./memory/2026-05-06.md` (Khairallah AI Agents)
 
 ---
 

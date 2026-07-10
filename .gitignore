@@ -58,3 +58,6 @@ TOOLS_backup_*.md
 HA_CONFIG.md
 HA_SETUP_GUIDE.md
 public/*.bak
+*.bugfix
+__pycache__/
+.mail_monitor_state.json

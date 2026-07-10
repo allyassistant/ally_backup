@@ -4,16 +4,16 @@
  * AST-aware version of the `hardcoded-home-path` rule.
  *
  * Bug class fixed by AST migration:
- *   1. Replaced `'/Users/ally/...'` even when it was a string literal arg to
- *      console.log() — corrupting log output ("/Users/ally/.config" appearing
+ *   1. Replaced `'/Users/username/...'` even when it was a string literal arg to
+ *      console.log() — corrupting log output ("/Users/username/.config" appearing
  *      in console.error messages).
  *   2. Replaced paths in JSDoc comments (line that starts with `*` or `//`)
- *      was actually excluded, but lines like ` * @example '/Users/ally/x'`
+ *      was actually excluded, but lines like ` * @example '/Users/username/x'`
  *      slipped through. The legacy regex check on `trimmed.startsWith('*')`
  *      was fragile — a leading whitespace before `*` made it look like code.
  *   3. Could replace a path that was actually a code-path argument to
- *      `path.join('/Users/ally/x', y)` where the path is dynamically built —
- *      fine — but ALSO in `console.log('/Users/ally/x')` where it's just a
+ *      `path.join('/Users/username/x', y)` where the path is dynamically built —
+ *      fine — but ALSO in `console.log('/Users/username/x')` where it's just a
  *      string for display.
  *
  * AST approach:
@@ -176,7 +176,7 @@ function _shouldSkip(ast, literalNode) {
     if (parent.type === 'TemplateLiteral') {
       if (parent.quasis && parent.quasis.includes(cur)) {
         // We're a quasi (literal portion). Allow rewrite ONLY if the parent
-        // is itself a top-level expression (e.g. `\`${...}/Users/ally/foo\``)
+        // is itself a top-level expression (e.g. `\`${...}/Users/username/foo\``)
         const grandparent = parentMap.get(parent);
         if (grandparent && (grandparent.type === 'ExpressionStatement' ||
             grandparent.type === 'TemplateExpression' ||
@@ -215,7 +215,7 @@ function _shouldSkip(ast, literalNode) {
     }
 
     // Top-level expression statement: bare string literal like
-    // `'/Users/ally/foo';` — just a value, not a path. Skip.
+    // `'/Users/username/foo';` — just a value, not a path. Skip.
     if (parent.type === 'ExpressionStatement') {
       return 'bare expression statement';
     }

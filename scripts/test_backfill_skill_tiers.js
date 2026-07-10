@@ -13,7 +13,7 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const FIXTURE = '/tmp/backfill_test_fixture';
-const SCRIPT = '/Users/ally/.openclaw/workspace/scripts/backfill_skill_tiers.js';
+const SCRIPT = path.join(__dirname, 'backfill_skill_tiers.js');
 
 function rmrf(p) {
   let lst;
@@ -144,7 +144,7 @@ console.log('=========================================');
 
 // Test 0 — pure inferTier() unit cases (no I/O)
 console.log('\n[Test 0] inferTier() pure-function unit tests');
-const { inferTier } = require('/Users/ally/.openclaw/workspace/scripts/backfill_skill_tiers.js');
+const { inferTier } = require(path.join(__dirname, 'backfill_skill_tiers.js'));
 check('existing status preserved (active)', inferTier('x', false, true, 'active') === 'active');
 check('existing status preserved (draft)', inferTier('x', false, false, 'draft') === 'draft');
 check('existing status preserved (archived)', inferTier('x', true, false, 'archived') === 'archived');

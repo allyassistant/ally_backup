@@ -7,7 +7,7 @@
  *   3. Spawn config bridge generates correct CLI params
  *
  * Run:
- *   cd /Users/ally/.openclaw/workspace/scripts/router/tests
+ *   cd ./scripts/router/tests
  *   MINIMAX_PORTAL_URL=http://127.0.0.1:1 MINIMAX_PORTAL_KEY=fake \
  *   DEEPSEEK_API_URL=http://127.0.0.1:2 DEEPSEEK_API_KEY=fake \
  *   node e2e_test.js
