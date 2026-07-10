@@ -21,10 +21,9 @@
  *
  * Provider → default model map (when router resolves fallback provider):
  *   minimax-portal → minimax-portal/MiniMax-M2.7   (reasoning enabled)
- *   deepseek       → deepseek-v4-flash             (reasoning enabled)
  *
  * Route-specific fallback override (for premium-on-demand routes):
- *   SPAWN_QUALITY → deepseek-v4-pro  (M3 fallback maintains quality)
+ *   SPAWN_QUALITY → minimax-portal/MiniMax-M3
  */
 
 'use strict';
@@ -38,13 +37,13 @@ const modelRouter = require(path.join(ROUTER_DIR, 'model_router'));
 
 const DEFAULT_MODELS = {
   'minimax-portal': 'minimax-portal/MiniMax-M2.7',
-  'deepseek': 'deepseek-v4-flash',
+  'kimi': 'kimi/kimi-for-coding',
 };
 
 // Route-specific fallback model (when router resolves to fallback provider)
 // Overrides DEFAULT_MODELS per route — keeps quality tier appropriate
 const ROUTE_DEFAULT_FALLBACK = {
-  'spawn_quality': 'deepseek-v4-pro',   // M3 fallback → pro (maintain premium quality)
+  'spawn_quality': 'minimax-portal/MiniMax-M3',
 };
 
 // ─── Thinking parameter resolver ───────────────────────────────────────────
@@ -66,9 +65,7 @@ function resolveThinking(provider, extraBody) {
     // we translate it rather than pass the unsupported level through.
     return 'adaptive';
   }
-  if (provider === 'deepseek') {
-    return undefined;
-  }
+
   return undefined;
 }
 
@@ -106,7 +103,7 @@ async function main() {
   }
 
   // Model: use resolved model, or route-specific fallback, or provider default
-  const model = cfg.model || ROUTE_DEFAULT_FALLBACK[route] || DEFAULT_MODELS[cfg.provider] || 'deepseek-v4-flash';
+  const model = cfg.model || ROUTE_DEFAULT_FALLBACK[route] || DEFAULT_MODELS[cfg.provider] || 'minimax-portal/MiniMax-M2.7';
 
   // Thinking: map router reasoning intent to runtime-accepted value
   const thinking = resolveThinking(cfg.provider, cfg.extraBody);

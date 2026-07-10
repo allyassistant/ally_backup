@@ -20,20 +20,19 @@ const scriptsDir = path.join(__dirname, '..', '..');
 
 const DEFAULT_MODELS = {
   'minimax-portal': 'minimax-portal/MiniMax-M2.7',
-  'deepseek': 'deepseek-v4-flash',
+  'kimi': 'kimi/kimi-for-coding',
 };
 
 const DEFAULT_THINKING = {
   'minimax-portal': 'high',
-  'deepseek': undefined,
 };
 
 const ROUTE_DEFAULT_FALLBACK = {
-  'spawn_quality': 'deepseek-v4-pro',
+  'spawn_quality': 'minimax-portal/MiniMax-M3',
 };
 
 function resolveFallbackModel(route, provider) {
-  return ROUTE_DEFAULT_FALLBACK[route] || DEFAULT_MODELS[provider] || 'deepseek-v4-flash';
+  return ROUTE_DEFAULT_FALLBACK[route] || DEFAULT_MODELS[provider] || 'minimax-portal/MiniMax-M2.7';
 }
 
 function extraBodyToThinking(extraBody) {
@@ -135,34 +134,34 @@ function main() {
     assert.strictEqual(DEFAULT_MODELS['minimax-portal'], 'minimax-portal/MiniMax-M2.7');
   });
 
-  test('14', 'DEFAULT_MODELS has deepseek entry', () => {
-    assert.ok(DEFAULT_MODELS['deepseek']);
-    assert.strictEqual(DEFAULT_MODELS['deepseek'], 'deepseek-v4-flash');
+  test('14', 'DEFAULT_MODELS has kimi entry', () => {
+    assert.ok(DEFAULT_MODELS['kimi']);
+    assert.strictEqual(DEFAULT_MODELS['kimi'], 'kimi/kimi-for-coding');
   });
 
   // ── ROUTE_DEFAULT_FALLBACK — route-specific fallback model ───────────────
-  test('14a', 'ROUTE_DEFAULT_FALLBACK: spawn_quality → deepseek-v4-pro', () => {
-    assert.strictEqual(ROUTE_DEFAULT_FALLBACK['spawn_quality'], 'deepseek-v4-pro');
+  test('14a', 'ROUTE_DEFAULT_FALLBACK: spawn_quality → MiniMax-M3', () => {
+    assert.strictEqual(ROUTE_DEFAULT_FALLBACK['spawn_quality'], 'minimax-portal/MiniMax-M3');
   });
 
-  test('14b', 'resolveFallbackModel: SPAWN (deepseek) → deepseek-v4-flash', () => {
-    assert.strictEqual(resolveFallbackModel('spawn', 'deepseek'), 'deepseek-v4-flash');
+  test('14b', 'resolveFallbackModel: SPAWN (kimi) → kimi-for-coding', () => {
+    assert.strictEqual(resolveFallbackModel('spawn', 'kimi'), 'kimi/kimi-for-coding');
   });
 
-  test('14c', 'resolveFallbackModel: SPAWN_QUALITY (deepseek) → deepseek-v4-pro', () => {
-    assert.strictEqual(resolveFallbackModel('spawn_quality', 'deepseek'), 'deepseek-v4-pro');
+  test('14c', 'resolveFallbackModel: SPAWN_QUALITY (minimax-portal) → MiniMax-M3', () => {
+    assert.strictEqual(resolveFallbackModel('spawn_quality', 'minimax-portal'), 'minimax-portal/MiniMax-M3');
   });
 
-  test('14d', 'resolveFallbackModel: unknown route + unknown provider → deepseek-v4-flash (ultimate fallback)', () => {
-    assert.strictEqual(resolveFallbackModel('nonexistent', 'unknown'), 'deepseek-v4-flash');
+  test('14d', 'resolveFallbackModel: unknown route + unknown provider → MiniMax-M2.7 (ultimate fallback)', () => {
+    assert.strictEqual(resolveFallbackModel('nonexistent', 'unknown'), 'minimax-portal/MiniMax-M2.7');
   });
 
   test('15', 'DEFAULT_THINKING: minimax-portal → "high"', () => {
     assert.strictEqual(DEFAULT_THINKING['minimax-portal'], 'high');
   });
 
-  test('16', 'DEFAULT_THINKING: deepseek → undefined', () => {
-    assert.strictEqual(DEFAULT_THINKING['deepseek'], undefined);
+  test('16', 'DEFAULT_THINKING: kimi → undefined', () => {
+    assert.strictEqual(DEFAULT_THINKING['kimi'], undefined);
   });
 
   // ── End-to-end smoke test (requires actual routeModel) ──────────────────

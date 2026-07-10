@@ -10,11 +10,6 @@ providers:
     base_url: ${MINIMAX_PORTAL_URL}
     api_key: ${MINIMAX_PORTAL_KEY}
     timeout: 60
-  deepseek:
-    type: openai_compatible
-    base_url: ${DEEPSEEK_API_URL}
-    api_key: ${DEEPSEEK_API_KEY}
-    timeout: 30
   kimi:
     type: noop
   none:

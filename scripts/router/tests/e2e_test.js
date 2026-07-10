@@ -67,7 +67,7 @@ async function main() {
   // E2E-1: Full flow — message → classifier → model_router → spawn_config
   await test('Full flow: "幫我分析 report" → SPAWN → MiniMax-M2.7 (default)', async () => {
     setFresh('minimax-portal');
-    setFresh('deepseek');
+    setFresh('kimi');
 
     // Step 1: Classify
     const classifyResult = classifier.classifySync('幫我分析 report');
@@ -88,7 +88,7 @@ async function main() {
   await test('SPAWN_QUALITY route → MiniMax-M3 (premium)', async () => {
     fr._RESET();
     setFresh('minimax-portal');
-    setFresh('deepseek');
+    setFresh('kimi');
 
     const routeResult = await modelRouter.routeModel({
       text: 'spawn MiniMax M3 sub agent 深入分析',
@@ -100,17 +100,17 @@ async function main() {
   });
 
   // E2E-2: Fallback flow — primary unhealthy → fallback to deepseek
-  await test('Fallback: minimax-portal unhealthy → deepseek for SPAWN', async () => {
+  await test('Fallback: minimax-portal unhealthy → kimi for SPAWN', async () => {
     fr._RESET();
     setUnhealthy('minimax-portal', 3);
-    setFresh('deepseek');
+    setFresh('kimi');
 
     const routeResult = await modelRouter.routeModel({
       text: '幫我分析 report',
       route: 'spawn',
       context: {},
     });
-    assert.strictEqual(routeResult.provider, 'deepseek');
+    assert.strictEqual(routeResult.provider, 'kimi');
     // model is empty for fallback (design intent: spawn_config.js fills via DEFAULT_MODELS)
     assert.strictEqual(routeResult.model, '');
     assert.strictEqual(routeResult.fallbackDepth, 1);

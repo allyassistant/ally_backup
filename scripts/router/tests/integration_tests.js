@@ -82,7 +82,7 @@ async function main() {
   // T1: All providers unhealthy → fall through to 'none'
   await test('1', 'All providers unhealthy → fall through to "none"', async () => {
     setUnhealthy('minimax-portal', 3);
-    setUnhealthy('deepseek', 3);
+    setUnhealthy('kimi', 3);
     const result = await mr.routeModel({ text: 'test input', route: 'spawn' });
     assert.strictEqual(result.provider, 'none',
       `Expected provider='none', got '${result.provider}'`);
@@ -91,16 +91,16 @@ async function main() {
     assert.match(result.decisionId,
       /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/,
       `decisionId not UUID v4 format: ${result.decisionId}`);
-    // Sanity: chain order matches spawn route spec (with deepseek inserted as fallback)
+    // Sanity: chain order matches spawn route spec (with kimi inserted as fallback)
     assert.deepStrictEqual(result.fallbackChain,
-      ['minimax-portal', 'deepseek', 'none'],
+      ['minimax-portal', 'kimi', 'none'],
       `Unexpected fallbackChain: ${JSON.stringify(result.fallbackChain)}`);
   });
 
   // T2: First provider healthy + fresh → resolveProvider returns first
   await test('2', 'First provider healthy → resolveProvider returns first', async () => {
     setFresh('minimax-portal');
-    const result = await fr.resolveProvider(['minimax-portal', 'deepseek', 'none']);
+    const result = await fr.resolveProvider(['minimax-portal', 'kimi', 'none']);
     assert.strictEqual(result, 'minimax-portal',
       `Expected 'minimax-portal', got '${result}'`);
   });
@@ -108,18 +108,18 @@ async function main() {
   // T3: First unhealthy (cooldown active), second healthy → return second
   await test('3', 'First unhealthy, second healthy → return second', async () => {
     setUnhealthy('minimax-portal', 3);          // failureCount=3, cooldown active
-    setFresh('deepseek');
-    const result = await fr.resolveProvider(['minimax-portal', 'deepseek', 'none']);
-    assert.strictEqual(result, 'deepseek',
-      `Expected 'deepseek', got '${result}'`);
+    setFresh('kimi');
+    const result = await fr.resolveProvider(['minimax-portal', 'kimi', 'none']);
+    assert.strictEqual(result, 'kimi',
+      `Expected 'kimi', got '${result}'`);
   });
 
   // T4: First 2 unhealthy, 3rd healthy → return 3rd
   await test('4', 'First 2 unhealthy, 3rd healthy → return 3rd', async () => {
     setUnhealthy('minimax-portal', 3);
-    setUnhealthy('deepseek', 3);
+    setUnhealthy('kimi', 3);
     setFresh('none');
-    const result = await fr.resolveProvider(['minimax-portal', 'deepseek', 'none']);
+    const result = await fr.resolveProvider(['minimax-portal', 'kimi', 'none']);
     assert.strictEqual(result, 'none',
       `Expected 'none', got '${result}'`);
   });
@@ -127,10 +127,10 @@ async function main() {
   // T5: Cooldown logic — failed provider NOT probed during cooldown
   await test('5', 'Cooldown logic — failed provider not probed during cooldown', async () => {
     setUnhealthy('minimax-portal', 1, 60000);    // cooldown active for 60s
-    setFresh('deepseek');
-    const result = await fr.resolveProvider(['minimax-portal', 'deepseek', 'none']);
-    assert.strictEqual(result, 'deepseek',
-      `Expected 'deepseek' (skip 'minimax-portal' cooldown), got '${result}'`);
+    setFresh('kimi');
+    const result = await fr.resolveProvider(['minimax-portal', 'kimi', 'none']);
+    assert.strictEqual(result, 'kimi',
+      `Expected 'kimi' (skip 'minimax-portal' cooldown), got '${result}'`);
     // 'minimax-portal' must NOT have been re-probed → failureCount unchanged
     const cache = fr._getHealthCache();
     assert.strictEqual(cache.get('minimax-portal').failureCount, 1,
@@ -143,22 +143,22 @@ async function main() {
   // We assert on cache state (failureCount change), not on which provider is returned.
   await test('6', 'Cooldown recovery — after expiry, provider re-probed', async () => {
     setUnhealthy('minimax-portal', 1, -1000);   // cooldown EXPIRED 1s ago
-    setFresh('deepseek');
+    setFresh('kimi');
     const before = fr._getHealthCache().get('minimax-portal').failureCount;
-    const result = await fr.resolveProvider(['minimax-portal', 'deepseek', 'none']);
+    const result = await fr.resolveProvider(['minimax-portal', 'kimi', 'none']);
     const after = fr._getHealthCache().get('minimax-portal').failureCount;
     // Re-probe MUST have happened — failureCount or healthy state should change
     assert.notStrictEqual(before, after,
       `Expected failureCount to change (re-probe), before=${before} after=${after}`);
     // Result must be a healthy provider (deepseek or minimax-portal if re-probe succeeded)
-    assert.ok(['deepseek', 'minimax-portal', 'none'].includes(result),
+    assert.ok(['kimi', 'minimax-portal', 'none'].includes(result),
       `Unexpected provider: ${result}`);
   });
 
   // T7: Race condition — concurrent resolveProvider calls deduplicate probes
   await test('7', 'Race condition — concurrent resolveProvider dedups probes', async () => {
     setStale('minimax-portal');                 // healthy but stale → re-probe required
-    setFresh('deepseek');           // fresh → returned immediately (no probe)
+    setFresh('kimi');           // fresh → returned immediately (no probe)
 
     // Set ENV so probe can reach fetch() (mock will return 200)
     const origPortalUrl = process.env.MINIMAX_PORTAL_URL;
@@ -178,7 +178,7 @@ async function main() {
       // 5 concurrent calls — all should hit the same inFlightProbes entry
       const calls = [];
       for (let i = 0; i < 5; i++) {
-        calls.push(fr.resolveProvider(['minimax-portal', 'deepseek', 'none']));
+        calls.push(fr.resolveProvider(['minimax-portal', 'kimi', 'none']));
       }
       const concurrentResults = await Promise.all(calls);
 
@@ -249,7 +249,7 @@ async function main() {
   // T11: validateRouteConfig rejects config missing required routes
   await test('11', 'validateRouteConfig rejects missing route', async () => {
     const badConfig = {
-      providers: { 'minimax-portal': { type: 'noop' }, 'deepseek': { type: 'noop' } },
+      providers: { 'minimax-portal': { type: 'noop' }, 'kimi': { type: 'noop' } },
       routes: {
         // Only fdq present — missing 6 others
         fdq: { primary: { provider: 'minimax-portal', model: 'm' } },

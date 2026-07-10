@@ -13,11 +13,11 @@ const ROUTE_FILE = '/tmp/last_routing_decision.json';
 const TEST_CASES = [
   { text: '幫我 research 下 Rust async runtime', expectedRoute: 'SPAWN', expectedProvider: 'minimax-portal' },
   { text: '改個 bug', expectedRoute: 'CODE', expectedProvider: 'minimax-portal' },
-  { text: '今日 status 點？', expectedRoute: 'DIRECT_ANSWER', expectedProvider: 'deepseek' },
-  { text: '食咗飯未', expectedRoute: 'NONE', expectedProvider: 'deepseek' },
+  { text: '今日 status 點？', expectedRoute: 'DIRECT_ANSWER', expectedProvider: 'minimax-portal' },
+  { text: '食咗飯未', expectedRoute: 'NONE', expectedProvider: 'minimax-portal' },
   { text: '幫我寫個 Python script 抓取網頁', expectedRoute: 'CODE', expectedProvider: 'minimax-portal' },
   { text: '分析下呢個數據', expectedRoute: 'SPAWN', expectedProvider: 'minimax-portal' },
-  { text: '有冇收到email', expectedRoute: 'SOP', expectedProvider: 'deepseek' },
+  { text: '有冇收到email', expectedRoute: 'SOP', expectedProvider: 'minimax-portal' },
 ];
 
 async function run() {

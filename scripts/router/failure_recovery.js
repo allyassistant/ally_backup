@@ -22,7 +22,7 @@ const COOLDOWN_MS = 60_000;
 const DEFAULT_FAILURE_THRESHOLD = 3;
 const DEFAULT_RECOVERY_PROBE_MS = 30_000;
 const DEFAULT_PROBE_CONCURRENCY = 3;
-const DEFAULT_RESOLUTION_ORDER = ['minimax-portal', 'deepseek', 'none'];
+const DEFAULT_RESOLUTION_ORDER = ['minimax-portal', 'kimi', 'none'];
 
 // ─── State ──────────────────────────────────────────────────────────────────
 

@@ -8014,3 +8014,367 @@
 {"ts":"2026-07-10T15:25:04.860Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇寫入tools.md","channel":"","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
 {"ts":"2026-07-10T15:25:05.136Z","event":"provider_recovery","provider":"deepseek","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
 {"ts":"2026-07-10T15:25:05.136Z","route":"direct_answer","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":276,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"e79485f2-7247-4695-b644-4fcbdbd8379a","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:09:45.321Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我檢查下點解呢兩日每日總結冇運行","channel":"","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:09:46.304Z","event":"provider_recovery","provider":"minimax-portal","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:09:46.305Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":984,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"d7d01f3c-6a08-4008-a9c2-c794b0ddc3e0","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:13:08.273Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我檢查下","channel":"","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:13:09.270Z","event":"provider_recovery","provider":"minimax-portal","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:13:09.271Z","event":"provider_recovery","provider":"minimax-portal","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:13:09.271Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":998,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"689c31e8-f2e1-4128-a0b9-14ffcf199ff8","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:13:09.271Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":812,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"18788418-807f-49c3-9544-75cf1688f8c5","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:19:29.033Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我將預設模型轉做MiniMax M2.7","channel":"","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:19:29.345Z","event":"provider_recovery","provider":"deepseek","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:19:29.345Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":312,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"28ed68a0-2a8c-4954-987e-1c7a519eb4da","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:19:29.345Z","event":"provider_recovery","provider":"deepseek","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:19:29.346Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":148,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"bf1c7385-33e6-4d98-85ce-31bdc0ca4b33","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:22:34.568Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"我想增加model入openclaw，但係唔係有allow list","channel":"","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:22:34.962Z","event":"provider_recovery","provider":"deepseek","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:22:34.962Z","route":"direct_answer","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":394,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"caed784b-5f82-4448-97dd-57fb191d1849","releaseId":"6e20de5c-c7b2-4e7c-868e-ba1f1a4b0c35"}
+{"ts":"2026-07-10T16:25:11.864Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"我想加Kimi","channel":""}
+{"ts":"2026-07-10T16:25:12.081Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T16:25:12.081Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":217,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"bf00271f-636d-4f9f-8487-2ea228e1b42c"}
+{"ts":"2026-07-10T16:25:12.318Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"ebe444e1-2f7b-4ebb-b993-cbb716f031dc"}
+{"ts":"2026-07-10T16:26:52.561Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"Kimi Code API key (subscription) plugin is disabled (blocked by allowlist).","channel":""}
+{"ts":"2026-07-10T16:26:53.715Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:26:53.716Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1155,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"0f9055f6-a9bf-4057-8e1d-b52cbdaf45a9"}
+{"ts":"2026-07-10T16:27:22.327Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"7df64361-ad14-41ac-9c4e-fcc8f94fd8a3"}
+{"ts":"2026-07-10T16:27:22.325Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"移除 block — 將 Kimi Code plugin 加返進允許清單","channel":""}
+{"ts":"2026-07-10T16:27:29.455Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"移除 block — 將 Kimi Code plugin 加返進允許清單","channel":""}
+{"ts":"2026-07-10T16:27:30.407Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:27:30.407Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":952,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"ee5a5012-5204-4a94-8b4f-baf038de316c"}
+{"ts":"2026-07-10T16:27:46.715Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"fc7f846e-4b74-499c-9cdb-0ee6aa3d5dd4"}
+{"ts":"2026-07-10T16:27:46.713Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"移除 block — 將 Kimi Code plugin 加返進允許清單","channel":""}
+{"ts":"2026-07-10T16:28:01.769Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"移除 block — 將 Kimi Code plugin 加返進允許清單","channel":""}
+{"ts":"2026-07-10T16:28:03.146Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:28:03.146Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1377,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"d4429200-64d2-43f8-9e2f-bf815b16b9b4"}
+{"ts":"2026-07-10T16:28:44.675Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"移除 block — 將 Kimi Code plugin 加返進允許清單","channel":""}
+{"ts":"2026-07-10T16:28:44.936Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:28:44.936Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":261,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"ad97678d-63f7-46da-a5df-8ef4d3cb4cd1"}
+{"ts":"2026-07-10T16:28:45.095Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"74da3e7f-d960-431b-8426-48fcd671ebc2"}
+{"ts":"2026-07-10T16:35:50.988Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"都仲係唔得。我係用openclaw onboard加。如有需要就用SSH去Bliss嗰邊睇下佢嘅model設定","channel":""}
+{"ts":"2026-07-10T16:35:51.950Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:35:51.949Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:35:51.950Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":962,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"d53d1f64-15ec-442a-9987-6057b9867706"}
+{"ts":"2026-07-10T16:35:51.950Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":673,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"1f15977d-5d3c-4d58-9f58-175c59451034"}
+{"ts":"2026-07-10T16:42:11.524Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"你試下用SSH去Bliss，睇下睇唔睇到佢嘅model config","channel":""}
+{"ts":"2026-07-10T16:42:12.506Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:42:12.507Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":673,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"bfd48519-b0fd-4fa4-8ff7-e85fe835065b"}
+{"ts":"2026-07-10T16:42:12.506Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:42:12.507Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":983,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"e48feddf-7e43-43f8-8eba-11e44d35106e"}
+{"ts":"2026-07-10T16:48:20.026Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"你試下用SSH去Bliss，睇下睇唔睇到佢嘅model config","channel":""}
+{"ts":"2026-07-10T16:48:21.057Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:48:21.057Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1031,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"4d404176-32c9-424c-9b9b-138c36b4d5d8"}
+{"ts":"2026-07-10T16:48:21.057Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:48:21.057Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":857,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"3d54244f-273c-4716-9805-7d96923ac343"}
+{"ts":"2026-07-10T16:49:44.009Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"如果我想喺呢邊都用到Kimi","channel":""}
+{"ts":"2026-07-10T16:49:44.328Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T16:49:44.328Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T16:49:44.329Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":125,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0f45b513-2306-4a65-83ae-f4dd6a935976"}
+{"ts":"2026-07-10T16:49:44.328Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":319,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"85a12bbb-3772-45cd-84da-729adf7f9ab3"}
+{"ts":"2026-07-10T16:50:36.031Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"我想set Kimi做OpenClaw其中一個模型","channel":""}
+{"ts":"2026-07-10T16:50:36.303Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T16:50:36.303Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":80,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"b40ef3fb-728f-4525-9eca-d4265eb6b7f2"}
+{"ts":"2026-07-10T16:50:36.303Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T16:50:36.303Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":272,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a487ead6-8647-463c-95a0-0b189d83bb2c"}
+{"ts":"2026-07-10T16:52:57.413Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"我想自己手動用openclaw onboard加，然後佢出現： Kimi Code API key (subscription) plugin is disabled (blocked by allo","channel":""}
+{"ts":"2026-07-10T16:52:58.427Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T16:52:58.428Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1015,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"fc950358-33fb-42cc-91ac-d1f8b24313ab"}
+{"ts":"2026-07-10T16:57:43.604Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"test","channel":""}
+{"ts":"2026-07-10T16:57:43.757Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T16:57:43.757Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":152,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"286bae75-f212-4381-b78e-bff2cf9a0ea2"}
+{"ts":"2026-07-10T16:57:44.029Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8b268487-0418-47a7-aa15-caa8c85c2459"}
+{"ts":"2026-07-10T16:58:24.531Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"我手動加咗，你試試","channel":""}
+{"ts":"2026-07-10T16:58:24.895Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T16:58:24.895Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T16:58:24.895Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":8,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"aeae52d2-d079-469a-9b04-f65d5087f2ad"}
+{"ts":"2026-07-10T16:58:24.895Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":364,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c98971e8-224f-46fe-babc-ed4d3ac671f3"}
+{"ts":"2026-07-10T16:59:15.830Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我將預設模型轉做MiniMax M2.7","channel":""}
+{"ts":"2026-07-10T16:59:16.037Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T16:59:16.038Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":208,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"2c845748-524f-446b-8b3f-25eaf29a0e5f"}
+{"ts":"2026-07-10T17:00:49.824Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-10T17:00:50.077Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T17:00:50.077Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T17:00:50.077Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":252,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"54560173-2eca-4491-8c9b-43a3823015bf"}
+{"ts":"2026-07-10T17:00:50.077Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":28,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0d8a8b9d-2edc-47ad-b46e-f9050fd31668"}
+{"ts":"2026-07-10T17:01:17.178Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"6e22995f-182c-4a60-81c8-efbd6c744240"}
+{"ts":"2026-07-10T17:01:17.177Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我將預設模型轉做MiniMax M2.7","channel":""}
+{"ts":"2026-07-10T17:01:17.382Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a2f0c550-0265-4ddb-99b5-fb70e5d95916"}
+{"ts":"2026-07-10T17:02:26.619Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Global default","channel":""}
+{"ts":"2026-07-10T17:02:26.861Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T17:02:26.861Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":242,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f1cd1b1d-ee62-4fcf-86c9-b6d5573737c2"}
+{"ts":"2026-07-10T17:02:26.861Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"b59118ab-71bd-40be-9146-39cbfeabace4"}
+{"ts":"2026-07-10T17:02:26.861Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T17:03:56.494Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家預設模型係MiniMax M2.7，咁fallback模型係？","channel":""}
+{"ts":"2026-07-10T17:03:56.887Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T17:03:56.887Z","route":"direct_answer","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":393,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"d83acc66-2012-40a6-bf7a-c4d3b2d7ade3"}
+{"ts":"2026-07-10T17:03:57.106Z","route":"direct_answer","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"1929cffc-f2e1-4541-b990-41c4d5f6aee1"}
+{"ts":"2026-07-10T17:04:53.630Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我將fallback 1改做kimi/kimi-for-coding","channel":""}
+{"ts":"2026-07-10T17:04:54.598Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":968,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"9b01f531-5f5e-47fe-b009-05307ab2a009"}
+{"ts":"2026-07-10T17:04:54.598Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:06:08.128Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我將fallback 1改做kimi/kimi-for-coding","channel":""}
+{"ts":"2026-07-10T17:06:09.326Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:06:09.326Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1198,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"c312fca9-b829-4c3a-9f73-863f28a3300a"}
+{"ts":"2026-07-10T17:06:09.326Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":905,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"dc04cc60-b145-4475-b786-d88e235d0833"}
+{"ts":"2026-07-10T17:06:09.326Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:06:54.646Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:06:54.648Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":938,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"63b7f435-aada-4e86-867e-4c98f106a03d"}
+{"ts":"2026-07-10T17:07:07.320Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我將fallback 2 取消","channel":""}
+{"ts":"2026-07-10T17:07:07.524Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T17:07:07.524Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":204,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"21f10536-b057-45a6-a218-ba4e69a41818"}
+{"ts":"2026-07-10T17:07:22.842Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"492b63db-e54a-464f-9f57-ca614f1fd724"}
+{"ts":"2026-07-10T17:07:22.841Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我將fallback 2 取消","channel":""}
+{"ts":"2026-07-10T17:07:40.972Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-10T17:07:41.247Z","event":"provider_recovery","provider":"deepseek"}
+{"ts":"2026-07-10T17:07:41.248Z","route":"none","suggestedModel":"deepseek-v4-flash","suggestedProvider":"deepseek","actualProvider":"deepseek","fallbackDepth":0,"latencyMs":276,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"22207f0c-b173-40a7-990b-0656da4c31bd"}
+{"ts":"2026-07-10T17:09:10.603Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"我想你幫我睇下auto router入面嘅模型設定","channel":""}
+{"ts":"2026-07-10T17:09:11.595Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:09:11.595Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":674,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"0df51d31-c9f3-4500-8837-7ce96cb8cdd3"}
+{"ts":"2026-07-10T17:09:11.595Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":992,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"1ce2295d-668e-46a7-84fc-2315c6d0df0e"}
+{"ts":"2026-07-10T17:09:11.595Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:14:28.813Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"我想將route “Spawn”，”SOP”，”CODE” 呢3個嘅Primary model改做kimi/kimi-for-coding。然後Fallback設定做MiniMax M2.7","channel":""}
+{"ts":"2026-07-10T17:14:29.749Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:14:29.749Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:14:29.749Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":585,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"ee196a72-0ae1-42d4-97fc-24cfef9bac88"}
+{"ts":"2026-07-10T17:14:29.749Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":936,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"3904c87b-c563-4ee1-ba56-56d03ae53dc8"}
+{"ts":"2026-07-10T17:17:00.778Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"“FDQ”，”DIRECT_ANSWER”，”NONE” primary model改做MiniMax M2.7。然後Fallback設定做kimi/kimi-for-coding","channel":""}
+{"ts":"2026-07-10T17:18:31.952Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"“SPAWN_QUALITY” 保持primary model 做MiniMax M3，但Fallback做kimi/kimi-for-coding","channel":""}
+{"ts":"2026-07-10T17:19:17.513Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"列出成個route list","channel":""}
+{"ts":"2026-07-10T17:20:24.991Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"“BROSWER” fallback 設定kimi/kimi-for-coding","channel":""}
+{"ts":"2026-07-10T17:21:38.286Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"將DeepSeek所有fallback model都移除","channel":""}
+{"ts":"2026-07-10T17:22:56.609Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"返返去OpenClaw model config","channel":""}
+{"ts":"2026-07-10T17:24:17.503Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Fallback 2 移除 deepseek-v4-pro","channel":""}
+{"ts":"2026-07-10T17:25:25.485Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"檢查下agents.md 入面嘅spawn list","channel":""}
+{"ts":"2026-07-10T17:26:10.657Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"檢查下agents.md 入面嘅spawn list","channel":""}
+{"ts":"2026-07-10T17:33:08.245Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"將knowledge_classifier.js改做用MiniMax M2.7做primary","channel":""}
+{"ts":"2026-07-10T17:34:37.611Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"仲有冇其他scripts嘅primary或者fallback係用緊DeepSeek？","channel":""}
+{"ts":"2026-07-10T17:37:01.373Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"skill_reviewer_bot.js 嘅fallback改做kimi/kimi-for-coding","channel":""}
+{"ts":"2026-07-10T17:38:02.348Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"幫我檢查下smart router 運作正唔正常","channel":""}
+{"ts":"2026-07-10T17:41:05.437Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:41:05.440Z","route":"spawn","suggestedModel":"kimi","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":1156,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"47921fd4-53f0-4426-a11f-855de42f77b7"}
+{"ts":"2026-07-10T17:41:05.441Z","route":"code","suggestedModel":"kimi","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"0bf7a0c6-2e75-4f9a-b8b4-80c2e6146e5b"}
+{"ts":"2026-07-10T17:41:05.441Z","route":"spawn","suggestedModel":"kimi","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"46f59356-f6be-431d-9864-042ac041440c"}
+{"ts":"2026-07-10T17:41:05.441Z","route":"none","suggestedModel":"minimax-portal","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"aa7c9573-e170-4c83-a0bc-612bbda5d32a"}
+{"ts":"2026-07-10T17:41:05.441Z","route":"sop","suggestedModel":"kimi","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"fb6b9f9f-8362-4b4d-94c1-7c6b9cd82632"}
+{"ts":"2026-07-10T17:41:05.442Z","route":"direct_answer","suggestedModel":"minimax-portal","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"5893f5a5-5765-4e96-a007-a4125c0f2534"}
+{"ts":"2026-07-10T17:42:25.701Z","event":"provider_failure","provider":"kimi","failureCount":1,"cooldownUntil":0,"lastError":"probe failed"}
+{"ts":"2026-07-10T17:42:26.704Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:42:26.705Z","route":"spawn","suggestedModel":"kimi","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":1006,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"25ea65c7-a992-4481-968c-66f1c1da6154"}
+{"ts":"2026-07-10T17:42:26.706Z","route":"none","suggestedModel":"minimax-portal","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"4005bc79-43d3-4691-85a2-26c5ab8a3b95"}
+{"ts":"2026-07-10T17:42:26.707Z","route":"direct_answer","suggestedModel":"minimax-portal","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0f255ce4-f3bd-4fda-9d6b-360afb87bc03"}
+{"ts":"2026-07-10T17:43:45.686Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:43:45.687Z","route":"spawn","suggestedModel":"kimi","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"533dacc7-87cb-429d-8532-2aa4583374cc"}
+{"ts":"2026-07-10T17:43:46.669Z","route":"none","suggestedModel":"minimax-portal","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":980,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"29be171f-bde8-4047-b1bb-c50863a37a93"}
+{"ts":"2026-07-10T17:43:46.669Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:43:46.670Z","route":"code","suggestedModel":"kimi","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"3d083af2-1c5f-47ad-b208-44bb9bc15f68"}
+{"ts":"2026-07-10T17:43:46.671Z","route":"direct_answer","suggestedModel":"minimax-portal","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"885bab62-37bc-41ec-bc24-19fb77c199c8"}
+{"ts":"2026-07-10T17:43:46.670Z","route":"spawn","suggestedModel":"kimi","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"36e9ed78-6eb8-4cf2-b768-4ef5dd98a373"}
+{"ts":"2026-07-10T17:43:46.670Z","route":"sop","suggestedModel":"kimi","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"ace6772b-53d1-4111-b6c3-ae6121cb0002"}
+{"ts":"2026-07-10T17:44:59.752Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:44:59.752Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"8f516851-f008-4440-a031-3e70852c15ec"}
+{"ts":"2026-07-10T17:45:00.845Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"34f5bf6e-f413-4861-87e8-ea8bf28c75f7"}
+{"ts":"2026-07-10T17:45:00.844Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1090,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"ddcfd562-c424-405e-9f40-9ede1323c937"}
+{"ts":"2026-07-10T17:45:00.845Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b4d95f3a-01ad-4069-98c9-211d57f5ab47"}
+{"ts":"2026-07-10T17:45:00.845Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"9616c278-5ef1-4834-8b3d-b8023a64ab5c"}
+{"ts":"2026-07-10T17:45:00.846Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"aa79da47-d8c4-4f60-b271-a04413c1d1ab"}
+{"ts":"2026-07-10T17:45:00.844Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:45:00.845Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8f62317c-db2e-4b60-aff3-beefc357b45f"}
+{"ts":"2026-07-10T17:46:01.648Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:46:01.649Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"58e392e6-9be1-44a4-b6fb-6172cb65755a"}
+{"ts":"2026-07-10T17:46:27.775Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:46:27.776Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b0ffc6ac-372d-4579-9350-6f54ba76f989"}
+{"ts":"2026-07-10T17:46:38.726Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:46:38.727Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b000d34e-166a-487b-80a4-d6e98f016c90"}
+{"ts":"2026-07-10T17:46:50.161Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:46:50.162Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"5f0908fa-b18e-4f2f-a7ae-49f9d4bc771c"}
+{"ts":"2026-07-10T17:46:51.251Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:46:51.253Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1039,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"6c477b63-3e64-4bbb-936d-13b22c995512"}
+{"ts":"2026-07-10T17:46:51.341Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:46:51.342Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"f17210c1-de82-413f-a494-bda8d1be81d0"}
+{"ts":"2026-07-10T17:46:52.543Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1148,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"188afede-a8d9-43d2-bc61-b38746d5d394"}
+{"ts":"2026-07-10T17:46:52.540Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:48:11.874Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家係唔係正常運作返？","channel":""}
+{"ts":"2026-07-10T17:48:12.885Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:48:12.885Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:48:12.885Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1011,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"2ffb22f6-9a5d-49de-bb12-385fe286100e"}
+{"ts":"2026-07-10T17:48:12.885Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":762,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"11779d75-1e62-4cdf-aa53-0a425d06da72"}
+{"ts":"2026-07-10T17:48:30.761Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:48:30.762Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"ab639ad2-e564-4560-9967-7a589b7e2c6e"}
+{"ts":"2026-07-10T17:48:30.815Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:48:30.816Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"1423ae1b-0a83-441f-b1f8-c32de8edacc9"}
+{"ts":"2026-07-10T17:48:30.870Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:48:30.870Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"b7159025-e992-4a97-b29a-04e7c96b2b9a"}
+{"ts":"2026-07-10T17:49:21.912Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"係唔係所有route都成功？","channel":""}
+{"ts":"2026-07-10T17:49:23.024Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:49:23.025Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1113,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"dc8d8ce5-8a07-481e-b2f7-a385558371cd"}
+{"ts":"2026-07-10T17:49:23.025Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":894,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"cd2ea1d8-733e-457a-bdc5-28fb9c2de593"}
+{"ts":"2026-07-10T17:49:23.025Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:49:35.685Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:49:35.686Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"d758a416-f109-4a30-bfdf-f24492ab2200"}
+{"ts":"2026-07-10T17:49:36.894Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:49:36.896Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1126,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"08a61a4b-8367-4f57-b131-31893336f7c1"}
+{"ts":"2026-07-10T17:49:37.018Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:49:37.019Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"49e0a239-9d6b-43dc-96be-d82d11f139fe"}
+{"ts":"2026-07-10T17:49:37.104Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:49:37.105Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"2c668a5b-669c-4f0d-8d35-6f31f774d0be"}
+{"ts":"2026-07-10T17:49:38.300Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:49:38.303Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1116,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"ff6045ad-fdd3-4467-9fe9-3cbbc6d54c28"}
+{"ts":"2026-07-10T17:49:39.601Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1178,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"eaa3602f-76f2-4f1c-b3ff-7b67587f035b"}
+{"ts":"2026-07-10T17:49:39.598Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:49:40.976Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:49:40.979Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1257,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"cee5570a-179e-4083-87f6-2bb5c79b0616"}
+{"ts":"2026-07-10T17:49:42.167Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:49:42.170Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1073,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"6cb284f7-efe0-40d4-a9d9-21eac0232b3a"}
+{"ts":"2026-07-10T17:51:07.799Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"你可唔可以深入測試到？","channel":""}
+{"ts":"2026-07-10T17:51:09.020Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:09.021Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1221,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"fe5e4f58-5d71-421b-8894-3a3322290bf6"}
+{"ts":"2026-07-10T17:51:17.728Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:51:17.729Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"306b2f04-d27c-4c27-adbc-6086151817f1"}
+{"ts":"2026-07-10T17:51:17.778Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:51:17.779Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"d20acf50-49c3-44fc-b0f5-6e8a30e7cd0a"}
+{"ts":"2026-07-10T17:51:17.829Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:51:17.829Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"26ac1922-9f4a-41a2-ac1f-ea42f3a49974"}
+{"ts":"2026-07-10T17:51:19.261Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:19.264Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1385,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"671850c0-4d96-467a-aa82-1797d98926ce"}
+{"ts":"2026-07-10T17:51:20.499Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:20.502Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1148,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"a93abfba-befe-4c66-83ed-ac602afb08e4"}
+{"ts":"2026-07-10T17:51:20.594Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:51:20.594Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"bb048543-8a25-41f1-92da-fd235b904189"}
+{"ts":"2026-07-10T17:51:20.644Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:51:20.644Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"8b3173a0-82f3-4a58-94af-c6e638399bbc"}
+{"ts":"2026-07-10T17:51:20.696Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:51:20.697Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"1cde4b5d-ba09-45dc-b8da-d805d966d309"}
+{"ts":"2026-07-10T17:51:20.746Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T17:51:20.747Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"5e1d29cc-a9b5-4e02-9eba-63841a30cc39"}
+{"ts":"2026-07-10T17:51:21.802Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:21.805Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1008,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"d19c5207-76d8-407b-808d-a2fcb8e01d90"}
+{"ts":"2026-07-10T17:51:22.907Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:22.910Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1013,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"e490871c-1c67-484e-8747-84d8a443738a"}
+{"ts":"2026-07-10T17:51:24.132Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:24.134Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1135,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"5a1e4dce-cd50-4f69-badd-820aaca51b89"}
+{"ts":"2026-07-10T17:51:25.189Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:25.191Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":969,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"bd74655e-23fd-487c-834b-c305a81d6a9d"}
+{"ts":"2026-07-10T17:51:26.271Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:26.273Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":994,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"2f23a8ea-3227-4ed9-8d28-670b410e63bf"}
+{"ts":"2026-07-10T17:51:27.629Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:27.632Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1269,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"97998113-ca84-4118-a667-9e61dea8d8fc"}
+{"ts":"2026-07-10T17:51:28.841Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:28.844Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1125,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"fe22aaf3-f427-42f7-bc10-a56e86176d4d"}
+{"ts":"2026-07-10T17:51:29.934Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:29.937Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1004,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"16a8ab56-4d92-4d9a-8023-d53f34da2ffd"}
+{"ts":"2026-07-10T17:51:31.046Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:31.049Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1023,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"ae06c27c-72b8-4a16-97b3-b24e2e405788"}
+{"ts":"2026-07-10T17:51:32.339Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:51:32.342Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1204,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"6c452e04-09cb-4d6f-bbe5-5be9d32932e1"}
+{"ts":"2026-07-10T17:52:40.259Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"以上係唔係真係有實際測試","channel":""}
+{"ts":"2026-07-10T17:52:41.293Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:52:41.294Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":815,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"be0529f4-32c0-498f-86b8-0bbb7512d74e"}
+{"ts":"2026-07-10T17:52:41.293Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T17:52:41.293Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1034,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"26e97f41-f9a5-4a48-8f72-1de82b290216"}
+{"ts":"2026-07-10T18:05:50.314Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"想做真測試","channel":""}
+{"ts":"2026-07-10T18:05:51.308Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:05:51.308Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:05:51.308Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":728,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"3cb7370a-b13b-480e-8732-5fd023e341cc"}
+{"ts":"2026-07-10T18:05:51.308Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":994,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f0d31648-642d-43d6-bb06-cf3b70cf6f26"}
+{"ts":"2026-07-10T18:06:02.548Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:06:02.549Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"3b28d19b-558c-4e8c-9024-6deda3723990"}
+{"ts":"2026-07-10T18:11:00.660Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入檢查下仲有咩issues要跟進","channel":""}
+{"ts":"2026-07-10T18:11:01.656Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:11:01.656Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:11:01.656Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":797,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"e45e7503-7aea-47b7-8785-a653ed300aec"}
+{"ts":"2026-07-10T18:11:01.656Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":996,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"67f3af4f-f453-4dac-a34a-be45361bdaf4"}
+{"ts":"2026-07-10T18:13:42.791Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"正常頭先呢個應該係用邊個smart model回覆","channel":""}
+{"ts":"2026-07-10T18:13:43.730Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:13:43.730Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:13:43.730Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":939,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"10fe85d5-622f-478e-b809-a34b8a0e3b82"}
+{"ts":"2026-07-10T18:13:43.730Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":734,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"6f368053-89cc-40fd-bd7b-4a184a3549fa"}
+{"ts":"2026-07-10T18:13:56.254Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:13:56.255Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"ff6a0bc4-b4b6-45af-b3ff-e7ce5b9066a9"}
+{"ts":"2026-07-10T18:15:21.382Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"咁頭先呢句：”幫我深入檢查下仲有咩issues要跟進“ 又應該係用咩model做","channel":""}
+{"ts":"2026-07-10T18:15:22.744Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:15:22.745Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":1363,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"a6641531-4008-4905-8ef9-8bbc696733ca"}
+{"ts":"2026-07-10T18:15:36.403Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:15:36.404Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"c6f2f965-833f-4f8b-834a-cf59aba13505"}
+{"ts":"2026-07-10T18:17:26.631Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"或者我應該用啲咩key word去測試","channel":""}
+{"ts":"2026-07-10T18:17:27.583Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:17:27.583Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:17:27.583Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":952,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9ff33a71-4b1e-4e1b-ad5d-6066f6566c27"}
+{"ts":"2026-07-10T18:17:27.583Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":725,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"19d4f616-4126-4de5-b31d-82541d4a1080"}
+{"ts":"2026-07-10T18:18:28.530Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入檢查下仲有咩issues要跟進","channel":""}
+{"ts":"2026-07-10T18:18:28.569Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我分析下呢個report","channel":""}
+{"ts":"2026-07-10T18:18:28.533Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"check下cron jobs正常嗎","channel":""}
+{"ts":"2026-07-10T18:18:28.569Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"open呢個link","channel":""}
+{"ts":"2026-07-10T18:18:28.569Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"修復緊個bug","channel":""}
+{"ts":"2026-07-10T18:18:28.570Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:18:28.569Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"set個cron","channel":""}
+{"ts":"2026-07-10T18:18:28.570Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:18:28.570Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:18:28.570Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"374e12ed-0bb4-4ef5-b781-5ef5c5c0b095"}
+{"ts":"2026-07-10T18:18:28.570Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":39,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"f7aaa8ca-740a-4d48-9328-ebd8bb6ad348"}
+{"ts":"2026-07-10T18:18:28.570Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"91d21b2e-0718-4c29-aa9e-a8c7bce35a2f"}
+{"ts":"2026-07-10T18:18:29.643Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:18:29.643Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:18:29.643Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1110,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"62f5a3cc-cf1b-4ba0-bbef-e5a3f18efd8d"}
+{"ts":"2026-07-10T18:18:29.644Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1075,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"d8a3cf53-4af8-4e57-b0cf-0f8dab6ea4f2"}
+{"ts":"2026-07-10T18:18:29.643Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:18:29.644Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1075,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"e6dc49da-43b6-4b48-a837-3fbf90901492"}
+{"ts":"2026-07-10T18:20:11.785Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"幫我分析同研究下smart router有冇真正運作","channel":""}
+{"ts":"2026-07-10T18:20:13.198Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1412,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0db29cbc-d958-43e1-b53c-7ba6ee8f3db8"}
+{"ts":"2026-07-10T18:20:13.197Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:28.069Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我分析下smart router","channel":""}
+{"ts":"2026-07-10T18:20:28.071Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"check下router運作正常嗎","channel":""}
+{"ts":"2026-07-10T18:20:28.107Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我研究下","channel":""}
+{"ts":"2026-07-10T18:20:28.107Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"smart router正常運作嗎","channel":""}
+{"ts":"2026-07-10T18:20:28.108Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析","channel":""}
+{"ts":"2026-07-10T18:20:28.108Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"router decision log","channel":""}
+{"ts":"2026-07-10T18:20:28.108Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:20:28.108Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:20:28.108Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:20:28.107Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"smart router有冇真正運作","channel":""}
+{"ts":"2026-07-10T18:20:28.109Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"242d0b7c-b70d-4da4-b6a9-b4afe43526e2"}
+{"ts":"2026-07-10T18:20:28.109Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":38,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"5037904b-f91d-4d9c-a7ec-ef12296ed96c"}
+{"ts":"2026-07-10T18:20:28.109Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"ccc95119-6263-4174-8edc-816e16076044"}
+{"ts":"2026-07-10T18:20:29.171Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:29.171Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:29.171Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:29.171Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1100,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"e37dd3f4-b217-4435-8648-03ce289361d5"}
+{"ts":"2026-07-10T18:20:29.171Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:29.172Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1064,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a38d0176-7462-43c7-adea-9e7049385fc5"}
+{"ts":"2026-07-10T18:20:29.172Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1065,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"6abbd289-f38c-4f3c-b13a-a41504cdada7"}
+{"ts":"2026-07-10T18:20:29.172Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1064,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"6786e468-3dc8-483e-9a35-9130801ed183"}
+{"ts":"2026-07-10T18:20:40.606Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:20:40.607Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"0aca2d06-775f-4cf2-8851-ca4175cc5d50"}
+{"ts":"2026-07-10T18:20:41.756Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:41.758Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1095,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"c958655a-5085-4558-aa88-3eb04d0f454b"}
+{"ts":"2026-07-10T18:20:42.839Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:42.841Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":997,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9d7325fe-6b84-4ba0-8d3f-6c2956112dd6"}
+{"ts":"2026-07-10T18:20:42.929Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:20:42.929Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"c4403f6e-fc9b-4e20-a2dc-df935b0277bf"}
+{"ts":"2026-07-10T18:20:42.982Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:20:42.983Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"14e610be-19d3-46d4-93fb-3f69b37f6638"}
+{"ts":"2026-07-10T18:20:44.132Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:44.135Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1093,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"15cccfb8-eba8-4c31-a385-04d06f261219"}
+{"ts":"2026-07-10T18:20:45.210Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:45.213Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":989,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"4988d0ed-1684-4e00-8984-edd1952f547c"}
+{"ts":"2026-07-10T18:20:46.301Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:20:46.303Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1003,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"423f7b60-ab81-447b-8a5f-004cf8ffb572"}
+{"ts":"2026-07-10T18:27:26.600Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T18:27:27.544Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:27:27.544Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:27:27.544Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":692,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9891a10e-0b97-4186-b7c6-be940ae1c093"}
+{"ts":"2026-07-10T18:27:27.544Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":944,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"23072165-33da-4863-8ee7-de4b4447c6fe"}
+{"ts":"2026-07-10T18:29:12.437Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:29:12.437Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"9db581aa-24c4-4bf4-bcfe-1226c86994ce"}
+{"ts":"2026-07-10T18:29:13.489Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:29:13.491Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":997,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"0ce7fb37-a63e-4fd2-9128-ecaefd42ed1a"}
+{"ts":"2026-07-10T18:31:45.548Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:31:45.549Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"6a0e020b-9a83-4ef0-ad2b-954ff5c8f710"}
+{"ts":"2026-07-10T18:31:46.625Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:31:46.628Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1020,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"5265ffd6-6e01-40f2-a978-f57b547a7346"}
+{"ts":"2026-07-10T18:33:52.414Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:33:52.415Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"6f968a48-5750-45f1-b604-942eb3188671"}
+{"ts":"2026-07-10T18:33:53.448Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:33:53.450Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":977,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"cb53ed02-ab3f-411c-8ed7-af9293cfb317"}
+{"ts":"2026-07-10T18:33:53.537Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:33:53.538Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"fe3fedc0-83f1-4f9c-bcc7-f87efe701326"}
+{"ts":"2026-07-10T18:33:54.748Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:33:54.751Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1162,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"630ecf8e-c859-46c5-bcac-bac73f280e85"}
