@@ -118,7 +118,7 @@ function getSkillEmbeddings() {
 
 // ── Config ──
 const MODEL = 'minimax-portal/MiniMax-M2.7';
-const MODEL_FALLBACKS = ['deepseek/deepseek-v4-flash'];  // M2.5 removed: has max_tokens constraint incompatibility with long prompts
+const MODEL_FALLBACKS = ['kimi/kimi-for-coding'];
 // OPENCLAW_CLI path resolution (v3 pattern): known paths first, which fallback, raw name last.
 // Cron isolated sessions have truncated PATH — 'which' alone fails there.
 const OPENCLAW_CLI = (function() {
