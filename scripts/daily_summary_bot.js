@@ -19,10 +19,10 @@
 
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
 const { createDailySummary, checkNoteExists } = require('./apple_notes.js');
 const { formatDate } = require('./report_templates.js');
 const ReportGenerator = require('./report_generator.js');
+const discord = require('./lib/discord_push');
 
 const { MEMORY_DIR, OPENCLAW_CONFIG } = require('./lib/config');
 const LOCK_FILE = path.join(MEMORY_DIR, 'daily_summary.lock');
@@ -41,52 +41,16 @@ const MINIMAX_CONFIG = {
   cmd: 'openclaw'
 };
 
-async function getDiscordToken() {
-    const configPath = OPENCLAW_CONFIG;
-    try {
-        const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-        return config.channels.discord.token;
-    } catch (err) {
-        console.error('Failed to read Discord token: ' + err.message);
-        throw err;
-    }
-}
-
 async function sendDiscord(msg) {
-    const token = await getDiscordToken();
-
-    const options = {
-        hostname: 'discord.com',
-        path: '/api/v10/channels/' + CHANNEL_ID + '/messages',
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bot ' + token,
-            'Content-Type': 'application/json'
-        }
-    };
-
-    return new Promise((resolve, reject) => {
-        const req = https.request(options, (res) => {
-            let data = '';
-            res.on('data', c => data += c);
-            res.on('end', () => {
-                if (res.statusCode === 200 || res.statusCode === 204) {
-                    if (!_quietMode) console.log('已發送到 Discord #📕日記');
-                    resolve({ status: res.statusCode });
-                } else {
-                    reject(new Error('HTTP ' + res.statusCode + ': ' + data));
-                }
-            });
-        });
-        req.on('error', reject);
-
-        const payload = typeof msg === 'string'
-            ? { content: msg }
-            : { embeds: [msg] };
-
-        req.write(JSON.stringify(payload));
-        req.end();
+    const payload = typeof msg === 'string' ? msg : msg.content || JSON.stringify(msg);
+    if (!_quietMode) console.log('正在發送到 Discord #📕日記...');
+    const result = await discord.push({
+        target: 'channel:1473386222998130860',
+        message: payload,
+        silent: false,
     });
+    if (!_quietMode) console.log('已發送到 Discord #📕日記');
+    return result;
 }
 
 function getTodayDate() {
