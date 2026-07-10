@@ -1,0 +1,11 @@
+{
+  "name": "self-healing-loop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Claude Code-style self-healing edit loop plugin for OpenClaw",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "node test.mjs"
+  }
+}

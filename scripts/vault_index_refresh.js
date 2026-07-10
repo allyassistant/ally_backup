@@ -1,0 +1,444 @@
+#!/usr/bin/env node
+/**
+ * vault_index_refresh.js — Refresh 00-Index.md "Recently Updated" section
+ *
+ * Scans the Obsidian vault for `.md` files modified within the last N days
+ * (default 7) and replaces the marker-delimited section in 00-Index.md with
+ * a fresh bulleted list, newest-first.
+ *
+ * Schedule:
+ *   OpenClaw cron — daily 03:00 HKT
+ *
+ * Usage:
+ *   node scripts/vault_index_refresh.js [--dry-run] [--days 7] [--vault PATH]
+ *
+ * Flags:
+ *   --dry-run          Print generated section to stdout; do not write file
+ *   --days N           Override default 7-day window
+ *   --vault PATH       Override vault path (for testing)
+ *   --help, -h         Show help
+ *
+ * Exit codes:
+ *   0  Success
+ *   1  Fatal error (vault/index/markers missing, or write failure)
+ *   2  Invalid CLI args
+ *
+ * Scanned folders:
+ *   Knowledge/{AI,Tech,Business,Concepts,Diamond}/, Daily/, 03-Output/,
+ *   Projects/, MOCs/
+ *
+ * Skipped folders:
+ *   Templates/, Inbox/, Archive/, _archive/, skill-reviewer/
+ *
+ * Skipped files:
+ *   Root-level .md files (00-Index.md, 歡迎.md, Kanban.md, etc.)
+ *
+ * Timezone:
+ *   All date math runs in Asia/Hong_Kong so "today / yesterday / N days ago"
+ *   matches the cron context (03:00 HKT).
+ *
+ * Markers:
+ *   Section is delimited by:
+ *     <!-- BEGIN auto-refresh:recent -->
+ *     <!-- END auto-refresh:recent -->
+ *   Both markers must exist in 00-Index.md; if absent the script aborts.
+ *
+ * Atomic write:
+ *   Writes to <file>.tmp, then fs.renameSync → <file>. No partial writes.
+ */
+
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+
+// ============================================================
+// CONSTANTS
+// ============================================================
+
+const HOME = process.env.HOME || os.homedir();
+const VAULT_DEFAULT = path.join(HOME, 'Documents', 'Obsidian Vault');
+const INDEX_FILE_NAME = '00-Index.md';
+const MARKER_BEGIN = '<!-- BEGIN auto-refresh:recent -->';
+const MARKER_END = '<!-- END auto-refresh:recent -->';
+const DEFAULT_DAYS = 7;
+const MAX_ENTRIES = 15; // Cap output so the section doesn't sprawl; index comment hints "10-15"
+const TZ = 'Asia/Hong_Kong';
+
+// Top-level folders to scan (recursive into subdirs like 03-Output/2026-07/)
+const SCAN_FOLDERS = [
+  'Knowledge/AI',
+  'Knowledge/Tech',
+  'Knowledge/Business',
+  'Knowledge/Concepts',
+  'Knowledge/Diamond',
+  'Daily',
+  '03-Output',
+  'Projects',
+  'MOCs',
+];
+
+// Top-level folders to skip entirely (any depth)
+const SKIP_FOLDERS = new Set([
+  'Templates',
+  'Inbox',
+  'Archive',
+  '_archive',
+  'skill-reviewer',
+]);
+
+// ============================================================
+// CLI PARSING
+// ============================================================
+
+function printHelp() {
+  console.log(`Usage: node scripts/vault_index_refresh.js [options]
+
+Refresh 00-Index.md "Recently Updated (Last 7 Days)" section.
+
+Options:
+  --dry-run          Print generated section to stdout; do not write file
+  --days N           Override default 7-day window
+  --vault PATH       Override vault path (for testing)
+  --help, -h         Show help
+
+Exit codes:
+  0  Success
+  1  Fatal error
+  2  Invalid CLI args
+
+Cron usage (default):
+  node scripts/vault_index_refresh.js
+`);
+}
+
+function parseArgs() {
+  const args = process.argv.slice(2);
+  const opts = {
+    dryRun: false,
+    days: DEFAULT_DAYS,
+    vault: VAULT_DEFAULT,
+  };
+
+  for (let i = 0; i < args.length; i++) {
+    const a = args[i];
+    if (a === '--help' || a === '-h') {
+      printHelp();
+      process.exit(0);
+    } else if (a === '--dry-run') {
+      opts.dryRun = true;
+    } else if (a === '--days') {
+      const v = args[++i];
+      const n = parseInt(v, 10);
+      if (!Number.isFinite(n) || n < 1 || n > 365) {
+        console.error(`❌ --days must be 1-365, got "${v}"`);
+        process.exit(2);
+      }
+      opts.days = n;
+    } else if (a === '--vault') {
+      const v = args[++i];
+      if (!v) {
+        console.error('❌ --vault requires a path argument');
+        process.exit(2);
+      }
+      opts.vault = path.resolve(v);
+    } else if (a.startsWith('--')) {
+      console.error(`❌ Unknown flag: ${a}`);
+      printHelp();
+      process.exit(2);
+    } else {
+      console.error(`❌ Unexpected positional arg: ${a}`);
+      printHelp();
+      process.exit(2);
+    }
+  }
+  return opts;
+}
+
+// ============================================================
+// DATE HELPERS (HKT)
+// ============================================================
+
+// Returns YYYY-MM-DD for the current moment in Asia/Hong_Kong.
+function hktToday() {
+  return new Date().toLocaleDateString('en-CA', { timeZone: TZ });
+}
+
+// Convert a Date object to YYYY-MM-DD in Asia/Hong_Kong.
+function hktDateOf(date) {
+  return date.toLocaleDateString('en-CA', { timeZone: TZ });
+}
+
+// Whole-day diff: 0 = same day, 1 = yesterday, etc.
+// Both inputs must be YYYY-MM-DD strings interpreted in HKT.
+function diffDays(fromYMD, toYMD) {
+  const a = new Date(fromYMD + 'T00:00:00+08:00');
+  const b = new Date(toYMD + 'T00:00:00+08:00');
+  return Math.round((b.getTime() - a.getTime()) / 86400000);
+}
+
+// Human label for diff: 0 → 今日, 1 → 昨日, N → N日前
+function relativeLabel(diff) {
+  if (diff === 0) return '今日';
+  if (diff === 1) return '昨日';
+  return `${diff}日前`;
+}
+
+// ============================================================
+// VAULT SCAN
+// ============================================================
+
+// Extract category from relative path. Logic mirrors write_to_obsidian.js mapping.
+//   Knowledge/AI/foo.md       → AI
+//   Knowledge/Concepts/foo.md → Concepts
+//   Daily/2026-07-09.md       → Daily
+//   03-Output/2026-07/foo.md  → Output
+//   Projects/foo.md           → Project
+//   MOCs/foo.md               → MOC
+function categoryOf(relPath) {
+  const parts = relPath.split(path.sep);
+  const top = parts[0];
+  switch (top) {
+    case 'Knowledge': return parts[1] || 'Knowledge';
+    case 'Daily': return 'Daily';
+    case '03-Output': return 'Output';
+    case 'Projects': return 'Project';
+    case 'MOCs': return 'MOC';
+    default: return top || 'Unknown';
+  }
+}
+
+// Recursive walk, skipping SKIP_FOLDERS. Returns array of {filepath, relPath, mtime}.
+function walkVault(vault) {
+  const out = [];
+
+  function walk(dir) {
+    let entries;
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch (e) {
+      // Folder may be missing (e.g. Knowledge/Diamond/ doesn't exist yet) — skip silently.
+      return;
+    }
+    for (const ent of entries) {
+      const name = ent.name;
+      if (ent.isDirectory()) {
+        if (SKIP_FOLDERS.has(name)) continue;
+        walk(path.join(dir, name));
+      } else if (ent.isFile() && name.endsWith('.md')) {
+        const full = path.join(dir, name);
+        out.push({
+          filepath: full,
+          relPath: path.relative(vault, full),
+          mtime: null, // populated lazily by stat to keep walk fast
+        });
+      }
+    }
+  }
+
+  for (const sub of SCAN_FOLDERS) {
+    walk(path.join(vault, sub));
+  }
+  return out;
+}
+
+// Gather mtime for each file. Skips files where stat throws (broken symlinks,
+// permissions, race conditions) and logs only when OBSIDIAN_DEBUG is set.
+function statFiles(files) {
+  for (const f of files) {
+    try {
+      f.mtime = fs.statSync(f.filepath).mtime;
+    } catch (e) {
+      if (process.env.OBSIDIAN_DEBUG) {
+        console.error(`[vault_index_refresh] stat failed: ${f.filepath}: ${e.message}`);
+      }
+      f.mtime = null;
+    }
+  }
+  return files.filter(f => f.mtime !== null);
+}
+
+// ============================================================
+// SECTION BUILD
+// ============================================================
+
+function buildSection(files, today) {
+  if (files.length === 0) {
+    return `*（過去 7 日無更新）*`;
+  }
+  const lines = [];
+  for (const f of files) {
+    const ymd = hktDateOf(f.mtime);
+    const diff = diffDays(ymd, today);
+    const label = relativeLabel(diff);
+    const title = path.basename(f.filepath, '.md');
+    const category = categoryOf(f.relPath);
+    lines.push(`- [[${title}]] — ${category} · ${label} (${ymd})`);
+  }
+  return lines.join('\n');
+}
+
+// ============================================================
+// INDEX FILE UPDATE (ATOMIC)
+// ============================================================
+
+// Replace content between MARKER_BEGIN and MARKER_END with `newBody`.
+// Returns the rewritten file content. Throws if either marker is missing.
+function replaceMarkerSection(content, newBody) {
+  const beginIdx = content.indexOf(MARKER_BEGIN);
+  const endIdx = content.indexOf(MARKER_END);
+  if (beginIdx === -1) {
+    throw new Error(`marker missing: ${MARKER_BEGIN}`);
+  }
+  if (endIdx === -1) {
+    throw new Error(`marker missing: ${MARKER_END}`);
+  }
+  if (endIdx < beginIdx) {
+    throw new Error(`marker order inverted: END appears before BEGIN`);
+  }
+
+  // Position after the BEGIN line (consume trailing newline if present)
+  let insertAt = beginIdx + MARKER_BEGIN.length;
+  if (content[insertAt] === '\n') insertAt += 1;
+
+  // Position at start of the END line (consume preceding newline if present)
+  let endAt = endIdx;
+  if (content[endAt - 1] === '\n') endAt -= 1;
+
+  return (
+    content.substring(0, insertAt) +
+    '\n' + newBody + '\n' +
+    content.substring(endAt)
+  );
+}
+
+function atomicWriteFile(filePath, content) {
+  const tmp = filePath + '.tmp';
+  fs.writeFileSync(tmp, content, 'utf8');
+  fs.renameSync(tmp, filePath);
+}
+
+// ============================================================
+// MAIN
+// ============================================================
+
+function main() {
+  const opts = parseArgs();
+  const vault = opts.vault;
+  const today = hktToday();
+
+  console.log('🔄 Vault Index Refresh');
+  console.log(`Vault: ${vault}`);
+  console.log(`Days: ${opts.days}`);
+  console.log(`Today (HKT): ${today}${opts.dryRun ? ' [DRY-RUN]' : ''}`);
+  console.log('');
+
+  // ----- Validate vault -----
+  if (!fs.existsSync(vault)) {
+    console.error(`❌ Vault path does not exist: ${vault}`);
+    process.exit(1);
+  }
+  if (!fs.statSync(vault).isDirectory()) {
+    console.error(`❌ Vault path is not a directory: ${vault}`);
+    process.exit(1);
+  }
+
+  const indexPath = path.join(vault, INDEX_FILE_NAME);
+  if (!fs.existsSync(indexPath)) {
+    console.error(`❌ Index file not found: ${indexPath}`);
+    process.exit(1);
+  }
+
+  // ----- Scan + filter + sort -----
+  console.log('📂 Scanning vault…');
+  let rawFiles = walkVault(vault);
+  rawFiles = statFiles(rawFiles);
+  console.log(`   Scanned ${rawFiles.length} .md file(s) across ${SCAN_FOLDERS.length} folders`);
+
+  // 0 vault files → warn but exit 0 (the script still ran cleanly)
+  if (rawFiles.length === 0) {
+    console.warn('⚠️  No .md files found in scanned folders (vault may be empty or folders missing)');
+  }
+
+  // Filter to last N days (mtime in HKT date)
+  const within = rawFiles
+    .map(f => ({ ...f, ymd: hktDateOf(f.mtime) }))
+    .map(f => ({ ...f, diff: diffDays(f.ymd, today) }))
+    .filter(f => f.diff >= 0 && f.diff <= opts.days);
+
+  // Sort newest first (by mtime DESC)
+  within.sort((a, b) => b.mtime.getTime() - a.mtime.getTime());
+
+  // Cap output to MAX_ENTRIES so the index section stays compact
+  const recent = within.slice(0, MAX_ENTRIES);
+
+  console.log(`Found: ${recent.length} file(s) updated within last ${opts.days} days`);
+  if (within.length > MAX_ENTRIES) {
+    console.log(`   (showing top ${MAX_ENTRIES} of ${within.length})`);
+  }
+  console.log('');
+
+  // ----- Build section -----
+  const sectionBody = buildSection(recent, today);
+
+  // ----- Print sample (always — even on dry-run) -----
+  console.log('Sample:');
+  if (recent.length === 0) {
+    console.log('  (none — section will say "無更新")');
+  } else {
+    // Show first 5 lines as preview, plus a count summary
+    const preview = recent.slice(0, 5);
+    for (const f of preview) {
+      const title = path.basename(f.filepath, '.md');
+      console.log(`  - [[${title}]] — ${categoryOf(f.relPath)} · ${relativeLabel(f.diff)} (${f.ymd})`);
+    }
+    if (recent.length > preview.length) {
+      console.log(`  …and ${recent.length - preview.length} more`);
+    }
+  }
+  console.log('');
+
+  // ----- Dry-run: print section and exit -----
+  if (opts.dryRun) {
+    console.log('===== [DRY-RUN] Section body =====');
+    console.log(sectionBody);
+    console.log('===============================');
+    console.log('');
+    console.log(`ℹ️  --dry-run: index file not modified`);
+    process.exit(0);
+  }
+
+  // ----- Read index + replace markers -----
+  let original;
+  try {
+    original = fs.readFileSync(indexPath, 'utf8');
+  } catch (e) {
+    console.error(`❌ Read failed: ${indexPath}: ${e.message}`);
+    process.exit(1);
+  }
+
+  let updated;
+  try {
+    updated = replaceMarkerSection(original, sectionBody);
+  } catch (e) {
+    console.error(`❌ ${e.message}`);
+    console.error(`   Index file: ${indexPath}`);
+    console.error(`   Expected both ${MARKER_BEGIN} and ${MARKER_END} in the file.`);
+    process.exit(1);
+  }
+
+  // ----- Atomic write -----
+  try {
+    atomicWriteFile(indexPath, updated);
+  } catch (e) {
+    console.error(`❌ Write failed: ${indexPath}: ${e.message}`);
+    process.exit(1);
+  }
+
+  console.log(`✅ ${INDEX_FILE_NAME} updated (replaced 1 marker section)`);
+  console.log(`   ${recent.length} note(s) listed (window: ${opts.days} days)`);
+  process.exit(0);
+}
+
+main();

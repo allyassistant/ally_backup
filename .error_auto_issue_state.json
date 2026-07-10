@@ -1,0 +1,11 @@
+{
+  "issuedPatterns": [
+    "File Error::file system error",
+    "Rate Limit::429 too many requests",
+    "MiniMax Error::minimax api error",
+    "Timeout Error::connection timeout",
+    "Cron Timeout::cron job timed out",
+    "Rate Limit::rate limit exceeded",
+    "API Aborted::request aborted"
+  ]
+}

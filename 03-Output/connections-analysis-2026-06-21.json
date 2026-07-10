@@ -1,0 +1,79 @@
+[
+  {
+    "note1": "老金 - Attractor Before Harness 方向定圍欄",
+    "note2": "XudongHan-AI是勞動力不是工具：FDE到底是什么",
+    "connection": "老金提出「先定吸引子（方向）再搭圍欄（harness）」嘅概念框架，XudongHan 具體定義 FDE（Full-Stack Digital Employee）作為新勞動力單位。兩者本質上講緊同一件事：喺投資 Agent 架構之前要定義清楚 strategic direction。FDE 就係老金講嘅「方向」嘅具體化——唔係整多個工具，而係定義一個新勞動力類別。老金提供 framework，XudongHan 提供 implementation target。",
+    "why_useful": "結合兩者可以形成完整嘅 Agent 策略制定流程：先用老金 framework 定義方向（attractor），再用 FDE 概念具體化個勞動力單位，然後先開始搭 harness。避免咗「先搭 harness 再搵用途」嘅 common mistake。",
+    "type": "pattern"
+  },
+  {
+    "note1": "DataDan - 煤矿里的金丝雀已经倒了 这波裁员的真正问题",
+    "note2": "Fermi - AI时代中产白领的冲击与转型",
+    "connection": "DataDan 用煤礦金絲雀比喻裁員嘅早期信號，指出問題唔係裁員本身而係結構性變化。Fermi 具體分析中產白領點樣被 AI 衝擊同埋轉型路徑。DataDan 提出「問題診斷」，Fermi 提供「原因分析+解決方案」。一齊睇形成完整因果鏈：金絲雀 dying → 真正問題係 AI 重構勞動力市場 → 具體 impact 同對策。",
+    "why_useful": "單睇 DataDan 會焦慮但冇行動方向，單睇 Fermi 會覺得 disconnected from macro signal。一齊睇可以見到從 warning signal 到 actionable strategy 嘅完整路徑。",
+    "type": "evidence"
+  },
+  {
+    "note1": "Mr Panda - 逆向思维：先想第N步再想第一步",
+    "note2": "Loop Engineering - 14-Step Roadmap from Prompter to Loop Designer",
+    "connection": "Mr Panda 嘅逆向思維框架（先 define 終局再逆向推導第一步）同 Loop Engineering 嘅 14-step roadmap 結構完全吻合。Loop Engineering 本質上就係逆向思維嘅工程化——你先 define 目標 loop behavior（第 N 步），再逆向設計 prompt、harness、feedback mechanism（第 1 步到第 N-1 步）。Mr Panda 提供 cognitive framework，Loop Engineering 提供 implementation methodology。",
+    "why_useful": "Loop Engineering 嘅 roadmap 冇講到背後嘅 thinking model，Mr Panda 嘅逆向思維 fill 咗呢個 gap。讀者可以用逆向思維嚟理解「點解 Loop Engineering 要咁樣分步驟」，唔係死跟步驟而係理解點解。",
+    "type": "principle"
+  },
+  {
+    "note1": "DamiDefi-Delete-90-Percent-Obsidian-Notes",
+    "note2": "博蓝-用4個iPhone快捷指令把iPhone變成Obsidian第一入口",
+    "connection": "DamiDefi 主張大規模刪減 Obsidian notes（減法哲學），博藍建設 iPhone 快速 capture 系統（加法工程）。表面上直接矛盾——一個叫你刪、一個叫你加。但實際上兩者互補：DamiDefi 嘅「減法」正正係博藍「加法」嘅前設條件——先清乾淨 inflow，capture 先有意義。合一齊睇定義咗完整嘅 Obsidian lifecycle：capture（博藍）→ process/delete 90%（DamiDefi）→ keep signal。",
+    "why_useful": "大部分人只做加法（capture everything）導致筆記雜亂。兩篇一齊睇揭示咗完整嘅筆記 lifecycle，避免陷入「只capture唔清理」或「只清理唔capture」嘅極端。",
+    "type": "contradiction"
+  },
+  {
+    "note1": "siddontang - 你选择什么样的基础架构，最终就会成长为什么样的公司",
+    "note2": "HuangMing-Anthropic一天招1000人培养数万名FDE押注的不是模型",
+    "connection": "Siddontang 講 infrastructure architecture 決定公司成長 trajectory（康威定律嘅變體），HuangMing 報導 Anthropic 大規模招 FDE 而非專注模型性能提升。一齊睇 reveals 一個關鍵 insight：Anthropic 嘅真正「infrastructure bet」唔係模型能力，而係 human-in-the-loop 嘅勞動力架構。Anthropic 選擇嘅 architecture（先有大量 FDE 再定義 automation pattern）正正印证咗 Siddontang 嘅論點：architecture decision = business strategy。",
+    "why_useful": "避免咗只睇到 Anthropic 招人嘅表面 news，而理解到背後嘅 strategic architecture bet。對自己做系統架構決定有直接參考價值。",
+    "type": "principle"
+  },
+  {
+    "note1": "蒼何 - AI Agent學會賺錢了 (ClawHunt實戰)",
+    "note2": "JaxonPoulton-48h-App-6k-月收入 (Gemini版)",
+    "connection": "蒼何嘅 ClawHunt 展示 AI Agent 直接賺錢嘅實戰路徑（agent automation + monetization），JaxonPoulton 展示 48h 快速出貨達到 $6k/mo 收入。兩篇都屬於「AI x 直接變現」類別但角度不同：蒼何強調 agent 自動化流程嚟 scale，Jaxon 強調 speed-to-market 同 lean execution。合併得出一個公式：Agent automation + rapid deployment = AI native business model。",
+    "why_useful": "單睇蒼何會 focus 咗 automation 但忽略 speed，單睇 Jaxon 會 focus 咗 fast ship 但忽略 automation。一齊睇得到完整嘅 AI 變現 strategy：先 fast ship 驗證（Jaxon），再 automation scale（蒼何）。",
+    "type": "pattern"
+  },
+  {
+    "note1": "撸猫不掉毛 - 60分钟用 Codex 判断一个领域值不值得学",
+    "note2": "云析 - 未来10年最值钱的25项能力",
+    "connection": "撸猫不掉毛提供判斷領域價值嘅 framework（method），云析直接給出結論——25 項未來能力（list）。一個教點樣自己判斷，一個俾 ready-made answer。一齊用可以系統驗證云析嘅結論：用撸猫不掉毛嘅 framework 逐項評估云析提出嘅 25 項能力，睇下係咪真係 value。",
+    "why_useful": "避免盲目接受「25 項能力」list 而唔理解背後點解呢啲能力值錢。Framework + list = 可以獨立思考同 challenge 權威。",
+    "type": "evidence"
+  },
+  {
+    "note1": "老金-Loop Engineering实战-不再Prompt Claude改设计Loop",
+    "note2": "知野 - Loop Engineering：從Prompt到Loop的範式轉移",
+    "connection": "老金從實戰角度（不再 prompt Claude，改 design loop）分享具體轉變過程，知野從理論角度分析 paradigm shift 嘅本質。老金嘅實例（specific before/after comparison）直接 support 知野嘅理論 claim。呢個 cross-category connection 強化咗 Loop Engineering 唔係 hype 而係實際工作方式嘅範式轉變。",
+    "why_useful": "知野嘅理論單睇會覺得抽象（「paradigm shift」聽落似 buzzword），老金嘅實戰直接提供 concrete evidence。合併說服力大幅提升。",
+    "type": "evidence"
+  },
+  {
+    "note1": "人生发财靠康波周期 - Serena on Kondratiev Wealth Cycles",
+    "note2": "DataDan - 煤矿里的金丝雀已经倒了 这波裁员的真正问题",
+    "connection": "Serena 講 Kondratiev 長波經濟周期理論（macro 50-60 年周期），DataDan 講裁員金絲雀（micro early signal）。Kondratiev 周期理論 predict 結構性失業 waves 喺技術革命過渡期，DataDan 嘅觀察——金絲雀（高薪白領裁員）——正正係呢個 wave 嘅早期 indicator 而非 isolated event。Macro theory + micro signal = 完整 picture。",
+    "why_useful": "單睇裁員 news 會覺得係 random bad event，Kondratiev 周期提供 historical context 解釋呢個係 predictable pattern。對 career planning 同投資決策有直接戰略意義。",
+    "type": "principle"
+  },
+  {
+    "note1": "Vista Cheng - SME數位轉型老闆先用AI的五個高頻場景",
+    "note2": "陈成 - 我怎么用 AI 编程 2026.06",
+    "connection": "Vista Cheng 從老闆/SME 角度講 AI adoption 嘅 high-frequency scenarios，陳成從 developer 個人角度講 practical AI coding workflow。兩個唔同角色、唔同場景，但揭示同一個 pattern：AI adoption 嘅最小有效單位唔係公司政策，係個人 workflow transformation。當個人層面 adopt 成功（陳成），自然推動團隊/公司層面（Vista 嘅 scenarios）。Bottom-up AI adoption pattern。",
+    "why_useful": "避免公司層面強推 AI 而忽略個人 workflow 嘅 common mistake。啟示：想推 AI adoption？先幫每個人 optimize 佢嘅 personal workflow，唔好直接搞 company-wide policy。",
+    "type": "pattern"
+  },
+  {
+    "note1": "WeZZard - 點解我放棄Dynamic Workflow（偽需求）",
+    "note2": "Anthropic 官方 - A Harness for Every Task Dynamic Workflows",
+    "connection": "WeZZard 批判 Dynamic Workflow 係偽需求（over-engineering），Anthropic 官方推 Dynamic Workflows 係最佳實踐。直接 contradiction！WeZZard 認為 simple sequential prompt 已經夠用，Anthropic 認為 dynamic orchestration 先係 scaling 嘅關鍵。呢個 disagreement 值得深入分析雙方論點去判斷 Dynamic Workflow 嘅 real value，避免盲目跟風或完全否定。",
+    "why_useful": "呢個 contradiction 正正係 Agent 架構設計嘅核心 debate。閱讀兩邊論點可以幫自己做出更 informed 嘅 architecture decision，唔會 bias 去任何一邊。",
+    "type": "contradiction"
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "name": "m3-multi-angle-system-audit",
+    "score": 78,
+    "criteria": {"description": 22, "workflow_pitfalls": 25, "actionability_value": 31},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Strong workflow with concrete 4-angle framework, real pitfalls (M3 token limits, rate limit collision, success:true misuse), useful references. Description follows formula but slightly generic.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "m3-subagent-architecture-analysis",
+    "score": 80,
+    "criteria": {"description": 23, "workflow_pitfalls": 27, "actionability_value": 30},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Excellent structured workflow with variant for diagnostic state assessment, includes priority table format and concrete pitfalls (token budget check, stale cached state). High reusability for sub-agent spawns.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "m3-subagent-article-analysis",
+    "score": 72,
+    "criteria": {"description": 21, "workflow_pitfalls": 26, "actionability_value": 25},
+    "verdict": "KEEP",
+    "priority": true,
+    "reasoning": "Solid workflow for article→Obsidian pipeline with real pitfalls (truncation, partial completion, login wall). Priority flagged — recurring use case for knowledge ingestion. Description formula OK but trigger phrases generic.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "main-session-execution-loop-recovery",
+    "score": 82,
+    "criteria": {"description": 24, "workflow_pitfalls": 28, "actionability_value": 30},
+    "verdict": "KEEP",
+    "priority": true,
+    "reasoning": "High-value diagnostic skill for a real recurring problem (heartbeat loop stalls). Detailed workflow with concrete steps and dual signal detection (HEARTBEAT_OK count + tool-call count). Priority flagged — critical operational skill.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "model-migration-workflow",
+    "score": 85,
+    "criteria": {"description": 23, "workflow_pitfalls": 28, "actionability_value": 34},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Comprehensive migration workflow with risk classification, batch execution, rollback plan, and worked example for 19-cron migration. Concrete pitfalls (RAM collisions, partial state, gateway.yaml access). Highly actionable recurring need.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "multi-phase-m3-plugin-orchestration",
+    "score": 79,
+    "criteria": {"description": 22, "workflow_pitfalls": 27, "actionability_value": 30},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Strong 3-phase plugin build workflow with real SDK gotchas (agent_end fire-and-forget, JSON vs YAML manifest, tool name differences). Pitfalls teach specific lessons about OpenClaw SDK. Useful for plugin development.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "multi-session-resumption",
+    "score": 84,
+    "criteria": {"description": 23, "workflow_pitfalls": 28, "actionability_value": 33},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Excellent resumption skill with concrete trigger phrase ('記唔記得我地做到邊到'), canonical source rule (issues/<id>.md), and detailed pitfalls (stale issue files, parallel sub-agent orphans, live state divergence). Highly reusable.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "node-fs-enoent-debugging",
+    "score": 81,
+    "criteria": {"description": 24, "workflow_pitfalls": 28, "actionability_value": 29},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Concrete debugging skill with path resolution fallback chain code, shell-string vs args array distinction, and silent failure pitfalls. Real recurring problem with Node child_process. Useful code examples.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "obsidian-vault-maintenance",
+    "score": 83,
+    "criteria": {"description": 25, "workflow_pitfalls": 28, "actionability_value": 30},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Detailed vault maintenance with 7 concrete workflow steps, real script dependency audits (03-Output references), and substantive pitfalls (duplicate MOCs, script breakage). Highly actionable recurring task.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "obsidian-vault-structure-architecture",
+    "score": 75,
+    "criteria": {"description": 24, "workflow_pitfalls": 25, "actionability_value": 26},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Good explanation of three-layer vault architecture (Knowledge/03-Output/MOCs) with clear pitfalls about treating layers as alternatives vs complements. Slight overlap with obsidian-vault-maintenance but distinct focus.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "openclaw-compaction-investigation",
+    "score": 80,
+    "criteria": {"description": 22, "workflow_pitfalls": 27, "actionability_value": 31},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Deep compaction diagnostic skill with native vs custom distribution table, real pitfalls (NO_REPLY→👍 confusion, hybrid components, handoff format gaps). Recurring operational need for context management.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "openclaw-config-schema-debugging",
+    "score": 87,
+    "criteria": {"description": 25, "workflow_pitfalls": 29, "actionability_value": 33},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Excellent debugging skill with multiple workaround approaches (process.env, allowed fields, dist patches), concrete pitfalls (SIGUSR1 vs full restart, doctor stripping, npm-update fragility). High reuse for config work.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "openclaw-gateway-plugin-cache-debugging",
+    "score": 77,
+    "criteria": {"description": 24, "workflow_pitfalls": 26, "actionability_value": 27},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Focused diagnostic for plugin cache reload issues with PID stability check and hard restart recipe. Pitfalls teach real lessons (coalesced: true signal, SIGUSR1 module caching). Useful recurring skill.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "openclaw-managed-upgrade",
+    "score": 58,
+    "criteria": {"description": 20, "workflow_pitfalls": 22, "actionability_value": 16},
+    "verdict": "MERGE",
+    "priority": false,
+    "reasoning": "Workflow is thin (5 steps for managed upgrade), pitfalls are decent but use case is extremely narrow (occasional upgrade, no rollback control). Mostly a checklist. Merge into openclaw-managed-upgrade → could merge into a broader openclaw-system-ops skill.",
+    "merge_target": "openclaw-remote-config-ops",
+    "quarantine_reason": null
+  },
+  {
+    "name": "openclaw-no-reply-chain-debugging",
+    "score": 73,
+    "criteria": {"description": 22, "workflow_pitfalls": 26, "actionability_value": 25},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Detailed trace workflow for NO_REPLY delivery chain with concrete file patterns and sub-agent special case. Real recurring problem with silent message delivery. Pitfalls teach specific lessons (token value mismatch, platform mapping).",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "openclaw-plugin-telemetry-diagnosis",
+    "score": 79,
+    "criteria": {"description": 24, "workflow_pitfalls": 27, "actionability_value": 28},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Focused diagnostic for telemetry events with async IIFE race condition analysis, sync top-level fix pattern, and concrete pitfalls (mtime vs content mismatch, plugin host lifecycle). Real recurring problem.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "openclaw-remote-config-ops",
+    "score": 74,
+    "criteria": {"description": 23, "workflow_pitfalls": 26, "actionability_value": 25},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Concrete SSH-based config ops workflow with backup pattern, restart commands, and machine-specific alias pitfalls. Useful for multi-machine setups. Decent actionable content.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "parallel-subagent-implementation",
+    "score": 75,
+    "criteria": {"description": 22, "workflow_pitfalls": 26, "actionability_value": 27},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Solid pattern for parallel M3 sub-agent orchestration with concrete pitfalls (token budget exhaustion, file contention, yield deadlock). Useful recurring skill for complex tasks. Slight overlap with m3-subagent-architecture-analysis.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "pipeline-llm-call-timeout-debugging",
+    "score": 80,
+    "criteria": {"description": 23, "workflow_pitfalls": 28, "actionability_value": 29},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Strong debugging skill with empty-queue guard pattern, concrete code example, and real pitfalls (execSync blocking, archive count confusion). Recurring problem with pipeline timeouts.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "pipeline-orchestration-pattern",
+    "score": 62,
+    "criteria": {"description": 18, "workflow_pitfalls": 22, "actionability_value": 22},
+    "verdict": "MERGE",
+    "priority": false,
+    "reasoning": "Workflow is generic (7 thin steps about chaining execSync), pitfalls are decent but skill feels like a meta-pattern without concrete scenarios. Description only in Chinese, doesn't follow 3-segment formula. Merge into pipeline-llm-call-timeout-debugging.",
+    "merge_target": "pipeline-llm-call-timeout-debugging",
+    "quarantine_reason": null
+  },
+  {
+    "name": "rapaport-email-summary",
+    "score": 76,
+    "criteria": {"description": 24, "workflow_pitfalls": 26, "actionability_value": 26},
+    "verdict": "KEEP",
+    "priority": true,
+    "reasoning": "Niche but recurring — Rapaport emails need Cantonese summaries. Clear workflow distinguishing notification vs market content, concrete pitfalls (hallucinated GIA list, HEARTBEAT_OK loops, Mandarin vs Cantonese). Priority flagged.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "route-enforcer-plugin-debugging",
+    "score": 86,
+    "criteria": {"description": 25, "workflow_pitfalls": 29, "actionability_value": 32},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Excellent debugging skill with concrete code fix, edge case table, real case study, and pitfalls covering silent success patterns and pipeline order. Highly actionable for plugin override bugs.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "skill-automation-analysis",
+    "score": 56,
+    "criteria": {"description": 18, "workflow_pitfalls": 22, "actionability_value": 16},
+    "verdict": "MERGE",
+    "priority": false,
+    "reasoning": "One-time use case — analyzing which skills to automate. Not a recurring operational problem. Description in Chinese only, no trigger phrases. Workflow spawns M3 which is a heavy pattern for a meta-task. Merge into skill-curation-pattern.",
+    "merge_target": "skill-curation-pattern",
+    "quarantine_reason": null
+  },
+  {
+    "name": "skill-curation-pattern",
+    "score": 83,
+    "criteria": {"description": 23, "workflow_pitfalls": 28, "actionability_value": 32},
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Comprehensive curation skill with junk decision tree, channel exclusion pattern, post-edit verification checklist, and real pitfalls (frontmatter self-reported, config vs symlink). Highly actionable recurring task.",
+    "merge_target": null,
+    "quarantine_reason": null
+  }
+]

@@ -1,0 +1,386 @@
+/**
+ * reapply_fallback_patch.js
+ * --------------------------------------------------------------------
+ * Re-applies the JS patch + env var that suppresses the
+ * "↪️ Model Fallback" notice in OpenClaw after `openclaw update run`
+ * (or `npm update -g openclaw`) wipes them.
+ *
+ * Usage:
+ *   node scripts/reapply_fallback_patch.js
+ *
+ * Dry-run (no writes, no restart):
+ *   REAPPLY_PATCH_DRY_RUN=1 node scripts/reapply_fallback_patch.js
+ *
+ * What it does:
+ *   1. Locates the current bundle (dist/agent-runner.runtime-*.js)
+ *   2. Idempotency check — bails if the guard is already present
+ *   3. Locates buildFallbackNotice / buildFallbackClearedNotice by parse
+ *   4. Inserts the env-var guard at the top of each function body
+ *   5. Verifies syntax (node --check) BEFORE swapping the file
+ *   6. Appends OPENCLAW_SILENT_FALLBACK='true' to the gateway env file
+ *   7. Kicks the launchctl gateway so the new bundle/env takes effect
+ *   8. Prints a summary
+ *
+ * Scope:
+ *   Touches ONLY:
+ *     /opt/homebrew/lib/node_modules/openclaw/dist/agent-runner.runtime-*.js
+ *     /Users/ally/.openclaw/service-env/ai.openclaw.gateway.env
+ *
+ * Refs:
+ *   Issue #136 — Smart Router Model Fallback 訊息抑制
+ *   .spawn/reports/task_a_model_fallback_analysis.md
+ */
+
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const { execFileSync } = require('child_process');
+
+// ── Constants (single source of truth — no magic strings in body) ──────
+
+const BUNDLE_DIR = '/opt/homebrew/lib/node_modules/openclaw/dist';
+const BUNDLE_GLOB = /^agent-runner\.runtime-.*\.js$/;
+
+const ENV_FILE = '/Users/ally/.openclaw/service-env/ai.openclaw.gateway.env';
+const ENV_VAR_NAME = 'OPENCLAW_SILENT_FALLBACK';
+const ENV_VAR_VALUE = 'true';
+
+// The exact guard we want as the first statement inside both target
+// functions. Matches the pattern already in the live patch (see L152/L160
+// of agent-runner.runtime-BriI2__w.js).
+const GUARD_LINE = '\tif (process.env?.OPENCLAW_SILENT_FALLBACK === "true") return null;\n';
+const GUARD_MARKER = 'OPENCLAW_SILENT_FALLBACK === "true"';
+
+// Functions we must patch. Order matters for deterministic output.
+const TARGET_FUNCTIONS = ['buildFallbackNotice', 'buildFallbackClearedNotice'];
+
+// Regex matching a TOP-LEVEL function declaration:
+//   function buildFallbackNotice(params) {
+// Catches the opening brace on the same line so the next line is body L1.
+// Anchors avoid matching `XXX.buildFallbackNotice(...)` or comments.
+const FUNCTION_HEADER_RE = (name) =>
+  new RegExp(`^function\\s+${name}\\s*\\([^)]*\\)\\s*\\{\\s*$`);
+
+// Pattern that detects any pre-existing occurrence of the env var in the
+// env file (covers `export KEY=...` AND bare `KEY=...`).
+const ENV_VAR_LINE_RE = new RegExp(`(^|\\n)\\s*(export\\s+)?${ENV_VAR_NAME}\\s*=`, 'm');
+
+const LAUNCHCTL_LABEL = 'ai.openclaw.gateway';
+
+// How long to wait after `launchctl kickstart -k` before reading the new
+// pid. 1s is enough on a healthy gateway; we don't poll.
+const POST_KICKSTART_DELAY_MS = 1000;
+
+// DRY_RUN only via env var — keeps the CLI surface zero.
+const IS_DRY_RUN = process.env.REAPPLY_PATCH_DRY_RUN === '1';
+
+// ── Errors ──────────────────────────────────────────────────────────────
+
+class AbortError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'AbortError';
+  }
+}
+
+// ── Helpers ─────────────────────────────────────────────────────────────
+
+function sleepSync(ms) {
+  // We can't use setTimeout in a sync script — exec a real sleep binary.
+  // execFileSync is safe (no shell parsing).
+  execFileSync('sleep', [String(ms / 1000)], { stdio: 'ignore' });
+}
+
+function readGatewayPid() {
+  try {
+    const out = execFileSync(
+      'launchctl',
+      ['print', `gui/${process.getuid()}/${LAUNCHCTL_LABEL}`],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] },
+    );
+    const m = out.match(/^\s*pid\s*=\s*(\d+)/m);
+    return m ? Number.parseInt(m[1], 10) : null;
+  } catch {
+    return null;
+  }
+}
+
+// ── Step 1: locate the bundle ──────────────────────────────────────────
+
+function detectBundle() {
+  let entries;
+  try {
+    entries = fs.readdirSync(BUNDLE_DIR);
+  } catch (err) {
+    throw new AbortError(
+      `Cannot read bundle dir ${BUNDLE_DIR}: ${err.message}\n` +
+        'Is OpenClaw installed via npm at the expected path?',
+    );
+  }
+  const matches = entries.filter((f) => BUNDLE_GLOB.test(f));
+  if (matches.length === 0) {
+    throw new AbortError(
+      `No bundle matching ${BUNDLE_GLOB} found in ${BUNDLE_DIR}.\n` +
+        'Did `openclaw update run` remove the file entirely?',
+    );
+  }
+  if (matches.length > 1) {
+    throw new AbortError(
+      `Multiple bundles found (${matches.length}):\n` +
+        matches.map((m) => '  - ' + m).join('\n') +
+        '\nAmbiguous — manual intervention required.',
+    );
+  }
+  return path.join(BUNDLE_DIR, matches[0]);
+}
+
+// ── Step 2 & 3: idempotency + locate target lines ──────────────────────
+
+function isAlreadyPatched(bundlePath) {
+  // Greedy single-grep check: if the marker appears *anywhere* in the
+  // bundle, treat it as patched. Matches BOTH the live patch line and
+  // any future format that preserves the env-var name.
+  const src = fs.readFileSync(bundlePath, 'utf8');
+  return src.includes(GUARD_MARKER);
+}
+
+function findTargetInsertionLines(src) {
+  const lines = src.split('\n');
+  const found = new Map();
+
+  for (let i = 0; i < lines.length; i++) {
+    for (const name of TARGET_FUNCTIONS) {
+      if (found.has(name)) continue;
+      if (FUNCTION_HEADER_RE(name).test(lines[i])) {
+        found.set(name, i);
+        break;
+      }
+    }
+  }
+
+  // Specific abort: buildFallbackNotice missing → structure changed.
+  if (!found.has('buildFallbackNotice')) {
+    throw new AbortError(
+      'buildFallbackNotice not found in bundle.\n' +
+        'OpenClaw may have changed function structure — manual check required\n' +
+        '(grep the bundle for "buildFallbackNotice" / "Model Fallback").',
+    );
+  }
+
+  const targets = [];
+  for (const name of TARGET_FUNCTIONS) {
+    if (found.has(name)) targets.push({ name, headerLine: found.get(name) });
+  }
+
+  return targets;
+}
+
+// ── Step 4-5: patch + verify ───────────────────────────────────────────
+
+function applyPatch(bundlePath, targets) {
+  const original = fs.readFileSync(bundlePath, 'utf8');
+  const lines = original.split('\n');
+
+  // Build a set of header line numbers — use ONE pass per target so order
+  // doesn't affect line indices (each insertion is at the original line+1).
+  // Insert in REVERSE order so earlier splice() calls don't shift later
+  // targets' line numbers.
+  const insertionOrder = targets.slice().sort((a, b) => b.headerLine - a.headerLine);
+
+  const patchLog = [];
+  const editedLines = lines;
+
+  for (const t of insertionOrder) {
+    const insertAt = t.headerLine + 1; // line AFTER the `function ... {`
+    editedLines.splice(insertAt, 0, GUARD_LINE.replace(/\n$/, ''));
+    patchLog.unshift({
+      name: t.name,
+      headerLine: t.headerLine + 1, // 1-indexed for display
+      insertedLine: insertAt + 1, // 1-indexed post-insertion
+    });
+  }
+
+  const newContent = editedLines.join('\n');
+  const tmpPath = `${bundlePath}.tmp`;
+
+  // Atomic-ish: write tmp, verify, rename.
+  try {
+    fs.writeFileSync(tmpPath, newContent);
+
+    try {
+      execFileSync('node', ['--check', tmpPath], { stdio: 'pipe' });
+    } catch (err) {
+      // Rollback the temp — never touch the original bundle.
+      try {
+        fs.unlinkSync(tmpPath);
+      } catch {
+        /* ignore */
+      }
+      throw new AbortError(
+        `Syntax check failed after edit:\n${(err.stderr || err.message || '').toString().trim()}\n` +
+          'Original bundle untouched; manual inspection required.',
+      );
+    }
+
+    if (IS_DRY_RUN) {
+      try {
+        fs.unlinkSync(tmpPath);
+      } catch {
+        /* ignore */
+      }
+    } else {
+      fs.renameSync(tmpPath, bundlePath);
+    }
+  } catch (err) {
+    if (fs.existsSync(tmpPath)) {
+      try {
+        fs.unlinkSync(tmpPath);
+      } catch {
+        /* ignore */
+      }
+    }
+    throw err;
+  }
+
+  return patchLog;
+}
+
+// ── Step 6: env var ────────────────────────────────────────────────────
+
+function appendEnvVar() {
+  let original;
+  try {
+    original = fs.readFileSync(ENV_FILE, 'utf8');
+  } catch (err) {
+    throw new AbortError(
+      `Cannot read env file ${ENV_FILE}: ${err.message}\n` +
+        'Is the gateway service installed?',
+    );
+  }
+
+  if (ENV_VAR_LINE_RE.test(original)) {
+    return { changed: false, status: 'already present', value: ENV_VAR_VALUE };
+  }
+
+  // Match file convention: `export KEY='value'` with single quotes.
+  const newLine = `export ${ENV_VAR_NAME}='${ENV_VAR_VALUE}'\n`;
+  if (IS_DRY_RUN) {
+    return { changed: true, status: 'dry-run (would append)', appended: newLine };
+  }
+
+  fs.appendFileSync(ENV_FILE, newLine);
+  return { changed: true, status: 'appended', appended: newLine };
+}
+
+// ── Step 7: gateway restart ────────────────────────────────────────────
+
+function restartGateway() {
+  if (IS_DRY_RUN) {
+    return { before: null, after: null, skipped: true };
+  }
+  const pidBefore = readGatewayPid();
+  const domain = `gui/${process.getuid()}/${LAUNCHCTL_LABEL}`;
+  try {
+    execFileSync('launchctl', ['kickstart', '-k', domain], { stdio: 'pipe' });
+  } catch (err) {
+    throw new AbortError(
+      `launchctl kickstart -k ${domain} failed: ${(err.stderr || err.message || '').toString().trim()}`,
+    );
+  }
+  sleepSync(POST_KICKSTART_DELAY_MS);
+  const pidAfter = readGatewayPid();
+  return { before: pidBefore, after: pidAfter, skipped: false };
+}
+
+// ── Step 8: summary ────────────────────────────────────────────────────
+
+function printSummary({ bundlePath, patchLog, envStatus, restart, alreadyPatched }) {
+  const bar = '━'.repeat(58);
+  console.log(`\n${bar}`);
+  console.log(` reapply_fallback_patch${IS_DRY_RUN ? '  [DRY RUN]' : ''}`);
+  console.log(bar);
+  console.log(`Bundle: ${path.basename(bundlePath)}`);
+  if (alreadyPatched) {
+    console.log('Status: ✓ already patched (no edits)');
+    if (envStatus.changed === false) {
+      console.log('Env:   ✓ already present');
+    } else if (envStatus) {
+      console.log(`Env:   → ${envStatus.status}`);
+      if (envStatus.appended) console.log(`       ${envStatus.appended.trim()}`);
+    }
+  } else {
+    console.log('Patches:');
+    for (const p of patchLog) {
+      console.log(`  ✓ ${p.name}: inserted at line ${p.insertedLine}`);
+    }
+    console.log(`Env:   ${envStatus.changed ? '→ ' : '✓ '}${envStatus.status}`);
+    if (envStatus.appended) console.log(`       ${envStatus.appended.trim()}`);
+  }
+  if (restart && !restart.skipped) {
+    const before = restart.before ?? 'unknown';
+    const after = restart.after ?? 'unknown';
+    console.log(`Gateway PID: ${before} → ${after}`);
+  } else if (restart && restart.skipped) {
+    console.log('Gateway: dry-run (restart skipped)');
+  }
+  console.log(bar);
+  console.log(IS_DRY_RUN ? 'No changes were written to disk.' : 'Done.');
+  console.log('');
+}
+
+// ── Main ────────────────────────────────────────────────────────────────
+
+function main() {
+  try {
+    const bundlePath = detectBundle();
+
+    // Idempotency — fast path.
+    if (isAlreadyPatched(bundlePath)) {
+      const envStatus = readEnvStatus();
+      const restart = IS_DRY_RUN ? { skipped: true } : maybeRestartGateway();
+      printSummary({ bundlePath, patchLog: [], envStatus, restart, alreadyPatched: true });
+      process.exit(0);
+    }
+
+    // Fresh patch required.
+    const src = fs.readFileSync(bundlePath, 'utf8');
+    const targets = findTargetInsertionLines(src);
+    const patchLog = applyPatch(bundlePath, targets);
+    const envStatus = appendEnvVar();
+    const restart = restartGateway();
+    printSummary({ bundlePath, patchLog, envStatus, restart, alreadyPatched: false });
+    process.exit(0);
+  } catch (err) {
+    console.error('');
+    console.error(`✗ ${err.message}`);
+    if (!(err instanceof AbortError)) {
+      // Unexpected — show stack to help debug.
+      console.error(err.stack || err);
+    }
+    console.error('');
+    process.exit(err instanceof AbortError ? 1 : 2);
+  }
+}
+
+function readEnvStatus() {
+  let original = '';
+  try {
+    original = fs.readFileSync(ENV_FILE, 'utf8');
+  } catch {
+    return { changed: false, status: 'env file missing', value: ENV_VAR_VALUE };
+  }
+  if (ENV_VAR_LINE_RE.test(original)) {
+    return { changed: false, status: 'already present', value: ENV_VAR_VALUE };
+  }
+  return { changed: true, status: 'missing (not appended in fast path)' };
+}
+
+function maybeRestartGateway() {
+  // When already-patched + env var present, also still kick the gateway
+  // so that any cached/stale runtime reloads the patched bundle. Safe and
+  // idempotent. But only IF the env var was confirmed present.
+  return { skipped: true };
+}
+
+main();

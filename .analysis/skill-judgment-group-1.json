@@ -1,0 +1,338 @@
+[
+  {
+    "name": "aliveness-noise-reduction",
+    "score": 68,
+    "criteria": {
+      "description": 22,
+      "workflow_pitfalls": 22,
+      "actionability_value": 24
+    },
+    "verdict": "MERGE",
+    "priority": false,
+    "reasoning": "Solid workflow + 4 pitfalls (suppression loop, exec confusion, apology). Niche but real recurring issue (heartbeat echo). Frontmatter description is decent but lacks explicit triggers.",
+    "merge_target": "heartbeat-maintenance",
+    "quarantine_reason": null
+  },
+  {
+    "name": "anomaly-proactive-push",
+    "score": 85,
+    "criteria": {
+      "description": 28,
+      "workflow_pitfalls": 28,
+      "actionability_value": 29
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Comprehensive: trigger, inputs, outputs, workflow, 8 pitfalls, idempotency, verification. Auto-degrade is powerful with caveats documented. Real recurring value for cron monitoring.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "architecture-review-external-audit",
+    "score": 78,
+    "criteria": {
+      "description": 26,
+      "workflow_pitfalls": 25,
+      "actionability_value": 27
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Strong description with explicit triggers, 7 numbered workflow steps, 7 pitfalls teach real lessons (echo-chamber, timezone math, token coverage arithmetic). High value for plan validation.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "auto-skill-pipeline-feasibility",
+    "score": 75,
+    "criteria": {
+      "description": 25,
+      "workflow_pitfalls": 24,
+      "actionability_value": 26
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Description has clear 3-segment formula. 7-step workflow + 10 pitfalls (overkill but substantive). Teaches the evidence-table pattern. Recurring problem when proposing new features.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "code-quality-proactive-scan",
+    "score": 62,
+    "criteria": {
+      "description": 20,
+      "workflow_pitfalls": 22,
+      "actionability_value": 20
+    },
+    "verdict": "MERGE",
+    "priority": false,
+    "reasoning": "Good workflow + 5 pitfalls on location triage. But description missing 'Use when' trigger phrases, status=draft, narrow use case (CQM output triage only). Likely invoked only when CQM scans run.",
+    "merge_target": "code-review-checklist",
+    "quarantine_reason": null
+  },
+  {
+    "name": "code-review-checklist",
+    "score": 72,
+    "criteria": {
+      "description": 24,
+      "workflow_pitfalls": 22,
+      "actionability_value": 26
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "3-phase workflow (spawn auditors, audit, reconcile) + 5 pitfalls. Real recurring need: drafting/patching skills is frequent. Description follows formula with concrete triggers.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "concurrent-session-rate-limit-avoidance",
+    "score": 82,
+    "criteria": {
+      "description": 28,
+      "workflow_pitfalls": 26,
+      "actionability_value": 28
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Excellent description with specific symptoms (model-call-started hang, same provider). 5-step workflow + 5 pitfalls. Highly actionable for diagnosing cron timeouts (a frequent real problem).",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "context-gather-subagent-orchestrate",
+    "score": 80,
+    "criteria": {
+      "description": 26,
+      "workflow_pitfalls": 27,
+      "actionability_value": 27
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Detailed 7-step workflow with code examples. 6 pitfalls are real (context overflow precheck, sub-agent output size, stale brief). High recurring value for any sub-agent spawn.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "cron-config-audit",
+    "score": 76,
+    "criteria": {
+      "description": 25,
+      "workflow_pitfalls": 25,
+      "actionability_value": 26
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "8-step workflow covering config vs script drift detection + 8 pitfalls. Real recurring issue (cron config drift after experiments). Substantive content with concrete commands.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "cron-health-triage",
+    "score": 88,
+    "criteria": {
+      "description": 28,
+      "workflow_pitfalls": 29,
+      "actionability_value": 31
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Best in class: trigger, inputs, outputs, workflow, 7 pitfalls, idempotency, verification, references. Solves real recurring problem (manual cron health checks take 10-15 min). High invoke frequency.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "cron-migration",
+    "score": 83,
+    "criteria": {
+      "description": 26,
+      "workflow_pitfalls": 27,
+      "actionability_value": 30
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "4-phase workflow (planning/execution/verification/special cases) + 6 pitfalls (tool schema vs runtime, M3 thinking param). Real recurring value during cron migrations. Substantive.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "cron-troubleshooting",
+    "score": 84,
+    "criteria": {
+      "description": 27,
+      "workflow_pitfalls": 28,
+      "actionability_value": 29
+    },
+    "verdict": "KEEP",
+    "priority": true,
+    "reasoning": "Priority flag. Strong 7-step workflow + 9 pitfalls covering real recurring cron issues (morning contention, concurrent session collision, thin executor fallback). Highly actionable for diagnosis.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "cross-machine-deployment",
+    "score": 70,
+    "criteria": {
+      "description": 20,
+      "workflow_pitfalls": 23,
+      "actionability_value": 27
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "7-step SSH/rsync/scp workflow with MD5 verification + 6 pitfalls (stale state, SSH key rotation, permission). Description short (no 'Use when') but real recurring need for HA pair (Ally+Bliss).",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "daily-synthesis",
+    "score": 72,
+    "criteria": {
+      "description": 24,
+      "workflow_pitfalls": 23,
+      "actionability_value": 25
+    },
+    "verdict": "KEEP",
+    "priority": true,
+    "reasoning": "Priority flag. 7-step workflow with cron timing constraints (02:00 vs 08:00 mistake) + 5 pitfalls. Real recurring value (daily synthesis). Description could be richer on triggers.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "error-auto-issue",
+    "score": 87,
+    "criteria": {
+      "description": 28,
+      "workflow_pitfalls": 29,
+      "actionability_value": 30
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "Excellent: trigger, inputs, outputs, workflow, 9 pitfalls, idempotency, verification, when-NOT-to-use, references. Solves recurring recurring-error detection (20-30min manual). Top tier.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "external-analysis-to-issue-extraction",
+    "score": 76,
+    "criteria": {
+      "description": 24,
+      "workflow_pitfalls": 25,
+      "actionability_value": 27
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "6-step workflow for converting external analysis to issues + 5 pitfalls (over-promising phase scope, missing cross-refs). Recurring use whenever an article/analysis arrives.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "heartbeat-maintenance",
+    "score": 68,
+    "criteria": {
+      "description": 23,
+      "workflow_pitfalls": 23,
+      "actionability_value": 22
+    },
+    "verdict": "MERGE",
+    "priority": false,
+    "reasoning": "6-step workflow + 5 pitfalls (delete files still referenced, false-positive wikilinks). Real but moderate recurring value. Overlaps with aliveness-noise-reduction on heartbeat maintenance concerns.",
+    "merge_target": "aliveness-noise-reduction",
+    "quarantine_reason": null
+  },
+  {
+    "name": "intent-based-spawn-model-selection",
+    "score": 71,
+    "criteria": {
+      "description": 27,
+      "workflow_pitfalls": 24,
+      "actionability_value": 20
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "8-step workflow on M2.7 vs M3 tiering + 5 pitfalls (fallback chain quality, system prompt alias sync). Description is strong. But narrow use case (only when changing spawn routes).",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "issue-consolidation-via-subagent",
+    "score": 64,
+    "criteria": {
+      "description": 18,
+      "workflow_pitfalls": 22,
+      "actionability_value": 24
+    },
+    "verdict": "MERGE",
+    "priority": false,
+    "reasoning": "5-step workflow + 5 pitfalls (no dedup criteria, stale issues). Description too short, no 'Use when'. Substantial overlap with issue-triage-via-subagent (both triage via M3 spawn).",
+    "merge_target": "issue-triage-via-subagent",
+    "quarantine_reason": null
+  },
+  {
+    "name": "issue-duplicate-prevention-workflow",
+    "score": 78,
+    "criteria": {
+      "description": 25,
+      "workflow_pitfalls": 26,
+      "actionability_value": 27
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "7-step workflow for issue dedup + 5 pitfalls (search too broad, body too short). Real recurring value (Josh explicitly requested this). Solid structure.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "issue-triage-via-subagent",
+    "score": 80,
+    "criteria": {
+      "description": 26,
+      "workflow_pitfalls": 27,
+      "actionability_value": 27
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "7-step workflow with formula (progress_ratio/effort_remaining) + 5 pitfalls. Strong description. Real recurring value when backlog grows. JSON output schema is concrete.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "llm-call-execfile-migration",
+    "score": 84,
+    "criteria": {
+      "description": 26,
+      "workflow_pitfalls": 28,
+      "actionability_value": 30
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "5-phase workflow with before/after code examples + 9 pitfalls (no shell interpretation, paths with spaces, timeout critical). Recurring value for any new LLM-calling script. Substantive.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "loop-engineering-implementation",
+    "score": 78,
+    "criteria": {
+      "description": 25,
+      "workflow_pitfalls": 25,
+      "actionability_value": 28
+    },
+    "verdict": "KEEP",
+    "priority": true,
+    "reasoning": "Priority flag. 19-step workflow across Phase 0/1/decision/L2/log-only + 5 pitfalls. 3-dimension quality framework (D1/D2/D3) is substantive. Recurring value for self-improvement loops.",
+    "merge_target": null,
+    "quarantine_reason": null
+  },
+  {
+    "name": "m3-adversarial-challenge-spawn",
+    "score": 73,
+    "criteria": {
+      "description": 24,
+      "workflow_pitfalls": 25,
+      "actionability_value": 24
+    },
+    "verdict": "KEEP",
+    "priority": false,
+    "reasoning": "7-step workflow with token budget pre-check + 5 pitfalls (thinking:high rejection, fallback to DeepSeek). Recurring use for stress-testing recommendations. Substantial overlap with architecture-review-external-audit but different angle (this is adversarial on recommendations, not plans).",
+    "merge_target": null,
+    "quarantine_reason": null
+  }
+]

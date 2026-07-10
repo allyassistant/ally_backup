@@ -1,0 +1,109 @@
+{
+  "auditDate": "2026-06-19T18:01:02.584Z",
+  "windowDays": 7,
+  "threshold": 3,
+  "totalIssues": 77,
+  "uniqueRules": 3,
+  "recurringRules": 2,
+  "rules": [
+    {
+      "rule": "fsSync_missing_trycatch",
+      "count": 55,
+      "dates": [
+        "2026-06-19"
+      ],
+      "files": [
+        "scripts/archive/cron_health_check.js",
+        "scripts/archive/cron_health_monitor.js",
+        "scripts/archive/daily_summary.js",
+        "scripts/archive/discord_stock_watcher.js",
+        "scripts/archive/error_autofix_backup.js"
+      ],
+      "samples": [
+        {
+          "file": "scripts/archive/cron_health_check.js",
+          "line": 34
+        },
+        {
+          "file": "scripts/archive/cron_health_check.js",
+          "line": 39
+        },
+        {
+          "file": "scripts/archive/cron_health_monitor.js",
+          "line": 264
+        },
+        {
+          "file": "scripts/archive/cron_health_monitor.js",
+          "line": 286
+        },
+        {
+          "file": "scripts/archive/daily_summary.js",
+          "line": 33
+        }
+      ],
+      "dateCount": 1,
+      "fileCount": 21
+    },
+    {
+      "rule": "magic_numbers",
+      "count": 20,
+      "dates": [
+        "2026-06-19"
+      ],
+      "files": [
+        "scripts/ai_hot_push.js",
+        "scripts/anomaly_proactive_push.js",
+        "scripts/archive/health_api.js",
+        "scripts/cron_health_triage.js",
+        "scripts/cross_session_bootstrap.js"
+      ],
+      "samples": [
+        {
+          "file": "scripts/ai_hot_push.js",
+          "line": 252
+        },
+        {
+          "file": "scripts/ai_hot_push.js",
+          "line": 252
+        },
+        {
+          "file": "scripts/anomaly_proactive_push.js",
+          "line": 157
+        },
+        {
+          "file": "scripts/archive/health_api.js",
+          "line": 21
+        },
+        {
+          "file": "scripts/cron_health_triage.js",
+          "line": 209
+        }
+      ],
+      "dateCount": 1,
+      "fileCount": 14
+    },
+    {
+      "rule": "simplified-chinese",
+      "count": 2,
+      "dates": [
+        "2026-06-19"
+      ],
+      "files": [
+        "scripts/archive/daily_summary.js",
+        "scripts/archive/error_recovery.js"
+      ],
+      "samples": [
+        {
+          "file": "scripts/archive/daily_summary.js",
+          "line": 63
+        },
+        {
+          "file": "scripts/archive/error_recovery.js",
+          "line": 207
+        }
+      ],
+      "dateCount": 1,
+      "fileCount": 2
+    }
+  ]
+}

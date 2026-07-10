@@ -1,0 +1,72 @@
+[
+  {
+    "note1": "369Serena-Loop Engineering实操指南告别AI返工",
+    "note2": "被神化的 AI 自动化优化 - 为什么你的 Agent 根本不听别的 Agent 说话 (Gemini版)",
+    "connection": "Serena 的 Loop Engineering 核心是检查标准和纠错规则，假设 multi-agent loop 的 iterative feedback 有效。但论文研究发现 Agent 之间不存在交互效应——多数任务中，Agent A 和 Agent B 的 prompt 联合优化的 F 值 < 1，即花心思设计的 multi-agent loop 优化可能根本没作用。Serena 假设 feedback loop 的 iteration 有价值，论文实证说这个假设在多数场景下不成立。",
+    "why_useful": "这个 contradiction 揭示 Loop Engineering 的核心假设未经实证：如果 Agent 之间没有交互效应，loop 的多轮反馈修正机制真正价值不是 multi-agent 协作，而是单 Agent 的持续迭代。对 Loop Engineering 的设计有根本性影响。",
+    "type": "contradiction"
+  },
+  {
+    "note1": "komet - The DeepThink Skill",
+    "note2": "被神化的 AI 自动化优化 - 为什么你的 Agent 根本不听别的 Agent 说话 (Gemini版)",
+    "connection": "komet 的 DeepThink 是一个 9-step pre-decision 框架（slow down before acting），而论文发现自动化 prompt 优化框架（DSPy, TextGrad）49% 情况下效果不如 Zero-shot。两者一起读的 insight：与其花功夫做自动化的 prompt 优化（劣化风险高），不如设计结构化的单 Agent 决策框架。DeepThink 的方向（架构设计）正是论文结论（prompt engineering 红利见顶）的实践出路。",
+    "why_useful": "这个 connection 将一篇架构文和研究成果链接，提供清晰的行动指引：投资在决策框架设计（如 DeepThink），而非 prompt 优化工具。架构层的回报远高于 prompt 层。",
+    "type": "evidence"
+  },
+  {
+    "note1": "DataDan-AI-H2-2026-Strategy",
+    "note2": "Kelly Tsai - AI一人公司黄金时代 (Gemini版)",
+    "connection": "DataDan 说下半年最大机会是 AI 救火队——帮企业收拾搞砸了的 AI 项目；Kelly 说一人公司的护城河是问题定义能力和专有数据。看似矛盾，其实是同一个 AI 经济的两面：Kelly 讲 AI-native 创业者的进攻策略（从零做新产品），DataDan 讲传统企业 AI 落地失败者的防守市场（收拾烂摊子）。一体两面——AI 经济同时创造了新物种创业和旧系统修复两个市场。",
+    "why_useful": "这个 connection 揭示 AI 市场的双轨结构：做 Kelly 路线需要 product sense（定义问题、专有数据），做 DataDan 路线需要 consulting skill（诊断、治理、救火）。明确定位可以避免同时做两边，分散资源。",
+    "type": "principle"
+  },
+  {
+    "note1": "FinnTsai88-AI时代别再用品很忙证明自己",
+    "note2": "Stanleysobest-闲鱼AI代写普通人被低估的搞钱副业",
+    "connection": "FinnTsai88 提出体力活 vs 判断力的工作二分法（AI 压缩体力活、放大判断力），Stanley 的闲鱼代写 case 用实战数字验证了：5-30元低价路线（体力活：AI 生成+交货）月入不到 1000，转做 150 元竞聘稿专家（判断力+定位）月入 8000+。FinnTsai88 的理论框架和 Stanley 的实战数据完美对应：AI 将低端体力活的价格打到地板，但专业判断力的溢价反而升高。",
+    "why_useful": "这个 connection 将工作哲学理论和副业实战链接，提供量化框架：任何 AI 副业的天花板取决于判断力占比，而非 AI 用得好不好。可以用这条公式评估任何 AI 副业机会的真实潜力。",
+    "type": "evidence"
+  },
+  {
+    "note1": "369Serena-Loop Engineering实操指南告别AI返工",
+    "note2": "komet - The DeepThink Skill",
+    "connection": "Serena 的 Loop 是 execution loop（执行->检查->修正->继续），komet 的 DeepThink 是 decision loop（想清楚才做）。两个 loop 的差异揭示一个盲点：大部分 Loop Engineering 讨论只专注 execution loop（怎样有效率地跑），忽略了 pre-execution decision loop。真正进阶是将两个 loop 串成 pipeline：DeepThink 做 gate（决定做不做、怎么做），Serena Loop 做 runner（决定好就跑到完）。",
+    "why_useful": "这个 pattern 揭示 loop engineering 的下一步进化：从一个 loop 做晒所有嘢变成 decision loop -> execution loop 两层结构。这个架构可以防止 agent 在错误方向高速狂奔。",
+    "type": "pattern"
+  },
+  {
+    "note1": "省了图谱预处理亏了 API 费 - Dense RAG vs Graph RAG Token 陷阱 (Gemini版)",
+    "note2": "被神化的 AI 自动化优化 - 为什么你的 Agent 根本不听别的 Agent 说话 (Gemini版)",
+    "connection": "两篇 Tech notes 从不同角度挑战同一个假设：更复杂 = 更好。RAG 文发现 Dense RAG + Agentic Search 是 Token 刺客——表面省了离线构图成本，实际上 online 多轮搜索烧更多 token。Prompt 优化文发现自动化框架 49% 情况下不如 Zero-shot。一起读得出强烈信号：离线花功夫做架构设计（Graph RAG / 好的 task decomposition），比 online 疯狂 iteration 有效得多。",
+    "why_useful": "这个 connection 横跨两个 AI 子领域（RAG + prompt optimization），指向同一个原则：architecture investment beats runtime optimization。是一个跨领域的通用启示，可以应用在任何 AI 系统设计。",
+    "type": "principle"
+  },
+  {
+    "note1": "Gemini File Search API 实战 -- 医疗文件自动核保 (Gemini版)",
+    "note2": "省了图谱预处理亏了 API 费 - Dense RAG vs Graph RAG Token 陷阱 (Gemini版)",
+    "connection": "Gemini File Search API 直接用模型能力做文件理解（bypass 传统 RAG），而 RAG 文指出 Dense RAG + Agent 在 multi-hop 推理上落后 Graph RAG 27分。这个 contradiction 提出一个关键问题：如果模型本身的文件理解能力足够强（直接理解全文），中间层架构（Graph RAG、Agent search）会不会变得不必要？即模型能力提升可能直接绕过了 RAG 的架构问题。",
+    "why_useful": "这个 connection 提出一个重要假设：模型原生能力的提升（long context、file understanding）可能让 RAG 技术变成 transitional architecture。对 RAG 的长期投资策略有影响。",
+    "type": "contradiction"
+  },
+  {
+    "note1": "Ornith 1.0 Agentic Coding Model Review (Gemini版)",
+    "note2": "Kelly Tsai - AI一人公司黄金时代 (Gemini版)",
+    "connection": "Ornith 评测讲 agentic coding model 的能力提升（更快、更好的 code output），Kelly 的一人公司案例提到工程师花更多时间审核（review）AI code。这两篇一起指出一个被忽略的 bottleneck：AI coding 越快，review bottleneck 越严重。Ornith 的 coding 能力提升如果没有 review 能力的同步提升，只会将 bottleneck 从写 code 移到 review code——总交付时间的缩减有限。",
+    "why_useful": "这个 pattern 揭示了 AI coding 领域的隐藏成本：review 是新的 bottleneck。任何 coding agent 工具的 ROI 计算必须包括 review time，不可以只看 code generation speed。",
+    "type": "pattern"
+  },
+  {
+    "note1": "unlimited OCR -- RSWA 滑动窗口连续扫描整本书 (Gemini版)",
+    "note2": "DataDan-AI-H2-2026-Strategy",
+    "connection": "Unlimited OCR 用滑动窗口连续扫描（continuous streaming），DataDan 讲的物理 AI + 日本制造方向。OCR 扫书是 digital 层面的 continuous processing，日本工厂的物理 AI（质检、产线）是 physical 层面的 streaming automation。两者共享同一个模式：从 batch processing 转向 continuous streaming processing。这个 pattern 可能是 AI automation 的通用进化方向——不再是做完一单做下一单，而是一路 streaming 一路处理。",
+    "why_useful": "这个 cross-domain pattern 揭示 AI automation 的进化方向（batch -> streaming）。数码和物理两个领域同时出现同一个模式，暗示这不是单一领域的 trend，而是全局性的 paradigm shift。",
+    "type": "pattern"
+  },
+  {
+    "note1": "ekcheungAI - Hermes Agent 实战 Setup、Memory 和安全设定 (Gemini版)",
+    "note2": "被神化的 AI 自动化优化 - 为什么你的 Agent 根本不听别的 Agent 说话 (Gemini版)",
+    "connection": "ekcheungAI 详细讲 Hermes Agent 的实战 setup（tool call、memory、权限设定），而论文研究指出多 Agent 的 joint prompt optimization 没效果（RLHF 让模型对 prompt 格式变化免疫）。这个 connection 的 insight：Setup 和 infrastructure 的重要性远大于 prompt engineering。ekcheungAI 的实战指南（怎样 set up memory、tool permissions）比花时间 tune multi-agent prompt 有回报得多。论文提供理论证据，ekcheungAI 提供实战验证。",
+    "why_useful": "这个 connection 将实战指南和研究成果结合，提供清晰的优先级：先搞好 infrastructure（memory、security、tool access），再搞 prompt。大部分人做反了次序。",
+    "type": "evidence"
+  }
+]

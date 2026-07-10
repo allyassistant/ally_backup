@@ -1,0 +1,536 @@
+#!/usr/bin/env node
+/**
+ * scripts/safe_write.js — Universal write barrier for script & extension writers.
+ *
+ * Why this exists
+ * ───────────────
+ * The 2026-07-09 file-corruption incident was caused by code-rewrite rules
+ * (`optional-chaining`, `hardcoded-home-path`) that did naive text replacement
+ * without atomicity, backups, or post-write validation. A single bad write
+ * could destroy `scripts/*.js` files. This module is the safety net:
+ *
+ *   1. Backup the original to `<filePath>.bak.<ISO timestamp>` BEFORE writing.
+ *   2. Write to a temp file then atomically rename to the target path.
+ *   3. For `.js` / `.mjs` / `.cjs` files: run `node --check` after the write.
+ *      If syntax is broken → restore from the most recent backup, throw.
+ *   4. For `.json` files: parse and verify JSON validity. If invalid → restore
+ *      from backup, throw.
+ *   5. Keep at most MAX_BACKUPS_PER_FILE backups per file (default 3), pruning
+ *      the oldest after a successful write.
+ *
+ * Public API
+ * ──────────
+ *   const { safeWrite, listBackups, restoreFromBackup } = require('./safe_write');
+ *
+ *   await safeWrite({ filePath, content, mode = 'overwrite' }) → { ok, bytesWritten, durationMs, backupPath }
+ *
+ *   mode values:
+ *     - 'overwrite' (default): replace file content
+ *     - 'append'            : append to file (no validation on append; backups skipped)
+ *     - 'dryrun'            : just do backup + validation, do not actually write
+ *
+ *   listBackups(filePath) → string[] (absolute paths, newest first)
+ *   restoreFromBackup(backupPath, dstPath) → boolean
+ *
+ * All I/O is wrapped in try-catch. Errors are re-thrown as `SafeWriteError` with
+ * a descriptive `.message` and a `.cause` (when applicable). Backup pruning is
+ * best-effort: a failure to prune never blocks the write.
+ *
+ * Designed for the 3 writers that share `LOW_RISK_RULES`:
+ *   - extensions/self-healing-loop/index.mjs  (SHL repair)
+ *   - scripts/code_quality_manager.js         (CQM auto-repair)
+ *   - scripts/audit_repair_proposer.js        (audit-proposed repairs)
+ *
+ * Created: 2026-07-09 (Hybrid Hardening phase)
+ */
+
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const { execFileSync } = require('child_process');
+
+// Maximum backups to keep per file. Older ones are pruned.
+const MAX_BACKUPS_PER_FILE = 3;
+
+// File extension sets for post-write validation
+const JS_EXTS = new Set(['.js', '.mjs', '.cjs']);
+
+// Files we never want to back up (would balloon the repo, low recovery value)
+const SKIP_BACKUP_DIRS = new Set(['.git', 'node_modules', '.fix_snapshots', '.state', 'dist', 'build']);
+
+/**
+ * Custom error class for safeWrite failures.
+ */
+class SafeWriteError extends Error {
+  constructor(message, cause) {
+    super(message);
+    this.name = 'SafeWriteError';
+    this.cause = cause;
+  }
+}
+
+/**
+ * Generate an ISO-8601 timestamp suitable for filenames (filesystem-safe).
+ * Format: 2026-07-09T23-51-12-123Z (colons replaced with dashes for FS safety).
+ */
+function _isoTimestamp() {
+  return new Date().toISOString().replace(/[:.]/g, '-');
+}
+
+/**
+ * Compute the path where the backup of `filePath` would be written.
+ * Backup filename: <basename>.bak.<ISO timestamp>
+ * Backup directory: <dirname>/.safe_write_backups/
+ *   - Keeps the workspace clean (backups don't pollute the file tree)
+ *   - The hidden dir starts with `.` so `git status` and most file-walkers skip it
+ */
+function _backupPathFor(filePath) {
+  const dir = path.dirname(filePath);
+  const base = path.basename(filePath);
+  return path.join(dir, '.safe_write_backups', `${base}.bak.${_isoTimestamp()}`);
+}
+
+/**
+ * List existing backups for a file, newest first.
+ * @param {string} filePath
+ * @returns {string[]} absolute paths of backup files (newest first)
+ */
+function listBackups(filePath) {
+  const dir = path.dirname(filePath);
+  const base = path.basename(filePath);
+  const backupDir = path.join(dir, '.safe_write_backups');
+  if (!fs.existsSync(backupDir)) return [];
+  let entries;
+  try {
+    entries = fs.readdirSync(backupDir);
+  } catch (_) {
+    return [];
+  }
+  return entries
+    .filter(f => f.startsWith(`${base}.bak.`))
+    .map(f => path.join(backupDir, f))
+    .sort()
+    .reverse(); // newest first (ISO timestamps sort lexicographically)
+}
+
+/**
+ * Delete a single backup file. Best-effort: swallows errors so a single
+ * prune failure doesn't block the write.
+ */
+function _pruneOne(backupPath) {
+  try {
+    if (fs.existsSync(backupPath)) fs.unlinkSync(backupPath);
+  } catch (_) { /* best effort */ }
+}
+
+/**
+ * Prune old backups for a file, keeping only the N most recent.
+ */
+function _pruneOldBackups(filePath) {
+  const backups = listBackups(filePath);
+  for (let i = MAX_BACKUPS_PER_FILE; i < backups.length; i++) {
+    _pruneOne(backups[i]);
+  }
+}
+
+/**
+ * Restore `dstPath` from `backupPath`. Returns true on success, throws otherwise.
+ * The restore is itself atomic (write tmp + rename).
+ */
+function restoreFromBackup(backupPath, dstPath) {
+  if (!backupPath || !fs.existsSync(backupPath)) {
+    throw new SafeWriteError(`restoreFromBackup: backup not found: ${backupPath}`);
+  }
+  let content;
+  try {
+    content = fs.readFileSync(backupPath, 'utf8');
+  } catch (e) {
+    throw new SafeWriteError(`restoreFromBackup: read backup failed: ${e.message}`, e);
+  }
+  const tmp = `${dstPath}.restore.tmp.${process.pid}.${Date.now()}`;
+  try {
+    fs.writeFileSync(tmp, content, 'utf8');
+    fs.renameSync(tmp, dstPath);
+  } catch (e) {
+    // Cleanup tmp on failure
+    try { fs.unlinkSync(tmp); } catch (_) {}
+    throw new SafeWriteError(`restoreFromBackup: write/rename failed: ${e.message}`, e);
+  }
+  return true;
+}
+
+/**
+ * Validate the content of a file by extension.
+ *   - .js / .mjs / .cjs : `node --check` on a temp file
+ *   - .json             : JSON.parse
+ *   - others            : no validation (return { valid: true, reason: 'no validator' })
+ *
+ * Returns { valid, reason?, error? }
+ */
+function _validateContent(ext, content, filePath) {
+  if (JS_EXTS.has(ext)) {
+    // Write to a tmp file and run `node --check`. Using execFileSync (not
+    // execSync) to avoid shell-injection (data is in a file, not a string).
+    // Important: Node 26 rejects unknown file extensions; we append `.js`
+    // to the temp path so `node --check` recognizes the syntax check target.
+    const tmp = `${filePath}.check.tmp.${process.pid}.${Date.now()}.js`;
+    try {
+      fs.writeFileSync(tmp, content, 'utf8');
+    } catch (e) {
+      return { valid: false, reason: 'write-tmp-failed', error: e.message };
+    }
+    try {
+      execFileSync(process.execPath, ['--check', tmp], {
+        stdio: ['pipe', 'pipe', 'pipe'],
+        timeout: 5000,
+      });
+      try { fs.unlinkSync(tmp); } catch (_) {}
+      return { valid: true };
+    } catch (e) {
+      let stderr = '';
+      try { stderr = e.stderr ? e.stderr.toString() : ''; } catch (_) {}
+      try { fs.unlinkSync(tmp); } catch (_) {}
+      return { valid: false, reason: 'syntax-error', error: stderr.trim() || e.message };
+    }
+  }
+
+  if (ext === '.json') {
+    try {
+      JSON.parse(content);
+      return { valid: true };
+    } catch (e) {
+      return { valid: false, reason: 'json-parse-error', error: e.message };
+    }
+  }
+
+  return { valid: true, reason: 'no-validator' };
+}
+
+/**
+ * Universal safe-write entry point.
+ *
+ * @param {object} opts
+ * @param {string} opts.filePath  — absolute path to the file
+ * @param {string} opts.content   — new content (utf-8 string)
+ * @param {string} [opts.mode]    — 'overwrite' (default) | 'append' | 'dryrun'
+ * @returns {Promise<{ ok: true, bytesWritten, durationMs, backupPath }>}
+ *
+ * Throws SafeWriteError if any step fails. On post-write validation failure,
+ * the original file is restored from the backup before throwing.
+ */
+async function safeWrite(opts) {
+  const { filePath, content, mode = 'overwrite' } = opts || {};
+
+  if (!filePath || typeof filePath !== 'string') {
+    throw new SafeWriteError('safeWrite: filePath (string) required');
+  }
+  if (typeof content !== 'string') {
+    throw new SafeWriteError('safeWrite: content (string) required');
+  }
+  if (mode !== 'overwrite' && mode !== 'append' && mode !== 'dryrun') {
+    throw new SafeWriteError(`safeWrite: mode must be 'overwrite' | 'append' | 'dryrun', got: ${mode}`);
+  }
+
+  const t0 = Date.now();
+  const ext = path.extname(filePath).toLowerCase();
+
+  // ── Step 1: backup the existing file (skip in dryrun if no file exists) ──
+  let backupPath = null;
+  const fileExists = fs.existsSync(filePath);
+  const skipBackup = [...SKIP_BACKUP_DIRS].some(d => filePath.includes(`/${d}/`) || filePath.includes(`/${d}.`));
+
+  if (fileExists && !skipBackup && mode === 'overwrite') {
+    try {
+      backupPath = _backupPathFor(filePath);
+      const backupDir = path.dirname(backupPath);
+      if (!fs.existsSync(backupDir)) {
+        fs.mkdirSync(backupDir, { recursive: true });
+      }
+      const original = fs.readFileSync(filePath, 'utf8');
+      fs.writeFileSync(backupPath, original, 'utf8');
+    } catch (e) {
+      throw new SafeWriteError(`safeWrite: backup failed for ${filePath}: ${e.message}`, e);
+    }
+  }
+
+  // ── Step 2 (dryrun): validate, but don't actually write ──
+  if (mode === 'dryrun') {
+    const v = _validateContent(ext, content, filePath);
+    return { ok: v.valid, bytesWritten: 0, durationMs: Date.now() - t0, backupPath, validation: v };
+  }
+
+  // ── Step 3: pre-validate (optional, but cheap and catches errors early) ──
+  // We do the FULL validate-after-write flow below, which is authoritative.
+  // Skipping pre-validation here keeps the implementation simple.
+
+  // ── Step 4: atomic write (temp file + rename) ──
+  const tmpPath = `${filePath}.safewrite.tmp.${process.pid}.${Date.now()}`;
+  try {
+    if (mode === 'append') {
+      // Append mode: ensure file exists, then append. No temp/rename.
+      // (Validation skipped for append because we're not replacing the file.)
+      try {
+        fs.appendFileSync(filePath, content, 'utf8');
+      } catch (e) {
+        throw new SafeWriteError(`safeWrite: append failed for ${filePath}: ${e.message}`, e);
+      }
+      const bytes = Buffer.byteLength(content, 'utf8');
+      console.log(`[safeWrite] ${filePath} append ${bytes} bytes (${Date.now() - t0}ms)`);
+      return { ok: true, bytesWritten: bytes, durationMs: Date.now() - t0, backupPath };
+    }
+
+    // overwrite mode: write to temp then atomic rename
+    fs.writeFileSync(tmpPath, content, 'utf8');
+    fs.renameSync(tmpPath, filePath);
+  } catch (e) {
+    // Clean up tmp file if it exists
+    try { fs.unlinkSync(tmpPath); } catch (_) {}
+    // Best-effort restore from backup
+    if (backupPath) {
+      try { restoreFromBackup(backupPath, filePath); } catch (_) { /* logged below */ }
+    }
+    throw new SafeWriteError(`safeWrite: write failed for ${filePath}: ${e.message}`, e);
+  }
+
+  // ── Step 5: post-write validation (for code/JSON files) ──
+  const validation = _validateContent(ext, content, filePath);
+  if (!validation.valid) {
+    // Restore from backup if we made one
+    if (backupPath) {
+      try {
+        restoreFromBackup(backupPath, filePath);
+        const restoreMsg = 'restored from backup';
+        console.error(`[safeWrite] ${filePath} VALIDATION FAILED (${validation.reason}: ${validation.error}); ${restoreMsg}`);
+      } catch (e) {
+        console.error(`[safeWrite] ${filePath} VALIDATION FAILED AND RESTORE FAILED: ${e.message}`);
+      }
+    } else {
+      console.error(`[safeWrite] ${filePath} VALIDATION FAILED (${validation.reason}: ${validation.error}); no backup to restore`);
+    }
+    throw new SafeWriteError(
+      `safeWrite: post-write validation failed for ${filePath} (${validation.reason}): ${validation.error}`
+    );
+  }
+
+  // ── Step 6: prune old backups (best effort) ──
+  try { _pruneOldBackups(filePath); } catch (_) { /* best effort */ }
+
+  const bytes = Buffer.byteLength(content, 'utf8');
+  const dur = Date.now() - t0;
+  console.log(`[safeWrite] ${filePath} overwrite ${bytes} bytes (${dur}ms)${backupPath ? ' [backup kept]' : ''}`);
+
+  return {
+    ok: true,
+    bytesWritten: bytes,
+    durationMs: dur,
+    backupPath,
+    validation,
+  };
+}
+
+/**
+ * Synchronous version of safeWrite. Mirrors the async behavior but uses
+ * fs.*Sync APIs and execFileSync (which is already synchronous). For
+ * callers that cannot be made async (e.g. legacy sync functions in CQM).
+ *
+ * @param {object} opts — same as safeWrite
+ * @returns {object} — same return shape as safeWrite
+ * @throws {SafeWriteError} on any failure
+ */
+function safeWriteSync(opts) {
+  const { filePath, content, mode = 'overwrite' } = opts || {};
+
+  if (!filePath || typeof filePath !== 'string') {
+    throw new SafeWriteError('safeWriteSync: filePath (string) required');
+  }
+  if (typeof content !== 'string') {
+    throw new SafeWriteError('safeWriteSync: content (string) required');
+  }
+  if (mode !== 'overwrite' && mode !== 'append' && mode !== 'dryrun') {
+    throw new SafeWriteError(`safeWriteSync: mode must be 'overwrite' | 'append' | 'dryrun', got: ${mode}`);
+  }
+
+  const t0 = Date.now();
+  const ext = path.extname(filePath).toLowerCase();
+
+  // Step 1: backup
+  let backupPath = null;
+  const fileExists = fs.existsSync(filePath);
+  const skipBackup = [...SKIP_BACKUP_DIRS].some(d => filePath.includes(`/${d}/`) || filePath.includes(`/${d}.`));
+
+  if (fileExists && !skipBackup && mode === 'overwrite') {
+    try {
+      backupPath = _backupPathFor(filePath);
+      const backupDir = path.dirname(backupPath);
+      if (!fs.existsSync(backupDir)) {
+        fs.mkdirSync(backupDir, { recursive: true });
+      }
+      const original = fs.readFileSync(filePath, 'utf8');
+      fs.writeFileSync(backupPath, original, 'utf8');
+    } catch (e) {
+      throw new SafeWriteError(`safeWriteSync: backup failed for ${filePath}: ${e.message}`, e);
+    }
+  }
+
+  if (mode === 'dryrun') {
+    const v = _validateContent(ext, content, filePath);
+    return { ok: v.valid, bytesWritten: 0, durationMs: Date.now() - t0, backupPath, validation: v };
+  }
+
+  // Step 2: atomic write (or append)
+  const tmpPath = `${filePath}.safewrite.tmp.${process.pid}.${Date.now()}`;
+  try {
+    if (mode === 'append') {
+      fs.appendFileSync(filePath, content, 'utf8');
+      const bytes = Buffer.byteLength(content, 'utf8');
+      console.log(`[safeWriteSync] ${filePath} append ${bytes} bytes (${Date.now() - t0}ms)`);
+      return { ok: true, bytesWritten: bytes, durationMs: Date.now() - t0, backupPath };
+    }
+    fs.writeFileSync(tmpPath, content, 'utf8');
+    fs.renameSync(tmpPath, filePath);
+  } catch (e) {
+    try { fs.unlinkSync(tmpPath); } catch (_) {}
+    if (backupPath) {
+      try { restoreFromBackup(backupPath, filePath); } catch (_) { /* logged below */ }
+    }
+    throw new SafeWriteError(`safeWriteSync: write failed for ${filePath}: ${e.message}`, e);
+  }
+
+  // Step 3: post-write validation
+  const validation = _validateContent(ext, content, filePath);
+  if (!validation.valid) {
+    if (backupPath) {
+      try {
+        restoreFromBackup(backupPath, filePath);
+        console.error(`[safeWriteSync] ${filePath} VALIDATION FAILED (${validation.reason}: ${validation.error}); restored from backup`);
+      } catch (e) {
+        console.error(`[safeWriteSync] ${filePath} VALIDATION FAILED AND RESTORE FAILED: ${e.message}`);
+      }
+    } else {
+      console.error(`[safeWriteSync] ${filePath} VALIDATION FAILED (${validation.reason}: ${validation.error}); no backup to restore`);
+    }
+    throw new SafeWriteError(
+      `safeWriteSync: post-write validation failed for ${filePath} (${validation.reason}): ${validation.error}`
+    );
+  }
+
+  // Step 4: prune
+  try { _pruneOldBackups(filePath); } catch (_) { /* best effort */ }
+
+  const bytes = Buffer.byteLength(content, 'utf8');
+  const dur = Date.now() - t0;
+  console.log(`[safeWriteSync] ${filePath} overwrite ${bytes} bytes (${dur}ms)${backupPath ? ' [backup kept]' : ''}`);
+
+  return {
+    ok: true,
+    bytesWritten: bytes,
+    durationMs: dur,
+    backupPath,
+    validation,
+  };
+}
+
+// =====================================================================
+// Self-test
+// =====================================================================
+async function _selfTest() {
+  console.log('═══ safe_write.js self-test ═══\n');
+  const tmpDir = '/tmp/safe_write_test';
+  try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (_) {}
+  try { fs.mkdirSync(tmpDir, { recursive: true }); } catch (_) {}
+
+  let pass = 0, fail = 0;
+  function check(name, cond, detail) {
+    if (cond) { console.log(`  ✅ ${name}`); pass++; }
+    else      { console.log(`  ❌ ${name}${detail ? ' — ' + detail : ''}`); fail++; }
+  }
+
+  // Test 1: write a new file (no existing) — should succeed with no backup
+  const t1 = path.join(tmpDir, 'new.js');
+  const r1 = await safeWrite({ filePath: t1, content: 'const x = 1;\n' });
+  check('T1: write new file', r1.ok && fs.existsSync(t1) && r1.backupPath === null);
+  check('T1: content matches', fs.readFileSync(t1, 'utf8') === 'const x = 1;\n');
+
+  // Test 2: overwrite existing file — should create backup
+  const r2 = await safeWrite({ filePath: t1, content: 'const x = 2;\n' });
+  check('T2: overwrite creates backup', r2.ok && r2.backupPath && fs.existsSync(r2.backupPath));
+  check('T2: backup has old content', fs.readFileSync(r2.backupPath, 'utf8') === 'const x = 1;\n');
+  check('T2: new content matches', fs.readFileSync(t1, 'utf8') === 'const x = 2;\n');
+
+  // Test 3: write invalid JS — should restore from backup
+  let r3Threw = null;
+  try { await safeWrite({ filePath: t1, content: 'const x = ((( syntax broken\n' }); }
+  catch (e) { r3Threw = e; }
+  check('T3: invalid JS throws SafeWriteError', r3Threw && r3Threw.name === 'SafeWriteError');
+  check('T3: file restored from backup', fs.readFileSync(t1, 'utf8') === 'const x = 2;\n');
+
+  // Test 4: write valid JSON
+  const t4 = path.join(tmpDir, 'data.json');
+  const r4 = await safeWrite({ filePath: t4, content: '{"a":1,"b":[1,2,3]}' });
+  check('T4: write valid JSON', r4.ok && fs.existsSync(t4));
+
+  // Test 5: write invalid JSON — should restore
+  let r5Threw = null;
+  try { await safeWrite({ filePath: t4, content: '{"a":1, BROKEN' }); }
+  catch (e) { r5Threw = e; }
+  check('T5: invalid JSON throws', r5Threw && r5Threw.name === 'SafeWriteError');
+  check('T5: JSON restored', fs.readFileSync(t4, 'utf8') === '{"a":1,"b":[1,2,3]}');
+
+  // Test 6: backup pruning — write 5 times, expect ≤ 3 backups
+  const t6 = path.join(tmpDir, 'rotate.js');
+  fs.writeFileSync(t6, 'v0\n');
+  for (let i = 1; i <= 5; i++) {
+    await safeWrite({ filePath: t6, content: `v${i}\n` });
+    // tiny delay to ensure distinct timestamps
+    await new Promise(r => setTimeout(r, 5));
+  }
+  const backups6 = listBackups(t6);
+  check('T6: max 3 backups kept', backups6.length <= MAX_BACKUPS_PER_FILE, `got ${backups6.length}`);
+
+  // Test 7: append mode does NOT validate but does append
+  const t7 = path.join(tmpDir, 'log.txt');
+  const r7 = await safeWrite({ filePath: t7, content: 'line 1\n' });
+  const r7b = await safeWrite({ filePath: t7, content: 'line 2\n', mode: 'append' });
+  check('T7: append works', r7b.ok && fs.readFileSync(t7, 'utf8') === 'line 1\nline 2\n');
+
+  // Test 8: dryrun does not actually write
+  const t8 = path.join(tmpDir, 'dry.js');
+  const r8 = await safeWrite({ filePath: t8, content: 'const x = 1;\n', mode: 'dryrun' });
+  check('T8: dryrun reports ok', r8.ok && !fs.existsSync(t8));
+
+  // Test 9: missing args throw
+  let threw = false;
+  try { await safeWrite({ filePath: t8 }); } catch (e) { threw = e.name === 'SafeWriteError'; }
+  check('T9: missing content throws SafeWriteError', threw);
+
+  // Test 10: writes within allowed dirs (no skip)
+  const t10 = path.join(tmpDir, 'sub', 'deep', 'file.js');
+  try { fs.mkdirSync(path.dirname(t10), { recursive: true }); } catch (_) {}
+  const r10 = await safeWrite({ filePath: t10, content: 'const y = 1;\n' });
+  check('T10: deep nested write works', r10.ok && fs.existsSync(t10));
+
+  console.log(`\n═══ ${pass} passed, ${fail} failed ═══\n`);
+  // Cleanup
+  try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (_) {}
+  process.exit(fail > 0 ? 1 : 0);
+}
+
+// Run self-test if invoked directly
+if (require.main === module) {
+  _selfTest().catch(e => {
+    console.error('Self-test crashed:', e);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  safeWrite,
+  safeWriteSync,
+  listBackups,
+  restoreFromBackup,
+  SafeWriteError,
+  MAX_BACKUPS_PER_FILE,
+  // For test access
+  _selfTest,
+};

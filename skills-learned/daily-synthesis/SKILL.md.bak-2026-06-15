@@ -1,0 +1,40 @@
+---
+name: daily-synthesis
+description: Synthesize daily learning across memory and Obsidian, with quality audit when synthesis produces false observations about sparse data.
+status: active
+source: skill-reviewer
+provenance: agent
+generatedAt: 2026-06-15T06:31:01.243Z
+---
+
+## Workflow
+
+1. **Gather today's conversation logs** from `~/.openclaw/workspace/memory/` — read all `.jsonl` files dated today, collect tool calls, user requests, assistant responses, and action items.
+
+2. **Cross-reference with Obsidian** — scan `~/.openclaw/workspace/obsidian/` for notes created or updated today, extract key findings, architecture decisions, and pending work.
+
+3. **Build synthesis structure** — organize into three sections:
+   - 🆕 **新發現** — new discoveries or insights
+   - 🔄 **持續中** — ongoing work with progress markers
+   - ✅ **已完結** — completed items with outcomes
+
+4. **Detect sparsity and flag false positives** — before finalizing, check: if the log shows >10 tool calls OR >20 turns, the conversation is NOT sparse. The "對話記錄非常稀疏" flag should only trigger when tool calls < 5 AND turns < 10. If the synthesis auto-generates this claim for a substantive conversation, treat it as a quality failure requiring verification.
+
+5. **Quality audit for sparse-data false positives** — when the synthesis claims "sparse records" or "lacking substantial content":
+   - Count actual tool calls and turns from the raw log
+   - If counts are high (tool calls > 10, turns > 20), the synthesis produced a false positive
+   - Spawn M3 sub-agent to audit the full conversation transcript and verify whether the synthesis claim is accurate
+   - Cross-check M3 findings against actual file state — M3 may misidentify "stale" symlinks if targets still have `status: active`
+   - If M3 findings contradict the synthesis, correct the synthesis output and flag the failure mode
+
+6. **Push to Discord** — post the synthesis to the configured Discord channel with emoji-formatted sections.
+
+7. **Update memory** — append the synthesis to `~/.openclaw/workspace/memory/daily-synthesis/<date>.md` for future reference.
+
+## Pitfalls
+
+- ⚠️ Auto-triggering "sparse records" for substantive conversations — if tool calls > 10 or turns > 20, the synthesis claim is FALSE. The quality audit step must catch this before the report is finalized.
+- ⚠️ M3 sub-agent findings may mismatch actual file state — M3 sometimes misidentifies "stale" symlinks when targets still have `status: active`. Always cross-check M3 findings against `ls -la` and file content after yield.
+- ⚠️ Skipping the quality audit step when synthesis produces suspicious claims — "unable to identify any clear action items" followed by "recommend supplementing conversation records" is a red flag pattern indicating the synthesis is compensating for its own detection failure.
+- ⚠️ Counting HEARTBEAT_OK pings as meaningful tool calls — heartbeat-only runs inflate turn counts without adding substantive content. Filter these out before assessing sparsity.
+- ⚠️ Treating quarantine folders or failed-validation entries as "sparse" — these are valid pipeline outputs, not conversation failures.

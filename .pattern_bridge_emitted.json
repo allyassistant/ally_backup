@@ -1,0 +1,12 @@
+{
+  "semantic:comment_line_ref_magic_numbers:magic_numbers": {
+    "ts": "2026-06-19T12:34:20.158Z",
+    "lastSeen": "2026-04-12",
+    "samples": 3
+  },
+  "fp:scripts/analyze_magic_numbers.js:39:magic_numbers": {
+    "ts": "2026-06-19T12:34:20.158Z",
+    "lastSeen": "2026-04-30",
+    "samples": 11
+  }
+}

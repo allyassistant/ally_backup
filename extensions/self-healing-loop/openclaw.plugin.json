@@ -1,0 +1,60 @@
+{
+  "id": "self-healing-loop",
+  "name": "Self-Healing Loop",
+  "version": "0.1.0",
+  "description": "Claude Code-style self-healing edit loop: auto-verify edits and spawn fixer subagent on failure",
+  "author": "Ally",
+  "license": "MIT",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "mode": {
+        "type": "string",
+        "enum": ["log", "fix-syntax", "fix-all"],
+        "default": "log"
+      },
+      "perFileBudget": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 5,
+        "default": 1
+      },
+      "sessionFixerCap": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 5,
+        "default": 3
+      },
+      "loopBudgetOverride": {
+        "type": "boolean",
+        "default": false
+      },
+      "verifyScript": {
+        "type": "string",
+        "default": "scripts/verify_edit.js"
+      },
+      "verifyTimeoutMs": {
+        "type": "number",
+        "minimum": 1000,
+        "maximum": 60000,
+        "default": 10000
+      },
+      "enableSessionGate": {
+        "type": "boolean",
+        "default": true,
+        "description": "Layer 1: skip SHL in isolated/cron sessions (skill reviewer)"
+      },
+      "enablePathGate": {
+        "type": "boolean",
+        "default": true,
+        "description": "Layer 2: skip SHL for skill-content paths (skills-learned/, skills/_learned_*/)"
+      },
+      "enableFixTypeGate": {
+        "type": "boolean",
+        "default": true,
+        "description": "Layer 3: restrict fix types in skill paths (syntax/undefined-symbol only)"
+      }
+    },
+    "additionalProperties": false
+  }
+}

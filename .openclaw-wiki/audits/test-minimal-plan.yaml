@@ -1,0 +1,8 @@
+plan_id: test-minimal
+owner: agent-8fbd742b0e38
+tasks:
+  - id: T1
+    title: Test task
+    assigned_to: agent-8fbd742b0e38
+    owner_check: agent-8fbd742b0e38
+    prompt: echo hello

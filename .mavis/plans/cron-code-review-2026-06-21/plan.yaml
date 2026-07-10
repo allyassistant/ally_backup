@@ -1,0 +1,336 @@
+version: 1
+plan:
+  name: 'OpenClaw cron scripts deep code review + fix (2026-06-21)'
+  max_concurrency: 2
+  max_consecutive_failures: 2
+  max_cycles: 5
+  auto_reject_retries: 1
+  verifier_config:
+    default_verifiers: [verifier]
+    audit_sample_rate: 0.0
+
+tasks:
+  - id: coder-cron-bug-hunt
+    title: 'OpenClaw cron scripts: deep code review + bug fixes'
+    prompt: |
+      You are the coder. Do a DEEP code review of all 36 running OpenClaw cron scripts.
+      
+      ## CONTEXT
+      
+      Prior work (2026-06-20): Two rounds of sub-agent audits already fixed 36 bugs focused on SYNTAX errors and obvious runtime crashes. Your job is to find what those audits MISSED — logic bugs, race conditions, edge cases, error handling gaps, performance issues, idempotency issues, and concurrency hazards.
+      
+      ## WORKSPACE
+      
+      All cron scripts live in: `/Users/ally/.openclaw/workspace/`
+      
+      Read these to scope the work:
+      - `/Users/ally/.openclaw/workspace/HEARTBEAT.md` — master tracker, lists OpenClaw-managed crons
+      - `/Users/ally/.openclaw/workspace/MEMORY.md` — context on recent milestones
+      - `crontab -l` — system crontab (12 entries)
+      
+      ## SCOPE: 36 SCRIPTS
+      
+      System crontab (12):
+      1. `scripts/heartbeat.sh` (every minute)
+      2. `scripts/failover_detector.sh` (every minute)
+      3. `scripts/backup_to_bliss.sh` (06:00 HKT)
+      4. `scripts/mail_monitor.js` (every minute)
+      5. `metrics_collector.js` (23:55 HKT)
+      6. `scripts/deepseek_health_monitor.sh` (every 5 min)
+      7. `scripts/audit_daily_cron.js` (04:30 HKT)
+      8. `scripts/skill_pattern_emitter.js` (every 4h)
+      9. `scripts/audit_to_skill_emitter.js` (05:00 HKT)
+      10. `scripts/daily_telemetry_digest.js` (23:58 HKT)
+      11. `scripts/propose_fix_notifier.js` (05:15 HKT)
+      12. `scripts/audit_repair_proposer.js` (04:45 HKT, M3 shadow)
+      
+      OpenClaw daemon crons (24): Read HEARTBEAT.md "Active Crons" section for the full list. Includes but not limited to:
+      - `scripts/error_auto_issue.js` (22:00 HKT, M5)
+      - `scripts/skill_junk_tracker.js` (23:55 HKT)
+      - `scripts/daily_summary_bot.js` (23:59 HKT)
+      - `scripts/code_quality_manager.js` (10:00 HKT daily)
+      - `scripts/fix_m3_advisory.js` (M3 shadow 04:45)
+      - `scripts/skill_reviewer_bot.js` (manual/observation)
+      - `scripts/skill_reviewer_cleanup.js`
+      - `scripts/skill_reviewer_daily_report.js`
+      - `scripts/cross_session_context.js`
+      - `scripts/l0_l1_verify.js`
+      - `scripts/audit_just_written.js`
+      - `scripts/issue_auto_followup.js`
+      - `scripts/knowledge_ingester.js`
+      - `scripts/log_to_daily_memory.js`
+      - `scripts/wiki_daily_ingest.js`
+      - `scripts/error_wiki_sync.js`
+      - `scripts/wiki_issue_sync.js`
+      - `scripts/issue_reminders_sync.js`
+      - `scripts/ai_hot_push.js`
+      - `scripts/generate_symbols.js`
+      - `scripts/merge_skills.js`
+      - `scripts/observe_audit_patterns.js`
+      - `scripts/proposal_action.js`
+      - `scripts/lib/auditOrchestrator.js` (called by audit_daily_cron.js)
+      
+      ## WHAT TO LOOK FOR (NOT syntax — already done)
+      
+      1. **Logic bugs**: race conditions, off-by-one, wrong conditionals, broken control flow
+      2. **Edge cases**: empty inputs, missing files, partial writes, malformed JSON, missing env vars
+      3. **Error handling**: swallowed exceptions, missing error logging, partial failure recovery, missing try/catch around I/O
+      4. **Resource leaks**: unclosed file handles, dangling timers, growing memory, missing .destroy()/.end() calls
+      5. **Performance**: O(n²) loops, unnecessary file reads, redundant work, missing debouncing
+      6. **Cross-script dependencies**: stale assumptions about other scripts' state files (e.g., assumes queue exists when it's been cleaned)
+      7. **Idempotency**: can these scripts be re-run safely? Will a re-run duplicate work?
+      8. **Concurrency**: what happens if two instances run at once? (matters for every-minute crons)
+      9. **State file corruption**: how does the script handle partially-written JSONL/JSON state files?
+      10. **Time-of-day assumptions**: hardcoded timezone, DST issues, wrong "today" calculation
+      11. **Cron daemon env**: missing env vars (e.g., NODE_ID, OPENCLAW_SILENT_FALLBACK, PATH)
+      
+      ## APPROACH
+      
+      1. **First, scan cron logs for recent errors** to prioritize:
+         - `/Users/ally/.openclaw/workspace/.state/*_cron.log`
+         - `/tmp/heartbeat.log`, `/tmp/failover.log`, `/tmp/mail_monitor.log`, `/tmp/metrics_collector.log`
+         - `/Users/ally/.openclaw/workspace/.diagnostics/monitor_cron.log`
+         - Any `.err` or `.log` files in `/Users/ally/.openclaw/workspace/`
+      2. **Read each script fully** (use Read tool — full content, not partial)
+      3. **Trace imports**: scripts often import from `scripts/lib/*.js` — check those too
+      4. **Identify bugs** → categorize by severity (critical/high/medium/low)
+      5. **Fix bugs IN-PLACE** — modify the source file directly
+      6. **Verify each fix**: run `node --check <file>` for .js/.mjs, `bash -n <file>` for .sh
+      7. **Write deliverable.md** at `outputs/coder-cron-bug-hunt/deliverable.md`
+      
+      ## CONSTRAINTS (HARD RULES)
+      
+      - DO NOT modify cron schedules (don't touch crontab)
+      - DO NOT delete files — use `mavis-trash` for any cleanup (recoverable)
+      - DO NOT create issues in `.issues/active/` — this is in-scope fixes only, not new work
+      - Backwards-compatible: if a fix changes output format, ensure existing log/state files still parse
+      - Backwards-compatible: if a fix changes state file schema, keep reading old fields (default to safe values)
+      - DO NOT introduce new dependencies (no new npm packages)
+      - DO NOT modify M3 shadow mode behavior in `audit_repair_proposer.js` (M3 active mode is post-observation decision)
+      - DO NOT modify M5 active behavior in `error_auto_issue.js` (in observation until 2026-06-27)
+      - DO NOT touch `.state/` files directly — those are runtime state, not code
+      
+      ## DELIVERABLE FORMAT
+      
+      Write to: `/Users/ally/.openclaw/workspace/.mavis/plans/cron-code-review-2026-06-21/outputs/coder-cron-bug-hunt/deliverable.md`
+      
+      Structure:
+      ```markdown
+      # OpenClaw Cron Scripts — Deep Code Review
+      
+      **Date**: 2026-06-21
+      **Reviewer**: coder
+      **Scope**: 36 cron scripts
+      **Prior audit coverage**: syntax + obvious runtime bugs (already fixed)
+      
+      ## Summary
+      
+      | Severity | Count |
+      |----------|-------|
+      | Critical | X     |
+      | High     | Y     |
+      | Medium   | Z     |
+      | Low      | W     |
+      | Total    | T     |
+      
+      ## Findings
+      
+      ### [SEVERITY] Script Name
+      
+      **Bug**: ...
+      **Location**: path:line
+      **Impact**: ...
+      **Fix**: (describe the change)
+      **Test**: node --check passed / bash -n passed
+      **Diff**: (link to git diff or paste the changed lines)
+      
+      ## Files Modified
+      
+      | Path | Lines changed | Severity of fixes |
+      |------|---------------|-------------------|
+      | ...  | ...           | ...               |
+      
+      ## Test Commands Run
+      
+      - `node --check scripts/heartbeat.sh` → PASS (shell, used bash -n)
+      - `node --check scripts/audit_daily_cron.js` → PASS
+      - ...
+      
+      ## Deferred Items (out of scope)
+      
+      - ...
+      
+      ## Notes
+      
+      - ...
+      ```
+      
+      ## STOP CONDITIONS
+      
+      Stop when:
+      - All 36 scripts reviewed
+      - All findings categorized
+      - All in-scope fixes applied and verified with syntax check
+      - deliverable.md written
+      
+      DO NOT:
+      - Sleep, poll, or wait for CI
+      - Ask the user questions (make decisions, document them)
+      - Run the cron scripts themselves (just review code; verifier will do smoke tests)
+    assigned_to: coder
+    verified_by: verifier
+    verify_prompt: |
+      You are the verifier. Independently audit the coder's findings + fixes.
+      
+      ## WORKSPACE
+      
+      All artifacts at: `/Users/ally/.openclaw/workspace/.mavis/plans/cron-code-review-2026-06-21/`
+      - Coder deliverable: `outputs/coder-cron-bug-hunt/deliverable.md`
+      - OpenClaw code: `/Users/ally/.openclaw/workspace/`
+      
+      ## APPROACH
+      
+      1. **Read coder's deliverable.md** to understand what was claimed.
+      2. **Spot-check 5 of the coder's claimed fixes**:
+         - Open the file at the claimed line
+         - Verify the fix actually addresses the bug (read the surrounding 10 lines for context)
+         - Run `node --check <file>` for each modified JS/MJS file
+         - Run `bash -n <file>` for each modified shell script
+      3. **Look for MISSED bugs** in 3-5 scripts the coder DIDN'T flag:
+         - Pick a mix: 2 simple (.sh), 3 complex (.js with state I/O)
+         - Read each fully, look for any obvious logic/edge case bugs
+         - Document any you find
+      4. **Check for REGRESSIONS** in scripts/lib/ (the shared modules):
+         - If coder modified a lib file, find ALL callers
+         - Verify no caller relies on the old behavior
+      5. **Check for new bugs introduced** by fixes:
+         - Optional-chaining on LHS of assignment (invalid JS)
+         - Promises without await
+         - Missing catch on async chains
+         - Wrong path joins (forward vs backward slash)
+      
+      ## PASS CRITERIA
+      
+      PASS if all of:
+      - All claimed fixes actually address the bugs (spot-check 5/5)
+      - All modified files pass syntax check (`node --check` or `bash -n`)
+      - No regressions in callers
+      - No new bugs introduced
+      - Coder's deliverable includes file list + severity counts
+      
+      FAIL if any of:
+      - 1+ claimed fix doesn't actually address the bug
+      - 1+ modified file fails syntax check
+      - 1+ regression found in callers
+      - 1+ new bug introduced
+      - Coder missed obvious bugs in sampled scripts (you found 3+ missed bugs)
+      
+      ## OUTPUT
+      
+      Write to: `/Users/ally/.openclaw/workspace/.mavis/plans/cron-code-review-2026-06-21/outputs/coder-cron-bug-hunt/verifier_verdict.md`
+      
+      Format:
+      ```markdown
+      # Verifier Verdict — coder-cron-bug-hunt
+      
+      **Date**: 2026-06-21
+      **Verdict**: PASS | FAIL
+      
+      ## Spot-check Results
+      
+      | File | Line | Coder claimed | Verifier agrees? | Notes |
+      |------|------|---------------|------------------|-------|
+      | ...  | ...  | ...           | YES / NO         | ...   |
+      
+      ## Missed Bugs (if FAIL)
+      
+      - path:line — what the bug is — severity
+      
+      ## Regressions (if FAIL)
+      
+      - path:line — what regressed — severity
+      
+      ## New Bugs Introduced (if FAIL)
+      
+      - path:line — what's wrong — severity
+      
+      ## Syntax Check Results
+      
+      - node --check <file> → PASS / FAIL
+      
+      ## Notes
+      
+      - ...
+      ```
+    max_retries: 2
+  
+  - id: cron-integration-gate
+    title: 'Cron scripts end-to-end smoke test'
+    role: verify-as-task
+    prompt: |
+      You are the verifier. Run an integration smoke test on the modified cron scripts.
+      
+      ## WORKSPACE
+      
+      OpenClaw code: `/Users/ally/.openclaw/workspace/`
+      Coder deliverable: `/Users/ally/.openclaw/workspace/.mavis/plans/cron-code-review-2026-06-21/outputs/coder-cron-bug-hunt/deliverable.md`
+      
+      ## APPROACH
+      
+      For each MODIFIED script (read the coder's "Files Modified" table):
+      
+      1. **Syntax check** (already done by coder but verify again):
+         - `.js` / `.mjs`: `node --check <path>`
+         - `.sh`: `bash -n <path>`
+      
+      2. **Module load check** (catches init-time errors):
+         - `.js` / `.mjs`: `node -e "require('<path>')"` (or `import()` for ESM)
+         - `.sh`: `head -50 <path>` — check shebang + first 10 commands
+      
+      3. **Recent log check**:
+         - For each modified script, find the recent log (per coder's deliverable)
+         - Read last 30 lines
+         - Look for new errors AFTER the coder's modification timestamp
+      
+      4. **Skip the actual cron run** — do NOT invoke scripts that would write to .state/, push to Discord, or modify repos. We're verifying code health, not exercising behavior.
+      
+      ## PASS CRITERIA
+      
+      PASS if:
+      - All modified files pass syntax check
+      - All modified files load without throwing
+      - No new errors in recent cron logs (post-modification)
+      
+      FAIL if:
+      - 1+ file fails syntax check
+      - 1+ file throws on load
+      - 1+ new error in recent logs
+      
+      ## OUTPUT
+      
+      Write to: `/Users/ally/.openclaw/workspace/.mavis/plans/cron-code-review-2026-06-21/outputs/cron-integration-gate/deliverable.md`
+      
+      Format:
+      ```markdown
+      # Cron Scripts Integration Smoke Test
+      
+      **Date**: 2026-06-21
+      **Result**: PASS | FAIL
+      
+      ## Per-Script Results
+      
+      | Script | Syntax | Load | Recent Log | Status |
+      |--------|--------|------|------------|--------|
+      | ...    | PASS   | PASS | clean      | PASS   |
+      
+      ## Failures (if any)
+      
+      - script: <path> — <what failed>
+      
+      ## Notes
+      
+      - ...
+      ```
+    assigned_to: verifier
+    depends_on: ['coder-cron-bug-hunt']
+    max_retries: 1

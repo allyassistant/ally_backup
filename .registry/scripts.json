@@ -1,0 +1,7573 @@
+{
+  "scripts": [
+    {
+      "path": "_archive/dead-code-2026-06-18/skill_inspector.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/frontmatter"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-14T17:34:43.342Z",
+      "lastModified": "2026-06-14T19:39:07.311Z",
+      "mtime": 1781465947311.8643,
+      "size": 17895,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "_hook_final_test.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-17T02:19:01.675Z",
+      "lastModified": "2026-06-17T02:19:01.675Z",
+      "mtime": 1781662741675.6594,
+      "size": 21,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/analyze_diamonds.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.725Z",
+      "lastModified": "2026-06-16T11:21:18.725Z",
+      "mtime": 1781608878725.6655,
+      "size": 3526,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/excel_formatter_basic.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "exceljs",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.725Z",
+      "lastModified": "2026-06-16T11:21:18.725Z",
+      "mtime": 1781608878725.7666,
+      "size": 11056,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/read-command.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.726Z",
+      "lastModified": "2026-06-16T11:21:18.726Z",
+      "mtime": 1781608878726.0713,
+      "size": 448,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/archive_cron.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "./archive_smart.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.726Z",
+      "lastModified": "2026-06-16T11:21:18.726Z",
+      "mtime": 1781608878726.1858,
+      "size": 351,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/archive_daily.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.726Z",
+      "lastModified": "2026-06-16T11:21:18.726Z",
+      "mtime": 1781608878726.2725,
+      "size": 2452,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/check_page1.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.726Z",
+      "lastModified": "2026-06-16T11:21:18.726Z",
+      "mtime": 1781608878726.4185,
+      "size": 1626,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/create_extracted_pdf.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf-lib",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.726Z",
+      "lastModified": "2026-06-16T11:21:18.726Z",
+      "mtime": 1781608878726.506,
+      "size": 6002,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/daily_maintenance.sh",
+      "tier": "debug",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.726Z",
+      "lastModified": "2026-06-16T11:21:18.726Z",
+      "mtime": 1781608878726.5876,
+      "size": 283,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "_legacy/scripts/debug_pdf.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.726Z",
+      "lastModified": "2026-06-16T11:21:18.726Z",
+      "mtime": 1781608878726.6982,
+      "size": 1651,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/debug_round.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.726Z",
+      "lastModified": "2026-06-16T11:21:18.726Z",
+      "mtime": 1781608878726.773,
+      "size": 1805,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/debug_round2.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.726Z",
+      "lastModified": "2026-06-16T11:21:18.726Z",
+      "mtime": 1781608878726.8662,
+      "size": 1801,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_4ct_from_trash.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.727Z",
+      "lastModified": "2026-06-16T11:21:18.727Z",
+      "mtime": 1781608878727.0618,
+      "size": 4257,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_4ct_price.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.727Z",
+      "lastModified": "2026-06-16T11:21:18.727Z",
+      "mtime": 1781608878727.1587,
+      "size": 5446,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_all_ranges_v2.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.727Z",
+      "lastModified": "2026-06-16T11:21:18.727Z",
+      "mtime": 1781608878727.5178,
+      "size": 6452,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_all_ranges_v3.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.727Z",
+      "lastModified": "2026-06-16T11:21:18.727Z",
+      "mtime": 1781608878727.7869,
+      "size": 6733,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_all_ranges.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.727Z",
+      "lastModified": "2026-06-16T11:21:18.727Z",
+      "mtime": 1781608878727.415,
+      "size": 6125,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_all_tables.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.727Z",
+      "lastModified": "2026-06-16T11:21:18.729Z",
+      "mtime": 1781608878729.0933,
+      "size": 5912,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_by_coords.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.729Z",
+      "lastModified": "2026-06-16T11:21:18.729Z",
+      "mtime": 1781608878729.2156,
+      "size": 2767,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_final.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.729Z",
+      "lastModified": "2026-06-16T11:21:18.729Z",
+      "mtime": 1781608878729.3206,
+      "size": 6722,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_pear_all.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.729Z",
+      "lastModified": "2026-06-16T11:21:18.729Z",
+      "mtime": 1781608878729.4937,
+      "size": 4909,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_pear_complete.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.729Z",
+      "lastModified": "2026-06-16T11:21:18.729Z",
+      "mtime": 1781608878729.5864,
+      "size": 7075,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_pear_final.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.729Z",
+      "lastModified": "2026-06-16T11:21:18.729Z",
+      "mtime": 1781608878729.669,
+      "size": 5880,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_pear.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.729Z",
+      "lastModified": "2026-06-16T11:21:18.729Z",
+      "mtime": 1781608878729.414,
+      "size": 4839,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_0130.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.729Z",
+      "lastModified": "2026-06-16T11:21:18.729Z",
+      "mtime": 1781608878729.7566,
+      "size": 5593,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_both.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.729Z",
+      "lastModified": "2026-06-16T11:21:18.729Z",
+      "mtime": 1781608878729.837,
+      "size": 8168,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_complete.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.729Z",
+      "lastModified": "2026-06-16T11:21:18.730Z",
+      "mtime": 1781608878730.1643,
+      "size": 6083,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_final_v2.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.730Z",
+      "lastModified": "2026-06-16T11:21:18.730Z",
+      "mtime": 1781608878730.379,
+      "size": 6624,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_final.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.730Z",
+      "lastModified": "2026-06-16T11:21:18.730Z",
+      "mtime": 1781608878730.2664,
+      "size": 10109,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_fixed.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.730Z",
+      "lastModified": "2026-06-16T11:21:18.730Z",
+      "mtime": 1781608878730.4634,
+      "size": 5826,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_full.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.730Z",
+      "lastModified": "2026-06-16T11:21:18.730Z",
+      "mtime": 1781608878730.5518,
+      "size": 3374,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_v2.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.730Z",
+      "lastModified": "2026-06-16T11:21:18.730Z",
+      "mtime": 1781608878730.6536,
+      "size": 3125,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_v3.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.730Z",
+      "lastModified": "2026-06-16T11:21:18.730Z",
+      "mtime": 1781608878730.7805,
+      "size": 5636,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_v4.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.730Z",
+      "lastModified": "2026-06-16T11:21:18.730Z",
+      "mtime": 1781608878730.9165,
+      "size": 5262,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_v5.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.730Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.0068,
+      "size": 5915,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_rapaport_working.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.1265,
+      "size": 6632,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_round_manual.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.2166,
+      "size": 4410,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/extract_with_pdfparse.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf-parse",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.3374,
+      "size": 3331,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/fix_90_99.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.448,
+      "size": 2799,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/fix_missing_colors.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.523,
+      "size": 5090,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/fix_y_positions.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.6067,
+      "size": 4673,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/get_4ct_price.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.6924,
+      "size": 3388,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/read_pdf_simple.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.7803,
+      "size": 1392,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/read_rapaport.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.889,
+      "size": 2387,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/test_whatsapp.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.731Z",
+      "lastModified": "2026-06-16T11:21:18.731Z",
+      "mtime": 1781608878731.9675,
+      "size": 657,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/token_monitor.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.732Z",
+      "lastModified": "2026-06-16T11:21:18.732Z",
+      "mtime": 1781608878732.0361,
+      "size": 1720,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/try_pdfparse.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf-parse",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.732Z",
+      "lastModified": "2026-06-16T11:21:18.732Z",
+      "mtime": 1781608878732.1108,
+      "size": 908,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/update_rapaport_db_v2.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.732Z",
+      "lastModified": "2026-06-16T11:21:18.732Z",
+      "mtime": 1781608878732.2935,
+      "size": 6056,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/update_rapaport_db.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.732Z",
+      "lastModified": "2026-06-16T11:21:18.732Z",
+      "mtime": 1781608878732.199,
+      "size": 14737,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/v9_stock_integrator.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "exceljs",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.732Z",
+      "lastModified": "2026-06-16T11:21:18.732Z",
+      "mtime": 1781608878732.3848,
+      "size": 15555,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/scripts/validate_pear.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "pdf2json",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.732Z",
+      "lastModified": "2026-06-16T11:21:18.732Z",
+      "mtime": 1781608878732.4878,
+      "size": 9128,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/send-test.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "whatsapp-web.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.732Z",
+      "lastModified": "2026-06-16T11:21:18.732Z",
+      "mtime": 1781608878732.6062,
+      "size": 1034,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/start-whatsapp.sh",
+      "tier": "debug",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.732Z",
+      "lastModified": "2026-06-16T11:21:18.732Z",
+      "mtime": 1781608878732.7927,
+      "size": 484,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "_legacy/switch_model.sh",
+      "tier": "debug",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.733Z",
+      "lastModified": "2026-06-16T11:21:18.733Z",
+      "mtime": 1781608878733.4817,
+      "size": 883,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "_legacy/whatsapp-bot.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "whatsapp-web.js",
+        "qrcode",
+        "fs",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.919Z",
+      "lastModified": "2026-06-16T11:21:18.919Z",
+      "mtime": 1781608878919.2395,
+      "size": 4110,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/whatsapp-bridge.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "whatsapp-web.js",
+        "qrcode-terminal",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.919Z",
+      "lastModified": "2026-06-16T11:21:18.919Z",
+      "mtime": 1781608878919.3193,
+      "size": 2389,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/whatsapp-qr-generator.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "whatsapp-web.js",
+        "qrcode",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.919Z",
+      "lastModified": "2026-06-16T11:21:18.919Z",
+      "mtime": 1781608878919.387,
+      "size": 1249,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "_legacy/whatsapp-test-events.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "whatsapp-web.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.919Z",
+      "lastModified": "2026-06-16T11:21:18.919Z",
+      "mtime": 1781608878919.605,
+      "size": 1280,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "_shl_trigger.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-17T10:57:49.880Z",
+      "lastModified": "2026-06-17T10:57:49.880Z",
+      "mtime": 1781693869880.3613,
+      "size": 12,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "check_fix.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.920Z",
+      "lastModified": "2026-06-16T11:21:18.920Z",
+      "mtime": 1781608878920.188,
+      "size": 797,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "extensions/self-healing-loop/index.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "openclaw/plugin-sdk/plugin-entry",
+        "node:child_process",
+        "node:fs",
+        "node:fs/promises",
+        "node:path",
+        "node:os",
+        "node:crypto",
+        "node:module",
+        "node:url",
+        "./lib/skill-gate.mjs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-17T02:15:46.121Z",
+      "lastModified": "2026-06-22T22:18:57.391Z",
+      "mtime": 1782166737391.7815,
+      "size": 46998,
+      "importCount": 10,
+      "isShell": false
+    },
+    {
+      "path": "extensions/self-healing-loop/lib/skill-gate.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:path"
+      ],
+      "dependedBy": [
+        "extensions/self-healing-loop/index.mjs",
+        "extensions/self-healing-loop/test.mjs"
+      ],
+      "firstSeen": "2026-06-17T06:36:47.594Z",
+      "lastModified": "2026-06-17T06:40:58.425Z",
+      "mtime": 1781678458425.7966,
+      "size": 9042,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "extensions/self-healing-loop/test.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "./lib/skill-gate.mjs",
+        "node:path",
+        "node:os",
+        "node:fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-17T06:35:48.011Z",
+      "lastModified": "2026-06-17T06:38:23.284Z",
+      "mtime": 1781678303284.8726,
+      "size": 13666,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "extensions/skill-auto-suggest/compare_embeddings.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "./core.mjs",
+        "./embedding.mjs",
+        "node:fs/promises"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:18.928Z",
+      "lastModified": "2026-06-16T11:21:18.928Z",
+      "mtime": 1781608878928.8223,
+      "size": 4269,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "extensions/skill-auto-suggest/core.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "../../scripts/lib/frontmatter.js",
+        "node:fs/promises",
+        "node:path",
+        "node:os",
+        "node:crypto",
+        "node:module",
+        "./matcher.mjs"
+      ],
+      "dependedBy": [
+        "extensions/skill-auto-suggest/compare_embeddings.mjs",
+        "extensions/skill-auto-suggest/index.mjs",
+        "extensions/skill-auto-suggest/test.mjs"
+      ],
+      "firstSeen": "2026-06-25T03:05:14.721Z",
+      "lastModified": "2026-06-25T03:05:14.721Z",
+      "mtime": 1782356714721.8103,
+      "size": 22344,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "extensions/skill-auto-suggest/embedding.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [],
+      "dependedBy": [
+        "extensions/skill-auto-suggest/compare_embeddings.mjs",
+        "extensions/skill-auto-suggest/index.mjs",
+        "extensions/skill-auto-suggest/matcher.mjs",
+        "extensions/skill-auto-suggest/test.mjs"
+      ],
+      "firstSeen": "2026-06-25T03:05:14.721Z",
+      "lastModified": "2026-06-25T03:05:14.721Z",
+      "mtime": 1782356714721.959,
+      "size": 3123,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "extensions/skill-auto-suggest/index.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "openclaw/plugin-sdk/plugin-entry",
+        "./core.mjs",
+        "./embedding.mjs",
+        "./usage-detector.mjs",
+        "./lib/after-task-triage.mjs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.722Z",
+      "lastModified": "2026-06-25T03:05:14.722Z",
+      "mtime": 1782356714722.1309,
+      "size": 10051,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "extensions/skill-auto-suggest/lib/after-task-triage.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:child_process",
+        "node:path",
+        "node:os",
+        "node:fs/promises"
+      ],
+      "dependedBy": [
+        "extensions/skill-auto-suggest/index.mjs"
+      ],
+      "firstSeen": "2026-06-19T19:13:10.118Z",
+      "lastModified": "2026-06-19T19:13:10.118Z",
+      "mtime": 1781896390118.1086,
+      "size": 5753,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "extensions/skill-auto-suggest/matcher.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "./embedding.mjs"
+      ],
+      "dependedBy": [
+        "extensions/skill-auto-suggest/core.mjs",
+        "extensions/skill-auto-suggest/test.mjs"
+      ],
+      "firstSeen": "2026-06-25T03:05:14.722Z",
+      "lastModified": "2026-06-25T03:05:14.722Z",
+      "mtime": 1782356714722.297,
+      "size": 7397,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "extensions/skill-auto-suggest/pre-emit-dedup.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "/Users/ally/.openclaw/workspace/scripts/lib/skill_dedup_gate.js",
+        "node:module",
+        "node:path",
+        "node:os",
+        "node:fs"
+      ],
+      "dependedBy": [
+        "scripts/after_task_skill_candidate.js",
+        "scripts/audit_to_skill_emitter.js",
+        "scripts/skill_pattern_emitter.js"
+      ],
+      "firstSeen": "2026-06-25T03:05:14.722Z",
+      "lastModified": "2026-06-25T03:05:14.722Z",
+      "mtime": 1782356714722.663,
+      "size": 19162,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "extensions/skill-auto-suggest/test.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:fs",
+        "./core.mjs",
+        "./matcher.mjs",
+        "./embedding.mjs",
+        "./usage-detector.mjs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.722Z",
+      "lastModified": "2026-06-25T03:05:14.722Z",
+      "mtime": 1782356714722.9312,
+      "size": 20464,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "extensions/skill-auto-suggest/usage-detector.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:path",
+        "node:os"
+      ],
+      "dependedBy": [
+        "extensions/skill-auto-suggest/index.mjs",
+        "extensions/skill-auto-suggest/test.mjs"
+      ],
+      "firstSeen": "2026-06-19T09:27:48.682Z",
+      "lastModified": "2026-06-22T22:09:34.680Z",
+      "mtime": 1782166174680.1858,
+      "size": 4378,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "gia_batch/extract_all.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.031Z",
+      "lastModified": "2026-06-16T11:21:19.031Z",
+      "mtime": 1781608879031.9543,
+      "size": 1590,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "gia_batch/extract_results.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "path",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.031Z",
+      "lastModified": "2026-06-16T11:21:19.032Z",
+      "mtime": 1781608879032.017,
+      "size": 1457,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "gia_batch/parse_all.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.032Z",
+      "lastModified": "2026-06-16T11:21:19.032Z",
+      "mtime": 1781608879032.0623,
+      "size": 2495,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "heal-error.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T16:45:50.117Z",
+      "lastModified": "2026-06-16T16:45:50.118Z",
+      "mtime": 1781628350118.1523,
+      "size": 40,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "heal-hb.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T16:44:55.661Z",
+      "lastModified": "2026-06-16T16:44:55.661Z",
+      "mtime": 1781628295661.6885,
+      "size": 36,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "hooks/auto-router/handler.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.054Z",
+      "lastModified": "2026-06-16T11:21:19.054Z",
+      "mtime": 1781608879054.283,
+      "size": 1306,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "public/server.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "http",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.084Z",
+      "lastModified": "2026-06-16T11:21:19.084Z",
+      "mtime": 1781608879084.0203,
+      "size": 1326,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "public/sw.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.084Z",
+      "lastModified": "2026-06-16T11:21:19.084Z",
+      "mtime": 1781608879084.8918,
+      "size": 3191,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/audit_scanner.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.088Z",
+      "lastModified": "2026-06-16T11:21:19.088Z",
+      "mtime": 1781608879088.2185,
+      "size": 13627,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/auto_skill_router.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "path",
+        "./lib/config",
+        "fs",
+        "./skills_manager"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.088Z",
+      "lastModified": "2026-06-16T11:21:19.088Z",
+      "mtime": 1781608879088.272,
+      "size": 10207,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/daily-reports-2026-06-24/daily_telemetry_digest.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/discord_push",
+        "./lib/proposal_store"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.024Z",
+      "lastModified": "2026-06-21T15:51:22.780Z",
+      "mtime": 1782057082780.1604,
+      "size": 14106,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/daily-reports-2026-06-24/metrics_collector.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-22T08:06:13.716Z",
+      "lastModified": "2026-06-22T08:06:13.717Z",
+      "mtime": 1782115573717.0403,
+      "size": 12873,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/daily-reports-2026-06-24/skill_reviewer_daily_report.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-22T08:06:13.725Z",
+      "lastModified": "2026-06-23T14:27:19.429Z",
+      "mtime": 1782224839429.604,
+      "size": 17854,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/m5-dormant-2026-06-20/anomaly_monitor.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/baseline_store",
+        "@discordjs/rest",
+        "discord-api-types/v10"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.089Z",
+      "lastModified": "2026-06-16T11:21:19.089Z",
+      "mtime": 1781608879089.2893,
+      "size": 11462,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/m5-dormant-2026-06-20/anomaly_proactive_push.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.089Z",
+      "lastModified": "2026-06-16T11:21:19.089Z",
+      "mtime": 1781608879089.338,
+      "size": 11779,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/m5-dormant-2026-06-20/baseline_store.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/baseline_store",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.2883,
+      "size": 3661,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/m5-dormant-2026-06-20/cron_health_triage.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.6523,
+      "size": 12391,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/m5-dormant-2026-06-20/error_auto_issue.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-24T02:00:13.129Z",
+      "lastModified": "2026-06-24T02:00:13.129Z",
+      "mtime": 1782266413129.5796,
+      "size": 13770,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/m5-dormant-2026-06-20/pattern_proactive_trigger.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.314,
+      "size": 11830,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/pure_ai_audit.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "crypto",
+        "./lib/config",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.088Z",
+      "lastModified": "2026-06-16T11:21:19.088Z",
+      "mtime": 1781608879088.5947,
+      "size": 29198,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_legacy/skills_manager.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.088Z",
+      "lastModified": "2026-06-16T11:21:19.088Z",
+      "mtime": 1781608879088.6604,
+      "size": 15773,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_test_rename_a.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T16:45:44.917Z",
+      "lastModified": "2026-06-19T16:45:44.917Z",
+      "mtime": 1781887544917.6326,
+      "size": 83,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/_test_rename_b.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./_test_rename_a"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T16:45:44.917Z",
+      "lastModified": "2026-06-19T16:45:44.917Z",
+      "mtime": 1781887544917.467,
+      "size": 133,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/adaptive_timeout.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.088Z",
+      "lastModified": "2026-06-16T11:21:19.088Z",
+      "mtime": 1781608879088.7007,
+      "size": 4679,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/after_task_skill_candidate.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "crypto",
+        "./lib/config",
+        "../extensions/skill-auto-suggest/pre-emit-dedup.mjs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.724Z",
+      "lastModified": "2026-06-25T03:05:14.724Z",
+      "mtime": 1782356714724.8987,
+      "size": 11844,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/ai_hot_push.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "https",
+        "fs",
+        "path",
+        "opencc-js",
+        "./lib/time_constants",
+        "./lib/secret_resolver"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T05:07:27.678Z",
+      "lastModified": "2026-06-25T05:11:26.396Z",
+      "mtime": 1782364286396.0269,
+      "size": 21917,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/ai_image_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.088Z",
+      "lastModified": "2026-06-16T11:21:19.088Z",
+      "mtime": 1781608879088.8535,
+      "size": 2485,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/analyze_magic_numbers.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.088Z",
+      "lastModified": "2026-06-16T11:21:19.088Z",
+      "mtime": 1781608879088.9424,
+      "size": 7915,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/analyze_skill_usage.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.088Z",
+      "lastModified": "2026-06-16T11:21:19.089Z",
+      "mtime": 1781608879089.2407,
+      "size": 4813,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/apple_notes.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path",
+        "os",
+        "crypto"
+      ],
+      "dependedBy": [
+        "scripts/daily_summary_bot.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.089Z",
+      "lastModified": "2026-06-16T11:21:19.089Z",
+      "mtime": 1781608879089.3784,
+      "size": 6339,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/apple_reminders_calendar.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path",
+        "os",
+        "crypto",
+        "./lib/config",
+        "./lib/state",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.089Z",
+      "lastModified": "2026-06-16T11:21:19.089Z",
+      "mtime": 1781608879089.4216,
+      "size": 7123,
+      "importCount": 8,
+      "isShell": false
+    },
+    {
+      "path": "scripts/archive_smart.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.725Z",
+      "lastModified": "2026-06-25T03:05:14.725Z",
+      "mtime": 1782356714725.5142,
+      "size": 2464,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/audit_daily_cron.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/auditOrchestrator",
+        "./lib/audit_history",
+        "./lib/script_registry",
+        "./lib/audit_realtime_dedup"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-24T14:36:13.232Z",
+      "lastModified": "2026-06-25T02:49:54.009Z",
+      "mtime": 1782355794009.05,
+      "size": 16547,
+      "importCount": 8,
+      "isShell": false
+    },
+    {
+      "path": "scripts/audit_just_written.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/audit_realtime_dedup",
+        "./lib/audit/try-block-map"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-21T19:56:40.732Z",
+      "lastModified": "2026-06-22T08:28:32.326Z",
+      "mtime": 1782116912326.2454,
+      "size": 20061,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/audit_repair_proposer.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/rules/low-risk",
+        "./lib/file_snapshot",
+        "./lib/dependency_graph",
+        "./lib/script_signature_detector",
+        "./lib/cumulative_approvals",
+        "./lib/proposal_store",
+        "./fix_m3_advisory"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.030Z",
+      "lastModified": "2026-06-24T17:20:51.908Z",
+      "mtime": 1782321651908.1208,
+      "size": 28041,
+      "importCount": 10,
+      "isShell": false
+    },
+    {
+      "path": "scripts/audit_to_skill_emitter.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "crypto",
+        "./lib/config",
+        "./lib/proposal_store",
+        "../extensions/skill-auto-suggest/pre-emit-dedup.mjs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.725Z",
+      "lastModified": "2026-06-25T03:05:14.725Z",
+      "mtime": 1782356714725.8022,
+      "size": 23053,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/auto_fix_history.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./auto_fix_history"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.2368,
+      "size": 11550,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/auto_fix.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "./lib/helpers",
+        "path",
+        "crypto",
+        "child_process",
+        "./auto_fix_history",
+        "./lib/config",
+        "./lib/rules/low-risk",
+        "./lib/rules/high-risk",
+        "./lib/rules/system-audit",
+        "${item.require}",
+        "readline",
+        "./issue_manager",
+        "./issue_manager.js",
+        "issue_manager"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.725Z",
+      "lastModified": "2026-06-25T03:05:14.726Z",
+      "mtime": 1782356714726.3992,
+      "size": 103508,
+      "importCount": 15,
+      "isShell": false
+    },
+    {
+      "path": "scripts/auto_memory_trigger.sh",
+      "tier": "critical",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.2705,
+      "size": 557,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/auto_remember.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/state",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.3562,
+      "size": 26636,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/auto-router/handler.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "../../subsystem-CDcEQtQK.js",
+        "../../query-expansion-DnS6CGY2.js",
+        "../../paths-BwJ6yG6k.js",
+        "../../frontmatter-D6-ANhh_.js",
+        "../../config-BYkzFD4a.js",
+        "../../workspace-Cg3kGb1y.js",
+        "../../agent-BeieZAG2.js",
+        "node:fs/promises",
+        "node:path",
+        "node:os",
+        "node:child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.0334,
+      "size": 7570,
+      "importCount": 11,
+      "isShell": false
+    },
+    {
+      "path": "scripts/autoops/daily_stock_monitor.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.4646,
+      "size": 8443,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/autoops/health_monitor.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.4998,
+      "size": 3195,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/autoops/quick-start.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.5352,
+      "size": 667,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/autoops/runners/daily-stock-monitor-morning.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.5996,
+      "size": 517,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/autoops/runners/daily-stock-monitor-noon.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.6313,
+      "size": 535,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/autoops/runners/token-monitor.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.664,
+      "size": 508,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/autoops/token_monitor.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.7095,
+      "size": 2580,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/backup_to_bliss.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.726Z",
+      "lastModified": "2026-06-25T03:05:14.727Z",
+      "mtime": 1782356714727.0867,
+      "size": 5246,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/browser_autoclose.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.8652,
+      "size": 1172,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/chart_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.9062,
+      "size": 3391,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/check_pure_audit_pending.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.948,
+      "size": 3519,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/churn_predictor.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.091Z",
+      "lastModified": "2026-06-16T11:21:19.091Z",
+      "mtime": 1781608879091.9963,
+      "size": 4839,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/closed_loop_v11_runner.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.0457,
+      "size": 10407,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/code_quality_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./code_quality_templates",
+        "./lib/time",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.0994,
+      "size": 13142,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/code_quality_manager.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time",
+        "./lib/fileDiscovery",
+        "./lib/issueAggregator",
+        "./lib/auditOrchestrator",
+        "./lib/batch_verifier",
+        "./lib/pattern_learner",
+        "./lib/auto_repair",
+        "./code_quality_generator",
+        "./code_quality_templates",
+        "./lib/skillIntegrityScanner",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.2031,
+      "size": 46353,
+      "importCount": 13,
+      "isShell": false
+    },
+    {
+      "path": "scripts/code_quality_templates.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.252,
+      "size": 5563,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/connection_surface.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/state",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.472,
+      "size": 10947,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/contact_manager.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.5168,
+      "size": 4900,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/contract_checker.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.5984,
+      "size": 3846,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/cron_preflight_runner.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.7004,
+      "size": 10472,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/cross_session_bootstrap.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.727Z",
+      "lastModified": "2026-06-25T03:05:14.727Z",
+      "mtime": 1782356714727.379,
+      "size": 25387,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/cross_session_context.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.727Z",
+      "lastModified": "2026-06-25T03:05:14.727Z",
+      "mtime": 1782356714727.6614,
+      "size": 8434,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/customer_analyzer.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.8906,
+      "size": 4463,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/customer360.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.092Z",
+      "lastModified": "2026-06-16T11:21:19.092Z",
+      "mtime": 1781608879092.8503,
+      "size": 6760,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/daily_maintenance.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "os",
+        "path",
+        "child_process",
+        "fs",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.727Z",
+      "lastModified": "2026-06-25T03:05:14.727Z",
+      "mtime": 1782356714727.974,
+      "size": 10236,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/daily_report.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time_constants",
+        "./lib/config",
+        "./lib/discord_push",
+        "./lib/proposal_store"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-24T02:00:13.121Z",
+      "lastModified": "2026-06-25T02:39:14.648Z",
+      "mtime": 1782355154648.8884,
+      "size": 22893,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/daily_summary_bot.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "https",
+        "./apple_notes.js",
+        "./report_templates.js",
+        "./report_generator.js",
+        "./lib/config",
+        "./lib/secret_resolver",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.728Z",
+      "lastModified": "2026-06-25T03:05:14.729Z",
+      "mtime": 1782356714729.2275,
+      "size": 15032,
+      "importCount": 9,
+      "isShell": false
+    },
+    {
+      "path": "scripts/daily_synthesis.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.0642,
+      "size": 27342,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/dashboard_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.1162,
+      "size": 3421,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/date_tag_automation.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.1702,
+      "size": 12095,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/deep_cleanup.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.2163,
+      "size": 4905,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/diamond_grading_report.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.316,
+      "size": 16635,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/diamond_valuation.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.3877,
+      "size": 6737,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/discord_channel_logger.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.4338,
+      "size": 233,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/document_template_engine.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.483,
+      "size": 2670,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/draft_skill_audit.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.6882,
+      "size": 5881,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/draft_skill_lifecycle.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.8584,
+      "size": 5718,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/dreaming_recall.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.895,
+      "size": 801,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/e2e_layer3_demo.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "child_process",
+        "./lib/config",
+        "./lib/script_registry",
+        "./lib/audit_history"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-23T20:45:01.103Z",
+      "lastModified": "2026-06-25T02:55:51.726Z",
+      "mtime": 1782356151726.9417,
+      "size": 9178,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/email_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.093Z",
+      "lastModified": "2026-06-16T11:21:19.093Z",
+      "mtime": 1781608879093.9392,
+      "size": 5165,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/error_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./error_generator",
+        "./error_templates",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.094Z",
+      "lastModified": "2026-06-16T11:21:19.094Z",
+      "mtime": 1781608879094.0496,
+      "size": 10037,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/error_templates.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./error_templates",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.094Z",
+      "lastModified": "2026-06-16T11:21:19.094Z",
+      "mtime": 1781608879094.0938,
+      "size": 3633,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/error_tracker.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time",
+        "./error_generator",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.094Z",
+      "lastModified": "2026-06-16T11:21:19.094Z",
+      "mtime": 1781608879094.1562,
+      "size": 27877,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/error_wiki_sync.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.729Z",
+      "lastModified": "2026-06-25T03:05:14.729Z",
+      "mtime": 1782356714729.3792,
+      "size": 8811,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/excel_report_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.094Z",
+      "lastModified": "2026-06-16T11:21:19.094Z",
+      "mtime": 1781608879094.2444,
+      "size": 3147,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/failover_detector.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.729Z",
+      "lastModified": "2026-06-25T03:05:14.729Z",
+      "mtime": 1782356714729.5088,
+      "size": 10385,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/fix_broken_notes_final.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.094Z",
+      "lastModified": "2026-06-16T11:21:19.094Z",
+      "mtime": 1781608879094.3691,
+      "size": 2220,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/fix_m3_advisory.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./fix_m3_advisory",
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/cumulative_approvals"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T20:45:00.981Z",
+      "lastModified": "2026-06-19T20:45:00.981Z",
+      "mtime": 1781901900981.5093,
+      "size": 13805,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/fix-digest.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T06:38:32.918Z",
+      "lastModified": "2026-06-19T06:49:05.805Z",
+      "mtime": 1781851745805.8784,
+      "size": 9080,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/generate_symbols.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "readline",
+        "crypto"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.729Z",
+      "lastModified": "2026-06-25T03:05:14.729Z",
+      "mtime": 1782356714729.7812,
+      "size": 35710,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/get_symbol_info.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.094Z",
+      "lastModified": "2026-06-16T11:21:19.094Z",
+      "mtime": 1781608879094.5205,
+      "size": 10532,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_analyze_and_send.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.094Z",
+      "lastModified": "2026-06-16T11:21:19.094Z",
+      "mtime": 1781608879094.56,
+      "size": 3887,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_cert_analyzer_refactored_v17.1.0.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "https",
+        "child_process",
+        "./lib/secret_resolver",
+        "os",
+        "Fancy Intense"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.730Z",
+      "lastModified": "2026-06-25T03:05:14.730Z",
+      "mtime": 1782356714730.818,
+      "size": 295303,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_cert_analyzer_v17.2.0.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "https",
+        "child_process",
+        "./lib/secret_resolver",
+        "os",
+        "Fancy Intense"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.730Z",
+      "lastModified": "2026-06-25T03:05:14.731Z",
+      "mtime": 1782356714731.3728,
+      "size": 295170,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_cert_analyzer.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "https",
+        "child_process",
+        "./lib/secret_resolver",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.729Z",
+      "lastModified": "2026-06-25T03:05:14.730Z",
+      "mtime": 1782356714730.3237,
+      "size": 244898,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_certificate_ocr.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time",
+        "tesseract.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.095Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.0085,
+      "size": 7298,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_database.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.0513,
+      "size": 4714,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_grading_logic_extractor.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.1035,
+      "size": 10378,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_image_verifier.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.1445,
+      "size": 4180,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_ocr.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.1821,
+      "size": 1289,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/gia_send_embed.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.222,
+      "size": 2007,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/health_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./health_generator",
+        "./health_templates"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.2666,
+      "size": 11497,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/health_monitor.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.3245,
+      "size": 21328,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/health_templates.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./health_templates",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.3708,
+      "size": 6336,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/heartbeat_recall.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.4595,
+      "size": 16259,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/heartbeat.sh",
+      "tier": "critical",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.731Z",
+      "lastModified": "2026-06-25T03:05:14.731Z",
+      "mtime": 1782356714731.9778,
+      "size": 3282,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/hermes_lessons_progress.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.732Z",
+      "lastModified": "2026-06-25T03:05:14.732Z",
+      "mtime": 1782356714732.1396,
+      "size": 6249,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/hooks/message_received.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "../auto_remember",
+        "../router/classifier",
+        "../router/config",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.58,
+      "size": 2840,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/idex_fetcher_bot.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "https",
+        "fs",
+        "path",
+        "child_process",
+        "./lib/time",
+        "./lib/config",
+        "./lib/secret_resolver"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.732Z",
+      "lastModified": "2026-06-25T03:05:14.732Z",
+      "mtime": 1782356714732.473,
+      "size": 11294,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/idex_fetcher.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "https",
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.6218,
+      "size": 10004,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/image_processor.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.6968,
+      "size": 3426,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/input_source_scanner.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.7424,
+      "size": 6209,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/inventory_forecaster.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.78,
+      "size": 3829,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/invoice_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.8428,
+      "size": 3195,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/issue_auto_followup.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/time",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.732Z",
+      "lastModified": "2026-06-25T03:05:14.732Z",
+      "mtime": 1782356714732.7065,
+      "size": 14842,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/issue_daily_report.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.9404,
+      "size": 6450,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/issue_manager.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [
+        "scripts/auto_fix.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.096Z",
+      "lastModified": "2026-06-16T11:21:19.096Z",
+      "mtime": 1781608879096.9966,
+      "size": 22330,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/issue_reminders_sync.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "os",
+        "crypto",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.732Z",
+      "lastModified": "2026-06-25T03:05:14.732Z",
+      "mtime": 1782356714732.83,
+      "size": 9861,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/key_memory_marker.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.097Z",
+      "lastModified": "2026-06-16T11:21:19.097Z",
+      "mtime": 1781608879097.124,
+      "size": 10276,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/kimi_cli_runner.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path",
+        "os",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.097Z",
+      "lastModified": "2026-06-16T11:21:19.097Z",
+      "mtime": 1781608879097.1775,
+      "size": 13578,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/knowledge_capture.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.097Z",
+      "lastModified": "2026-06-16T11:21:19.097Z",
+      "mtime": 1781608879097.401,
+      "size": 2999,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/knowledge_classifier.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "readline"
+      ],
+      "dependedBy": [
+        "scripts/knowledge_ingester.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.097Z",
+      "lastModified": "2026-06-16T11:21:19.097Z",
+      "mtime": 1781608879097.452,
+      "size": 16589,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/knowledge_ingester.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "node:child_process",
+        "./lib/secret_resolver",
+        "@discordjs/rest",
+        "discord-api-types/v10",
+        "./knowledge_classifier.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.732Z",
+      "lastModified": "2026-06-25T03:05:14.733Z",
+      "mtime": 1782356714733.0483,
+      "size": 32110,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/l0_l1_verify.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "child_process",
+        "./lib/config",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.733Z",
+      "lastModified": "2026-06-25T03:05:14.733Z",
+      "mtime": 1782356714733.1848,
+      "size": 8129,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/aggregate_signals.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.733Z",
+      "lastModified": "2026-06-25T03:05:14.733Z",
+      "mtime": 1782356714733.4097,
+      "size": 7080,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/analyzers/file-analyzer.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "../rules",
+        "../helpers/skip-list",
+        "../config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.057,
+      "size": 5906,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/analyzers/index.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./file-analyzer"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.0918,
+      "size": 375,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/audit_history.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/audit_trend",
+        "fs",
+        "path",
+        "./time_constants",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.056Z",
+      "lastModified": "2026-06-25T02:49:25.021Z",
+      "mtime": 1782355765021.831,
+      "size": 15080,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/audit_realtime_dedup.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/audit_realtime_dedup",
+        "fs",
+        "./time_constants",
+        "path",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.018Z",
+      "lastModified": "2026-06-25T02:36:06.194Z",
+      "mtime": 1782354966194.4512,
+      "size": 7502,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/audit/try-block-map.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "acorn"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-22T06:03:05.541Z",
+      "lastModified": "2026-06-22T06:05:02.861Z",
+      "mtime": 1782108302861.1064,
+      "size": 3017,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/auditOrchestrator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./config",
+        "./whitelist_patterns",
+        "./rules/low-risk"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T02:13:39.814Z",
+      "lastModified": "2026-06-25T02:13:39.814Z",
+      "mtime": 1782353619814.8367,
+      "size": 34102,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/auto_repair.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "os",
+        "./pattern_learner"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.248,
+      "size": 30321,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/batch_verifier.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.3706,
+      "size": 31538,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/config.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/config",
+        "path",
+        "os",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.4133,
+      "size": 3473,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/cumulative_approvals.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/cumulative_approvals",
+        "fs",
+        "path",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T02:00:13.194Z",
+      "lastModified": "2026-06-25T02:00:13.194Z",
+      "mtime": 1782352813194.3298,
+      "size": 11556,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/dependency_graph.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./foo",
+        "node:fs",
+        "fs",
+        "path",
+        "./foo.js",
+        "../bar/baz"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T14:19:21.272Z",
+      "lastModified": "2026-06-19T14:19:21.272Z",
+      "mtime": 1781878761272.4841,
+      "size": 10707,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/discord_push.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/discord_push",
+        "fs",
+        "child_process",
+        "path",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T18:22:23.773Z",
+      "lastModified": "2026-06-20T04:39:26.695Z",
+      "mtime": 1781930366695.6843,
+      "size": 4089,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/disk_guard.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/disk_guard",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.466,
+      "size": 4388,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/file_snapshot.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/snapshot",
+        "fs",
+        "path",
+        "os",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.084Z",
+      "lastModified": "2026-06-25T02:54:56.064Z",
+      "mtime": 1782356096064.4229,
+      "size": 4380,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/fileDiscovery.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "crypto",
+        "./config",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T02:00:13.164Z",
+      "lastModified": "2026-06-25T02:12:04.209Z",
+      "mtime": 1782353524209.6995,
+      "size": 10835,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/frontmatter.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/frontmatter"
+      ],
+      "dependedBy": [
+        "extensions/skill-auto-suggest/core.mjs"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.568,
+      "size": 4066,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/helpers/context_helpers.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./whitelist_patterns"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.646,
+      "size": 9333,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/helpers/file-cache.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.733Z",
+      "lastModified": "2026-06-25T03:05:14.733Z",
+      "mtime": 1782356714733.6226,
+      "size": 2419,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/helpers/index.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./try-catch-helpers-ast",
+        "./try-catch-helpers",
+        "./rule-helpers",
+        "./skip-list",
+        "./file-cache",
+        "./context_helpers",
+        "./whitelist_patterns"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.731,
+      "size": 1760,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/helpers/rule-helpers.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.775,
+      "size": 1041,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/helpers/skip-list.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "../config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.8538,
+      "size": 8830,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/helpers/try-catch-helpers-ast.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "acorn",
+        "./try-catch-helpers"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.9153,
+      "size": 15629,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/helpers/try-catch-helpers.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.098Z",
+      "mtime": 1781608879098.981,
+      "size": 15513,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/helpers/whitelist_patterns.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.098Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.0244,
+      "size": 11373,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/index.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./config",
+        "./state",
+        "./time",
+        "./fileDiscovery",
+        "./issueAggregator"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.0762,
+      "size": 555,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/issueAggregator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "crypto"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.142,
+      "size": 13807,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/m3_advisory_cache.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "crypto",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-24T10:08:58.938Z",
+      "lastModified": "2026-06-24T10:08:58.938Z",
+      "mtime": 1782295738938.554,
+      "size": 2598,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/minimax_scrubber_core.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/minimax_scrubber_core.js"
+      ],
+      "dependedBy": [
+        "scripts/minimax_reasoning_scrubber.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.1926,
+      "size": 4701,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/path_safety.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/path_safety",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.2395,
+      "size": 2677,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/pattern_learner.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.3076,
+      "size": 25778,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/pin_semantics.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.3616,
+      "size": 883,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/proposal_hash.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/proposal_hash",
+        "crypto"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.4128,
+      "size": 3762,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/proposal_store.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.733Z",
+      "lastModified": "2026-06-25T03:05:14.733Z",
+      "mtime": 1782356714733.7778,
+      "size": 6757,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/qualitative_signals.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.4624,
+      "size": 1969,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/rename_propagator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./file_snapshot",
+        "./dependency_graph"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.088Z",
+      "lastModified": "2026-06-20T02:00:12.088Z",
+      "mtime": 1781920812088.8896,
+      "size": 13056,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/rules/high-risk.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path",
+        "../helpers",
+        "../helpers/context_helpers",
+        "../helpers/skip-list"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.6206,
+      "size": 50418,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/rules/index.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./low-risk",
+        "./high-risk",
+        "./system-audit"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.099Z",
+      "lastModified": "2026-06-16T11:21:19.099Z",
+      "mtime": 1781608879099.7866,
+      "size": 564,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/rules/low-risk.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path",
+        "fs",
+        "../audit/try-block-map",
+        "../config",
+        "../simp_trad_map.json"
+      ],
+      "dependedBy": [
+        "scripts/shl-rule-audit.mjs"
+      ],
+      "firstSeen": "2026-06-25T03:05:14.733Z",
+      "lastModified": "2026-06-25T08:25:19.960Z",
+      "mtime": 1782375919960.9956,
+      "size": 29064,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/rules/system-audit.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "child_process",
+        "../config",
+        "../helpers/file-cache",
+        "./xxx",
+        "../xxx"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.734Z",
+      "lastModified": "2026-06-25T03:05:14.734Z",
+      "mtime": 1782356714734.2974,
+      "size": 36998,
+      "importCount": 8,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/safe_fs.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/safe_fs",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T17:14:57.512Z",
+      "lastModified": "2026-06-20T04:35:57.353Z",
+      "mtime": 1781930157353.0007,
+      "size": 1442,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/script_registry.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/script_registry",
+        "fs",
+        "path",
+        "os",
+        "./config",
+        "..."
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T14:19:21.272Z",
+      "lastModified": "2026-06-19T14:19:21.272Z",
+      "mtime": 1781878761272.9463,
+      "size": 12247,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/script_signature_detector.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./dependency_graph",
+        "./m"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.086Z",
+      "lastModified": "2026-06-24T03:24:39.591Z",
+      "mtime": 1782271479591.901,
+      "size": 13145,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/secret_resolver.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "node:fs",
+        "node:path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-23T10:57:19.215Z",
+      "lastModified": "2026-06-23T11:44:23.337Z",
+      "mtime": 1782215063337.3235,
+      "size": 4647,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/semantic_matcher.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.093,
+      "size": 14268,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/skill_dedup_gate.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "crypto",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.083Z",
+      "lastModified": "2026-06-21T07:54:42.518Z",
+      "mtime": 1782028482518.6653,
+      "size": 17819,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/skill_discovery.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./frontmatter"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.2715,
+      "size": 4003,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/skill_verifier.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./frontmatter"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-22T02:00:12.861Z",
+      "lastModified": "2026-06-22T02:00:12.862Z",
+      "mtime": 1782093612862,
+      "size": 20387,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/skillIntegrityScanner.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./frontmatter"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.222,
+      "size": 12869,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/skip-list.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.3257,
+      "size": 5616,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/state.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.3816,
+      "size": 1223,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/system_check_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "https",
+        "fs",
+        "os",
+        "path",
+        "child_process",
+        "./secret_resolver",
+        "./system_check_templates",
+        "./config",
+        "./verify_fix.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.734Z",
+      "lastModified": "2026-06-25T03:05:14.734Z",
+      "mtime": 1782356714734.5386,
+      "size": 41534,
+      "importCount": 9,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/system_check_templates.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.5867,
+      "size": 9800,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/test_secret_resolver.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "node:assert",
+        "./secret_resolver",
+        "fs",
+        "$HOME/.openclaw/openclaw.json"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-23T10:57:19.211Z",
+      "lastModified": "2026-06-25T02:55:14.598Z",
+      "mtime": 1782356114598.1843,
+      "size": 6808,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/time_constants.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T02:34:57.359Z",
+      "lastModified": "2026-06-25T02:34:57.359Z",
+      "mtime": 1782354897359.6655,
+      "size": 540,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/time.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.6367,
+      "size": 644,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/umbrella_consolidation.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./umbrella_consolidation",
+        "fs",
+        "path",
+        "child_process",
+        "./path_safety",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.7065,
+      "size": 19712,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/verify_fix.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./rules/low-risk"
+      ],
+      "dependedBy": [
+        "scripts/lib/system_check_generator.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.776,
+      "size": 9731,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/lib/whitelist_patterns.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.734Z",
+      "lastModified": "2026-06-25T03:05:14.734Z",
+      "mtime": 1782356714734.6692,
+      "size": 13392,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/llm_judge_batch.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:fs",
+        "node:path",
+        "node:url",
+        "node:child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.734Z",
+      "lastModified": "2026-06-25T03:05:14.734Z",
+      "mtime": 1782356714734.8618,
+      "size": 8507,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/llm_judge_calibration.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:fs",
+        "node:path",
+        "node:url",
+        "node:child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.101Z",
+      "lastModified": "2026-06-16T11:21:19.101Z",
+      "mtime": 1781608879101.1514,
+      "size": 9406,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/llm_judge_caller.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:fs",
+        "node:path",
+        "node:url",
+        "node:child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.734Z",
+      "lastModified": "2026-06-25T03:05:14.735Z",
+      "mtime": 1782356714735.076,
+      "size": 13002,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/llm_judge_gate_24h.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:fs",
+        "node:path",
+        "node:url"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.735Z",
+      "lastModified": "2026-06-25T03:05:14.735Z",
+      "mtime": 1782356714735.2952,
+      "size": 10990,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/llm_judge.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time",
+        "readline",
+        "./llm_judge"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.100Z",
+      "lastModified": "2026-06-16T11:21:19.100Z",
+      "mtime": 1781608879100.9338,
+      "size": 22345,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/log_to_daily_memory.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.735Z",
+      "lastModified": "2026-06-25T03:05:14.735Z",
+      "mtime": 1782356714735.5361,
+      "size": 28424,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/logrotate_cron.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.101Z",
+      "lastModified": "2026-06-16T11:21:19.101Z",
+      "mtime": 1781608879101.4414,
+      "size": 260,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/mail_monitor.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "path",
+        "fs",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.735Z",
+      "lastModified": "2026-06-25T03:05:14.735Z",
+      "mtime": 1782356714735.759,
+      "size": 11861,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/mail_tool.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "path",
+        "os",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.101Z",
+      "lastModified": "2026-06-16T11:21:19.101Z",
+      "mtime": 1781608879101.771,
+      "size": 14429,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/market_monitor.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.101Z",
+      "lastModified": "2026-06-16T11:21:19.101Z",
+      "mtime": 1781608879101.8674,
+      "size": 3275,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/memory_archiver.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.101Z",
+      "lastModified": "2026-06-16T11:21:19.101Z",
+      "mtime": 1781608879101.9316,
+      "size": 4888,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/memory_cleanup.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./memory_section_cleanup.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.101Z",
+      "lastModified": "2026-06-16T11:21:19.101Z",
+      "mtime": 1781608879101.9846,
+      "size": 493,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/memory_distiller.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.1663,
+      "size": 10093,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/memory_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "./lib/time_constants",
+        "path",
+        "opencc-js",
+        "./lib/state",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.735Z",
+      "lastModified": "2026-06-25T03:05:14.735Z",
+      "mtime": 1782356714735.982,
+      "size": 30085,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/memory_maintenance.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./apple_notes",
+        "child_process",
+        "fs",
+        "path",
+        "./lib/time",
+        "./lib/state",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.3345,
+      "size": 14797,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/memory_sanitizer.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.4102,
+      "size": 10402,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/memory_section_cleanup.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time",
+        "./lib/state"
+      ],
+      "dependedBy": [
+        "scripts/memory_cleanup.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.4707,
+      "size": 9213,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/memory_temporal_search.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.5242,
+      "size": 9889,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/merge_multi_sheet.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "xlsx",
+        "exceljs",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.622,
+      "size": 12532,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/merge_show_stock_list.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "exceljs",
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-21T02:00:11.876Z",
+      "lastModified": "2026-06-21T02:00:11.876Z",
+      "mtime": 1782007211876.8083,
+      "size": 16803,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/merge_skills.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:11.999Z",
+      "lastModified": "2026-06-20T02:00:11.999Z",
+      "mtime": 1781920811999.4556,
+      "size": 5038,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/migrate_skills_to_subdir.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.736Z",
+      "lastModified": "2026-06-25T03:05:14.736Z",
+      "mtime": 1782356714736.1902,
+      "size": 17540,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/minimax_reasoning_scrubber.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/minimax_scrubber_core.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.842,
+      "size": 4170,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/model_comparison.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "http"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.8855,
+      "size": 3386,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/news_summarizer.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.928,
+      "size": 2984,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/observe_audit_patterns.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/safe_fs",
+        "./lib/path_resolver",
+        "os",
+        "./lib/cjk_filter"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:11.991Z",
+      "lastModified": "2026-06-20T20:36:19.596Z",
+      "mtime": 1781987779596.3406,
+      "size": 14389,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/openclaw_guard.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.102Z",
+      "mtime": 1781608879102.976,
+      "size": 7506,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/orchestrator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.102Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.0378,
+      "size": 13107,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/pattern_analysis_daily.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.0815,
+      "size": 3574,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/pattern_archive.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.1294,
+      "size": 10710,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/pattern_error_tracker.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.1912,
+      "size": 8988,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/pattern_periodic_tagger.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.2512,
+      "size": 7906,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/pattern_project_tracker.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.3953,
+      "size": 10950,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/pattern_resolver.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.46,
+      "size": 12936,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/pattern_topic_graph.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.5142,
+      "size": 8423,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/powerquery_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.5623,
+      "size": 3135,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/preference_tracker.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.6252,
+      "size": 13676,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/price_alert_system.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.6768,
+      "size": 3290,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/price_history.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.8347,
+      "size": 6849,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/price_predictor.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.8813,
+      "size": 3439,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/process_all_gia_certs.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.9255,
+      "size": 1852,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/proposal_action.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/cumulative_approvals",
+        "./lib/proposal_store",
+        "./audit_repair_proposer"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T02:00:13.197Z",
+      "lastModified": "2026-06-25T02:00:13.197Z",
+      "mtime": 1782352813197.8025,
+      "size": 11352,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/propose_fix_notifier.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/cumulative_approvals",
+        "./lib/proposal_store",
+        "./lib/discord_push"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:11.998Z",
+      "lastModified": "2026-06-24T17:41:59.392Z",
+      "mtime": 1782322919392.4583,
+      "size": 7219,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/pure_audit_runner.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.103Z",
+      "mtime": 1781608879103.9768,
+      "size": 4779,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/queue_depth.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.103Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.0244,
+      "size": 8002,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/quick_recovery.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.066,
+      "size": 1412,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/quotation_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.1116,
+      "size": 1363,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/rapaport_extractor.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.1528,
+      "size": 1486,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/rapnet_ai_summary.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.201,
+      "size": 2162,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/rapnet_sender.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "https",
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/time",
+        "./lib/secret_resolver"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.736Z",
+      "lastModified": "2026-06-25T03:05:14.736Z",
+      "mtime": 1782356714736.5166,
+      "size": 8707,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/rapnet_weekly_workflow.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.736Z",
+      "lastModified": "2026-06-25T03:05:14.737Z",
+      "mtime": 1782356714737.1245,
+      "size": 3134,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/rapnet_weekly.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path",
+        "https",
+        "./lib/time",
+        "./lib/config",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.736Z",
+      "lastModified": "2026-06-25T03:05:14.736Z",
+      "mtime": 1782356714736.825,
+      "size": 9257,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/reminder_discussion_bot.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "https",
+        "fs",
+        "./lib/secret_resolver"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.737Z",
+      "lastModified": "2026-06-25T03:05:14.737Z",
+      "mtime": 1782356714737.393,
+      "size": 3343,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/reminder_discussion.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.3896,
+      "size": 1400,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/rename_with_propagation.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/config",
+        "./lib/dependency_graph",
+        "./lib/rename_propagator",
+        "./lib/file_snapshot"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.040Z",
+      "lastModified": "2026-06-20T02:00:12.040Z",
+      "mtime": 1781920812040.4646,
+      "size": 6103,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/report_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path",
+        "fs",
+        "./lib/config",
+        "./lib/time",
+        "./report_templates",
+        "./report_generator"
+      ],
+      "dependedBy": [
+        "scripts/daily_summary_bot.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.5195,
+      "size": 26956,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/report_templates.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./report_templates",
+        "./lib/time"
+      ],
+      "dependedBy": [
+        "scripts/daily_summary_bot.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.58,
+      "size": 17745,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/_archive/auto_corrector.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./classifier",
+        "./failure_recovery"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.6985,
+      "size": 8068,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/_archive/decision_logger.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "./scripts/router/decision_logger",
+        "./classifier",
+        "fs",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.7456,
+      "size": 3712,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/_archive/email_router.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "./email_router",
+        "path",
+        "..."
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.7966,
+      "size": 11059,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/_archive/failure_recovery.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "./failure_recovery",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.842,
+      "size": 9478,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/_archive/feedback_collector.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.8848,
+      "size": 7814,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/_archive/model_router.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "./router/model_router",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.104Z",
+      "mtime": 1781608879104.9253,
+      "size": 4131,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/_archive/rule_adjuster.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./classifier"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.104Z",
+      "lastModified": "2026-06-16T11:21:19.105Z",
+      "mtime": 1781608879105.029,
+      "size": 13190,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/auxiliary_classifier.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./auxiliary_classifier",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.105Z",
+      "lastModified": "2026-06-16T11:21:19.105Z",
+      "mtime": 1781608879105.0642,
+      "size": 2459,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/classifier.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./router/classifier",
+        "fs",
+        "path",
+        "./config",
+        "./log_rotator",
+        "./model_router"
+      ],
+      "dependedBy": [
+        "scripts/test_smart_routing.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.105Z",
+      "lastModified": "2026-06-16T11:21:19.105Z",
+      "mtime": 1781608879105.145,
+      "size": 6133,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/config_loader.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "js-yaml"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.105Z",
+      "lastModified": "2026-06-16T11:21:19.105Z",
+      "mtime": 1781608879105.2195,
+      "size": 3481,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/config.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.105Z",
+      "lastModified": "2026-06-16T11:21:19.105Z",
+      "mtime": 1781608879105.1812,
+      "size": 451,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/failure_recovery.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./config_loader",
+        "./log_rotator"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.106Z",
+      "lastModified": "2026-06-16T11:21:19.106Z",
+      "mtime": 1781608879106.362,
+      "size": 13092,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/log_rotator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.106Z",
+      "lastModified": "2026-06-16T11:21:19.106Z",
+      "mtime": 1781608879106.3962,
+      "size": 2509,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/model_router.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./model_router",
+        "fs",
+        "path",
+        "crypto",
+        "./config_loader",
+        "./log_rotator",
+        "./failure_recovery"
+      ],
+      "dependedBy": [
+        "scripts/test_smart_routing.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.106Z",
+      "lastModified": "2026-06-16T11:21:19.106Z",
+      "mtime": 1781608879106.4395,
+      "size": 9997,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/report.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.106Z",
+      "lastModified": "2026-06-16T11:21:19.106Z",
+      "mtime": 1781608879106.4797,
+      "size": 7756,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/tests/classifier_tests.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "assert",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.106Z",
+      "lastModified": "2026-06-16T11:21:19.106Z",
+      "mtime": 1781608879106.8674,
+      "size": 9359,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/tests/e2e_test.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [
+        "assert",
+        "fs",
+        "path",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.106Z",
+      "lastModified": "2026-06-16T11:21:19.106Z",
+      "mtime": 1781608879106.9124,
+      "size": 7355,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/tests/integration_tests.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "assert",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.106Z",
+      "lastModified": "2026-06-16T11:21:19.106Z",
+      "mtime": 1781608879106.9658,
+      "size": 14089,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/router/tests/spawn_config_tests.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "assert",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.106Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.0042,
+      "size": 7383,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/run_calibration_validation.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:fs",
+        "node:path",
+        "node:url",
+        "node:child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-18T05:47:56.689Z",
+      "lastModified": "2026-06-19T02:36:40.305Z",
+      "mtime": 1781836600305.117,
+      "size": 9400,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/run_kb_ingest.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.0417,
+      "size": 3679,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/sa_product_monitor.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "node-fetch-native"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.0774,
+      "size": 2759,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/scan_generic_links.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-23T10:57:19.331Z",
+      "lastModified": "2026-06-23T10:57:19.331Z",
+      "mtime": 1782212239331.4023,
+      "size": 11963,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/session_cleanup.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.1194,
+      "size": 11608,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/session_cleanup.sh",
+      "tier": "critical",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.1633,
+      "size": 4339,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/session_end.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.213,
+      "size": 16776,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/session_recovery.js",
+      "tier": "critical",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/time",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.257,
+      "size": 8441,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/session_startup.sh",
+      "tier": "critical",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.295,
+      "size": 5231,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/setup_qwen3_calendar.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.332,
+      "size": 1242,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/shl-noise-sanity.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:child_process",
+        "node:fs",
+        "node:path",
+        "node:os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T03:08:35.727Z",
+      "lastModified": "2026-06-19T03:08:35.727Z",
+      "mtime": 1781838515727.4192,
+      "size": 4754,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/shl-rule-audit.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "./lib/rules/low-risk.js",
+        "fs",
+        "child_process",
+        "node:module",
+        "foo"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T03:04:52.293Z",
+      "lastModified": "2026-06-19T03:11:55.388Z",
+      "mtime": 1781838715388.0862,
+      "size": 14204,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_activation_tester.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/skill_discovery",
+        "./lib/frontmatter"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.3694,
+      "size": 3701,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_description_auditor.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.4426,
+      "size": 36466,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_feedback.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.107Z",
+      "lastModified": "2026-06-16T11:21:19.107Z",
+      "mtime": 1781608879107.636,
+      "size": 1804,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_junk_pause.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/disk_guard"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.739Z",
+      "lastModified": "2026-06-25T03:05:14.740Z",
+      "mtime": 1782356714740.0627,
+      "size": 9566,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_junk_tracker.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.740Z",
+      "lastModified": "2026-06-25T03:05:14.740Z",
+      "mtime": 1782356714740.3318,
+      "size": 16044,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_m3_advisory.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/m3_advisory_cache"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T02:00:13.120Z",
+      "lastModified": "2026-06-25T02:55:38.708Z",
+      "mtime": 1782356138708.5334,
+      "size": 31571,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_pattern_emitter.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "crypto",
+        "./lib/config",
+        "./lib/pattern_learner",
+        "../extensions/skill-auto-suggest/pre-emit-dedup.mjs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.740Z",
+      "lastModified": "2026-06-25T03:05:14.740Z",
+      "mtime": 1782356714740.6152,
+      "size": 16454,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_pitfalls_fallback.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/disk_guard"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.740Z",
+      "lastModified": "2026-06-25T03:05:14.740Z",
+      "mtime": 1782356714740.8584,
+      "size": 10502,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_reviewer_bot_test_tmp.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-22T02:00:12.803Z",
+      "lastModified": "2026-06-22T02:00:12.803Z",
+      "mtime": 1782093612803.3005,
+      "size": 1919,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_reviewer_bot.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "https",
+        "child_process",
+        "./lib/config",
+        "./lib/secret_resolver",
+        "./lib/frontmatter",
+        "./lib/skill_discovery",
+        "./lib/time_constants",
+        "./lib/skill_dedup_gate",
+        "crypto",
+        "./lib/disk_guard",
+        "./validate_skill_file",
+        "broken symlink"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.740Z",
+      "lastModified": "2026-06-25T03:05:14.741Z",
+      "mtime": 1782356714741.9275,
+      "size": 106830,
+      "importCount": 14,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_reviewer_cleanup.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.742Z",
+      "lastModified": "2026-06-25T03:05:14.742Z",
+      "mtime": 1782356714742.771,
+      "size": 3966,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_reviewer_pipeline.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "child_process",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.742Z",
+      "lastModified": "2026-06-25T03:05:14.743Z",
+      "mtime": 1782356714743.0698,
+      "size": 15110,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_reviewer_resume.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.109Z",
+      "lastModified": "2026-06-16T11:21:19.109Z",
+      "mtime": 1781608879109.1553,
+      "size": 3719,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_reviewer.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "crypto",
+        "./lib/disk_guard",
+        "./lib/time_constants",
+        "./lib/skill_discovery",
+        "./lib/frontmatter",
+        "./lib/config",
+        "./lib/skill_dedup_gate",
+        "./lib/aggregate_signals"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T02:58:53.835Z",
+      "lastModified": "2026-06-25T02:58:53.836Z",
+      "mtime": 1782356333836.077,
+      "size": 56279,
+      "importCount": 11,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_tier_audit.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.053Z",
+      "lastModified": "2026-06-20T02:00:12.053Z",
+      "mtime": 1781920812053.8289,
+      "size": 7255,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/skill_tier_backfill.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.051Z",
+      "lastModified": "2026-06-20T02:00:12.051Z",
+      "mtime": 1781920812051.6733,
+      "size": 9171,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/smart_followup.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.109Z",
+      "lastModified": "2026-06-16T11:21:19.109Z",
+      "mtime": 1781608879109.2036,
+      "size": 6198,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/smart_query.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./task_router"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.743Z",
+      "lastModified": "2026-06-25T03:05:14.743Z",
+      "mtime": 1782356714743.1992,
+      "size": 4202,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/spawn_config.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path",
+        "./router/model_router"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.743Z",
+      "lastModified": "2026-06-25T03:05:14.743Z",
+      "mtime": 1782356714743.5125,
+      "size": 4765,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/startup_dashboard_poc.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [
+        "$WORKSPACE/.proactive_alerts.json"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.109Z",
+      "lastModified": "2026-06-16T11:21:19.109Z",
+      "mtime": 1781608879109.6882,
+      "size": 3337,
+      "importCount": 1,
+      "isShell": true
+    },
+    {
+      "path": "scripts/startup_dashboard.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.109Z",
+      "lastModified": "2026-06-16T11:21:19.109Z",
+      "mtime": 1781608879109.6484,
+      "size": 9283,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/state.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.109Z",
+      "lastModified": "2026-06-16T11:21:19.109Z",
+      "mtime": 1781608879109.7341,
+      "size": 2775,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/status-server.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "http",
+        "child_process",
+        "util",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.109Z",
+      "lastModified": "2026-06-16T11:21:19.109Z",
+      "mtime": 1781608879109.777,
+      "size": 7523,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/streaming_archive.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./apple_notes",
+        "fs",
+        "path",
+        "os",
+        "./lib/config",
+        "./lib/time",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.109Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.1777,
+      "size": 7689,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/sync_discord_history.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.2185,
+      "size": 550,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "scripts/synthesis_closed_loop.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.2593,
+      "size": 8729,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/system_check_bot.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/system_check_generator"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.2947,
+      "size": 2225,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/system_status_report.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.3325,
+      "size": 1313,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/task_router.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time",
+        "child_process",
+        "util",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.743Z",
+      "lastModified": "2026-06-25T03:05:14.743Z",
+      "mtime": 1782356714743.797,
+      "size": 22443,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/terminology_manager.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.4292,
+      "size": 3337,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/tesseract_gia_ocr.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "tesseract.js",
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.475,
+      "size": 8918,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_audit_history.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/audit_trend"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.076Z",
+      "lastModified": "2026-06-25T02:57:11.100Z",
+      "mtime": 1782356231100.5242,
+      "size": 17031,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_auto_fix_audit_rule_map.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./auto_fix",
+        "fs",
+        "os",
+        "path",
+        "./lib/rules/low-risk"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-23T20:47:17.523Z",
+      "lastModified": "2026-06-23T20:47:17.523Z",
+      "mtime": 1782247637523.7026,
+      "size": 11851,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_daily_report.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.5195,
+      "size": 8513,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_e2e_layer2.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/config",
+        "./lib/dependency_graph",
+        "./lib/rename_propagator",
+        "./lib/file_snapshot"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.108Z",
+      "lastModified": "2026-06-20T02:00:12.108Z",
+      "mtime": 1781920812108.0771,
+      "size": 10861,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_e2e_phase2e.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.743Z",
+      "lastModified": "2026-06-25T03:05:14.744Z",
+      "mtime": 1782356714744.0596,
+      "size": 7659,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_e2e_phase3.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.049Z",
+      "lastModified": "2026-06-20T02:00:12.049Z",
+      "mtime": 1781920812049.3828,
+      "size": 18331,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_file_snapshot.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/snapshot"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.045Z",
+      "lastModified": "2026-06-20T02:00:12.045Z",
+      "mtime": 1781920812045.7021,
+      "size": 2856,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_junk_pause.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.744Z",
+      "lastModified": "2026-06-25T03:05:14.744Z",
+      "mtime": 1782356714744.191,
+      "size": 6810,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_layer2_rename_e2e.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/config",
+        "./lib/file_snapshot",
+        "./lib/dependency_graph",
+        "./lib/rename_propagator",
+        "./_test_rename_c.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:11.996Z",
+      "lastModified": "2026-06-20T02:00:11.996Z",
+      "mtime": 1781920811996.7654,
+      "size": 3406,
+      "importCount": 8,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_layer2_wire.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/config",
+        "./lib/dependency_graph",
+        "./lib/script_signature_detector",
+        "./lib/file_snapshot"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:11.995Z",
+      "lastModified": "2026-06-20T02:00:11.995Z",
+      "mtime": 1781920811995.67,
+      "size": 3502,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_rename_propagator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/dependency_graph",
+        "./lib/rename_propagator",
+        "./lib/file_snapshot",
+        "./skill_dedup_gate.js",
+        "./skill_dedup_gate",
+        "../lib/skill_dedup_gate.js",
+        "./foo.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.097Z",
+      "lastModified": "2026-06-20T02:00:12.097Z",
+      "mtime": 1781920812097.5251,
+      "size": 14301,
+      "importCount": 10,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_resume.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.6033,
+      "size": 7099,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_script_registry.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "./lib/script_registry",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T14:19:21.284Z",
+      "lastModified": "2026-06-19T14:19:21.284Z",
+      "mtime": 1781878761284.706,
+      "size": 10910,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_skill_dedup_gate.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config",
+        "./lib/dedup_gate"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T12:34:20.187Z",
+      "lastModified": "2026-06-19T15:11:36.372Z",
+      "mtime": 1781881896372.9397,
+      "size": 15442,
+      "importCount": 5,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_skill_pattern_emitter.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "child_process",
+        "./lib/config",
+        "./lib/aggregate_signals"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.073Z",
+      "lastModified": "2026-06-20T02:00:12.073Z",
+      "mtime": 1781920812073.5806,
+      "size": 14174,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_skill_reviewer_prompt.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T02:00:09.776Z",
+      "lastModified": "2026-06-16T02:33:51.232Z",
+      "mtime": 1781577231232.8926,
+      "size": 5697,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_skill_reviewer_safety_nets.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.6538,
+      "size": 12612,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_skill_verifier.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "child_process",
+        "./lib/skill_verifier",
+        "./validate_skill_file"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.105Z",
+      "lastModified": "2026-06-20T02:00:12.106Z",
+      "mtime": 1781920812106.0107,
+      "size": 13710,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_smart_routing.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "./router/model_router.js",
+        "./router/classifier.js"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.689,
+      "size": 2815,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_spawn_config.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./spawn_config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.9414,
+      "size": 1350,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_tier_classifier.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.089Z",
+      "lastModified": "2026-06-20T02:00:12.089Z",
+      "mtime": 1781920812089.7332,
+      "size": 2596,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/test_v17.2.0_tier_floor.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.110Z",
+      "mtime": 1781608879110.9817,
+      "size": 2781,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/timezone_fixer.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.110Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.0164,
+      "size": 3166,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/token_archive.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path",
+        "os",
+        "./lib/config",
+        "./lib/time",
+        "./lib/state",
+        "./apple_notes"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.0571,
+      "size": 10362,
+      "importCount": 8,
+      "isShell": false
+    },
+    {
+      "path": "scripts/translator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./translator.js"
+      ],
+      "dependedBy": [
+        "scripts/translator.js"
+      ],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.0955,
+      "size": 5477,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/unified_search.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.3538,
+      "size": 16261,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/update_rapaport_universal.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path",
+        "./lib/config",
+        "./lib/time",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.3992,
+      "size": 9694,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/update_stock_list.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time",
+        "fs",
+        "path",
+        "./apple_notes",
+        "xlsx",
+        "./lib/config",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-21T02:00:11.884Z",
+      "lastModified": "2026-06-21T02:00:11.885Z",
+      "mtime": 1782007211885,
+      "size": 13505,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/usage_tracker.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.4363,
+      "size": 4641,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/validate_skill_file.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/skill_verifier",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.744Z",
+      "lastModified": "2026-06-25T03:05:14.744Z",
+      "mtime": 1782356714744.4885,
+      "size": 2073,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/vba_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.612,
+      "size": 4201,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/verify_backup.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path",
+        "crypto",
+        "os",
+        "./lib/config",
+        "./lib/state"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.6582,
+      "size": 8147,
+      "importCount": 7,
+      "isShell": false
+    },
+    {
+      "path": "scripts/verify_edit.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "child_process",
+        "./lib/audit/try-block-map"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.744Z",
+      "lastModified": "2026-06-25T03:05:14.744Z",
+      "mtime": 1782356714744.7766,
+      "size": 14768,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/verify_fix.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.75,
+      "size": 22545,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/verify_proposal.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/proposal_hash"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.7957,
+      "size": 3891,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/watermark_manager.js",
+      "tier": "production",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.744Z",
+      "lastModified": "2026-06-25T03:05:14.745Z",
+      "mtime": 1782356714745.0474,
+      "size": 1972,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "scripts/webbridge_recover.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "http",
+        "ws",
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-20T02:00:12.022Z",
+      "lastModified": "2026-06-20T02:00:12.022Z",
+      "mtime": 1781920812022.3938,
+      "size": 5592,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "scripts/weekly_correction_generator.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./weekly_correction_templates",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.111Z",
+      "lastModified": "2026-06-16T11:21:19.111Z",
+      "mtime": 1781608879111.8965,
+      "size": 16676,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/weekly_correction_loop.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "child_process",
+        "./weekly_correction_templates",
+        "./weekly_correction_generator",
+        "./lib/config",
+        "./lib/time",
+        "./lib/time_constants",
+        "./lib/umbrella_consolidation",
+        "./lib/pin_semantics",
+        "./router/classifier",
+        "https"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T08:25:29.224Z",
+      "lastModified": "2026-06-25T08:25:29.224Z",
+      "mtime": 1782375929224.7654,
+      "size": 64981,
+      "importCount": 13,
+      "isShell": false
+    },
+    {
+      "path": "scripts/weekly_correction_templates.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.112Z",
+      "lastModified": "2026-06-16T11:21:19.112Z",
+      "mtime": 1781608879112.288,
+      "size": 6916,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "scripts/weekly_parallel.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "./lib/time",
+        "os",
+        "util",
+        "child_process",
+        "fs",
+        "./lib/config"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.745Z",
+      "lastModified": "2026-06-25T03:05:14.745Z",
+      "mtime": 1782356714745.6506,
+      "size": 4998,
+      "importCount": 6,
+      "isShell": false
+    },
+    {
+      "path": "scripts/weekly_session_cleanup.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "child_process",
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.112Z",
+      "lastModified": "2026-06-16T11:21:19.112Z",
+      "mtime": 1781608879112.3635,
+      "size": 2540,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/wiki_daily_ingest.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-19T02:00:09.886Z",
+      "lastModified": "2026-06-20T20:36:46.464Z",
+      "mtime": 1781987806464.0518,
+      "size": 6079,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "scripts/wiki_ingest_helper.mjs",
+      "tier": "utility",
+      "extension": ".mjs",
+      "dependsOn": [
+        "node:child_process",
+        "node:fs",
+        "node:path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.745Z",
+      "lastModified": "2026-06-25T03:05:14.745Z",
+      "mtime": 1782356714745.8125,
+      "size": 4892,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/wiki_issue_sync.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "./lib/time"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.745Z",
+      "lastModified": "2026-06-25T03:05:14.745Z",
+      "mtime": 1782356714745.9666,
+      "size": 8472,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/wiki_vectorizer.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "@lancedb/lancedb"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.112Z",
+      "lastModified": "2026-06-16T11:21:19.112Z",
+      "mtime": 1781608879112.4963,
+      "size": 15353,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "scripts/write_to_obsidian.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-25T03:05:14.746Z",
+      "lastModified": "2026-06-25T03:05:14.746Z",
+      "mtime": 1782356714746.2336,
+      "size": 22061,
+      "importCount": 2,
+      "isShell": false
+    },
+    {
+      "path": "self-healing-test.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T16:38:24.945Z",
+      "lastModified": "2026-06-16T16:38:24.945Z",
+      "mtime": 1781627904945.3164,
+      "size": 23,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/data_analyzer.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.079,
+      "size": 1028,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/diamond_valuation.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.1572,
+      "size": 602,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/excel_ai_formula.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.2427,
+      "size": 6114,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/file_processor.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.3206,
+      "size": 900,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/learning_processor.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.394,
+      "size": 1098,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/memory_manager.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.467,
+      "size": 967,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/productivity_automation.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.5532,
+      "size": 7191,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/quotation_generator.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.6377,
+      "size": 1037,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/reminder_manager.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.7163,
+      "size": 1183,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/stock_management.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.7874,
+      "size": 874,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "skills/_archive/whatsapp_notification.js",
+      "tier": "debug",
+      "extension": ".js",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.124Z",
+      "lastModified": "2026-06-16T11:21:19.124Z",
+      "mtime": 1781608879124.8677,
+      "size": 1033,
+      "importCount": 0,
+      "isShell": false
+    },
+    {
+      "path": "test_model_performance.sh",
+      "tier": "production",
+      "extension": ".sh",
+      "dependsOn": [],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.128Z",
+      "lastModified": "2026-06-16T11:21:19.128Z",
+      "mtime": 1781608879128.6025,
+      "size": 1855,
+      "importCount": 0,
+      "isShell": true
+    },
+    {
+      "path": "test_score_debug.cjs",
+      "tier": "utility",
+      "extension": ".cjs",
+      "dependsOn": [
+        "fs"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.128Z",
+      "lastModified": "2026-06-16T11:21:19.128Z",
+      "mtime": 1781608879128.6555,
+      "size": 1742,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "test_score_mini.cjs",
+      "tier": "utility",
+      "extension": ".cjs",
+      "dependsOn": [
+        "fs",
+        "path",
+        "vm"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.128Z",
+      "lastModified": "2026-06-16T11:21:19.128Z",
+      "mtime": 1781608879128.7292,
+      "size": 2110,
+      "importCount": 3,
+      "isShell": false
+    },
+    {
+      "path": "tests/test_pin_semantics.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "../scripts/lib/pin_semantics"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.128Z",
+      "lastModified": "2026-06-16T11:21:19.128Z",
+      "mtime": 1781608879128.8184,
+      "size": 3295,
+      "importCount": 1,
+      "isShell": false
+    },
+    {
+      "path": "tests/test_umbrella_consolidation.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "fs",
+        "path",
+        "os",
+        "../scripts/lib/umbrella_consolidation"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.128Z",
+      "lastModified": "2026-06-16T11:21:19.128Z",
+      "mtime": 1781608879128.8977,
+      "size": 19203,
+      "importCount": 4,
+      "isShell": false
+    },
+    {
+      "path": "tmp_check.js",
+      "tier": "utility",
+      "extension": ".js",
+      "dependsOn": [
+        "/Users/ally/.openclaw/workspace/.state/code_quality_report.json"
+      ],
+      "dependedBy": [],
+      "firstSeen": "2026-06-16T11:21:19.128Z",
+      "lastModified": "2026-06-16T11:21:19.128Z",
+      "mtime": 1781608879128.9573,
+      "size": 275,
+      "importCount": 1,
+      "isShell": false
+    }
+  ],
+  "summary": {
+    "total": 441,
+    "byTier": {
+      "critical": 16,
+      "production": 34,
+      "utility": 300,
+      "debug": 91
+    },
+    "byExtension": {
+      "js": 393,
+      "sh": 26,
+      "mjs": 20,
+      "cjs": 2
+    },
+    "byDir": {
+      "_archive": 1,
+      "_hook_final_test.js": 1,
+      "_legacy": 57,
+      "_shl_trigger.js": 1,
+      "check_fix.js": 1,
+      "extensions": 12,
+      "gia_batch": 3,
+      "heal-error.js": 1,
+      "heal-hb.js": 1,
+      "hooks": 1,
+      "public": 2,
+      "scripts": 342,
+      "self-healing-test.js": 1,
+      "skills": 11,
+      "test_model_performance.sh": 1,
+      "test_score_debug.cjs": 1,
+      "test_score_mini.cjs": 1,
+      "tests": 2,
+      "tmp_check.js": 1
+    }
+  },
+  "builtAt": "2026-06-25T09:32:30.432Z",
+  "workspacePath": "/Users/ally/.openclaw/workspace"
+}

@@ -1,0 +1,477 @@
+{
+  "v": 1,
+  "ts": "2026-06-18T06:10:05.046Z",
+  "summary": {
+    "total": 50,
+    "passed": 36,
+    "failed": 14,
+    "errors": 0,
+    "accuracy": "72.0%",
+    "precision": "67.6%",
+    "recall": "88.5%",
+    "f1": "76.7%",
+    "truePositive": 23,
+    "trueNegative": 13,
+    "falsePositive": 11,
+    "falseNegative": 3
+  },
+  "thresholds": {
+    "accuracy": ">=90%",
+    "precision": ">=95%",
+    "recall": ">=85%",
+    "f1": ">=87%"
+  },
+  "durationMs": 368031,
+  "results": [
+    {
+      "skillName": "cron-health-triage",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 7663,
+      "m3Reason": "Frontmatter 完整，description 雖含多個字段但信息密度高且 actionable；workflow 有 6 個具體可執行步驟（fetch/classify/diff/push/save/exit）；pitfalls 段非常充實（7 個 warnings，涵蓋 async pitfall、atomic write、stale threshold tuning、self-refe"
+    },
+    {
+      "skillName": "anomaly-proactive-push",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 6921,
+      "m3Reason": "Frontmatter 完整（name/description/tags via source/provenance），description 描述清晰且 ≤160 bytes，content 含詳細 trigger/inputs/outputs/workflow/pitfalls/verification/auto-degrade caveats，步驟 actionable，pitfalls 豐"
+    },
+    {
+      "skillName": "error-auto-issue",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 6638,
+      "m3Reason": "Frontmatter 完整齊全（name/description/status/source/provenance/generatedAt），description 含 use-when 觸發條件同 key capabilities 符合 Anthropic 標準；Content 係高度 actionable instruction，有明確 trigger、inputs、outputs sche"
+    },
+    {
+      "skillName": "subagent-quality-gating",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 6327,
+      "m3Reason": "Frontmatter 完整且 description 精簡有 action；Workflow 提供 5 個具體可執行步驟（toolCalls 閾值、HEARTBEAT_OK 模式、trivial-loop 規則、fallback），Pitfalls 涵蓋誤判與 spawn overhead 等真實陷阱；唯一小瑕疵：status/source/provenance/generatedAt 並非標準"
+    },
+    {
+      "skillName": "system-code-debug-triage",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 7284,
+      "m3Reason": "Frontmatter 完整且 description 簡潔（約 150 bytes），workflow 有 7 個具體 actionable steps（讀檔驗證、優先級排序、defensive layers、cross-file review、cleanup、report format），pitfalls 章節有 5 個實用警告（重複請求、scope creep、defense 引入新 bug"
+    },
+    {
+      "skillName": "code-review-checklist",
+      "groundTruth": "good",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": false,
+      "latencyMs": 6136,
+      "m3Reason": "Description 過長 (約 280 bytes, 遠超 160 bytes 限制); 檔案喺 Pitfalls 段落被截斷 (truncated, 最後一行 'distinguish `' 未結束); Description 入面包含 trigger phrases 格式正確但長度違規; 步驟尚算 actionable 但整體檔案唔完整, 屬 stub/truncated 狀態。"
+    },
+    {
+      "skillName": "aliveness-noise-reduction",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 7814,
+      "m3Reason": "Frontmatter 完整，description 約 250 bytes 超過 160 bytes 標準但仍合理；workflow 步驟具體可執行（偵測 ping、優先用戶請求、最小回應、避免工具），pitfalls 涵蓋優先級、過度分析、混合回覆等常見錯誤。整體 actionable 程度高。輕微扣分：description 略長，且 status/source/provenance/gen"
+    },
+    {
+      "skillName": "subagent-context-overflow-recovery",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 8446,
+      "m3Reason": "Frontmatter 完整，description 約 130 bytes 符合限制，workflow 提供 7 個具體可執行步驟（detect / check / read / reconstruct / communicate / paraphrase / close），pitfalls 涵蓋 5 個實際陷阱（誤判全失、盲目重試、忽略路徑、未通知用戶、發送殘缺內容）。整體 actionabl"
+    },
+    {
+      "skillName": "subagent-m3-reliability",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 5515,
+      "m3Reason": "Complete frontmatter, description within 160 bytes, 6 actionable workflow steps with concrete API references (sessions_yield, sessions_spawn, thinking params), and 4 meaningful pitfalls with specific "
+    },
+    {
+      "skillName": "subagent-investigation-orchestration",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 7373,
+      "m3Reason": "Frontmatter 齊全，description 具體且約 150 bytes。Workflow 有 5 個可執行步驟（pre-gather、spawn、fact-check、delegate、present），每步都有具體工具指令。Pitfalls 段特別實用，列出 M3 hallucination、token 浪費、SDK 合約陷阱（sessionKey、model 格式、applyPat"
+    },
+    {
+      "skillName": "subagent-scope-boundary-enforcement",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 11196,
+      "m3Reason": "Frontmatter complete with name/description; description within byte limit; workflow provides 6 concrete actionable steps with clear classification scheme and remediation paths; pitfalls section is str"
+    },
+    {
+      "skillName": "subagent-spawn-context-overflow-prevention",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 5403,
+      "m3Reason": "Frontmatter complete, description under 160 bytes, 7 actionable workflow steps with concrete thresholds and code patterns, and 6 specific pitfalls. Tags field missing but otherwise high quality. Minor"
+    },
+    {
+      "skillName": "subagent-fallback-chain",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 9036,
+      "m3Reason": "Frontmatter 完整，description 簡潔有 byte 預算，workflow 步驟具體可執行（含讀取 openclaw.gateway.json、檢查 oauth plan、調整 thinking mode 參數等），pitfalls 涵蓋同 provider quota、adaptive 模式、chain 過度循環、silent fail 等實際陷阱。扣分點：非官方 Anthr"
+    },
+    {
+      "skillName": "parallel-subagent-implementation",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 6900,
+      "m3Reason": "Frontmatter 完整但 description 含換行/引號可能略超 160 bytes 限制（粗估 ~210 bytes），且缺 tags；workflow 步驟具體可執行，pitfalls 有實戰觀察（日期、token 限制、flag 失敗記錄），整體質量高，僅 description 長度微違規。"
+    },
+    {
+      "skillName": "external-analysis-to-issue-extraction",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 5842,
+      "m3Reason": "Frontmatter完整但含非標準欄位(status/source/provenance/generatedAt)，description約140字節符合限制；Workflow有6個具體可執行步驟，含ROI評估、phase拆分、sub-task分解、scope shift處理等；Pitfalls列出5個真實警告(過早開issue、缺cross-reference、phase過大、分離deferr"
+    },
+    {
+      "skillName": "node-fs-enoent-debugging",
+      "groundTruth": "good",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": false,
+      "latencyMs": 11309,
+      "m3Reason": "Frontmatter 缺少 tags，且 description 含 quotes 後約 195 bytes 略超 160 bytes 標準。Description 提及 'Use when' 而非直接描述何時觸發。Content 整體 actionable 但過度針對 openclaw 特定 binary，通用性差。Step 3 嘅 path resolution fallback chain"
+    },
+    {
+      "skillName": "cron-troubleshooting",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 7067,
+      "m3Reason": "Frontmatter 完整，description ≤160 bytes，workflow 有 7 個具體可執行步驟（讀 config、讀 history、建 timeline、分類問題、手動 rerun、mitigation、驗證），pitfalls 段落非常豐富含 10 個真實場景警告。扣少少分係 description 用咗非標準 'status/source/provenance/gen"
+    },
+    {
+      "skillName": "multi-session-resumption",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 7284,
+      "m3Reason": "Frontmatter 完整（name/description 齊全，description 約 158 bytes 符合 ≤160 限制）。Content 為 actionable instructions，6 步 workflow 具體可執行（觸發詞辨識 → memory_search → 讀 issues → 查 session history → 產生 status report → 繼續"
+    },
+    {
+      "skillName": "context-gather-subagent-orchestrate",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 6368,
+      "m3Reason": "Frontmatter complete with name/description; description ~430 bytes exceeds 160-byte Anthropic limit but content is rich; workflow has 7 actionable steps with concrete bash/JS examples; pitfalls sectio"
+    },
+    {
+      "skillName": "issue-duplicate-prevention-workflow",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 6201,
+      "m3Reason": "Frontmatter 完整但 description 約 240 bytes 略超 160 bytes 標準；Workflow 步驟具體可執行（含 gh CLI 命令、欄位模板、決策分支）；Pitfalls 涵蓋常見錯誤；Cross-references 與 Background 提供上下文。整體屬 actionable skill，僅 description 長度為唯一瑕疵。"
+    },
+    {
+      "skillName": "skill-curation-pattern",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 9916,
+      "m3Reason": "Frontmatter 有 name/description/status 但欠 tags，且 description 含非標準字段但本體清晰；內容極為 actionable，涵蓋 upstream filtering、workflow 決策樹、post-edit 完整性檢查、pitfalls；步驟具體可執行，warnings 充份（symlink 不會自動載入、mtime 不可單獨依賴、plug"
+    },
+    {
+      "skillName": "subagent-qa-verification-workflow",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 8193,
+      "m3Reason": "Frontmatter 完整（name/description/source/provenance/timestamp），description 簡潔且描述明確使用情境。Workflow 含 6 個具體可執行步驟（spawn → yield → read → post → present），每步都有具體指令同工具名（sessions_spawn, sessions_yield, exec, ope"
+    },
+    {
+      "skillName": "m3-adversarial-challenge-spawn",
+      "groundTruth": "good",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": false,
+      "latencyMs": 7475,
+      "m3Reason": "Description 嚴重超長（>160 bytes），且包含 status/source/provenance/generatedAt 等非標準 frontmatter 字段；workflow 雖有步驟但引用具體工具（sessions_spawn, sessions_yield, sessions_history, .spawn/reports/, openclaw gateway）屬高度耦合"
+    },
+    {
+      "skillName": "m3-multi-angle-system-audit",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 7424,
+      "m3Reason": "Frontmatter 完整，description ~149 bytes 合格。Workflow 有 6 個具體步驟包含 M3 spawn prompt 結構、4 個審計角度明確。Pitfalls 涵蓋 6 個實際風險（single-angle bias、token limit、rate limit collision、orphan session 等），有 cross-references。內"
+    },
+    {
+      "skillName": "m3-subagent-article-analysis",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 7141,
+      "m3Reason": "Frontmatter 完整，description 雖略長但內容 actionable。Workflow 有 6 個具體步驟，Pitfalls section 有 7 個具體警告包括 token truncation、login wall、permission 錯誤等，質量良好。但 description 字節數可能超過 160 bytes 限制（粗估約 230 bytes），且部分步驟如 'i"
+    },
+    {
+      "skillName": "architecture-review-external-audit",
+      "groundTruth": "good",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": true,
+      "latencyMs": 8627,
+      "m3Reason": "Frontmatter 完整，description 約 150 bytes 合規。Workflow 有 7 個具體可執行步驟（spawn sub-agent、傳 context chain、independent data loading、scope boundary、verify critical findings、synthesize）。Pitfalls 段特別出色，含 7 個針對性警告（e"
+    },
+    {
+      "skillName": "agent-memory-bus-pattern",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 7700,
+      "m3Reason": "Frontmatter 有 name/description 但缺少 tags；description 偏長且混合中英但語義清晰；Workflow 5 步具體可執行（識別痛點、選方案、設計 init/write、驗證）；Pitfalls 涵蓋常見陷阱（記憶污染、init 爆炸、單點故障），質量不錯。扣分點：缺少 tags、status/source/provenance 等非標準欄位、descri"
+    },
+    {
+      "skillName": "conversation-to-issue-distillation",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 7550,
+      "m3Reason": "Frontmatter 完整，description 精準且長度合理。Workflow 6 步具體可執行（含 exec/edit/read 指令），Pitfalls 4 條針對性強（context overflow、HEARTBEAT loop、路徑限制、narrative 陷阱）。輕微扣分：description 含自創 status/provenance/generatedAt 字段偏離標準 "
+    },
+    {
+      "skillName": "cron-context-overflow-recovery",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 5464,
+      "m3Reason": "內容被截斷，只有背景描述開頭，缺少任何具體診斷步驟、修復指令、pitfalls 或 examples。屬於 stub/incomplete，無法 actionable 執行。"
+    },
+    {
+      "skillName": "cron-failure-investigation",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 6487,
+      "m3Reason": "Description 過長（>160 bytes），違反 Anthropic 標準；workflow 步驟具體且有 pitfalls（Case A/B/C）係亮點，但 description 用廣東話口語且超長；'LLM Fallback Chain 範例' section 被截斷未完成；status 仍係 draft；frontmatter 加咗非標準字段（status/source/prov"
+    },
+    {
+      "skillName": "cron-job-testing",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 6763,
+      "m3Reason": "Content 係 truncated stub — workflow 步驟被截斷（淨係見到第一步嘅開頭），冇任何完整可執行步驟。Frontmatter 有多餘非標準欄位（status/source/provenance/generatedAt）而且 name 唔符合標準 kebab-case 命名習慣。另外 description 超長，遠超 160 bytes 限制。"
+    },
+    {
+      "skillName": "cron-p0-rescue-workflow",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 9216,
+      "m3Reason": "Frontmatter 完整，description 約 95 bytes 合規；workflow 有 6 步具體可執行指令（command flags、session target 轉換、驗證 reset）；pitfalls 涵蓋 Layer 2 LLM、phantom job、consecutiveErrors 未 reset、toolsAllow 殘留、text 污染等 5 個具體陷阱，質量"
+    },
+    {
+      "skillName": "cron-passive-job-detection",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 7005,
+      "m3Reason": "Content 被截斷（第 5 步嘅 code fence 未閉合、後續步驟完全缺失），屬於不完整嘅 stub；description 雖具體但超出 160 bytes 標準；workflow 部分有意義步驟但無法作為可執行 instruction 使用。"
+    },
+    {
+      "skillName": "cron-sessionkey-cascade-recovery",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 6861,
+      "m3Reason": "Frontmatter 完整且 description 具體到位，workflow 有明確診斷步驟同具體指令，但內容被截斷（step 4 未完成），缺少 pitfall/warning 段；可作 draft 通過但需補完尾部步驟。"
+    },
+    {
+      "skillName": "cron-systemevent-migration",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 6849,
+      "m3Reason": "Frontmatter 完整，description 具體且 ≤160 bytes；workflow 8 步具體可執行（audit、categorize、batch 3、issue tracking、handoff、multi-session、verify、document）；pitfalls 7 條明確針對常見錯誤；decision points 提供彈性指引。唯一小扣分係 source/pro"
+    },
+    {
+      "skillName": "daily-synthesis",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 7016,
+      "m3Reason": "Frontmatter完整，description約150 bytes符合限制；workflow有7個具體可執行步驟含明確路徑/格式；pitfalls涵蓋cron時序、重複發送、過期記憶等真實風險；flags表清晰；唯一小瑕疵係description略冗長但仍在限內。整體高質量actionable skill。"
+    },
+    {
+      "skillName": "discord-summary-quality-standards",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 7068,
+      "m3Reason": "Frontmatter 完整但 description 偏長且混入 status/source/provenance/generatedAt 等非標準欄位；content actionable 有具體步驟同禁止事項、pitfalls（熟悉度偏見）齊全，符合 skill 標準。description 字段若嚴格計算含中英文混合字節，疑超 160 bytes 標準，但整體質量過硬。"
+    },
+    {
+      "skillName": "documentation-code-drift-detection",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 7283,
+      "m3Reason": "Frontmatter 完整，description 長度合規且描述明確。Workflow 提供 6 個具體可執行步驟（grep、交叉驗證、修復），Pitfalls 涵蓋重複段落、忽略 .md、Issue 過期等常見陷阱，Trigger Signals 同 Reference Example 都實用且 actionable。輕微扣分：status 仍為 draft，provenance/gener"
+    },
+    {
+      "skillName": "git-push-auth-failure",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 6164,
+      "m3Reason": "Content 明顯被截斷，第三步之後完全缺失，workflow 不完整。frontmatter 有多餘非標準字段（status/source/provenance/generatedAt）而缺少 Anthropic 要求嘅 tags。description 字節數未驗證但看似 OK。最大問題係 truncated content，唔可以做 actionable instruction。"
+    },
+    {
+      "skillName": "issue-quality-self-review",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 6225,
+      "m3Reason": "Content 係 stub — step 5 截斷，無完整 instructions；workflow 突然中斷，缺 step 6（對比表驗證）同 pitfalls/warnings 段落；description 162 bytes 略超 160 bytes 限制；屬明顯未完成 placeholder。"
+    },
+    {
+      "skillName": "kimi-webbridge-openclaw-integration",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 6701,
+      "m3Reason": "Frontmatter 缺 tags，description 提及外部 service (kimi-webbridge.com) 似虛構/不可驗證；URL、extension ID、port 10086 等具體細節無法確認真實性；status 仍係 draft；整體內容指向不存在的工具，唔可作為 actionable skill。"
+    },
+    {
+      "skillName": "loop-engineering-implementation",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 8200,
+      "m3Reason": "Description 超長（>160 bytes）且含 Use when/Key capabilities 行，違反 Anthropic 標準；內容充斥特定內部編號（#152、#154、QW-1~5、M2.7、SPAWN_QUALITY）同 Discord channel 引用，係特定 session 內部紀錄而非可重用 skill；steps 過度綁定一次性決策（observation per"
+    },
+    {
+      "skillName": "m3-independent-verification-audit",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 7031,
+      "m3Reason": "Frontmatter 缺 tags；description 含 'Spawn MiniMax M3 sub-agent' 等冗長表述，未精簡到 160 bytes 內；Workflow 截斷喺 Step 2 中間，明顯係 incomplete stub，後續步驟（如何傳 context、點樣交叉檢查、點樣處理結果、pitfalls）全部缺失，唔算 actionable。"
+    },
+    {
+      "skillName": "m3-root-cause-analysis",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 6274,
+      "m3Reason": "Content truncated mid-sentence at step 3, leaving workflow incomplete. No pitfalls/warnings section. Frontmatter description missing 'description' field that is properly bounded — instead uses 'status"
+    },
+    {
+      "skillName": "main-session-execution-loop-recovery",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 9552,
+      "m3Reason": "Frontmatter 完整齊全；description 簡潔明確；workflow 提供 7 個具體可執行步驟（count HEARTBEAT_OK、判斷任務類型、force flush、log、emit recovery、Discord alert、reset counter）；pitfalls 章節有 5 個具體 warning 並 cross-reference 回步驟。內容 action"
+    },
+    {
+      "skillName": "multi-phase-subagent-orchestration",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 5800,
+      "m3Reason": "Workflow 截斷（只剩 Phase 1 開頭），缺少 Phase 2 步驟、result coordination 機制、status reporting 細節、pitfalls/warnings；content 唔完整，唔算 actionable skill。"
+    },
+    {
+      "skillName": "rapaport-email-summary",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 7725,
+      "m3Reason": "Frontmatter 完整，description 簡潔且 actionable。Workflow 有具體步驟（sender 驗證、email 類型分類、Cantonese 輸出、長度限制）。Pitfalls 段落具體且基於實際錯誤案例（hallucination、語言混用、HEARTBEAT loop）。扣分點：status/draft 標記顯示未完成，且 source 為 skill-rev"
+    },
+    {
+      "skillName": "subagent-fix-orchestration",
+      "groundTruth": "junk",
+      "m3Verdict": "pass",
+      "classification": "good",
+      "correct": false,
+      "latencyMs": 6804,
+      "m3Reason": "Frontmatter 完整，description 簡潔具體，workflow 有 4 個 actionable steps，pitfalls 詳列常見失敗模式並附解法，references 補充相關子模式。主要疑慮係 status 仍為 draft，且依賴 M3 sub-agent / sessions_spawn 等特定工具，通用性受限，但整體質量合格。"
+    },
+    {
+      "skillName": "subagent-output-accessibility-recovery",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 7111,
+      "m3Reason": "Content 明顯被截斷（步驟 5 結尾只有冒號無內容），屬 incomplete stub；frontmatter 有 status: draft / source / provenance / generatedAt 等非標準欄位（tags 缺失）；description 雖合長度但 frontmatter 結構唔標準；步驟 1-4 有一定 actionable 性但被 truncate 破"
+    },
+    {
+      "skillName": "webbridge-chrome-automation",
+      "groundTruth": "junk",
+      "m3Verdict": "junk",
+      "classification": "junk",
+      "correct": true,
+      "latencyMs": 6912,
+      "m3Reason": "Content truncated mid-section ('Common Patterns → YouTube Video Summary via Gemini' 冇下文)，frontmatter 缺 `tags`，description 有「—」em dash，Workflow 雖然具體但成個 skill 未寫完，缺少 pitfalls 詳細內容（只提『see Pitfalls』冇實際內容）"
+    }
+  ]
+}

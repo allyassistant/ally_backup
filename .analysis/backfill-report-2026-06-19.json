@@ -1,0 +1,698 @@
+{
+  "dryRun": true,
+  "scannedTotal": 94,
+  "activeSymlinks": [
+    "aliveness-noise-reduction",
+    "anomaly-proactive-push",
+    "architecture-review-external-audit",
+    "code-review-checklist",
+    "cron-health-triage",
+    "cron-troubleshooting",
+    "daily-synthesis",
+    "error-auto-issue",
+    "external-analysis-to-issue-extraction",
+    "heartbeat-maintenance",
+    "issue-duplicate-prevention-workflow",
+    "llm-call-execfile-migration",
+    "loop-engineering-implementation",
+    "m3-adversarial-challenge-spawn",
+    "m3-multi-angle-system-audit",
+    "m3-subagent-article-analysis",
+    "multi-session-resumption",
+    "node-fs-enoent-debugging",
+    "openclaw-compaction-investigation",
+    "openclaw-config-schema-debugging",
+    "openclaw-no-reply-chain-debugging",
+    "parallel-subagent-implementation",
+    "pipeline-llm-call-timeout-debugging",
+    "route-enforcer-plugin-debugging",
+    "skill-automation-analysis",
+    "skill-curation-pattern",
+    "skill-validation-failure-cleanup",
+    "subagent-code-tuning-workflow",
+    "subagent-qa-verification-workflow",
+    "subagent-sideeffect-containment",
+    "system-code-debug-triage",
+    "x-article-login-wall-fallback"
+  ],
+  "changed": [],
+  "skipped": [
+    {
+      "name": "aliveness-noise-reduction",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "anomaly-proactive-push",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "architecture-review-external-audit",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "auto-skill-pipeline-feasibility",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "code-quality-proactive-scan",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "code-review-checklist",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "concurrent-session-rate-limit-avoidance",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "context-gather-subagent-orchestrate",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "cron-config-audit",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "cron-health-triage",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "cron-migration",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "cron-troubleshooting",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "cross-machine-deployment",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "daily-synthesis",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "error-auto-issue",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "external-analysis-to-issue-extraction",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "heartbeat-maintenance",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "intent-based-spawn-model-selection",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "issue-consolidation-via-subagent",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "issue-duplicate-prevention-workflow",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "issue-triage-via-subagent",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "llm-call-execfile-migration",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "loop-engineering-implementation",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "m3-adversarial-challenge-spawn",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "m3-multi-angle-system-audit",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "m3-subagent-architecture-analysis",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "m3-subagent-article-analysis",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "main-session-execution-loop-recovery",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "model-migration-workflow",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "multi-phase-m3-plugin-orchestration",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "multi-session-resumption",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "node-fs-enoent-debugging",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "obsidian-vault-maintenance",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "obsidian-vault-structure-architecture",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "openclaw-compaction-investigation",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "openclaw-config-schema-debugging",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "openclaw-gateway-plugin-cache-debugging",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "openclaw-managed-upgrade",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "openclaw-no-reply-chain-debugging",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "openclaw-plugin-telemetry-diagnosis",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "openclaw-remote-config-ops",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "parallel-subagent-implementation",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "pipeline-llm-call-timeout-debugging",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "pipeline-orchestration-pattern",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "rapaport-email-summary",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "route-enforcer-plugin-debugging",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "skill-automation-analysis",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "skill-curation-pattern",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "skill-plugin-noise-debugging",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "skill-quality-verification",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "skill-validation-failure-cleanup",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "skills-audit-workflow",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-audit-rewrite-chain",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-code-tuning-workflow",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "subagent-context-overflow-recovery",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-fallback-chain",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-fix-orchestration",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-investigation-orchestration",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "subagent-m3-reliability",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-m3-retry-resilience",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-m3-task-chunking",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-qa-verification-workflow",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "subagent-quality-gating",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-scope-boundary-enforcement",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-sideeffect-containment",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "subagent-spawn-context-overflow-prevention",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "system-code-debug-triage",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "systemevent-main-session-isolation",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "webbridge-chrome-debugging",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "webbridge-youtube-analysis",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "wiki-daily-ingest",
+      "inArchive": false,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "x-article-login-wall-fallback",
+      "inArchive": false,
+      "hasActiveSymlink": true,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "context-gather-subagent-orchestrate-1781507871451",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "cron-feature-deprecation",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "cron-model-selection-verification",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "cron-script-model-config-audit",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "cron-systemevent-migration",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "cron-thin-executor-migration",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "hermes-comparison-pattern",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "issue-conclusion-overturn-cleanup",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "knowledge-curation-from-browser",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "m3-subagent-architecture-analysis-1781507871456",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "memory-flush-date-boundary",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "multi-phase-subagent-orchestration",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "pipeline-flag-audit-workflow",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "pipeline-heartbeat-debugging",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "provider-response-sanitization",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "session-lock-recovery",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    },
+    {
+      "name": "subagent-truncation-repair",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "active",
+      "inferredTier": "active"
+    },
+    {
+      "name": "yaml-config-drift-detection",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "existingStatus": "draft",
+      "inferredTier": "draft"
+    }
+  ],
+  "skippedNoFrontmatter": [
+    {
+      "name": "cron-agent-llm-failure-mitigation",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "inferredTier": "archived"
+    },
+    {
+      "name": "cron-failure-investigation",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "inferredTier": "archived"
+    },
+    {
+      "name": "cron-job-testing",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "inferredTier": "archived"
+    },
+    {
+      "name": "subagent-model-override",
+      "inArchive": true,
+      "hasActiveSymlink": false,
+      "inferredTier": "archived"
+    }
+  ],
+  "errors": []
+}

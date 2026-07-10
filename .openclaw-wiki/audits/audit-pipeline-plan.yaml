@@ -1,0 +1,223 @@
+version: 1
+plan:
+  name: "Audit pipeline review + P2 filename fixes (P0 already done; P3 manual-run discovery)"
+  max_concurrency: 2
+  max_consecutive_failures: 1
+  max_cycles: 2
+  auto_reject_retries: 0
+  verifier_config:
+    default_verifiers: [verifier]
+    audit_sample_rate: 1.0
+    strict_mode: false
+
+tasks:
+  - id: verify-P0
+    title: "P0: Confirm lib/proposal_store.js fix status"
+    assigned_to: agent-8fbd742b0e38
+    verify_skip_reason: "Self-verification: OpenClaw Expert checks git HEAD state + node --check + module load against the actual file. No external verifier needed for a 4-line status check."
+    max_retries: 0
+    prompt: |
+      Confirm the state of /Users/ally/.openclaw/workspace/scripts/lib/proposal_store.js.
+
+      Background: An earlier review claimed line 49 had `data?.meta?.lastUpdated = ...`
+      (the same `?.` LHS Node v26 syntax bug fixed in 10 other scripts today).
+      But that review claim appears WRONG — line 49 now reads `data.meta.lastUpdated = ...`.
+
+      Run these 4 checks and report PASS/FAIL per check:
+      1. `node --check /Users/ally/.openclaw/workspace/scripts/lib/proposal_store.js`
+         → must pass (exit 0, no syntax error).
+      2. `sed -n '49p' /Users/ally/.openclaw/workspace/scripts/lib/proposal_store.js`
+         → must show `data.meta.lastUpdated = new Date().toISOString();` (NO `?.`).
+      3. `git show HEAD:scripts/lib/proposal_store.js | sed -n '49p'`
+         → must also show clean version (the bug was fixed at HEAD, not just working dir).
+      4. `node -e "require('/Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js')"`
+         → must NOT throw. (proposer requires proposal_store.js transitively.)
+
+      Output: 4-line table with check #, status, observed output. End with verdict:
+      "P0 ALREADY DONE" or "P0 NEEDS FIX".
+
+  - id: verify-P2
+    title: "P2: Confirm filename mismatch bugs"
+    assigned_to: agent-8fbd742b0e38
+    verify_skip_reason: "Self-verification: OpenClaw Expert runs grep counts directly. Buggy mismatches are mechanical and verifiable by inspection."
+    max_retries: 0
+    prompt: |
+      Confirm filename mismatch bugs in /Users/ally/.openclaw/workspace/scripts/.
+
+      Run these checks and report PASS/FAIL per check:
+
+      Check A — audit_repair_proposer.js internal self-reference:
+      1. `grep -nc "audit_repair_wire" /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js`
+         → expect ≥7
+      2. `grep -nc "audit_repair_proposer" /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js`
+         → expect 0
+
+      Check B — audit_daily_cron.js internal self-reference:
+      3. `grep -nc "daily_audit_runner" /Users/ally/.openclaw/workspace/scripts/audit_daily_cron.js`
+         → expect ≥5
+      4. `grep -nc "audit_daily_cron" /Users/ally/.openclaw/workspace/scripts/audit_daily_cron.js`
+         → expect 0
+
+      Check C — context inspection (verify the wrong-name references are docs/CLI/logs, NOT in import statements):
+      5. `grep -n "audit_repair_wire" /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js`
+         → list line numbers + 1 line context; confirm none are inside `require(...)` calls
+      6. Same for audit_daily_cron.js daily_audit_runner
+
+      Output: structured table with check #, status, evidence. End with verdict:
+      "P2 CONFIRMED" or "P2 REFUTED".
+
+  - id: investigate-P3
+    title: "P3: Identify who wrote .state/repair_proposals.json today"
+    assigned_to: agent-8fbd742b0e38
+    verify_skip_reason: "Self-verification: OpenClaw Expert runs file mtimes + content parse + cross-reference directly. This is investigation, not code change."
+    max_retries: 0
+    prompt: |
+      Investigate who wrote /Users/ally/.openclaw/workspace/.state/repair_proposals.json
+      today. Background: file mtime is Jun 24 19:27:13. Content shows meta.generatedAt=
+      2026-06-24T03:37:36.012Z (UTC = 11:37 HKT) and meta.source mentions "audit_repair_wire_result".
+      Companion file audit_repair_wire_results.json finishedAt=2026-06-24T03:27:06.164Z
+      (11:27 HKT) with summary {totalIssues: 24, autoFixOk: 0, propose: 0, skipped: 24}.
+
+      Five candidate writers exist, NONE in any cron job:
+      audit_repair_proposer.js, audit_to_skill_emitter.js, daily_telemetry_digest.js,
+      proposal_action.js, propose_fix_notifier.js.
+
+      Run these checks and report findings:
+
+      1. `stat -f '%Sm %N' /Users/ally/.openclaw/workspace/.state/repair_proposals.json`
+         `stat -f '%Sm %N' /Users/ally/.openclaw/workspace/.state/audit_repair_wire_results.json`
+         `stat -f '%Sm %N' /Users/ally/.openclaw/workspace/.state/audit_orchestrator_results.json`
+
+      2. Parse the JSON content:
+         `python3 -c "import json; d=json.load(open('/Users/ally/.openclaw/workspace/.state/repair_proposals.json')); print('meta:', d.get('meta')); print('proposal count:', len(d.get('proposals', [])))"`
+
+      3. `stat -f '%Sm' /Users/ally/.openclaw/workspace/scripts/audit_to_skill_emitter.js /Users/ally/.openclaw/workspace/scripts/proposal_action.js /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js`
+
+      4. `ps aux | grep -E "audit_repair|proposal" | grep -v grep` (best-effort)
+
+      5. `grep -rn "audit_repair_proposer" /Users/ally/.openclaw/workspace/.openclaw-wiki/ 2>/dev/null | head -5`
+
+      Output:
+      - File mtimes (table)
+      - meta.content interpretation (source field, generatedAt, etc.)
+      - Most likely writer + reasoning (manual run vs cron-driven)
+      - Conclusion: who ACTUALLY wrote the file at 19:27 today?
+
+  - id: fix-P2-audit_repair_proposer
+    title: "P2: Fix audit_repair_proposer.js filename mismatch"
+    assigned_to: coder
+    depends_on: [verify-P2]
+    verify_skip_reason: "verify-P2-fixes (verifier agent) is the downstream trust anchor for all P2 code changes."
+    max_retries: 1
+    prompt: |
+      Fix filename mismatch in /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js.
+
+      The file is `audit_repair_proposer.js` but internally calls itself `audit_repair_wire.js`
+      in 7+ places (comment header line 3, usage docs lines 35-40, CLI help line 90, console logs
+      at lines 429, 556, 591, 630, output filename at line 70 `audit_repair_wire_results.json`).
+
+      RULES:
+      - DO NOT rename the file (file stays `audit_repair_proposer.js`).
+      - DO NOT change behavior or fix anything else.
+      - Replace `audit_repair_wire.js` with `audit_repair_proposer.js` EVERYWHERE EXCEPT
+        in the string `audit_repair_wire_results.json` (that's a separate output filename).
+
+      Verification before reporting done:
+      1. `node --check /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js` → pass
+      2. `grep -c "audit_repair_wire" /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js`
+         → must be exactly 1 (the audit_repair_wire_results.json filename)
+      3. `grep -c "audit_repair_proposer" /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js`
+         → must be ≥7
+
+      DO NOT git commit. Just edit and verify. Report final state.
+
+  - id: fix-P2-audit_daily_cron
+    title: "P2: Fix audit_daily_cron.js filename mismatch"
+    assigned_to: coder
+    depends_on: [verify-P2]
+    verify_skip_reason: "verify-P2-fixes (verifier agent) is the downstream trust anchor for all P2 code changes."
+    max_retries: 1
+    prompt: |
+      Fix filename mismatch in /Users/ally/.openclaw/workspace/scripts/audit_daily_cron.js.
+
+      The file is `audit_daily_cron.js` but internally calls itself `daily_audit_runner.js`
+      in 5+ places (comment header line 3, usage docs lines 18-21).
+
+      RULES:
+      - DO NOT rename the file (file stays `audit_daily_cron.js`).
+      - DO NOT change behavior or fix anything else.
+      - Replace `daily_audit_runner.js` with `audit_daily_cron.js` everywhere.
+
+      Verification before reporting done:
+      1. `node --check /Users/ally/.openclaw/workspace/scripts/audit_daily_cron.js` → pass
+      2. `grep -c "daily_audit_runner" /Users/ally/.openclaw/workspace/scripts/audit_daily_cron.js`
+         → must be exactly 0
+      3. `grep -c "audit_daily_cron" /Users/ally/.openclaw/workspace/scripts/audit_daily_cron.js`
+         → must be ≥5
+
+      DO NOT git commit. Just edit and verify. Report final state.
+
+  - id: verify-P2-fixes
+    title: "Verify P2 fixes are complete and correct"
+    assigned_to: verifier
+    depends_on: [fix-P2-audit_repair_proposer, fix-P2-audit_daily_cron]
+    verify_skip_reason: "Verifier agent IS the trust anchor for P2 fixes. No further verification needed beyond this task."
+    max_retries: 0
+    prompt: |
+      Verify that Coder's P2 fixes are complete and behavior-preserving.
+
+      1. Syntax check both files:
+         `node --check /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js`
+         `node --check /Users/ally/.openclaw/workspace/scripts/audit_daily_cron.js`
+         Both must pass.
+
+      2. Audit_repair_proposer.js filename check:
+         `grep -c "audit_repair_wire" /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js`
+         Must be EXACTLY 1 (the audit_repair_wire_results.json reference).
+
+      3. Audit_repair_proposer.js self-name check:
+         `grep -c "audit_repair_proposer" /Users/ally/.openclaw/workspace/scripts/audit_repair_proposer.js`
+         Must be ≥7.
+
+      4. Audit_daily_cron.js old-name check:
+         `grep -c "daily_audit_runner" /Users/ally/.openclaw/workspace/scripts/audit_daily_cron.js`
+         Must be EXACTLY 0.
+
+      5. Audit_daily_cron.js new-name check:
+         `grep -c "audit_daily_cron" /Users/ally/.openclaw/workspace/scripts/audit_daily_cron.js`
+         Must be ≥5.
+
+      6. Behavior preservation: `git diff scripts/audit_repair_proposer.js scripts/audit_daily_cron.js`
+         Review every changed line. PASS criteria:
+         - ONLY filename strings changed (audit_repair_wire → audit_repair_proposer;
+           daily_audit_runner → audit_daily_cron)
+         - NO logic changes (no new conditionals, no modified control flow)
+         - NO new code blocks or imports
+         - Output filename `audit_repair_wire_results.json` must still be there
+         - Error messages, log statements may have changed wording but must keep same semantic
+
+      Output: per-check PASS/FAIL table. Final verdict: "P2 FIXES VERIFIED" or "REVERT NEEDED".
+
+  - id: surface-P1-decision
+    title: "Surface P1 pipeline-fate decision to Ally"
+    assigned_to: agent-8fbd742b0e38
+    depends_on: [verify-P2-fixes, investigate-P3]
+    verify_skip_reason: "Final reporting task — no verification needed beyond OpenClaw Expert's own synthesis."
+    max_retries: 0
+    prompt: |
+      P1 was an architectural decision about whether to wire the audit pipeline
+      (audit_daily_cron @ 04:30 → audit_repair_proposer @ 04:45 → propose_fix_notifier @ 05:15)
+      into cron jobs. NONE of these are wired into any cron currently.
+
+      Three options to present to Ally:
+      A) Wire it: create 3 cron jobs. Test for 1 week. Enable M3 active mode after.
+      B) Defer: mark as "designed but not deployed". Re-evaluate later.
+      C) Simplify: merge 3 phases into 1 orchestrator script.
+
+      Also surface P3 finding (from investigate-P3 task).
+
+      Do NOT make the decision yourself — present all options in the final report. Include:
+      - 1-line summary of what's done (P0 already fixed, P2 in progress, P3 manual-run discovery)
+      - 3 options with pros/cons
+      - Recommendation + reasoning
+      - P3 manual-run finding

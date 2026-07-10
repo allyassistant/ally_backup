@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+/**
+ * Trace: understand what the AST rules actually detect in test_phase2_ast_migration.js
+ */
+const fs = require('fs');
+const { parseAst, walkAst, collectIdentifiers, getMemberChain } = require('./lib/rules/ast-helpers');
+
+const content = fs.readFileSync('scripts/test_phase2_ast_migration.js', 'utf8');
+const result = parseAst(content, 'test.js');
+if (!result) { console.log('PARSE FAILED'); process.exit(1); }
+
+console.log('=== AST Analysis of test_phase2_ast_migration.js ===\n');
+
+// Find all CallExpression nodes that reference fs.*Sync
+walkAst(result.ast, (node) => {
+  if (node.type === 'CallExpression' &&
+      node.callee.type === 'MemberExpression' &&
+      node.callee.object?.type === 'Identifier' &&
+      node.callee.object?.name === 'fs' &&
+      node.callee.property?.name?.endsWith('Sync')) {
+    console.log(`FS-SYNC-TRYCATCH potential: fs.${node.callee.property.name} at line ${node.loc?.start?.line}`);
+  }
+});
+
+// Find all string literals with /Users/ pattern
+walkAst(result.ast, (node) => {
+  if (node.type === 'Literal' && typeof node.value === 'string') {
+    const v = node.value;
+    if (v.includes('/Users/') || v.includes('/users/')) {
+      console.log(`HARDCODED-HOME-PATH potential: literal at line ${node.loc?.start?.line}: ${JSON.stringify(v).substring(0, 80)}`);
+    }
+  }
+});
+
+// Find all string literals with simplified Chinese
+walkAst(result.ast, (node) => {
+  if (node.type === 'Literal' && typeof node.value === 'string') {
+    for (const ch of node.value) {
+      const cp = ch.charCodeAt(0);
+      if (cp >= 0x4E00 && cp <= 0x9FFF) {
+        console.log(`SIMPLIFIED-CHINESE potential: literal at line ${node.loc?.start?.line} contains CJK`);
+        break;
+      }
+    }
+  }
+});
+
+// Find optional chaining opportunities - MemberExpressions
+walkAst(result.ast, (node) => {
+  // Actually the optional-chaining rule only looks at member chains with specific patterns
+  // Let me check by finding member expressions with dots but not ?
+  if (node.type === 'MemberExpression' && !node.optional) {
+    const chain = getMemberChain(node);
+    if (chain && chain.length >= 2 && !['Math', 'JSON'].includes(chain[0])) {
+      // Check if this is inside a test string (array element), which is hard to detect
+      // Just log potential targets
+      console.log(`OPTIONAL-CHAINING potential: ${chain.join('.')} at line ${node.loc?.start?.line}`);
+    }
+  }
+});
+
+console.log('\n=== Summary ===');

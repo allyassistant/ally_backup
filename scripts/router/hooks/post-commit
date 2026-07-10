@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# post-commit — auto-create a releaseId event on every git commit.
+#
+# Triggered by: git commit (after the commit is recorded)
+# Source-of-truth: scripts/router/release_manager.js
+# Manual install:  bash scripts/router/install_release_hook.sh
+#
+# Failures are swallowed (best-effort). The hook NEVER aborts a commit.
+# We deliberately do not depend on a special PATH or env — `node` and
+# `git` are assumed to be on the user's $PATH.
+
+set -e
+
+# Only act if we're inside the OpenClaw workspace (scripts/router/release_manager.js exists).
+# Sub-repos or external repos with this hook copied in should no-op.
+if [ ! -f "scripts/router/release_manager.js" ]; then
+  exit 0
+fi
+
+# node must be available; if not, no-op (don't break commit workflow).
+if ! command -v node >/dev/null 2>&1; then
+  exit 0
+fi
+
+COMMIT_MSG="$(git log -1 --pretty=%B | head -1 | sed 's/^[[:space:]]*//' | cut -c1-200)"
+COMMIT_SHA="$(git rev-parse --short HEAD)"
+COMMIT_FILES="$(git diff-tree --no-commit-id --name-only -r HEAD | paste -sd ',' -)"
+
+# Build the CLI args safely. We pass --files only when non-empty to avoid
+# an empty files="" argument in the jsonl history.
+ARGS=(create "$COMMIT_MSG" --type "auto-commit" --actor "$COMMIT_SHA")
+if [ -n "$COMMIT_FILES" ]; then
+  ARGS+=(--files "$COMMIT_FILES")
+fi
+
+# Best-effort: redirect both stdout and stderr so hook output never leaks
+# into the user's commit session. We log to stderr only on real failure.
+if ! node scripts/router/release_manager.js "${ARGS[@]}" >/dev/null 2>/dev/null; then
+  echo "[post-commit] releaseId auto-create failed (non-fatal)" >&2
+fi
+
+exit 0
