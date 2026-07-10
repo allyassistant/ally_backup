@@ -55,3 +55,6 @@ _legacy/*.bak
 TOOLS_backup_*.md
 .audit_report_migrated_crons.md
 .crontab
+HA_CONFIG.md
+HA_SETUP_GUIDE.md
+public/*.bak
