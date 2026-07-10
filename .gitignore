@@ -52,3 +52,4 @@ _legacy/send-test.js.bak
 _legacy/*.bak
 .cert-analysis/
 .openclaw-wiki/.DS_Store
+TOOLS_backup_*.md
