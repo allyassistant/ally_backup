@@ -38,13 +38,13 @@ routes:
     cost_weight: 0.1
 
   sop:
-    primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M2.7, extra_body: { reasoning: high } }
-    fallback_chain: [deepseek, none]
+    primary: { provider: kimi, model: kimi/kimi-for-coding }
+    fallback_chain: [minimax-portal/MiniMax-M2.7, deepseek, none]
     cooldown_seconds: 60
 
   spawn:
-    primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M2.7, extra_body: { reasoning: high } }
-    fallback_chain: [deepseek, none]
+    primary: { provider: kimi, model: kimi/kimi-for-coding }
+    fallback_chain: [minimax-portal/MiniMax-M2.7, deepseek, none]
     cooldown_seconds: 60
     cost_weight: 0.5
 
@@ -55,8 +55,8 @@ routes:
     cost_weight: 0.5
 
   code:
-    primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M2.7, extra_body: { reasoning: high } }
-    fallback_chain: [deepseek, none]
+    primary: { provider: kimi, model: kimi/kimi-for-coding }
+    fallback_chain: [minimax-portal/MiniMax-M2.7, deepseek, none]
     cooldown_seconds: 60
 
   browser:
