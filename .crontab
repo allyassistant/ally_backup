@@ -1,1 +1,1 @@
-0 3 * * 0 /Users/ally/.openclaw/workspace/scripts/openclaw_guard.sh auto >> /Users/ally/.openclaw/workspace/memory/backup.log 2>&1
+0 3 * * 0 ~/.openclaw/workspace/scripts/openclaw_guard.sh auto >> ~/.openclaw/workspace/memory/backup.log 2>&1

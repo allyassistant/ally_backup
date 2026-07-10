@@ -53,3 +53,5 @@ _legacy/*.bak
 .cert-analysis/
 .openclaw-wiki/.DS_Store
 TOOLS_backup_*.md
+.audit_report_migrated_crons.md
+.crontab
