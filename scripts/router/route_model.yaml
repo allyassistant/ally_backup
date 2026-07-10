@@ -61,7 +61,7 @@ routes:
 
   browser:
     primary: { provider: minimax-portal, model: minimax-portal/MiniMax-M2.7, extra_body: { reasoning: high }, timeout: 90 }
-    fallback_chain: [deepseek, none]
+    fallback_chain: [kimi/kimi-for-coding, deepseek, none]
     cooldown_seconds: 60
 
   none:
