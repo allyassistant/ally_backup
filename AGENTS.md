@@ -238,12 +238,12 @@ thinking=$(echo $cfg | python3 -c "import sys,json; j=json.load(sys.stdin); prin
 
 | Route | Model | Thinking | Provider |
 |-------|-------|----------|----------|
-| **SPAWN** | MiniMax-M2.7 | high 🧠 | minimax-portal |
+| **SPAWN** | kimi/kimi-for-coding | high 🧠 | kimi |
 | **SPAWN_QUALITY** | MiniMax-M3 | high 🧠 | minimax-portal |
-| SOP | MiniMax-M2.7 | high 🧠 | minimax-portal |
-| CODE | MiniMax-M2.7 | high 🧠 | minimax-portal |
-| FDQ | deepseek-v4-flash | high 🧠 | deepseek |
-| DIRECT_ANSWER / NONE | deepseek-v4-flash | — | deepseek |
+| SOP | kimi/kimi-for-coding | high 🧠 | kimi |
+| CODE | kimi/kimi-for-coding | high 🧠 | kimi |
+| FDQ | MiniMax-M2.7 | high 🧠 | minimax-portal |
+| DIRECT_ANSWER / NONE | MiniMax-M2.7 | — | minimax-portal |
 
 > **Source of truth：** 呢張 table 對應 `scripts/router/route_model.yaml`（由 `spawn_config.js` 讀取）。改 model mapping 時**兩邊都要更新**，避免 drift。 |
 
@@ -253,11 +253,11 @@ thinking=$(echo $cfg | python3 -c "import sys,json; j=json.load(sys.stdin); prin
 
 #### 🎯 Spawn Intent Gate（M3 on-demand）
 
-> **原則：保持現有架構（DeepSeek V4 Flash + MiniMax M2.7）為日常 default，只有 Josh 明確要求 M3 時先用 M3。**
+> **原則：日常 default 係 MiniMax M2.7 + kimi，只有 Josh 明確要求 M3 時先用 M3。**
 
 | Josh message 講到 | Route | Model |
 |-------------------|-------|-------|
-| 「spawn sub agent 分析 X」/「派 sub agent 睇下 Y」 | `--route SPAWN` | M2.7 |
+| 「spawn sub agent 分析 X」/「派 sub agent 睇下 Y」 | `--route SPAWN` | kimi |
 | **「spawn MiniMax M3 sub agent 分析 X」** / **「派 M3 仔細分析」** | `--route SPAWN_QUALITY` | M3 |
 | 「high quality / premium / 深入 / critical / 認真」 | `--route SPAWN_QUALITY` | M3 |
 | 任何明確表達「要最準 / 最 deep」嘅 intent | `--route SPAWN_QUALITY` | M3 |
@@ -272,8 +272,8 @@ thinking=$(echo $cfg | python3 -c "import sys,json; j=json.load(sys.stdin); prin
 > **冇 explicit keyword → 一律 M2.7。** 唔好主動升 M3（要慳 cost + 保持架構穩定）。
 
 **Fallback 行為：**
-- SPAWN (M2.7) primary → M2.7 死咗 → deepseek-v4-flash
-- SPAWN_QUALITY (M3) primary → M3 死咗 → deepseek-v4-pro（維持 premium quality，唔係 flash）
+- SPAWN (kimi) primary → kimi 死咗 → M2.7
+- SPAWN_QUALITY (M3) primary → M3 死咗 → kimi（維持 premium quality，唔係 flash）
 - 兩個 route 唔互相 fallback（M3 死咗唔降級去 M2.7）
 
 **Spawn Failure Recovery（補充）：**
