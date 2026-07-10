@@ -47,3 +47,8 @@ _legacy/whatsapp-auth/
 DREAMS.md
 *.bak
 .DS_Store
+_legacy/send-test.js
+_legacy/send-test.js.bak
+_legacy/*.bak
+.cert-analysis/
+.openclaw-wiki/.DS_Store
