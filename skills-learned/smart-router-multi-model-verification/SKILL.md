@@ -1,7 +1,7 @@
 ---
 name: smart-router-multi-model-verification
 description: Verify smart router behavior across multiple models by spawning sub-agents, running identical prompts, and comparing actual responses.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-07-10T18:31:01.265Z

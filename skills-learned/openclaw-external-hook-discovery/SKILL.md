@@ -1,7 +1,7 @@
 ---
 name: openclaw-external-hook-discovery
 description: Diagnose why external OpenClaw hooks are listed but not loaded by the gateway, then fix by running openclaw hooks install with --link to register the hook.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-07-11T13:31:01.258Z

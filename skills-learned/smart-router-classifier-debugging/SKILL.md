@@ -1,7 +1,7 @@
 ---
 name: smart-router-classifier-debugging
 description: Debug Smart Router routing failures by tracing the classifier → model_router → route-enforcer → auxiliary classifier chain and fixing rule ordering or model config mismatches.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-07-11T14:31:01.249Z

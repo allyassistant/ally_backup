@@ -1,7 +1,7 @@
 ---
 name: skills-audit-workflow
 description: "Full operational cycle for skill-reviewer agent: reading queue, interpreting signals, applying decision tree, dispatching batch sub-agents, verifying state, cleaning memory. Use when: skill-reviewer cron triggers, new bugs found in skill pipeline, full audit cycle needed. Key capabilities: queue reading with decision tree logic, parallel M3 sub-agent dispatch, state verification and cleanup."
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-09T02:07:00.000Z

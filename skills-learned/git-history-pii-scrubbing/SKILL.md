@@ -1,7 +1,7 @@
 ---
 name: git-history-pii-scrubbing
 description: Remove leaked credentials and PII from git history with dry-run preview, git filter-branch/filter-repo, and env-var replacement before re-commit.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-07-10T11:01:01.242Z

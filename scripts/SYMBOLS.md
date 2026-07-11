@@ -1,10 +1,10 @@
 ---
 type: symbols_index
-last_updated: 2026-07-10
+last_updated: 2026-07-11
 scope: scripts/
-total_files: 386
-total_errors: 15
-total_symbols: 6269
+total_files: 382
+total_errors: 7
+total_symbols: 6224
 total_issues: 49
 total_crons: 4
 hot_scripts: 0
@@ -14,7 +14,7 @@ hot_scripts: 0
 
 > 此文件為 OpenClaw 的核心導航地圖。尋找具體邏輯實現時，請優先檢索此處。
 
-**生成時間：** 11/7/2026 上午12:41:00
+**生成時間：** 12/7/2026 上午12:41:00
 **掃描範圍：** `/Users/ally/.openclaw/workspace/scripts`
 
 ---
@@ -6698,12 +6698,14 @@ hot_scripts: 0
 - Line 21: `variable path` 📦
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 22: `variable https` 📦
+- Line 24: `variable ReportGenerator` 📦
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 25: `variable ReportGenerator` 📦
+- Line 25: `variable discord` 📦
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
+  - 🔗 Issue: #146 🔥 (Skill Reviewer Pipeline Bugs — 6 P0 + 4 WARN fixed + 3 deferred (atomic write, validator hardening, prompt cache TTL, Discord retry))
+  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 28: `variable LOCK_FILE` 📦
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
@@ -6719,60 +6721,54 @@ hot_scripts: 0
 - Line 38: `variable MINIMAX_CONFIG` 📦
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 44: `function getDiscordToken` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 55: `function sendDiscord` 🔧
+- Line 44: `function sendDiscord` 🔧
   - 💡 [無描述]
   - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 69: `arrow function req` ➡️
+- Line 56: `function getTodayDate` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 92: `function getTodayDate` 🔧
+- Line 60: `function getDisplayDate` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 96: `function getDisplayDate` 🔧
+- Line 65: `function readTodayMemory` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 101: `function readTodayMemory` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 130: `function generateJournalWithMiniMax` 🔧
+- Line 94: `function generateJournalWithMiniMax` 🔧
   - 💡 用 MiniMax M2.5 生成日記 (v5 OpenClaw CLI 版)
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 230: `function generateDefaultJournal` 🔧
+- Line 194: `function generateDefaultJournal` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 238: `function parseSummary` 🔧
+- Line 202: `function parseSummary` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 249: `arrow function lines` ➡️
+- Line 213: `arrow function lines` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 268: `arrow function workScore` ➡️
+- Line 232: `arrow function workScore` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 269: `arrow function learningScore` ➡️
+- Line 233: `arrow function learningScore` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 270: `arrow function problemScore` ➡️
+- Line 234: `arrow function problemScore` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 271: `arrow function planScore` ➡️
+- Line 235: `arrow function planScore` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 287: `arrow function formatLines` ➡️
+- Line 251: `arrow function formatLines` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 298: `function generateDailySummary` 🔧
+- Line 262: `function generateDailySummary` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 300: `arrow function log` ➡️
+- Line 264: `arrow function log` ➡️
   - 💡 [無描述]
   - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
   - 🔗 Issue: #138 🔥 (MiniMax overload + deepseek timeout — cron provider reliability (final v3))
-- Line 408: `unknown undefined` 
+- Line 372: `unknown undefined` 
   - 💡 [無描述]
   - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
   - 🔗 Issue: #102 📌 (L0/L1 Quality - 每日摘要質素提升)
@@ -14971,35 +14967,55 @@ hot_scripts: 0
   - 🔗 Issue: #188 📎 (Audit follow-up: 2 warnings + B2 library bypass)
 
 ### `spawn_config.js`
-- Line 32: `variable path` 📦
+- Line 31: `variable path` 📦
   - 💡 [無描述]
   - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
   - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
-- Line 34: `variable ROUTER_DIR` 📦
+- Line 33: `variable ROUTER_DIR` 📦
   - 💡 [無描述]
   - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
   - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
-- Line 35: `variable modelRouter` 📦
+- Line 34: `variable modelRouter` 📦
   - 💡 [無描述]
   - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
   - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
-- Line 39: `variable DEFAULT_MODELS` 📦
+- Line 38: `variable DEFAULT_MODELS` 📦
   - 💡 [無描述]
   - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
   - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
-- Line 46: `variable ROUTE_DEFAULT_FALLBACK` 📦
+- Line 45: `variable ROUTE_DEFAULT_FALLBACK` 📦
   - 💡 Route-specific fallback model (when router resolves to fallback provider) Overrides DEFAULT_MODELS per route — keeps quality tier appropriate
   - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
   - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
-- Line 63: `function resolveThinking` 🔧
-  - 💡 fails and has to be respawned manually.  DeepSeek spawn tasks default to no reasoning because flash models are too slow; route_model.yaml already encodes reasoning intent for non-spawn routes. /
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-  - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
-- Line 77: `function normalizeRoute` 🔧
+- Line 71: `variable DEDUP_DIR` 📦
   - 💡 [無描述]
   - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
   - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
-- Line 87: `function main` 🔧
+- Line 72: `variable DEDUP_TTL_MS` 📦
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
+- Line 74: `function dedupKey` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
+- Line 84: `function readDedup` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
+- Line 98: `function writeDedup` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
+- Line 126: `function resolveThinking` 🔧
+  - 💡 fails and has to be respawned manually.  DeepSeek spawn tasks default to no reasoning because flash models are too slow; route_model.yaml already encodes reasoning intent for non-spawn routes. /
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
+- Line 138: `function normalizeRoute` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
+  - 🔗 Issue: #161 🔥 (FakeMaidenMaker文章實作 — Skill Description Audit + Activation Control)
+- Line 148: `function main` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
   - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
@@ -19152,22 +19168,28 @@ hot_scripts: 0
 - Line 19: `variable config` 📦
   - 💡 [無描述]
   - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
-- Line 39: `variable RULES` 📦
+- Line 37: `variable RULES` 📦
   - 💡 @type {Rule[]}
   - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
-- Line 90: `variable DEFAULT_ROUTE` 📦
+- Line 88: `variable DEFAULT_ROUTE` 📦
   - 💡 @type {string}
   - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
-- Line 91: `variable MAX_INPUT_LENGTH` 📦
+- Line 89: `variable MAX_INPUT_LENGTH` 📦
   - 💡 [無描述]
   - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
-- Line 98: `function regexClassify` 🔧
+- Line 95: `variable CONTENT_FALLBACK_HEURISTICS` 📦
+  - 💡 ─── CONTENT FALLBACK heuristics (v2.0) ──────────────────────────────────── Applied AFTER the regex RULES miss. Catches cases where the message has strong structural signals but no keyword match — e.g. raw code paste, URL with no verb, very short greetings. Order matters: first match wins.
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 97: `function foo` 🔧
+  - 💡 Code-fence / code-paste detection: triple backticks OR language hints at line start
+  - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
+- Line 131: `function regexClassify` 🔧
   - 💡 Regex-based classification (~1ms). @param {string} text @returns {ClassifyResult} /
   - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
-- Line 120: `function classifySync` 🔧
+- Line 160: `function classifySync` 🔧
   - 💡 Classify a message text — sync, ~1ms. Replaces the old async classify() which had LLM slow path. Always returns immediately — no blocking, no API calls. /
   - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
-- Line 146: `function logDecision` 🔧
+- Line 170: `function logDecision` 🔧
   - 💡 Log a routing decision to a JSON Lines file. Uses async I/O deferred via nextTick to avoid blocking the classifier sync path. /
   - 🔗 Issue: #113 📌 (Routing Phase 3 — 效能優化 + Feedback Loop 自動化)
 
@@ -19500,133 +19522,6 @@ hot_scripts: 0
 - Line 201: `function generateReport` 🔧
   - 💡 Generate and print the dashboard report. @param {{ days: number }} options /
   - 🔗 Issue: #114 📎 (Routing Phase 4 — Cross-channel Routing + Dynamic HA Load Balancing)
-
-### `router/tests/classifier_tests.js`
-- Line 14: `variable assert` 📦
-  - 💡 [無描述]
-- Line 15: `variable path` 📦
-  - 💡 [無描述]
-- Line 17: `variable routerDir` 📦
-  - 💡 [無描述]
-- Line 22: `variable passed` 📦
-  - 💡 [無描述]
-- Line 23: `variable failed` 📦
-  - 💡 [無描述]
-- Line 24: `variable results` 📦
-  - 💡 [無描述]
-- Line 26: `function test` 🔧
-  - 💡 [無描述]
-- Line 43: `function main` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
-
-### `router/tests/e2e_test.js`
-- Line 18: `variable assert` 📦
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 19: `variable fs` 📦
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 20: `variable path` 📦
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 21: `variable os` 📦
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 23: `variable routerDir` 📦
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 24: `variable classifier` 📦
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 25: `variable modelRouter` 📦
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 26: `variable fr` 📦
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 27: `variable spawnConfig` 📦
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 31: `function setFresh` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 41: `function setUnhealthy` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 53: `function test` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 64: `function main` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 175: `function to` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-- Line 176: `function to` 🔧
-  - 💡 E2E-7: ENV replacement uses function to avoid $ injection
-  - 🔗 Issue: #145 🔥 (SPAWN Intent Gate: 區分日常 spawn (M2.7) vs on-demand M3 (SPAWN_QUALITY) + 對應 fallback chain)
-
-### `router/tests/integration_tests.js`
-- Line 14: `variable assert` 📦
-  - 💡 [無描述]
-- Line 15: `variable path` 📦
-  - 💡 [無描述]
-- Line 17: `variable routerDir` 📦
-  - 💡 [無描述]
-- Line 18: `variable fr` 📦
-  - 💡 [無描述]
-- Line 19: `variable mr` 📦
-  - 💡 [無描述]
-- Line 23: `variable passed` 📦
-  - 💡 [無描述]
-- Line 24: `variable failed` 📦
-  - 💡 [無描述]
-- Line 25: `variable results` 📦
-  - 💡 [無描述]
-- Line 27: `function test` 🔧
-  - 💡 [無描述]
-- Line 47: `function setFresh` 🔧
-  - 💡 Make provider healthy + fresh → resolveProvider returns it immediately (no re-probe)
-- Line 58: `function setStale` 🔧
-  - 💡 Make provider healthy + stale (lastCheck=0) → re-probe will trigger
-- Line 69: `function setUnhealthy` 🔧
-  - 💡 Make provider unhealthy; lastProbeMs=0 so cooldown-expired re-probe is eligible
-- Line 81: `function main` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
-
-### `router/tests/spawn_config_tests.js`
-- Line 14: `variable assert` 📦
-  - 💡 [無描述]
-- Line 15: `variable path` 📦
-  - 💡 [無描述]
-- Line 17: `variable scriptsDir` 📦
-  - 💡 [無描述]
-- Line 21: `variable DEFAULT_MODELS` 📦
-  - 💡 [無描述]
-- Line 26: `variable DEFAULT_THINKING` 📦
-  - 💡 [無描述]
-- Line 31: `variable ROUTE_DEFAULT_FALLBACK` 📦
-  - 💡 [無描述]
-- Line 35: `function resolveFallbackModel` 🔧
-  - 💡 [無描述]
-- Line 39: `function extraBodyToThinking` 🔧
-  - 💡 [無描述]
-- Line 47: `function normalizeRoute` 🔧
-  - 💡 [無描述]
-- Line 57: `variable passed` 📦
-  - 💡 [無描述]
-- Line 58: `variable failed` 📦
-  - 💡 [無描述]
-- Line 59: `variable results` 📦
-  - 💡 [無描述]
-- Line 61: `function test` 🔧
-  - 💡 [無描述]
-- Line 77: `function main` 🔧
-  - 💡 [無描述]
-  - 🔗 Issue: #144 🔥 (systemEvent→agentTurn+isolated 遷移: 消除 main session 💓/👍 殘留)
 
 ---
 

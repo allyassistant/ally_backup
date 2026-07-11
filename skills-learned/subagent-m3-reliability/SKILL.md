@@ -1,7 +1,7 @@
 ---
 name: subagent-m3-reliability
 description: Diagnose and fix M3 sub-agent failures from limits and overload. Includes parameter validation, token recovery, and fallback strategies.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-14T15:01:47.884Z

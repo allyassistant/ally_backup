@@ -9149,3 +9149,76 @@
 {"ts":"2026-07-11T14:55:49.888Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":962,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"d7bad33e-b9e7-43bd-9c86-c076290acfe0"}
 {"ts":"2026-07-11T14:55:50.023Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"暫時比M2.7負責","channel":""}
 {"ts":"2026-07-11T15:17:00.760Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-11T15:47:00.728Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-11T16:17:00.717Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-11T16:47:00.764Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-12 00:44:29 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-12 0","channel":""}
+{"ts":"2026-07-11T17:17:00.725Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-11T17:47:00.730Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-11T17:48:20.919Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/kyriecheungyep/status/2075804524414194007?s=46","channel":""}
+{"ts":"2026-07-11T17:55:09.606Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/wuxindehuaft/status/2075869149595861068?s=46","channel":""}
+{"ts":"2026-07-11T18:10:48.343Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T18:10:48.343Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"8b957466-6ebe-4582-b863-69bff43fc6ca"}
+{"ts":"2026-07-11T18:10:48.343Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"我想你幫我檢查下skill reviewer 係唔係冇運行？因為我見佢今日全日都冇生成或者更新skills","channel":""}
+{"ts":"2026-07-11T18:10:48.529Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"我想你幫我檢查下skill reviewer 係唔係冇運行？因為我見佢今日全日都冇生成或者更新skills","channel":""}
+{"ts":"2026-07-11T18:12:39.657Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我手動resume","channel":""}
+{"ts":"2026-07-11T18:12:41.028Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T18:12:41.028Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1370,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"cda58543-b54e-43f7-8ca1-9789982fc439"}
+{"ts":"2026-07-11T18:12:41.189Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我手動resume","channel":""}
+{"ts":"2026-07-11T18:13:27.348Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入研究下點解會有咁多junks","channel":""}
+{"ts":"2026-07-11T18:17:00.797Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-11T18:18:10.414Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"呢個寫入檔案包唔包含更新skills","channel":""}
+{"ts":"2026-07-11T18:20:34.326Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T18:20:34.326Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我改為strict mode試下","channel":""}
+{"ts":"2026-07-11T18:20:34.326Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"8a79b889-721e-4ab6-b642-4cb8d3587836"}
+{"ts":"2026-07-11T18:20:34.477Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我改為strict mode試下","channel":""}
+{"ts":"2026-07-11T18:22:59.659Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"幫我詳細睇下253個skills入面有邊啲係重複、一次性唔可以重用","channel":""}
+{"ts":"2026-07-11T18:23:01.075Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T18:23:01.075Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1416,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"4c9915b9-73f0-4f99-98ae-09d5f073a4bf"}
+{"ts":"2026-07-11T18:23:01.212Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"幫我詳細睇下253個skills入面有邊啲係重複、一次性唔可以重用","channel":""}
+{"ts":"2026-07-11T18:26:01.644Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"幫我詳細睇下253個skills入面有邊啲係重複、一次性唔可以重用","channel":""}
+{"ts":"2026-07-11T18:26:02.664Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T18:26:02.664Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1019,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"aa9db403-b661-41e8-b8e7-0b996ee571bd"}
+{"ts":"2026-07-11T18:32:59.480Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我清走啲一次性嘅垃圾skills","channel":""}
+{"ts":"2026-07-11T18:33:00.502Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1021,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c2534a38-f3b7-4077-9734-00cbb003df9c"}
+{"ts":"2026-07-11T18:33:00.501Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T18:33:00.646Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我清走啲一次性嘅垃圾skills","channel":""}
+{"ts":"2026-07-11T18:38:41.914Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T18:38:41.915Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"4a37d374-73d9-4324-a8df-dee37afaf275"}
+{"ts":"2026-07-11T18:38:41.914Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"而家係02:38，skill reviewer有冇運作？","channel":""}
+{"ts":"2026-07-11T18:38:42.040Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"而家係02:38，skill reviewer有冇運作？","channel":""}
+{"ts":"2026-07-11T18:40:48.661Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"Skill reviewer有冇指定用邊個LLM生成skills","channel":""}
+{"ts":"2026-07-11T18:40:50.043Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1382,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"860aa7e6-d8f8-43b4-94a0-8700497b53f2"}
+{"ts":"2026-07-11T18:40:50.043Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T18:40:50.197Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"Skill reviewer有冇指定用邊個LLM生成skills","channel":""}
+{"ts":"2026-07-11T18:47:00.754Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-12 02:36:41 GMT+8] WhatsApp gateway disconnected (status 428)\nSystem: [2026-07-12 0","channel":""}
+{"ts":"2026-07-11T18:52:54.484Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"af48c0f4-22cb-4094-9f2e-f5e45888a2ba"}
+{"ts":"2026-07-11T18:52:54.484Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T18:52:54.484Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"檢查下點解頭先會auto pause咗","channel":""}
+{"ts":"2026-07-11T18:52:54.645Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"檢查下點解頭先會auto pause咗","channel":""}
+{"ts":"2026-07-11T19:07:31.206Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家03:07，有冇運行？","channel":""}
+{"ts":"2026-07-11T19:07:32.333Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T19:07:32.333Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1127,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"bed1b2e8-7dd9-4c0c-8f81-1418e9db6726"}
+{"ts":"2026-07-11T19:07:32.480Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家03:07，有冇運行？","channel":""}
+{"ts":"2026-07-11T19:09:26.597Z","route":"WEEKLY_CORRECTION","matched":true,"rule":"scheduled","textPreview":"Weekly Correction Loop run: 2 suggestions, 7 errors","channel":"system","extra":{"suggestions":2,"errorsFound":7}}
+{"ts":"2026-07-11T19:17:00.777Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-11T19:40:26.726Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家03:40，有冇運行？","channel":""}
+{"ts":"2026-07-11T19:40:27.710Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T19:40:27.710Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":984,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"31dab91d-7cb1-45bd-bb05-433b58b4ae8d"}
+{"ts":"2026-07-11T19:40:27.893Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家03:40，有冇運行？","channel":""}
+{"ts":"2026-07-11T19:44:10.801Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T19:44:10.801Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"75c87d44-1403-4c3d-bea2-62ebf775bbd4"}
+{"ts":"2026-07-11T19:44:10.801Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查下其他plugin 有冇正常運作","channel":""}
+{"ts":"2026-07-11T19:44:10.950Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查下其他plugin 有冇正常運作","channel":""}
+{"ts":"2026-07-11T19:47:00.687Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"Auto-push-ally-backup 係唔係用緊DeepSeek","channel":""}
+{"ts":"2026-07-11T19:47:01.778Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T19:47:01.779Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1092,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"1d36f35a-9ee4-49ea-b16d-00b32433f478"}
+{"ts":"2026-07-11T19:47:01.921Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"Auto-push-ally-backup 係唔係用緊DeepSeek","channel":""}
+{"ts":"2026-07-11T19:48:17.982Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-11T19:48:38.232Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T19:48:38.231Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我改做MiniMax M2.7","channel":""}
+{"ts":"2026-07-11T19:48:38.232Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"19233085-52e1-4701-8960-4c57ce765984"}
+{"ts":"2026-07-11T19:48:38.357Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我改做MiniMax M2.7","channel":""}
+{"ts":"2026-07-11T19:50:05.364Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"手動trigger一次","channel":""}
+{"ts":"2026-07-11T19:50:06.337Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T19:50:06.337Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":973,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f1b10e1b-a850-4118-b271-a33560d6cc4c"}
+{"ts":"2026-07-11T19:50:06.475Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"手動trigger一次","channel":""}

@@ -1,7 +1,7 @@
 ---
 name: context-gather-subagent-orchestrate
 description: "Pre-gather context for complex analysis tasks, spawn an M3 sub-agent, wait for completion, read results, and present structured output to the user. Use when: multi-file analysis is needed, context must be compressed before spawning, sub-agent output needs structured delivery. Key capabilities: gather files and context with exec, spawn sub-agent via sessions_spawn with compressed input, synthesize final answer from results."
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-14T03:15:00.000Z

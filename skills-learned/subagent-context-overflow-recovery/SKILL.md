@@ -1,7 +1,7 @@
 ---
 name: subagent-context-overflow-recovery
 description: Recover from M3 sub-agent token overflow by detecting the failure, reading partial output, reconstructing meaning, and communicating results to the user. Use when sub-agent yields with token limit errors.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-14T09:31:01.000Z

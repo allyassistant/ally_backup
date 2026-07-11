@@ -1,7 +1,7 @@
 ---
 name: github-ssh-auth-setup
 description: Set up SSH public key authentication for GitHub push operations, covering agent lifecycle, GitHub web UI key addition, and connectivity verification.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-07-10T10:05:00.000Z

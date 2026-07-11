@@ -1,7 +1,7 @@
 ---
 name: wrapper-exec-safe-run
 description: Wrap child_process.execSync and spawnSync calls with try-catch error handling to prevent silent crashes when disk/network errors occur.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-07-10T21:01:01.269Z

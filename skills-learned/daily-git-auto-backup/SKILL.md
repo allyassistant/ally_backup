@@ -1,7 +1,7 @@
 ---
 name: daily-git-auto-backup
 description: Commit and push workspace changes to a GitHub remote on a schedule, using a timestamped message and silencing notifications for unattended runs.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-07-10T17:02:57.390Z

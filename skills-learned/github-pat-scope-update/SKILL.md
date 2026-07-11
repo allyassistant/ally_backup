@@ -1,7 +1,7 @@
 ---
 name: github-pat-scope-update
 description: Update GitHub Personal Access Token repository scope when git push fails 403 after remote switch, repo rename, or credential rotation.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-07-10T09:31:01.215Z

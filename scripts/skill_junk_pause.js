@@ -42,7 +42,7 @@ const { WS } = require('./lib/config');
 
 const JUNK_RATE_FILE = path.join(WS, '.skill_junk_rate.jsonl');
 const PAUSE_FILE = path.join(WS, '.skill_reviewer_pause.json');
-const DEFAULT_THRESHOLD = 0.15;
+const DEFAULT_THRESHOLD = 0.30;
 const DEFAULT_HOURS = 24;
 const PAUSE_DURATION_MS = 24 * 60 * 60 * 1000; // 24h
 

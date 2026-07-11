@@ -1,7 +1,7 @@
 ---
 name: issue-consolidation-via-subagent
 description: Spawn M3 sub-agent to deduplicate, reassess utility, and consolidate issue lists into a single prioritized issue.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-14T06:31:01.231Z

@@ -1,7 +1,7 @@
 ---
 name: concurrent-session-rate-limit-avoidance
 description: Diagnose and avoid same-model rate limit collisions between main session and cron agents when cron timeouts correlate with main session activity.
-status: draft
+status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-07-11T02:30:00.000Z

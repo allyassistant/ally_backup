@@ -42,7 +42,7 @@ const {
   proposalKey,
   loadEmbeddingsCache,
 } = require('./lib/skill_dedup_gate');
-const BOT_DEDUP_MODE = (process.env.SKILL_REVIEWER_BOT_DEDUP || 'warn').toLowerCase();
+const BOT_DEDUP_MODE = (process.env.SKILL_REVIEWER_BOT_DEDUP || 'strict').toLowerCase();
 const BOT_DEDUP_THRESHOLD = Number(process.env.SKILL_REVIEWER_BOT_THRESHOLD || 0.85);
 // Stage 2 (2026-06-21): post-LLM preEmitFilter. Runs AFTER extractFileBlocks()
 // parses the LLM's output and BEFORE fs.writeFileSync() persists it. Uses the
