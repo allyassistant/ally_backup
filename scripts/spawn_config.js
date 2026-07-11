@@ -46,6 +46,70 @@ const ROUTE_DEFAULT_FALLBACK = {
   'spawn_quality': 'minimax-portal/MiniMax-M3',
 };
 
+// ─── Double-spawn dedup guard ─────────────────────────────────────────────
+//
+// Rationale (AGENTS.md "Double-spawn 檢查"): `sessions_spawn` is sometimes
+// invoked twice for the same task within seconds, producing two parallel
+// sub-agents doing the same work. This guard catches the most common case:
+// the main agent re-running `node scripts/spawn_config.js --task "..."` with
+// the identical task text within a short window.
+//
+// Algorithm:
+//   1. Hash (route + task text) → 16-char hex
+//   2. Look for /tmp/spawn_dedup/<hash>.json
+//   3. If present and < 30s old → return cached config + flag dedup:true
+//   4. Otherwise → write fresh dedup record, proceed
+//
+// Limitations:
+//   - Detects only repeat invocations of THIS script, not direct
+//     `sessions_spawn model=... task=...` calls (those go through the
+//     runtime, which is out of scope here).
+//   - Window is fixed at 30s. Long-running spawns (>30s) will NOT be
+//     deduped against a fresh invocation — that's intentional, we only
+//     catch the rapid-fire case.
+
+const DEDUP_DIR = path.join(require('os').tmpdir(), 'spawn_dedup');
+const DEDUP_TTL_MS = 30_000;
+
+function dedupKey(route, task) {
+  const crypto = require('crypto');
+  const normalizedTask = (task || '').trim().replace(/\s+/g, ' ');
+  return crypto
+    .createHash('sha256')
+    .update(`${route}\x00${normalizedTask}`)
+    .digest('hex')
+    .slice(0, 16);
+}
+
+function readDedup(key) {
+  try {
+    const file = path.join(DEDUP_DIR, `${key}.json`);
+    if (!require('fs').existsSync(file)) return null;
+    const stat = require('fs').statSync(file);
+    const age = Date.now() - stat.mtimeMs;
+    if (age > DEDUP_TTL_MS) return null; // expired
+    const raw = require('fs').readFileSync(file, 'utf8');
+    return { entry: JSON.parse(raw), ageMs: age };
+  } catch {
+    return null;
+  }
+}
+
+function writeDedup(key, route, task, output) {
+  try {
+    require('fs').mkdirSync(DEDUP_DIR, { recursive: true });
+    const file = path.join(DEDUP_DIR, `${key}.json`);
+    require('fs').writeFileSync(
+      file,
+      JSON.stringify({ ts: new Date().toISOString(), route, task: (task || '').slice(0, 200), output }),
+      'utf8'
+    );
+  } catch (err) {
+    // Non-fatal — dedup is best-effort
+    console.warn(`[spawn_config] dedup write failed (non-fatal): ${err.message}`);
+  }
+}
+
 // ─── Thinking parameter resolver ───────────────────────────────────────────
 
 /**
@@ -84,6 +148,9 @@ function normalizeRoute(route) {
 async function main() {
   const args = process.argv.slice(2);
 
+  // --no-dedup flag for explicit bypass (escape hatch for legitimate retries)
+  const skipDedup = args.includes('--no-dedup');
+
   const routeIdx = args.indexOf('--route');
   const taskIdx = args.indexOf('--task');
 
@@ -91,6 +158,22 @@ async function main() {
   const task = taskIdx >= 0 ? args[taskIdx + 1] : '';
 
   const route = normalizeRoute(rawRoute);
+
+  // Double-spawn guard: short-circuit if same route+task was just resolved.
+  if (!skipDedup) {
+    const key = dedupKey(route, task);
+    const existing = readDedup(key);
+    if (existing) {
+      const cached = { ...existing.entry.output, dedup: true, dedupAgeMs: existing.ageMs, dedupKey: key };
+      console.warn(
+        `[spawn_config] DOUBLE-SPAWN GUARD: route=${route} task="${(task || '').slice(0, 60)}" ` +
+        `matched recent invocation (age=${Math.round(existing.ageMs / 1000)}s, key=${key}). ` +
+        `Returning cached config. Pass --no-dedup to override.`
+      );
+      console.log(JSON.stringify(cached));
+      return;
+    }
+  }
 
   /** @type {import('./router/model_router').RouteModelResult} */
   let cfg;
@@ -115,6 +198,22 @@ async function main() {
     decisionId: cfg.decisionId || 'unknown',
   };
 
+  // Persist dedup record (best-effort) for subsequent invocations.
+  if (!skipDedup) {
+    const key = dedupKey(route, task);
+    // TOCTOU guard: if another process wrote the same key while we were
+    // resolving the model, log a warning — this indicates a race condition.
+    const existing = readDedup(key);
+    if (existing) {
+      console.warn(
+        `[spawn_config] TOCTOU RACE DETECTED: another process wrote dedup key ${key} ` +
+        `while this invocation was in progress (age=${Math.round(existing.ageMs / 1000)}s). ` +
+        `This may result in a double spawn.`
+      );
+    }
+    writeDedup(key, route, task, output);
+  }
+
   console.log(JSON.stringify(output));
 }
 
@@ -130,4 +229,9 @@ module.exports = {
   DEFAULT_MODELS,
   ROUTE_DEFAULT_FALLBACK,
   normalizeRoute,
+  // Exposed for tests / external callers
+  dedupKey,
+  readDedup,
+  writeDedup,
+  DEDUP_TTL_MS,
 };

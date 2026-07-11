@@ -6,8 +6,8 @@
       "task": "code_review",
       "desc": "Code review, debugging, refactoring, auditing",
       "match": ["review this code", "code review", "debug", "find bug", "refactor this", "audit this", "lint this", "fix this code", "code smell", "security issue", "vulnerability", "檢查 code", "搵 bug", "fix bug"],
-      "model": "minimax-portal/MiniMax-M2.7",
-      "provider": "minimax-portal"
+      "model": "kimi/kimi-for-coding",
+      "provider": "kimi"
     },
     {
       "task": "summarize",
@@ -20,15 +20,15 @@
       "task": "deep_research",
       "desc": "Deep research, investigation, comparative analysis",
       "match": ["research", "deep analysis", "investigate", "study this", "compare and contrast", "comprehensive", "thorough", "in-depth", "literature", "findings", "研究", "分析", "深入", "對比"],
-      "model": "minimax-portal/MiniMax-M2.7",
-      "provider": "minimax-portal"
+      "model": "kimi/kimi-for-coding",
+      "provider": "kimi"
     },
     {
       "task": "architecture",
       "desc": "System design, architecture planning, technical design",
-      "match": ["architecture", "system design", "technical design", "design", "design pattern", "architecture decision", "tech stack", "component diagram", "data flow", "api design", "架構", "設計系統", "系統設計"],
-      "model": "minimax-portal/MiniMax-M2.7",
-      "provider": "minimax-portal"
+      "match": ["architecture", "system design", "technical design", "design", "design pattern", "architecture decision", "tech stack", "component diagram", "data flow", "api design", "架構", "設計系統", "系統設計", "設計"],
+      "model": "kimi/kimi-for-coding",
+      "provider": "kimi"
     },
     {
       "task": "creative",
@@ -36,6 +36,13 @@
       "match": ["write a", "create a", "draft", "compose", "brainstorm", "generate content", "write an", "essay", "story", "blog post", "創作", "寫文", "作故"],
       "model": "minimax-portal/MiniMax-M2.7",
       "provider": "minimax-portal"
+    },
+    {
+      "task": "code_generation",
+      "desc": "Code writing, function creation, script development",
+      "match": ["寫", "function", "script", "code", "代碼", "编程", "寫 code", "create function", "generate code", "build script"],
+      "model": "kimi/kimi-for-coding",
+      "provider": "kimi"
     },
     {
       "task": "web_extract",
@@ -61,7 +68,7 @@
     {
       "task": "simple_reply",
       "desc": "Simple direct answers, status checks, quick lookups",
-      "match": ["hello", "hi ", "what is", "who is", "list", "show me", "check", "status", "how to", "where is", "tell me", "define", "meaning of", "係咩", "咩係", "點樣", "有冇", "check下"],
+      "match": ["hello", "hi ", "what is", "who is", "list", "show me", "check", "status", "how to", "where is", "tell me", "define", "meaning of", "係咩", "咩係", "點樣"],
       "model": "minimax-portal/MiniMax-M2.7",
       "provider": "minimax-portal"
     }

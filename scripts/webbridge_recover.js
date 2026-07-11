@@ -7,8 +7,8 @@
  *
  * Steps (5):
  *   1. Verify extension source exists
- *   2. Verify debug profile exists
- *   3. Launch Debug Chrome (port 9222, fresh profile)
+ *   2. Verify Chrome profile exists
+ *   3. Launch Debug Chrome (port 9222, user's regular profile)
  *   4. Load extension via CDP Extensions.loadUnpacked
  *   5. Verify daemon detects connection
  *
@@ -31,7 +31,7 @@ try {
 }
 const EXT_PATH = EXT_DIR + '/' + EXT_VER;
 const EXT_ID = 'fldmhceldgbpfpkbgopacenieobmligc';
-const PROFILE = `${process.env.HOME}/chrome-debug-profile`;
+const PROFILE = `${process.env.HOME}/Library/Application Support/Google/Chrome/Default`;
 const PORT = 9222;
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const LOG_FILE = '/tmp/webbridge-chrome.log';
@@ -83,9 +83,9 @@ async function loadExtension() {
   if (shell(`[ -d "${EXT_PATH}" ] && echo OK`)) ok(`Extension found: ${EXT_PATH}`);
   else fail(`Extension source missing: ${EXT_PATH}\n   Open Chrome → extensions → Kimi WebBridge → install/extract to this path`);
 
-  step(2, 'Verify debug profile exists');
+  step(2, 'Verify Chrome profile exists');
   if (shell(`[ -d "${PROFILE}" ] && echo OK`)) ok(`Profile found: ${PROFILE}`);
-  else fail(`Profile missing: ${PROFILE}\n   This profile was created during the original WebBridge POC setup`);
+  else fail(`Profile missing: ${PROFILE}\n   This is the user's regular Chrome profile`);
 
   step(3, 'Launch Debug Chrome (port 9222)');
   const listening = shell(`lsof -nP -iTCP:${PORT} -sTCP:LISTEN 2>/dev/null | grep -iE 'chrom|google'`);
@@ -96,7 +96,7 @@ async function loadExtension() {
       `--remote-debugging-port=${PORT}`,
       `--user-data-dir=${PROFILE}`,
       '--no-first-run', '--no-default-browser-check',
-      '--disable-sync', '--disable-background-networking',
+      '--disable-background-networking',
       '--disable-component-update',
       '--disable-features=Translate,MediaRouter',
       '--disable-session-crashed-bubble',

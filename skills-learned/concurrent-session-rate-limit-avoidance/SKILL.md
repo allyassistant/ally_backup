@@ -1,54 +1,34 @@
 ---
 name: concurrent-session-rate-limit-avoidance
-description: "Diagnose and avoid same-model rate limit collisions between main session and cron agents. Use when: cron timeouts correlate with main session activity, same provider/model is used by multiple sessions, model-call-started hangs without completion. Key capabilities: openclaw cron runs, openclaw cron update, provider fallback planning, timeout adjustment."
+description: Diagnose and avoid same-model rate limit collisions between main session and cron agents when cron timeouts correlate with main session activity.
 status: draft
 source: skill-reviewer
 provenance: agent
-generatedAt: 2026-06-09T07:52:38.794Z
+generatedAt: 2026-07-11T02:30:00.000Z
 ---
 
 ## Workflow
 
-1. **Detect the pattern** — When a cron job using `agentTurn`/`isolated` consistently times out (~300s) with `model-call-started` status but no completion, while the main session is simultaneously active:
+1. **Identify the timeout signature.** Run `openclaw cron runs <id>` and check the last error message. A `model-call-started` timeout in the last phase means the model call initiated but never returned — classic rate limit gate-close, not a slow model.
 
-   - Check cron runs history: `openclaw cron runs <cron-id>`
-   - Look for runs that timeout exactly at the configured `timeoutSeconds` limit
-   - Correlate timestamps with main session activity (same minute window)
+2. **Cross-reference active sessions.** Run `openclaw session list` and note which provider/model each session uses. If the cron job's session uses the same provider+model as the main session, flag as suspected collision.
 
-2. **Identify the colliding model** — Determine which LLM provider+model both contexts are using:
+3. **Check queue depth before retry.** Before re-running the cron, run `openclaw queue list` to confirm the queue is not backed up. An empty queue guard prevents scheduling a model call into a blocked pipe. If the queue shows pending items, drain it first with `openclaw queue flush --dry-run`.
 
-   - Main session model: Check current conversation (usually visible in UI or from provider config)
-   - Cron model: `openclaw cron get <cron-id>` → check `payload.model`
-   - Inner script model: Read the cron's target script — many have hardcoded `MODEL = 'provider/model'` at line ~30
-   - If cron agentTurn model matches the main session's active model → collision confirmed
+4. **Apply provider fallback or timeout adjustment.** Prefer adjusting `timeoutSeconds` upward (e.g., 120s → 180s) for the cron payload when the underlying issue is rate-limit latency rather than model speed. Alternatively, switch the cron session to a different model tier (e.g., DeepSeek instead of M2.7) to split the collision surface. Update via `openclaw cron update <id> --payload '{"model":"deepseek-chat"}'`.
 
-3. **Choose a non-conflicting model** — Select a substitute with these priorities:
+5. **Isolate cron into its own session.** Create a dedicated session for the failing cron job with a different model assignment. This eliminates shared rate-limit buckets entirely. Use `openclaw session create --name "cron-isolated" --model <alt>` and update the cron entry to use that session ID.
 
-   - **P1: Different provider** — Use a model from a different API provider entirely (e.g., if main is DeepSeek, cron uses MiniMax)
-   - **P2: Different model family** — Same provider but different tier/model (e.g., if main is deepseek-v4-flash, cron uses deepseek-v4-pro or deepseek-r1)
-   - **P3: Delay execution** — Schedule cron to run when main session is typically idle (e.g., 02:00-06:00)
-   - Never use the exact same model string as the active main session
-
-4. **Match cron model to inner script default** — Prefer setting the cron's agentTurn model to the same model the cron's target script uses internally:
-
-   - Read the target script's `MODEL` constant
-   - Set cron `payload.model` to match (avoids double LLM calls from different models)
-   - Example: If `skill_reviewer_bot.js` uses `minimax-portal/MiniMax-M2.7`, set cron model to same
-
-5. **Update cron config**:
-
-   ```bash
-   # Set new model (MiniMax M2.7 avoids DeepSeek collision)
-   openclaw cron update <cron-id> --model "minimax-portal/MiniMax-M2.7"
-   
-   # Optionally increase timeout for slower models
-   openclaw cron update <cron-id> --timeout 360
-   ```
+6. **Re-run and verify.** Execute `openclaw cron run <id>` outside the schedule and confirm the model call completes. Monitor `openclaw cron runs <id>` for the next 3 executions to ensure the pattern breaks.
 
 ## Pitfalls
 
-- ⚠️ **Mistaking transient timeout for provider collision** — A single 300s timeout does not prove collision. Confirm by checking `openclaw cron runs <cron-id>` for repeated timeouts in the same minute window as main-session activity before changing models.
-- ⚠️ **Swapping model without adjusting timeout** — Moving from MiniMax to DeepSeek may require different `timeoutSeconds`. If the new model is slower, a 120s cron timeout can still fail even after the swap.
-- ⚠️ **Choosing same-provider different model family** — `deepseek-v4-flash` and `deepseek-v4-pro` may share the same API quota or rate limit. Prefer a different provider entirely for true isolation.
-- ⚠️ **Not logging the fallback decision** — Without recording original provider, fallback provider, and timestamp, future debugging cannot distinguish a successful fix from coincidence. Append a one-line note to the session log or memory.
-- ⚠️ **Retrying the exhausted provider** — Quota exhaustion is not transient. Re-running the cron with the same model immediately will hit the same limit. Always route to the confirmed fallback provider first.
+- ⚠️ model-call-started timeout without queue pre-check — the cron agent hangs waiting for a slot that will never open because the queue is blocked. Always run `openclaw queue list` before assuming it's a slow-model problem.
+
+- ⚠️ Swapping cron model without adjusting timeoutSeconds — a 120s timeout stays in place after switching to a slower model (e.g., DeepSeek), causing the same timeout even though no rate limit collision remains. Recalibrate timeout to 1.5–2x the new model's expected p95 response time.
+
+- ⚠️ Editing cron payload without refreshing openclaw cron list — stale job metadata hides the change; the update appears to have no effect because the CLI still shows the old payload. Always run `openclaw cron list` after an update to confirm the change persisted.
+
+- ⚠️ Scheduling the same model in two cron jobs at overlapping times — two cron jobs using the same provider+model create a self-inflicted collision even when the main session is idle. Spread cron schedules by at least 10 minutes when sharing a model tier.
+
+- ⚠️ Assuming model-call-started hang is always a rate limit — it can also be a network routing issue (gateway timeout), a bad API key silently rejected, or the sub-agent spawning into a session that is still processing a prior request. Check provider status dashboards and session health before attributing to rate limits.

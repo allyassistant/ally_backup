@@ -18,8 +18,6 @@ const fs = require('fs');
 const path = require('path');
 const config = require('./config');
 const { maybeRotate } = require('./log_rotator');
-// Day 4 integration: enrich route decisions with provider/model config (fail-safe)
-const { routeModel } = require('./model_router');
 
 /**
  * @typedef {Object} ClassifyResult
@@ -40,7 +38,7 @@ const RULES = [
   // FDQ — 模糊、唔明確、需要問清楚
   {
     route: 'FDQ',
-    pattern: /(?:唔知|模糊|諗下|你覺得點|搞個|整個|你點睇|有咩建議|諗諗)/i,
+    pattern: /(?:唔知|模糊|諗下|你覺得點|搞個|整個|你點睇|有咩建議|諗諗|點解你|點解我|點解佢|為何你|為何我|為何佢|點樣先|幾時先|為咩要)/i,
     ruleId: 'AGENTS.md Rule 1',
   },
   // SOP — 標準流程（放 DIRECT_ANSWER 前面避免 URL match 到 status keyword）
@@ -50,19 +48,13 @@ const RULES = [
     pattern: /(?:x\.com|twitter\.com|\bemail\b|\bmail\b|X link|轉寄|\bforward\b|\bcompose\b|send\s+.*?\bemail\b|\bemail\b\s+.*?send)/i,
     ruleId: 'AGENTS.md Rule 3',
   },
-  // DIAGNOSTIC_CHECK — 檢查 + system/diagnostic context → SPAWN (priority over DIRECT_ANSWER)
-  // Catches: 檢查/驗證/診斷/audit + (router/系統/gateway/功能/健康/狀態/正常運作/...)
+  // DIAGNOSTIC_CHECK — 檢查/驗證/診斷/health query + system/diagnostic context → SPAWN (priority over DIRECT_ANSWER)
+  // Catches: 檢查/驗證/診斷/audit/深入檢查/trace/正常嗎/有冇問題/運作 + (router/系統/gateway/功能/健康/狀態/...)
   // Uses lookahead to require BOTH conditions before matching
   {
     route: 'SPAWN',
-    pattern: /^(?=.*(?:檢查|驗證|診斷|\baudit\b|深入檢查|trace))(?=.*(?:router|system|系統|gateway|功能|cron|log|sync|健康|health|狀態|運作|smart|router|HA|cluster|heartbeat|fallback|provider|model))/i,
+    pattern: /^(?=.*(?:檢查|驗證|診斷|\baudit\b|深入檢查|trace|正常|有冇問題|運作|status))(?=.*(?:router|system|系統|gateway|功能|cron|log|sync|健康|health|狀態|運作|smart|HA|cluster|heartbeat|fallback|provider|model))/i,
     ruleId: 'Diagnostic Check → SPAWN (priority)',
-  },
-  // DIRECT_ANSWER — Yes/No/Status 查詢
-  {
-    route: 'DIRECT_ANSWER',
-    pattern: /(?:有冇|係唔係|會唔會|邊度|幾時|咩\bstatus\b|\bstatus\b|可唔可以|今日|聽日|尋日|而家|正常|運作)/i,
-    ruleId: 'AGENTS.md Rule 2',
   },
   // SPAWN — 需要探索/research/分析/評估
   // Word boundaries prevent partial matches like 'researcher' → research, 'checkbox' → check
@@ -70,6 +62,12 @@ const RULES = [
     route: 'SPAWN',
     pattern: /(?:\bresearch\b|分析|研究|深入|\bexplore\b|\bspawn\b|比較|方案|\breport\b|報告|\bcheck\b|檢查|跟進|調查|\breview\b|評估|討論|設計|架構|流程|可行性|\bsuggestion\b)/i,
     ruleId: 'AGENTS.md Rule 4',
+  },
+  // DIRECT_ANSWER — Yes/No/Status 查詢
+  {
+    route: 'DIRECT_ANSWER',
+    pattern: /(?:有冇|係唔係|會唔會|邊度|幾時|咩\bstatus\b|\bstatus\b|可唔可以|今日|聽日|尋日|而家|正常|運作)/i,
+    ruleId: 'AGENTS.md Rule 2',
   },
   // CODE — 改 code
   // Word boundaries prevent partial matches like 'decode' → code, 'postcode' → code
@@ -90,6 +88,41 @@ const RULES = [
 const DEFAULT_ROUTE = 'NONE';
 const MAX_INPUT_LENGTH = 10_000; // 10KB — reject oversized inputs to prevent ReDoS/performance issues
 
+// ─── CONTENT FALLBACK heuristics (v2.0) ────────────────────────────────────
+// Applied AFTER the regex RULES miss. Catches cases where the message has
+// strong structural signals but no keyword match — e.g. raw code paste, URL
+// with no verb, very short greetings. Order matters: first match wins.
+const CONTENT_FALLBACK_HEURISTICS = [
+  // Code-fence / code-paste detection: triple backticks OR language hints at line start
+  // Catches: ```python, ```js, `function foo()`, pasted error stacks
+  {
+    route: 'CODE',
+    test: (text) => /```[a-zA-Z0-9]*\n/.test(text) || /^(?:function|const|let|var|class|def|import|export)\s/m.test(text),
+    ruleId: 'Fallback: code-fence or code-block detected',
+  },
+  // URL-only or URL-dominant message → BROWSER (no keyword like '上網' needed)
+  // Catches: just pasting an x.com link with no Chinese verb
+  {
+    route: 'BROWSER',
+    test: (text) => /https?:\/\/\S+/.test(text) && text.replace(/https?:\/\/\S+/g, '').trim().length < 30,
+    ruleId: 'Fallback: URL-dominant message',
+  },
+  // Very short message (< 12 chars, no Chinese) with question mark → DIRECT_ANSWER
+  // Catches: "OK?", "done?", "really?"
+  {
+    route: 'DIRECT_ANSWER',
+    test: (text) => text.length < 12 && /\?$/.test(text.trim()),
+    ruleId: 'Fallback: short question',
+  },
+  // Pure error/paste (no Chinese, looks like stack trace) → CODE
+  // Catches: "TypeError: foo is not a function\n    at bar.js:42"
+  {
+    route: 'CODE',
+    test: (text) => /^[A-Z][A-Za-z]*Error: /m.test(text) || /^\s+at\s+\S+\.\w+:\d+/m.test(text),
+    ruleId: 'Fallback: stack-trace paste',
+  },
+];
+
 /**
  * Regex-based classification (~1ms).
  * @param {string} text
@@ -109,6 +142,13 @@ function regexClassify(text) {
     }
   }
 
+  // Regex miss — try CONTENT FALLBACK heuristics before giving up on NONE.
+  for (const h of CONTENT_FALLBACK_HEURISTICS) {
+    if (h.test(text)) {
+      return { route: h.route, matched: true, rule: h.ruleId };
+    }
+  }
+
   return { route: DEFAULT_ROUTE, matched: false, rule: 'AGENTS.md Rule 7 (catch-all)' };
 }
 
@@ -120,22 +160,6 @@ function regexClassify(text) {
 function classifySync(text, channel = '') {
   const result = regexClassify(text);
   logDecision(result, text, { channel });
-  // Day 4: best-effort provider/model enrichment (fail-safe, non-blocking)
-  try {
-    const p = routeModel({ text, route: String(result.route).toLowerCase(), context: { channel } });
-    if (p && typeof p.then === 'function') {
-      p.then((cfg) => {
-        if (cfg && cfg.provider) {
-          result.provider = cfg.provider;
-          result.model = cfg.model;
-        }
-      }).catch((err) => {
-        console.warn('[classifier] routeModel() failed (fail-safe):', err.message);
-      });
-    }
-  } catch (err) {
-    console.warn('[classifier] routeModel() sync fail (fail-safe):', err.message);
-  }
   return result;
 }
 
@@ -168,5 +192,6 @@ module.exports = {
   logDecision,
   regexClassify,
   RULES,
+  CONTENT_FALLBACK_HEURISTICS,
   DEFAULT_ROUTE,
 };

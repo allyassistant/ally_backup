@@ -62,7 +62,7 @@ node scripts/auto_fix.js deploy-check
 node scripts/unified_search.js "你的問題" [--top 5] [--sources wiki,memory] [--raw] [--trace]
 ```
 
-搜尋來源：Wiki (vector)、L1/L0 (semantic)、Memory (keyword)、Config (直接)、Issues (keyword)
+搜尋來源：Wiki (vector)、L1/L0 (semantic)、 Memory (keyword)、Config (直接)、Issues (keyword)
 
 ---
 
@@ -120,6 +120,59 @@ node scripts/kimi_cli_runner.js "任務描述" [--timeout 2700] [--model minimax
 # -m 可省略，default model 係 kimi-code/kimi-for-coding (Kimi-k2.6)
 # 如需指定 model: -m kimi-k2p5
 ```
+
+---
+
+## Kimi WebBridge
+
+控制 Chrome 行 Gemini 分析 YouTube 影片。
+
+**⚠️ Chrome Profile：** `~/Library/Application Support/Google/Chrome/Default`（regular profile，已含 Google 登入狀態）
+
+**Chrome Extension：** v1.10.0（`fldmhceldgbpfpkbgopacenieobmligc`）
+**Daemon：** v1.11.1 行於 `localhost:10086`
+
+```bash
+# 1. 確認連接狀態
+~/.kimi-webbridge/bin/kimi-webbridge status
+# ✅ connected → 繼續
+# ❌ disconnected → node scripts/webbridge_recover.js
+
+# 2. 開 Gemini tab
+curl -s -X POST http://127.0.0.1:10086/command \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"navigate","args":{"url":"https://gemini.google.com/","newTab":true,"group_title":"YouTube分析"},"session":"yt-gemini"}'
+
+# 3. 等 3 秒後 snapshot 搵 textbox ref
+sleep 3
+curl -s -X POST http://127.0.0.1:10086/command \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"snapshot","args":{},"session":"yt-gemini"}' > /tmp/snap.json
+
+# 4. 發送 prompt（textbox ref 如 @e9）
+curl -s -X POST http://127.0.0.1:10086/command \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"fill","args":{"selector":"@e9","value":"請分析呢條 YouTube 影片：https://youtu.be/xxx"},"session":"yt-gemini"}'
+
+# 5. 按 Enter
+curl -s -X POST http://127.0.0.1:10086/command \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"evaluate","args":{"code":"document.activeElement.dispatchEvent(new KeyboardEvent('\''keydown'\'',{key:'\''Enter'\'',bubbles:true}))"},"session":"yt-gemini"}'
+
+# 6. 等 15-20 秒後 snapshot 拎回覆
+sleep 20
+curl -s -X POST http://127.0.0.1:10086/command \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"snapshot","args":{},"session":"yt-gemini"}' > /tmp/snap2.json
+
+# 7. 完成後 close tab
+curl -s -X POST http://127.0.0.1:10086/command \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"close_session","args":{},"session":"yt-gemini"}'
+```
+
+**Recovery：** `node scripts/webbridge_recover.js`
+**Upgrade：** `~/.kimi-webbridge/bin/kimi-webbridge upgrade`
 
 ---
 

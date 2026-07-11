@@ -8378,3 +8378,774 @@
 {"ts":"2026-07-10T18:33:53.538Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"fe3fedc0-83f1-4f9c-bcc7-f87efe701326"}
 {"ts":"2026-07-10T18:33:54.748Z","event":"provider_recovery","provider":"minimax-portal"}
 {"ts":"2026-07-10T18:33:54.751Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1162,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"630ecf8e-c859-46c5-bcac-bac73f280e85"}
+{"ts":"2026-07-10T18:35:35.984Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"即使我頭先講咗包含關鍵字“再分析同檢查下有冇問題”嘅一句，但我喺WebChat入面見到都仲係用緊MiniMax M2.7回覆而唔係kimi。幫我深入檢查下點解會咁？係唔係smart router未設定","channel":""}
+{"ts":"2026-07-10T18:35:37.003Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":1018,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"e9082da8-9414-42c4-a15d-4d2ac3f8a570"}
+{"ts":"2026-07-10T18:35:37.002Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:35:51.534Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T18:35:52.714Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:35:52.714Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1179,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"032d0013-9d2e-45ba-9fa4-42c7a806eec7"}
+{"ts":"2026-07-10T18:36:16.552Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T18:36:16.589Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入檢查下仲有咩issues要跟進","channel":""}
+{"ts":"2026-07-10T18:36:16.590Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"593f91c0-6b7e-4889-9540-d55fd6e00366"}
+{"ts":"2026-07-10T18:36:16.590Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:36:17.595Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:36:17.595Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1042,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"61d30de8-5eaf-4dd5-b793-420508eaed64"}
+{"ts":"2026-07-10T18:38:56.256Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"但印象中之前未轉做kimi嘅時候好似係冇問題","channel":""}
+{"ts":"2026-07-10T18:38:57.255Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:38:57.255Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:38:57.255Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":785,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"578296ee-3b9e-45ee-9b9e-d5272d8dc8a4"}
+{"ts":"2026-07-10T18:38:57.255Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":999,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a138195c-f3d8-4cc9-9929-cd701d59a61f"}
+{"ts":"2026-07-10T18:42:57.937Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我fix","channel":""}
+{"ts":"2026-07-10T18:42:58.940Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:42:58.940Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:42:58.940Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":1003,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"4cedcdfb-dfdf-4105-b5b4-e969b3a751c1"}
+{"ts":"2026-07-10T18:42:58.940Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"minimax-portal","fallbackDepth":1,"latencyMs":689,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"89398e42-1e6c-4a33-b2b2-a5c715652e8d"}
+{"ts":"2026-07-10T18:43:54.314Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:43:54.314Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"0c67a012-3876-4fa2-a150-d47ec5360986"}
+{"ts":"2026-07-10T18:45:04.527Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T18:45:05.529Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:45:05.530Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1002,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"7908e2f4-e1ea-4114-8809-44c1684b9906"}
+{"ts":"2026-07-10T18:45:16.254Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T18:45:17.362Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:45:17.362Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1107,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"87553b87-66bf-43be-8002-3ae9ddb05d75"}
+{"ts":"2026-07-10T18:46:02.502Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:46:02.502Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"7cf76668-3f4e-4c55-84f5-8ec790414f7b"}
+{"ts":"2026-07-10T18:46:02.501Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析下smart router 修改好未","channel":""}
+{"ts":"2026-07-10T18:46:38.788Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:46:38.788Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"306fd006-1ddf-4523-bf29-f77d0798c1e4"}
+{"ts":"2026-07-10T18:46:38.787Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析下smart router 修改好未","channel":""}
+{"ts":"2026-07-10T18:46:49.883Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"06216c44-71d5-4a44-9ff3-4e627d2a9d89"}
+{"ts":"2026-07-10T18:46:49.882Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析下smart router 修改好未","channel":""}
+{"ts":"2026-07-10T18:47:53.464Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:47:53.464Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"df908793-747d-4a86-93e3-eb32f95e57f0"}
+{"ts":"2026-07-10T18:47:53.462Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析下smart router 修改好未","channel":""}
+{"ts":"2026-07-10T18:48:06.546Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析下smart router 修改好未","channel":""}
+{"ts":"2026-07-10T18:48:06.551Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":3,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"a9481119-c7ac-44c9-a16f-e2d60a6c9e7f"}
+{"ts":"2026-07-10T18:48:06.551Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:48:39.257Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"都仲係用緊MiniMax M2.7","channel":""}
+{"ts":"2026-07-10T18:48:40.261Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:48:40.261Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1004,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"53f01a19-dddf-48a0-a5ba-efffe88309b4"}
+{"ts":"2026-07-10T18:49:18.693Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:49:18.693Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"c0e99232-3e37-41ce-a31e-31631471f086"}
+{"ts":"2026-07-10T18:49:18.692Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/ai_suxiaole/status/2075425615264505958?s=61&t=XdOjn8SnOFKBwy7-eyp-1A","channel":""}
+{"ts":"2026-07-10T18:50:36.449Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"深入分析下呢篇文章有冇地方值得我地學習","channel":""}
+{"ts":"2026-07-10T18:50:37.417Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:50:37.417Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":968,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"d6c26f52-ac2a-4cf3-81d7-2da134e4b1c1"}
+{"ts":"2026-07-10T18:52:00.922Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"深入分析下smart router轉去kimi嘅時候有冇bug","channel":""}
+{"ts":"2026-07-10T18:52:01.872Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:01.872Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":950,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"bf542e80-6ea0-4ef1-b0a3-dca7497e875a"}
+{"ts":"2026-07-10T18:52:11.313Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:52:11.313Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"d789a924-18d9-4eb6-ac86-f2b2a9c78363"}
+{"ts":"2026-07-10T18:52:44.125Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"都仲係用緊MiniMax M2.7","channel":""}
+{"ts":"2026-07-10T18:52:45.097Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:45.097Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:45.097Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":972,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0243f098-8670-4398-8394-a9a2cbb13efe"}
+{"ts":"2026-07-10T18:52:45.097Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":717,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"ebd1cf65-807a-4884-97f6-3e3e64eec165"}
+{"ts":"2026-07-10T18:52:53.890Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"none","fallbackDepth":2,"latencyMs":1,"success":false,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"4989b997-8916-4fdc-b8aa-ce66e490c33c"}
+{"ts":"2026-07-10T18:52:55.057Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:55.058Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:55.058Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:55.058Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:55.058Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:55.058Z","event":"provider_failure","provider":"minimax-portal","failureCount":1,"cooldownUntil":0,"lastError":"synthetic test failure"}
+{"ts":"2026-07-10T18:52:55.058Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:55.058Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:52:55.058Z","event":"provider_failure","provider":"minimax-portal","failureCount":1,"cooldownUntil":0,"lastError":"failure 1"}
+{"ts":"2026-07-10T18:52:55.058Z","event":"provider_failure","provider":"minimax-portal","failureCount":2,"cooldownUntil":0,"lastError":"failure 2"}
+{"ts":"2026-07-10T18:52:55.059Z","event":"provider_failure","provider":"minimax-portal","failureCount":3,"cooldownUntil":1783709635059,"lastError":"failure 3"}
+{"ts":"2026-07-10T18:52:55.062Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:53:00.245Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我分析 report","channel":""}
+{"ts":"2026-07-10T18:53:00.246Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"fda4d904-8695-4dbb-ac52-5ca1c1b20ba6"}
+{"ts":"2026-07-10T18:53:00.246Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"82ba190e-b007-44b6-bd8a-e343a78062f9"}
+{"ts":"2026-07-10T18:53:00.247Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"7831bf89-2ad8-458d-b312-8ef0a55b7fdf"}
+{"ts":"2026-07-10T18:53:00.247Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"da3c2309-a804-4c7e-8b03-a292c4394d17"}
+{"ts":"2026-07-10T18:53:03.743Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T18:53:03.743Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"6c8acdc0-0ae1-4b26-a454-c5f2956fe0ff"}
+{"ts":"2026-07-10T18:55:48.104Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"故意","channel":""}
+{"ts":"2026-07-10T18:55:49.121Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:55:49.121Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":831,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c2565324-e4d8-43eb-91af-9c8bcc11db62"}
+{"ts":"2026-07-10T18:55:49.121Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T18:55:49.121Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1017,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9daf6746-836f-4388-8578-fc268185a66e"}
+{"ts":"2026-07-10T19:00:14.912Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:00:14.913Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1145,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"94934506-6a49-40eb-b06e-f6a02e30c765"}
+{"ts":"2026-07-10T19:01:53.473Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:01:53.474Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1102,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"6ed02e8f-1cc5-4271-9d91-b99aba417272"}
+{"ts":"2026-07-10T19:02:18.522Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:02:18.522Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"6e176bb9-aced-473f-9221-3587507e25a5"}
+{"ts":"2026-07-10T19:02:18.520Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"深入檢查下關唔關spawn_config.js事","channel":""}
+{"ts":"2026-07-10T19:05:09.238Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-10T19:05:10.608Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:05:10.608Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:05:10.609Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1097,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"66325dfe-4a28-4714-ab14-b9d78f38a1c1"}
+{"ts":"2026-07-10T19:05:10.608Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1370,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"22d677ab-1e68-4dc3-84e8-22b9c9f23a02"}
+{"ts":"2026-07-10T19:06:43.632Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:06:43.633Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":996,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0d9613ab-048c-426b-8fc8-f04c21c654af"}
+{"ts":"2026-07-10T19:08:18.883Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:08:18.883Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"a849fa6b-1df1-4c1c-b682-6bbc62131b21"}
+{"ts":"2026-07-10T19:08:18.881Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"我想你spawn sub agent繼續深入分析smart router依然用緊MiniMax M2.7呢個問題。","channel":""}
+{"ts":"2026-07-10T19:08:30.128Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:08:30.129Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"bca41482-54a1-4319-8ce6-5adbb204c4e4"}
+{"ts":"2026-07-10T19:09:01.065Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:09:02.064Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":999,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"37e576f4-c6d8-4964-bcb2-faf58e0bf272"}
+{"ts":"2026-07-10T19:09:02.064Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:09:07.059Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:09:07.060Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":38,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"cbec38a5-389d-4a47-ba74-c2364f7c0fd4"}
+{"ts":"2026-07-10T19:09:08.100Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1077,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f0ea337a-ce4d-4d89-a9c0-dd2dcf608864"}
+{"ts":"2026-07-10T19:09:08.100Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:09:13.959Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:09:13.996Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"分析下有冇問題","channel":""}
+{"ts":"2026-07-10T19:09:13.997Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"再分析同檢查","channel":""}
+{"ts":"2026-07-10T19:09:13.996Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:09:13.997Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:09:13.997Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"分析問題","channel":""}
+{"ts":"2026-07-10T19:09:13.997Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:09:13.997Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇問題","channel":""}
+{"ts":"2026-07-10T19:09:13.997Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"1d22ccc0-efc5-4ac5-8c78-c0fac7d21816"}
+{"ts":"2026-07-10T19:09:13.997Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"6b9d9541-0c9a-4821-9bbd-3131b408e2b0"}
+{"ts":"2026-07-10T19:09:14.972Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:09:14.973Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:09:14.973Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1013,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"24361fe9-497a-4dc2-a620-d378753d766f"}
+{"ts":"2026-07-10T19:09:14.973Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:09:14.973Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":977,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"750ff79a-9e2c-48be-9666-ef9164f388b2"}
+{"ts":"2026-07-10T19:09:14.973Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:09:14.973Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":976,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"aec8e2e2-a563-4395-9467-93fbf8a46752"}
+{"ts":"2026-07-10T19:09:14.973Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":977,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"079c4b46-a22e-45a4-bd41-07c086c39520"}
+{"ts":"2026-07-10T19:09:21.110Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:09:21.147Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:09:21.147Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"再分析同檢查下","channel":""}
+{"ts":"2026-07-10T19:09:21.147Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:09:21.147Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:09:21.147Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"eac99176-c8d8-4a6f-a125-90168c598492"}
+{"ts":"2026-07-10T19:09:22.255Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:09:22.255Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:09:22.255Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:09:22.256Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1109,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"3ab0ef99-5ddb-4e64-9d0c-1bbc39661474"}
+{"ts":"2026-07-10T19:09:22.256Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1108,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"cf5385dd-ac93-4711-bb14-6e898b9581a1"}
+{"ts":"2026-07-10T19:09:22.255Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1145,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f7a30a2d-d37c-4941-a40d-55aa6e74cf03"}
+{"ts":"2026-07-10T19:13:22.238Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:13:22.274Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"分析一下代碼","channel":""}
+{"ts":"2026-07-10T19:13:22.274Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇咩問題","channel":""}
+{"ts":"2026-07-10T19:13:22.274Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入研究","channel":""}
+{"ts":"2026-07-10T19:13:22.274Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"hello","channel":""}
+{"ts":"2026-07-10T19:13:22.274Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"hi there","channel":""}
+{"ts":"2026-07-10T19:13:22.274Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check下咩情況","channel":""}
+{"ts":"2026-07-10T19:13:22.275Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:13:22.275Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:13:22.275Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"cc9ddf0a-c9a2-4f57-8ef6-51ec4e9200f5"}
+{"ts":"2026-07-10T19:13:22.275Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"23470559-12cc-4939-8624-2b01854999cb"}
+{"ts":"2026-07-10T19:13:22.275Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:13:22.275Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"bdbc7e33-69ab-4a59-8803-f93df4cc4237"}
+{"ts":"2026-07-10T19:13:23.413Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:13:23.413Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:13:23.413Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:13:23.413Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1139,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a7cd938f-1a23-4fb6-97ea-9779ee049a34"}
+{"ts":"2026-07-10T19:13:23.413Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1139,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0c392f08-7066-4d2f-9735-ea09e17735dc"}
+{"ts":"2026-07-10T19:13:23.413Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1175,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"e3c70b8b-c772-4c86-8a8f-85107b7b1131"}
+{"ts":"2026-07-10T19:13:23.413Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:13:23.413Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1139,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"daf47c76-c24e-4821-871c-824b76d587e0"}
+{"ts":"2026-07-10T19:13:56.461Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:13:56.497Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"分析一下代碼","channel":""}
+{"ts":"2026-07-10T19:13:56.498Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇咩問題","channel":""}
+{"ts":"2026-07-10T19:13:56.498Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check下咩情況","channel":""}
+{"ts":"2026-07-10T19:13:56.498Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"hello","channel":""}
+{"ts":"2026-07-10T19:13:56.499Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:13:56.498Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入研究","channel":""}
+{"ts":"2026-07-10T19:13:56.499Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:13:56.499Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:13:56.499Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b7695648-182f-4b3f-bbeb-57f5eaf81c51"}
+{"ts":"2026-07-10T19:13:56.499Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"755e0c78-fb3c-4d40-a450-af5b25198416"}
+{"ts":"2026-07-10T19:13:56.499Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"74f71d0a-ef75-44ee-8cd3-c63c663aadb7"}
+{"ts":"2026-07-10T19:13:57.475Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:13:57.475Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:13:57.475Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:13:57.476Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":978,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"34e02373-3065-4308-beef-a1ac87bc9b65"}
+{"ts":"2026-07-10T19:13:57.476Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":978,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a9cd2d3f-1c96-4916-ad84-04ad7602a7b7"}
+{"ts":"2026-07-10T19:13:57.476Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1014,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"4b21e303-cc4d-484b-9627-bc2271bae0ae"}
+{"ts":"2026-07-10T19:14:06.622Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:14:06.624Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1124,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"af84b3bd-9c38-4637-8063-1f7106997cc1"}
+{"ts":"2026-07-10T19:15:21.164Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:15:21.202Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇bug","channel":""}
+{"ts":"2026-07-10T19:15:21.203Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"分析一下","channel":""}
+{"ts":"2026-07-10T19:15:21.202Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"分析下有冇問題","channel":""}
+{"ts":"2026-07-10T19:15:21.202Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇咩問題","channel":""}
+{"ts":"2026-07-10T19:15:21.203Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check下代碼","channel":""}
+{"ts":"2026-07-10T19:15:21.203Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:15:21.203Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"45705899-fcad-48c5-a89c-c4233a928c2d"}
+{"ts":"2026-07-10T19:15:21.203Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"6b08ddfe-85fa-4eb8-bfcf-701abf3ea224"}
+{"ts":"2026-07-10T19:15:21.203Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:15:22.351Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:15:22.351Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:15:22.351Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:15:22.351Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1149,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"47d042d1-ff91-4848-97a4-e2956aeff327"}
+{"ts":"2026-07-10T19:15:22.351Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1186,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"335d2fc1-49ce-4d11-a213-e651f293fb10"}
+{"ts":"2026-07-10T19:15:22.351Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:15:22.351Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1149,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"575ecda3-9d80-4230-81fd-dc3bfa3a64b8"}
+{"ts":"2026-07-10T19:15:22.351Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1149,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"606e6307-5e04-4bdc-8961-f76b4b9f0456"}
+{"ts":"2026-07-10T19:15:34.268Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"檢查下","channel":""}
+{"ts":"2026-07-10T19:15:34.271Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查router","channel":""}
+{"ts":"2026-07-10T19:15:34.272Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:15:34.271Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"檢查下問題","channel":""}
+{"ts":"2026-07-10T19:15:34.272Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:15:34.271Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"深入檢查","channel":""}
+{"ts":"2026-07-10T19:15:34.272Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:15:34.272Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:15:34.272Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":4,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"f99be6e9-212b-4dd7-8eaf-d3220ed609ce"}
+{"ts":"2026-07-10T19:15:34.272Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"ceac7518-c627-4fc3-a056-2337c6f379ca"}
+{"ts":"2026-07-10T19:15:34.272Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"68013461-2868-41c3-a2ed-4e1247cf74bb"}
+{"ts":"2026-07-10T19:15:34.272Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"04d38d3f-e67f-45b9-88a0-6c14c53ca4d4"}
+{"ts":"2026-07-10T19:20:25.524Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:20:25.527Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇bug","channel":""}
+{"ts":"2026-07-10T19:20:25.560Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"研究下有冇","channel":""}
+{"ts":"2026-07-10T19:20:25.560Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check下代碼","channel":""}
+{"ts":"2026-07-10T19:20:25.560Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"分析下有冇問題","channel":""}
+{"ts":"2026-07-10T19:20:25.560Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"分析一下","channel":""}
+{"ts":"2026-07-10T19:20:25.560Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇咩問題","channel":""}
+{"ts":"2026-07-10T19:20:25.560Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我研究下","channel":""}
+{"ts":"2026-07-10T19:20:25.560Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check下問題","channel":""}
+{"ts":"2026-07-10T19:20:25.561Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:20:25.561Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:20:25.561Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:20:25.561Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:20:25.561Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:20:25.561Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:20:25.561Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":36,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"7af3cca1-a891-477b-807b-65599250c84e"}
+{"ts":"2026-07-10T19:20:25.561Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"4c1b9937-8c6b-42c7-add5-5e0e6fec031a"}
+{"ts":"2026-07-10T19:20:25.561Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b1b1a6fb-fc8d-49ed-b7a4-d1fb52108d57"}
+{"ts":"2026-07-10T19:20:25.561Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"0efda94d-fdc2-46d9-bc48-3a5592db3608"}
+{"ts":"2026-07-10T19:20:25.561Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"5512b278-3d24-44dc-82fd-a295b103c50f"}
+{"ts":"2026-07-10T19:20:25.561Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:20:25.561Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"860cc9e2-7b5d-4f1f-9344-e2f8e8b0d8f8"}
+{"ts":"2026-07-10T19:20:25.561Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"302d6f68-dd11-4567-9ea3-828336d6f4a3"}
+{"ts":"2026-07-10T19:20:26.546Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1019,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"45ad7fb9-96ab-4652-9bc8-a75b7da24b10"}
+{"ts":"2026-07-10T19:20:26.546Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:20:26.546Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":986,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"3b296da3-9ea0-4dfb-9f73-feafaafdc39a"}
+{"ts":"2026-07-10T19:20:26.546Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:20:42.307Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:20:42.310Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:20:42.310Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:20:42.310Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"c91130f8-4020-4af2-b939-824f65a93d6a"}
+{"ts":"2026-07-10T19:20:42.310Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"7f0620f8-87b6-4415-9b77-9accf3fe8b0b"}
+{"ts":"2026-07-10T19:21:14.293Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:21:14.296Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:21:14.296Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":3,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"8ef08e16-5680-4c17-bd8b-47450e6fb241"}
+{"ts":"2026-07-10T19:21:55.951Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally?","channel":""}
+{"ts":"2026-07-10T19:21:56.842Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:21:56.843Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":892,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8d6ce27d-4afd-4a6c-b4c5-8b1ca9807acb"}
+{"ts":"2026-07-10T19:22:35.096Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:22:35.096Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":287,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"5e564f0f-9006-493f-a147-a81f13942800"}
+{"ts":"2026-07-10T19:23:12.971Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:23:12.971Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"7e4ee075-f348-4be3-a29a-edd6ff833384"}
+{"ts":"2026-07-10T19:23:12.969Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析下smart router","channel":""}
+{"ts":"2026-07-10T19:23:13.237Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b55734e5-b521-4e0c-aae2-7ba97bab4afe"}
+{"ts":"2026-07-10T19:23:40.951Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析下smart router","channel":""}
+{"ts":"2026-07-10T19:23:40.954Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":3,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"3e2752a9-ebbd-453e-badd-6f185fecc25c"}
+{"ts":"2026-07-10T19:23:40.954Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:23:50.038Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:23:50.039Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"14f3b0d3-f3ac-4bba-a74c-c2642bae4741"}
+{"ts":"2026-07-10T19:28:19.886Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:28:19.886Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"33c45179-b08b-4a16-a8a4-e3b3fd3a91c1"}
+{"ts":"2026-07-10T19:28:19.884Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我fix發現到嘅問題","channel":""}
+{"ts":"2026-07-10T19:28:20.188Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"3d6c8f55-4170-447c-b7a9-d0f14e513002"}
+{"ts":"2026-07-10T19:28:39.831Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"4bba273b-b143-49b7-ac20-7223ca817ba8"}
+{"ts":"2026-07-10T19:30:11.989Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查router","channel":""}
+{"ts":"2026-07-10T19:30:11.992Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"驗證system","channel":""}
+{"ts":"2026-07-10T19:30:11.992Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"診斷gateway","channel":""}
+{"ts":"2026-07-10T19:30:11.992Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"分析router","channel":""}
+{"ts":"2026-07-10T19:30:11.993Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"router問題","channel":""}
+{"ts":"2026-07-10T19:30:11.992Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"研究下有冇","channel":""}
+{"ts":"2026-07-10T19:30:12.031Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇bug","channel":""}
+{"ts":"2026-07-10T19:30:11.992Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"深入檢查health","channel":""}
+{"ts":"2026-07-10T19:30:12.031Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:30:12.032Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:30:12.032Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:30:12.031Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:30:12.032Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:30:12.032Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-10T19:30:12.032Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":42,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"61867b9c-9a80-474c-8db6-e2ae01d69f78"}
+{"ts":"2026-07-10T19:30:12.032Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":40,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"822ba5c3-1091-407e-be57-8052eae5d972"}
+{"ts":"2026-07-10T19:30:12.032Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":40,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"50c48cbc-1e03-4366-b38f-1ef6c8ad4ef6"}
+{"ts":"2026-07-10T19:30:12.032Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":40,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"070430a3-5456-48f2-ba66-84a135da08b7"}
+{"ts":"2026-07-10T19:30:12.032Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":40,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"963fc137-9caa-441e-964c-8b2dd63050cf"}
+{"ts":"2026-07-10T19:30:12.032Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":40,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"7b9f0465-e803-4a15-a4fc-8175d6147455"}
+{"ts":"2026-07-10T19:30:13.054Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:30:13.054Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:30:13.054Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1061,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"bece2911-0358-43dd-b933-ec89ec1e79f5"}
+{"ts":"2026-07-10T19:30:13.054Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1023,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"78996948-d1db-4dab-ab64-6f1b51da09b6"}
+{"ts":"2026-07-10T19:30:45.500Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"再分析同檢查下有冇問題","channel":""}
+{"ts":"2026-07-10T19:30:45.506Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析下smart router","channel":""}
+{"ts":"2026-07-10T19:30:45.507Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"分析一下代碼","channel":""}
+{"ts":"2026-07-10T19:30:45.506Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇bug","channel":""}
+{"ts":"2026-07-10T19:32:08.503Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"我記得之前除咗spawn 之外，連main session都仲識得自動强制切換DeepSeek 同埋 MiniMax。但而家好似唔識","channel":""}
+{"ts":"2026-07-10T19:32:09.447Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:32:09.447Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:32:09.448Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":944,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"64464b28-0754-4022-bc88-501682c3e5e4"}
+{"ts":"2026-07-10T19:32:09.448Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":709,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"ec8a9c4a-53ac-44b1-a7ae-a397c001ba94"}
+{"ts":"2026-07-10T19:35:09.376Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"幫我深入分析下smart router 係唔係真係已經完美運作","channel":""}
+{"ts":"2026-07-10T19:35:10.368Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:35:10.368Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":992,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0009a40e-04de-4b46-9c51-7b75e91812e1"}
+{"ts":"2026-07-10T19:35:22.895Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:35:22.898Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":999,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"9a1035c1-5af9-4c9b-8331-3e49816d2645"}
+{"ts":"2026-07-10T19:37:01.260Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我分析 report","channel":""}
+{"ts":"2026-07-10T19:37:01.262Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"15f230ba-5274-44b3-9d83-c1b25fa2cfec"}
+{"ts":"2026-07-10T19:37:01.263Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"61dc8881-029a-46b7-8e80-2e00348f7d50"}
+{"ts":"2026-07-10T19:37:01.263Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"32931a00-5e6c-4333-96c8-361755cb5113"}
+{"ts":"2026-07-10T19:37:44.816Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"a6ac5a87-a0fe-40c5-900e-0f706e4aedb6"}
+{"ts":"2026-07-10T19:37:44.817Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8f536718-dc1f-42e2-bddb-18d11d2f798e"}
+{"ts":"2026-07-10T19:37:44.817Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"53250fda-a54c-4994-84fb-49bbad68af8c"}
+{"ts":"2026-07-10T19:37:44.817Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"4aad9a8a-9041-4b55-a791-e9de29192b28"}
+{"ts":"2026-07-10T19:37:44.817Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"a39d1f49-c919-4fbd-9db1-2a233399ac22"}
+{"ts":"2026-07-10T19:37:44.817Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"7fa85560-a3e2-4922-963f-8091233c7e5d"}
+{"ts":"2026-07-10T19:37:44.817Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"332f03cb-d8b7-43ac-a428-1a536994fbc4"}
+{"ts":"2026-07-10T19:37:44.817Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"5df451f4-51b7-47ed-911d-7aedcd0bad13"}
+{"ts":"2026-07-10T19:39:49.338Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"將呢4個測試檔刪除","channel":""}
+{"ts":"2026-07-10T19:39:50.291Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:39:50.291Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":953,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0ed7f2e9-829a-46b3-bdc7-8c5c648ca43b"}
+{"ts":"2026-07-10T19:39:50.291Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-10T19:39:50.291Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":655,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"7919af90-eeff-461d-b941-96857c3fe48c"}
+{"ts":"2026-07-10T19:40:06.902Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"6db9eeac-3ffa-4ab5-923a-33ab2d0b2361"}
+{"ts":"2026-07-11T03:48:10.037Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T03:48:10.038Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b622b105-10ab-4b78-b6db-f22e045548a0"}
+{"ts":"2026-07-11T03:48:10.036Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"幫我深入檢查下smart router係點運作","channel":""}
+{"ts":"2026-07-11T03:48:25.502Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T03:48:25.503Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"ee91c4f0-78c8-4a78-a47d-a5635e00101f"}
+{"ts":"2026-07-11T03:56:22.154Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T03:56:22.154Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"c226e960-af17-40e5-8476-80f292efa887"}
+{"ts":"2026-07-11T03:56:22.152Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"Spawn MiniMax M3 sub agent 確認P0至P2問題，然後再修復","channel":""}
+{"ts":"2026-07-11T03:56:22.327Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"bc6380ab-8136-4d43-8f45-0d2482beee1c"}
+{"ts":"2026-07-11T04:01:15.007Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally？","channel":""}
+{"ts":"2026-07-11T04:01:16.088Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:01:16.088Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:01:16.088Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1081,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"2dfa708c-aa9d-4813-8b65-a60336615df9"}
+{"ts":"2026-07-11T04:01:16.088Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":909,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"6bee1d47-ff50-4c22-84bd-2fd21b9fddbf"}
+{"ts":"2026-07-11T04:02:17.613Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T04:02:17.613Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"1106093b-93f1-46f3-bc53-92f9803c5ef2"}
+{"ts":"2026-07-11T04:02:17.612Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"因為我頭先當我講完“Spawn MiniMax M3 sub agent 確認P0至P2問題，然後再修復”之後，出現“The AI service is temporarily overloaded.","channel":""}
+{"ts":"2026-07-11T04:02:17.771Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"07b4ddb8-38c2-4666-8096-85550f0add52"}
+{"ts":"2026-07-11T04:02:47.154Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:02:47.157Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":998,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"34e68914-e097-499b-b011-deaa1413abfd"}
+{"ts":"2026-07-11T04:03:55.259Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"頭先出現The AI service is temporarily overloaded. Please try again in a moment.係咩事？","channel":""}
+{"ts":"2026-07-11T04:03:56.265Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:03:56.266Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1006,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"b689a7cd-befd-4ed4-98be-97c68243b985"}
+{"ts":"2026-07-11T04:07:02.710Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T04:07:02.711Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"74aa5f00-b56a-4ccb-ae66-8b7068c51e87"}
+{"ts":"2026-07-11T04:07:13.566Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T04:07:13.566Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"d729ff6f-3e27-4f0c-af10-7db764aaefb4"}
+{"ts":"2026-07-11T04:12:03.599Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"當中Smart router有冇強制轉換模型嘅能力","channel":""}
+{"ts":"2026-07-11T04:12:04.683Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:12:04.683Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1084,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"3d111b28-9f8c-479b-9069-fb011a3d78ac"}
+{"ts":"2026-07-11T04:13:50.506Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"深入檢查下代碼有冇bug。同上下游嘅配合正唔正常","channel":""}
+{"ts":"2026-07-11T04:13:51.869Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:13:51.869Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1363,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c53bdefc-832e-4b85-a759-f9b8ad1268d2"}
+{"ts":"2026-07-11T04:14:03.454Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:14:03.456Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1089,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"f6e74bd5-4e72-4331-acc7-fdb7305f48c8"}
+{"ts":"2026-07-11T04:15:38.812Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"check x.com link","channel":""}
+{"ts":"2026-07-11T04:15:38.817Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/foo/bar","channel":""}
+{"ts":"2026-07-11T04:15:38.817Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"查看 x link","channel":""}
+{"ts":"2026-07-11T04:15:38.817Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"send the email","channel":""}
+{"ts":"2026-07-11T04:15:38.817Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"research the topic","channel":""}
+{"ts":"2026-07-11T04:15:38.817Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"pick up the chick","channel":""}
+{"ts":"2026-07-11T04:15:38.817Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"email the team","channel":""}
+{"ts":"2026-07-11T04:15:38.818Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"audit the system","channel":""}
+{"ts":"2026-07-11T04:15:38.818Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"implement this feature","channel":""}
+{"ts":"2026-07-11T04:15:38.818Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check cron job","channel":""}
+{"ts":"2026-07-11T04:15:38.818Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check the router 系統","channel":""}
+{"ts":"2026-07-11T04:15:38.818Z","route":"NONE","matched":false,"rule":"invalid_input","textPreview":"","channel":""}
+{"ts":"2026-07-11T04:15:38.818Z","route":"CODE","matched":true,"rule":"Fallback: stack-trace paste","textPreview":"TypeError: x is not a fn","channel":""}
+{"ts":"2026-07-11T04:15:38.818Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"fix the bug","channel":""}
+{"ts":"2026-07-11T04:15:38.818Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"about 100 research papers","channel":""}
+{"ts":"2026-07-11T04:15:38.818Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Quick! look at the design","channel":""}
+{"ts":"2026-07-11T04:16:05.536Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"fix this critical bug","channel":""}
+{"ts":"2026-07-11T04:16:05.579Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"research this design","channel":""}
+{"ts":"2026-07-11T04:16:05.621Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check status now","channel":""}
+{"ts":"2026-07-11T04:16:11.002Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"research this","channel":""}
+{"ts":"2026-07-11T04:16:11.008Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"research this","channel":""}
+{"ts":"2026-07-11T04:16:11.008Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"research this","channel":""}
+{"ts":"2026-07-11T04:16:16.467Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"research this","channel":""}
+{"ts":"2026-07-11T04:16:52.463Z","route":"FDQ","matched":true,"rule":"AGENTS.md Rule 1","textPreview":"搞個 test plan","channel":""}
+{"ts":"2026-07-11T04:16:52.468Z","route":"FDQ","matched":true,"rule":"AGENTS.md Rule 1","textPreview":"幫我搞個 backup","channel":""}
+{"ts":"2026-07-11T04:17:52.233Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"正常嗎","channel":""}
+{"ts":"2026-07-11T04:17:52.238Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"status of system","channel":""}
+{"ts":"2026-07-11T04:17:52.238Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"audit cron job","channel":""}
+{"ts":"2026-07-11T04:17:52.238Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"trace the bug","channel":""}
+{"ts":"2026-07-11T04:17:52.238Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check status","channel":""}
+{"ts":"2026-07-11T04:17:52.238Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"router 正常","channel":""}
+{"ts":"2026-07-11T04:18:01.703Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"router 正常嗎","channel":""}
+{"ts":"2026-07-11T04:18:01.708Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"check router status","channel":""}
+{"ts":"2026-07-11T04:23:11.388Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"spawn Kimi sub agent 確認問題係唔係真實存在，然後再fix","channel":""}
+{"ts":"2026-07-11T04:23:12.393Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:23:12.393Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:23:12.394Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1005,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"1fe54522-681d-4df3-a38d-023b73ecdb2d"}
+{"ts":"2026-07-11T04:23:12.394Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":828,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f91984b4-4277-4ad8-87df-9495d9b99bc1"}
+{"ts":"2026-07-11T04:23:20.926Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T04:23:20.927Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"2452827b-1023-4d38-b6c5-3e0b26946660"}
+{"ts":"2026-07-11T04:24:58.082Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"router 正常嗎","channel":""}
+{"ts":"2026-07-11T04:24:58.087Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查 router","channel":""}
+{"ts":"2026-07-11T04:24:58.087Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"正常運作","channel":""}
+{"ts":"2026-07-11T04:27:59.573Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"點解頭先出現\"LLM request timed out. The model did not produce a response before the model idle timeout. Pl","channel":""}
+{"ts":"2026-07-11T04:28:00.482Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:28:00.482Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:28:00.482Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":909,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a354c417-0a56-499b-8d7b-9190ddd6a302"}
+{"ts":"2026-07-11T04:28:00.482Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":702,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0a72cd47-5eaa-4109-8364-28af6718e94f"}
+{"ts":"2026-07-11T04:29:30.633Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"檢查下而家timeoutSeconds係幾多","channel":""}
+{"ts":"2026-07-11T04:29:31.791Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:29:31.791Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:29:31.791Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1158,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"3d571ab8-79db-4518-8f48-2d9de2b1070b"}
+{"ts":"2026-07-11T04:29:31.791Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":988,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"22fadbdd-ca6c-4dde-8957-b02aa792bac4"}
+{"ts":"2026-07-11T04:31:27.365Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T04:31:27.365Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"9de4a6fd-acfe-4f6f-8c40-ecacc7096ba2"}
+{"ts":"2026-07-11T04:31:27.364Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"你幫我改","channel":""}
+{"ts":"2026-07-11T04:31:27.532Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"52a301c7-04b5-4b81-b6d1-9ca6a512c09b"}
+{"ts":"2026-07-11T04:33:50.150Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:33:50.151Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1375,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"2f533fdc-356f-44f0-88b7-70dbe3737a61"}
+{"ts":"2026-07-11T04:34:38.894Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"我想知道如果工作量大過5分鐘會唔會強制cut？","channel":""}
+{"ts":"2026-07-11T04:36:40.928Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-11T04:36:42.212Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:36:42.213Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1040,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"afef031a-294a-4bda-9fa6-42afb40bf6a0"}
+{"ts":"2026-07-11T04:37:18.829Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"我想知道如果工作量大過5分鐘會唔會做緊嘢嘅時候強制停？","channel":""}
+{"ts":"2026-07-11T04:38:32.432Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"我想知道如果工作量大過5分鐘會唔會做緊嘢嘅時候強制停？","channel":""}
+{"ts":"2026-07-11T04:38:33.638Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:38:33.638Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":966,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"ff5c5578-2d9f-4d6a-80cf-2e0847064d94"}
+{"ts":"2026-07-11T04:39:38.372Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"keep住5分鐘試下","channel":""}
+{"ts":"2026-07-11T04:47:02.976Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally？","channel":""}
+{"ts":"2026-07-11T04:47:04.249Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:47:04.250Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1083,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"26536148-c4d8-4fa2-a3d1-e55d72b204a9"}
+{"ts":"2026-07-11T04:47:44.365Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"點解我同你講嘢要double message你先應？係唔係有咩問題","channel":""}
+{"ts":"2026-07-11T04:47:45.955Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:47:45.955Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1414,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f00036b1-3d86-4e77-83fc-cf86e06055c9"}
+{"ts":"2026-07-11T04:48:57.575Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"係A。 Message ID:1525360898783318056","channel":""}
+{"ts":"2026-07-11T04:48:58.877Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T04:48:58.877Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1122,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"03135886-fb7a-4395-a125-6f1de10c1790"}
+{"ts":"2026-07-11T05:01:01.765Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"ally","channel":""}
+{"ts":"2026-07-11T05:01:03.371Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:01:03.371Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1387,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"318a25c5-af23-41c7-806f-dd0b2b6b66f8"}
+{"ts":"2026-07-11T05:01:40.152Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"係A。 Message ID:1525360898783318056","channel":""}
+{"ts":"2026-07-11T05:01:41.406Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:01:41.406Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1081,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c280510d-722b-49ca-911d-142e2b2d197e"}
+{"ts":"2026-07-11T05:03:34.756Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"而家Spawn sub-agent 查 Discord plugin 有冇 queue/drop 相關設定","channel":""}
+{"ts":"2026-07-11T05:03:34.985Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T05:03:34.985Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"3b074d59-78e9-473a-b708-cfdddecf404f"}
+{"ts":"2026-07-11T05:08:04.010Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-11T05:08:05.257Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:08:05.258Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1067,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"3018bc16-e718-4b66-a828-7d2a20a12dd6"}
+{"ts":"2026-07-11T05:08:31.120Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T05:08:31.121Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"2b373c83-43ad-4670-bc9c-f99c399ed28e"}
+{"ts":"2026-07-11T05:18:39.741Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"set咗之後有咩好處同壞處","channel":""}
+{"ts":"2026-07-11T05:18:40.924Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:18:40.924Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":978,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a70c0963-cea0-4486-9ad2-942206b500ee"}
+{"ts":"2026-07-11T05:19:52.544Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家預設值係幾多？","channel":""}
+{"ts":"2026-07-11T05:19:53.842Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:19:53.843Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1122,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"49b0b111-a6ab-486d-822a-ebd61662a548"}
+{"ts":"2026-07-11T05:21:29.814Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"調查下1525360898783318056 消失的問題 有冇可能係因為smart router食咗？","channel":""}
+{"ts":"2026-07-11T05:21:30.017Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T05:21:30.017Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"1f353323-9fc2-4ef2-9391-ce2e4ef666fb"}
+{"ts":"2026-07-11T05:23:52.115Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"OK。我知道咩原因就得","channel":""}
+{"ts":"2026-07-11T05:23:53.431Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:23:53.431Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1119,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"986e0a91-2482-4277-a040-169e5437382f"}
+{"ts":"2026-07-11T05:32:05.711Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查下Message ID 1525366955593171006 \"The AI service is temporarily overloaded. Please try again in a m","channel":""}
+{"ts":"2026-07-11T05:32:05.913Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T05:32:05.913Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"a509a70f-ad83-4955-b471-74215acbf8f4"}
+{"ts":"2026-07-11T05:36:46.896Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"點解會spawn完Kimi sub-agent，然後佢又spawn MiniMax-M3 做 audit？","channel":""}
+{"ts":"2026-07-11T05:36:47.082Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T05:36:47.082Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"2076c5ee-b1d9-4939-b64f-b4b4340a309b"}
+{"ts":"2026-07-11T05:37:45.979Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"明白","channel":""}
+{"ts":"2026-07-11T05:37:47.138Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:37:47.138Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":958,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"62d3d33b-1df4-4688-b68d-e3eaa4092255"}
+{"ts":"2026-07-11T05:39:07.459Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"關於smart router有強制用模型嘅能力，我想你講多啲","channel":""}
+{"ts":"2026-07-11T05:39:08.595Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:39:08.596Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":960,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"33d31e81-2873-4c4e-bd2c-be5b7984989d"}
+{"ts":"2026-07-11T05:46:03.437Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"關於Layer 2係唔係仲有DeepSeek喺到 #### Layer 2：route_model.yaml Provider Mapping\nSPAWN:\n  primary: minimax-po","channel":""}
+{"ts":"2026-07-11T05:49:53.779Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"仔細檢查下仲有冇DeepSeek喺到。或者係唔係因為比其他地方誤導咗？","channel":""}
+{"ts":"2026-07-11T05:49:53.956Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T05:49:53.956Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"0de8c464-f393-4126-b19c-10c5ce657d0a"}
+{"ts":"2026-07-11T05:52:35.656Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T05:52:35.657Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"c9945490-6be3-43a3-8337-fe3ae885b813"}
+{"ts":"2026-07-11T05:52:36.836Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:52:36.839Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1130,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"788f1748-268a-46d1-9bbb-690dee4627fe"}
+{"ts":"2026-07-11T05:52:37.992Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:52:37.995Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1067,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"860ea5bd-1c77-4547-8ae1-fcefc3e8fa28"}
+{"ts":"2026-07-11T05:54:11.013Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"即係OpenClaw model config仲有DeepSeek？","channel":""}
+{"ts":"2026-07-11T05:54:12.203Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:54:12.203Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1014,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"576653c5-6dfe-436c-b0b4-c01a77da8754"}
+{"ts":"2026-07-11T05:55:34.256Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"Fallback入面有冇DeepSeek？","channel":""}
+{"ts":"2026-07-11T05:55:35.467Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:55:35.467Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1024,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"7e093503-a84f-4a5f-83a5-3b244b5a3e9a"}
+{"ts":"2026-07-11T05:56:23.409Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"咁如果係OpenClaw model config入面有冇DeepSeek fallback？","channel":""}
+{"ts":"2026-07-11T05:56:24.637Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T05:56:24.637Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1050,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c98158eb-cc51-4975-b15e-86ce4d12474b"}
+{"ts":"2026-07-11T06:01:05.725Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"咁OpenClaw provider 仲有咩LLM","channel":""}
+{"ts":"2026-07-11T06:01:06.854Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:01:06.854Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":956,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8c8546ee-2c07-48d7-9b51-e7173f3b3616"}
+{"ts":"2026-07-11T06:02:15.750Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"minimax → M2.5 可以移除","channel":""}
+{"ts":"2026-07-11T06:02:16.875Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:02:16.875Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":930,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"bc2813fb-cdb8-4d84-9fa2-6cfddbb5d1c3"}
+{"ts":"2026-07-11T06:03:54.020Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"測試下移除咗minimax provider（M2.5）之後，OpenClaw運作正唔正常。有冇影響到其他provider","channel":""}
+{"ts":"2026-07-11T06:03:54.386Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T06:03:54.386Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"1234f1c5-9831-4280-931b-295961ca583d"}
+{"ts":"2026-07-11T06:05:23.285Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"目前 providers入面有moonshot。係唔係用緊？","channel":""}
+{"ts":"2026-07-11T06:05:24.817Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:05:24.817Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1340,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"4c9c2035-b3bf-4729-ba9d-71156c318248"}
+{"ts":"2026-07-11T06:06:28.071Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"移除","channel":""}
+{"ts":"2026-07-11T06:09:41.548Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"先確認移除providers入面嘅moonshot唔會影響到kimi嘅運作","channel":""}
+{"ts":"2026-07-11T06:09:41.687Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T06:09:41.687Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"1deccf9a-4676-421f-9646-7e7642505b52"}
+{"ts":"2026-07-11T06:12:02.371Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"咁幫我移除providers入面嘅moonshot","channel":""}
+{"ts":"2026-07-11T06:12:03.569Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:12:03.569Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1061,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"90864a1e-5405-4c43-9801-579d430488b1"}
+{"ts":"2026-07-11T06:13:20.722Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"實際測試下Kimi而家有冇正常運作","channel":""}
+{"ts":"2026-07-11T06:13:21.061Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T06:13:21.061Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"7b22698e-6ad5-4cb3-acc7-2feeca0e6960"}
+{"ts":"2026-07-11T06:13:28.364Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T06:13:28.364Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"333afe55-d735-42f8-9836-b8a69c8b3886"}
+{"ts":"2026-07-11T06:19:11.841Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"結果如何？","channel":""}
+{"ts":"2026-07-11T06:19:12.996Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:19:12.996Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1017,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"42f55b6d-eea2-4f75-9033-41f1ec2e5b96"}
+{"ts":"2026-07-11T06:19:47.715Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"點解你冇主動同我講？係唔係spawn完冇yeild","channel":""}
+{"ts":"2026-07-11T06:19:47.855Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"9d76d9a1-8f4c-48b4-8986-7ab6a133b510"}
+{"ts":"2026-07-11T06:19:47.855Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T06:20:53.055Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"點解你會唔記得？係唔係有地方寫得唔夠好","channel":""}
+{"ts":"2026-07-11T06:21:49.988Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"係agent.md定soul.md","channel":""}
+{"ts":"2026-07-11T06:21:51.209Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:21:51.210Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1082,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9d332fc7-7eef-4b8c-995d-2417054dc3af"}
+{"ts":"2026-07-11T06:24:37.986Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"需唔需要寫埋每次spawn完要主動yield","channel":""}
+{"ts":"2026-07-11T06:26:20.126Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"係更新咗邊到嘅內容？","channel":""}
+{"ts":"2026-07-11T06:26:21.231Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:26:21.232Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":949,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"ec4ea675-4a47-45d2-83d7-f38873ced52f"}
+{"ts":"2026-07-11T06:27:19.370Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"檢查下有冇寫錯咗入soul.md","channel":""}
+{"ts":"2026-07-11T06:29:15.563Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"深入檢查下smart router嘅plugin 同hook有冇正常運作","channel":""}
+{"ts":"2026-07-11T06:30:18.956Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T06:30:18.957Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"696a8c05-b8a0-4fbf-80ae-7c91b4875da3"}
+{"ts":"2026-07-11T06:30:18.994Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T06:30:18.995Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":39,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"d11a566a-6a5a-4de5-ac6a-aadb19715ffa"}
+{"ts":"2026-07-11T06:30:20.111Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:30:20.111Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:30:20.111Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1156,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"46195caa-571c-467d-ac46-14e464e6b0dc"}
+{"ts":"2026-07-11T06:30:20.111Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1117,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b0cc70d2-27f5-4a58-a951-54e31fb0651f"}
+{"ts":"2026-07-11T06:30:20.111Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:30:20.111Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:30:20.113Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1156,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"3fc81148-e793-43be-bcd2-2c600354f1ca"}
+{"ts":"2026-07-11T06:30:20.113Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1158,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"dd84771b-3bd1-4214-a783-870d2b9e1760"}
+{"ts":"2026-07-11T06:30:27.746Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"spawn sub-agent to analyze code","channel":""}
+{"ts":"2026-07-11T06:30:27.751Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"what is the weather today","channel":""}
+{"ts":"2026-07-11T06:30:27.751Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"random conversation","channel":""}
+{"ts":"2026-07-11T06:30:27.751Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"fix the bug in stock_updater.js","channel":""}
+{"ts":"2026-07-11T06:30:27.751Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"open browser and check x.com","channel":""}
+{"ts":"2026-07-11T06:37:03.087Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"仲做緊定係又冇yield","channel":""}
+{"ts":"2026-07-11T06:37:04.254Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:37:04.254Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1035,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8458703b-0279-4ab9-938a-62e5e13ae6cc"}
+{"ts":"2026-07-11T06:39:21.841Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"我以為你又唔記得yield，要我講：仲做緊定係又冇yield\n\n你先有反應","channel":""}
+{"ts":"2026-07-11T06:39:22.963Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:39:22.963Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":989,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"031f034c-44dd-445b-ab45-92dd0b43a859"}
+{"ts":"2026-07-11T06:41:15.500Z","route":"FDQ","matched":true,"rule":"AGENTS.md Rule 1","textPreview":"我唔知道你係唔係completion 咗","channel":""}
+{"ts":"2026-07-11T06:41:17.233Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:41:17.233Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1601,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"4a106816-e546-43af-8bc2-2f022d654206"}
+{"ts":"2026-07-11T06:43:50.845Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇可能喺completion event之後你都會識得主動睇返對上一次有冇講緊啲咩話題/內容","channel":""}
+{"ts":"2026-07-11T06:43:52.152Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T06:43:52.152Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1117,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"43d7c83a-044e-4087-9751-a1e06dcb30a9"}
+{"ts":"2026-07-11T08:12:09.018Z","route":"BROWSER","matched":true,"rule":"Fallback: URL-dominant message","textPreview":"https://youtu.be/loZy-QCMK-s?si=xB74MxCpLK9WeKRn","channel":""}
+{"ts":"2026-07-11T08:17:38.923Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"我想你測試下Kimi WebBridge","channel":""}
+{"ts":"2026-07-11T08:17:40.023Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":974,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"ac0ba9ef-6c3e-417e-a17c-5de76c2f11ea"}
+{"ts":"2026-07-11T08:17:40.023Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T09:55:32.434Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"可唔可以注明當用WebBridge嘅時候係用邊個chrome profile","channel":""}
+{"ts":"2026-07-11T09:55:33.619Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T09:55:33.620Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1005,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f0b6fad2-26ed-4375-8346-8fe736cc611f"}
+{"ts":"2026-07-11T09:57:57.730Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Regular chrome profile","channel":""}
+{"ts":"2026-07-11T09:57:58.893Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T09:57:58.894Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1045,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9cdd28cc-990d-49bf-95e3-62748ffb8986"}
+{"ts":"2026-07-11T10:01:55.464Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Channel topic邊段","channel":""}
+{"ts":"2026-07-11T10:01:56.689Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:01:56.689Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1100,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"846b9b92-691b-4d84-94b5-e8ef783993fb"}
+{"ts":"2026-07-11T10:03:11.238Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"要改Channel description邊句","channel":""}
+{"ts":"2026-07-11T10:04:49.504Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"我加咗。你睇睇","channel":""}
+{"ts":"2026-07-11T10:04:50.773Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:04:50.774Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1115,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"872c72b1-b916-4130-b104-bff1066f730a"}
+{"ts":"2026-07-11T10:06:38.337Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"Please update Kimi WebBridge for me using this command: kimi-webbridge upgrade","channel":""}
+{"ts":"2026-07-11T10:06:38.494Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"168bf68c-4206-455e-a1ab-eaf45c9bd6f0"}
+{"ts":"2026-07-11T10:06:38.494Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T10:13:02.611Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家試下","channel":""}
+{"ts":"2026-07-11T10:13:04.134Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:13:04.135Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1359,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"7eeb57a8-bd76-4dc7-b65c-3f67fa2290fb"}
+{"ts":"2026-07-11T10:13:43.772Z","route":"BROWSER","matched":true,"rule":"Fallback: URL-dominant message","textPreview":"https://youtu.be/loZy-QCMK-s?si=-PrCo46B2osuUU9q","channel":""}
+{"ts":"2026-07-11T10:14:56.085Z","route":"BROWSER","matched":true,"rule":"Fallback: URL-dominant message","textPreview":"https://youtu.be/loZy-QCMK-s?si=-PrCo46B2osuUU9q","channel":""}
+{"ts":"2026-07-11T10:25:17.575Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"Agents.md或者tools.md有冇提及WebBridge點用","channel":""}
+{"ts":"2026-07-11T10:25:18.672Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:25:18.673Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":965,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9f05c09b-29d1-439d-bfaa-b8821e45a8ab"}
+{"ts":"2026-07-11T10:26:17.850Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/pandaming88/status/2075746428790657310?s=61&t=XdOjn8SnOFKBwy7-eyp-1A","channel":""}
+{"ts":"2026-07-11T10:27:09.653Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我加埋","channel":""}
+{"ts":"2026-07-11T10:27:10.872Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:27:10.872Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1091,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"32103516-9268-4207-903b-c4db81f9d671"}
+{"ts":"2026-07-11T10:30:12.845Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Tools.md入面有冇關於分析&總結x links","channel":""}
+{"ts":"2026-07-11T10:30:48.300Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"唔需要住","channel":""}
+{"ts":"2026-07-11T10:30:49.511Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:30:49.512Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1080,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"5ab34ed8-5366-4f19-b172-ff7fadc69dcc"}
+{"ts":"2026-07-11T10:31:18.522Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/yunbiyun/status/2075590937317921196?s=61&t=XdOjn8SnOFKBwy7-eyp-1A","channel":""}
+{"ts":"2026-07-11T10:33:22.115Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"點解你會重覆推送咗？","channel":""}
+{"ts":"2026-07-11T10:33:23.188Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:33:23.188Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":951,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f270d0ad-f71d-4e68-91ba-60231f272e23"}
+{"ts":"2026-07-11T10:35:41.977Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Message ID: 1525449754840928418，1525449757546385449，1525449788177256458，1525449791029379132","channel":""}
+{"ts":"2026-07-11T10:35:43.114Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1013,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"15f68752-cdaf-4f0f-819b-4dcc600bc7be"}
+{"ts":"2026-07-11T10:35:43.113Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:37:34.603Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"係唔係因為有地方寫得唔夠清晰？","channel":""}
+{"ts":"2026-07-11T10:38:39.665Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"如果我想加入埋，以下呢兩句。應該加喺邊？\n- 用 `message action=send` 去另一個 channel 之後 → 必須 `NO_REPLY`\n- 同一個 channel 直接 repl","channel":""}
+{"ts":"2026-07-11T10:38:40.853Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:38:40.853Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1060,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8cb2171e-7ba7-47a8-afca-2885849d4eb3"}
+{"ts":"2026-07-11T10:43:05.558Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"我改咗。你睇下清唔清晰","channel":""}
+{"ts":"2026-07-11T10:43:05.687Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T10:43:05.687Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"39f55dc2-da59-4f6b-a357-e2b5f24ab27e"}
+{"ts":"2026-07-11T10:47:14.179Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"保持而家咁夠唔夠","channel":""}
+{"ts":"2026-07-11T10:47:15.258Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T10:47:15.259Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":951,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a83651eb-b597-4452-9a81-386b911bbdd2"}
+{"ts":"2026-07-11T11:11:51.600Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/zjp1997720/status/2075783236257755196?s=46","channel":""}
+{"ts":"2026-07-11T11:13:29.230Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/saccc_c/status/2075553941270741235?s=46","channel":""}
+{"ts":"2026-07-11T11:15:30.921Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/xilo2991/status/2075798409085133176?s=46","channel":""}
+{"ts":"2026-07-11T11:17:32.516Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇寫入obsidian？","channel":""}
+{"ts":"2026-07-11T11:18:11.588Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"channel topic 洗唔洗寫埋要寫入obsidian","channel":""}
+{"ts":"2026-07-11T11:20:18.206Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家channel topic 字數 到咗限制。 你先幫我睇下應該點改","channel":""}
+{"ts":"2026-07-11T11:20:19.267Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T11:20:19.267Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":934,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c9ebfb90-e012-4072-b88c-3c01e930fc59"}
+{"ts":"2026-07-11T11:25:04.097Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"寫多個詳細版比我揀","channel":""}
+{"ts":"2026-07-11T11:29:40.699Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"我改好咗，你檢查下睇下覺得點","channel":""}
+{"ts":"2026-07-11T11:29:40.818Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T11:29:40.819Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b67b6530-8994-439c-beee-dd3a6ed4c2d7"}
+{"ts":"2026-07-11T11:32:15.929Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"你再睇多次discord channel topic","channel":""}
+{"ts":"2026-07-11T11:32:17.041Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T11:32:17.042Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":980,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"061764c6-90dd-4927-a7db-54baf9dd5828"}
+{"ts":"2026-07-11T11:34:23.949Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"我改好咗","channel":""}
+{"ts":"2026-07-11T11:34:24.075Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T11:34:24.076Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"bb04884f-e1c3-41d6-911e-792c4e290b1f"}
+{"ts":"2026-07-11T11:36:34.492Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"我再改咗少少","channel":""}
+{"ts":"2026-07-11T11:36:34.621Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T11:36:34.621Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"581334cf-c77a-42ea-90ff-eb20eb38e1c6"}
+{"ts":"2026-07-11T11:37:42.498Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"學習 專用\n知識吸收·文章分享·學習筆記·研究話題\n\nBrowser 開 X link：\n- Chrome (profile: \"openclaw\")，client-side render\n- 流程：","channel":""}
+{"ts":"2026-07-11T12:24:28.411Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"點解我好似感覺唔到smart router有正常運作 （冇強制切換模型）","channel":""}
+{"ts":"2026-07-11T12:24:28.608Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T12:24:28.608Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"11ce1067-6281-435c-bc71-c4a5e312345a"}
+{"ts":"2026-07-11T12:35:19.185Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally？","channel":""}
+{"ts":"2026-07-11T12:35:20.411Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T12:35:20.412Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1084,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"32a40134-8b5a-4b01-9a87-02329c53d2c7"}
+{"ts":"2026-07-11T12:36:08.173Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"點解你冇將分析結果send去Discord？我淨係喺WebChat見到","channel":""}
+{"ts":"2026-07-11T12:37:32.319Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"先確認 再 修復","channel":""}
+{"ts":"2026-07-11T12:37:32.456Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T12:37:32.456Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"7db1ede3-ecbd-4588-a684-26c14783eade"}
+{"ts":"2026-07-11T12:41:36.249Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"先檢查下之前我地係點set？曾經係正常","channel":""}
+{"ts":"2026-07-11T12:41:36.378Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T12:41:36.378Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"4163bc88-3754-4715-a5dc-68de1e8f39eb"}
+{"ts":"2026-07-11T12:55:36.948Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"test message","channel":""}
+{"ts":"2026-07-11T12:55:59.505Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"test message","channel":""}
+{"ts":"2026-07-11T12:56:08.656Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"test message","channel":""}
+{"ts":"2026-07-11T12:56:20.861Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"test message","channel":""}
+{"ts":"2026-07-11T12:57:16.944Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"test message from openclaw","channel":""}
+{"ts":"2026-07-11T12:57:36.633Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"hello","channel":""}
+{"ts":"2026-07-11T13:27:28.036Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"試咗A work唔work先","channel":""}
+{"ts":"2026-07-11T13:27:29.558Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T13:27:29.559Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1389,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"fa3a02ac-aa06-49f4-8a4c-8f59f3b16b6e"}
+{"ts":"2026-07-11T13:30:19.595Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T13:30:19.595Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":236,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"3e140cb3-bbd6-49bc-8d6c-2df0324e2ef4"}
+{"ts":"2026-07-11T13:37:31.260Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"試咗A work唔work先","channel":""}
+{"ts":"2026-07-11T13:37:48.116Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"試咗A work唔work先","channel":""}
+{"ts":"2026-07-11T13:37:48.121Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"點解你冇將分析結果send去Discord","channel":""}
+{"ts":"2026-07-11T13:37:48.121Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"派 sub agent 去 check","channel":""}
+{"ts":"2026-07-11T13:39:22.633Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我check下呢個file幾時改","channel":""}
+{"ts":"2026-07-11T13:39:22.809Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T13:39:22.809Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"b56f4069-a9ac-4169-b60d-703f0fc519d7"}
+{"ts":"2026-07-11T13:42:09.168Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T13:42:09.169Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":2,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"179f3852-2df3-437f-b265-cc78e6e87b0a"}
+{"ts":"2026-07-11T13:43:05.050Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T13:43:05.052Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1110,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"37e6d79c-baa7-47e9-8195-06657b6bd932"}
+{"ts":"2026-07-11T13:49:12.825Z","route":"DIRECT_ANSWER","matched":true,"rule":"Fallback: short question","textPreview":"Ally?","channel":""}
+{"ts":"2026-07-11T13:49:14.134Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T13:49:14.135Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1042,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"23367327-5807-4a83-b78d-03a4d4303595"}
+{"ts":"2026-07-11T13:49:56.286Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"最後你有咩結論？","channel":""}
+{"ts":"2026-07-11T13:50:04.658Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"最後你有咩結論？","channel":""}
+{"ts":"2026-07-11T13:50:43.671Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"最後你有咩結論？","channel":""}
+{"ts":"2026-07-11T13:51:04.111Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"最後你有咩結論？","channel":""}
+{"ts":"2026-07-11T13:51:57.301Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"最後你有咩結論？","channel":""}
+{"ts":"2026-07-11T14:00:05.877Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析呢個 report","channel":""}
+{"ts":"2026-07-11T14:00:19.850Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析呢個 report","channel":""}
+{"ts":"2026-07-11T14:00:19.852Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"分析 report","channel":""}
+{"ts":"2026-07-11T14:00:30.531Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析呢個 report","channel":""}
+{"ts":"2026-07-11T14:00:44.460Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析呢個 report","channel":""}
+{"ts":"2026-07-11T14:09:01.913Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"幫我深入分析 OpenClaw smart router 點運作","channel":""}
+{"ts":"2026-07-11T14:09:11.521Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T14:09:11.522Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"3ccd2262-9019-4b7d-a027-7a1ff734bc86"}
+{"ts":"2026-07-11T14:09:25.821Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"[Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requeste","channel":""}
+{"ts":"2026-07-11T14:11:51.129Z","route":"NONE","matched":false,"rule":"input_too_long","textPreview":"[Inter-session message] sourceSession=agent:main:subagent:72b60547-097d-42ec-bfdd-64cfb89febcd sourc","channel":""}
+{"ts":"2026-07-11T14:17:00.840Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-11 22:08:09 GMT+8] WhatsApp gateway connected as +85292544036.\n\nRead HEARTBEAT.md i","channel":""}
+{"ts":"2026-07-11T14:18:04.229Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我深入分析 OpenClaw 嘅 routing 機制","channel":""}
+{"ts":"2026-07-11T14:19:02.592Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我改呢段 code: function add(a,b) { return a + b; }","channel":""}
+{"ts":"2026-07-11T14:22:56.714Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"我應該修復好咗smart router，你可以測試下","channel":""}
+{"ts":"2026-07-11T14:22:56.852Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T14:22:56.853Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"87130333-e8c6-4ed6-835a-b88a269511f6"}
+{"ts":"2026-07-11T14:26:10.657Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"唔係 plugin reload 問題，亦唔係單純 TTL 問題。                                                                   ","channel":""}
+{"ts":"2026-07-11T14:26:10.756Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"a381aa9b-4707-4ba5-ba5f-8462909ffb01"}
+{"ts":"2026-07-11T14:26:10.756Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T14:33:54.820Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"我想你檢查下呢部Mac mini入面嘅app “CuaDriver”，佢係用嚟做咩？","channel":""}
+{"ts":"2026-07-11T14:33:54.878Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"e531fb35-ab7b-41e6-8587-384b1445901b"}
+{"ts":"2026-07-11T14:33:54.878Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T14:35:32.366Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"徹底移除佢","channel":""}
+{"ts":"2026-07-11T14:35:33.432Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T14:35:33.433Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1015,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"28ab70f7-bfd1-4a52-b6f8-8f751ae17d0d"}
+{"ts":"2026-07-11T14:38:04.038Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我分析下 OpenClaw routing","channel":""}
+{"ts":"2026-07-11T14:39:23.085Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我分析下 OpenClaw routing","channel":""}
+{"ts":"2026-07-11T14:39:23.087Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我分析下 OpenClaw routing","channel":""}
+{"ts":"2026-07-11T14:41:02.335Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我改呢段 code","channel":""}
+{"ts":"2026-07-11T14:45:00.074Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我改呢段 code","channel":""}
+{"ts":"2026-07-11T14:47:00.842Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-11 22:44:29 GMT+8] WhatsApp gateway connected as +85292544036.\n\nRead HEARTBEAT.md i","channel":""}
+{"ts":"2026-07-11T14:48:53.150Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T14:48:53.150Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"測試多次smart router 喺修復完之後 係唔係正常運作","channel":""}
+{"ts":"2026-07-11T14:48:53.151Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"39e8b36a-2e06-42d5-a8cd-1b2b58988ad3"}
+{"ts":"2026-07-11T14:48:53.319Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"測試多次smart router 喺修復完之後 係唔係正常運作","channel":""}
+{"ts":"2026-07-11T14:49:24.511Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我 check 呢個 file","channel":""}
+{"ts":"2026-07-11T14:49:24.516Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"spawn sub agent 分析","channel":""}
+{"ts":"2026-07-11T14:49:24.516Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"點解你冇 send 去 Discord","channel":""}
+{"ts":"2026-07-11T14:49:24.517Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"一般閒聊","channel":""}
+{"ts":"2026-07-11T14:49:24.517Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"呢個係咪 bug","channel":""}
+{"ts":"2026-07-11T14:49:24.517Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"open browser 睇下","channel":""}
+{"ts":"2026-07-11T14:49:24.603Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T14:49:24.604Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T14:49:24.604Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":36,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"f412af59-8f1c-45b5-8467-00ef83a7eca3"}
+{"ts":"2026-07-11T14:49:24.604Z","route":"code","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"579c38a3-f84c-478e-9270-bc00882cd10a"}
+{"ts":"2026-07-11T14:49:24.604Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":1,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"4557f473-de8f-4e3b-b566-ee868d90cacc"}
+{"ts":"2026-07-11T14:49:24.604Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-11T14:49:25.567Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T14:49:25.567Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T14:49:25.567Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T14:49:25.567Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T14:49:25.567Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":964,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"363fdbe0-841e-465b-a7df-ef495fd51b5a"}
+{"ts":"2026-07-11T14:49:25.567Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":998,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"e982f2f0-3af1-4498-89e0-e0de00c3cd94"}
+{"ts":"2026-07-11T14:49:25.567Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":964,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9384670e-b539-4ee1-add4-d532828d5406"}
+{"ts":"2026-07-11T14:49:25.567Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T14:49:25.567Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":964,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"3deba606-8b3c-49fb-9020-4963f34f1e02"}
+{"ts":"2026-07-11T14:49:25.567Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":964,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"d318d113-a00d-4a09-a98d-6e059ad5bad7"}
+{"ts":"2026-07-11T14:50:33.750Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我 check file","channel":""}
+{"ts":"2026-07-11T14:50:33.755Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"點解你冇 send","channel":""}
+{"ts":"2026-07-11T14:50:33.755Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"spawn sub agent","channel":""}
+{"ts":"2026-07-11T14:50:33.756Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"呢個係咪 bug","channel":""}
+{"ts":"2026-07-11T14:50:33.756Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"open browser","channel":""}
+{"ts":"2026-07-11T14:50:33.756Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"一般閒聊","channel":""}
+{"ts":"2026-07-11T14:50:42.621Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"點解你冇 send","channel":""}
+{"ts":"2026-07-11T14:50:56.771Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"點解你冇 send","channel":""}
+{"ts":"2026-07-11T14:50:56.776Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"點樣你冇 send","channel":""}
+{"ts":"2026-07-11T14:50:56.776Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"為何你冇 send","channel":""}
+{"ts":"2026-07-11T14:50:56.776Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"怎麼你冇 send","channel":""}
+{"ts":"2026-07-11T14:50:56.776Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"為什麼你冇 send","channel":""}
+{"ts":"2026-07-11T14:52:19.786Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"順手修復埋FDQ classifier 加入廣東話question words","channel":""}
+{"ts":"2026-07-11T14:53:25.307Z","route":"FDQ","matched":true,"rule":"AGENTS.md Rule 1","textPreview":"點解你冇 send 去 Discord","channel":""}
+{"ts":"2026-07-11T14:53:25.312Z","route":"FDQ","matched":true,"rule":"AGENTS.md Rule 1","textPreview":"為咩要咁做","channel":""}
+{"ts":"2026-07-11T14:53:25.312Z","route":"FDQ","matched":true,"rule":"AGENTS.md Rule 1","textPreview":"點解我冇收到 notification","channel":""}
+{"ts":"2026-07-11T14:53:25.312Z","route":"FDQ","matched":true,"rule":"AGENTS.md Rule 1","textPreview":"為何你冇發送","channel":""}
+{"ts":"2026-07-11T14:53:25.312Z","route":"FDQ","matched":true,"rule":"AGENTS.md Rule 1","textPreview":"點樣先可以做到","channel":""}
+{"ts":"2026-07-11T14:53:25.312Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"呢個係咪 bug","channel":""}
+{"ts":"2026-07-11T14:53:25.313Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"一般閒聊","channel":""}
+{"ts":"2026-07-11T14:53:25.312Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我 check file","channel":""}
+{"ts":"2026-07-11T14:53:25.312Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"幾時正常的","channel":""}
+{"ts":"2026-07-11T14:54:26.707Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"FDQ 係邊個模型負責","channel":""}
+{"ts":"2026-07-11T14:54:27.829Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T14:54:27.829Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1121,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"4571f783-8ac1-4716-9289-f2f09e90a9e1"}
+{"ts":"2026-07-11T14:54:27.987Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"FDQ 係邊個模型負責","channel":""}
+{"ts":"2026-07-11T14:54:41.990Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T14:54:41.992Z","route":"fdq","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1177,"success":true,"costEstimate":0.2,"schemaVersion":"1.0","decisionId":"717beae1-77f2-4ed9-b017-70eec83e09c0"}
+{"ts":"2026-07-11T14:55:48.926Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"暫時比M2.7負責","channel":""}
+{"ts":"2026-07-11T14:55:49.887Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-11T14:55:49.888Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":962,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"d7bad33e-b9e7-43bd-9c86-c076290acfe0"}
+{"ts":"2026-07-11T14:55:50.023Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"暫時比M2.7負責","channel":""}
+{"ts":"2026-07-11T15:17:00.760Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
