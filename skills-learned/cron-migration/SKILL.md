@@ -6,6 +6,7 @@ source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-13T15:31:01.228Z
 disable-model-invocation: true
+activation: manual
 activationReason: "cron kind swap agentTurn->command can silently fail if LLM dependency mis-classified"
 ---
 

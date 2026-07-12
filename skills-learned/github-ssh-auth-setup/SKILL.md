@@ -1,6 +1,6 @@
 ---
 name: github-ssh-auth-setup
-description: Set up SSH public key authentication for GitHub push operations, covering agent lifecycle, GitHub web UI key addition, and connectivity verification.
+description: "Set up SSH public key authentication for GitHub push operations with full agent lifecycle. Use when: SSH auth fails for push, public key not registered, HTTPS credential blocks push. Key capabilities: ssh-agent lifecycle, GitHub web UI key add, connectivity verification."
 status: active
 source: skill-reviewer
 provenance: agent

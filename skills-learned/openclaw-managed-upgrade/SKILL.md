@@ -6,6 +6,7 @@ source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-12T02:07:36.138Z
 disable-model-invocation: true
+activation: manual
 activationReason: "irreversible (gateway restart, can break all plugins) + cross-system impact"
 ---
 

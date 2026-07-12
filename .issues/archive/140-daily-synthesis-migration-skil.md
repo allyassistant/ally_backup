@@ -1,11 +1,11 @@
 ---
 id: 140
 title: Daily Synthesis Migration + Skill Automation Next Steps
-status: active
+status: archive
 priority: P1
 created: 2026-06-08
 due: 2026-06-15
-updated: 2026-06-08
+updated: 2026-07-12
 progress: 2/10
 ---
 

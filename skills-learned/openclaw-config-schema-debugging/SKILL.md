@@ -1,6 +1,6 @@
 ---
 name: openclaw-config-schema-debugging
-description: Workflow for diagnosing and working around OpenClaw's strict JSON schema config validation — including additionalProperties:false traps, env var alternatives, and dist JS file patching
+description: "Diagnose and work around OpenClaw's strict JSON schema config validation traps including additionalProperties:false blocks. Use when: config rejected by schema, additionalProperties:false blocks new field, env var workaround needed. Key capabilities: schema error trace, env var alternatives, dist JS patching."
 status: active
 source: skill-reviewer
 provenance: agent

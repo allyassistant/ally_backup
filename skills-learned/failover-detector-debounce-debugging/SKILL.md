@@ -1,6 +1,6 @@
 ---
 name: failover-detector-debounce-debugging
-description: Diagnose and fix failover detector debounce bugs where offline notifications stop sending — the status file write uses CURRENT_STATUS instead of NOTIFY_STATUS after the debounce filter, preventing state transitions.
+description: "Diagnose and fix failover detector debounce bugs that block offline notifications from sending after state transitions. Use when: offline alerts stop firing, status transitions fail silently, debounce filter misapplies status. Key capabilities: state transition trace, debounce filter audit, CURRENT_STATUS vs NOTIFY_STATUS fix."
 status: active
 source: skill-reviewer
 provenance: agent

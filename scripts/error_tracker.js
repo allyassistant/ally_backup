@@ -36,6 +36,7 @@ const CONFIG = {
 //   Severity 1 → 7 天後 auto-resolve
 //   Severity 2 → 14 天後 auto-resolve
 //   Severity 3 → 30 天後 auto-resolve
+//   Severity 4 → 30 天後 auto-resolve（同 severity 3）
 // Severity 1 (🔴) 核心錯誤默認不resolve，但如有 days 設定則遵守
 
 const AUTO_RESOLVE_RULES = {
@@ -69,6 +70,7 @@ const AUTO_RESOLVE_RULES = {
   'Timeout Error': { resolve: true, days: 30 },
   'Type Error': { resolve: true, days: 30 },
   'Cron Timeout': { resolve: true, days: 30 },
+  'Cron Error': { resolve: true, days: 14, notify: true },
 };
 
 // ==================== COMPREHENSIVE ERROR PATTERNS ====================
@@ -147,9 +149,35 @@ function loadErrors() {
   }
 }
 
-async function saveErrors(data) {
-  const tmpFile = ERRORS_JSON + '.tmp';
+const LOCK_FILE = ERRORS_JSON + '.lock';
+const LOCK_TIMEOUT_MS = 10000; // 10 seconds max wait
+
+// Simple file lock using lock file
+async function acquireLock() {
+  const startTime = Date.now();
+  while (fs.existsSync(LOCK_FILE)) {
+    if (Date.now() - startTime > LOCK_TIMEOUT_MS) {
+      throw new Error('Timeout waiting for errors.json lock');
+    }
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  fs.writeFileSync(LOCK_FILE, JSON.stringify({ pid: process.pid, time: Date.now() }), 'utf8');
+}
+
+function releaseLock() {
   try {
+    if (fs.existsSync(LOCK_FILE)) {
+      fs.unlinkSync(LOCK_FILE);
+    }
+  } catch (err) {
+    console.error('⚠️ Failed to release lock:', err.message);
+  }
+}
+
+async function saveErrors(data) {
+  await acquireLock();
+  try {
+    const tmpFile = ERRORS_JSON + '.tmp';
     if (!data.metadata) data.metadata = {};
     data.metadata.lastUpdated = new Date().toISOString();
     data.metadata.totalErrors = data.errors.length;
@@ -268,6 +296,8 @@ async function saveErrors(data) {
         fs.unlinkSync(tmpFile);
       }
     } catch (_) { /* ignore cleanup errors */ }
+  } finally {
+    releaseLock();
   }
 }
 
@@ -516,17 +546,23 @@ async function addError(error) {
   const data = loadErrors();
   const today = getHKTDate();
 
-  // Check for duplicate by title + problem (more accurate)
-  const problemKey = (error.problem || '').slice(0, 30);
+  // Check for duplicate by title + problem hash (cross-day dedup)
+  const problemKey = (error.problem || '').slice(0, 50);
+  const errorHash = `${error.title}-${problemKey}`;
+  
+  // Look for existing error within last 7 days (not just today)
+  const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
   const existing = data.errors.find(e =>
-    e.date === today &&
+    !e.resolved &&
+    new Date(e.timestamp).getTime() > sevenDaysAgo &&
     e.title === error.title &&
-    e.problem?.slice(0, 30) === problemKey
+    (e.problem || '').slice(0, 50) === problemKey
   );
 
   if (existing) {
     existing.count = (existing.count || 1) + 1;
-    log(`⚠️ Duplicate, count: ${existing.count}`);
+    existing.lastSeen = new Date().toISOString();
+    log(`⚠️ Duplicate (cross-day), count: ${existing.count}`);
   } else {
     data.errors.unshift({
       id: generateId(),
@@ -584,6 +620,9 @@ async function autoResolve() {
     // 檢查日子
     const daysOld = getDaysDiff(error.timestamp);
     const thresholdDays = rule.days || 1;
+
+    // Severity 4 視為 Severity 3 處理
+    const effectiveSeverity = error.severity === 4 ? 3 : error.severity;
 
     if (daysOld >= thresholdDays) {
       // 標記為已resolve

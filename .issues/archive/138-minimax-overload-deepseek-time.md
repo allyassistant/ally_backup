@@ -5,8 +5,8 @@ status: archive
 priority: P1
 created: 2026-06-07
 due: 2026-06-14
-updated: 2026-06-21
-progress: 25/25
+updated: 2026-07-12
+progress: 22/25
 ---
 
 ## TL;DR
@@ -197,88 +197,3 @@ Self-audit checklist 亦加咗 3 項檢查：
 3. **Provider failure 唔同** — MiniMax = overload（等恢復），deepseek = timeout（split context / add retry）
 4. **加大 timeout 唔等於 fix** — 19:31 externalAbort: true, timedOut: false 證明
 5. **Cron 同 route-enforcer 完全獨立** — source code confirm：「if trigger=cron return」
-
----
-
-## 📈 觀察期結果（6/14 - 6/21，7 日）
-
-### Cron 健康度（28 jobs + 1 per-min + 1 weekly）
-
-| Job | 觀察前 fail rate | 觀察期 fail rate | 結論 |
-|-----|------------------|------------------|------|
-| **Skill Reviewer (30min)** | 50% (6/7 evening) | **0%** (52/52 runs ✅) | 🟢 完滿解決 |
-| **CQM System Check (10:00)** | 3連 fail 6/7 | **0%** (7/7 days ✅) | 🟢 |
-| **AI HOT 推送 (12:00)** | fail 6/7 | **0%** (7/7 days ✅) | 🟢 |
-| **Mini-Curator → Daily Maint (05:00)** | Type B timeout | **0%** (7/7 ✅) | 🟢 thin executor 成功 |
-| **其他 24 jobs** | 0% | 0% | 🟢 |
-
-### 觀察結論
-
-**✅ PASS（7d rate ≤ target AND 0 critical regression）：**
-- 28 jobs × 7 日 = ~196 runs，**零 provider overload/timeout failure**
-- Skill Reviewer 30min × 7 日 = 52 runs（計 shadow mode 後）全部成功
-- Type A pattern（self-contained bot + thin executor）成功根治 cron 嘅 provider dependency
-- Provider overload 由 104 次 (6/7) → 0 次 (6/14-6/21)，-100%
-
-### 🆕 觀察期發現（**新 issue 處理**）
-
-| 問題 | 影響 | 處理 |
-|------|------|------|
-| `anomaly_monitor.js` script 缺失 | Anomaly Monitor cron (#13) 連續 fail（最後 5h 前）| 開新 issue |
-| Skill Reviewer shadow mode cursor 卡住 (line 244 自 6/20 19:31 冇郁) | queue 處理速度可能減慢 | 觀察（影響低）|
-
-### 待決定項目決議（2026-06-21）
-
-- [x] ~~Evaluate local ollama/qwen3:14b 做 3rd fallback~~ — **不採納**。零 fail 持續 7 日，唔值得加成本。
-- [x] ~~Skill Reviewer 頻率 30min→60min 減少 provider contention~~ — **不採納**。30min 頻率下 7 日 0 fail，frequency 唔係問題。
-- [x] ~~是否要聯絡 MiniMax / deepseek support~~ — **不採納**。Type A pattern 已徹底隔離 provider 問題。
-
----
-
-## 🏁 Closing Criteria 評估（2026-06-21）
-
-```
-✅ PASS: 7d rate ≤ target AND 0 critical regression
-🟡 PARTIAL: 7d rate 50%-target → 延 7 日
-🟠 NEEDS MORE: 7d rate > 50% → 執行 fallback 方案
-🔴 REGRESSION: 7d rate 上升 OR P0 bug → 即時 rollback
-```
-
-**✅ PASS** — Issue 138 觀察期結束，0/196 runs fail，close + 開 follow-up 處理 anomaly_monitor.js bug。
-
----
-
-## 📚 Outcome（2026-06-21）
-
-### 解決咗咩
-
-1. **Provider reliability 完全隔離** — Type A pattern (self-contained bot + thin executor) 將 26 個 cron jobs 從 provider failure 中救出嚟。
-2. **Skill Reviewer 從 50% fail → 0% fail**（6/7 → 6/14-6/21）。
-3. **Mini-Curator / Daily Maintenance 改做 thin executor**，剔除 agent-induced timeout。
-4. **Route-enforcer × cron 完全無影響**（5/5 source-code confirmation），cron 唔經 plugin routing。
-5. **replyToMode: off** — Discord auto-quote 熄咗，channel noise 減少。
-
-### 學到咩
-
-1. **Type A vs Type B cron pattern** — Type B (cron agent + 自己 LLM) 將 provider failure 放大；Type A (cron agent + script 自己 LLM) 完全隔離。
-2. **加大 timeout 唔 work** — `externalAbort: true, timedOut: false` 證明係 provider cancel，唔係我哋 timeout。
-3. **Provider overload 自然恢復模式** — 3 連 fail 後自然 OK，但唔好依賴（用 Type A pattern 避開）。
-4. **Multi-provider fallback 唔係 root cause fix** — 係 workaround。真正 fix 係 thin executor pattern。
-
-### Follow-up
-
-- **新 issue** — `anomaly_monitor.js` 缺失導致 cron fail（已開）
-- **繼續監察** — Skill Reviewer cursor 卡住 (line 244 6/20 起冇郁)，可能需要清 queue
-
-### 唔需要再做（Do-Not-Redo）
-
-- ❌ 加大 cron timeout（實證冇用）
-- ❌ 聯絡 provider support（Type A pattern 已隔離問題）
-- ❌ ollama/qwen3 3rd fallback（零 fail，無必要）
-- ❌ Skill Reviewer 30min → 60min（frequency 唔係問題）
-- ❌ Route-enforcer cron 影響（已證實無）
-
-### 計入 Memory
-
-- Type A vs Type B cron pattern → `memory/YYYY-MM-DD-HHMM.md`（下次 session bootstrap 自動讀）
-- `MEMORY.md` 加一行：「Cron reliability = thin executor pattern (Type A)，never rely on provider fallback for cron jobs」

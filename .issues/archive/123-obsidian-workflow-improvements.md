@@ -5,7 +5,7 @@ status: archive
 priority: P2
 created: 2026-05-31
 due: 2026-06-08
-updated: 2026-06-22
+updated: 2026-07-12
 progress: 6/6 + observation (7 days)
 ---
 

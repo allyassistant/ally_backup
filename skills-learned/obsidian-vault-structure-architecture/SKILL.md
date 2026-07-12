@@ -1,6 +1,6 @@
 ---
 name: obsidian-vault-structure-architecture
-description: "Organize an Obsidian vault into three layers: Knowledge (categories), 03-Output (timeline), and MOCs (topic navigation)."
+description: "Organize an Obsidian vault into three layers: Knowledge (categories), 03-Output (timeline), and MOCs (topic navigation). Use when: setting up a new vault, restructuring notes across categories, or adding MOC topic maps. Key capabilities: 3-layer taxonomy, knowledge/timeline/topic navigation, MOC linking, category-based filing."
 status: active
 source: skill-reviewer
 provenance: agent

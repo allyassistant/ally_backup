@@ -5,6 +5,8 @@ status: active
 source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-10T15:03:42.199Z
+activation: manual
+activationReason: "archives/quarantines skills — destructive cleanup, not for auto-invocation"
 ---
 
 ## Workflow

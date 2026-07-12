@@ -6,6 +6,7 @@ source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-11T15:33:40.785Z
 disable-model-invocation: true
+activation: manual
 activationReason: "batch cron model swap affects 19+ jobs"
 ---
 

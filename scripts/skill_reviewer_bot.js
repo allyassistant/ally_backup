@@ -959,6 +959,8 @@ async function writeSkillFiles(blocks) {
   // Tier='draft' (strict) — same composite 2-of-3 stub signals the post-write
   // gate uses, so the two checks can no longer diverge.
   var { validateSkillContent } = require('./validate_skill_file');
+
+
   var PRE_WRITE_STUB_SIZE_MIN = CONFIG.PRE_WRITE_STUB_SIZE_MIN;   // bytes — refuse to write <1500B SKILL.md (BUG-04 fix)
   for (var i = 0; i < blocks.length; i++) {
     var block = blocks[i];
@@ -1909,6 +1911,21 @@ async function runFollowupLoop(initialCtx, filesWritten, postLlmInjectedResults,
   };
 }
 
+// P3 label-spam check (Sub-2 fix): exported for backfill script.
+// Detects injected "Use when:" / "Key capabilities:" markers added by M1.4 prompt
+// to skills that didn't originally have them — pollutes catalog with generic boilerplate.
+var _validateSkillContent = require('./validate_skill_file').validateSkillContent;
+function validateSkillContentStrict(content) {
+  var errors = _validateSkillContent(content);
+  var body = content.replace(/^---[\s\S]*?---\n/, '');
+  var labelSpamRegex = /\.\s*(Use\s+when|Apply\s+when|Key\s+capabilities|Capabilities|When\s+to\s+use)\s*:[\s\S]*?\.(?=\s+[A-Z]|$)/gi;
+  var matches = body.match(labelSpamRegex) || [];
+  if (matches.length > 0) {
+    errors.push('P3 label-spam detected: ' + matches.length + ' instance(s) — strip "' + matches[0].slice(0, 40) + '..."');
+  }
+  return errors;
+}
+
 async function main() {
   // P0-1: Lock self-heal — if lock dir is stale (>30min), remove before acquire.
   // Protects against SIGKILL/OOM leaving a permanent lock that silently skips all runs.
@@ -2132,6 +2149,7 @@ if (require.main === module) {
 
 module.exports = {
   main,
+  validateSkillContentStrict,
   // Internal helpers exported for unit tests (B-1 follow-up loop).
   // Not for production use; behavior depends on test mocks.
   _test: { callLlm, buildFollowupPrompt, runFollowupLoop },

@@ -1,6 +1,6 @@
 ---
 name: auto-skill-pipeline-feasibility
-description: "Systematic evaluation of auto skill pipeline feature feasibility with architecture reality check, documentation tracing, and file:line citation. Use when: new pipeline features proposed, architecture feasibility assessment needed, documentation tracing required. Key capabilities: architecture reality check, documentation tracing, file:line citation, pipeline feasibility scoring."
+description: "Evaluate auto skill pipeline feature feasibility with architecture reality check, documentation tracing, and file:line citation. Use when: new pipeline features proposed, architecture feasibility assessment needed, documentation tracing required. Key capabilities: architecture reality check, documentation tracing, file:line citation, pipeline feasibility scoring."
 status: draft
 source: skill-reviewer
 provenance: agent

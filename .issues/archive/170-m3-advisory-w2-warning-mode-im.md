@@ -5,7 +5,7 @@ status: archive
 priority: P2
 created: 2026-06-18
 due: 2026-06-25
-updated: 2026-07-04
+updated: 2026-07-12
 progress: 1/5 complete (code done, cron wiring pending)
 ---
 

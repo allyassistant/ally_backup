@@ -6,6 +6,7 @@ source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-13T01:35:00.000Z
 disable-model-invocation: true
+activation: manual
 activationReason: "session key cleanup can crash main session"
 ---
 

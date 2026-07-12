@@ -1,6 +1,6 @@
 ---
 name: daily-memory-file-selection
-description: Select the largest valid memory file by size when newest-by-mtime would be a stale stub, with tail-append fallback for partial flushes.
+description: "Select the largest valid memory file by size when newest-by-mtime would be a stale stub, with tail-append fallback for partial flushes. Use when: memory flush picks the newest file, mtime would select a stub, partial flush needs tail-append. Key capabilities: size-based selection, mtime fallback, partial-flush recovery."
 status: active
 source: skill-reviewer
 provenance: agent

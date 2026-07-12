@@ -1,14 +1,13 @@
 ---
 id: 180
 title: AI HOT feed (aihot.virxact.com) DNS 解析到 127.0.0.1，cron 連續 fail
-status: active
+status: archive
 priority: P2
 created: 2026-07-04
 due: 2026-07-11
-updated: 2026-07-04
+updated: 2026-07-12
 progress: 0/0
 ---
-
 
 ## F - Facts（事實）
 

@@ -6,6 +6,7 @@ source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-12T10:31:11.738Z
 disable-model-invocation: true
+activation: manual
 activationReason: "bulk cron model config drift detection + modification"
 ---
 

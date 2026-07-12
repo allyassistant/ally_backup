@@ -5,7 +5,7 @@ status: archive
 priority: P2
 created: 2026-05-20
 due: 2026-07-01
-updated: 2026-07-04
+updated: 2026-07-12
 progress: 3/3
 ---
 

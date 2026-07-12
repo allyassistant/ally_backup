@@ -230,3 +230,81 @@ Active mode 開咗之後：
 - Weekly check M3 override rate trend
 - Monthly re-evaluate `.llm_judge_active.json` config
 - Quarterly skill pipeline health audit (per #162 嘅 master issue 指引)
+
+### Update 2026-07-12 — 調查結果
+
+#### Frozen State 已解除
+- `.skill_reviewer_pause.frozen` 已刪除（自 6/13 存在 29 日）
+
+#### Stale Symlinks 已清理
+移除 7 個 quarantined-but-active symlinks：
+- `_learned_loop-engineering-implementation`
+- `_learned_smart-router-classifier-debugging`
+- `_learned_daily-synthesis`
+- `_learned_cron-health-triage`
+- `_learned_anomaly-proactive-push`
+- `_learned_rapaport-email-summary`
+- `_learned_webbridge-youtube-analysis`
+
+#### Validator 分析結果
+
+**Dedup 系統正常運作 ✅**
+- Cosine similarity threshold = 0.85
+- 大多數重複 skills 被 skip（sim=0.88-0.97）
+
+**問題：Threshold 太接近邊界**
+- `smart-router-classifier-debugging` sim=0.848-0.851 浮動
+- 有時 above 0.85 (skip)，有時 below 0.85 (patch)
+- 導致漏網之魚
+
+**7 日 Metrics（截至今日）：**
+| 指標 | 數值 | Target |
+|------|------|--------|
+| Validator Catch Rate | 94.93% ✅ | ≥25% |
+| Junk-in-Production | 25% ❌ | <10% |
+| Total events | 355 | — |
+| Passed | 18 | — |
+| Quarantined | 3 | — |
+
+**結論：** Validator 本身冇問題，但 threshold 0.85 係 borderline decision point
+
+#### Decision: 繼續觀察
+- 決定：唔改 threshold，先觀察多幾日
+- 原因：樣本太少（只有 18 passed skills），需要更多數據
+- 下次 check：2026-07-15 或 2026-07-19
+
+#### 跟進命令
+```bash
+# 7-day metrics
+node scripts/skill_junk_tracker.js --days 7
+
+# 1-day metrics
+node scripts/skill_junk_tracker.js --days 1
+
+# Active symlinks count
+ls skills/_learned_* | wc -l
+```
+
+### Update 2026-07-12 晚 — 繼續觀察決定
+
+#### 7 日 Metrics（2026-07-12）
+| 指標 | 數值 | 目標 |
+|------|------|------|
+| Validator Catch Rate | 95.00% ✅ | ≥25% |
+| Junk-in-Production | 25% ❌ | <10% |
+| Total events | 360 | — |
+| Passed | 18 | — |
+| Quarantined | 3 | — |
+
+#### Passed-but-Quarantined（3 個）
+- `smart-router-classifier-debugging` — sim=0.848，低於 0.85
+- `webbridge-youtube-analysis` — sim=0.848，低於 0.85
+- `simplified-chinese-detector` — 未知原因
+
+#### Decision: 繼續觀察
+- 決定：暫時唔調整 dedup threshold（0.85）
+- 原因：樣本少（18 passed），需要更多數據確認趨勢
+- 建議：可考慮降低 threshold 到 0.80，但等樣本增加再決定
+
+#### 下次 Check
+- 2026-07-15 或 2026-07-19

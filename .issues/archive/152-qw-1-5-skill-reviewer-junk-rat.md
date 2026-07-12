@@ -5,7 +5,7 @@ status: archive
 priority: P1
 created: 2026-06-11
 due: 2026-06-18
-updated: 2026-06-18
+updated: 2026-07-12
 progress: 0/0
 ---
 
@@ -133,24 +133,11 @@ progress: 0/0
   - [ ] 套 closing criteria
   - [ ] Close issue 或 開 follow-up
 
-### Closing Criteria (Day 7) — ✅ PASS
+### Closing Criteria (Day 7)
 - ✅ **PASS** (close issue): 7d junk rate ≤ 30% AND 0 self-referential AND 0 regression
 - 🟡 **PARTIAL** (extend 7d): 7d rate 30-50% — 改進有效但未達標，延 7 日再睇
 - 🟠 **NEEDS MORE WORK** (open follow-up): 7d rate > 50% — 執行方案 2/5/6
 - 🔴 **REGRESSION** (rollback): 7d rate 上升 OR 出現 P0 bug → 即時 revert `bcf253c`
-
-### Outcome (closed 2026-06-18)
-**Verdict: PASS ✅** — 7 days observation complete.
-
-| Metric | Value | Target | Status |
-|--------|-------|--------|--------|
-| 7d avg junk rate | 19.82% | ≤ 30% | ✅ PASS |
-| Self-referential created | 0 (all blocked) | 0 | ✅ PASS |
-| Regression events | 0 | 0 | ✅ PASS |
-
-**Closing note:** QW-1~5 prompt redesign + pre-write gate + self-ref filter effectively reduced skill reviewer junk rate from 68.89% to 19.82% (7d avg) — well under the 30% target. The dual protection (QW-1 hard block prompt + QW-2 pre-write filter) and unified validator (QW-3) proved effective. The self-referential hits all failed validation (symlinked=false), confirming the gates work.
-
-**Action taken:** Issue archived. No follow-up needed. Next step: update MEMORY.md with QW methodology as reusable skill pattern.
 
 ## Notes
 

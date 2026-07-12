@@ -4,11 +4,13 @@
  *
  * Runs before a skill file is committed to disk or promoted to active.
  * Rejects:
- *   - body < 200 words
+ *   - structural stubs (composite: file size / workflow structure / word count)
  *   - unclosed code blocks (``` without closing ```)
+ *   - missing or thin "## Pitfalls" section
  *   - truncated workflow sections (last ## Workflow step ends without punctuation)
  *   - missing "## Workflow" section entirely
- *   - body word count < 3x the description length (template spam detection)
+ *   - description quality: too short / missing trigger phrase / missing action verb
+ *     (Issue #161 minimum version, 2026-07-12)
  *
  * Usage:
  *   node scripts/validate_skill_file.js <path-to-SKILL.md>
@@ -149,10 +151,69 @@ function validateSkillContent(content) {
     }
   }
 
-  // 4. Template spam detection: body should be > 3x description length
-  const descMatch = content.match(/description:\s*["']([^"']{10,})["']/i);
-  if (descMatch && words < descMatch[1].length * 3) {
-    errors.push(`Body (${words} words) is less than 3x description length — possible template spam`);
+  // Extract description early for quality checks
+  const descDqMatch = content.match(/^description:\s*"([^"\n]{10,})"/im);
+  const descSqMatch = content.match(/^description:\s*'([^'\n]{10,})'/im);
+  const descMatch = descDqMatch || descSqMatch;
+  const desc = descMatch ? descMatch[1] : null;
+
+  // 5. Description quality check (Issue #161 minimum version, 2026-07-12)
+  //    3-segment formula: [Action verb + what]. Use when: [triggers]. Key capabilities: [caps].
+  //    Reject when: too short, no trigger phrase, no action verb at start.
+  //    Goal: drive skill description quality forward so skill-auto-suggest scoring improves.
+  const DESC_MIN_LENGTH = 80;
+  // English + Chinese trigger phrases. Chinese requires both markers (當/時) to avoid
+  // false positives on sentences that happen to contain 當 as a common word.
+  const TRIGGER_REGEX = /\b(use when|use this when|apply this when|apply when|trigger this when)\b|當[^\n]{0,30}時[^\n]{0,10}(觸發|用|使用|發生|出現|需要)|[^\n]{0,30}時觸發/i;
+  // Action verbs commonly used in skill descriptions. Multi-word verbs (set up, pick up)
+  // are listed as 2-token prefixes. Hyphenated verbs (pre-gather) included verbatim.
+  const ACTION_VERBS = [
+    'add', 'audit', 'analyze', 'apply', 'archive', 'auto', 'avoid', 'back', 'build',
+    'capture', 'chain', 'check', 'clean', 'clear', 'collect', 'compare', 'compile',
+    'compress', 'convert', 'copy', 'create', 'cross', 'debug', 'deduplicate', 'deploy',
+    'detect', 'determine', 'diagnose', 'disable', 'discover', 'document', 'downgrade',
+    'edit', 'enable', 'enhance', 'enrich', 'evaluate', 'evaluation', 'execute', 'expand', 'export', 'extract',
+    'fetch', 'fill', 'filter', 'find', 'fix', 'follow', 'format', 'gather', 'generate',
+    'handle', 'identify', 'implement', 'improve', 'index', 'ingest', 'install', 'integrate',
+    'investigate', 'isolate', 'label', 'launch', 'lint', 'list', 'load', 'locate',
+    'maintain', 'manage', 'match', 'merge', 'migrate', 'mitigate', 'model',
+    'modify', 'monitor', 'move', 'navigate', 'normalize', 'observe', 'open', 'optimize',
+    'organize', 'parse', 'patch', 'pick', 'ping', 'plan', 'populate', 'post', 'pre-gather',
+    'predict', 'prepare', 'prevent', 'process', 'profile', 'promote', 'propose', 'protect',
+    'provision', 'publish', 'query', 'queue', 'read', 'rebuild', 'recover', 'reduce',
+    'refresh', 'register', 'remove', 'rename', 'reorganize', 'replace', 'reset', 'resolve',
+    'resume', 'restore', 'retrieve', 'review', 'rewrite', 'route', 'run', 'sanitize', 'save',
+    'scan', 'schedule', 'scrape', 'search', 'select', 'set up', 'setup', 'spawn',
+    'split', 'start', 'stop', 'stream', 'submit', 'summarize', 'sync', 'synthesize',
+    'tag', 'test', 'trace', 'track', 'transform', 'triage', 'troubleshoot', 'tune',
+    'uninstall', 'update', 'upgrade', 'validate', 'verify', 'watch', 'wrap', 'write'
+  ];
+
+  if (descMatch) {
+    // 5a. Length check
+    if (desc.length < DESC_MIN_LENGTH) {
+      errors.push(`Description too short (${desc.length} < ${DESC_MIN_LENGTH} chars)`);
+    }
+
+    // 5b. Trigger phrase check (Use when: / Apply when: / Chinese 當...時 / ...時觸發)
+    if (!TRIGGER_REGEX.test(desc)) {
+      errors.push('Description missing trigger phrase (need "Use when:" / "Apply when:" / "當...時" / "...時觸發")');
+    }
+
+    // 5c. Action verb in first 50 chars
+    const firstChunk = desc.slice(0, 50).toLowerCase();
+    const hasActionVerb = ACTION_VERBS.some(v => {
+      const vLow = v.toLowerCase();
+      return firstChunk === vLow ||
+             firstChunk.startsWith(vLow + ' ') ||
+             firstChunk.startsWith(vLow + ',') ||
+             firstChunk.startsWith(vLow + '.') ||
+             firstChunk.startsWith(vLow + '-') ||
+             firstChunk.startsWith(vLow + ':');
+    });
+    if (!hasActionVerb) {
+      errors.push(`Description missing action verb in first 50 chars (got: "${desc.slice(0, 50)}")`);
+    }
   }
 
   return { valid: errors.length === 0, errors };

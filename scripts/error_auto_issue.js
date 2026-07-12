@@ -1,22 +1,24 @@
 #!/usr/bin/env node
 /**
  * error_auto_issue.js — Daily 22:00, scan memory/errors.json for error patterns
- * repeating ≥3 times in last 7 days, auto-create P1 issue via issue_manager.
+ * repeating ≥5 times in last 7 days, auto-create P1 issue via issue_manager.
  * (thin executor, no LLM in critical path, async spawn)
  *
- * v1.0 — Initial implementation.
+ * v1.1 — Noise reduction:
+ *  - Blacklist: Rate Limit, API Aborted, Timeout Error, Cron Timeout
+ *  - Default threshold raised to 5 (was 3)
  *  - Groups errors by (type, problem) pattern
- *  - Filters for last 7 days AND count ≥ REPEAT_THRESHOLD (3)
  *  - State file tracks already-issued pattern hashes (idempotent)
  *  - Calls `node scripts/issue_manager.js create "<title>" --priority P1 --due YYYY-MM-DD`
  *  - Patches the created file's description with full trace (since create cmd
  *    has no --body flag)
  *
  * 用法:
- *   node scripts/error_auto_issue.js                # normal run
+ *   node scripts/error_auto_issue.js                # normal run (threshold=5, lookback=7d)
  *   node scripts/error_auto_issue.js --dry-run      # preview only
- *   node scripts/error_auto_issue.js --threshold 5  # 改 repeat threshold
+ *   node scripts/error_auto_issue.js --threshold 3  # 改 repeat threshold
  *   node scripts/error_auto_issue.js --lookback 14  # 改 lookback days
+ *   node scripts/error_auto_issue.js --cooldown 7   # 改 cooldown days
  *   node scripts/error_auto_issue.js --help
  *
  * 失敗 exit 1 (stderr); stdout 純輸出。
@@ -49,8 +51,11 @@ function parseIntArg(name, def) {
   return def;
 }
 
-const REPEAT_THRESHOLD = parseIntArg('--threshold', 3);
+const REPEAT_THRESHOLD = parseIntArg('--threshold', 5);
 const LOOKBACK_DAYS = parseIntArg('--lookback', 7);
+
+// Error types that are expected operational noise — do not auto-create issues
+const BLACKLIST = ['Rate Limit', 'API Aborted', 'Timeout Error', 'Cron Timeout'];
 
 function log(...args) {
   if (!QUIET) console.log(...args);
@@ -59,15 +64,18 @@ function log(...args) {
 // ----------------- CLI help -----------------
 if (process.argv.includes('--help') || process.argv.includes('-h')) {
   console.log(`
-error_auto_issue.js — Auto-create P1 issues for recurring error patterns (v1.0)
+error_auto_issue.js — Auto-create P1 issues for recurring error patterns (v1.1)
+  Filters: blacklist operational noise, threshold=5, 14d cooldown
 
 Usage:
-  node scripts/error_auto_issue.js                   # normal run (threshold=3, lookback=7d)
+  node scripts/error_auto_issue.js                   # normal run (threshold=5, lookback=7d)
   node scripts/error_auto_issue.js --dry-run         # preview only (no create, no state update)
-  node scripts/error_auto_issue.js --threshold 5     # raise repeat threshold
-  node scripts/error_auto_issue.js --lookback 14     # extend lookback to 14 days
+  node scripts/error_auto_issue.js --threshold 3     # lower repeat threshold
+  node scripts/error_auto_issue.js --lookback 14     # extend lookback window
   node scripts/error_auto_issue.js --quiet           # silent (for cron)
   node scripts/error_auto_issue.js --help
+
+Blacklisted (ignored): Rate Limit, API Aborted, Timeout Error, Cron Timeout
 
 Exit codes:
   0 = clean (no new patterns) OR all issues created successfully
@@ -166,6 +174,8 @@ function aggregatePatterns(errors, lookbackDays) {
     const ts = e.timestamp ? Date.parse(e.timestamp) : 0;
     if (isNaN(ts) || ts < cutoffMs) continue;
     if (e.resolved === true) continue;
+    // Skip blacklisted error types (operational noise)
+    if (BLACKLIST.includes(e.type)) continue;
     const key = normalizePattern(e);
     if (!groups.has(key)) {
       groups.set(key, {
@@ -334,9 +344,9 @@ async function main() {
   // Find patterns with count ≥ threshold AND not yet issued
   const candidates = [];
   for (const [key, g] of groups) {
-    if (g.samples.length >= REPEAT_THRESHOLD && !seen.has(key)) {
-      candidates.push({ key, ...g, count: g.samples.length });
-    }
+    if (g.samples.length < REPEAT_THRESHOLD) continue;
+    if (seen.has(key)) continue;
+    candidates.push({ key, ...g, count: g.samples.length });
   }
   // Sort by count desc (most severe first)
   candidates.sort((a, b) => b.count - a.count);

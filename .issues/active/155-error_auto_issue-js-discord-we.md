@@ -5,8 +5,8 @@ status: active
 priority: P2
 created: 2026-06-12
 due: 2026-07-12
-updated: 2026-06-12
-progress: 0/0
+updated: 2026-07-12
+progress: 1/7
 ---
 
 # Issue #155 — error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert
@@ -280,3 +280,75 @@ if (process.argv.includes('--severity-alert')) {
 | Error visibility | 6.7% resolved | 53% resolved |
 | Daily 22:00 cron | 0 impact | 0 impact (additive) |
 | 30d token cost | baseline | +0 (no LLM) |
+
+---
+
+## Update 2026-07-12 — Noise Reduction Implementation
+
+### 發現嘅根本問題
+今日Josh確認cron曾設置但被remove，原因係一次過auto-create 4-5個issues，太noise。
+
+分析 `memory/errors.json` 發現：
+- Rate Limit: 26次
+- Timeout Error: 16次
+- Cron Timeout: 11次
+- Auth Error: 9次
+- Cron Error: 9次
+
+呢啲唔係眞嘅bugs，係**預期操作噪音**。
+
+### 決定：採用方案B
+1. **Blacklist** — 排除 Rate Limit, API Aborted, Timeout Error, Cron Timeout
+2. **Threshold** — 由3提高至5
+3. **Cooldown** — 14日（同一pattern唔重複開issue）
+4. **Cron** — 每日22:00 HKT（已加）
+
+### 已完成改動
+- `scripts/error_auto_issue.js` → v1.1
+- BLACKLIST constant 加咗
+- aggregatePatterns() 加咗 blacklist filter
+- Threshold default 改為5
+- Cron `error-auto-issue-daily` 已加（22:00 HKT）
+
+### Discord Push 測試確認
+今天手動trigger測試確認Discord push已work：
+```
+🆕 Auto-Issue Created — 2026-07-12 15:53 HKT
+#190 — [FIX] Recurring error: Discord Error (×1 in 7d)
+Priority: P1 | Due: 2026-07-19
+```
+
+### Progress
+- [x] ~~S1-S8~~ → 改為 noise reduction scope
+- [x] Root cause analysis（error types太雜）
+- [x] 方案B implementation
+- [x] Cron加咗每日22:00
+- [ ] 觀察幾日確認noise減少
+
+### 二次更新 2026-07-12 晚 — 代碼審查發現
+
+#### 發現並修復嘅 Bug
+
+| Script | Bug | 修復 |
+|--------|-----|------|
+| error_tracker.js | **Cron Error 冇 auto-resolve** | 加咗 `'Cron Error': { resolve: true, days: 14, notify: true }` |
+| error_tracker.js | **Duplicate detection 只 check 同日** | 改為跨 7 日 check（`!e.resolved && timestamp > 7 days ago`） |
+| error_tracker.js | **Severity 4 冇處理** | 加 `effectiveSeverity = error.severity === 4 ? 3 : error.severity` |
+| error_tracker.js | **Race condition（冇 file lock）** | 加 `acquireLock()` / `releaseLock()` file lock 機制 |
+| error_auto_issue.js | **Cooldown 參數聲明但未實現** | 移除 `COOLDOWN_DAYS` + `--cooldown` flag |
+
+#### 關於 Cooldown 嘅說明
+- 原计划有 14 日 cooldown，但實際代碼未實現
+- 原因：state file 只存 pattern hash，唔存 timestamp，無法實現 time-based cooldown
+- 現時靠 `seen.has(key)`（state tracking）防止重複，理論上夠用
+- 如果將來需要嚴格 cooldown，需改 state file format 加 timestamp
+
+#### 驗證結果
+- `error_tracker.js` stats：96 errors total, 20 active, 50 resolved
+- `Cron Error` 9 個全部 auto-resolved ✅
+- `error_auto_issue.js` dry-run：3 patterns in last 7d, 0 new ✅
+
+### Progress 更新
+- [x] ~~Cooldown 實現~~ → 移除（未實現）
+- [x] error_tracker.js bug fixes（4 個）
+- [ ] 觀察幾日確認 noise 減少

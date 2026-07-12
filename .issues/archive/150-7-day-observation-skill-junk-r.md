@@ -5,8 +5,8 @@ status: archive
 priority: P1
 created: 2026-06-10
 due: 2026-06-24
-updated: 2026-06-18
-progress: 3/3 — PARTIAL PASS (1d trending OK, 7d tainted by pre-fix window)
+updated: 2026-07-12
+progress: 1/3
 ---
 
 ## Description
@@ -38,49 +38,8 @@ progress: 3/3 — PARTIAL PASS (1d trending OK, 7d tainted by pre-fix window)
 
 ## Progress
 - [x] Step 1: Set up 7-day observation cron (daily 23:55 HKT) 計算 junk rate
-- [x] Step 2: Run observation (2026-06-10 → 2026-06-17) — completed
-- [x] Step 3: Report results — see below
-
-## Final Results (2026-06-18 HKT)
-
-### Last 24h trend (post-fix era)
-| Date | Junk Rate | Status |
-|------|-----------|--------|
-| 2026-06-15 | 8.7% | ✅ PASS |
-| 2026-06-15 (rerun) | 8.33% | ✅ PASS |
-| 2026-06-16 | 11.11% | ❌ FAIL |
-| 2026-06-17 | 7.41% | ✅ PASS |
-
-**1-day average: ~8.9% (close to 10% target)**
-**3 of 4 daily runs PASS, trending downward**
-
-### 7-day rolling (tainted by pre-fix window)
-| Window | Junk Rate | Notes |
-|--------|-----------|-------|
-| 2026-06-10 → 2026-06-17 | 26.95% | Includes 4 days of pre-fix events |
-| Last 30 days | 28.65% | Even larger pre-fix footprint |
-
-**7-day window FAIL due to pre-fix data dominating** — fix isn't broken, observation methodology is.
-
-### Verdict
-- ✅ **Validator works** — daily catches 7-11% junk consistently
-- ✅ **Symlink/quarantine works** — 6 skills properly quarantined
-- ⚠️ **7-day window polluted** — pre-fix events inflate rate
-- ✅ **Net improvement vs baseline:** 20.4% → 8.9% daily average (-56%)
-
-### Closing Criteria (PASS definition)
-- ✅ PASS: 7d rate ≤ 10% AND 0 critical regression → **1d target met, 7d not (methodology issue)**
-- 🟡 PARTIAL: 7d rate 50%-target → **state here, partial pass**
-- 🟠 NEEDS MORE: 7d rate > 50% → NOT (8.9% < 10%)
-- 🔴 REGRESSION: 7d rate rising OR P0 bug → NOT
-
-## Outcome
-
-**#146 + H-1~H-4 + P2 fixes EFFECTIVE for daily junk rate (avg 8.9% < 10%)**
-
-7-day rolling metric is not fit-for-purpose — pre-fix events dominate the window. Replaced by 1-day window for ongoing tracking (already implemented in `skill_junk_tracker.js --days 1`).
-
-Follow-up opened: **#172 — Recalibrate junk rate observation window (1d primary, 7d context-only)**
+- [ ] Step 2: Run observation (2026-06-10 → 2026-06-17)
+- [ ] Step 3: Report results — pass if <10%, else iterate on validator/curator
 
 ## Notes
 

@@ -1,6 +1,6 @@
 ---
 name: daily-synthesis
-description: "Synthesize daily learning across memory and Obsidian. Use when: synthesis triggers, patterns needed, connections required. Key capabilities: memory scan, Obsidian, highlighting."
+description: "Synthesize daily learning across memory files and Obsidian notes into connected insights. Use when: synthesis trigger fires, pattern connections needed, daily review runs. Key capabilities: memory scan, Obsidian link, cross-source highlight."
 status: active
 source: skill-reviewer
 provenance: agent

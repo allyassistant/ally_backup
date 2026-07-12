@@ -6,6 +6,7 @@
     "Timeout Error::connection timeout",
     "Cron Timeout::cron job timed out",
     "Rate Limit::rate limit exceeded",
-    "API Aborted::request aborted"
+    "API Aborted::request aborted",
+    "Discord Error::discord delivery error"
   ]
 }

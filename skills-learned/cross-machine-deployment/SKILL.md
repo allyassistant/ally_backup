@@ -6,6 +6,7 @@ source: skill-reviewer
 provenance: agent
 generatedAt: 2026-06-11T10:30:00.000Z
 disable-model-invocation: true
+activation: manual
 activationReason: "SSH cross-machine deploy affects Ally + Bliss HA pair"
 ---
 
