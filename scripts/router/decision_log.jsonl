@@ -9639,3 +9639,37 @@
 {"ts":"2026-07-12T15:05:09.808Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"仲有幾多要跟進","channel":""}
 {"ts":"2026-07-12T15:17:00.713Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
 {"ts":"2026-07-12T15:32:23.269Z","route":"BROWSER","matched":true,"rule":"Fallback: URL-dominant message","textPreview":"https://youtu.be/P4QodeA_lQ0?si=T0Ir5-imc3cwAEIa","channel":""}
+{"ts":"2026-07-13T12:33:59.257Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"[Inter-session message] sourceSession=agent:main:subagent:ff78fa0e-7dd4-4e37-bc79-99691e5caf79 sourc","channel":""}
+{"ts":"2026-07-13T12:35:11.888Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"係咪仲整緊？","channel":""}
+{"ts":"2026-07-13T12:35:12.841Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-13T12:35:12.841Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":952,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9dd55c1a-6b36-410a-8958-550de47ace55"}
+{"ts":"2026-07-13T12:47:00.759Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-13 20:36:45 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-13 2","channel":""}
+{"ts":"2026-07-13T13:17:00.784Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-13T13:28:48.269Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Pre-compaction memory flush. Store durable memories only in memory/2026-07-13.md (create memory/ if ","channel":""}
+{"ts":"2026-07-13T13:28:49.704Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1434,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"333ff373-1a60-4fa9-9b20-b57d319d87a6"}
+{"ts":"2026-07-13T13:28:49.704Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-13T13:28:49.855Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Pre-compaction memory flush. Store durable memories only in memory/2026-07-13.md (create memory/ if ","channel":""}
+{"ts":"2026-07-13T13:29:04.898Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"78d96714-fb52-46a9-914f-c3efec55e643"}
+{"ts":"2026-07-13T13:29:04.897Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Pre-compaction memory flush. Store durable memories only in memory/2026-07-13.md (create memory/ if ","channel":""}
+{"ts":"2026-07-13T13:29:15.070Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"812f02f0-82ca-4fb0-a3f0-0bb72afa8d3a"}
+{"ts":"2026-07-13T13:29:15.070Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"都係冇通知","channel":""}
+{"ts":"2026-07-13T13:29:15.152Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"都係冇通知","channel":""}
+{"ts":"2026-07-13T13:31:09.514Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/formulasearch/status/2076288803786887245?s=46","channel":""}
+{"ts":"2026-07-13T13:33:28.766Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-13T13:33:28.766Z","route":"sop","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"563fe290-67c0-46b1-96c2-7e3f32013a8d"}
+{"ts":"2026-07-13T13:33:28.765Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"收到通知，不過佢係唔係新建咗2個相同嘅skill？\n\n💾 Skill Self-improvement:\n- 新建: 2 (email-analysis-cantonese, email-analy","channel":""}
+{"ts":"2026-07-13T13:33:28.918Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"收到通知，不過佢係唔係新建咗2個相同嘅skill？\n\n💾 Skill Self-improvement:\n- 新建: 2 (email-analysis-cantonese, email-analy","channel":""}
+{"ts":"2026-07-13T13:33:55.753Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-13T13:33:56.723Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-13T13:33:56.723Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":969,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"042e2431-adcb-49e6-95e1-b374d48ad6c8"}
+{"ts":"2026-07-13T13:33:56.888Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-13T13:34:46.500Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/alin_zone/status/2076628189443743884?s=46","channel":""}
+{"ts":"2026-07-13T13:36:10.345Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/ambertreelet/status/2076552715858223240?s=46","channel":""}
+{"ts":"2026-07-13T13:47:00.787Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-13T14:17:00.796Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-13T14:47:00.759Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-13 22:36:49 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-13 2","channel":""}
+{"ts":"2026-07-13T15:17:00.712Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-13T15:27:41.929Z","event":"provider_recovery","provider":"kimi"}
+{"ts":"2026-07-13T15:27:41.929Z","route":"spawn","suggestedModel":"kimi/kimi-for-coding","suggestedProvider":"kimi","actualProvider":"kimi","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"a6decb8e-ca47-4cff-b82b-6e0572b456b6"}
+{"ts":"2026-07-13T15:27:41.928Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我檢查多次仲有冇bug","channel":""}
+{"ts":"2026-07-13T15:27:42.076Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我檢查多次仲有冇bug","channel":""}

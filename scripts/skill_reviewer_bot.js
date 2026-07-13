@@ -15,7 +15,15 @@
  *   6. HTTPS POST → Discord #⚙️系統（如有更新）
  *
  * 使用：
- *   node scripts/skill_reviewer_bot.js [--quiet]
+ *   node scripts/skill_reviewer_bot.js [--quiet] [--json] [--no-discord]
+ *
+ * Flags:
+ *   --quiet       Suppress non-essential log output
+ *   --json        Emit a single `@@SKILL_REVIEWER_JSON@@{...}@@END@@` line on
+ *                 stdout (bypasses --quiet) for skill_reviewer_pipeline.js to
+ *                 parse and decide whether to push a smart Discord notification.
+ *   --no-discord  Skip the in-bot Discord push. The pipeline takes over delivery
+ *                 so it can implement "notify only on real changes".
  */
 
 'use strict';
@@ -150,7 +158,7 @@ const S1_ALERTS_LOG = path.join(WS, '.s1_alerts.jsonl');
 // Issue: two draft skills regenerated 5-8x/day by pipeline (LLM keeps
 // re-writing stable content). Two-layer gate prevents re-review of
 // stable/cooldown skills. See parseStability() + buildSkillGates() below.
-const SKILL_COOLDOWN_HOURS = parseInt(process.env.SKILL_COOLDOWN_HOURS, 10) || 6;
+const SKILL_COOLDOWN_HOURS = parseInt(process.env.SKILL_COOLDOWN_HOURS, 10) || 24;
 const SKILL_COOLDOWN_MS = SKILL_COOLDOWN_HOURS * 3600000;
 const SKILL_GATE_TELEMETRY = path.join(WS, '.skill_reviewer_gates.jsonl');
 
@@ -346,10 +354,73 @@ function buildSkillGates() {
 }
 
 /**
- * Record a gate-skip event to .skill_reviewer_gates.jsonl.
- * Separate log from .skill_created.jsonl so the schema stays clean.
- * Silent on failure (telemetry must never block the pipeline).
+ * Build a catalog of ALL existing skills (not just stable/cooldown).
+ * Returns array of {name, description} for prompt injection.
  */
+function buildExistingSkillCatalog() {
+  var skillsLearned = path.join(WS, 'skills-learned');
+  var catalog = [];
+  if (!fs.existsSync(skillsLearned)) return catalog;
+
+  try {
+    var dirs = fs.readdirSync(skillsLearned, { withFileTypes: true })
+      .filter(function (d) { return d.isDirectory() && !d?.name?.startsWith('_'); });
+    
+    for (var i = 0; i < dirs.length; i++) {
+      var dir = dirs[i];
+      var skillPath = path.join(skillsLearned, dir.name, 'SKILL.md');
+      if (!fs.existsSync(skillPath)) continue;
+      
+      try {
+        var content = fs.readFileSync(skillPath, 'utf8');
+        var desc = extractField(content, 'description');
+        if (desc) {
+          catalog.push({
+            name: dir.name,
+            description: desc.length > 120 ? desc.substring(0, 120) + '...' : desc
+          });
+        }
+      } catch (e) { /* skip malformed */ }
+    }
+  } catch (e) {
+    err('buildExistingSkillCatalog: fail-open: ' + e.message);
+  }
+  
+  // Sort alphabetically for consistent output
+  catalog.sort(function (a, b) { return a.name.localeCompare(b.name); });
+  return catalog;
+}
+
+/**
+ * Format the existing skill catalog for prompt injection.
+ */
+function formatSkillCatalog(catalog) {
+  if (!catalog || catalog.length === 0) return '';
+  
+  var lines = [
+    '',
+    '## 📚 EXISTING SKILL CATALOG',
+    '',
+    'The following skills ALREADY EXIST. Before creating a new skill, check if',
+    'your topic is already covered. If it is, you should PATCH the existing skill,',
+    'not create a duplicate with a different name.',
+    '',
+    'Existing skills (' + catalog.length + ' total):',
+    ''
+  ];
+  
+  for (var i = 0; i < catalog.length; i++) {
+    var skill = catalog[i];
+    lines.push('- `' + skill.name + '`: ' + skill.description);
+  }
+  
+  lines.push('');
+  lines.push('RULE: If your new skill overlaps with any of the above, output PATCH or SKIP,');
+  lines.push('not a new CREATE. Duplicates will be rejected by the dedup gate.');
+  lines.push('');
+  
+  return lines.join('\n');
+}
 function recordGateSkip(event) {
   try {
     fs.appendFileSync(SKILL_GATE_TELEMETRY, JSON.stringify(event) + '\n', 'utf8');
@@ -530,6 +601,43 @@ function sendDiscordMessageWithRetry(content, maxAttempts) {
     }
     tryOnce();
   });
+}
+
+/**
+ * Deduplicate queue entries by userPrompt (content hash).
+ * Returns { uniqueEntries: [], duplicateCount: number }.
+ */
+function deduplicateQueue() {
+  if (!fs.existsSync(QUEUE_FILE)) return { uniqueEntries: [], duplicateCount: 0 };
+  try {
+    var raw = fs.readFileSync(QUEUE_FILE, 'utf8').trim();
+    if (!raw) return { uniqueEntries: [], duplicateCount: 0 };
+    
+    var lines = raw.split('\n').filter(Boolean);
+    var seen = {};
+    var unique = [];
+    var duplicates = 0;
+    
+    for (var i = 0; i < lines.length; i++) {
+      try {
+        var entry = JSON.parse(lines[i]);
+        // Use userPrompt as dedup key (first 100 chars)
+        var key = (entry.userPrompt || '').substring(0, 100);
+        if (!key) continue;
+        
+        if (seen[key]) {
+          duplicates++;
+        } else {
+          seen[key] = true;
+          unique.push(entry);
+        }
+      } catch (e) { /* skip malformed */ }
+    }
+    
+    return { uniqueEntries: unique, duplicateCount: duplicates };
+  } catch (e) {
+    return { uniqueEntries: [], duplicateCount: 0 };
+  }
 }
 
 function readQueueCount() {
@@ -793,7 +901,11 @@ function buildReviewPrompt() {
       'the listed skills — not new creations in unrelated territory.\n';
   }
 
-  return { prompt: basePrompt + exclusionSection + instructions, gates: gates };
+  // Build existing skill catalog for duplication avoidance
+  var skillCatalog = buildExistingSkillCatalog();
+  var catalogSection = formatSkillCatalog(skillCatalog);
+
+  return { prompt: basePrompt + catalogSection + exclusionSection + instructions, gates: gates };
 }
 
 // ── Response parsing ──
@@ -974,7 +1086,7 @@ async function writeSkillFiles(blocks) {
       var selfRefPattern = /(skill-reviewer|curator|self-improvement|bot-self|skill-validation-failure-cleanup)/i;
       if (selfRefPattern.test(block.filePath)) {
         err('Refusing self-referential skill: ' + block.filePath);
-        recordSkillCreated({v:1, ts:new Date().toISOString(), name:path.basename(dir), file:block.filePath, bytes:block?.content?.length, validationPassed:false, symlinked:false, reason:'self-referential block (QW-2)'});
+        recordSkillCreated({v:1, ts:new Date().toISOString(), name:path.basename(dir), file:block.filePath, bytes:block?.content?.length, validationPassed:false, symlinked:false, dedup: false, reason:'self-referential block (QW-2)'});
         log('SKIP self-ref: ' + block.filePath);
         continue;
       }
@@ -1021,6 +1133,7 @@ async function writeSkillFiles(blocks) {
                   bytes: block?.content?.length,
                   validationPassed: false,
                   symlinked: false,
+                  dedup: true,
                   reason: 'post-llm pre-emit skip: similar to "' + decision.matchedSkill +
                           '" (' + (decision.similarity * 100).toFixed(1) + '%)',
                 });
@@ -1953,16 +2066,52 @@ async function main() {
   var runId = 'sr-' + new Date().toISOString().replace(/[^0-9]/g, '').slice(0, 14) +
               '-' + Math.random().toString(36).slice(2, 6);
 
+  // Smart-notification plumbing (pipeline consumes this).
+  //   --json         emit a single JSON line on stdout (bypasses --quiet)
+  //                  for the pipeline to parse and decide whether to push to Discord.
+  //   --no-discord   skip the in-bot Discord push (pipeline takes over).
+  var jsonMode = process.argv.includes('--json');
+  var suppressDiscord = process.argv.includes('--no-discord');
+  var stats = {
+    action: 'review',
+    runId: runId,
+    queueEmpty: true,
+    deduplicated: 0,
+    uniqueCount: 0,
+    newCount: 0,
+    updatedCount: 0,
+    newNames: [],
+    updatedNames: [],
+    llmError: null,
+    hadError: false,
+    reason: ''
+  };
+
   try {
     // 0. Self-healing: remove stale active symlinks before processing queue
     cleanupStaleSymlinks();
 
-    // 1. Check queue
-    var count = readQueueCount();
-    if (count === 0) {
+    // 1. Check queue and deduplicate
+    var dedupResult = deduplicateQueue();
+    stats.deduplicated = dedupResult.duplicateCount;
+    stats.uniqueCount = dedupResult.uniqueEntries.length;
+    if (dedupResult.uniqueEntries.length === 0) {
+      stats.queueEmpty = true;
+      stats.reason = 'queue_empty';
       log('Nothing to review — queue is empty.');
       return;
     }
+    stats.queueEmpty = false;
+    if (dedupResult.duplicateCount > 0) {
+      log('Queue deduplication: removed ' + dedupResult.duplicateCount + ' duplicate entries, ' + dedupResult.uniqueEntries.length + ' unique entries remain.');
+      // Rewrite queue with deduplicated entries
+      try {
+        fs.writeFileSync(QUEUE_FILE, dedupResult.uniqueEntries.map(function(e) { return JSON.stringify(e); }).join('\n') + '\n', 'utf8');
+      } catch (e) {
+        err('Failed to rewrite deduplicated queue: ' + e.message);
+      }
+    }
+    var count = dedupResult.uniqueEntries.length;
     log(count + ' entries to review');
 
     // 2. Build prompt
@@ -1986,6 +2135,8 @@ async function main() {
     log('Calling ' + MODEL + '...');
     var initialLlmResult = await callLlm(prompt);
     if (initialLlmResult.error) {
+      stats.llmError = initialLlmResult.error;
+      stats.reason = 'llm_error';
       err('Initial LLM call failed: ' + initialLlmResult.error);
       log('No updates — LLM error.');
       return;
@@ -1996,6 +2147,8 @@ async function main() {
     // 4. Parse response
     var extractResult = extractFileBlocks(response);
     if (extractResult.error) {
+      stats.llmError = 'extract: ' + extractResult.error;
+      stats.reason = 'extract_error';
       // Keep queue intact so the next run can retry (cleanup is still false here).
       err('Aborting: ' + extractResult.error + ' — keeping queue for retry');
       return;
@@ -2079,6 +2232,23 @@ async function main() {
         break;
       }
     }
+    // Smart-notification plumbing: split new vs updated using the pre-write map.
+    // existingFiles[fp] is truthy if the file existed before this run → "updated".
+    // Otherwise → "new". Names are derived from the filePath (skills-learned/<name>/SKILL.md).
+    // Deduplicate filesWritten — Stage 1 + follow-up can write the same path twice,
+    // causing newNames to contain the same name twice in the notification.
+    var uniqueFilesWritten = [...new Set(filesWritten)];
+    for (var fi = 0; fi < uniqueFilesWritten.length; fi++) {
+      var fp2 = uniqueFilesWritten[fi];
+      var name2 = (fp2.split('/').slice(-2, -1)[0]) || fp2;
+      if (existingFiles[fp2]) {
+        stats.updatedCount++;
+        stats.updatedNames.push(name2);
+      } else {
+        stats.newCount++;
+        stats.newNames.push(name2);
+      }
+    }
     cleanup = (filesWritten.length > 0);  // any new or updated file = cleanup queue
     if (cleanup) {
       log('Cleanup: scheduling (filesWritten=' + filesWritten.length +
@@ -2103,21 +2273,39 @@ async function main() {
       summary = lines.join('\n');
     }
 
-    // 9. Send Discord
+    // 9. Send Discord (skipped when --no-discord; pipeline handles smart notification)
     if (summary) {
-      log('Sending to Discord #⚙️系統...');
-      try {
-        await sendDiscordMessageWithRetry(summary);
-        log('Done.');
-      } catch (e) {
-        err('Discord send failed: ' + e.message);
-        console.log('\n=== Summary ===\n' + summary + '\n==============');
+      if (suppressDiscord) {
+        log('Discord send suppressed (--no-discord) — pipeline will decide.');
+      } else {
+        log('Sending to Discord #⚙️系統...');
+        try {
+          await sendDiscordMessageWithRetry(summary);
+          log('Done.');
+        } catch (e) {
+          err('Discord send failed: ' + e.message);
+          console.log('\n=== Summary ===\n' + summary + '\n==============');
+        }
       }
     } else {
       log('No updates — nothing to report.');
     }
 
+  } catch (e) {
+    stats.hadError = true;
+    stats.llmError = stats.llmError || ('uncaught: ' + (e && e.message ? e.message : String(e)));
+    throw e;
   } finally {
+    // Smart-notification plumbing: emit JSON line for the pipeline to consume.
+    // Bypasses --quiet (uses raw console.log) because the pipeline ALWAYS needs
+    // the stats, even when log() is silenced. Marker delimiters (rather than a
+    // bare JSON line) keep the line trivially greppable in cron logs and
+    // tolerant of any other stdout noise. Always run in finally so every code
+    // path emits stats (queue-empty, llm-error, extract-error, uncaught, etc.).
+    if (jsonMode) {
+      var jsonLine = '@@SKILL_REVIEWER_JSON@@' + JSON.stringify(stats) + '@@END@@';
+      console.log(jsonLine);
+    }
     if (cleanup) {
       try {
         execFileSync('node', [CLEANUP_SCRIPT], { timeout: CONFIG.CLEANUP_TIMEOUT_MS, stdio: 'pipe' });
