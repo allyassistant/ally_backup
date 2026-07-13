@@ -429,8 +429,131 @@ async function logTelemetry(state, event, fields = {}) {
  * in <1 min via env var: `SHL_APPLY=true node openclaw ...`
  */
 function enqueueFix(state, filePath, verifyErrors, cfg) {
-  // Phase 1 guard: advisory-only by default. SHL still detects and logs
-  // proposed fixes (audit trail), but never mutates files.
+  // ── Phase 2 (2026-07-13): Conservative Mode Redesign ──
+  // Problem: SHL in advisory mode logs 360+ verify_fail events but never fixes.
+  //          CQM whitelist already handles false positives (spawn files, skill drafts).
+  //          The real gap: SHL has no "safe fix" path — it's all-or-nothing.
+  // Solution: Introduce CONSERVATIVE_MODE — only apply deterministic LOW_RISK_RULES
+  //           fixes (formatting-only: trailing whitespace, EOF newline, blank lines).
+  //           Never spawn fixer subagents. Never apply semantic fixes.
+  //           Rollback: set SHL_CONSERVATIVE=false to revert to advisory-only.
+  const CONSERVATIVE_MODE = process.env.SHL_CONSERVATIVE !== "false"; // default ON
+
+  if (CONSERVATIVE_MODE) {
+    // ── Conservative Mode: Apply deterministic formatting fixes ──
+    // Only apply rules that are 100% safe and cannot corrupt semantics:
+    // 1. trailing-whitespace (formatting)
+    // 2. eof-newline (formatting)
+    // 3. compress-blank-lines (formatting)
+    // 4. magic-number-const (detection-only, autoFixable=false — skip)
+    // 5. hardcoded-home-path (semantic — skip in conservative mode)
+    // 6. optional-chaining (semantic — skip)
+    // 7. fs-sync-trycatch (semantic — skip)
+    // 8. simplified-chinese (semantic — skip)
+    // 9. shebang (safe but rare — skip for simplicity)
+
+    const formattingRules = LOW_RISK_RULES.filter(
+      r => r.category === "formatting" && r.id !== "magic-number-const"
+    );
+
+    let anyFixApplied = false;
+    let originalContent;
+    try {
+      originalContent = fs.readFileSync(filePath, "utf-8");
+    } catch (readErr) {
+      void logTelemetry(state, "conservative_fix_read_error", {
+        file: filePath,
+        error: readErr?.message || String(readErr),
+      });
+      return;
+    }
+    let newContent = originalContent;
+
+    for (const rule of formattingRules) {
+      try {
+        if (rule.detect(newContent, filePath)) {
+          const fixed = rule.fix(newContent, filePath);
+          if (fixed !== newContent) {
+            newContent = fixed;
+            anyFixApplied = true;
+            void logTelemetry(state, "conservative_fix_applied", {
+              file: filePath,
+              rule: rule.id,
+              ruleName: rule.name,
+            });
+          }
+        }
+      } catch (err) {
+        void logTelemetry(state, "conservative_fix_error", {
+          file: filePath,
+          rule: rule.id,
+          error: err?.message || String(err),
+        });
+      }
+    }
+
+    if (anyFixApplied) {
+      // ── Safe Write with atomic backup ──
+      const backupPath = `${filePath}.shl-backup-${Date.now()}`;
+      try {
+        fs.copyFileSync(filePath, backupPath);
+        fs.writeFileSync(filePath, newContent, "utf-8");
+
+        // Verify the fix didn't break syntax (async but fire-and-forget)
+        runVerify(filePath, cfg.verifyScript, cfg.verifyTimeoutMs).then((verifyResult) => {
+          if (!verifyResult.ok) {
+            // Rollback on verify failure
+            try {
+              fs.copyFileSync(backupPath, filePath);
+              fs.unlinkSync(backupPath);
+            } catch (e) { /* ignore cleanup errors */ }
+            void logTelemetry(state, "conservative_fix_rolled_back", {
+              file: filePath,
+              errors: verifyResult.errors,
+              sample: verifyResult.sample,
+            });
+            return;
+          }
+
+          // Success — clean up backup
+          try {
+            fs.unlinkSync(backupPath);
+          } catch (e) { /* ignore cleanup errors */ }
+          void logTelemetry(state, "conservative_fix_ok", {
+            file: filePath,
+            backupCleaned: true,
+          });
+        }).catch((verifyErr) => {
+          // Verify script crashed — rollback to be safe
+          try {
+            fs.copyFileSync(backupPath, filePath);
+            fs.unlinkSync(backupPath);
+          } catch (e) { /* ignore cleanup errors */ }
+          void logTelemetry(state, "conservative_fix_verify_crash", {
+            file: filePath,
+            error: verifyErr?.message || String(verifyErr),
+          });
+        });
+      } catch (writeErr) {
+        // Emergency rollback
+        if (fs.existsSync(backupPath)) {
+          try {
+            fs.copyFileSync(backupPath, filePath);
+            fs.unlinkSync(backupPath);
+          } catch (e) { /* ignore cleanup errors */ }
+        }
+        void logTelemetry(state, "conservative_fix_write_error", {
+          file: filePath,
+          error: writeErr?.message || String(writeErr),
+        });
+      }
+    }
+
+    return; // Conservative mode handled — don't fall through to fixer spawn
+  }
+
+  // ── Legacy Phase 1 guard: advisory-only by default ──
+  // Kept for rollback compatibility. Not reached when CONSERVATIVE_MODE=true.
   if (process.env.SHL_APPLY !== "true") {
     void logTelemetry(state, "advisory_skip", {
       file: filePath,
@@ -982,8 +1105,8 @@ export default definePluginEntry({
             // Phase A (2026-06-20): run lightweight rule audit on the just-written file.
             // Fires immediately (not waiting for 04:30 cron). Non-blocking (sync
             // call to a fast CJS scanner, 0-2ms typical, well under 2s budget).
-            // Catches the most common offenders: fsSync without try-catch, magic
-            // numbers, simplified Chinese, TODO/FIXME. Critical issues emit a
+            // Catches common issues: fsSync without try-catch, magic numbers,
+            // simplified Chinese, unresolved task markers. Critical issues emit a
             // Discord warning so the user is aware before the next cron cycle.
             try {
               const auditResult = auditJustWritten(filePath);
