@@ -32,7 +32,6 @@ const path = require('path');
 
 const ROUTER_DIR = path.join(__dirname, 'router');
 const modelRouter = require(path.join(ROUTER_DIR, 'model_router'));
-const failureRecovery = require(path.join(ROUTER_DIR, 'failure_recovery'));
 
 // ─── Default model per provider (fallback when router returns empty model) ──
 
@@ -192,26 +191,11 @@ async function main() {
   // Thinking: map router reasoning intent to runtime-accepted value
   const thinking = resolveThinking(cfg.provider, cfg.extraBody);
 
-  // Build retry chain for 429 fallback. Filter out:
-  //   - current resolved provider (already tried)
-  //   - 'none' (terminal, not a real provider)
-  // Cap at 2 candidates.
-  const retryChain = (cfg.fallbackChain || [])
-    .filter(p => p !== cfg.provider && p !== 'none')
-    .slice(0, 2);
-
   const output = {
     model,
     thinking,
     provider: cfg.provider,
     decisionId: cfg.decisionId || 'unknown',
-    // retryChain: ordered list of fallback providers to try on HTTP 429.
-    // Call recordRateLimit(provider) after observing 429 so the next
-    // spawn_config invocation avoids the failing provider.
-    retryChain,
-    // fallbackChain: full ordered chain including current provider.
-    // Exposed for debugging and callers that want more than 2 retries.
-    fallbackChain: cfg.fallbackChain || [],
   };
 
   // Persist dedup record (best-effort) for subsequent invocations.
@@ -245,9 +229,6 @@ module.exports = {
   DEFAULT_MODELS,
   ROUTE_DEFAULT_FALLBACK,
   normalizeRoute,
-  // Re-export recordRateLimit so callers can mark a provider as 429'd
-  // without importing failure_recovery directly.
-  recordRateLimit: failureRecovery.recordRateLimit,
   // Exposed for tests / external callers
   dedupKey,
   readDedup,

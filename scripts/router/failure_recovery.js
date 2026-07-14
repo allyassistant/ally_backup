@@ -199,44 +199,6 @@ function markProviderFailure(providerName, error) {
   });
 }
 
-// ─── Rate Limit Tracking ───────────────────────────────────────────────────
-
-const RATE_LIMIT_COOLDOWN_MS = 30_000;
-
-/**
- * Mark a provider as rate-limited (HTTP 429) with a short cooldown.
- *
- * Distinct from markProviderFailure() because:
- * - Rate limits are transient (seconds to minutes), not structural
- * - failureCount = 1 (NOT the threshold-N used by markProviderFailure) —
- *   one 429 is enough signal to route around the provider, but we don't
- *   want to lock it out for the full COOLDOWN_MS like a hard failure
- * - Short cooldown (default 30s) covers most provider rate-limit windows
- *
- * After calling this, the next resolveProvider() call will skip this
- * provider until cooldown expires.
- *
- * @param {string} providerName
- * @param {Error|string} [error]
- */
-function recordRateLimit(providerName, error) {
-  if (!healthCache.has(providerName)) throw new Error(`unknown provider: ${providerName}`);
-  const entry = healthCache.get(providerName);
-  const now = Date.now();
-  entry.cooldownUntil = now + RATE_LIMIT_COOLDOWN_MS;
-  entry.lastError = error ? (error.message || String(error)) : 'rate limited';
-  entry.lastCheck = now;
-  // Note: we do NOT set healthy=false here — resolveProvider() checks
-  // cooldownUntil > now independently of the healthy flag. This keeps the
-  // marker narrow (cooldown-only) so the provider is automatically
-  // reconsidered after the window.
-  appendDecisionLog({
-    ts: new Date().toISOString(), event: 'rate_limit',
-    provider: providerName, cooldownUntil: entry.cooldownUntil,
-    cooldownMs: RATE_LIMIT_COOLDOWN_MS, lastError: entry.lastError,
-  });
-}
-
 function markProviderSuccess(providerName) {
   if (!healthCache.has(providerName)) throw new Error(`unknown provider: ${providerName}`);
   const entry = healthCache.get(providerName);
@@ -376,11 +338,9 @@ module.exports = {
   isProviderHealthy,
   markProviderFailure,
   markProviderSuccess,
-  recordRateLimit,
   runHealthCheckLoop,
   _probeProvider: probeProvider,
   _loadConfig: loadConfig,
   _getHealthCache: () => healthCache,
   _RESET: resetAll,
-  _RATE_LIMIT_COOLDOWN_MS: RATE_LIMIT_COOLDOWN_MS,
 };

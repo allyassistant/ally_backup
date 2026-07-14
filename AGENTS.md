@@ -295,49 +295,6 @@ thinking=$(echo $cfg | python3 -c "import sys,json; j=json.load(sys.stdin); prin
 - **Double-spawn 檢查** — `sessions_spawn` 有時被意外 call 兩次導致不確定行為。`scripts/spawn_config.js` 內建 30s dedup guard：相同 (route + task) hash 喺 30s 內重複 invoke 會 return cached config + `dedup: true` flag + warn log，唔會 re-resolve model。Escape hatch：`--no-dedup`。Multi-agent 場景下每個 task 只 spawn 一次，唔好喺同一 prompt 週期內重複 call；如需 retry，過咗 30s TTL 或加 `--no-dedup`
 - **Spawn failure 靜默** — sub-agent spawn 後若完全冇回應，可能是：compaction 搞咗、spawn 過程 crash、或 task 太長 timeout。驗證方法：`subagents list` 睇狀態；`running` → 正常等；`error` → 記錄 error + report Josh；完全消失 → spawn 失敗，轉 direct approach，唔 retry
 
-### 🔁 429 Retry Workflow
-
-> **觸發：** `sessions_spawn` 返回 HTTP 429 (rate limit) 錯誤。
-
-**Root cause：** Kimi 等 provider 用 `type: noop` in `route_model.yaml`，probe 唔到 429，所以必須喺 runtime 撞到先知。
-
-**流程：**
-
-1. **`sessions_spawn` 撞 429** → 認出係 rate limit error
-2. **用 output 嘅 `retryChain[0]` 直接 retry**（唔再 call spawn_config — health cache 係 process-local，跨 process 唔記住）：
-   ```bash
-   # cfg 係之前 spawn_config 輸出（已有 retryChain）
-   retry_model=$(node -e "
-     const { DEFAULT_MODELS } = require('./scripts/spawn_config');
-     const chain = $cfg_json.retryChain || [];
-     console.log(DEFAULT_MODELS[chain[0]] || chain[0] || '');
-   ")
-   # retry_model = "minimax-portal/MiniMax-M2.7"
-   sessions_spawn model=$retry_model thinking=adaptive task="..."
-   ```
-3. **Loop** 通過 `retryChain` 直到成功或耗盡
-4. **（可選）標記 fail provider**：
-   ```bash
-   node -e "require('./scripts/spawn_config').recordRateLimit('kimi')"
-   ```
-   （下次同一 process 內再 spawn 會避開，跨 process 無效）
-5. **全部失敗** → report Josh
-
-**限制：**
-- 最多 2 次重試（`retryChain` cap at 2）
-- 非 429 錯誤（network timeout、auth fail）唔 retry — 嗰啲係結構性問題
-
-**Output 新欄位：**
-```json
-{
-  "model": "kimi/kimi-for-coding",
-  "thinking": "adaptive",
-  "provider": "kimi",
-  "retryChain": ["minimax-portal"],
-  "fallbackChain": ["kimi", "minimax-portal", "none"]
-}
-```
-
 ### 🧠 Think in Tasks（Spawn prompt 格式）
 
 每次 spawn sub-agent 用呢個格式：
@@ -612,7 +569,6 @@ Rehydration checklist（session start 或 compaction trigger 後執行）：
 | **Kimi Deep Research** | browser open → login Google → pre-flight check → prompt → clarify Qs → validation → `write_to_obsidian` + `wiki_apply` → close tab；phase stuck→partial write；scope 太大→split（詳見 `skills/kimi-deep-research/SKILL.md`） | SOP：需要多 sources 綜合研究 / 數據可視化 / multi-phase auto research |
 | **Sub-agent Response** | spawn → 先覆用戶「分析緊...」 → sub-agent 完成 → 俾完整 result | spawn 任務時 |
 | **Smart Spawn** | `exec spawn_config.js` → parse JSON → `sessions_spawn` 用對應 model + thinking | 所有 spawn sub-agent 嘅情況 |
-| **🔁 429 Retry** | `sessions_spawn` 撞 HTTP 429 → 用 `retryChain[0]` 直接重試（唔再 call spawn_config）→ `recordRateLimit` 標記fail provider | SPAWN/CODE 等 route 撞 429 rate limit 時 |
 | **Skill 匹配** | 1. 先睇 `<suggested_skills>`（`skill-auto-suggest` plugin 自動注入 top-3 匹配）<br>2. 再掃 `<available_skills>` 完整 catalog<br>3. 有 matching skill → read SKILL.md → 執行。詳見 🎯 Skill Recall Trigger（禁止 recall draft / archived / disable-model-invocation skills） | 每個 turn 開始時 |
 | **Mini-Curator** | `weekly_correction_loop.js --inactivity-trigger` → 讀 `.last_curator_run.json` → 如果 ≥3 日且 ≥1 新 skill → 做 lightweight validation → 更新 tracker + metrics | daily cron 02:00（或手動觸發）|
 | **Issue Quality** | 創建後填詳細 F/D/Q、Progress checklist、Closing criteria、Rollback plan、Cross-references、Metrics sources | 創建 tracking-type issue（fix、observation、SOP、research）時 |
