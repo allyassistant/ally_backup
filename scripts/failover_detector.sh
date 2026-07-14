@@ -221,4 +221,4 @@ else
 fi
 
 # Update last status (always reflect actual current state, not the debounced one)
-echo "$CURRENT_STATUS" > "$LAST_STATUS_FILE"
+echo "$NOTIFY_STATUS" > "$LAST_STATUS_FILE"
