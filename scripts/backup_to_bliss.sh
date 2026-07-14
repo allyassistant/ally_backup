@@ -14,11 +14,19 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:${PA
 
 # Config
 BLISS_USER="bliss"
-BLISS_IP="[TAILSCALE_BLISS_IP]"
 BACKUP_BASE="/Users/bliss/Backups/Ally"
 DATE_TAG=$(date -u +%Y%m%d)
 WORKSPACE="$HOME/.openclaw/workspace"
 SSH_KEY="$HOME/.ssh/id_ed25519"
+
+# Resolve Bliss IP from ha_config.json if available
+BLISS_IP="[TAILSCALE_BLISS_IP]"
+if [ -f "$HOME/.openclaw/workspace/ha-state/ha_config.json" ]; then
+    RESOLVED=$(python3 -c "import json; d=json.load(open('$HOME/.openclaw/workspace/ha-state/ha_config.json')); print(d.get('bliss_ip',''))" 2>/dev/null)
+    if [ -n "$RESOLVED" ]; then
+        BLISS_IP="$RESOLVED"
+    fi
+fi
 SSH_TARGET="${BLISS_USER}@${BLISS_IP}"
 
 # Track start time for duration reporting

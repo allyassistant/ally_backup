@@ -50,6 +50,18 @@ else
     PEER_ID="bliss"
 fi
 
+# Read ha_config.json for PEER_IP if available (overrides placeholder default)
+if [ -f "$HOME/.openclaw/workspace/ha-state/ha_config.json" ]; then
+    if [ "$NODE_ID" = "ally" ]; then
+        CONFIG_PEER_IP=$(python3 -c "import json; d=json.load(open('$HOME/.openclaw/workspace/ha-state/ha_config.json')); print(d.get('bliss_ip',''))" 2>/dev/null)
+    else
+        CONFIG_PEER_IP=$(python3 -c "import json; d=json.load(open('$HOME/.openclaw/workspace/ha-state/ha_config.json')); print(d.get('ally_ip',''))" 2>/dev/null)
+    fi
+    if [ -n "$CONFIG_PEER_IP" ]; then
+        PEER_IP="$CONFIG_PEER_IP"
+    fi
+fi
+
 CURRENT_UTC=$(date -u +%s)
 
 # ======== NEW: State tracking file ========
