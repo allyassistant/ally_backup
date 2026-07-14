@@ -1,28 +1,30 @@
 ---
 name: email-analysis-cantonese
-description: Verify email tool output and extract content before summarizing in Cantonese, with empty-body fallback and HEARTBEAT_OK noise filtering.
-status: active
+description: 驗證 email 工具輸出，提取內容後以廣東話撮要，並過濾空主體與系統噪音。當 email 主體為空時先檢查附件再判斷是否需要通知用户。
+status: draft
 source: skill-reviewer
 provenance: agent
-generatedAt: 2026-07-13T14:31:01.241Z
+generatedAt: 2026-07-14T14:47:10Z
 ---
 
 ## Workflow
 
-1. **Receive email request** — user asks for Cantonese summary of an email, typically specifying length (2-3 sentences, ≤100 characters).
+1. **接收 email 事件** — 當收到 email 工具返回的結果（標題、寄件人、正文）時，先檢查正文是否為空或僅包含系統噪音（如 `HEARTBEAT_OK`、空字串、純 whitespace）。
 
-2. **Verify email tool output is valid** — check that the email content block is not null, undefined, or a plain `{}`. If the tool returned `null` or a structurally empty object, skip to step 5 immediately.
+2. **空主體時檢查附件** — 如果正文為空，立即查詢 email 工具的附件列表。Stock List、Price List、Report 等商業郵件常見正文為空、實際內容在附件（CSV、XLSX、PDF）。
 
-3. **Extract and clean content** — parse the email body. Remove any `HEARTBEAT_OK` noise signals, strip whitespace, and confirm the body is not empty (no content after "內容:" or equivalent header). If content is empty or noise-only, skip to step 5.
+3. **附件內容處理** — 若有附件且格式為 CSV/XLSX，讀取並提取關鍵數據行（如最新報價、庫存總量、價格變動）。若為 PDF，嘗試提取文字或標註「需要手動查閱附件」。
 
-4. **Generate Cantonese summary** — produce 2-3 concise sentences (≤100 characters for strict limits) in traditional Cantonese, highlighting sender, subject, and key content points.
+4. **生成廣東話撮要** — 用繁體中文（廣東話口語風格）輸出 2-3 句、不超過 100 字的撮要。包含：標題關鍵詞、寄件人、核心數據或趨勢摘要。
 
-5. **Handle empty/no-content case** — if email body is empty, missing, or contains only noise, respond with a standard acknowledgment in Cantonese (e.g.,「暫時無email內容，稍後再試。」) and **stop** — do not loop or retry the email tool.
+5. **過濾噪音回覆** — 若 email 主體為空且無附件，或附件為純系統文件（如 .ics 行事曆），回覆「暫無需要通知的內容」而非返回空撮要。
+
+6. **回覆用戶** — 將撮要直接發送給用戶，保持簡潔。若判斷需要用戶進一步行動（如附件含重要數據），在撮要末尾標註「📎 附件已查閱」。
 
 ## Pitfalls
 
-- ⚠️ **Responding to heartbeat noise as email content** — if `HEARTBEAT_OK` appears in the email body field, the assistant may treat it as the actual email content and summarize "HEARTBEAT_OK" instead of the real message. Always filter HEARTBEAT_OK before attempting to summarize.
-- ⚠️ **Assuming email tool always returns content** — the email tool may return an empty body (null, {}, or whitespace-only) even when the call succeeded. Checking `if (!body || body.trim() === '')` before summarizing is mandatory.
-- ⚠️ **Getting trapped in a heartbeat response loop** — if HEARTBEAT_OK keeps appearing, the assistant may keep responding with `HEARTBEAT_OK` instead of checking the email body. The emptiness check in step 2 breaks this loop.
-- ⚠️ **Exceeding character limit in Cantonese summary** — Cantonese characters can be multi-byte; enforce the ≤100 character count strictly. If the user specified a limit, check it before responding.
-- ⚠️ **Forgetting to filter HTML from email body** — some email tools return HTML. If the body contains `<` tags, strip HTML before summarizing to avoid garbled output.
+- ⚠️ **正文為空時直接返回空撮要** — 未檢查附件就回覆「無內容」，遺漏 Stock List、Price Report 等常見的附件型商業郵件。用戶只會問「點解無嘢」。
+- ⚠️ **混淆 HEARTBEAT_OK 與實際內容** — email 工具有時會在正文插入 `HEARTBEAT_OK` 或其他系統標記，將其當作正文內容處理會導致撮要變成噪音。
+- ⚠️ **撮要超過 100 字或超過 3 句** — 超出用戶要求的格式會被視為不聽指示。嚴格控制長度，數據多時只選最重要的 1-2 行。
+- ⚠️ **不回覆導致對話掛起** — 當 email 主體為空且無附件時，若不回覆任何內容，對話會停留在上一步。用戶需要看到一個確認信號（如「暫無需要通知的內容」）。
+- ⚠️ **附件格式未處理導致崩潰** — 嘗試解析 XLSX/PDF 時若遇到不支援的編碼或加密格式，應捕獲錯誤並回退到「📎 附件請手動查閱」而非崩潰。

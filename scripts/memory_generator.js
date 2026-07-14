@@ -107,21 +107,34 @@ const MINIMAX_CONFIG = {
   cmd: 'openclaw'
 };
 
-// v3: Expert role prompt for generating better summaries
-const EXPERT_ROLE_PROMPT = `你係 Josh 既私人助理，專門幫佢整理每日工作記錄。
+// v4: Improved Expert role prompt for generating better summaries
+const EXPERT_ROLE_PROMPT = `你係 Josh 既私人助理，專門幫佢整理每日工作記錄同識別重要模式。
 
-你需要：
+核心原則：
 - 專注用戶既實際對話內容，唔係系統流程、cron logs、config dumps
 - 避免重複內容、空白記錄、系統通知
 - 如果 detect 到任務或待辦事項，必須 highlight 出嚟
-- 全部用繁體中文（香港用語），絕對禁止簡體中文、唔好用「噉多位」「各位」呢類開場白
+- 全部用繁體中文（香港用語），絕對禁止簡體中文
+- 唔好用「噉多位」「各位」呢類開場白
 - 格式用 bullet point，唔好 section 式排版
 
-你的風格：
-- 簡潔明瞭，重點突出
-- 聚焦有意義既對話，過濾噪音
-- 識別 Action Items / 待完成既任務
-- 語氣正式但自然，唔好扮演對話角色`;
+L0 風格（極簡精華）：
+- 每點 1-2 句，總共 200-300 字
+- 允許具體數字同關鍵事實（如 $30k MRR、11 個 bug）
+- 用標題式寫法，但唔好過度簡化到冇意義
+- 必須有 1 句 synthesis 總結全日重點
+
+L1 風格（深度分析）：
+- 每點 2-4 句，總共 500-700 字
+- 主動聯想 Josh 業務同目標（鑽石、AI 工具、自動化）
+- 識別跨日 pattern 同趨勢
+- 區分「事實」同「推測」，推測必須標註 (未確認)
+- 減少 mechanical 描述，增加洞察分析
+
+噪音過濾：
+- 完全忽略 cron watcher 重複訊息（"All clear"、"healthy"、"0 failures"）
+- 只保留 1 次系統狀態摘要，唔好逐次記錄
+- 忽略 tool output blobs、JSON responses、config dumps`;
 
 const L0_INPUT_WINDOW = 12000;
 const L1_INPUT_WINDOW = 20000;
@@ -130,14 +143,22 @@ const LEVEL_CONFIG = {
   L0: {
     label: 'L0 Abstract',
     outputDir: 'l0-abstract',
-    wordRange: '150-200',
-    topicCount: '5',
-    topicDescription: '5 個最重要既 topics',
-    detailInstruction: `直接輸出，唔需要標題解釋。\n- 每點用 * 開頭（bullet point）\n- 如果今日有 action item，第一點必須係 ⚠️ Action Item\n- 每點 1-2 句，保持精簡\n- 只記錄今日發生嘅事，唔好回顧過去\n- 每點最多 1 句（~30字），禁止具體數字同檔案名，用標題式極簡寫法\n- 只能陳述對話記錄直接支援既事實，唔好憑空推測\n- 如果資訊唔喺 source material 入面，必須標註 (未確認)`,
+    wordRange: '200-300',
+    topicCount: '5-7',
+    topicDescription: '5-7 個最重要既 topics',
+    detailInstruction: `直接輸出，唔需要標題解釋。
+- 每點用 * 開頭（bullet point）
+- 如果今日有 action item，第一點必須係 ⚠️ Action Item
+- 每點 1-2 句，保持精簡但有意義
+- 允許具體數字同關鍵事實（如金額、數量、百分比）
+- 最後必須有 1 句 synthesis 總結全日重點
+- 只能陳述對話記錄直接支援既事實，唔好憑空推測
+- 如果資訊唔喺 source material 入面，必須標註 (未確認)
+- 完全忽略 cron watcher 重複訊息，只保留 1 次系統狀態摘要`,
     inputWindow: L0_INPUT_WINDOW,
     timeoutMs: L0_TIMEOUT_MS,
     fallbackScanLines: 50,
-    fallbackMaxTopics: 5,
+    fallbackMaxTopics: 7,
     logPrefix: 'l0_generator',
     fallbackHeader: "## Today's Key Topics",
     fallbackFormat: (topics) => topics.map(t => `* ${t}`).join('\n'),
@@ -145,10 +166,23 @@ const LEVEL_CONFIG = {
   L1: {
     label: 'L1 Overview',
     outputDir: 'l1-overview',
-    wordRange: '500-600',
+    wordRange: '500-700',
     topicCount: '8-10',
     topicDescription: '8-10 個重要 topics',
-    detailInstruction: '詳細摘要\n- 直接輸出，唔需要標題解釋\n- 每點用 * 開頭（bullet point），唔好用 section 排版\n- 唔好重複 L0 嘅內容結構 — L1 應該有更多分析同 context\n- 如果今日有 action item，第一點必須係 ⚠️ Action Item\n- 可以 include 系統 insight / 模式識別 / 趨勢觀察\n- 語氣保持客觀，唔好用「噉多位」「各位」呢啲開場白\n- 只能陳述對話記錄直接支援既事實，唔好憑空推測系統狀態\n- 如果資訊唔喺 source material 入面，必須標註 (未確認) 前綴\n- 任何 <context> block 入面嘅 system state 係 ground truth，可以信賴\n- 如果 source 同 <context> 有矛盾，以 <context> 為準',
+    detailInstruction: `詳細摘要
+- 直接輸出，唔需要標題解釋
+- 每點用 * 開頭（bullet point），唔好用 section 排版
+- 唔好重複 L0 嘅內容結構 — L1 應該有更多分析同 context
+- 如果今日有 action item，第一點必須係 ⚠️ Action Item
+- 主動聯想 Josh 業務同目標（鑽石、AI 工具、自動化、創業）
+- 識別跨日 pattern 同趨勢，唔好只係描述單日事件
+- 區分「事實」同「推測」，推測必須標註 (未確認)
+- 語氣保持客觀，唔好用「噉多位」「各位」呢啲開場白
+- 只能陳述對話記錄直接支援既事實，唔好憑空推測系統狀態
+- 如果資訊唔喺 source material 入面，必須標註 (未確認) 前綴
+- 任何 <context> block 入面嘅 system state 係 ground truth，可以信賴
+- 如果 source 同 <context> 有矛盾，以 <context> 為準
+- 完全忽略 cron watcher 重複訊息，只保留 1 次系統狀態摘要`,
     inputWindow: L1_INPUT_WINDOW,
     timeoutMs: L1_TIMEOUT_MS,
     fallbackScanLines: 80,
@@ -462,6 +496,16 @@ function isNoiseLine(line) {
   if (/^\[MAIN\]:\s*(L0|L1):\s*\//i.test(line)) return true;
   // Remove daily memory file header lines
   if (/^#\s*Daily\s*Memory\s*-\s*\d{4}-\d{2}-\d{2}/i.test(line)) return true;
+  // v4: Remove repetitive cron watcher messages
+  if (/Cron Failure Watcher.*All clear/i.test(line)) return true;
+  if (/✅.*OpenClaw.*healthy.*0 failures/i.test(line)) return true;
+  if (/✅.*Watcher clean.*OpenClaw OK/i.test(line)) return true;
+  if (/✅.*Cron failure watcher.*clean scan/i.test(line)) return true;
+  if (/No failures detected/i.test(line)) return true;
+  if (/No action needed/i.test(line)) return true;
+  // v4: Remove repetitive system status messages
+  if (/Shadow run complete.*OpenClaw healthy/i.test(line)) return true;
+  if (/system.*clean.*no.*error/i.test(line)) return true;
   return false;
 }
 

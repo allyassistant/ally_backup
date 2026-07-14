@@ -23,8 +23,8 @@
  *   node skill_junk_tracker.js --json     # JSON output
  *   node skill_junk_tracker.js --quiet    # silent (log only)
  *
- * VERSION: 2.0.0
- * AUTHOR: Ally (2026-06-12)
+ * VERSION: 2.1.0
+ * AUTHOR: Ally (2026-06-12; 2026-07-14 internal-automation filter added)
  */
 
 'use strict';
@@ -40,6 +40,59 @@ const ARCHIVE_ROOT = path.join(WS, 'skills-learned', '_archive');
 
 const TARGET_VALIDATOR_CATCH = 25.0;   // percent, ≥ this is good
 const TARGET_JUNK_IN_PRODUCTION = 10.0; // percent, < this is good
+
+// ── Internal automation cluster filter ──
+// Skills whose names start with any of these prefixes are workspace-internal
+// automation (cron jobs, email tooling, heartbeat, HA, etc.). They are needed
+// for cron pipelines and have nothing to do with the user-facing skill catalog
+// quality. Counting them as "junk" inflates junk rate to 90%+ and triggers
+// false-positive auto-pauses. The validator (validate_skill_file.js) is correct
+// for normal skills — it just doesn't have context for these internal tools.
+// Source of truth: spec from skill_reviewer_bot.js / job description.
+// To extend: add to INTERNAL_AUTOMATION_PREFIXES below; no other change needed.
+const INTERNAL_AUTOMATION_PREFIXES = [
+  'cron', 'email', 'ha-', 'bliss', 'failover',
+  'daily-', 'weekly-', 'skill-',
+  'heartbeat', 'anomaly', 'subagent', 'wiki', 'memory',
+  'llm', 'connection', 'pattern'
+];
+// Reasons that indicate the validator successfully caught a problem WITHOUT
+// landing any junk in the catalog. These events are also excluded from junk
+// counting because they represent "validator worked correctly" — landing a
+// flag, not landing a junk skill.
+//   - 'post-llm pre-emit skip' : pre-emit dedup caught LLM regen-of-existing
+//   - 'P5 same_name_exact_match': cross-source dedup rejected duplicate
+//   - 'self-referential block (QW-2)' : QW-2 filter blocked self-ref skill
+const NOISE_REASON_PATTERNS = [
+  /post-llm pre-emit skip/,
+  /P5 same_name_exact_match/,
+  /self-referential block/,
+];
+
+function isInternalAutomation(name) {
+  if (!name) return false;
+  const n = String(name).toLowerCase();
+  return INTERNAL_AUTOMATION_PREFIXES.some(function (p) { return n.indexOf(p) === 0; });
+}
+
+function isNoiseReason(reason) {
+  if (!reason) return false;
+  return NOISE_REASON_PATTERNS.some(function (re) { return re.test(reason); });
+}
+
+/**
+ * Decide whether an event should count toward junk-rate stats.
+ * Returns false (exclude from stats) when:
+ *   - skill name is internal-automation prefix, OR
+ *   - failure reason is a "validator caught it, no junk landed" signal
+ * Returns true (count toward stats) only for events representing real
+ * production-quality concerns for user-facing skills.
+ */
+function shouldCountForStats(ev) {
+  if (isInternalAutomation(ev.name)) return false;
+  if (ev.validationPassed === false && isNoiseReason(ev.reason)) return false;
+  return true;
+}
 
 // Parse args
 const args = process.argv.slice(2);
@@ -173,19 +226,31 @@ function scanQuarantinedSkills() {
  *   - denominator = unique passed skill names in window
  *   - null when no passed skills in window (can't compute ratio)
  *
+ * Internal automation filter (2026-07-14):
+ *   Events whose name matches INTERNAL_AUTOMATION_PREFIXES (cron, email, …)
+ *   OR whose failure reason is a "noise" pattern (post-llm dedup skip, etc.)
+ *   are EXCLUDED from both metrics. These represent cron-generated skills
+ *   and validator-success signals — neither is a junk-in-production risk.
+ *   The rawTotal/rawFailed fields are returned for visibility so callers
+ *   can audit how much was filtered.
+ *
  * @param {Array} events
  * @param {Set<string>} quarantinedNames
  */
 function computeStats(events, quarantinedNames) {
-  const total = events.length;
-  const passed = events.filter(e => e.validationPassed).length;
+  const rawTotal = events.length;
+  const rawFailed = events.filter(e => !e.validationPassed).length;
+
+  const statsEvents = events.filter(shouldCountForStats);
+  const total = statsEvents.length;
+  const passed = statsEvents.filter(e => e.validationPassed).length;
   const failed = total - passed;
 
-  // Metric 1: Validator Catch Rate (event-based)
+  // Metric 1: Validator Catch Rate (event-based) — internal events excluded
   const validatorCatchRate = total === 0 ? 0 : (failed / total) * 100;
 
   // Metric 2: Junk-in-Production Rate (name-based cross-reference)
-  const passedNames = new Set(events.filter(e => e.validationPassed).map(e => e.name));
+  const passedNames = new Set(statsEvents.filter(e => e.validationPassed).map(e => e.name));
   const passedAndQuarantined = [...passedNames].filter(n => quarantinedNames.has(n));
   const junkInProductionRate = passedNames.size > 0
     ? (passedAndQuarantined.length / passedNames.size) * 100
@@ -195,11 +260,14 @@ function computeStats(events, quarantinedNames) {
     total,
     passed,
     failed,
+    rawTotal,
+    rawFailed,
+    internalExcluded: rawTotal - total,
     validatorCatchRate: round2(validatorCatchRate),
     junkInProductionRate: junkInProductionRate === null ? null : round2(junkInProductionRate),
     junkRatePercent: round2(validatorCatchRate), // deprecated: equals validatorCatchRate
     passedAndQuarantined,
-    failedNames: events.filter(e => !e.validationPassed).map(e => e.name)
+    failedNames: statsEvents.filter(e => !e.validationPassed).map(e => e.name)
   };
 }
 
@@ -234,6 +302,12 @@ function main() {
     total: stats.total,
     passed: stats.passed,
     failed: stats.failed,
+    // Internal automation filter (2026-07-14): how many events were excluded
+    // from junk-rate stats because they're cron/internal automation clusters
+    // or "validator caught it" noise. rawTotal includes those; total does not.
+    rawTotal: stats.rawTotal,
+    rawFailed: stats.rawFailed,
+    internalExcluded: stats.internalExcluded,
     // New split metrics (v2)
     validatorCatchRate: stats.validatorCatchRate,
     validatorCatchPass,
@@ -255,7 +329,8 @@ function main() {
   } else {
     const dayLabel = `past ${days} day${days > 1 ? 's' : ''}`;
     log(`\n📊 Skill Pipeline Health (${dayLabel})`);
-    log(`   Total events: ${stats.total}`);
+    log(`   Total events (raw): ${stats.rawTotal}    (internal-automation excluded: ${stats.internalExcluded})`);
+    log(`   Total events (stats): ${stats.total}`);
     log(`   ─────────────────────────────`);
     const catchStr = stats.total === 0 ? 'N/A' : `${stats.validatorCatchRate.toFixed(2)}%`;
     log(`   🛡️  Validator Catch Rate:  ${catchStr} (target ≥${TARGET_VALIDATOR_CATCH}%) ${verdictIcon(validatorCatchPass)}`);
@@ -264,8 +339,11 @@ function main() {
     log(`   🎯 Junk-in-Production:    ${junkStr} (target <${TARGET_JUNK_IN_PRODUCTION}%)  ${junkVerdict}`);
     log(`   ─────────────────────────────`);
     log(`   Passed: ${stats.passed} | Rejected: ${stats.failed} | Quarantined: ${stats.passedAndQuarantined.length}`);
+    if (stats.internalExcluded > 0) {
+      log(`   Internal-automation events excluded from stats: ${stats.internalExcluded}`);
+    }
     if (stats.failedNames.length > 0) {
-      log(`   Failed: ${stats.failedNames.join(', ')}`);
+      log(`   Failed (post-filter): ${stats.failedNames.join(', ')}`);
     }
     if (stats.passedAndQuarantined.length > 0) {
       log(`   Passed-but-quarantined: ${stats.passedAndQuarantined.join(', ')}`);

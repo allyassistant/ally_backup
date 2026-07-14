@@ -4,46 +4,35 @@ description: Detect simplified Chinese glyphs in source files, replace with trad
 status: draft
 source: skill-reviewer
 provenance: agent
-generatedAt: 2026-07-11T21:31:01.241Z
+generatedAt: 2026-07-14T01:00:00.000Z
 ---
 
 ## Workflow
 
-1. **Scan for simplified characters** using `grep -rn --include="*.js" --include="*.md" --include="*.sh" '[' '\u4e00-\u9fff]' ~/.openclaw/workspace/` or equivalent, targeting CJK Unified Ideographs block. Pipe through `iconv -f utf8 -t utf8//IGNORE` to avoid encoding noise.
+1. **Scan target files** — Run the audit scanner or use grep to find simplified-only glyphs in `.js`, `.md`, and `.sh` files. Common patterns include `开`, `发`, `错`, `数`, `据`, `请`, `请`, `为`.
 
-2. **Isolate file and line** for each match. For each hit, record: file path, line number, the matched string, and the surrounding 40-character context. Group results by file to avoid re-scanning.
+2. **Identify the specific simplified glyphs** — Use a Unicode-aware detector to isolate characters that have traditional equivalents (e.g., `开→開`, `发→發`, `数→數`, `据→據`).
 
-3. **Map each simplified character to its traditional equivalent**. Common mappings (compile a lookup table):
-   - 学 → 學, 开 → 開, 网 → 網, 代码 → 代碼, 测试 → 測試
-   - 开发 → 開發, 脚本 → 腳本, 错误 → 錯誤, 文件 → 文件
-   - 时间 → 時間, 功能 → 功能, 问题 → 問題, 处理 → 處理
+3. **Apply replacements conservatively** — Replace only the specific glyphs identified, preserving all other content. Do not run global find-replace that could break variable names or technical terms.
 
-4. **Apply the replacement** by file type:
-   - **Comments/docstrings**: safe to replace — update the glyph directly.
-   - **String literals (error messages, logs)**: replace if visible to user; preserve if machine-parseable.
-   - **Code identifiers (variable names, function names)**: **do not replace** — breaking change. Flag for manual review instead.
-   - Use `sed -i '' 's/学/學/g'` for safe in-place replacement, or a node script for precise line-level edits that preserve surrounding context.
+4. **Verify the fix** — Re-run the scanner on the same files to confirm no simplified glyphs remain, and check that the replacement did not introduce syntax errors.
 
-5. **Verify the fix** by re-running the same grep command and confirming zero matches. If any remain, repeat step 4 for the remaining instances.
-
-6. **Register the rule in the audit scanner** — add `simplified-chinese` as a named rule in `scripts/audit_scanner.js` (or equivalent) so future cron runs automatically detect regressions. The rule should fire on any file matching `--include` patterns that contains simplified-only glyphs.
-
-7. **Cross-reference with test files** — `scripts/test_dry_run_validation.js` and `scripts/test_phase3_semantic_equivalence.js` are known emitters (per audit data). Audit these files specifically and fix or exclude them from future scans if they contain intentional simplified characters.
+5. **Integrate into the audit pipeline** — Add a pre-commit hook or integrate the detector into the weekly audit scanner to catch regressions automatically.
 
 ## Pitfalls
 
-- ⚠️ Replacing simplified Chinese in code identifiers — variable names like `开发展开` are intentionally simplified; replacing them with traditional creates a breaking change. Always check whether the glyph appears in a code token or a string literal before replacing.
+- ⚠️ **Over-replacing technical terms** — Some technical terms use simplified forms intentionally (e.g., API endpoint names). Verify context before replacing.
 
-- ⚠️ Accidental encoding corruption during sed replacement — if the file uses a non-UTF8 encoding, `sed` can silently corrupt multi-byte Chinese characters. Always verify with `file <path>` and `iconv -f utf8 -t utf8 <path>` before editing.
+- ⚠️ **Breaking variable names or strings** — If a simplified glyph appears inside a quoted string that references a file path or API, replacing it may break the reference. Always check surrounding context.
 
-- ⚠️ Over-matching with broad grep patterns — a naive `[学开网]` class catches characters in unintended contexts (e.g., URLs, base64). Narrow the search to `--include="*.js"` / `--include="*.md"` / `--include="*.sh"` and exclude `node_modules/` and binary files.
+- ⚠️ **Missing file types** — The scanner may miss `.json`, `.yaml`, or config files if not included in the scan target list. Ensure all relevant extensions are covered.
 
-- ⚠️ Forgetting to update the audit scanner rule — fixing existing files only solves the current incident. Without registering the rule in `audit_scanner.js`, the pattern will recur on the next `git add`. Ensure step 6 runs every time.
+- ⚠️ **False negatives from mixed content** — Files with both simplified and traditional Chinese may have intentional simplified sections (comments in mainland codebases). Verify the intent before auto-replacing.
 
-- ⚠️ Traditional characters that visually resemble simplified — some glyphs (e.g., 網 vs 网) are visually similar. When auditing, use a character-by-character diff tool (`diff <(echo "$traditional") <(echo "$simplified")`) rather than eyeballing to confirm the replacement is correct.
+- ⚠️ **Not re-scanning after fixes** — Failing to verify the fix leaves the door open for the same simplified glyphs to reappear in future edits.
 
 ## References
 
-See `skills-learned/code-quality-proactive-scan/SKILL.md` for the parent audit scanner workflow this rule integrates into.
-
----
+- Top files where rule fires: `scripts/test_dry_run_validation.js`, `scripts/test_phase3_semantic_equivalence.js`
+- Audit rule: `simplified-chinese` (12 occurrences in past 7 days)
+- Unicode ranges: Simplified CJK (U+4E00-U+9FFF subset)

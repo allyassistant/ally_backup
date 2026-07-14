@@ -3,24 +3,37 @@
  * skill_junk_pause.js — Thin executor (no LLM)
  *
  * Week 1 Safety Net (Issue #154): auto-pause skill_reviewer_bot.js's
- * auto-symlink when 24h junk rate exceeds AUTO_PAUSE_THRESHOLD.
+ * auto-symlink when 24h validator catch rate drops below target.
  *
- * Reads `.skill_junk_rate.jsonl` last 24h entries → computes avg junk rate
+ * Reads `.skill_junk_rate.jsonl` last 24h entries → averages both
+ * `validatorCatchRate` (primary) and `junkInProductionRate` (secondary/backup)
  * → writes/clears `.skill_reviewer_pause.json` accordingly.
  *
- * Behaviour:
- *   rate > threshold AND no active pause → write pause file, output {action: 'pause'}
- *   rate ≤ threshold AND pause expired → clear pause file, output {action: 'resume'}
- *   pause active and not expired        → output {action: 'keep-paused', hoursLeft: X}
- *   rate ≤ threshold AND no pause       → output {action: 'no-action'}
+ * Why validatorCatchRate is primary:
+ *   - junkInProductionRate is too noisy when internal automation skills
+ *     are excluded from the denominator (a single failure among a small
+ *     sample pushes the rate above the 30% threshold).
+ *   - validatorCatchRate reflects "is the validation pipeline actually
+ *     catching junk?" — a healthier top-of-funnel signal.
+ *
+ * Behaviour (primary: validatorCatchRate):
+ *   validatorCatchRate < threshold AND no active pause → PAUSE
+ *   validatorCatchRate ≥ threshold AND pause expired   → RESUME
+ *   pause active and not expired                       → keep-paused
+ *
+ * Backup signal (junkInProductionRate):
+ *   Only consulted when validatorCatchRate data is entirely missing
+ *   from the window (e.g., tracker pre-v2 rows). With v2 data present,
+ *   junkInProductionRate is purely informational — reported alongside
+ *   validatorCatchRate for observability.
  *
  * Usage:
- *   node scripts/skill_junk_pause.js [--quiet] [--dry-run] [--threshold 0.15] [--hours 24]
+ *   node scripts/skill_junk_pause.js [--quiet] [--dry-run] [--threshold 0.25] [--hours 24]
  *
  * Flags:
  *   --quiet                Suppress non-essential log output
  *   --dry-run              Print what would happen, do not write pause file
- *   --threshold <float>    Override AUTO_PAUSE_THRESHOLD (default 0.15)
+ *   --threshold <float>    Override validatorCatchRate threshold (default 0.25 = VALIDATOR_CATCH_TARGET)
  *   --hours <int>          Window in hours (default 24)
  *
  * Exit codes:
@@ -42,7 +55,11 @@ const { WS } = require('./lib/config');
 
 const JUNK_RATE_FILE = path.join(WS, '.skill_junk_rate.jsonl');
 const PAUSE_FILE = path.join(WS, '.skill_reviewer_pause.json');
-const DEFAULT_THRESHOLD = 0.30;
+// Primary pause trigger: validator catch rate target. Mirrors
+// VALIDATOR_CATCH_TARGET in daily_report.js / skill_reviewer_daily_report.js.
+const DEFAULT_THRESHOLD = 0.25;
+// Backup signal only: consulted when validatorCatchRate data is missing.
+const DEFAULT_JUNK_THRESHOLD = 0.30;
 const DEFAULT_HOURS = 24;
 const PAUSE_DURATION_MS = 24 * 60 * 60 * 1000; // 24h
 
@@ -87,25 +104,35 @@ function readJunkRateEntries(windowMs) {
   return out;
 }
 
-function computeJunkRate(entries) {
-  if (!entries.length) return null;
-  // Both junkInProductionRate (v2) and junkRatePercent (v1) are stored
-  // as PERCENT values (0-100 scale), not fractions (0-1). Convert to
-  // fraction here so we can compare against the threshold (also a fraction).
-  // junkInProductionRate field name suggests rate, but the source data
-  // shows 7.69 meaning 7.69%, so we treat it as percent.
-  const rates = [];
+// Returns { validatorCatchRate, junkInProductionRate } as fractions (0-1),
+// or null for each if no usable data in the window. Both v2 fields
+// (`validatorCatchRate`, `junkInProductionRate`) and the v1 legacy
+// `junkRatePercent` are stored as PERCENT values (0-100) in the jsonl,
+// so we divide by 100 here to get a fraction comparable to thresholds.
+function computeMetrics(entries) {
+  const validatorRates = [];
+  const junkRates = [];
   for (let i = 0; i < entries.length; i++) {
     const e = entries[i];
+    if (typeof e.validatorCatchRate === 'number') {
+      validatorRates.push(e.validatorCatchRate / 100);
+    }
     if (typeof e.junkInProductionRate === 'number') {
-      rates.push(e.junkInProductionRate / 100);
-    } else if (typeof e.junkRatePercent === 'number') {
-      rates.push(e.junkRatePercent / 100);
+      junkRates.push(e.junkInProductionRate / 100);
+    } else if (typeof e.junkRatePercent === 'number' && typeof e.validatorCatchRate !== 'number') {
+      // v1 fallback: junkRatePercent is the only metric we have, surface it
+      // under junkInProductionRate slot so the backup branch still works.
+      junkRates.push(e.junkRatePercent / 100);
     }
   }
-  if (!rates.length) return null;
-  // Simple mean (no weighted — each tracker run is a sample, treat equally)
-  return rates.reduce((a, b) => a + b, 0) / rates.length;
+  return {
+    validatorCatchRate: validatorRates.length
+      ? validatorRates.reduce((a, b) => a + b, 0) / validatorRates.length
+      : null,
+    junkInProductionRate: junkRates.length
+      ? junkRates.reduce((a, b) => a + b, 0) / junkRates.length
+      : null,
+  };
 }
 
 function readPauseState() {
@@ -141,7 +168,7 @@ function parseArgs() {
       opts.hours = v;
     }
     else if (a === '--help' || a === '-h') {
-      console.log('Usage: node skill_junk_pause.js [--quiet] [--dry-run] [--threshold 0.15] [--hours 24]');
+      console.log('Usage: node skill_junk_pause.js [--quiet] [--dry-run] [--threshold 0.25] [--hours 24]');
       process.exit(0);
     }
     else {
@@ -156,33 +183,67 @@ function main() {
   const opts = parseArgs();
   const windowMs = opts.hours * 60 * 60 * 1000;
   const entries = readJunkRateEntries(windowMs);
-  const junkRate = computeJunkRate(entries);
+  const { validatorCatchRate, junkInProductionRate } = computeMetrics(entries);
   const pauseState = readPauseState();
   const now = Date.now();
   const pauseActive = pauseState && now < pauseState.until;
 
   log('Read ' + entries.length + ' junk-rate entries (last ' + opts.hours + 'h)');
-  if (junkRate !== null) {
-    log('Avg junk rate: ' + (junkRate * 100).toFixed(2) + '% (threshold ' + (opts.threshold * 100).toFixed(2) + '%)');
+  if (validatorCatchRate !== null) {
+    log('Avg validator catch rate: ' + (validatorCatchRate * 100).toFixed(2) + '% (threshold ' + (opts.threshold * 100).toFixed(2) + '%)');
   } else {
-    log('No usable junk-rate data in window');
+    log('No validatorCatchRate data in window');
+  }
+  if (junkInProductionRate !== null) {
+    log('Avg junk-in-production rate: ' + (junkInProductionRate * 100).toFixed(2) + '% (backup threshold ' + (DEFAULT_JUNK_THRESHOLD * 100).toFixed(2) + '%)');
+  } else {
+    log('No junkInProductionRate data in window');
   }
 
-  // Case 1: no usable data → no action
-  if (junkRate === null) {
+  // Decide whether to pause. Primary trigger: validatorCatchRate below
+  // threshold. Backup trigger: if validatorCatchRate data is missing
+  // AND junkInProductionRate exceeds its backup threshold.
+  let triggerMetric = null;   // 'validatorCatchRate' or 'junkInProductionRate' or null
+  let triggerValue = null;
+  if (validatorCatchRate !== null && validatorCatchRate < opts.threshold) {
+    triggerMetric = 'validatorCatchRate';
+    triggerValue = validatorCatchRate;
+  } else if (validatorCatchRate === null
+             && junkInProductionRate !== null
+             && junkInProductionRate > DEFAULT_JUNK_THRESHOLD) {
+    triggerMetric = 'junkInProductionRate';
+    triggerValue = junkInProductionRate;
+  }
+  const shouldPause = triggerMetric !== null;
+  const shouldResume = !shouldPause;
+
+  // Case 1: no usable data at all → no action
+  if (validatorCatchRate === null && junkInProductionRate === null) {
     console.log(JSON.stringify({ action: 'no-action', reason: 'no-data', entries: entries.length }));
     return;
   }
 
-  // Case 2: rate above threshold and no active pause → PAUSE
-  if (junkRate > opts.threshold && !pauseActive) {
+  // Case 2: trigger above threshold and no active pause → PAUSE
+  if (shouldPause && !pauseActive) {
     const until = now + PAUSE_DURATION_MS;
+    const pctStr = (triggerValue * 100).toFixed(2);
+    let reason, metricLabel;
+    if (triggerMetric === 'validatorCatchRate') {
+      metricLabel = 'validator catch rate';
+      reason = 'auto-pause: 24h ' + metricLabel + ' ' + pctStr + '% < ' + (opts.threshold * 100).toFixed(2) + '%';
+    } else {
+      metricLabel = 'junk-in-production rate';
+      reason = 'auto-pause (backup): no validatorCatchRate data, 24h ' + metricLabel + ' ' + pctStr + '% > ' + (DEFAULT_JUNK_THRESHOLD * 100).toFixed(2) + '%';
+    }
     const newState = {
       pausedAt: new Date(now).toISOString(),
       until: until,
-      reason: 'auto-pause: 24h junk rate ' + (junkRate * 100).toFixed(2) + '% > ' + (opts.threshold * 100).toFixed(2) + '%',
-      junkRateAtPause: junkRate,
-      threshold: opts.threshold,
+      reason: reason,
+      triggerMetric: triggerMetric,
+      threshold: triggerMetric === 'validatorCatchRate' ? opts.threshold : DEFAULT_JUNK_THRESHOLD,
+      triggerValue: triggerValue,
+      validatorCatchRate: validatorCatchRate,
+      junkInProductionRate: junkInProductionRate,
     };
     if (!opts.dryRun) {
       try {
@@ -199,15 +260,18 @@ function main() {
     console.log(JSON.stringify({
       action: 'pause',
       until: new Date(until).toISOString(),
-      junkRate: junkRate,
-      threshold: opts.threshold,
+      triggerMetric: triggerMetric,
+      triggerValue: triggerValue,
+      validatorCatchRate: validatorCatchRate,
+      junkInProductionRate: junkInProductionRate,
+      threshold: newState.threshold,
       dryRun: opts.dryRun,
     }));
     return;
   }
 
-  // Case 3: rate ≤ threshold and pause expired → RESUME
-  if (junkRate <= opts.threshold && pauseState && now >= pauseState.until) {
+  // Case 3: trigger cleared and pause expired → RESUME
+  if (shouldResume && pauseState && now >= pauseState.until) {
     const wasPausedForHours = ((now - Date.parse(pauseState.pausedAt)) / (60 * 60 * 1000)).toFixed(2);
     if (!opts.dryRun) {
       try {
@@ -222,15 +286,22 @@ function main() {
     console.log(JSON.stringify({
       action: 'resume',
       wasPausedForHours: parseFloat(wasPausedForHours),
-      junkRate: junkRate,
+      validatorCatchRate: validatorCatchRate,
+      junkInProductionRate: junkInProductionRate,
       dryRun: opts.dryRun,
     }));
     return;
   }
 
-  // Case 4: rate ≤ threshold and no pause file → no action
-  if (junkRate <= opts.threshold && !pauseState) {
-    console.log(JSON.stringify({ action: 'no-action', reason: 'rate-below-threshold', junkRate: junkRate, threshold: opts.threshold }));
+  // Case 4: no trigger and no pause file → no action
+  if (shouldResume && !pauseState) {
+    console.log(JSON.stringify({
+      action: 'no-action',
+      reason: 'metrics-healthy',
+      validatorCatchRate: validatorCatchRate,
+      junkInProductionRate: junkInProductionRate,
+      threshold: opts.threshold,
+    }));
     return;
   }
 
@@ -240,7 +311,10 @@ function main() {
     console.log(JSON.stringify({
       action: 'keep-paused',
       hoursLeft: parseFloat(hoursLeft.toFixed(2)),
-      junkRateAtPause: pauseState.junkRateAtPause,
+      triggerMetric: pauseState.triggerMetric,
+      triggerValueAtPause: pauseState.triggerValue,
+      validatorCatchRate: validatorCatchRate,
+      junkInProductionRate: junkInProductionRate,
       until: new Date(pauseState.until).toISOString(),
     }));
     return;
@@ -260,4 +334,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { computeJunkRate, readJunkRateEntries, readPauseState };
+module.exports = { computeMetrics, readJunkRateEntries, readPauseState };

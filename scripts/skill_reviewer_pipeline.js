@@ -137,7 +137,9 @@ function shouldNotify(stats) {
   if (!stats) return false;
   if (stats.queueEmpty) return false;
   if (stats.hadError) return false;
-  return stats.newCount > 0 || stats.updatedCount > 0 || stats.deduplicated > 0;
+  // Only notify when there are actual new or updated skills.
+  // Deduplications alone (no new/updated) do not warrant a notification.
+  return stats.newCount > 0 || stats.updatedCount > 0;
 }
 
 /**

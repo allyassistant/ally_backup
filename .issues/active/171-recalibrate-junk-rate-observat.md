@@ -61,6 +61,6 @@ If new methodology causes issues:
 ## Notes
 
 - **Parent:** #150 (closed 2026-06-18)
-- **Related:** #146 (original fixes), #149 (quarantine cleanup), #162 (skill pipeline master)
+- **Related:** #146 (original fixes), #149 (quarantine cleanup), #162 (skill pipeline master), #193 (output truncation fix)
 - **Data source:** `.skill_junk_rate.jsonl` (228+ entries)
 - **Decision owner:** Josh (methodology change affects how future junk rate reports are interpreted)

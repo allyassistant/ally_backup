@@ -44,12 +44,16 @@ const MINIMAX_CONFIG = {
 async function sendDiscord(msg) {
     const payload = typeof msg === 'string' ? msg : msg.content || JSON.stringify(msg);
     if (!_quietMode) console.log('正在發送到 Discord #📕日記...');
-    const result = await discord.push({
+    const result = discord.push({
         target: 'channel:1473386222998130860',
         message: payload,
         silent: false,
     });
-    if (!_quietMode) console.log('已發送到 Discord #📕日記');
+    if (!result.ok) {
+        console.error('❌ Discord push failed: ' + (result.error || 'unknown error'));
+    } else if (!_quietMode) {
+        console.log('✅ 已發送到 Discord #📕日記');
+    }
     return result;
 }
 

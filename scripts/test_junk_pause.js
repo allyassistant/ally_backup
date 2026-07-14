@@ -64,16 +64,18 @@ function runTests() {
   console.log('  Skill Junk Pause Unit Tests');
   console.log('═══════════════════════════════════════════════════');
 
-  // ── Test 1: 5 entries with ~22% avg junk rate → should pause ──
-  console.log('\n── Test 1: 22% junk rate → pause ──');
+  // ── Test 1: validatorCatchRate below threshold → should pause ──
+  // Primary trigger (validatorCatchRate < threshold), backup trigger not consulted
+  // since validatorCatchRate data exists. Old junkInProductionRate is now backup.
+  console.log('\n── Test 1: validatorCatchRate 10% < 15% threshold → pause ──');
   const now = Date.now();
   const entries = [];
   for (let i = 0; i < 5; i++) {
     entries.push({
       v: 2,
       ts: new Date(now - i * 60 * 60 * 1000).toISOString(),
-      junkInProductionRate: 20 + i,
-      validatorCatchRate: 50,
+      junkInProductionRate: 20 + i,  // old primary signal; now backup only
+      validatorCatchRate: 10,         // new primary signal: 10% < 15% threshold
       total: 10,
       passed: 8,
       failed: 2,
