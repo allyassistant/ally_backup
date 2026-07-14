@@ -38,18 +38,22 @@ routes:
     cost_weight: 0.1
   sop:
     primary:
-      provider: kimi
-      model: kimi/kimi-for-coding
+      provider: minimax-portal
+      model: minimax-portal/MiniMax-M3
+      extra_body:
+        reasoning: high
     fallback_chain:
-    - minimax-portal
+    - kimi
     - none
     cooldown_seconds: 60
   spawn:
     primary:
-      provider: kimi
-      model: kimi/kimi-for-coding
+      provider: minimax-portal
+      model: minimax-portal/MiniMax-M3
+      extra_body:
+        reasoning: high
     fallback_chain:
-    - minimax-portal
+    - kimi
     - none
     cooldown_seconds: 60
     cost_weight: 0.5
@@ -66,10 +70,12 @@ routes:
     cost_weight: 0.5
   code:
     primary:
-      provider: kimi
-      model: kimi/kimi-for-coding
+      provider: minimax-portal
+      model: minimax-portal/MiniMax-M3
+      extra_body:
+        reasoning: high
     fallback_chain:
-    - minimax-portal
+    - kimi
     - none
     cooldown_seconds: 60
   browser:
