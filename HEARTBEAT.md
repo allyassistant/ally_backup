@@ -96,6 +96,10 @@ ha-state/bliss/heartbeat.json     ← 讀取檢查 (failover_detector.sh)
 - **H-2** 🟡 P1 — Auto-quarantine failed SKILL.md to `failed-validations/`
 - **H-3** 🟡 P1 — Validator regex supports `### 1.` H3 headers → `validate_skill_file.js:95,117`
 - **H-4** 🟢 P2 — Unclosed code fence early detection
+- **H-5** 🔴 P0 — Quarantine gate: block symlink for quarantined skills → `skill_reviewer_bot.js:1384-1448`
+  - `email-analysis-cantonese` was quarantined but cron re-created + auto-applied it anyway
+  - Quarantine scan before symlink: scan `skills-learned/_archive/` (all `quarantine-*` + `failed-validations/` formats)
+  - Blocked skills kept as draft; `symlinked:false` in telemetry; `QUARANTINE:` log entry
 - **P2 #1** — `extractFileBlocks` multi-block loop fix → `skill_reviewer_bot.js:238`
 - **P2 #2** — `numSteps` regex updated for H3
 - **P2 #3** — `pitfallsCount` telemetry uses H-3 compatible regex

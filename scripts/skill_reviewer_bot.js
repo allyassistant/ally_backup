@@ -1381,53 +1381,103 @@ async function writeSkillFiles(blocks) {
               log('AUTO_APPLY=false: skipping symlink for ' + block.filePath + ' (kept as draft)');
               written.push(block.filePath);
               symlinkedActual = false;  // recorded by unified telemetry below
-            } else if (!shouldSymlinkSkill(block.content)) {
-              // ── M1 recall-quality gate: do not symlink draft/manual skills ──
-              // Filtering only downstream in skill_discovery.js is insufficient;
-              // the filesystem state must also match AGENTS.md recall rules.
-              log('Recall gate: skipping symlink for ' + block.filePath + ' (draft/manual)');
-              // Also remove any pre-existing symlink from a previous active version.
-              try {
-                var recallClassName = path.basename(dir);
-                var recallStaleSymlinkPath = path.join(SKILLS_ACTIVE, '_learned_' + recallClassName);
-                if (fs.existsSync(recallStaleSymlinkPath) || isBrokenSymlink(recallStaleSymlinkPath)) {
-                  try { fs.unlinkSync(recallStaleSymlinkPath); } catch (e) { throw e; }
-                  log('Removed stale symlink (now draft/manual): ' + recallStaleSymlinkPath.replace(WS, ''));
-                }
-              } catch (recallUnlinkErr) {
-                err('Failed to remove stale symlink for ' + path.basename(dir) + ': ' + recallUnlinkErr.message);
-              }
-              written.push(block.filePath);
-              symlinkedActual = false;
             } else {
-              // ── QW3: Symlink instant-create to skills/ (idempotent) ──
-              // Solves 7-day latency: new skills in skills-learned/ are immediately
-              // discoverable via a symlink in skills/, no need to wait for the
-              // weekly_correction_loop migration. Use _learned_ prefix (matches
-              // weekly_correction_loop.js convention) to avoid duplicate detection
-              // when listCategorizedSkills scans both skills/ and skills-learned/.
+              // ── P0 Quarantine Gate: block symlink for quarantined skills ──
+              // email-analysis-cantonese was quarantined but cron re-created it and
+              // auto-applied it anyway. This gate stops any quarantined skill from
+              // being promoted to active skills/ regardless of validation outcome.
+              // Mirror of scanQuarantinedSkills() from skill_junk_tracker.js.
+              var skillNameQu = path.basename(dir);
+              var quarantineBlocked = false;
               try {
-                var className = path.basename(dir);
-                var symlinkPath = path.join(SKILLS_ACTIVE, '_learned_' + className);
-                // P1-6: clean up broken symlink before re-creating
-                if (isBrokenSymlink(symlinkPath)) {
-                  try { fs.unlinkSync(symlinkPath); } catch (e) { throw e; }
-                  log('Removed broken symlink: ' + symlinkPath.replace(WS, ''));
+                var quarantineRoot = path.join(WS, 'skills-learned/_archive');
+                if (fs.existsSync(quarantineRoot)) {
+                  var quarantineNames = new Set();
+                  var qTop = fs.readdirSync(quarantineRoot, { withFileTypes: true });
+                  for (var qi = 0; qi < qTop.length; qi++) {
+                    var qEntry = qTop[qi];
+                    if (!qEntry.isDirectory()) continue;
+                    var qTopName = qEntry.name;
+                    if (qTopName === 'failed-validations') {
+                      var fvSubs = fs.readdirSync(path.join(quarantineRoot, qTopName), { withFileTypes: true });
+                      for (var fi = 0; fi < fvSubs.length; fi++) {
+                        if (fvSubs[fi].isDirectory()) {
+                          quarantineNames.add(fvSubs[fi].name.replace(/-\d{8,}$/, ''));
+                        }
+                      }
+                    } else if (qTopName.startsWith('quarantine-')) {
+                      var qSubs = fs.readdirSync(path.join(quarantineRoot, qTopName), { withFileTypes: true });
+                      var qSubdirs = qSubs.filter(function (s) { return s.isDirectory(); });
+                      if (qSubdirs.length > 0) {
+                        for (var qi2 = 0; qi2 < qSubdirs.length; qi2++) {
+                          quarantineNames.add(qSubdirs[qi2].name);
+                        }
+                      } else {
+                        var qm = qTopName.match(/^quarantine-[\d-]+-(.+)$/);
+                        if (qm) quarantineNames.add(qm[1]);
+                      }
+                    }
+                  }
+                  if (quarantineNames.has(skillNameQu)) {
+                    quarantineBlocked = true;
+                    log('QUARANTINE: skipping symlink for ' + block.filePath + ' (skill is quarantined — manual review required)');
+                    written.push(block.filePath);
+                    symlinkedActual = false;
+                  }
                 }
-                if (!fs.existsSync(symlinkPath)) {
-                  // ── WARN-05 fix: normalize symlink target to absolute path ──
-                  // Defensive: even though `dir` is normally already absolute
-                  // (path.dirname(path.join(WS, block.filePath))), historical
-                  // 3 relative symlinks in skills/_learned_* still exist from
-                  // before WS was always absolute. Future-proof by resolving
-                  // any non-absolute target against WS before symlinking.
-                  var absTarget = path.isAbsolute(dir) ? dir : path.resolve(WS, dir);
-                  fs.symlinkSync(absTarget, symlinkPath, 'dir');
-                  log('Symlinked: skills/_learned_' + className + ' -> ' + absTarget.replace(WS, ''));
-                }
-              } catch (symErr) {
-                if (symErr.code !== 'EEXIST') {
-                  err('Symlink failed for ' + className + ': ' + symErr.message);
+              } catch (quarantineScanErr) {
+                err('Quarantine scan failed (allow symlink): ' + quarantineScanErr.message);
+              }
+              if (!quarantineBlocked) {
+                if (!shouldSymlinkSkill(block.content)) {
+                  // ── M1 recall-quality gate: do not symlink draft/manual skills ──
+                  // Filtering only downstream in skill_discovery.js is insufficient;
+                  // the filesystem state must also match AGENTS.md recall rules.
+                  log('Recall gate: skipping symlink for ' + block.filePath + ' (draft/manual)');
+                  // Also remove any pre-existing symlink from a previous active version.
+                  try {
+                    var recallClassName = path.basename(dir);
+                    var recallStaleSymlinkPath = path.join(SKILLS_ACTIVE, '_learned_' + recallClassName);
+                    if (fs.existsSync(recallStaleSymlinkPath) || isBrokenSymlink(recallStaleSymlinkPath)) {
+                      try { fs.unlinkSync(recallStaleSymlinkPath); } catch (e) { throw e; }
+                      log('Removed stale symlink (now draft/manual): ' + recallStaleSymlinkPath.replace(WS, ''));
+                    }
+                  } catch (recallUnlinkErr) {
+                    err('Failed to remove stale symlink for ' + path.basename(dir) + ': ' + recallUnlinkErr.message);
+                  }
+                  written.push(block.filePath);
+                  symlinkedActual = false;
+                } else {
+                  // ── QW3: Symlink instant-create to skills/ (idempotent) ──
+                  // Solves 7-day latency: new skills in skills-learned/ are immediately
+                  // discoverable via a symlink in skills/, no need to wait for the
+                  // weekly_correction_loop migration. Use _learned_ prefix (matches
+                  // weekly_correction_loop.js convention) to avoid duplicate detection
+                  // when listCategorizedSkills scans both skills/ and skills-learned/.
+                  try {
+                    var className = path.basename(dir);
+                    var symlinkPath = path.join(SKILLS_ACTIVE, '_learned_' + className);
+                    // P1-6: clean up broken symlink before re-creating
+                    if (isBrokenSymlink(symlinkPath)) {
+                      try { fs.unlinkSync(symlinkPath); } catch (e) { throw e; }
+                      log('Removed broken symlink: ' + symlinkPath.replace(WS, ''));
+                    }
+                    if (!fs.existsSync(symlinkPath)) {
+                      // ── WARN-05 fix: normalize symlink target to absolute path ──
+                      // Defensive: even though `dir` is normally already absolute
+                      // (path.dirname(path.join(WS, block.filePath))), historical
+                      // 3 relative symlinks in skills/_learned_* still exist from
+                      // before WS was always absolute. Future-proof by resolving
+                      // any non-absolute target against WS before symlinking.
+                      var absTarget = path.isAbsolute(dir) ? dir : path.resolve(WS, dir);
+                      fs.symlinkSync(absTarget, symlinkPath, 'dir');
+                      log('Symlinked: skills/_learned_' + className + ' -> ' + absTarget.replace(WS, ''));
+                    }
+                  } catch (symErr) {
+                    if (symErr.code !== 'EEXIST') {
+                      err('Symlink failed for ' + className + ': ' + symErr.message);
+                    }
+                  }
                 }
               }
             }
