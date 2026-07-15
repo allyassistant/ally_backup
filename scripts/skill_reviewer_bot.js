@@ -1101,6 +1101,51 @@ async function writeSkillFiles(blocks) {
         log('SKIP self-ref: ' + block.filePath);
         continue;
       }
+      // ── H-6 Quarantine Pre-Write Gate: drop block for quarantined skills ──
+      // H-5 (symlink gate) prevents quarantined skills from being symlinked, but the
+      // SKILL.md itself still gets re-written each cron run because:
+      //   1. dedup `patch` action (sim 0.65-0.85) lets the write proceed
+      //   2. Internal-automation prefix bypasses post-write validator
+      //   3. SKILL.md in skills-learned/ stays, gets re-quarantined
+      // Result: a re-creation loop. The proper fix is to drop the block BEFORE
+      // any write, so the SKILL.md never lands on disk for quarantined skills.
+      // This is the second layer of quarantine defense (H-5 is the first).
+      if (path.basename(absPath) === 'SKILL.md' && block?.filePath?.indexOf('skills-learned/') === 0) {
+        try {
+          var proposedNameQ = (extractField(block.content, 'name') || path.basename(dir)).trim();
+          var quarantineRootQ = path.join(WS, 'skills-learned/_archive');
+          var quarantinedQ = false;
+          if (fs.existsSync(quarantineRootQ)) {
+            var qTopQ = fs.readdirSync(quarantineRootQ, { withFileTypes: true });
+            for (var qti = 0; qti < qTopQ.length; qti++) {
+              var qe = qTopQ[qti];
+              if (!qe.isDirectory()) continue;
+              if (qe.name === 'failed-validations') {
+                var fvQ = fs.readdirSync(path.join(quarantineRootQ, qe.name), { withFileTypes: true });
+                for (var qfi = 0; qfi < fvQ.length; qfi++) {
+                  if (fvQ[qfi].isDirectory() && fvQ[qfi].name === proposedNameQ) {
+                    quarantinedQ = true; break;
+                  }
+                }
+              } else if (qe.name.startsWith('quarantine-')) {
+                var qmQ = qe.name.match(/^quarantine-[\d-]+-(.+)$/);
+                if (qmQ && qmQ[1] === proposedNameQ) {
+                  quarantinedQ = true; break;
+                }
+              }
+              if (quarantinedQ) break;
+            }
+          }
+          if (quarantinedQ) {
+            err('H-6: refusing to write ' + block.filePath + ' — skill "' + proposedNameQ + '" is quarantined (H-5 quarantine gate)');
+            recordSkillCreated({v:1, ts:new Date().toISOString(), name:proposedNameQ, file:block.filePath, bytes:block?.content?.length, validationPassed:false, symlinked:false, dedup: false, reason:'H-6 quarantine pre-write block: ' + proposedNameQ + ' is quarantined'});
+            log('SKIP H-6 quarantine: ' + block.filePath);
+            continue;
+          }
+        } catch (qErr) {
+          err('H-6 quarantine scan failed (fail-open): ' + (qErr.message || qErr));
+        }
+      }
       // ── Stage 2: post-LLM preEmitFilter (2026-06-21) ─────────────────
       // The LLM has decided on a name and emitted a SKILL.md block. Before
       // we write to disk, check the proposed name+description against

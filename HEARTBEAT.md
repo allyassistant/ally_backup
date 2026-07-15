@@ -100,6 +100,12 @@ ha-state/bliss/heartbeat.json     ← 讀取檢查 (failover_detector.sh)
   - `email-analysis-cantonese` was quarantined but cron re-created + auto-applied it anyway
   - Quarantine scan before symlink: scan `skills-learned/_archive/` (all `quarantine-*` + `failed-validations/` formats)
   - Blocked skills kept as draft; `symlinked:false` in telemetry; `QUARANTINE:` log entry
+- **H-6** 🔴 P0 — Quarantine pre-write gate: drop block BEFORE SKILL.md write → `skill_reviewer_bot.js:1104-1147`
+  - H-5 (symlink gate) alone wasn't enough: dedup `patch` action (sim 0.84 < 0.85) let the write proceed
+  - Result: re-creation loop — SKILL.md in skills-learned/ got re-written every cron run
+  - H-6 runs BEFORE any write: if proposed name in quarantine set → `continue` (block)
+  - H-5 + H-6 = full quarantine defense (block write + block symlink)
+  - Real root cause: `email-analysis-cantonese` re-triggered by mail_monitor cron (each new stock list email = same pattern)
 - **P2 #1** — `extractFileBlocks` multi-block loop fix → `skill_reviewer_bot.js:238`
 - **P2 #2** — `numSteps` regex updated for H3
 - **P2 #3** — `pitfallsCount` telemetry uses H-3 compatible regex
