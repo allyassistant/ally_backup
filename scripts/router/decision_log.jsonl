@@ -10140,3 +10140,116 @@
 {"ts":"2026-07-14T15:30:01.140Z","event":"provider_recovery","provider":"minimax-portal"}
 {"ts":"2026-07-14T15:30:01.140Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":960,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a31a2595-842d-4f79-8c2c-405d20518407"}
 {"ts":"2026-07-14T15:30:01.284Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"因為我見到佢由22:00開始，每半個鐘就更新一次","channel":""}
+{"ts":"2026-07-14T15:33:34.099Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"因為我見到佢由22:00開始，每半個鐘就更新一次","channel":""}
+{"ts":"2026-07-14T15:33:35.181Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-14T15:33:35.182Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1081,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"afcd3f4e-21bf-4656-824a-8a3947e1a401"}
+{"ts":"2026-07-14T15:33:35.337Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"因為我見到佢由22:00開始，每半個鐘就更新一次","channel":""}
+{"ts":"2026-07-14T15:47:00.729Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T16:02:04.285Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Skills點先為之stable","channel":""}
+{"ts":"2026-07-14T16:02:05.273Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-14T16:02:05.273Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":987,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"1499095e-ff7c-428b-879f-e9ed7f7dcd66"}
+{"ts":"2026-07-14T16:02:05.439Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Skills點先為之stable","channel":""}
+{"ts":"2026-07-14T16:17:00.714Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-14 23:48:53 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-14 2","channel":""}
+{"ts":"2026-07-14T16:47:00.750Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T17:17:00.749Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T17:47:00.718Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T18:17:00.747Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 01:48:57 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 0","channel":""}
+{"ts":"2026-07-14T18:47:00.794Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T19:17:00.793Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 03:10:44 GMT+8] WhatsApp gateway disconnected (status 428)\nSystem: [2026-07-15 0","channel":""}
+{"ts":"2026-07-14T19:30:54.768Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"啱啱03:00\n\n💾 Skill Self-improvement:\n- 新建: 1 (email-analysis-cantonese)\n- 跳過: 1 條對話 (重複 / 已覆蓋)\n- 隊列: ","channel":""}
+{"ts":"2026-07-14T19:30:55.709Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-14T19:30:55.709Z","route":"sop","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":941,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"019925f3-ec58-4421-be9f-3648ffee7ccb"}
+{"ts":"2026-07-14T19:30:55.958Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"啱啱03:00\n\n💾 Skill Self-improvement:\n- 新建: 1 (email-analysis-cantonese)\n- 跳過: 1 條對話 (重複 / 已覆蓋)\n- 隊列: ","channel":""}
+{"ts":"2026-07-14T19:34:13.046Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-14T19:34:14.403Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-14T19:34:14.403Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1356,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"5d4d7b59-dded-46d7-9fc0-3276db76ce47"}
+{"ts":"2026-07-14T19:34:14.614Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-14T19:47:00.783Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T20:02:05.420Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-14T20:02:06.335Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":915,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"2852407d-6984-4ef1-a0f1-b8eaaadf30b2"}
+{"ts":"2026-07-14T20:02:06.335Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-14T20:02:06.460Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-14T20:17:00.771Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T20:47:00.854Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T21:17:00.740Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 05:10:49 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 0","channel":""}
+{"ts":"2026-07-14T21:47:00.726Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 05:45:57 GMT+8] WhatsApp gateway disconnected (status 503)\nSystem: [2026-07-15 0","channel":""}
+{"ts":"2026-07-14T22:17:00.721Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T22:47:00.724Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T23:17:00.755Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-14T23:47:00.720Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 07:46:02 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 0","channel":""}
+{"ts":"2026-07-15T00:17:00.719Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T00:47:00.718Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T01:17:01.750Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 09:02:47 GMT+8] 📊 **Skill Reviewer Daily Report (2026-07-15)**\nSystem: \nSystem:","channel":""}
+{"ts":"2026-07-15T01:47:00.864Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 09:46:06 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 0","channel":""}
+{"ts":"2026-07-15T02:17:00.755Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T02:47:00.743Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T03:17:00.728Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T03:21:27.451Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"Skill Reviewer Daily Report 入面顯示 Junk-in-Production 33.33% (>10%) ， Validator Catch Rate 0.00% (<25%","channel":""}
+{"ts":"2026-07-15T03:28:01.530Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我修復","channel":""}
+{"ts":"2026-07-15T03:28:02.557Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1027,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"182cfd63-0dbf-4398-9c3c-5190817572e8"}
+{"ts":"2026-07-15T03:28:02.557Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T03:28:02.694Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"幫我修復","channel":""}
+{"ts":"2026-07-15T03:34:07.282Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-15T03:34:08.223Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T03:34:08.223Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":941,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c77fff92-29f9-462d-8a51-8fabad876a5e"}
+{"ts":"2026-07-15T03:34:08.332Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-15T03:59:21.204Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 11:46:11 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 1","channel":""}
+{"ts":"2026-07-15T04:02:36.497Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"檢查多次代碼有冇問題","channel":""}
+{"ts":"2026-07-15T04:02:49.743Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-15T04:02:50.727Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T04:02:50.727Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":984,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"7ff56cf3-2f50-41a1-b407-8ce1306108c2"}
+{"ts":"2026-07-15T04:02:50.841Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-15T04:05:51.158Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-15T04:05:52.120Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T04:05:52.120Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":962,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"54ca7e81-739d-4b5a-a203-2259c82248f1"}
+{"ts":"2026-07-15T04:17:00.709Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 12:10:25 GMT+8] WhatsApp gateway disconnected (status 428)\nSystem: [2026-07-15 1","channel":""}
+{"ts":"2026-07-15T04:35:47.356Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇其他skill都要整？","channel":""}
+{"ts":"2026-07-15T04:35:48.318Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T04:35:48.318Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":961,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"54a1d38f-e441-4ba2-8c35-f2809796bde8"}
+{"ts":"2026-07-15T04:35:48.445Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇其他skill都要整？","channel":""}
+{"ts":"2026-07-15T04:38:48.732Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇其他skill都要整？","channel":""}
+{"ts":"2026-07-15T04:38:49.718Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T04:38:49.719Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":985,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8417c80a-b650-435b-b1f1-e46a01768593"}
+{"ts":"2026-07-15T04:40:29.708Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"有冇其他skill都要整？","channel":""}
+{"ts":"2026-07-15T04:40:29.937Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":227,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c1bde154-1e69-407b-bf98-7f3094446e65"}
+{"ts":"2026-07-15T04:40:29.936Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T04:47:00.730Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T05:17:00.757Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T05:47:07.749Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T06:17:00.725Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 14:10:29 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 1","channel":""}
+{"ts":"2026-07-15T06:25:25.928Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"下午2:01 都仲係有更新email-analysis-cantonese\n💾 Skill Self-improvement:\n更新: 1 (email-analysis-cantonese)\n跳過","channel":""}
+{"ts":"2026-07-15T06:25:27.041Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T06:25:27.041Z","route":"sop","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1113,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"e7a31b60-99fb-4635-8c5f-af2bc223fcca"}
+{"ts":"2026-07-15T06:25:27.205Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"下午2:01 都仲係有更新email-analysis-cantonese\n💾 Skill Self-improvement:\n更新: 1 (email-analysis-cantonese)\n跳過","channel":""}
+{"ts":"2026-07-15T06:33:40.861Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Pre-compaction memory flush. Store durable memories only in memory/2026-07-15.md (create memory/ if ","channel":""}
+{"ts":"2026-07-15T06:33:41.934Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T06:33:41.934Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1073,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"25eac7da-2f7d-4fe3-9910-0557037333e8"}
+{"ts":"2026-07-15T06:33:42.053Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Pre-compaction memory flush. Store durable memories only in memory/2026-07-15.md (create memory/ if ","channel":""}
+{"ts":"2026-07-15T06:34:09.230Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"睇下仲有冇代碼bug","channel":""}
+{"ts":"2026-07-15T06:34:22.929Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-15T06:34:23.917Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T06:34:23.917Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":988,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0a01873d-f4c4-4d6f-bbdd-cf91e940fc3e"}
+{"ts":"2026-07-15T06:34:24.055Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-15T06:41:13.843Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"可唔可以修復埋 High 級別 warning","channel":""}
+{"ts":"2026-07-15T06:41:14.858Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-15T06:41:14.858Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1015,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"52a38725-1809-42e7-bd48-b3b304365962"}
+{"ts":"2026-07-15T06:41:14.982Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"可唔可以修復埋 High 級別 warning","channel":""}
+{"ts":"2026-07-15T06:47:00.752Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T07:17:00.719Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T07:47:00.779Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T08:17:00.758Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 16:10:35 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 1","channel":""}
+{"ts":"2026-07-15T08:47:00.726Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T09:17:00.713Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T09:47:00.698Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T10:17:00.759Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 18:10:40 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 1","channel":""}
+{"ts":"2026-07-15T10:47:00.722Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T11:17:00.728Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T11:47:01.799Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T12:13:09.450Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"https://x.com/wangdefou/status/2077039372428620230?s=46","channel":""}
+{"ts":"2026-07-15T12:17:00.781Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 20:10:45 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 2","channel":""}
+{"ts":"2026-07-15T12:47:30.803Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T13:17:00.776Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T13:47:00.740Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T14:17:00.738Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 22:10:50 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-15 2","channel":""}
+{"ts":"2026-07-15T14:47:00.732Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-15T15:17:00.742Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-15 22:53:35 GMT+8] WhatsApp gateway disconnected (status 428)\nSystem: [2026-07-15 2","channel":""}

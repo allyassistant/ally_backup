@@ -1,10 +1,10 @@
 ---
 type: symbols_index
-last_updated: 2026-07-13
+last_updated: 2026-07-14
 scope: scripts/
 total_files: 382
-total_errors: 11
-total_symbols: 6244
+total_errors: 13
+total_symbols: 6255
 total_issues: 32
 total_crons: 4
 hot_scripts: 0
@@ -14,7 +14,7 @@ hot_scripts: 0
 
 > 此文件為 OpenClaw 的核心導航地圖。尋找具體邏輯實現時，請優先檢索此處。
 
-**生成時間：** 14/7/2026 上午12:41:00
+**生成時間：** 15/7/2026 上午12:41:00
 **掃描範圍：** `/Users/ally/.openclaw/workspace/scripts`
 
 ---
@@ -212,7 +212,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -808,7 +807,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -847,7 +845,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -928,7 +925,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -1055,7 +1051,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 34: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 35: `variable proposalStore` 📦
   - 💡 [無描述]
 - Line 38: `variable args` 📦
@@ -1280,7 +1275,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -1294,52 +1288,40 @@ hot_scripts: 0
 ### `_legacy/m5-dormant-2026-06-20/anomaly_monitor.js`
 - Line 18: `variable fs` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 19: `variable path` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 28: `variable CONFIG` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 44: `function getErrorCount` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 55: `function getOutputFileSizes` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 83: `function getCqmIssueCount` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 94: `function getDiskUsage` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 106: `function getMemoryUsage` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 127: `function monitor` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 216: `function pushAlert` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 278: `function showStatus` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 309: `function main` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 356: `unknown undefined` 
   - 💡 [無描述]
@@ -1356,7 +1338,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #000 📌 (無標題)
@@ -1452,7 +1433,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -1522,102 +1502,70 @@ hot_scripts: 0
 ### `_legacy/m5-dormant-2026-06-20/error_auto_issue.js`
 - Line 28: `variable fs` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 29: `variable path` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 31: `variable WORKSPACE_ROOT` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 32: `variable ERRORS_FILE` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 33: `variable STATE_FILE` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 34: `variable DISCORD_CHANNEL` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 35: `variable ISSUE_MANAGER` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 36: `variable ISSUES_DIR` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 37: `variable STATE_CAP` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 39: `variable QUIET` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 40: `variable DRY_RUN` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 41: `variable JSON_OUT` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 43: `function parseIntArg` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 52: `variable REPEAT_THRESHOLD` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 53: `variable LOOKBACK_DAYS` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 55: `function log` 🔧
   - 💡 [無描述]
   - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 80: `function runChild` 🔧
   - 💡 ----------------- Async child process -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 86: `arrow function timer` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 106: `function loadState` 🔧
   - 💡 ----------------- State helpers -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 122: `function saveState` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 134: `function loadErrors` 🔧
   - 💡 ----------------- Errors file -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 153: `function normalizePattern` 🔧
   - 💡 ----------------- Pattern normalization ----------------- Stable key from (type, problem) — strips numbers/hashes/whitespace for dedup
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 162: `function aggregatePatterns` 🔧
   - 💡 ----------------- Pattern aggregation -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 188: `function hktIsoString` 🔧
   - 💡 ----------------- HKT date utilities -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 198: `function hktDateString` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 204: `function buildIssueBody` 🔧
   - 💡 ----------------- Issue body builder -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 205: `arrow function sampleLines` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 232: `function createIssue` 🔧
   - 💡 ----------------- Issue creation -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 257: `arrow function files` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 288: `function sendDiscord` 🔧
   - 💡 ----------------- Discord push -----------------
   - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 305: `function formatDiscordMessage` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 313: `function main` 🔧
   - 💡 ----------------- Main -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 
 ### `_legacy/m5-dormant-2026-06-20/pattern_proactive_trigger.js`
 - Line 14: `variable fs` 📦
@@ -1771,7 +1719,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -1902,7 +1849,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -2056,7 +2002,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -2583,7 +2528,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -2666,7 +2610,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -2740,7 +2683,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -3185,7 +3127,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -3477,7 +3418,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -3582,7 +3522,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -3628,7 +3567,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -3784,7 +3722,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -3878,7 +3815,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -3923,7 +3859,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -3956,7 +3891,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -4204,52 +4138,40 @@ hot_scripts: 0
 ### `anomaly_monitor.js`
 - Line 18: `variable fs` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 19: `variable path` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 28: `variable CONFIG` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 44: `function getErrorCount` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 55: `function getOutputFileSizes` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 83: `function getCqmIssueCount` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 94: `function getDiskUsage` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 106: `function getMemoryUsage` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 127: `function monitor` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #134 📌 (Weekly Correction Loop: monitor skill curation + integration (2 weeks))
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 216: `function pushAlert` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 278: `function showStatus` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 309: `function main` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #000 📌 (無標題)
 - Line 356: `unknown undefined` 
   - 💡 [無描述]
@@ -4266,7 +4188,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #000 📌 (無標題)
@@ -4439,7 +4360,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -4457,7 +4377,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 35: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 39: `variable trend` 📦
   - 💡 [無描述]
 - Line 40: `variable scriptRegistry` 📦
@@ -4579,7 +4498,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -4819,7 +4737,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -5015,7 +4932,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 16: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 19: `variable HOME_DIR` 📦
   - 💡 [無描述]
 - Line 20: `variable SESSIONS_DIR` 📦
@@ -5547,7 +5463,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 34: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 36: `variable CONFIG` 📦
   - 💡 [無描述]
 - Line 46: `function log` 🔧
@@ -5874,7 +5789,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 34: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 35: `variable proposalStore` 📦
   - 💡 [無描述]
 - Line 39: `variable argv` 📦
@@ -6023,7 +5937,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -6043,7 +5956,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 25: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 28: `variable LOCK_FILE` 📦
   - 💡 [無描述]
 - Line 31: `variable CHANNEL_ID` 📦
@@ -6101,7 +6013,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -6503,105 +6414,72 @@ hot_scripts: 0
 ### `error_auto_issue.js`
 - Line 30: `variable fs` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 31: `variable path` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 33: `variable WORKSPACE_ROOT` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 34: `variable ERRORS_FILE` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 35: `variable STATE_FILE` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 36: `variable DISCORD_CHANNEL` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 37: `variable ISSUE_MANAGER` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 38: `variable ISSUES_DIR` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 39: `variable STATE_CAP` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 41: `variable QUIET` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 42: `variable DRY_RUN` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 43: `variable JSON_OUT` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 45: `function parseIntArg` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 54: `variable REPEAT_THRESHOLD` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 55: `variable LOOKBACK_DAYS` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 58: `variable BLACKLIST` 📦
   - 💡 Error types that are expected operational noise — do not auto-create issues
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 60: `function log` 🔧
   - 💡 [無描述]
   - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 88: `function runChild` 🔧
   - 💡 ----------------- Async child process -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 94: `arrow function timer` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 114: `function loadState` 🔧
   - 💡 ----------------- State helpers -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 130: `function saveState` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 142: `function loadErrors` 🔧
   - 💡 ----------------- Errors file -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 161: `function normalizePattern` 🔧
   - 💡 ----------------- Pattern normalization ----------------- Stable key from (type, problem) — strips numbers/hashes/whitespace for dedup
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 170: `function aggregatePatterns` 🔧
   - 💡 ----------------- Pattern aggregation -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 198: `function hktIsoString` 🔧
   - 💡 ----------------- HKT date utilities -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 208: `function hktDateString` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 214: `function buildIssueBody` 🔧
   - 💡 ----------------- Issue body builder -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 215: `arrow function sampleLines` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 242: `function createIssue` 🔧
   - 💡 ----------------- Issue creation -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 267: `arrow function files` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 298: `function sendDiscord` 🔧
   - 💡 ----------------- Discord push -----------------
   - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 315: `function formatDiscordMessage` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 323: `function main` 🔧
   - 💡 ----------------- Main -----------------
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 
 ### `error_generator.js`
 - Line 40: `function getSeverityIcon` 🔧
@@ -6629,129 +6507,88 @@ hot_scripts: 0
 ### `error_tracker.js`
 - Line 3: `variable _quiet` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 4: `arrow function log` ➡️
   - 💡 [無描述]
   - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 9: `variable fs` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 10: `variable fsPromises` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 11: `variable path` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 16: `variable LOG_DIR` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 17: `variable HOME_DIR` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 18: `variable SESSIONS_DIR` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 24: `variable CONFIG` 📦
   - 💡 ==================== CONFIG (Magic Numbers) ====================
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 42: `variable AUTO_RESOLVE_RULES` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 77: `variable ERROR_PATTERNS` 📦
   - 💡 ==================== COMPREHENSIVE ERROR PATTERNS ====================
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 126: `function loadErrors` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 152: `variable LOCK_FILE` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 153: `variable LOCK_TIMEOUT_MS` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 156: `function acquireLock` 🔧
   - 💡 Simple file lock using lock file
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 167: `function releaseLock` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 177: `function saveErrors` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 304: `function generateId` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 308: `function shouldIgnoreLine` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 315: `function extractCleanMessage` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 406: `function findErrorInLine` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 425: `function extractSourceFromLine` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 433: `function scanLogsForErrors` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 473: `function scanSessionsForErrors` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 527: `function archiveOldResolved` 🔧
   - 💡 P1-8: Archive/remove resolved errors older than 30 days Keeps errors.json lean for better read performance /
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 545: `function addError` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 555: `arrow function existing` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 589: `function getDaysDiff` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 601: `function autoResolve` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 603: `arrow function unresolved` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 660: `function checkCronStatus` 🔧
   - 💡 Check all active OpenClaw cron jobs for failures. Queries openclaw cron list --json and records any jobs with errors in the error tracking system. /
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 676: `arrow function failed` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 710: `function scan` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #135 📌 (CQM scan 預設 silent — 觀察 1 週跟進)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 750: `function list` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 757: `arrow function sortedErrors` ➡️
   - 💡 Sort errors by severity, then by date
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 767: `arrow function activeCount` ➡️
   - 💡 Additional stats at bottom
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 768: `arrow function resolvedCount` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 772: `function stats` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 807: `arrow function autoResolved` ➡️
   - 💡 Auto-resolve 統計
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 813: `function cmdAdd` 🔧
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 840: `variable cmd` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 
 ### `error_wiki_sync.js`
 - Line 9: `variable fs` 📦
@@ -6808,7 +6645,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -6909,7 +6745,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 31: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 37: `variable HOME` 📦
   - 💡 [無描述]
 - Line 38: `variable WS_PATH` 📦
@@ -8336,7 +8171,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 21: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 23: `variable PAGE_SIZE_BYTES` 📦
   - 💡 [無描述]
 - Line 24: `variable ONE_HOUR_MS` 📦
@@ -8745,7 +8579,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -8835,7 +8668,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -8907,7 +8739,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -9193,7 +9024,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -9598,7 +9428,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -9818,7 +9647,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -9928,7 +9756,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -10102,7 +9929,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -10200,7 +10026,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -10308,7 +10133,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -10343,7 +10167,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -10374,7 +10197,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -10470,7 +10292,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -10889,7 +10710,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 86: `arrow function alert` ➡️
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 
 ### `price_history.js`
 - Line 3: `variable _quiet` 📦
@@ -10936,7 +10756,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -11016,7 +10835,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 32: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 34: `variable PROPOSALS_FILE` 📦
   - 💡 [無描述]
 - Line 35: `variable NOTIFIED_LOG` 📦
@@ -11183,7 +11001,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -11261,7 +11078,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -11344,7 +11160,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -11585,7 +11400,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 17: `variable discord` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 19: `function checkProduct` 🔧
   - 💡 [無描述]
 - Line 59: `function main` 🔧
@@ -12000,36 +11814,38 @@ hot_scripts: 0
   - 💡 skill-auto-suggest is an ESM module; use dynamic import.
 
 ### `skill_junk_pause.js`
-- Line 38: `variable fs` 📦
+- Line 51: `variable fs` 📦
   - 💡 [無描述]
-- Line 39: `variable path` 📦
+- Line 52: `variable path` 📦
   - 💡 [無描述]
-- Line 43: `variable JUNK_RATE_FILE` 📦
+- Line 56: `variable JUNK_RATE_FILE` 📦
   - 💡 [無描述]
-- Line 44: `variable PAUSE_FILE` 📦
+- Line 57: `variable PAUSE_FILE` 📦
   - 💡 [無描述]
-- Line 45: `variable DEFAULT_THRESHOLD` 📦
+- Line 60: `variable DEFAULT_THRESHOLD` 📦
+  - 💡 Primary pause trigger: validator catch rate target. Mirrors VALIDATOR_CATCH_TARGET in daily_report.js / skill_reviewer_daily_report.js.
+- Line 62: `variable DEFAULT_JUNK_THRESHOLD` 📦
+  - 💡 Backup signal only: consulted when validatorCatchRate data is missing.
+- Line 63: `variable DEFAULT_HOURS` 📦
   - 💡 [無描述]
-- Line 46: `variable DEFAULT_HOURS` 📦
+- Line 64: `variable PAUSE_DURATION_MS` 📦
   - 💡 [無描述]
-- Line 47: `variable PAUSE_DURATION_MS` 📦
-  - 💡 [無描述]
-- Line 51: `function log` 🔧
+- Line 68: `function log` 🔧
   - 💡 [無描述]
   - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
-- Line 55: `function err` 🔧
+- Line 72: `function err` 🔧
   - 💡 [無描述]
-- Line 59: `function readJunkRateEntries` 🔧
+- Line 76: `function readJunkRateEntries` 🔧
   - 💡 [無描述]
-- Line 90: `function computeJunkRate` 🔧
+- Line 112: `function computeMetrics` 🔧
+  - 💡 Returns { validatorCatchRate, junkInProductionRate } as fractions (0-1), or null for each if no usable data in the window. Both v2 fields (`validatorCatchRate`, `junkInProductionRate`) and the v1 legacy `junkRatePercent` are stored as PERCENT values (0-100) in the jsonl, so we divide by 100 here to get a fraction comparable to thresholds.
+- Line 138: `function readPauseState` 🔧
   - 💡 [無描述]
-- Line 111: `function readPauseState` 🔧
+- Line 148: `function parseArgs` 🔧
   - 💡 [無描述]
-- Line 121: `function parseArgs` 🔧
+- Line 182: `function main` 🔧
   - 💡 [無描述]
-- Line 155: `function main` 🔧
-  - 💡 [無描述]
-- Line 263: `unknown undefined` 
+- Line 337: `unknown undefined` 
   - 💡 [無描述]
   - 🔗 Issue: #087 📌 (研究並實現個人人格蒸餾系統 (SOUL.md Level 4))
   - 🔗 Issue: #110 📌 (企業 RAG 落地方案)
@@ -12044,7 +11860,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -12083,53 +11898,71 @@ hot_scripts: 0
 - Line 42: `variable TARGET_JUNK_IN_PRODUCTION` 📦
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 45: `variable args` 📦
+- Line 53: `variable INTERNAL_AUTOMATION_PREFIXES` 📦
+  - 💡 quality. Counting them as "junk" inflates junk rate to 90%+ and triggers false-positive auto-pauses. The validator (validate_skill_file.js) is correct for normal skills — it just doesn't have context for these internal tools. Source of truth: spec from skill_reviewer_bot.js / job description. To extend: add to INTERNAL_AUTOMATION_PREFIXES below; no other change needed.
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 66: `variable NOISE_REASON_PATTERNS` 📦
+  - 💡 counting because they represent "validator worked correctly" — landing a flag, not landing a junk skill. - 'post-llm pre-emit skip' : pre-emit dedup caught LLM regen-of-existing - 'P5 same_name_exact_match': cross-source dedup rejected duplicate - 'self-referential block (QW-2)' : QW-2 filter blocked self-ref skill
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 72: `function isInternalAutomation` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 78: `function isNoiseReason` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 91: `function shouldCountForStats` 🔧
+  - 💡 - skill name is internal-automation prefix, OR - failure reason is a "validator caught it, no junk landed" signal Returns true (count toward stats) only for events representing real production-quality concerns for user-facing skills. /
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 98: `variable args` 📦
   - 💡 Parse args
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 46: `arrow function days` ➡️
+- Line 99: `arrow function days` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 50: `variable jsonOnly` 📦
+- Line 103: `variable jsonOnly` 📦
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 51: `variable quiet` 📦
+- Line 104: `variable quiet` 📦
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 53: `function log` 🔧
+- Line 106: `function log` 🔧
   - 💡 [無描述]
   - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 55: `function round2` 🔧
+- Line 108: `function round2` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 64: `function readEvents` 🔧
+- Line 117: `function readEvents` 🔧
   - 💡 Read .skill_created.jsonl and filter events within the time window. @param {number} windowDays @returns {Array<{ts: string, validationPassed: boolean, name: string, reason: string}>} /
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 112: `function scanQuarantinedSkills` 🔧
+- Line 165: `function scanQuarantinedSkills` 🔧
   - 💡 - Flat timestamp format: strip "quarantine-<digits>-" prefix from top dir name - failed-validations: strip trailing "-<8+ digits>" suffix from subdir name  @returns {Set<string>} /
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 145: `arrow function subdirs` ➡️
+- Line 198: `arrow function subdirs` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 179: `function computeStats` 🔧
-  - 💡 - null when no passed skills in window (can't compute ratio)  @param {Array} events @param {Set<string>} quarantinedNames /
+- Line 240: `function computeStats` 🔧
+  - 💡 can audit how much was filtered.  @param {Array} events @param {Set<string>} quarantinedNames /
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 181: `arrow function passed` ➡️
+- Line 242: `arrow function rawFailed` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 188: `arrow function passedNames` ➡️
+- Line 246: `arrow function passed` ➡️
+  - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 253: `arrow function passedNames` ➡️
   - 💡 Metric 2: Junk-in-Production Rate (name-based cross-reference)
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 189: `arrow function passedAndQuarantined` ➡️
+- Line 254: `arrow function passedAndQuarantined` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 206: `function appendLog` 🔧
+- Line 274: `function appendLog` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 214: `function verdictIcon` 🔧
+- Line 282: `function verdictIcon` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 218: `function main` 🔧
+- Line 286: `function main` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #000 🚨 (無標題)
 
@@ -12238,7 +12071,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -12442,318 +12274,416 @@ hot_scripts: 0
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 32: `variable path` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 33: `variable https` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 53: `variable BOT_DEDUP_MODE` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 54: `variable BOT_DEDUP_THRESHOLD` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 64: `variable PRE_EMIT_DEDUP_PATH` 📦
   - 💡 the block is dropped (with telemetry + injected tool-call result); if it's in [PATCH, SKIP) range, the LLM is patching an existing skill and we proceed. Fail-open on any error (e.g. Ollama down) — never break the write path. Env: SKILL_REVIEWER_POST_LLM_DEDUP_DISABLED=1   (kill switch)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 65: `variable POST_LLM_DEDUP_TELEMETRY` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 66: `variable POST_LLM_DEDUP_DISABLED` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 67: `variable _preEmitFilter` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 68: `function _getPreEmitFilter` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 78: `function _logPostLlmDedupTelemetry` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 81: `arrow function lines` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 94: `variable FOLLOWUP_TELEMETRY` 📦
   - 💡 so it can either (a) PATCH the existing skill or (b) emit a structured SKIP marker. Without this loop, the LLM never learns to PATCH and the pathology recurs on the next cron cycle. Bounded: max 2 follow-ups, 5min total time. Env: STAGE_2_FOLLOWUP_DISABLED=1   (kill switch → fall back to write-side veto only)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 95: `variable STAGE_2_FOLLOWUP_DISABLED` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 96: `variable STAGE_2_FOLLOWUP_MAX_CALLS` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 97: `variable STAGE_2_FOLLOWUP_TIME_BUDGET_MS` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 103: `function _logFollowupTelemetry` 🔧
   - 💡 Spec field aliases (2026-06-21): the task spec lists these exact field names in the telemetry contract. We emit BOTH the spec names (followupCallCount, durationMs, originalBlockCount, skippedCount) AND the internal names (followupCalls, elapsedMs, stillInjectedCount) for downstream tool compatibility.
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 115: `variable _skillsEmbeddingCache` 📦
   - 💡 Pre-load the skill embeddings cache once at startup so per-write dedup checks don't re-read the JSON file. Cache is small (~600KB for 41 skills).
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 116: `function getSkillEmbeddings` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 128: `variable MODEL` 📦
   - 💡 ── Config ──
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 129: `variable MODEL_FALLBACKS` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 132: `variable OPENCLAW_CLI` 📦
   - 💡 OPENCLAW_CLI path resolution (v3 pattern): known paths first, which fallback, raw name last. Cron isolated sessions have truncated PATH — 'which' alone fails there.
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 140: `variable TIMEOUT_MS` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 141: `variable REVIEWER_SCRIPT` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 142: `variable CLEANUP_SCRIPT` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 143: `variable QUEUE_FILE` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 144: `variable DISCORD_CHANNEL` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 145: `variable LOCK_DIR` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 146: `variable SKILL_CREATED_LOG` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 147: `variable LLM_JUDGE_SHADOW_LOG` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 152: `variable S1_MISMATCH_HISTORY_LOG` 📦
   - 💡 ── S1 mismatch escalation (Phase 1) ── Event log: every mark-mismatch invocation, with the source event, destination, and actions taken (or planned, for --dry-run).
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 155: `variable S1_ALERTS_LOG` 📦
   - 💡 Alert log: written only on a successful (non-dry-run) quarantine, so downstream consumers (Discord / dashboards) can pick them up.
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 161: `variable SKILL_COOLDOWN_HOURS` 📦
   - 💡 ── Option A (Cooldown) + Option C (Stability Frontmatter) ── Issue: two draft skills regenerated 5-8x/day by pipeline (LLM keeps re-writing stable content). Two-layer gate prevents re-review of stable/cooldown skills. See parseStability() + buildSkillGates() below.
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 162: `variable SKILL_COOLDOWN_MS` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 163: `variable SKILL_GATE_TELEMETRY` 📦
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 169: `variable CONFIG` 📦
   - 💡 ── Week 1 Safety Nets (Issue #154) ── Make auto-symlink behavior EXPLICIT + guard-railed. Previously, validation-passed skills were silently symlinked into skills/. Now: pause + threshold + env override give Josh a kill switch.
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 197: `variable lastWriteDedup` 📦
   - 💡 Track dedup outcome per file path (set in writeSkillFiles, read in recordSkillCreated)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 201: `function log` 🔧
   - 💡 [無描述]
   - 📋 Log: [LOG_SUCCESS] / [LOG_SKIP]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 205: `function err` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 215: `function recordSkillCreated` 🔧
   - 💡 Record a skill_created event to .skill_created.jsonl (append-only). Used for quality trend telemetry: pitfalls count, workflow steps, quarantine rate over time. Separate from .skill_metrics.json (run-level telemetry) to keep this lightweight and event-sourced. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 228: `function recordLlmJudgeShadow` 🔧
   - 💡 Phase 2: Record an LLM judge shadow event to .llm_judge_shadow.jsonl. Append-only, used by the calibration report (7-day analysis). Silent on failure — shadow logging must never block the pipeline. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 246: `function isBrokenSymlink` 🔧
   - 💡 'volatile' (review every run regardless of cooldown). Fails open: missing or unparseable → 'auto'. / P1-6: existsSync returns false for broken (dangling) symlinks. Use lstatSync to distinguish 'not exist' from 'broken symlink'.
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 254: `function parseStability` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 284: `function buildSkillGates` 🔧
   - 💡 - Volatile: frontmatter `stability: volatile` → never excluded Fails open: any error → return empty gates (no exclusions).  Returns { stable: [path,...], cooldown: [{path, ageHours},...] }. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 360: `function buildExistingSkillCatalog` 🔧
   - 💡 Build a catalog of ALL existing skills (not just stable/cooldown). Returns array of {name, description} for prompt injection. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 397: `function formatSkillCatalog` 🔧
   - 💡 Format the existing skill catalog for prompt injection. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 424: `function recordGateSkip` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 440: `function filterBlocksByGates` 🔧
-  - 💡 Post-LLM hard gate filter: drop any file block that targets a stable or cooldown-blocked skill. This is the DEFINITIVE filter (prompt-level exclusion list is just a hint; this is the wall). Records telemetry for every skip. /
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 445: `variable INTERNAL_AUTOMATION_PREFIXES` 📦
+  - 💡 just does not have the context to evaluate these internal utilities. Behavior: skip post-write validation, directly symlink, log with autoApplied:true (so junk_tracker and junk_pause also exclude them). To extend: add prefix to INTERNAL_AUTOMATION_PREFIXES; no other change. Must stay in sync with skill_junk_tracker.js INTERNAL_AUTOMATION_PREFIXES.
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 493: `function shouldSymlinkSkill` 🔧
-  - 💡 Skips: status draft/archived, disable-model-invocation: true, activation: manual.  Uses shared frontmatter parser so symlink gating stays in sync with skill_discovery.js and skill-auto-suggest (see tracker / M1.7). /
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 454: `variable INTERNAL_AUTOMATION_BYPASS` 📦
+  - 💡 Env kill switch so a bad promotion can be disabled without code change. Set SKILL_REVIEWER_BYPASS_INTERNAL=0 to force internal skills through the normal validator path. Default = bypass enabled (1).
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 513: `function normalizeForDedup` 🔧
-  - 💡 Normalize SKILL.md content for content-hash dedup comparison. Strips timestamp-like frontmatter fields that legitimately change every run, plus trailing whitespace, so two equivalent contents hash to the same value. /
-  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
-  - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 529: `function shouldRewrite` 🔧
-  - 💡 Decide whether we actually need to write `newContent` to `targetPath`. Returns true (rewrite needed) on first write OR when normalized content differs. Returns false (skip rewrite) when content is semantically equivalent. Fails open: any error → return true (write, don't risk losing content). /
-  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
-  - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 543: `function getDiscordToken` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 456: `function isInternalAutomationName` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 553: `function sendDiscordMessage` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 464: `function internalBypassEnabled` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 474: `function filterBlocksByGates` 🔧
+  - 💡 Post-LLM hard gate filter: drop any file block that targets a stable or cooldown-blocked skill. This is the DEFINITIVE filter (prompt-level exclusion list is just a hint; this is the wall). Records telemetry for every skip. /
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 527: `function shouldSymlinkSkill` 🔧
+  - 💡 Skips: status draft/archived, disable-model-invocation: true, activation: manual.  Uses shared frontmatter parser so symlink gating stays in sync with skill_discovery.js and skill-auto-suggest (see tracker / M1.7). /
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 547: `function normalizeForDedup` 🔧
+  - 💡 Normalize SKILL.md content for content-hash dedup comparison. Strips timestamp-like frontmatter fields that legitimately change every run, plus trailing whitespace, so two equivalent contents hash to the same value. /
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 563: `function shouldRewrite` 🔧
+  - 💡 Decide whether we actually need to write `newContent` to `targetPath`. Returns true (rewrite needed) on first write OR when normalized content differs. Returns false (skip rewrite) when content is semantically equivalent. Fails open: any error → return true (write, don't risk losing content). /
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 577: `function getDiscordToken` 🔧
+  - 💡 [無描述]
+  - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
+  - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 587: `function sendDiscordMessage` 🔧
   - 💡 [無描述]
   - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 582: `function sendDiscordMessageWithRetry` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 616: `function sendDiscordMessageWithRetry` 🔧
   - 💡 ── WARN-03 fix: Discord delivery with retry + exponential backoff ──
   - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 586: `function tryOnce` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 620: `function tryOnce` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 610: `function deduplicateQueue` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 644: `function deduplicateQueue` 🔧
   - 💡 Deduplicate queue entries by userPrompt (content hash). Returns { uniqueEntries: [], duplicateCount: number }. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 643: `function readQueueCount` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 677: `function readQueueCount` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 655: `function buildReviewPrompt` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 689: `function buildReviewPrompt` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 913: `function extractFileBlocks` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 924: `function extractFileBlocks` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1030: `function extractSummaryBlock` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1041: `function extractSummaryBlock` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1051: `function checkExistingFiles` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1062: `function checkExistingFiles` 🔧
   - 💡 Check which target files already exist BEFORE writing
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1060: `function writeSkillFiles` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1071: `function writeSkillFiles` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1509: `function parseMarkMismatchArgs` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1570: `function parseMarkMismatchArgs` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1530: `function findSkillCreatedEvent` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1591: `function findSkillCreatedEvent` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1552: `function writeS1MismatchEvent` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1613: `function writeS1MismatchEvent` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1562: `function writeS1Alert` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1623: `function writeS1Alert` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1572: `function quarantineSkillS1` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1633: `function quarantineSkillS1` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1618: `function markMismatchHandler` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1679: `function markMismatchHandler` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1688: `function printMarkMismatchHelp` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1749: `function printMarkMismatchHelp` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1718: `function cleanupStaleSymlinks` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1779: `function cleanupStaleSymlinks` 🔧
   - 💡 Startup self-healing: remove active symlinks that point to skills which are now draft, archived, manual, or disabled. This prevents stale links from leaking into the recall pool when a skill is demoted outside the normal write-symlink code path (e.g. manual edit or weekly curation). /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1721: `arrow function links` ➡️
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1782: `arrow function links` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1770: `function callLlm` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1831: `function callLlm` 🔧
   - 💡 Test seam: SKILL_REVIEWER_BOT_LLM_STUB=1 short-circuits the real CLI and reads a canned response from SKILL_REVIEWER_BOT_LLM_STUB_TEXT. Used by the B-1 unit test to exercise the follow-up loop without invoking the real LLM. NOT for production use. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1836: `function _callLlmStub` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1897: `function _callLlmStub` 🔧
   - 💡 Test stub. Reads responses from SKILL_REVIEWER_BOT_LLM_STUB_TEXT (one JSON response per call, FIFO separated by `\n---NEXT---\n`), or returns an error if the env var SKILL_REVIEWER_BOT_LLM_STUB_ERROR is set to a non-empty value. Used by the B-1 unit test. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1867: `function buildFollowupPrompt` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1928: `function buildFollowupPrompt` 🔧
   - 💡 the Stage 2 skip messages. The LLM sees: "Your previous attempt would have created X but it already exists at skills-learned/<matchedSkill>/SKILL.md with similarity Y. Either PATCH the existing skill or emit a structured SKIP marker." /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 1900: `function runFollowupLoop` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 1961: `function runFollowupLoop` 🔧
   - 💡 { filesWritten, postLlmInjectedResults, followupCalls }.  Fail-open: if any LLM call fails, log telemetry and stop — the original veto is preserved (we never re-write a SKIPped block as a CREATE). /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 2030: `variable _validateSkillContent` 📦
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 2091: `variable _validateSkillContent` 📦
   - 💡 P3 label-spam check (Sub-2 fix): exported for backfill script. Detects injected "Use when:" / "Key capabilities:" markers added by M1.4 prompt to skills that didn't originally have them — pollutes catalog with generic boilerplate.
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 2031: `function validateSkillContentStrict` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 2092: `function validateSkillContentStrict` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
-- Line 2042: `function main` 🔧
+  - 🔗 Issue: #000 🚨 (無標題)
+- Line 2103: `function main` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
+  - 🔗 Issue: #000 🚨 (無標題)
 
 ### `skill_reviewer_cleanup.js`
 - Line 12: `variable fs` 📦
@@ -12817,7 +12747,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -12866,12 +12795,12 @@ hot_scripts: 0
   - 💡 Extract the JSON stats object emitted by skill_reviewer_bot.js with --json. The bot wraps the JSON in marker delimiters so it is trivially greppable and tolerant of other stdout noise. Returns the parsed object, or null if no marker line was found / JSON was malformed. /
 - Line 136: `function shouldNotify` 🔧
   - 💡 Do NOT notify when: - queue was empty (queueEmpty=true) - reviewer failed / produced no stats (no signal to act on) - all-zero (the user explicitly asked us to stay silent in this case) /
-- Line 147: `function buildNotificationMessage` 🔧
+- Line 149: `function buildNotificationMessage` 🔧
   - 💡 Build a clean Discord notification message from reviewer stats. Kept short and readable; mirrors the existing in-bot summary format. /
-- Line 169: `function sendDiscordNotification` 🔧
+- Line 171: `function sendDiscordNotification` 🔧
   - 💡 Push a Discord notification via `openclaw message send`. Thin executor: never throws — failures are logged to stderr and swallowed so the cron run completes cleanly. Returns { status, error? } for the meta block. /
   - 📋 Log: [DISCORD_OK] / [DISCORD_ERROR]
-- Line 195: `function main` 🔧
+- Line 197: `function main` 🔧
   - 💡 [無描述]
 
 ### `skill_reviewer_resume.js`
@@ -12912,7 +12841,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -12926,83 +12854,122 @@ hot_scripts: 0
 ### `skill_reviewer.js`
 - Line 21: `variable fs` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 22: `variable path` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 23: `variable os` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 24: `variable crypto` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 42: `variable FORCE_REBUILD` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 43: `variable BATCH_MODE` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 44: `variable VERIFY_AFTER_WRITE` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 52: `variable LOCK_DIR` 📦
   - 💡 invocations from overlapping. Mirrors the bot's LOCK_DIR pattern (scripts/skill_reviewer_bot.js). Risk is LOW in practice (the cron agentTurn is the only realistic invoker), but two parallel cron ticks or a manual `node scripts/skill_reviewer.js` during a cron run would race the safeWriteFileSync on SKILL_PROMPT_CACHE and produce noisy telemetry.
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 53: `variable LOCK_MAX_AGE_MS` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 56: `variable CACHE_VERSION` 📦
   - 💡 Cache version — bump when prompt format changes to force rebuild
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 57: `variable MAX_METRICS_ENTRIES` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 61: `function readQueue` 🔧
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 79: `function listExistingSkills` 🔧
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 101: `function buildSkillCatalog` 🔧
   - 💡 Audit finding: 11% of past skills duplicated existing content. This makes the overlap check trivial at prompt-construction time.  Returns a markdown table string, or '*(no existing skills)*' if directory is empty/missing. /
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 143: `function computeSkillHash` 🔧
   - 💡 Compute hash of all SKILL.md frontmatter blocks in skills-learned/. Only hashes frontmatter (between --- markers), not the body, to keep it fast. Uses shared FRONTMATTER_RE from lib/frontmatter.js (Issue #133 DRY cleanup). /
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 165: `function computeSignalHash` 🔧
   - 💡 Compute hash of the last 20 queue entries. Only includes tool + errorClass + timestamp for quick comparison. /
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 203: `function atomicWriteJson` 🔧
   - 💡 Atomic JSON write: write to .tmp first, then rename (atomic on most filesystems). /
   - 📋 Log: [MEM_WRITE_SUCCESS] / [MEM_WRITE_FAILED]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 211: `function checkCache` 🔧
   - 💡 Check if cache is valid given current skill and signal hashes. Returns { valid: boolean, cached: Object|null } /
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 244: `function saveCache` 🔧
   - 💡 Save cache to disk atomically. /
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 268: `function loadMetrics` 🔧
   - 💡 Load metrics from disk. /
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 280: `function trackMetrics` 🔧
   - 💡 Track a reviewer or curator run. /
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 316: `variable REVIEW_INSTRUCTIONS` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 585: `class of` 🏗️
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 591: `class of` 🏗️
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 620: `function readAggregatedSignals` 🔧
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 630: `arrow function entries` ➡️
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 639: `function formatSignalLines` 🔧
   - 💡 Format structured signal data from aggregateSignals() into review-prompt lines. /
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 676: `function buildBatchReviewInstructions` 🔧
   - 💡 Build a batch-mode version of REVIEW_INSTRUCTIONS that strips tool references. The agentTurn LLM in batch mode has NO write/edit/exec tools — it outputs fenced code blocks instead. /
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 738: `variable VERIFY_AFTER_WRITE_SECTION` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 787: `variable VERIFY_AFTER_WRITE_SECTION_BATCH` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 816: `variable PROMPT_DEDUP_TELEMETRY` 📦
   - 💡 dedup against today's noise. Logged to .skill_reviewer_prompt_dedup.jsonl.  Env: SKILL_REVIEWER_DEDUP_WINDOW_MS   default 86400000  (24h) SKILL_REVIEWER_DEDUP_DISABLED=1                  (bypass)
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 817: `variable PROMPT_DEDUP_DISABLED` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 818: `arrow function PROMPT_DEDUP_WINDOW_MS` ➡️
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 822: `variable PROMPT_DEDUP_MAX_NORM_CHARS` 📦
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 824: `function _normalizeUserPrompt` 🔧
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 831: `function dedupeQueueByPromptHash` 🔧
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 888: `function _logPromptDedupTelemetry` 🔧
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 918: `function main` 🔧
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 - Line 945: `function mainInner` 🔧
   - 💡 [無描述]
+  - 🔗 Issue: #000 🚨 (無標題)
 
 ### `skill_tier_audit.js`
 - Line 14: `variable fs` 📦
@@ -13092,7 +13059,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -13134,7 +13100,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -13410,7 +13375,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -13523,7 +13487,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -13669,7 +13632,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -13773,7 +13735,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -13802,7 +13763,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -13829,7 +13789,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -13854,7 +13813,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -13878,7 +13836,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 16: `variable SCRIPT` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 18: `function rmrf` 🔧
   - 💡 [無描述]
 - Line 35: `function resetFixture` 🔧
@@ -13928,7 +13885,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 26: `variable SCRIPT` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 28: `variable pass` 📦
   - 💡 [無描述]
 - Line 29: `variable failures` 📦
@@ -13996,7 +13952,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14021,7 +13976,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14076,7 +14030,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14101,7 +14054,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14126,7 +14078,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14151,7 +14102,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14180,7 +14130,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14205,7 +14154,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14283,7 +14231,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 16: `variable SCRIPT` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 17: `variable JUNK_RATE_FILE` 📦
   - 💡 [無描述]
 - Line 18: `variable PAUSE_FILE` 📦
@@ -14375,7 +14322,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14400,7 +14346,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14429,7 +14374,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14454,7 +14398,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14481,7 +14424,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14506,7 +14448,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14526,7 +14467,6 @@ hot_scripts: 0
   - 💡 [無描述]
 - Line 25: `variable SCRIPT` 📦
   - 💡 [無描述]
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
 - Line 27: `variable pass` 📦
   - 💡 [無描述]
 - Line 28: `variable failures` 📦
@@ -14643,7 +14583,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14707,7 +14646,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14790,7 +14728,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -14959,7 +14896,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -15083,7 +15019,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -15980,7 +15915,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -16045,7 +15979,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -16154,7 +16087,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
@@ -16369,7 +16301,6 @@ hot_scripts: 0
   - 🔗 Issue: #136 🔥 (Smart Router Model Fallback 訊息抑制 — Task A 分析（持續維護，無限期）)
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #151 📌 (Failover Detector Bug Fixes + 10d Observation)
-  - 🔗 Issue: #155 📌 (error_auto_issue.js: 加 Discord webhook + severity=3 即時 alert（改良方案，唔寫新 script）)
   - 🔗 Issue: #156 📌 (Daily Synthesis Timeout Fix — 觀察 timeoutSeconds 300s 效果)
   - 🔗 Issue: #157 📌 (Cron sessionKey context overflow fix — 觀察期)
   - 🔗 Issue: #177 📌 (Skill Reviewer: Shadow → Active Mode Readiness)
