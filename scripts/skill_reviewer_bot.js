@@ -687,12 +687,18 @@ function readQueueCount() {
 // ── Prompt building ──
 
 function buildReviewPrompt() {
-  var basePrompt = execFileSync('node', [REVIEWER_SCRIPT, '--batch'], {
-    timeout: CONFIG.HTTP_TIMEOUT_MS,
-    maxBuffer: CONFIG.MAX_BUFFER_BYTES,
-    encoding: 'utf8',
-    env: Object.assign({}, process.env, { OPENCLAW_NO_COLOR: '1' })
-  });
+  var basePrompt;
+  try {
+    basePrompt = execFileSync('node', [REVIEWER_SCRIPT, '--batch'], {
+      timeout: CONFIG.HTTP_TIMEOUT_MS,
+      maxBuffer: CONFIG.MAX_BUFFER_BYTES,
+      encoding: 'utf8',
+      env: Object.assign({}, process.env, { OPENCLAW_NO_COLOR: '1' })
+    });
+  } catch (e) {
+    err('buildReviewPrompt execFileSync failed: ' + (e.message || e));
+    return null;
+  }
 
   if (basePrompt.indexOf('Nothing to review') !== -1) return null;
 
