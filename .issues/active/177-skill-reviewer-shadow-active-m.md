@@ -1,12 +1,13 @@
 ---
 id: 177
-title: Skill Reviewer: Shadow → Active Mode Readiness
+title: Skill Reviewer: Shadow → Active Mode Readiness + Dedup Quality System
 status: active
 priority: P2
 created: 2026-06-22
-due: 2026-07-13
-updated: 2026-06-22
-progress: 0/7
+due: 2026-07-25
+updated: 2026-07-16
+progress: 2/6
+merged_from: [#187]
 ---
 
 ## F - Facts（事實）
@@ -34,15 +35,36 @@ if (process.env.SHADOW_MODE === 'true' || process.env.SKILL_LLM_JUDGE_ACTIVE ===
 2. Line 127: **啟用 LLM Judge** (SHADOW_MODE / SKILL_LLM_JUDGE_ACTIVE 任一 = true 就行)
 3. Line 287: pass `shadowMode: true` 落 sub-agent，log only 唔好做實 action
 
-### Cron Job Config (2026-06-22)
+### Cron Job Config (2026-07-16 update)
 
 | Cron | ID | Schedule | Session | Model | Status |
 |------|-----|---------|---------|-------|--------|
-| Skill Reviewer (30min) | `56e09616-50a3-45c2-89eb-d8c427c56191` | `*/30 * * * *` @ Asia/Hong_Kong | isolated | deepseek-v4-flash | ✅ running |
-| Skill Junk Rate Tracker (daily 23:55) | `91208a00-49c3-45e7-9fad-173a20582632` | `55 23 * * *` | isolated | deepseek-v4-flash | ✅ running |
-| Skill Reviewer Daily Report (daily 23:56) | `63093fb7-237a-4a5f-9a2e-e3187e443bd1` | `56 23 * * *` | isolated | deepseek-v4-flash | ✅ running |
+| Skill Reviewer (30min) | `56e09616-50a3-45c2-89eb-d8c427c56191` | `*/30 * * * *` @ Asia/Hong_Kong | isolated | none | ✅ ok |
+| Skill Junk Rate Tracker (daily 23:55) | `91208a00-49c3-45e7-9fad-173a20582632` | `55 23 * * *` | isolated | none | ✅ ok |
+| Skill Reviewer Daily Report (daily 9:00) | `5ed354ef-54ec-4dd0-aa1d-6dd57bed4528` | `0 9 * * *` | isolated | **none (cleared)** | ✅ ok (fixed 7/16) |
+
+**7/16 fix:** Daily Report cron previously timed out because `model: deepseek-v4-flash` was set but `skill_reviewer_daily_report.js` exits before model call completes → 120s timeout. Fix: `--clear-model` so it uses default fallback chain.
 
 **Migration history：** 6/10 由 `systemEvent+main` 轉 `agentTurn+isolated`（command kind），根治 main session 💓/👍 殘留。
+
+### 兩層 Dedup Threshold 架構（from #187, merged 2026-07-16）
+
+| Layer | Variable | File:Line | Default | Current |
+|------|----------|-----------|---------|---------|
+| Bot-side | `BOT_DEDUP_THRESHOLD` | `skill_reviewer_bot.js:54` | 0.85 | **0.80** (changed 7/16) |
+| Gate-side | `DEFAULT_THRESHOLD` | `skill_dedup_gate.js:35` | 0.85 | 0.85 |
+
+**Effective = 0.80**：bot passes `BOT_DEDUP_THRESHOLD` to gate on every call, overriding gate default.
+
+**兩套 Dedup 系統：**
+| System | Trigger | Telemetry |
+|--------|---------|-----------|
+| Post-LLM dedup | After LLM writes | `.skill_reviewer_post_llm_dedup.jsonl` ✅ |
+| Cross-source dedup | Before LLM writes | **NONE ❌** — Phase 1.1 to fix |
+
+**Phase 1 Goal**：Add `.skill_reviewer_cross_source_dedup.jsonl` telemetry + LLM feedback on strict skip.
+
+**Stale claim correction (2026-07-16)**：Issue #187 originally claimed `DEFAULT_THRESHOLD` was raised to 0.92 in `skill_dedup_gate.js` — this never happened. The value remains 0.85. The actual change today was `BOT_DEDUP_THRESHOLD` bot-side 0.85 → 0.80.
 
 ### Pipeline 內部兩道 LLM Gate
 
@@ -51,7 +73,76 @@ if (process.env.SHADOW_MODE === 'true' || process.env.SKILL_LLM_JUDGE_ACTIVE ===
 | **LLM Judge (M3 advisory)** | `SHADOW_MODE=true` OR `SKILL_LLM_JUDGE_ACTIVE=true` | M3 對 quarantined skills 評審 + override | ✅ M3 24/7 run緊 (cursor line 265/265 done) |
 | **Junk pause (LLM Override)** | `llmOverrideActive=true` (json 寫死) | Junk rate 過 15% 自動 pause | ✅ 生效（junk rate 9.1% < 15% target） |
 
-### Live Data — 過去 7 日 Junk Rate 趨勢（截至 2026-06-21）
+### Live Data — 過去 7 日 Junk Rate 趨勢（截至 2026-07-16）
+
+| Date | Junk% | Prod% | Notes |
+|------|-------|-------|-------|
+| 6/21 | 9.1% ✅ | 2.6% ✅ | First day under target |
+| 7/12 | 47.54% ❌ | 25% ❌ | Tracker bug / threshold issue |
+| **7/16** | **47.54%** | **26.67%** | **Current (7d window)** |
+| **7/16** | **0%** | **50%** | **Current (1d window)** |
+
+**7/16 重大修復：**
+- Dedup threshold: `0.85 → 0.80` (`skill_reviewer_bot.js` line 54)
+- 預期效果：`simplified-chinese-detector` (sim~0.84), `webbridge-youtube-analysis` 等 borderline skills 將不再被誤 quarantine
+- Junk-in-Production 仍然偏高（26.67%），需要持續觀察 threshold 0.80 效果
+
+### Live State 關鍵指標（截至 2026-07-16）
+
+| Signal | Current | Source |
+|--------|---------|--------|
+| Active `_learned_*` skills (symlinks) | 41 | ls skills/_learned_* |
+| Dedup threshold | **0.80** (was 0.85) | skill_reviewer_bot.js:54 |
+| Junk rate 7d (7/16) | 47.54% ❌ | `.skill_junk_rate.jsonl` |
+| Junk rate 1d (7/16) | 0% ✅ | `.skill_junk_rate.jsonl` |
+| Junk-in-Production 7d | 26.67% ❌ | `.skill_junk_rate.jsonl` |
+| Junk-in-Production 1d | 50% ❌ | `.skill_junk_rate.jsonl` |
+| Frozen state | None ✅ | `.skill_reviewer_pause.frozen` deleted |
+| Cron errors (30min) | 0 ✅ | cron list |
+| Cron errors (Daily Report) | ✅ Fixed (4x timeout resolved 7/16) | cron list |
+
+### 2026-07-16 重啟觀察期 — 新發現
+
+#### ✅ 已修復
+1. **Dedup threshold 0.80** — `BOT_DEDUP_THRESHOLD` default 從 0.85 降至 0.80
+   - 原因：`smart-router-classifier-debugging`, `webbridge-youtube-analysis`, `simplified-chinese-detector` 呢 3 個 borderline skills (sim 0.84-0.85) 被反覆誤 quarantine
+   - 預期：threshold 0.80 之後呢 3 個 skill 會正常通過
+2. **Daily Report cron timeout** — cron payload 移除 `model: deepseek-v4-flash`，不再 timeout
+3. **Active symlinks 41** — 乾淨狀態
+
+#### ⚠️ 仍需觀察
+1. **Junk-in-Production 7d = 26.67%** — 仍然超標（target <10%），需要 7 日觀察新 threshold 效果
+2. **Junk rate 7d = 47.54%** — 數值異常高，可能受 tracker 計算方式影響
+3. **Junk rate 1d = 0%** — 今日數據係乾淨，新 threshold 可能已生效
+
+#### 📊 重啟觀察期 checklist（至 7/25）
+- [ ] Day 1 check (7/17): junk rate 1d 是否維持 <10%？
+- [ ] Day 3 check (7/19): junk rate 7d 是否有改善？
+- [ ] Day 5 check (7/21): 確認 threshold 0.80 是否穩定，Prod% 是否下降
+- [ ] Day 7 check (7/23): Full closing criteria 評估
+
+### Closing Criteria（維持不變，至 2026-07-25 評估）
+
+```
+✅ PASS: 7d junk rate ≤ 10% 連續 7d AND Prod% ≤ 10% AND 0 false negative
+🟡 PARTIAL: 7d junk rate ≤ 10% but Prod% > 10% → 繼續觀察
+🟠 NEEDS MORE: 7d junk rate 10-15% → 繼續觀察 7 more days
+🔴 REGRESSION: 7d junk rate > 15% OR >1 false negative → 即時 rollback dedup threshold
+```
+
+### Update 2026-07-16 — 重啟觀察期
+
+**原因：** Threshold 0.80 patch (7/16) 需要時間見效，cron timeout 已修，junk-in-production 仍超標。重啟 7 日觀察期至 7/25。
+
+**現況：**
+- Frozen: ✅ 已解除 | LLM Judge: ✅ active | Dedup: ✅ 0.80 (今日改) | Cron errors: ✅ 已修
+- Junk rate 7d: ❌ 47.54% | Junk-in-Production 7d: ❌ 26.67%
+
+**預期：** 新 threshold 0.80 運行 7 日後，Junk-in-Production 應降至 <10%
+
+---
+
+### Previous Updates（2026-07-12 → 2026-06-22）
 
 | Date | Total | Pass | Fail | **Junk%** | **Prod%** | Quar | LLM Override |
 |------|-------|------|------|-----------|-----------|------|---------------|
@@ -144,13 +235,56 @@ if (process.env.SHADOW_MODE === 'true' || process.env.SKILL_LLM_JUDGE_ACTIVE ===
 
 ## Progress
 
-- [x] **Step 1: Audit shadow mode internals** (2026-06-22) — pipeline code review + 7d data analysis
-- [x] **Step 2: Open tracking issue** (#177) (2026-06-22) — establish baseline
-- [ ] **Step 3: Daily monitoring** (2026-06-22 → 2026-06-29) — 觀察 junk rate trend 7 日 consecutive
-- [ ] **Step 4: M3 override analysis** (2026-06-29) — 5.9% → check root cause (heuristic vs M3)
-- [ ] **Step 5: LLM Judge pilot** (2026-07-05) — flip `.llm_judge_active.json` for 7 days
-- [ ] **Step 6: Full active mode decision** (2026-07-12) — based on Step 3-5 results
-- [ ] **Step 7: Cleanup / rollback** (2026-07-13) — flip `SHADOW_MODE=false` or rollback
+### Phase 1: Foundation — Dedup Quality System (from #187)
+- [ ] **Phase 1.1**: Add cross-source telemetry — create `.skill_reviewer_cross_source_dedup.jsonl` writer in `skill_reviewer_bot.js`
+  - Schema: `{ts, proposed_name, proposed_desc_hash, matched_skill, similarity, mode, outcome}`
+  - Mirror post-LLM dedup format for consistency
+  - Status: NOT done — blocked by Phase 1.2
+- [ ] **Phase 1.2**: Add LLM feedback injection on strict skip — modify `skill_reviewer_bot.js:1603-1606` to push tool-call result
+  - Mirror post-LLM dedup behavior (L1462+ area)
+  - Reference: bot already has pattern for tool-call result injection
+  - Status: NOT done — prerequisite for Phase 3 observation
+
+### Phase 2: Stuck Loop Fix ✅ DONE
+- [x] **Phase 2.1**: Identified `wrapper-fs-safe-write` stuck loop (53 matches vs `node-fs-enoent-debugging`)
+- [x] **Phase 2.2**: Confirmed genuinely distinct skill (false positive at 0.85)
+- [x] **Phase 2.3**: Resolved by promoting to active + archiving stale proposals
+  - ✅ `wrapper-fs-safe-write/SKILL.md` written (95 lines, active)
+  - ✅ Quarantine archive removed
+  - ✅ Backlog 39 stale proposals archived (36 fsSync + 3 magic_numbers)
+
+### Phase 3: Observation — Junk Rate + Dedup Quality (merged)
+- [ ] **Phase 3.1**: 7 日 daily monitoring (2026-07-16 → 7/23) — junk rate trend with threshold 0.80
+- [ ] **Phase 3.2**: 14 日 cross-source telemetry observation (after Phase 1 ships)
+- [ ] **Phase 3.3**: M3 override rate analysis — check if > 30% (baseline 5.9%)
+- [ ] **Phase 3.4**: Calculate cross-source FP rate from new telemetry
+
+### Phase 4: Full Active Mode Decision
+- [ ] **Phase 4.1**: If FP rate < 5% → re-evaluate strict enablement
+- [ ] **Phase 4.2**: If FP rate 5-15% → tune threshold first
+- [ ] **Phase 4.3**: If FP rate > 15% → keep warn mode, deeper algorithm review
+- [ ] **Phase 4.4**: Decision — flip `SHADOW_MODE=false` if all criteria met
+
+### Phase 5: Cleanup / Rollback
+- [ ] **Phase 5.1**: If all criteria pass → flip `SHADOW_MODE=false` (full active mode)
+- [ ] **Phase 5.2**: If regression → rollback plan (flip `SHADOW_MODE=true` + re-freeze)
+
+### Closing Criteria
+
+```
+✅ PASS: 7d junk rate ≤ 10% 連續 7d
+              AND Junk-in-Production ≤ 10%
+              AND cross-source telemetry shipped + LLM feedback working
+              AND M3 override rate > 30% OR ≥ 2 false negatives resolved
+🟡 PARTIAL: ≥2 Phase items done + no regression
+🟠 NEEDS MORE: telemetry shipped but observation < 7d
+🔴 REGRESSION: telemetry write impacts bot perf > 10% OR junk rate > 15%
+```
+
+### Rollback Plan
+- Telemetry write: `SKILL_REVIEWER_CROSS_SOURCE_TELEMETRY_DISABLED=1` (kill switch)
+- LLM feedback injection: git revert single commit
+- Threshold tuning: `SKILL_REVIEWER_BOT_THRESHOLD=0.85` (revert to pre-0.80)
 
 ## Notes
 
@@ -231,7 +365,7 @@ Active mode 開咗之後：
 - Monthly re-evaluate `.llm_judge_active.json` config
 - Quarterly skill pipeline health audit (per #162 嘅 master issue 指引)
 
-### Update 2026-07-12 — 調查結果
+#### 2026-07-12 調查結果
 
 #### Frozen State 已解除
 - `.skill_reviewer_pause.frozen` 已刪除（自 6/13 存在 29 日）

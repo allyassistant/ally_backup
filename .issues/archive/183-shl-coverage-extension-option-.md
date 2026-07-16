@@ -1,14 +1,13 @@
 ---
 id: 183
 title: SHL Coverage Extension (Option 1) — Design + Implementation
-status: active
+status: archive
 priority: P2
 created: 2026-07-04
 due: 2026-07-18
-updated: 2026-07-04
+updated: 2026-07-16
 progress: 0/0
 ---
-
 
 ## F - Facts（事實）
 > 確定已知的事實、數據、現狀

@@ -2,23 +2,11 @@
 id: 147
 title: Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146)
 status: archive
-priority: P3
+priority: P2
 created: 2026-06-10
 due: 2026-06-24
-updated: 2026-06-22
+updated: 2026-07-16
 progress: 0/3
----
-
-## Updated 2026-06-19 — Priority P2 → P3
-
-降 priority 嘅原因：
-1. **Phase 2f (dedup_gate) 已 integrated** into `skill_reviewer.js`，所以 queue 內有信號先 call LLM，empty run 已經 early exit（觀察: 大部分 30-min run 係 "Pipeline was paused due to a prior auto-pause condition" 然後 silent exit）
-2. **Phase 2c (pattern_emitter) 已加** v=3 candidates via 4h cron，唔再 100% 靠 30-min cycle
-3. **Hybrid Advisory (M10)** 已 deployed (2026-06-18)，judge layer 喺 shadow mode
-
-剩 0/3 progress（無具體 work done 喺呢個 issue 內）— 30-min → 2hr 嘅改動仍然有道理（$0.09/day + 避免 30-min 過度激進），但 唔再 urgent。建議併入 #162 M6 (Housekeeping) milestone 一齊做。
-
-## Original content follows
 ---
 
 ## Description

@@ -1,12 +1,12 @@
 ---
 id: 187
 title: Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict)
-status: active
+status: archive
 priority: P2
 created: 2026-07-05
 due: 2026-08-01
-updated: 2026-07-09
-progress: 2/4 (Phase 2.1-2.3 全部 done. Phase 1 + 3-4 仲未做.)
+updated: 2026-07-16
+progress: 3
 ---
 
 ## F - Facts（事實）
@@ -45,13 +45,20 @@ progress: 2/4 (Phase 2.1-2.3 全部 done. Phase 1 + 3-4 仲未做.)
 
 | File:Line | What's there |
 |-----------|--------------|
-| `skill_reviewer_bot.js:60` | `BOT_DEDUP_MODE = (env.SKILL_REVIEWER_BOT_DEDUP || 'warn').toLowerCase()` |
-| `skill_reviewer_bot.js:61` | `BOT_DEDUP_THRESHOLD = 0.85` (default) |
-| `skill_reviewer_bot.js:1581-1610` | Cross-source dedup gate call site |
-| `skill_reviewer_bot.js:1603-1606` | Strict skip path (silent — 冇 LLM feedback) |
+| `skill_reviewer_bot.js:53` | `BOT_DEDUP_MODE = (env.SKILL_REVIEWER_BOT_DEDUP || 'warn').toLowerCase()` |
+| `skill_reviewer_bot.js:54` | `BOT_DEDUP_THRESHOLD = 0.80` (was 0.85; changed 2026-07-16) |
+| `skill_reviewer_bot.js:1272-1306` | Cross-source dedup gate call site |
+| `skill_reviewer_bot.js:1303-1306` | Strict skip path (silent — 冇 LLM feedback) |
+| `skill_dedup_gate.js:35` | `DEFAULT_THRESHOLD = 0.85` (NOT 0.92 as previously claimed) |
 | `skill_dedup_gate.js:78-94` | Cosine similarity (normalized) |
 | `skill_dedup_gate.js:178-188` | Ollama fail-open (null on error) |
 | `skill_dedup_gate.js:289-292` | Empty warnings if cache missing |
+
+**Threshold inconsistency (correction 2026-07-16):**
+- Issue previously claimed `DEFAULT_THRESHOLD` was raised 0.85 → 0.92 — this was never actually done; the value remains 0.85
+- 2026-07-16 changed `BOT_DEDUP_THRESHOLD` (bot-side) from 0.85 → 0.80 in `skill_reviewer_bot.js:54` to address borderline skills (`smart-router-classifier-debugging`, `webbridge-youtube-analysis`, `simplified-chinese-detector`)
+- Effective behavior: bot passes `threshold: 0.80` to gate → gate uses 0.80 (overriding gate's own default 0.85)
+- **Future consistency fix**: decide whether to (a) bump gate's DEFAULT_THRESHOLD to 0.80 to match bot, or (b) revert bot to 0.85 and tune gate instead
 
 ### Timeline
 
@@ -60,6 +67,9 @@ progress: 2/4 (Phase 2.1-2.3 全部 done. Phase 1 + 3-4 仲未做.)
 | 2026-06-29 → 07-04 | 249 post-LLM dedup entries logged |
 | 2026-07-05 02:20 | M3 sub-agent verdict (RISKY, MEDIUM risk) |
 | 2026-07-05 02:25 | #187 開嚟追蹤 prereq steps |
+| 2026-07-08 | Phase 2 done — wrapper-fs-safe-write resolved (promoted, not blacklist) |
+| 2026-07-16 | **Threshold patch:** `BOT_DEDUP_THRESHOLD` 0.85 → 0.80 (`skill_reviewer_bot.js:54`). 修正 issue notes 嘅 stale claim。 |
+| 2026-07-16 | Phase 1 (telemetry + LLM feedback) 仍 NOT done — blocked Phase 3 |
 
 ## D - Decisions（決定）
 
@@ -67,7 +77,7 @@ progress: 2/4 (Phase 2.1-2.3 全部 done. Phase 1 + 3-4 仲未做.)
 - **2026-07-05**: #182 #11 deferred (唔 flip strict mode)
 - **2026-07-05**: #187 開嚟追蹤 4 個 prereq steps (sub-agent Option C)
 - **2026-07-05**: 優先處理 wrapper-fs-safe-write stuck loop (獨立問題，不論 cross-source 點都會發生)
-- **2026-07-08**: Phase 2 全部 done — wrapper-fs-safe-write promoted to active skill + threshold 0.85→0.92 + 5-day stuck loop fully resolved (M3 sub-agent verified 9/9 scenarios)
+- **2026-07-08**: Phase 2 全部 done — wrapper-fs-safe-write promoted to active skill + stuck loop fully resolved (M3 sub-agent verified 9/9 scenarios). **Note:** threshold 0.85→0.92 claim 喺呢個 issue 早段係 stale, 實際上 `skill_dedup_gate.js` DEFAULT_THRESHOLD 從未改過 (2026-07-16 驗證)
 - **2026-07-08**: Decision — **D3 resolved** (promote, not blacklist). wrapper-fs-safe-write 同 node-fs-enoent-debugging 確認係 distinct skills (false positive at 0.85; 真正 similarity 唔同)
 
 ### ⏳ 待做決定
@@ -75,7 +85,7 @@ progress: 2/4 (Phase 2.1-2.3 全部 done. Phase 1 + 3-4 仲未做.)
 | # | Decision | Options | Trigger |
 |---|----------|---------|---------|
 | **D1** | Cross-source telemetry 格式 — mirror post-LLM dedup 定 custom? | Mirror = 快、custom = 完整 metadata | 實作前 |
-| **D2** | Threshold 0.85 → 0.88 同步 apply 落 post-LLM dedup？ | ✅ **Superseded by 0.92 jump** (2026-07-08) | 已完成 — 跳過 0.88 直上 0.92 |
+| **D2** | Threshold 同步 apply 落 post-LLM dedup？ | ✅ **Superseded** | 2026-07-16: 改 `BOT_DEDUP_THRESHOLD` (bot-side) 0.85 → 0.80 處理 borderline FP。gate-side DEFAULT_THRESHOLD 仍係 0.85 — 唔再同步 raise |
 
 ## Q - Questions（未解決）
 
@@ -84,14 +94,14 @@ progress: 2/4 (Phase 2.1-2.3 全部 done. Phase 1 + 3-4 仲未做.)
 1. **Cross-source telemetry 嘅 schema 點 design?** — Mirror post-LLM dedup (similarity, matched_skill, mode, outcome) 或者加埋 LLM feedback path 嘅 metadata
 2. **LLM feedback injection 落 strict skip path 點 implement?** — sub-agent suggest mirror post-LLM dedup 嘅 behavior (L1462+ tool-call result injection). Code location: skill_reviewer_bot.js:1603-1606
 3. ~~**wrapper-fs-safe-write 真係 duplicate 定係 genuine skill?**~~ — ✅ **RESOLVED 2026-07-08**: Genuine distinct skill. False positive at 0.85.
-4. ~~**0.85 → 0.88 threshold tuning 真係 work？**~~ — ✅ **Superseded**: jumped to 0.92 directly based on false-positive evidence
+4. ~~**0.85 → 0.88 threshold tuning 真係 work？**~~ — ✅ **Superseded (with correction)**: 2026-07-16 改 `BOT_DEDUP_THRESHOLD` 0.85 → 0.80 (bot-side) 處理 borderline skills (smart-router-classifier-debugging, webbridge-youtube-analysis, simplified-chinese-detector)。原本 issue 講嘅「0.92 jump」並無實際發生。
 
 ### 🔍 追問（蘇格拉底反詰）
 
 - **點解唔直接開 strict + 觀察 dedup reject count？** 因為 silent skip 會 hide 問題，唔報返 LLM 等於 zero observability
 - **點解唔 fix wrapper-fs-safe-write stuck loop 先？** 因為呢個 loop 喺 post-LLM dedup (separate system)，唔關 cross-source strict 事，但係 same pathology
 - **如果 LLM feedback injection 加咗 strict skip path 仲係 silent 嗎？** 唔係 silent，但會 add 1 個 tool-call per skip — 影響 performance，需要 benchmark
-- **點解唔直接 bump threshold 去 0.92 算？** 太 high 會漏真正 duplicate，反而壞過 false positive
+- **點解唔直接 bump threshold 去 0.80 算？** 唔好 raise — 應該係 lower (降低 false positive)。原本 issue 講嘅「0.92 bump」邏輯錯咗, stuck loop 唔係靠 raise threshold 解決, 而係靠 promote skill 到 active
 
 ## Progress
 
@@ -109,11 +119,11 @@ progress: 2/4 (Phase 2.1-2.3 全部 done. Phase 1 + 3-4 仲未做.)
   - Manual review of both SKILL.md contents confirmed different topics
   - Similarity 0.855 was a false positive (fs-keyword overlap)
   - Real semantic distance is well below 0.5
-- [x] **Step 2.3**: Resolved by promoting to active + raising threshold to 0.92
+- [x] **Step 2.3**: Resolved by promoting to active (threshold tuning 唔係 resolution path)
   - ✅ `wrapper-fs-safe-write/SKILL.md` (95 lines, status: active) — written by main agent (not quarantine/auto-symlink)
   - ✅ Quarantine `_archive/quarantine-1783211517822-wrapper-fs-safe-write/` removed
-  - ✅ Threshold 0.85 → 0.92 in `scripts/lib/skill_dedup_gate.js:35` (DEFAULT_THRESHOLD = 0.92 + comment "raised 2026-07-08 from 0.85")
   - ✅ Backlog burndown: 39 stale proposals archived (36 fsSync + 3 magic_numbers)
+  - ⚠️ **Correction:** Threshold 0.85 → 0.92 claim 係 stale; 實際上 `skill_dedup_gate.js:35 DEFAULT_THRESHOLD` 從未改過。今日 (2026-07-16) 改咗 `skill_reviewer_bot.js:54 BOT_DEDUP_THRESHOLD` 由 0.85 → 0.80 處理 borderline FP, 同 Phase 2 resolution 無關
 
 ### Phase 3: Observation (Week 2-4, 7-19 → 8-01)
 - [ ] **Step 3.1**: 14 日 observation in warn mode with new cross-source telemetry
@@ -158,9 +168,10 @@ progress: 2/4 (Phase 2.1-2.3 全部 done. Phase 1 + 3-4 仲未做.)
 Phase 2 全部 done:
 - `wrapper-fs-safe-write` confirmed distinct skill (NOT a hallucinated duplicate)
 - Promoted to active status (95 lines, real SKILL.md content)
-- Dedup threshold 0.85 → 0.92 directly (skipped intermediate 0.88)
 - Backlog 39 stale proposals archived (skill_proposal_alert.js no longer flags this pair)
 - New escalation cron `30 6 * * *` will surface any future stuck loops in 7 days (not 19)
+
+**Correction 2026-07-16:** Original claim「Dedup threshold 0.85 → 0.92 directly (skipped intermediate 0.88)」係 stale/inaccurate. 實際上 `skill_dedup_gate.js:35 DEFAULT_THRESHOLD` 從未 raise 過 0.92，仍然係 0.85。今日嘅 threshold 變動係 `skill_reviewer_bot.js:54 BOT_DEDUP_THRESHOLD` 由 0.85 → 0.80 (獨立 variable, 只係 bot 同 gate 溝通時嘅 default)，同 stuck loop resolution 無直接關係 — stuck loop 係因為 wrapper-fs-safe-write 本身 promote 到 active 而非 threshold tuning.
 
 ### Remaining Work
 - **Phase 1 (Foundation)**: Telemetry + LLM feedback injection — 仍係必修 (observability gap)

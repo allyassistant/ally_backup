@@ -1,14 +1,13 @@
 ---
 id: 181
 title: WebBridge 1.10.3 upgrade + H2 direction decision
-status: active
+status: archive
 priority: P3
 created: 2026-07-04
 due: 2026-07-18
-updated: 2026-07-04
+updated: 2026-07-16
 progress: 0/0
 ---
-
 
 ## F - Facts（事實）
 > 確定已知的事實、數據、現狀

@@ -51,7 +51,7 @@ const {
   loadEmbeddingsCache,
 } = require('./lib/skill_dedup_gate');
 const BOT_DEDUP_MODE = (process.env.SKILL_REVIEWER_BOT_DEDUP || 'strict').toLowerCase();
-const BOT_DEDUP_THRESHOLD = Number(process.env.SKILL_REVIEWER_BOT_THRESHOLD || 0.85);
+const BOT_DEDUP_THRESHOLD = Number(process.env.SKILL_REVIEWER_BOT_THRESHOLD || 0.80);
 // Stage 2 (2026-06-21): post-LLM preEmitFilter. Runs AFTER extractFileBlocks()
 // parses the LLM's output and BEFORE fs.writeFileSync() persists it. Uses the
 // canonical pre-emit-dedup.mjs module (v=3 path) to check the proposed skill

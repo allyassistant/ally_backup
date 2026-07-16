@@ -13,7 +13,13 @@ const MAX_FILE_SIZE_BYTES = 100000; // 100KB cap for audit scanner (skip huge fi
  *   node scripts/auto_fix.js report       # 查看上次報告
  *   node scripts/auto_fix.js confirm <id> # 人工確認 high-risk 修改
  *   node scripts/auto_fix.js --dry-run    # 預覽模式（唔會改任何嘢）
+ *   node scripts/auto_fix.js fix --min-confidence=0.90  # 高置信度先 auto-fix
+ *   node scripts/auto_fix.js fix --quarantine  # 所有 fix 都寫入 quarantine
  *   node scripts/auto_fix.js --since 7    # 掃描最近 N 日改過嘅檔案
+ *
+ * ==================== Phase 4: Confidence Gating (#189) ====================
+ * --min-confidence=N  : Minimum confidence to auto-fix (default: 0.90)
+ * --quarantine        : Force all fixes to quarantine (bypass confidence)
  *
  * ==================== 邏輯流程 ====================
  *   1. 掃描 errors.json (未解決錯誤)
@@ -50,6 +56,8 @@ const path = require('path');
 const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 const { addFixRecord } = require('./auto_fix_history');
+const { getConfidenceTier } = require('./cqm_confidence');
+const { safeFix, quarantineFix } = require('./cqm_safe_writer');
 
 // ==================== CONFIG ====================
 const { HOME, WS, SCRIPTS_DIR, ERRORS_JSON, STATE_DIR } = require('./lib/config');
@@ -163,6 +171,16 @@ const args = process.argv.slice(2);
 const command = args.find(a => !a.startsWith('-')) || 'spawn';
 const isDryRun = args.includes('--dry-run');
 const isQuiet = args.includes('--quiet');
+
+// Phase 4: Confidence-based fix gating
+const minConfidenceArg = args.find(a => a.startsWith('--min-confidence'));
+const MIN_CONFIDENCE = minConfidenceArg
+  ? parseFloat(minConfidenceArg.split('=')[1] || args[args.indexOf(minConfidenceArg) + 1] || '0.90')
+  : parseFloat(process.env.CQM_MIN_CONFIDENCE || '0.90');
+const isQuarantineOnly = args.includes('--quarantine-only') || args.includes('--quarantine');
+
+// Phase 4: Quarantine stats (for report)
+let quarantineCount = 0;
 
 // Format output: text (default), json, markdown
 let outputFormat = 'text';
@@ -731,20 +749,40 @@ function autoFixFile(filePath, issues) {
     }
   }
 
+  // Phase 4: Determine fix strategy based on MIN_CONFIDENCE
+  // For auto_fix.js, all local regex fixes are treated as HIGH confidence (0.95)
+  // unless overridden by --min-confidence flag
+  const FIX_CONFIDENCE = 0.95; // Local rule-based fixes are highly reliable
+  const fixTier = getConfidenceTier(FIX_CONFIDENCE);
+
   // 只在有改動且非 dry-run 時寫入
   if (content !== originalContent && !isDryRun) {
-    // Bug 5 fix: Date.now() has ms resolution — two parallel auto-fix runs on
-    // the same file in the same ms would collide on the tmp filename. Use
-    // pid + crypto.randomBytes for a collision-free unique tmp name.
-    const tmpFile = `${filePath}.tmp.${process.pid}.${crypto.randomBytes(8).toString('hex')}`;
-    try {
-      fs.writeFileSync(tmpFile, content, 'utf-8');
-      fs.renameSync(tmpFile, filePath);
-    } catch (e) {
-      try {
-        fs.unlinkSync(tmpFile);
-      } catch { /* ignore */ }
-      return { fixed: 0, details: [`❌ 無法寫入: ${e.message}`] };
+    const metadata = {
+      confidence: FIX_CONFIDENCE,
+      reason: `auto_fix.js rule-based fix (${fixedDetails.filter(d => d.startsWith('✅')).length} rules applied)`,
+      rule: 'auto_fix_local_rules',
+      originalCode: originalContent
+    };
+
+    if (isQuarantineOnly || fixTier.action === 'quarantine') {
+      // MEDIUM confidence or explicit quarantine mode — write to quarantine
+      const result = quarantineFix(filePath, content, { ...metadata, line: 1 });
+      if (result.status === 'success') {
+        quarantineCount++;
+        return { fixed: 0, quarantined: 1, details: [`📋 ${filePath} — quarantined for review`] };
+      } else {
+        return { fixed: 0, details: [`❌ Quarantine failed: ${result.quarantineId}`] };
+      }
+    } else {
+      // HIGH confidence — use safe writer with backup + atomic rename
+      const result = safeFix(filePath, originalContent, content, metadata);
+      if (result.status === 'success') {
+        // All good, backup preserved
+      } else if (result.status === 'reverted') {
+        return { fixed: 0, details: [`❌ Fix reverted: ${result.reason}`] };
+      } else {
+        return { fixed: 0, details: [`❌ Safe write failed: ${result.reason}`] };
+      }
     }
   }
 
@@ -752,6 +790,7 @@ function autoFixFile(filePath, issues) {
     fixed: fixedDetails.filter(d => d.startsWith('✅')).length,
     details: fixedDetails,
     changed: content !== originalContent,
+    quarantined: 0
   };
 }
 
@@ -791,6 +830,7 @@ function generateReport(scanResult) {
       filesWithIssues: scanResult.filesWithIssues,
       lowRiskFixed: scanResult.totalLowRiskFixed,
       lowRiskTotal: scanResult.totalLowRisk,
+      quarantined: quarantineCount,
       highRiskTotal: scanResult.totalHighRisk,
       errorsUnresolved: scanResult.errorsUnresolved,
       errorsRecurring: scanResult.errorsRecurring,

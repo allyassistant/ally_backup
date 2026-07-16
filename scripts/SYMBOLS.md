@@ -1,9 +1,9 @@
 ---
 type: symbols_index
-last_updated: 2026-07-14
+last_updated: 2026-07-15
 scope: scripts/
 total_files: 382
-total_errors: 13
+total_errors: 15
 total_symbols: 6255
 total_issues: 32
 total_crons: 4
@@ -14,7 +14,7 @@ hot_scripts: 0
 
 > 此文件為 OpenClaw 的核心導航地圖。尋找具體邏輯實現時，請優先檢索此處。
 
-**生成時間：** 15/7/2026 上午12:41:00
+**生成時間：** 16/7/2026 上午12:41:00
 **掃描範圍：** `/Users/ally/.openclaw/workspace/scripts`
 
 ---
@@ -12584,102 +12584,102 @@ hot_scripts: 0
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 924: `function extractFileBlocks` 🔧
+- Line 930: `function extractFileBlocks` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1041: `function extractSummaryBlock` 🔧
+- Line 1047: `function extractSummaryBlock` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1062: `function checkExistingFiles` 🔧
+- Line 1068: `function checkExistingFiles` 🔧
   - 💡 Check which target files already exist BEFORE writing
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1071: `function writeSkillFiles` 🔧
+- Line 1077: `function writeSkillFiles` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1570: `function parseMarkMismatchArgs` 🔧
+- Line 1671: `function parseMarkMismatchArgs` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1591: `function findSkillCreatedEvent` 🔧
+- Line 1692: `function findSkillCreatedEvent` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1613: `function writeS1MismatchEvent` 🔧
+- Line 1714: `function writeS1MismatchEvent` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1623: `function writeS1Alert` 🔧
+- Line 1724: `function writeS1Alert` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1633: `function quarantineSkillS1` 🔧
+- Line 1734: `function quarantineSkillS1` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1679: `function markMismatchHandler` 🔧
+- Line 1780: `function markMismatchHandler` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1749: `function printMarkMismatchHelp` 🔧
+- Line 1850: `function printMarkMismatchHelp` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1779: `function cleanupStaleSymlinks` 🔧
+- Line 1880: `function cleanupStaleSymlinks` 🔧
   - 💡 Startup self-healing: remove active symlinks that point to skills which are now draft, archived, manual, or disabled. This prevents stale links from leaking into the recall pool when a skill is demoted outside the normal write-symlink code path (e.g. manual edit or weekly curation). /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1782: `arrow function links` ➡️
+- Line 1883: `arrow function links` ➡️
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1831: `function callLlm` 🔧
+- Line 1932: `function callLlm` 🔧
   - 💡 Test seam: SKILL_REVIEWER_BOT_LLM_STUB=1 short-circuits the real CLI and reads a canned response from SKILL_REVIEWER_BOT_LLM_STUB_TEXT. Used by the B-1 unit test to exercise the follow-up loop without invoking the real LLM. NOT for production use. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1897: `function _callLlmStub` 🔧
+- Line 1998: `function _callLlmStub` 🔧
   - 💡 Test stub. Reads responses from SKILL_REVIEWER_BOT_LLM_STUB_TEXT (one JSON response per call, FIFO separated by `\n---NEXT---\n`), or returns an error if the env var SKILL_REVIEWER_BOT_LLM_STUB_ERROR is set to a non-empty value. Used by the B-1 unit test. /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1928: `function buildFollowupPrompt` 🔧
+- Line 2029: `function buildFollowupPrompt` 🔧
   - 💡 the Stage 2 skip messages. The LLM sees: "Your previous attempt would have created X but it already exists at skills-learned/<matchedSkill>/SKILL.md with similarity Y. Either PATCH the existing skill or emit a structured SKIP marker." /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 1961: `function runFollowupLoop` 🔧
+- Line 2062: `function runFollowupLoop` 🔧
   - 💡 { filesWritten, postLlmInjectedResults, followupCalls }.  Fail-open: if any LLM call fails, log telemetry and stop — the original veto is preserved (we never re-write a SKIPped block as a CREATE). /
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 2091: `variable _validateSkillContent` 📦
+- Line 2192: `variable _validateSkillContent` 📦
   - 💡 P3 label-spam check (Sub-2 fix): exported for backfill script. Detects injected "Use when:" / "Key capabilities:" markers added by M1.4 prompt to skills that didn't originally have them — pollutes catalog with generic boilerplate.
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 2092: `function validateSkillContentStrict` 🔧
+- Line 2193: `function validateSkillContentStrict` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))
   - 🔗 Issue: #000 🚨 (無標題)
-- Line 2103: `function main` 🔧
+- Line 2204: `function main` 🔧
   - 💡 [無描述]
   - 🔗 Issue: #147 📌 (Skill Reviewer Cron Frequency Optimization (WARN-02 deferred from #146))
   - 🔗 Issue: #187 📌 (Dedup strict prerequisites: 4 步 follow-up (sub-agent #11 verdict))

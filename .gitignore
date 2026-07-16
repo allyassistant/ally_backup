@@ -20,6 +20,7 @@ node_modules/
 .llm_judge_*
 .session_handoff.md
 .cross_session_context.md
+.diff_watcher_state.json
 .skill_*
 .spawn/reports/
 .state/
