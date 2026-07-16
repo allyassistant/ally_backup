@@ -35,35 +35,41 @@ let _lastPush = null;
  * Push a message to Discord.
  *
  * @param {object} args
- * @param {string} args.message     — Message text (required)
- * @param {string} [args.target]    — Target like 'channel:1473376125584670872' (default: system channel)
- * @param {boolean} [args.dryRun]   — If true, log only, don't push
- * @param {number} [args.timeoutMs] — Per-call timeout (default 30s)
- * @param {boolean} [args.silent]   — Discord silent flag (no notification)
+ * @param {string} [args.message]     — Message text (required unless args.media is set)
+ * @param {string} [args.media]       — Local file path or URL to attach (Discord: image/audio/video/document)
+ * @param {string} [args.target]      — Target like 'channel:1473376125584670872' (default: system channel)
+ * @param {boolean} [args.dryRun]     — If true, log only, don't push
+ * @param {number} [args.timeoutMs]   — Per-call timeout (default 30s)
+ * @param {boolean} [args.silent]     — Discord silent flag (no notification)
+ * @param {boolean} [args.forceDocument] — Send media as document (avoids compression)
  * @returns {{ok: boolean, skipped?: boolean, error?: string, output?: string, latencyMs?: number}}
  */
 function push(args) {
-  if (!args || !args.message) {
-    return { ok: false, error: 'message is required' };
+  if (!args || (!args.message && !args.media)) {
+    return { ok: false, error: 'message or media is required' };
   }
 
   const target = args.target || SYSTEM_CHANNEL;
   const message = args.message;
+  const media = args.media;
   const dryRun = !!args.dryRun;
   const silent = !!args.silent;
+  const forceDocument = !!args.forceDocument;
   const timeoutMs = args.timeoutMs || DEFAULT_TIMEOUT_MS;
 
   // Discord's 2000-char limit is based on UTF-8 bytes, not JS string length.
   // Chinese/CJK chars are 3 bytes each in UTF-8, so a 700-char Chinese message
   // is ~2100 bytes and would be rejected. Use Buffer.byteLength for accuracy.
-  const byteLength = Buffer.byteLength(message, 'utf8');
-  if (byteLength > MAX_MESSAGE_BYTES) {
-    return { ok: false, error: `message too long: ${byteLength} > ${MAX_MESSAGE_BYTES} bytes` };
+  if (message) {
+    const byteLength = Buffer.byteLength(message, 'utf8');
+    if (byteLength > MAX_MESSAGE_BYTES) {
+      return { ok: false, error: `message too long: ${byteLength} > ${MAX_MESSAGE_BYTES} bytes` };
+    }
   }
 
   const start = Date.now();
   if (dryRun) {
-    const result = { ok: true, skipped: true, dryRun: true, message, target };
+    const result = { ok: true, skipped: true, dryRun: true, message, media, target };
     _lastPush = { ts: new Date().toISOString(), target, message, ok: true };
     return result;
   }
@@ -73,9 +79,15 @@ function push(args) {
       'message', 'send',
       '--channel', 'discord',
       '--target', target,
-      '--message', message,
     ];
+    if (message) {
+      cmdArgs.push('--message', message);
+    }
+    if (media) {
+      cmdArgs.push('--media', media);
+    }
     if (silent) cmdArgs.push('--silent');
+    if (forceDocument) cmdArgs.push('--force-document');
 
     const output = execFileSync(OPENCLAW_BIN, cmdArgs, {
       encoding: 'utf8',
@@ -125,4 +137,10 @@ module.exports = {
   pushSystemChannel,
   getLastPush,
   getSystemChannel,
+};
+
+// Backwards-compat alias for callers using the old '--file' flag
+module.exports.pushAttachment = function(args) {
+  // Old callers passed --file <path>, now translated to --media <path>
+  return push({ ...args, media: args.file || args.attachmentPath });
 };

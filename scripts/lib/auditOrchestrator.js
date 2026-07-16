@@ -40,6 +40,7 @@ const TIME_CONSTANT_WHITELIST = new Set([
   '1440',      // min per day = ONE_DAY_MINUTES
   '28800',     // HKT offset seconds (UTC+8 × 3600)
   '28800000',  // HKT offset ms
+  '86400',      // seconds per day = ONE_DAY_SEC
 ]);
 
 // Fallback: legacy brace-depth walker for files acorn cannot parse.

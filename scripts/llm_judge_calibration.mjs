@@ -30,7 +30,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const discord = require('./lib/discord_push.js');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -224,13 +226,14 @@ if (FORMAT === 'discord') {
   try {
     // Write report to a temp file (multi-line content needs file input, not argv)
     fs.writeFileSync(tmpFile, reportMd, 'utf8');
-    execFileSync('openclaw', ['message', 'send', '--channel', DISCORD_CHANNEL, '--file', tmpFile], {
-      timeout: 15000,
-      encoding: 'utf8',
-      stdio: ['pipe', 'pipe', 'pipe']
-    });
-    pushOk = true;
-    debug('Report pushed to Discord #' + DISCORD_CHANNEL);
+    const result = discord.push({ media: tmpFile, target: 'channel:' + DISCORD_CHANNEL, timeoutMs: 15000 });
+    if (!result.ok) {
+      err('Discord push failed: ' + result.error);
+      console.log('\n[fallback] Manual: cat ' + REPORT_PATH + ' | openclaw message send --channel ' + DISCORD_CHANNEL);
+    } else {
+      pushOk = true;
+      debug('Report pushed to Discord #' + DISCORD_CHANNEL);
+    }
   } catch (e) {
     err('Discord push failed: ' + e.message);
     console.log('\n[fallback] Manual: cat ' + REPORT_PATH + ' | openclaw message send --channel ' + DISCORD_CHANNEL);
