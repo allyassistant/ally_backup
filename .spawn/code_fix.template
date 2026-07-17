@@ -9,7 +9,34 @@ read, grep, edit, exec
 ## Output Format
 - Modified files: [list]
 - Verification: [pass/fail]
+- Queue entries written: [list of {file, line, rule, status}]
 - Non-scope findings: [如果有]
+
+## Queue Write Requirement (CRITICAL)
+
+**After completing any fix, write to the repair queue:**
+
+Append to `<HOME>/.openclaw/workspace/.state/repair_queue.jsonl` (one JSON object per line, no trailing comma):
+
+```json
+{"file":"scripts/xxx.js","line":26,"rule":"fsSync_missing_trycatch","status":"fixed","actor":"sub-agent:<taskName>"}
+```
+
+Use `status` values:
+- `"fixed"` — successfully fixed
+- `"skipped"` — attempted but skipped (e.g. test file, intentionally unchanged)
+- `"quarantined"` — quarantined by auto_fix.js
+
+If multiple issues in the same file are fixed, write one entry per issue (one JSONL line per issue).
+
+Script path: `~/.openclaw/workspace/scripts/lib/repair_queue.js`
+Helper function (Node.js):
+```javascript
+const { append } = require(process.env.HOME + '/.openclaw/workspace/scripts/lib/repair_queue.js');
+append({ file, line, rule, status: 'fixed', actor: 'sub-agent:<taskName>' });
+```
+
+**Do NOT skip this step** — the CQM Fix Digest reads this queue as the single source of truth.
 
 ## Definition of Done
 - [ ] Output delivered to the right location

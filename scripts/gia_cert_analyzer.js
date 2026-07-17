@@ -6645,7 +6645,11 @@ Examples:
     }
 
     const tmpDir = '/tmp/gia_pdf_' + Date.now();
-    fs.mkdirSync(tmpDir, { recursive: true });
+    try {
+      fs.mkdirSync(tmpDir, { recursive: true });
+    } catch (e) {
+      console.error(`Directory creation failed: ${e.message}`);
+    }
     const outputBase = tmpDir + '/page';
 
     try {

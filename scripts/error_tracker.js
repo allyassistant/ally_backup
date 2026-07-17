@@ -161,7 +161,11 @@ async function acquireLock() {
     }
     await new Promise(resolve => setTimeout(resolve, 100));
   }
-  fs.writeFileSync(LOCK_FILE, JSON.stringify({ pid: process.pid, time: Date.now() }), 'utf8');
+  try {
+    fs.writeFileSync(LOCK_FILE, JSON.stringify({ pid: process.pid, time: Date.now() }), 'utf8');
+  } catch (e) {
+    console.error(`File write failed: ${e.message}`);
+  }
 }
 
 function releaseLock() {

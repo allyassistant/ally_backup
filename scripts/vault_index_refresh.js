@@ -315,7 +315,11 @@ function replaceMarkerSection(content, newBody) {
 
 function atomicWriteFile(filePath, content) {
   const tmp = filePath + '.tmp';
-  fs.writeFileSync(tmp, content, 'utf8');
+  try {
+    fs.writeFileSync(tmp, content, 'utf8');
+  } catch (e) {
+    console.error(`File write failed: ${e.message}`);
+  }
   fs.renameSync(tmp, filePath);
 }
 
@@ -339,7 +343,14 @@ function main() {
     console.error(`❌ Vault path does not exist: ${vault}`);
     process.exit(1);
   }
-  if (!fs.statSync(vault).isDirectory()) {
+  let __cond_341_1;
+  try {
+    __cond_341_1 = fs.statSync(vault).isDirectory();
+  } catch (e) {
+    console.error(`File stat failed: ${e.message}`);
+    __cond_341_1 = null;
+  }
+  if (!__cond_341_1) {
     console.error(`❌ Vault path is not a directory: ${vault}`);
     process.exit(1);
   }

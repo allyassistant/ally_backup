@@ -23,9 +23,13 @@ class InvoiceGenerator {
 
   saveCounter() {
     const fs = require('fs');
-    fs.writeFileSync('./invoice-counter.json', JSON.stringify({
+    try {
+      fs.writeFileSync('./invoice-counter.json', JSON.stringify({
       lastNumber: this.invoiceNumber
     }));
+    } catch (e) {
+      console.error(`File write failed: ${e.message}`);
+    }
   }
 
   generate(saleData) {

@@ -58,11 +58,21 @@ function getAllNotes() {
   const notes = [];
   if (!fs.existsSync(KNOWLEDGE_DIR)) return notes;
 
-  const categories = fs.readdirSync(KNOWLEDGE_DIR, { withFileTypes: true });
+  let categories;
+  try {
+    categories = fs.readdirSync(KNOWLEDGE_DIR, { withFileTypes: true });
+  } catch (e) {
+    console.error(`Directory read failed: ${e.message}`);
+  }
   for (const cat of categories) {
     if (!cat.isDirectory()) continue;
     const catDir = path.join(KNOWLEDGE_DIR, cat.name);
-    const files = fs.readdirSync(catDir).filter(f => f.endsWith('.md'));
+    let files;
+    try {
+      files = fs.readdirSync(catDir).filter(f => f.endsWith('.md'));
+    } catch (e) {
+      console.error(`Directory read failed: ${e.message}`);
+    }
     for (const file of files) {
       const filePath = path.join(catDir, file);
       try {

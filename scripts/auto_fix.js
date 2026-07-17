@@ -58,6 +58,7 @@ const { execFileSync } = require('child_process');
 const { addFixRecord } = require('./auto_fix_history');
 const { getConfidenceTier } = require('./cqm_confidence');
 const { safeFix, quarantineFix } = require('./cqm_safe_writer');
+const { append: queueAppend } = require('./lib/repair_queue');
 
 // ==================== CONFIG ====================
 const { HOME, WS, SCRIPTS_DIR, ERRORS_JSON, STATE_DIR } = require('./lib/config');
@@ -697,6 +698,8 @@ function autoFixFile(filePath, issues) {
 
   let content = originalContent;
   const fixedDetails = [];
+  // Track each individually-fixed issue for queue
+  const fixedIssues = [];
 
   for (const issue of issues) {
     // Translate audit camelCase/snake_case rule IDs to low-risk kebab-case IDs.
@@ -742,6 +745,8 @@ function autoFixFile(filePath, issues) {
         content = newContent;
         logValidation({ ruleId: rule.id, filePath, status: 'APPLIED' });
         fixedDetails.push(`✅ ${rule.name}`);
+        // Track for queue (individual issue-level record)
+        fixedIssues.push({ rule: issue.rule, line: issue.line || 0 });
       }
     } catch (e) {
       logValidation({ ruleId: rule.id, filePath, status: 'ERROR', details: e.message });
@@ -769,6 +774,17 @@ function autoFixFile(filePath, issues) {
       const result = quarantineFix(filePath, content, { ...metadata, line: 1 });
       if (result.status === 'success') {
         quarantineCount++;
+        // Write quarantine events to queue too
+        for (const fi of fixedIssues) {
+          queueAppend({
+            file: filePath,
+            line: fi.line,
+            rule: fi.rule,
+            status: 'quarantined',
+            actor: 'auto_fix.js',
+            details: `quarantined: ${result.quarantineId}`,
+          });
+        }
         return { fixed: 0, quarantined: 1, details: [`📋 ${filePath} — quarantined for review`] };
       } else {
         return { fixed: 0, details: [`❌ Quarantine failed: ${result.quarantineId}`] };
@@ -777,7 +793,17 @@ function autoFixFile(filePath, issues) {
       // HIGH confidence — use safe writer with backup + atomic rename
       const result = safeFix(filePath, originalContent, content, metadata);
       if (result.status === 'success') {
-        // All good, backup preserved
+        // All good, backup preserved — write each fixed issue to queue
+        for (const fi of fixedIssues) {
+          queueAppend({
+            file: filePath,
+            line: fi.line,
+            rule: fi.rule,
+            status: 'fixed',
+            actor: 'auto_fix.js',
+            details: `auto_fix.js rule: ${fi.rule}`,
+          });
+        }
       } else if (result.status === 'reverted') {
         return { fixed: 0, details: [`❌ Fix reverted: ${result.reason}`] };
       } else {

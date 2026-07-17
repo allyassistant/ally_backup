@@ -89,7 +89,11 @@ class AbortError extends Error {
 function sleepSync(ms) {
   // We can't use setTimeout in a sync script — exec a real sleep binary.
   // execFileSync is safe (no shell parsing).
-  execFileSync('sleep', [String(ms / 1000)], { stdio: 'ignore' });
+  try {
+    execFileSync('sleep', [String(ms / 1000)], { stdio: 'ignore' });
+  } catch (e) {
+    console.error(`Command execution failed: ${e.message}`);
+  }
 }
 
 // Read a file into utf8, throwing AbortError on failure.

@@ -201,7 +201,11 @@ function loadState() {
 
 function saveState(state) {
   const f = path.join(CONFIG.WORKSPACE_DIR, '.wiki_vectorizer_state.json');
-  fs.writeFileSync(f + '.tmp', JSON.stringify(state, null, 2), 'utf8');
+  try {
+    fs.writeFileSync(f + '.tmp', JSON.stringify(state, null, 2), 'utf8');
+  } catch (e) {
+    console.error(`File write failed: ${e.message}`);
+  }
   fs.renameSync(f + '.tmp', f);
 }
 

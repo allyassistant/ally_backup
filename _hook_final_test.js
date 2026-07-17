@@ -1,1 +1,0 @@
-const hookTest = 42;

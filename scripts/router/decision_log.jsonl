@@ -10563,3 +10563,233 @@
 {"ts":"2026-07-16T14:34:06.829Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"用廣東話詳細總結以下email嘅重點（2-3句，唔超過100字）：\\n\\n標題: Discover Our Premium Solitaire Studs Collection\\n寄件人: Anjal","channel":""}
 {"ts":"2026-07-16T14:47:00.769Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
 {"ts":"2026-07-16T15:17:00.759Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T04:07:03.192Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"[Inter-session message] sourceSession=agent:main:subagent:319f7769-74cc-4b90-b358-861924aeccb0 sourc","channel":""}
+{"ts":"2026-07-17T04:07:50.429Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T04:17:00.751Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T04:23:56.097Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"順手清埋啲 test files","channel":""}
+{"ts":"2026-07-17T04:23:57.472Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1375,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"71d958d9-17f4-4d45-8263-4bbf4a50bd61"}
+{"ts":"2026-07-17T04:23:57.472Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T04:23:57.600Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"順手清埋啲 test files","channel":""}
+{"ts":"2026-07-17T04:26:42.452Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"1","channel":""}
+{"ts":"2026-07-17T04:26:43.515Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T04:26:43.516Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1063,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"766849f9-7ea1-440b-859f-4e00173fcb5f"}
+{"ts":"2026-07-17T04:26:43.627Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"1","channel":""}
+{"ts":"2026-07-17T04:31:07.955Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"用廣東話詳細總結以下email嘅重點（2-3句，唔超過100字）：\\n\\n標題: Rapaport Price List - July 16, 2026\\n寄件人: Rapaport Price Li","channel":""}
+{"ts":"2026-07-17T04:42:07.566Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"點解 CQM Fix Digest 會顯示0個問題要修復？","channel":""}
+{"ts":"2026-07-17T04:44:31.015Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"咁真正嘅解決方法係唔係 CQM Digest代替CQM scan","channel":""}
+{"ts":"2026-07-17T04:45:46.696Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"最治標治本嘅方案係？","channel":""}
+{"ts":"2026-07-17T04:45:47.947Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T04:45:47.947Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1250,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"1242e98e-83e5-43bc-a75b-0d064eae6916"}
+{"ts":"2026-07-17T04:45:48.075Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"最治標治本嘅方案係？","channel":""}
+{"ts":"2026-07-17T04:47:00.743Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T04:47:21.397Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"Spawn MiniMax M3 sub agent 做呢個plan","channel":""}
+{"ts":"2026-07-17T04:47:22.508Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T04:47:22.508Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1110,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"034f052e-59c9-4340-95c3-dfc5178c4d33"}
+{"ts":"2026-07-17T04:47:22.640Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"Spawn MiniMax M3 sub agent 做呢個plan","channel":""}
+{"ts":"2026-07-17T04:47:30.883Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T04:47:30.883Z","route":"spawn_quality","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1142,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"5bf7d61d-1ad1-4d2a-aa23-d8fb7b52291c"}
+{"ts":"2026-07-17T04:48:00.694Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"[Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requeste","channel":""}
+{"ts":"2026-07-17T04:55:31.432Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"[Inter-session message] sourceSession=agent:main:subagent:0fb8d826-de93-49dd-82a3-468bb6e5d3f6 sourc","channel":""}
+{"ts":"2026-07-17T05:09:25.784Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"整成點？","channel":""}
+{"ts":"2026-07-17T05:09:27.017Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1232,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"f4f807fc-d249-498f-9f2a-ec6fde423318"}
+{"ts":"2026-07-17T05:09:27.017Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:09:27.152Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"整成點？","channel":""}
+{"ts":"2026-07-17T05:09:46.294Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c1917674-ad89-4176-a274-0038fdfb5daf"}
+{"ts":"2026-07-17T05:09:46.293Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T05:09:46.378Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T05:15:47.403Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T05:15:48.380Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:15:48.380Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":976,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"88d47851-0ba7-4a84-8aba-fd718b755641"}
+{"ts":"2026-07-17T05:15:48.506Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T05:17:00.722Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-17 13:12:48 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-17 1","channel":""}
+{"ts":"2026-07-17T05:17:23.153Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"其實咁樣做合唔合理？","channel":""}
+{"ts":"2026-07-17T05:17:24.217Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:17:24.217Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1064,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"2868e9e6-9040-4517-aeaf-b22cf118bd7e"}
+{"ts":"2026-07-17T05:17:24.337Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"其實咁樣做合唔合理？","channel":""}
+{"ts":"2026-07-17T05:18:39.444Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"2","channel":""}
+{"ts":"2026-07-17T05:18:40.477Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:18:40.477Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1033,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"d3413202-8b98-40d5-a422-e04746c56240"}
+{"ts":"2026-07-17T05:18:40.586Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"2","channel":""}
+{"ts":"2026-07-17T05:20:21.046Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"全自動","channel":""}
+{"ts":"2026-07-17T05:20:22.064Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:20:22.064Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1018,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c02fa5ba-eb7c-4bf0-b1fd-ee39678c47ca"}
+{"ts":"2026-07-17T05:20:22.177Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"全自動","channel":""}
+{"ts":"2026-07-17T05:23:26.914Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"你意見係？","channel":""}
+{"ts":"2026-07-17T05:23:27.980Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:23:27.980Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1066,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"b8c5e3c0-5ab5-48b9-9206-9638411f3283"}
+{"ts":"2026-07-17T05:23:28.094Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"你意見係？","channel":""}
+{"ts":"2026-07-17T05:25:19.959Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我行","channel":""}
+{"ts":"2026-07-17T05:25:21.001Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:25:21.001Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1041,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"3963625c-05c8-47dd-94e7-b504992d29c0"}
+{"ts":"2026-07-17T05:25:21.121Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我行","channel":""}
+{"ts":"2026-07-17T05:40:03.936Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"深入檢查下有冇bug，同上下游相關嘅scripts配合成點","channel":""}
+{"ts":"2026-07-17T05:40:11.906Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T05:40:12.851Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:40:12.851Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":944,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"79ac31a2-e454-40f0-b09e-248a14e46e69"}
+{"ts":"2026-07-17T05:40:12.978Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T05:49:20.012Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T05:50:30.279Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"運行嘅cron 時間合唔合理","channel":""}
+{"ts":"2026-07-17T05:50:31.241Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:50:31.241Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":962,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"97419635-d664-4ec5-86f8-0a3472cdf510"}
+{"ts":"2026-07-17T05:50:31.365Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"運行嘅cron 時間合唔合理","channel":""}
+{"ts":"2026-07-17T05:52:16.640Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"運行嘅cron 時間合唔合理","channel":""}
+{"ts":"2026-07-17T05:52:17.565Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:52:17.565Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":925,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"25b324f3-68b0-4f84-b4f7-b39224888c92"}
+{"ts":"2026-07-17T05:59:38.133Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"CQM scan需唔需要都有cron","channel":""}
+{"ts":"2026-07-17T05:59:39.087Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T05:59:39.087Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":953,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"cc435594-eab1-4e51-b86a-dfbef95bb39a"}
+{"ts":"2026-07-17T05:59:39.210Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"CQM scan需唔需要都有cron","channel":""}
+{"ts":"2026-07-17T06:02:11.514Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"而家咁樣係唔係最合理？會唔會同其他cron撞00:00 CQM Scan → 更新 scan results（今日 14:00 已確認）\n02:30 CQM Auto-Fix → 讀 midnight","channel":""}
+{"ts":"2026-07-17T06:06:15.694Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"而家好定係 將 Digest 移到 10:30 更好？","channel":""}
+{"ts":"2026-07-17T06:07:54.493Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"檢查下入面嘅代碼而家係quiet 定係點","channel":""}
+{"ts":"2026-07-17T06:08:54.605Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"ally","channel":""}
+{"ts":"2026-07-17T06:08:55.637Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1031,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"a58ed558-e8b4-4667-aa09-25b2a5a19f58"}
+{"ts":"2026-07-17T06:08:55.636Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T06:08:55.778Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"ally","channel":""}
+{"ts":"2026-07-17T06:12:08.265Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"用廣東話詳細總結以下email嘅重點（2-3句，唔超過100字）：\\n\\n標題: You have 1 new RapNet notification\\n寄件人: Rapaport Notificat","channel":""}
+{"ts":"2026-07-17T06:17:00.793Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T06:47:00.775Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T06:48:49.848Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"即係而家唔係quiet mode","channel":""}
+{"ts":"2026-07-17T06:48:50.835Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T06:48:50.836Z","route":"direct_answer","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":986,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"df36fa55-994f-4cd2-a25c-439097583376"}
+{"ts":"2026-07-17T06:48:50.970Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"即係而家唔係quiet mode","channel":""}
+{"ts":"2026-07-17T06:53:04.859Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"應該quiet定唔應該quiet","channel":""}
+{"ts":"2026-07-17T06:53:05.883Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1024,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"d56277c0-08ce-4c21-94d1-98271e2638dc"}
+{"ts":"2026-07-17T06:53:05.882Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T06:53:06.010Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"應該quiet定唔應該quiet","channel":""}
+{"ts":"2026-07-17T07:04:31.862Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我升級OpenClaw","channel":""}
+{"ts":"2026-07-17T07:04:32.914Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:04:32.914Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1051,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"fc202618-2db4-426e-a27c-58eae6d49288"}
+{"ts":"2026-07-17T07:04:33.024Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我升級OpenClaw","channel":""}
+{"ts":"2026-07-17T07:05:19.375Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:05:20.407Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:05:20.407Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1032,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"29a89e2c-fa9f-4b20-b5da-5494b3b2b3a5"}
+{"ts":"2026-07-17T07:05:20.553Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:06:57.363Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally？","channel":""}
+{"ts":"2026-07-17T07:06:58.505Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:06:58.506Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1142,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"c6ac9682-e345-4912-af0e-72b072461909"}
+{"ts":"2026-07-17T07:06:58.635Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally？","channel":""}
+{"ts":"2026-07-17T07:10:56.463Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我升級OpenClaw","channel":""}
+{"ts":"2026-07-17T07:10:57.510Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:10:57.511Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1047,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"94095964-19d0-41b1-9699-69fa56d65688"}
+{"ts":"2026-07-17T07:10:57.657Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"幫我升級OpenClaw","channel":""}
+{"ts":"2026-07-17T07:11:12.132Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"ad991fc4-c235-43fb-9157-02d9b5d0bd70"}
+{"ts":"2026-07-17T07:11:12.131Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:11:12.278Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:11:13.555Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:13:46.084Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:13:46.318Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":232,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"7404a4b9-dd47-45c2-b1a3-f4edf6eeef02"}
+{"ts":"2026-07-17T07:13:46.317Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:13:46.569Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:15:33.755Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Testing","channel":""}
+{"ts":"2026-07-17T07:15:35.112Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:15:35.113Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1358,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"32e52beb-9d92-430d-a73b-7ae95c2ecc81"}
+{"ts":"2026-07-17T07:15:35.309Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Testing","channel":""}
+{"ts":"2026-07-17T07:15:36.410Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Testing","channel":""}
+{"ts":"2026-07-17T07:16:22.831Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"幫我檢查下OpenClaw有冇update","channel":""}
+{"ts":"2026-07-17T07:16:23.811Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:16:23.812Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":980,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"088e9dd2-6d94-47c2-b6b2-65aa0f2799e7"}
+{"ts":"2026-07-17T07:30:41.593Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:30:40 GMT+8] Gateway restart update error (npm)\nSystem: Reason: restart-unhea","channel":""}
+{"ts":"2026-07-17T07:30:42.556Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:30:42.556Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":963,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"a7e86849-ca0f-46c7-8e48-88a0fb95e8ed"}
+{"ts":"2026-07-17T07:30:42.779Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:30:40 GMT+8] Gateway restart update error (npm)\nSystem: Reason: restart-unhea","channel":""}
+{"ts":"2026-07-17T07:30:42.893Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:30:40 GMT+8] Gateway restart update error (npm)\nSystem: Reason: restart-unhea","channel":""}
+{"ts":"2026-07-17T07:30:42.971Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:30:40 GMT+8] Gateway restart update error (npm)\nSystem: Reason: restart-unhea","channel":""}
+{"ts":"2026-07-17T07:30:43.049Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:30:40 GMT+8] Gateway restart update error (npm)\nSystem: Reason: restart-unhea","channel":""}
+{"ts":"2026-07-17T07:32:01.469Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:32:02.614Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:32:02.614Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1144,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"8984b5d8-cded-45d1-9d79-8f1ec6557987"}
+{"ts":"2026-07-17T07:32:02.817Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:33:23.934Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:33:22 GMT+8] Gateway restart update ok (npm)\nSystem: OpenClaw upgrade complet","channel":""}
+{"ts":"2026-07-17T07:33:24.947Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:33:24.947Z","route":"code","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1013,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"66bd9b6f-4605-4712-845d-09bd1ddbd795"}
+{"ts":"2026-07-17T07:33:25.187Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:33:22 GMT+8] Gateway restart update ok (npm)\nSystem: OpenClaw upgrade complet","channel":""}
+{"ts":"2026-07-17T07:33:25.455Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:33:22 GMT+8] Gateway restart update ok (npm)\nSystem: OpenClaw upgrade complet","channel":""}
+{"ts":"2026-07-17T07:33:25.697Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:33:22 GMT+8] Gateway restart update ok (npm)\nSystem: OpenClaw upgrade complet","channel":""}
+{"ts":"2026-07-17T07:33:25.925Z","route":"CODE","matched":true,"rule":"AGENTS.md Rule 5","textPreview":"System: [2026-07-17 15:33:22 GMT+8] Gateway restart update ok (npm)\nSystem: OpenClaw upgrade complet","channel":""}
+{"ts":"2026-07-17T07:33:49.063Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"75863716-9bc5-4727-af56-2b6162a16f2d"}
+{"ts":"2026-07-17T07:33:49.063Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"@Bliss Assistant 唔該晒","channel":""}
+{"ts":"2026-07-17T07:33:49.172Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"@Bliss Assistant 唔該晒","channel":""}
+{"ts":"2026-07-17T07:34:37.110Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"我想你幫我睇下Issue #136","channel":""}
+{"ts":"2026-07-17T07:34:38.114Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:34:38.114Z","route":"browser","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1004,"success":true,"costEstimate":0,"schemaVersion":"1.0","decisionId":"86f5c1f0-1daf-4436-b9b5-bd904bdf20b7"}
+{"ts":"2026-07-17T07:34:38.300Z","route":"BROWSER","matched":true,"rule":"AGENTS.md Rule 6","textPreview":"我想你幫我睇下Issue #136","channel":""}
+{"ts":"2026-07-17T07:36:07.270Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"重新 apply patch","channel":""}
+{"ts":"2026-07-17T07:36:08.470Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:36:08.470Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1200,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"3c55447d-0b79-4e31-8f2f-7d7a5ea55728"}
+{"ts":"2026-07-17T07:36:08.620Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"重新 apply patch","channel":""}
+{"ts":"2026-07-17T07:42:25.941Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:42:27.210Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:42:27.211Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1269,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"636eaa39-30e0-492a-9d6c-b51b51d7c9b6"}
+{"ts":"2026-07-17T07:42:27.430Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:47:00.927Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-17 15:44:19 GMT+8] WhatsApp gateway connected as +85292544036.\n\nRead HEARTBEAT.md i","channel":""}
+{"ts":"2026-07-17T07:49:10.197Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:49:11.562Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:49:11.563Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1365,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"7490b36a-3eef-4304-b0b6-34d79db55b2d"}
+{"ts":"2026-07-17T07:49:11.759Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:50:31.033Z","route":"SPAWN","matched":true,"rule":"AGENTS.md Rule 4","textPreview":"下午3:15\n🔧 CQM Fix Digest — 2026-07-17\n━━━━━━━━━━━━━━━━━━━━━━━\n\nSummary: 3 pending · 0 approved · 8 s","channel":""}
+{"ts":"2026-07-17T07:51:34.036Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"我係下午3:15 收到","channel":""}
+{"ts":"2026-07-17T07:51:35.051Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:51:35.051Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1014,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"b55b09e6-68e2-4c4c-937b-ad8066e022ef"}
+{"ts":"2026-07-17T07:51:35.201Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"我係下午3:15 收到","channel":""}
+{"ts":"2026-07-17T07:52:33.429Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"逐個睇3 個 pending","channel":""}
+{"ts":"2026-07-17T07:52:34.468Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:52:34.469Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1040,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"2681446e-6be6-47a0-b53f-84fbfb891c8e"}
+{"ts":"2026-07-17T07:52:34.616Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"逐個睇3 個 pending","channel":""}
+{"ts":"2026-07-17T07:54:37.330Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T07:54:38.247Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T07:54:38.247Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":917,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"1b0cdcb5-d3cf-4165-96a3-2ec0c59eb3bd"}
+{"ts":"2026-07-17T07:54:38.394Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T08:17:00.776Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T08:25:15.389Z","route":"DIRECT_ANSWER","matched":true,"rule":"AGENTS.md Rule 2","textPreview":"頭先升級嘅時候，OpenClaw出現問題：\n原因： OpenClaw startup migrations 未完成，plugin install index 同 SQLite state 有衝突（br","channel":""}
+{"ts":"2026-07-17T08:26:38.770Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查下所有OpenClaw功能同plugins有冇正常運作","channel":""}
+{"ts":"2026-07-17T08:26:39.730Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T08:26:39.730Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":960,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"2513d81c-6bbe-4697-9f0a-a751441db726"}
+{"ts":"2026-07-17T08:26:39.888Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查下所有OpenClaw功能同plugins有冇正常運作","channel":""}
+{"ts":"2026-07-17T08:26:40.194Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查下所有OpenClaw功能同plugins有冇正常運作","channel":""}
+{"ts":"2026-07-17T08:26:40.473Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查下所有OpenClaw功能同plugins有冇正常運作","channel":""}
+{"ts":"2026-07-17T08:26:40.747Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"檢查下所有OpenClaw功能同plugins有冇正常運作","channel":""}
+{"ts":"2026-07-17T08:27:08.462Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"ae082881-4cc0-46f1-81e3-99f6703cb44a"}
+{"ts":"2026-07-17T08:27:08.461Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T08:27:08.596Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T08:29:15.689Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"點解頭先出現：LLM request failed （Message ID：1527592367950135436）","channel":""}
+{"ts":"2026-07-17T08:29:16.773Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T08:29:16.773Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1083,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"7fe18049-7562-4bfa-a9cd-5a1d94c0580d"}
+{"ts":"2026-07-17T08:29:16.916Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"點解頭先出現：LLM request failed （Message ID：1527592367950135436）","channel":""}
+{"ts":"2026-07-17T08:42:03.926Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"skill reviwer、auto skill suggestion呢啲有冇被影響？有冇正常運作？","channel":""}
+{"ts":"2026-07-17T08:42:05.017Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T08:42:05.017Z","route":"spawn","suggestedModel":"minimax-portal/MiniMax-M3","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1090,"success":true,"costEstimate":0.5,"schemaVersion":"1.0","decisionId":"542e0352-9d4e-4d4b-83d7-39ce59946252"}
+{"ts":"2026-07-17T08:42:05.183Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"skill reviwer、auto skill suggestion呢啲有冇被影響？有冇正常運作？","channel":""}
+{"ts":"2026-07-17T08:42:05.470Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"skill reviwer、auto skill suggestion呢啲有冇被影響？有冇正常運作？","channel":""}
+{"ts":"2026-07-17T08:42:05.768Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"skill reviwer、auto skill suggestion呢啲有冇被影響？有冇正常運作？","channel":""}
+{"ts":"2026-07-17T08:42:06.048Z","route":"SPAWN","matched":true,"rule":"Diagnostic Check → SPAWN (priority)","textPreview":"skill reviwer、auto skill suggestion呢啲有冇被影響？有冇正常運作？","channel":""}
+{"ts":"2026-07-17T08:42:25.167Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":0,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"0a4c3a1b-600e-4908-b8c6-717865f617ba"}
+{"ts":"2026-07-17T08:42:25.166Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T08:42:25.284Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"Ally","channel":""}
+{"ts":"2026-07-17T08:47:00.797Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T09:17:00.780Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T09:47:00.777Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-17 17:44:20 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-17 1","channel":""}
+{"ts":"2026-07-17T10:17:00.801Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T10:47:00.738Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T10:57:02.492Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"יש עוד משהו ?","channel":""}
+{"ts":"2026-07-17T10:57:03.501Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T10:57:03.501Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1009,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"b4d4dfb8-ea77-45d0-a921-ec40356ed49c"}
+{"ts":"2026-07-17T10:57:03.637Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"יש עוד משהו ?","channel":""}
+{"ts":"2026-07-17T10:57:41.173Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"翻譯做中文","channel":""}
+{"ts":"2026-07-17T10:58:49.508Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"אין לי משהו נוסף","channel":""}
+{"ts":"2026-07-17T10:58:50.536Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T10:58:50.536Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1028,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"260ec758-970b-4823-825d-42e62893a5cb"}
+{"ts":"2026-07-17T10:58:50.664Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"אין לי משהו נוסף","channel":""}
+{"ts":"2026-07-17T11:05:37.789Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"זה מספיק","channel":""}
+{"ts":"2026-07-17T11:05:38.897Z","event":"provider_recovery","provider":"minimax-portal"}
+{"ts":"2026-07-17T11:05:38.897Z","route":"none","suggestedModel":"minimax-portal/MiniMax-M2.7","suggestedProvider":"minimax-portal","actualProvider":"minimax-portal","fallbackDepth":0,"latencyMs":1107,"success":true,"costEstimate":0.1,"schemaVersion":"1.0","decisionId":"9040fb85-66cb-4784-be08-c5695f079cae"}
+{"ts":"2026-07-17T11:05:39.035Z","route":"NONE","matched":false,"rule":"AGENTS.md Rule 7 (catch-all)","textPreview":"זה מספיק","channel":""}
+{"ts":"2026-07-17T11:17:00.779Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T11:47:00.777Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-17 19:44:24 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-17 1","channel":""}
+{"ts":"2026-07-17T12:17:00.745Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T12:47:00.714Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T13:17:00.754Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T13:47:00.769Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-17 21:44:29 GMT+8] WhatsApp gateway disconnected (status 499)\nSystem: [2026-07-17 2","channel":""}
+{"ts":"2026-07-17T14:17:00.785Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"System: [2026-07-17 22:06:56 GMT+8] WhatsApp gateway disconnected (status 428)\nSystem: [2026-07-17 2","channel":""}
+{"ts":"2026-07-17T14:47:06.856Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}
+{"ts":"2026-07-17T15:17:00.776Z","route":"SOP","matched":true,"rule":"AGENTS.md Rule 3","textPreview":"Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old t","channel":""}

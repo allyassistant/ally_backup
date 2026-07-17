@@ -25,7 +25,11 @@ const BACKUP_TTL_DAYS = 7;
  */
 function ensureQuarantineDir() {
   if (!fs.existsSync(QUARANTINE_DIR)) {
-    fs.mkdirSync(QUARANTINE_DIR, { recursive: true });
+    try {
+      fs.mkdirSync(QUARANTINE_DIR, { recursive: true });
+    } catch (e) {
+      console.error(`Directory creation failed: ${e.message}`);
+    }
   }
 }
 
@@ -399,7 +403,11 @@ Options:
 
     let code = codeIdx !== -1 ? args[codeIdx + 1] : '';
     if (code.startsWith('@')) {
-      code = fs.readFileSync(path.resolve(code.slice(1)), 'utf8');
+      try {
+        code = fs.readFileSync(path.resolve(code.slice(1)), 'utf8');
+      } catch (e) {
+        console.error(`File read failed: ${e.message}`);
+      }
     }
 
     const confidence = confIdx !== -1 ? parseFloat(args[confIdx + 1]) : 1.0;

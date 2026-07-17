@@ -78,7 +78,12 @@ function severityFromCount(count, low = 3, high = 7) {
 /** Parse a JSONL file → array of objects. Bad lines are silently skipped. */
 function readJsonl(filePath) {
   if (!fs.existsSync(filePath)) return [];
-  const text = fs.readFileSync(filePath, 'utf8');
+  let text;
+  try {
+    text = fs.readFileSync(filePath, 'utf8');
+  } catch (e) {
+    console.error(`File read failed: ${e.message}`);
+  }
   const out = [];
   for (const line of text.split('\n')) {
     const trimmed = line.trim();
@@ -323,8 +328,18 @@ function detectFixOutcomeGap() {
   let freshPath = null;
 
   if (repairExists && notifierExists) {
-    const aMs = fs.statSync(repairLog).mtimeMs;
-    const bMs = fs.statSync(notifierLog).mtimeMs;
+    let aMs;
+    try {
+      aMs = fs.statSync(repairLog).mtimeMs;
+    } catch (e) {
+      console.error(`File stat failed: ${e.message}`);
+    }
+    let bMs;
+    try {
+      bMs = fs.statSync(notifierLog).mtimeMs;
+    } catch (e) {
+      console.error(`File stat failed: ${e.message}`);
+    }
     gapMinutes = Math.abs(aMs - bMs) / 60000;
     if (gapMinutes > CONFIG.GAP_MINUTES_THRESHOLD) {
       stalePath = aMs < bMs ? repairLog : notifierLog;
@@ -340,7 +355,8 @@ function detectFixOutcomeGap() {
     const overshoot = Number.isFinite(gapMinutes)
       ? gapMinutes / CONFIG.GAP_MINUTES_THRESHOLD
       : 99;
-    alerts.push({
+    try {
+      alerts.push({
       detector: scope,
       severity: overshoot > 4 ? 'high' : overshoot > 2 ? 'medium' : 'low',
       summary: Number.isFinite(gapMinutes)
@@ -355,6 +371,9 @@ function detectFixOutcomeGap() {
       suggestedAction: `Check ${path.basename(stalePath)} cron status — may be dead while the other still runs`,
       _dedupKey: `${scope}:${path.basename(stalePath)}`,
     });
+    } catch (e) {
+      console.error(`File stat failed: ${e.message}`);
+    }
   }
 
   info(scope, `gap=${Number.isFinite(gapMinutes) ? Math.round(gapMinutes) : 'inf'}min`);

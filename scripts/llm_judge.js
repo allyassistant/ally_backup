@@ -262,7 +262,11 @@ class EvalRecordKeeper {
 
     history.stats = this._calculateStats(history.evaluations);
 
-    fs.writeFileSync(this.historyFile, JSON.stringify(history, null, 2), 'utf8');
+    try {
+      fs.writeFileSync(this.historyFile, JSON.stringify(history, null, 2), 'utf8');
+    } catch (e) {
+      console.error(`File write failed: ${e.message}`);
+    }
 
     return history;
   }

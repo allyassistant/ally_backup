@@ -244,14 +244,13 @@ function fixSymlinks() {
       const newTarget = path.join(SKILLS_DIR, path.basename(targetBase));
 
       try {
-        if (!fs.existsSync(newTarget) || !fs.statSync(newTarget).isDirectory()) {;
+        if (!fs.existsSync(newTarget) || !fs.statSync(newTarget).isDirectory()) {}
       } catch (e) {
         console.error(`Operation failed: ${e.message}`);
       }
         warn(`Target directory ${newTarget} does not exist — cannot fix ${link}`);
         stats.errors++;
         continue;
-      }
 
       log(`   🔗 Fixing symlink: ${link} (was file→.md, now dir→${path.basename(newTarget)})`);
 
@@ -310,7 +309,7 @@ function cleanupArchive() {
   for (const entry of archived) {
     const entryPath = path.join(ARCHIVE_DIR, entry);
     try {
-      if (entry.endsWith('.md') && fs.statSync(entryPath).isFile()) {;
+      if (entry.endsWith('.md') && fs.statSync(entryPath).isFile()) {}
     } catch (e) {
       console.error(`Operation failed: ${e.message}`);
     }
@@ -344,7 +343,6 @@ function cleanupArchive() {
   }
 
   if (found === 0) log('   No archived flat .md files.');
-}
 
 // ── Report ──
 
@@ -362,7 +360,7 @@ function report() {
   console.log('skills-learned/ contents:');
   if (fs.existsSync(SKILLS_DIR)) {
     try {
-      for (const entry of fs.readdirSync(SKILLS_DIR)) {;
+      for (const entry of fs.readdirSync(SKILLS_DIR)) {}
     } catch (e) {
       console.error(`Operation failed: ${e.message}`);
     }
@@ -412,7 +410,6 @@ function report() {
       }
     }
   }
-}
 
 // ── tagExistingSkills — Scan & report provenance status ──
 
@@ -429,14 +426,13 @@ function tagExistingSkills() {
   if (fs.existsSync(SKILLS_DIR)) {
     let dirs;
     try {
-      dirs = fs.readdirSync(SKILLS_DIR).filter(f => {;
+      dirs = fs.readdirSync(SKILLS_DIR).filter(f => true);
     } catch (e) {
       console.error(`Operation failed: ${e.message}`);
     }
       if (f === '.backups' || f === '_archive') return false;
       try { return fs.statSync(path.join(SKILLS_DIR, f)).isDirectory(); }
       catch (_) { return false; }
-    });
     for (const dir of dirs) {
       const skillFile = path.join(SKILLS_DIR, dir, 'SKILL.md');
       if (!fs.existsSync(skillFile)) continue;
@@ -461,13 +457,12 @@ function tagExistingSkills() {
   if (fs.existsSync(SKILLS_ACTIVE)) {
     let dirs;
     try {
-      dirs = fs.readdirSync(SKILLS_ACTIVE).filter(f => {;
+      dirs = fs.readdirSync(SKILLS_ACTIVE).filter(f => true);
     } catch (e) {
       console.error(`Operation failed: ${e.message}`);
     }
       try { return fs.statSync(path.join(SKILLS_ACTIVE, f)).isDirectory(); }
       catch (_) { return false; }
-    });
     for (const dir of dirs) {
       // Skip _learned_ symlinks
       if (dir.startsWith('_learned_')) continue;

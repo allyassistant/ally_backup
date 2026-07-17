@@ -101,7 +101,12 @@ function getRecoveryStats() {
     return { total: 0, byPair: [], alerts: [] };
   }
 
-  const lines = fs.readFileSync(MISROUTE_LOG, 'utf8').trim().split('\n').filter(Boolean);
+  let lines;
+  try {
+    lines = fs.readFileSync(MISROUTE_LOG, 'utf8').trim().split('\n').filter(Boolean);
+  } catch (e) {
+    console.error(`File read failed: ${e.message}`);
+  }
   /** @type {MisrouteEntry[]} */
   const entries = lines.map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
 

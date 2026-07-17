@@ -33,7 +33,11 @@ function loadState() {
 
 function saveState(state) {
   const dir = path.dirname(STATE_PATH);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  if (!fs.existsSync(dir))   try {
+    fs.mkdirSync(dir, { recursive: true });
+  } catch (e) {
+    console.error(`Directory creation failed: ${e.message}`);
+  }
   atomicWriteSync(STATE_PATH, state);
 }
 
@@ -41,7 +45,8 @@ function getAllNotes() {
   const notes = [];
   function walk(dir) {
     if (!fs.existsSync(dir)) return;
-    fs.readdirSync(dir, { withFileTypes: true }).forEach(e => {
+    try {
+      fs.readdirSync(dir, { withFileTypes: true }).forEach(e => {
       const p = path.join(dir, e.name);
       if (e.isDirectory()) walk(p);
       else if (e.name.endsWith('.md')) {
@@ -51,6 +56,9 @@ function getAllNotes() {
         } catch {}
       }
     });
+    } catch (e) {
+      console.error(`Directory read failed: ${e.message}`);
+    }
   }
   walk(path.join(VAULT, 'Knowledge'));
   walk(path.join(VAULT, '04-Skills'));

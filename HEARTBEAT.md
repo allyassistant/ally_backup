@@ -25,6 +25,8 @@
 | 14 | 06:30 | Knowledge Bootstrap | `cd workspace && node scripts/cross_session_bootstrap.js --quiet` | isolated | ✅ |
 | 14 | 08:00 | Daily Synthesis | `node daily_synthesis.js` | isolated | ✅ |
 | 15 | 10:00 | CQM System Check | `node code_quality_manager.js fix --quiet --enable-skill-scan` | isolated | ✅ |
+| 15b | 10:30 | CQM Fix Daily Digest | `node cqm_daily_digest.js --send` → #⚙️系統 | isolated | ✅ |
+| — | 00:00 | CQM Scan (Midnight) | `code_quality_manager.js scan --quiet` | isolated | ✅ (新增) |
 | 16 | 12:00 | AI HOT 推送 | `node ai_hot_push.js` → #AI🔥熱門 (v2.0: direct POST, delivery:none) | isolated | ✅ |
 | 17 | 23:50 | Discord Channel Logger | `node discord_channel_logger.js` | isolated | ✅ |
 | 18 | 23:55 | Skill Junk Rate Tracker | `node skill_junk_tracker.js --days 1 --quiet` (#150) | isolated | ✅ |

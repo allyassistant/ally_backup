@@ -81,7 +81,12 @@ function getVersionFromCode() {
 }
 
 function loadFullCode() {
-  return fs.readFileSync(CODE_FILE, 'utf8');
+  try {
+    return fs.readFileSync(CODE_FILE, 'utf8');
+  } catch (e) {
+    console.error(`File read failed: ${e.message}`);
+    return null;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

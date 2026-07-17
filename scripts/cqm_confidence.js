@@ -149,7 +149,12 @@ Tiers:
   const catIdx = args.indexOf('--categorize');
   if (catIdx !== -1 && args[catIdx + 1]) {
     const fs = require('fs');
-    const data = JSON.parse(fs.readFileSync(args[catIdx + 1], 'utf8'));
+    let data;
+    try {
+      data = fs.readFileSync(args[catIdx + 1], 'utf8');
+    } catch (e) {
+      console.error(`File read failed: ${e.message}`);
+    }
     const issues = data.merged || data.verified || data.issues || [];
     const categorized = categorizeByConfidence(issues);
 

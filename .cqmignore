@@ -1,0 +1,32 @@
+# .cqmignore — Pattern file for CQM digest suppression
+#
+# Format: one pattern per line. Lines starting with # are comments.
+# Patterns (see scripts/lib/cqm_status_detector.js for full grammar):
+#   path/to/file.js          — exact file match (any line)
+#   path/to/file.js:42       — exact file:line match
+#   path/to/file.js:10-20    — line range (inclusive)
+#   scripts/test_*.js        — glob (basic * support)
+#
+# Why these entries exist:
+#   - Test files (scripts/test_*.js) are out-of-scope for CQM digest:
+#     they're ephemeral, hand-written for specific phases, and not deployed.
+#   - Skill scripts (skills-learned/*/scripts/) are owned by their skill
+#     directory; CQM scans them but they shouldn't surface in main repo digest.
+
+# === Test files (out-of-scope) ===
+scripts/test_*.js
+
+# === Skill scripts (owned by skill directories) ===
+skills-learned/*/scripts/*.js
+
+# === Benign magic numbers (intentional design decisions) ===
+# 20480 = .session_handoff.md size cap (bytes). Truncates to prevent memory blowout.
+scripts/cross_session_bootstrap.js:737
+# 7000 = DeepSeek rate-limit backoff between LLM calls (ms). Intentionally tuned.
+scripts/skill_reviewer_bot.js:2095
+
+# === Rule definition files (comment-only simplified-chinese, not user-visible) ===
+# The simplified-chinese.ast.js file is a rule DEFINITION; the "bug" it documents
+# was in the OLD naive version. The AST-aware version intentionally uses
+# simplified-chinese in explanatory comments only.
+scripts/lib/rules/simplified-chinese.ast.js

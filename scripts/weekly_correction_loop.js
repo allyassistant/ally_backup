@@ -499,7 +499,11 @@ function handleConsolidation() {
   // LLM pass: analyze each pair and write structured YAML proposals
   const llmProposalsDir = PROPOSALS_DIR;
   if (!fs.existsSync(llmProposalsDir) && !DRY_RUN) {
-    fs.mkdirSync(llmProposalsDir, { recursive: true, mode: 0o700 });
+    try {
+      fs.mkdirSync(llmProposalsDir, { recursive: true, mode: 0o700 });
+    } catch (e) {
+      console.error(`Directory creation failed: ${e.message}`);
+    }
   }
 
   let llmProposalCount = 0;
@@ -656,7 +660,11 @@ function applyConsolidation(proposalFile) {
 
   // 1. Create umbrella directory
   if (!fs.existsSync(umbrellaDir)) {
-    fs.mkdirSync(umbrellaDir, { recursive: true, mode: 0o700 });
+    try {
+      fs.mkdirSync(umbrellaDir, { recursive: true, mode: 0o700 });
+    } catch (e) {
+      console.error(`Directory creation failed: ${e.message}`);
+    }
   }
 
   // 2. Read source skill SKILL.md contents
@@ -1129,7 +1137,14 @@ if (fs.existsSync(SKILLS_DIR)) {
 
   for (const entry of entries) {
     const entryPath = path.join(SKILLS_DIR, entry);
-    if (fs.lstatSync(entryPath).isFile() && entry.endsWith('.md')) {
+    let __cond_1131_2;
+    try {
+      __cond_1131_2 = fs.lstatSync(entryPath).isFile();
+    } catch (e) {
+      console.error(`File stat failed: ${e.message}`);
+      __cond_1131_2 = null;
+    }
+    if (__cond_1131_2 && entry.endsWith('.md')) {
       // Migrate flat .md file to subdirectory
       const skillName = entry.slice(0, -3); // remove .md
       const dirPath = path.join(SKILLS_DIR, skillName);

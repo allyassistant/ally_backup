@@ -29,7 +29,12 @@ function loadEntry(id) {
   if (!fs.existsSync(entryPath)) {
     return null;
   }
-  return JSON.parse(fs.readFileSync(entryPath, 'utf8'));
+  try {
+    return fs.readFileSync(entryPath, 'utf8');
+  } catch (e) {
+    console.error(`File read failed: ${e.message}`);
+    return null;
+  }
 }
 
 /**
@@ -37,7 +42,11 @@ function loadEntry(id) {
  */
 function saveEntry(entry) {
   const entryPath = path.join(QUARANTINE_DIR, `${entry.id}.meta.json`);
-  fs.writeFileSync(entryPath, JSON.stringify(entry, null, 2), 'utf8');
+  try {
+    fs.writeFileSync(entryPath, JSON.stringify(entry, null, 2), 'utf8');
+  } catch (e) {
+    console.error(`File write failed: ${e.message}`);
+  }
 }
 
 /**
@@ -49,7 +58,12 @@ function listEntries(filter = 'all') {
     return [];
   }
 
-  const files = fs.readdirSync(QUARANTINE_DIR);
+  let files;
+  try {
+    files = fs.readdirSync(QUARANTINE_DIR);
+  } catch (e) {
+    console.error(`Directory read failed: ${e.message}`);
+  }
   const entries = files
     .filter(f => f.endsWith('.meta.json'))
     .map(f => {
@@ -163,7 +177,11 @@ function showEntry(id) {
   if (fs.existsSync(diffPath)) {
     console.log('');
     console.log('--- Diff ---');
-    console.log(fs.readFileSync(diffPath, 'utf8').slice(0, 800));
+    try {
+      console.log(fs.readFileSync(diffPath, 'utf8').slice(0, 800));
+    } catch (e) {
+      console.error(`File read failed: ${e.message}`);
+    }
   }
 }
 

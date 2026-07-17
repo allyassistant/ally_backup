@@ -90,7 +90,12 @@ class SkillIntegrityScanner {
         continue;
       }
 
-      const content = fs.readFileSync(skillPath, 'utf8');
+      let content;
+      try {
+        content = fs.readFileSync(skillPath, 'utf8');
+      } catch (e) {
+        console.error(`File read failed: ${e.message}`);
+      }
 
       // ── B.4: Frontmatter parse ──
       this._checkFrontmatter(dir, content);

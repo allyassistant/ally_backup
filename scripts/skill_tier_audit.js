@@ -110,7 +110,12 @@ function loadPassedAndQuarantined() {
   if (!fs.existsSync(JUNK_LOG)) return [];
   // take the most recent 7-day window entry (the one that shows 6 inconsistencies)
   let latest;
-  const lines = fs.readFileSync(JUNK_LOG, 'utf8').split('\n').filter(Boolean);
+  let lines;
+  try {
+    lines = fs.readFileSync(JUNK_LOG, 'utf8').split('\n').filter(Boolean);
+  } catch (e) {
+    console.error(`File read failed: ${e.message}`);
+  }
   for (const line of lines) {
     let d;
     try { d = JSON.parse(line); } catch { continue; }
@@ -132,7 +137,12 @@ function main() {
   const byTier = { draft: 0, active: 0, archived: 0, unknown: 0 };
 
   for (const s of allSkills) {
-    const content = fs.readFileSync(s.skillPath, 'utf8');
+    let content;
+    try {
+      content = fs.readFileSync(s.skillPath, 'utf8');
+    } catch (e) {
+      console.error(`File read failed: ${e.message}`);
+    }
     const fm = parseFrontmatter(content);
     const tier = classifyTier(fm.status, s.inArchive);
     const currentStatus = fm.status || (s.inArchive ? 'archived' : 'unknown');

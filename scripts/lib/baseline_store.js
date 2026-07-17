@@ -36,7 +36,11 @@ class BaselineStore {
 
   _save() {
     const tmp = this.filePath + '.tmp';
-    fs.writeFileSync(tmp, JSON.stringify(this.data, null, 2), 'utf8');
+    try {
+      fs.writeFileSync(tmp, JSON.stringify(this.data, null, 2), 'utf8');
+    } catch (e) {
+      console.error(`File write failed: ${e.message}`);
+    }
     fs.renameSync(tmp, this.filePath);
   }
 

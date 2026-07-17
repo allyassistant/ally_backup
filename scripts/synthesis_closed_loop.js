@@ -56,7 +56,12 @@ function saveState(state) {
 function getAllNotes(dir) {
   const notes = [];
   if (!fs.existsSync(dir)) return notes;
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  let entries;
+  try {
+    entries = fs.readdirSync(dir, { withFileTypes: true });
+  } catch (e) {
+    console.error(`Directory read failed: ${e.message}`);
+  }
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
@@ -224,7 +229,11 @@ ${synthesisPrompt}
 
 function writeClosedLoopReport(loopPrompt, recentOutputs) {
   const today = new Date().toISOString().split('T')[0];
-  if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  if (!fs.existsSync(OUTPUT_DIR))   try {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  } catch (e) {
+    console.error(`Directory creation failed: ${e.message}`);
+  }
 
   const outputs = recentOutputs.map(o =>
     `- ${o.title} (${new Date(o.mtime).toISOString().split('T')[0]})`

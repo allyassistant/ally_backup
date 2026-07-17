@@ -23,7 +23,12 @@ if (!fs.existsSync(CACHE_FILE)) {
   process.exit(1);
 }
 
-const cache = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'));
+let cache;
+try {
+  cache = fs.readFileSync(CACHE_FILE, 'utf8');
+} catch (e) {
+  console.error(`File read failed: ${e.message}`);
+}
 const before = Object.keys(cache.embeddings || {}).length;
 
 // Build set of known skill names (from skills/ + skills-learned/)
@@ -31,7 +36,14 @@ const knownNames = new Set();
 
 // Scan skills/ (symlinks to skills-learned/ or direct)
 if (fs.existsSync(SKILLS_DIR)) {
-  for (const entry of fs.readdirSync(SKILLS_DIR, { withFileTypes: true })) {
+  let __iter_33_1;
+  try {
+    __iter_33_1 = fs.readdirSync(SKILLS_DIR, { withFileTypes: true });
+  } catch (e) {
+    console.error(`Directory read failed: ${e.message}`);
+    __iter_33_1 = [];
+  }
+  for (entry of __iter_33_1) {
     const skillMd = path.join(SKILLS_DIR, entry.name, 'SKILL.md');
     if (fs.existsSync(skillMd)) {
       const name = entry.name.replace(/^_learned_/, '');
@@ -42,7 +54,14 @@ if (fs.existsSync(SKILLS_DIR)) {
 
 // Scan skills-learned/ (real skill dirs)
 if (fs.existsSync(SKILLS_LEARNED)) {
-  for (const entry of fs.readdirSync(SKILLS_LEARNED, { withFileTypes: true })) {
+  let __iter_44_2;
+  try {
+    __iter_44_2 = fs.readdirSync(SKILLS_LEARNED, { withFileTypes: true });
+  } catch (e) {
+    console.error(`Directory read failed: ${e.message}`);
+    __iter_44_2 = [];
+  }
+  for (entry of __iter_44_2) {
     if (!entry.isDirectory()) continue;
     if (entry.name.startsWith('.')) continue; // skip .backup, _archive etc.
     const skillMd = path.join(SKILLS_LEARNED, entry.name, 'SKILL.md');
@@ -67,7 +86,11 @@ console.log(`Removed ${removed} phantom entries`);
 
 // Persist
 const tmpFile = CACHE_FILE + '.tmp' + Date.now();
-fs.writeFileSync(tmpFile, JSON.stringify(cache, null, 2), 'utf8');
+try {
+  fs.writeFileSync(tmpFile, JSON.stringify(cache, null, 2), 'utf8');
+} catch (e) {
+  console.error(`File write failed: ${e.message}`);
+}
 fs.renameSync(tmpFile, CACHE_FILE);
 console.log(`Saved cleaned cache to ${CACHE_FILE}`);
 

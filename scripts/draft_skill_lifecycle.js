@@ -93,7 +93,11 @@ function archiveSkill(name) {
     return false;
   }
 
-  if (!fs.existsSync(ARCHIVE_DIR)) fs.mkdirSync(ARCHIVE_DIR, { recursive: true });
+  if (!fs.existsSync(ARCHIVE_DIR))   try {
+    fs.mkdirSync(ARCHIVE_DIR, { recursive: true });
+  } catch (e) {
+    console.error(`Directory creation failed: ${e.message}`);
+  }
 
   // Move to archive with timestamp to avoid collisions
   const ts = Date.now();
@@ -117,7 +121,12 @@ function archiveSkill(name) {
 }
 
 function archiveAllStale(days) {
-  const entries = fs.readdirSync(SKILLS_LEARNED_DIR, { withFileTypes: true });
+  let entries;
+  try {
+    entries = fs.readdirSync(SKILLS_LEARNED_DIR, { withFileTypes: true });
+  } catch (e) {
+    console.error(`Directory read failed: ${e.message}`);
+  }
   const draftDirs = entries
     .filter(e => e.isDirectory() && !e.name.startsWith('.') && e.name !== '_archive')
     .map(e => path.join(SKILLS_LEARNED_DIR, e.name))

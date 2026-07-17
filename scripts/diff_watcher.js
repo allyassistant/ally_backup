@@ -78,10 +78,17 @@ function saveState(s) {
 // ───────────────────────────────────────────────────────────────────────────
 
 function getCurrentSha() {
-  return execFileSync('git', ['rev-parse', 'HEAD'], {
+  let __ret_80_0;
+  try {
+    __ret_80_0 = execFileSync('git', ['rev-parse', 'HEAD'], {
     encoding: 'utf8',
     timeout: GIT_TIMEOUT_MS,
   }).trim();
+  } catch (e) {
+    console.error(`Command execution failed: ${e.message}`);
+    return null;
+  }
+  return __ret_80_0;
 }
 
 function getScriptsChanged(fromSha, toSha) {
