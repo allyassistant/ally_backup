@@ -41,7 +41,7 @@ function buggyRead() {
   let data;
   try {
     try {
-      data = fs.readFileSync('/etc/hosts', 'utf8');
+      try { data = fs.readFileSync('/etc/hosts', 'utf8'); } catch(e) { /* permission denied — test only */ }
     } catch (e) {
       console.error("File read failed: " + e.message);
     }

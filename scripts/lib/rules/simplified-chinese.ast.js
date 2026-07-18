@@ -4,15 +4,15 @@
  * AST-aware version of the `simplified-chinese` rule.
  *
  * Bug class fixed by AST migration:
- *   1. Renamed identifiers containing simplified chars. E.g. `function 为() {}`
+ *   1. Renamed identifiers containing simplified chars. E.g. `function 為() {}`
  *      → `function 為() {}`. This:
  *      - Breaks references to the function elsewhere in the file
- *      - Causes SyntaxError in non-UTF-8 environments
+ *      - Causes SyntaxError in non-UTF-8 environments (非 UTF-8 環境)
  *      - Violates the developer's intentional naming
- *   2. Renamed property keys. E.g. `obj.数据.length` → `obj.數據.length` (but
- *      also renamed `{ 数据: 1 }.数据` → `{ 數據: 1 }.數據`, breaking
+ *   2. Renamed property keys. E.g. `obj.數據.length` → `obj.數據.length` (but
+ *      also renamed `{ 數據: 1 }.數據` → `{ 數據: 1 }.數據`, breaking
  *      lookups against the original key).
- *   3. Renamed non-computed object keys (`{ 数据: 1 }` → `{ 數據: 1 }`).
+ *   3. Renamed non-computed object keys (`{ 數據: 1 }` → `{ 數據: 1 }`).
  *
  * AST approach:
  *   - Convert ONLY Literal string values (text content of strings).

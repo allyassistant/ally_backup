@@ -49,6 +49,37 @@ const { getHKTDateTime } = require('./lib/time');
 const SYSTEM_CHANNEL = 'channel:1473376125584670872'; // #⚙️系統
 const SCAN_PATH = '.state/pure_ai_audit_results.json';
 const REPO_ROOT = path.resolve(__dirname, '..');
+const LOCK_DIR = path.join(REPO_ROOT, '.state');
+
+/**
+ * Idempotency lock — prevents double-send if cron retries or races.
+ * Returns true if already locked (skip send), false if lock acquired (proceed).
+ */
+function alreadyLocked() {
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD in UTC
+  const lockFile = path.join(LOCK_DIR, `cqm_digest_sent_${today}.lock`);
+  if (fs.existsSync(lockFile)) {
+    console.log('⏭️  Digest already sent today, skipping (lock file exists)');
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Acquire the idempotency lock. Returns false if already locked.
+ */
+function acquireLock() {
+  const today = new Date().toISOString().slice(0, 10);
+  const lockFile = path.join(LOCK_DIR, `cqm_digest_sent_${today}.lock`);
+  if (alreadyLocked()) return false;
+  try {
+    fs.writeFileSync(lockFile, new Date().toISOString(), { mode: 0o644 });
+    return true;
+  } catch (e) {
+    // Race: another process grabbed the lock between our check and write
+    return false;
+  }
+}
 
 const SEVERITY_RANK = { critical: 0, high: 1, medium: 2, low: 3 };
 const SEVERITY_EMOJI = { critical: '🔴', high: '🟠', medium: '🟡', low: '🟢' };
@@ -158,13 +189,13 @@ function generateDigest(findings, summary, options = {}) {
 
   // Top summary
   lines.push('');
-  lines.push(`**Summary:** ${summary.pending} pending · ${summary.approved} approved · ${summary.suppressed} suppressed · ${summary.queue_fixed} queue-fixed · ${summary.auto_fixed} auto-fixed`);
-  lines.push(`**Total findings:** ${summary.total} (${summary.bySeverity.critical}C · ${summary.bySeverity.high}H · ${summary.bySeverity.medium}M · ${summary.bySeverity.low}L)`);
+  lines.push(`**摘要：** ${summary.pending} 待審 · $ 已批準 · y.approved} 已批准 · ${summary.suppressed} 已屏蔽 · ${summary.queue_fixed} 已修復 · ${summary.auto_fixed} 自動修復`);
+  lines.push(`**總發現：** ${summary.total} (${summary.bySeverity.critical}🔴 · ${summary.bySeverity.high}🟠 · ${summary.bySeverity.medium}🟡 · ${summary.bySeverity.low}🟢)`);
 
   // Breakdown by rule_id
   if (Object.keys(summary.byRule).length > 0) {
     lines.push('');
-    lines.push('**By rule:**');
+    lines.push('**按規則：**');
     const rules = Object.entries(summary.byRule).sort((a, b) => b[1].pending - a[1].pending);
     for (const [rule, counts] of rules) {
       const parts = [];
@@ -184,27 +215,27 @@ function generateDigest(findings, summary, options = {}) {
 
   if (pendingFindings.length > 0) {
     lines.push('');
-    lines.push(`📋 **Pending Review:** ${pendingFindings.length}`);
+    lines.push(`📋 **待審查：** ${pendingFindings.length}`);
 
     // Group by severity
     for (const sev of ['critical', 'high', 'medium', 'low']) {
       const group = pendingFindings.filter(f => f.severity === sev);
       if (group.length === 0) continue;
       const emoji = SEVERITY_EMOJI[sev];
-      const sevLabel = sev.charAt(0).toUpperCase() + sev.slice(1);
+      const sevLabel = sev === 'critical' ? '嚴重' : sev === 'high' ? '高' : sev === 'medium' ? '中' : '低';
       lines.push('');
-      lines.push(`${emoji} **${sevLabel.toUpperCase()}:** ${group.length}`);
-      const limit = Math.min(group.length, 5);
+      lines.push(`${emoji} **${sevLabel}：** ${group.length}`);
+      const limit = Math.min(group.length, 3);
       for (let i = 0; i < limit; i++) {
         lines.push(formatFinding(group[i], i + 1));
       }
       if (group.length > limit) {
-        lines.push(`  _...and ${group.length - limit} more_`);
+        lines.push(`  _...仲有 ${group.length - limit} 個_`);
       }
     }
   } else {
     lines.push('');
-    lines.push('✅ **No pending findings — all clean!**');
+    lines.push('✅ **沒有待審項目 — 全部乾淨！**');
   }
 
   // Approved section (manual fixes awaiting commit)
@@ -217,7 +248,7 @@ function generateDigest(findings, summary, options = {}) {
       lines.push(formatFinding(approvedFindings[i], i + 1));
     }
     if (approvedFindings.length > limit) {
-      lines.push(`  _...and ${approvedFindings.length - limit} more_`);
+      lines.push(`  _...仲有 ${approvedFindings.length - limit} 個_`);
     }
   }
 
@@ -225,7 +256,7 @@ function generateDigest(findings, summary, options = {}) {
   const suppressedFindings = findings.filter(f => f.status === 'suppressed');
   if (suppressedFindings.length > 0) {
     lines.push('');
-    lines.push(`🔇 **Suppressed:** ${suppressedFindings.length} (e.g. tests, intentional)`);
+    lines.push(`🔇 **已屏蔽：** ${suppressedFindings.length}（例如 tests、intentional）`);
   }
 
   // Auto-fixed section
@@ -236,8 +267,8 @@ function generateDigest(findings, summary, options = {}) {
   }
 
   lines.push('');
-  lines.push(`_Source: CQM Scan (${summary.total} findings) → Status classified via git diff + suppress comments_`);
-  lines.push('_(CQM Digest · single source of truth = scan · 2026-07-17)_');
+  lines.push(`_來源：CQM Scan（${summary.total} 個發現）→ 狀態由 git diff + suppress comments 分類_`);
+  lines.push('_(CQM Digest · 單一事實來源 = scan · 2026-07-17)_');
 
   return lines.join('\n');
 }
@@ -260,6 +291,16 @@ function generateJsonOutput(scanData, findings, summary) {
  * Push the digest to Discord via the shared helper.
  */
 async function sendDigest(digestMessage, dryRun = false) {
+  // Idempotency: skip if already sent today (handles cron retries/races)
+  if (!dryRun && alreadyLocked()) {
+    return { ok: true, skipped: true, reason: 'already_sent_today' };
+  }
+
+  // Acquire lock before sending (defensive against races)
+  if (!dryRun && !acquireLock()) {
+    return { ok: true, skipped: true, reason: 'lock_race' };
+  }
+
   const discord = require('./lib/discord_push');
   const result = discord.push({
     message: digestMessage,

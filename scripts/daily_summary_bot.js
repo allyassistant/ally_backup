@@ -42,7 +42,11 @@ const MINIMAX_CONFIG = {
 };
 
 async function sendDiscord(msg) {
-    const payload = typeof msg === 'string' ? msg : msg.content || JSON.stringify(msg);
+    // If it's a Discord embed (has title + fields), use it directly.
+    // Otherwise fall back to .content or string.
+    const payload = typeof msg === 'string' ? msg
+        : (msg.title && msg.fields) ? msg
+        : (msg.content || JSON.stringify(msg));
     if (!_quietMode) console.log('正在發送到 Discord #📕日記...');
     const result = discord.push({
         target: 'channel:1473386222998130860',

@@ -15,6 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const MAX_HANDOFF_SIZE = 20480; // bytes — max .session_handoff.md before truncation
 
 // Configuration
 const CONFIG = {
@@ -734,7 +735,7 @@ function generateHandoffPlaceholders() {
   try {
     if (fs.existsSync(CONFIG.HANDOFF_FILE)) {
       const stats = fs.statSync(CONFIG.HANDOFF_FILE);
-      if (stats.size > 20480) {
+      if (stats.size > MAX_HANDOFF_SIZE) {
         warn('   ⚠️ .session_handoff.md exceeds 20KB — truncating via fallback placeholder');
         return fallbackHandoff();
       }

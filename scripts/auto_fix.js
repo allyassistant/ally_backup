@@ -229,6 +229,7 @@ function log(color, msg) {
 // fix 返回修改後的 content (或 null 代表不修改)
 const { LOW_RISK_RULES } = require('./lib/rules/low-risk');
 const { HIGH_RISK_RULES } = require('./lib/rules/high-risk');
+const deployCheckSafety = require('./lib/rules/deploy-check-safety');
 const { runSystemAudit } = require('./lib/rules/system-audit');
 const { validateFix, logValidation } = require('./lib/rules/validation');
 
@@ -1641,37 +1642,16 @@ function runDeployCheck() {
     });
 
     // Safety 檢查（用 impact analysis 邏輯）
+    // Phase 4 (2026-07-18): delegated to lib/rules/deploy-check-safety.js
+    // (AST-based detector). Replaces the legacy inline regex that produced
+    // 16 false positives on every deploy-check (3-line window too narrow,
+    // no comment stripping, no existsSync guard detection).
     const { content } = helpers.getFileContent(f.path);
     if (content) {
-      const tryCatchIssues = [];
-      const dangerousSyncCalls = [
-        { method: 'fs.writeFileSync', pattern: /fs\.writeFileSync\s*\(/g },
-        { method: 'fs.readFileSync', pattern: /fs\.readFileSync\s*\(/g },
-        { method: 'execSync', pattern: /execSync\s*\(/g },
-        { method: 'execFileSync', pattern: /execFileSync\s*\(/g },
-        { method: 'spawnSync', pattern: /spawnSync\s*\(/g },
-      ];
-      const allLines = content.split('\n');
-
-      for (const { method, pattern } of dangerousSyncCalls) {
-        pattern.lastIndex = 0;
-        let match;
-        while ((match = pattern.exec(content)) !== null) {
-          const startLine = content.substring(0, match.index).split('\n').length;
-          const nearbyLines = allLines.slice(
-            Math.max(0, startLine - 3),
-            Math.min(allLines.length, startLine + 2)
-          );
-          const hasTryCatch = nearbyLines.some(l => /\btry\b|\bcatch\b/.test(l));
-          if (!hasTryCatch) {
-            tryCatchIssues.push(`${f.name}:${startLine}`);
-          }
-        }
-      }
-
-      if (tryCatchIssues.length > 0) {
-        for (const issue of tryCatchIssues) {
-          safetyResults.push({ name: f.name, issue: 'try-catch 缺失', detail: issue });
+      const safetyCheck = deployCheckSafety.detect(content, f.path);
+      if (safetyCheck.found) {
+        for (const line of safetyCheck.lines) {
+          safetyResults.push({ name: f.name, issue: 'try-catch 缺失', detail: `${f.name}:${line}` });
         }
       }
     }

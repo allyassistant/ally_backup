@@ -95,6 +95,7 @@ const FOLLOWUP_TELEMETRY = path.join(WS, '.skill_reviewer_followup.jsonl');
 const STAGE_2_FOLLOWUP_DISABLED = process.env.STAGE_2_FOLLOWUP_DISABLED === '1';
 const STAGE_2_FOLLOWUP_MAX_CALLS = 2;
 const STAGE_2_FOLLOWUP_TIME_BUDGET_MS = 5 * 60 * 1000;
+const STAGE_2_FOLLOWUP_BACKOFF_MS_DEFAULT = 7000; // ms wait between follow-up calls (DeepSeek 5/min rate limit)
 // Spec field aliases (2026-06-21): the task spec lists these exact field
 // names in the telemetry contract. We emit BOTH the spec names
 // (followupCallCount, durationMs, originalBlockCount, skippedCount) AND
@@ -2092,7 +2093,7 @@ async function runFollowupLoop(initialCtx, filesWritten, postLlmInjectedResults,
     // Medium-3 (2026-06-21): backoff between follow-up LLM calls to avoid
     // bursting the rate limit (DeepSeek 5/min). Tunable via env.
     if (followupCalls > 0) {
-      var backoffMs = Number(process.env.STAGE_2_FOLLOWUP_BACKOFF_MS) || 7000;
+      var backoffMs = Number(process.env.STAGE_2_FOLLOWUP_BACKOFF_MS) || STAGE_2_FOLLOWUP_BACKOFF_MS_DEFAULT;
       if (backoffMs > 0) {
         log('STAGE_2_FOLLOWUP: backoff ' + backoffMs + 'ms before call ' + (followupCalls + 1));
         await new Promise(function (r) { setTimeout(r, backoffMs); });
